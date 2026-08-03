@@ -1,2 +1,5 @@
 .claude/
 .git/
+temp/
+*.tmp
+*.temp

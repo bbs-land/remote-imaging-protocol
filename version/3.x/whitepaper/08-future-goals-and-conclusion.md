@@ -1,6 +1,6 @@
 # Future Goals & Conclusion
 
-[◀ Prev: Host Command Language](07-host-command-language.md) · [Contents](README.md) · [Next: Implementations & Versioning ▶](09-implementations-and-versioning.md)
+[◀ Prev: Host Command Language](07-host-command-language.md) · [Contents](README.md)
 
 ## 4. Future Goals of RIPscrip
 
@@ -51,4 +51,4 @@ Without a flexible technology at your disposal, your dreams for a graphical onli
 
 ---
 
-[◀ Prev: Host Command Language](07-host-command-language.md) · [Contents](README.md) · [Next: Implementations & Versioning ▶](09-implementations-and-versioning.md)
+[◀ Prev: Host Command Language](07-host-command-language.md) · [Contents](README.md)

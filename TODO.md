@@ -25,6 +25,23 @@ need a decision before the tasks under them can be finalized.
 - [ ] Port the link/anchor checker (currently a scratchpad Python script) into
       the repo as a Deno script; wire into CI so cross-links stay valid
 
+## Documentation restructure (direction, 2026-08-03)
+
+Future documentation should **align consistently across versions by
+feature/subfeature** rather than mirroring each source document's structure
+(the 3.x whitepaper layout need not be preserved). Goal: each version's docs
+represent the whole feature space comparably (protocol syntax, drawing,
+fonts, UI objects, ports/tables, host commands, text variables, file
+formats), making version deltas legible.
+
+- [x] Restructure the 3.x docs to mirror the 2.x layout: `version/3.x/ripscrip/`
+      is now a 22-file reconstructed protocol reference with per-claim evidence
+      tags; the faithful white-paper conversion moved to `version/3.x/whitepaper/`
+- [x] `temp/syncterm-missing-feature-rip3.md` — checklist of RIP 3.0 features
+      absent from SyncTERM, linked to the docs where each is specified
+- [ ] **Discuss:** whether 1.5x/2.x docs also get feature-aligned
+      companion pages, and how the taxonomy feeds the website layer
+
 ## RIPscrip 3.x research
 
 The white paper is woefully incomplete — no command reference exists. Flush
@@ -32,12 +49,23 @@ out everything else that can be found:
 
 - [ ] Inventory all known 3.0-era material beyond the white paper (RIPtel,
       WebRunner, TeleGrafix press releases, beta announcements, Usenet/FAQ posts)
-- [ ] Mine SyncTERM's `ripper.c` (claims "RIP 3.0 compatible") for the actual
+- [x] Mine SyncTERM's `ripper.c` (claims "RIP 3.0 compatible") for the actual
       3.0 command set, syntax changes, and behaviors; document with citations
-- [ ] Compare other client sources for any 3.0 handling
-- [ ] Obtain RIPtel itself and any 3.0-era SDK/developer docs (see Reference
-      materials below); reverse-engineer as needed
-- [ ] Write up findings in `version/3.x/techspecs/`
+      (→ `version/3.x/ripscrip/09–11`)
+- [x] Compare other client sources for any 3.0 handling (all 1.54-only in
+      code; RIPtermJS ships 2.x/3.x docs and RIP 2.0 samples)
+- [x] Obtain RIPtel itself and reverse-engineer: 3.1 install extracted to
+      `~/src/rip-tools/artifacts/RIPtel/` and analyzed — 116 authentic 3.0
+      scripts censused (11 new opcodes incl. the skewed-oval family),
+      RIPSCRIP.HLP string table yielded the full ~90-command inventory and
+      limits, column system + `<<IF>>` macro layer discovered
+      (→ `version/3.x/research/` and `version/3.x/ripscrip/12`)
+- [ ] Write up format findings as proper techspecs pages (`.RFF` Atech
+      FastFont, `.maf` MicroANSI fonts, `.BMH`, `RIPSCRIP.RES`/`.DB`) in
+      `version/<v>/techspecs/` per the earliest-version rule
+- [ ] Hunt for the "RIPscrip 3.0 protocol specification" and "RIP-2-C 3.0
+      developer tools" TeleGrafix listed as products (confirmed to have
+      existed via RIPtel help text)
 
 ## Technical specifications (`version/<v>/techspecs/`)
 

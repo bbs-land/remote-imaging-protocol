@@ -132,6 +132,8 @@ provenance. Additional preservation clone: `~/src/rip-tools/RIPterm154/`
 | `artifacts/proboard/pb_220d.zip` | ProBoard BBS v2.20d (TeleGrafix-era release) | Wayback: `telegrafix.com/products/proboard/pb_220d.zip` (2000-10-10 capture) |
 | `artifacts/searchlight/SLBBS510.EXE` | Searchlight BBS v5.10 (LHa SFX; TeleGrafix-era, RIP-supporting BBS) | Wayback: `telegrafix.com/products/searchlight/SLBBS510.EXE` (2001-09-05 capture) |
 
+| `artifacts/RIPtel/` | **Extracted RIPtel 3.1 install** (driver 3.0.7, Oct 1997): `RIPTEL.EXE`, WinHelp docs (`RIPTEL.HLP`, `RIPSCRIP.HLP`), ~110 authentic RIPscrip 3.0 demo scripts in `ICONS/` (.RIP/.FN/.DEF/.MNU/.MSE/.RET/.ENT/.EXT/.COL), 10 `.CHR` stroke fonts + 8 `.RFF` outline fonts in `FONTS/`, demo BMP/JPG images | Extracted from `artifacts/riptel-3.10/rtel3100.exe` install |
+
 When adding a new artifact, keep this provenance table up to date. RIPdraw
 has not yet been located in any archive.
 
