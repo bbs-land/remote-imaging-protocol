@@ -1,5 +1,30 @@
 # TODO
 
+## Status snapshot (2026-08-03)
+
+Complete: 1.5x and 2.x faithful Markdown editions; 3.x edition rebuilt to
+mirror the 2.x layout (22-page reconstructed reference with evidence tags,
+whitepaper conversion at `version/3.x/whitepaper/`, research notes at
+`version/3.x/research/`); RIPtel 3.1 fully analyzed (script census,
+help-file extraction, binary formats); assets staged for 1.5x and 3.x with
+per-file READMEs; `temp/syncterm-missing-feature-rip3.md` gap checklist;
+Git LFS + `.gitattributes` (LF default, `.rip`/`.ans` and `assets/**`
+byte-exact); reference repos + binaries in `~/src/rip-tools/` (see
+CONTRIBUTING); `tools/check-links.py` validates all doc links (0 broken at
+last run). Rendering guidance in `IMPLEMENTATION.md`.
+
+**Nothing is committed yet** — all work sits uncommitted on `main`. First
+commit notes: LFS hooks are installed locally (`git lfs install --local`
+already run); expect harmless `LF will be normalized` warnings; verify LFS
+quota/bandwidth on the GitHub remote when binaries first push.
+
+Likely next candidates: commit; 2.x assets (blocked on sourcing a complete
+RIPterm 2.3 — see Reference materials); techspecs pages for the binary
+formats; the seven open **Discuss** questions in the rollup at the bottom;
+VitePress site scaffold.
+
+---
+
 Planned work for this repository, grouped by area. Working conventions live in
 [CONTRIBUTING.md](CONTRIBUTING.md). Checked items are done; **Discuss:** items
 need a decision before the tasks under them can be finalized.
