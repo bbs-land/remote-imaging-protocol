@@ -108,6 +108,89 @@ The 116 TeleGrafix-authored RIPtel demo scripts are the best available picture o
 - **Typo tolerance is high.** A missing `!` introducer (`|1<ESC>0000$COMPAT$`, CURVES.RIP), separator lines `!|----` that accidentally parse as the `-` opcode with dash arguments (`-` reads as MegaNum 0), and bare `!|` no-op lines all pass through the shipping driver without visible failure. Robust parsers should degrade as gracefully.
 - **Line endings are CRLF**, with `\` continuation across physical lines for long vertex lists (POLYPOLY.RIP).
 
+## Annotated Wire Examples
+
+### The standard prologue, decoded
+
+*Evidence: corpus (90+ files).*
+
+Nearly every TeleGrafix scene opens with the same chained sequence:
+
+```text
+!|J10|n2000|M08|fZKQO
+```
+
+| Piece | Command | Meaning |
+|---|---|---|
+| `!\|` | — | line introducer + command delimiter |
+| `J10` | [RIP_SET_BASE_MATH](09-level-0-commands-g-r.md#rip_set_base_math) | base math ← 36 (`10` base-36 = 36): MegaNums |
+| `\|n2000` | [RIP_SET_COORDINATE_SIZE](09-level-0-commands-g-r.md#rip_set_coordinate_size) | coordinates ← 2-digit fields |
+| `\|M08` | [RIP_SET_COLOR_MODE](09-level-0-commands-g-r.md#rip_set_color_mode) | 8-bit palette color mode |
+| `\|fZKQO` | [RIP_SET_WORLD_FRAME](08-level-0-commands-symbols-a-f.md#rip_set_world_frame) | world frame ← 1280×960 (`ZK`=1280, `QO`=960) |
+
+The order matters: the scene pins its numeric conventions *before* any
+coordinate-bearing command arrives.
+
+### A real scene opening (DRAGON.RIP)
+
+*Evidence: corpus (DRAGON.RIP; annotations editorial).*
+
+```text
+\x01|!                                    SOH scene-start + comment (no text)
+!|*                                       RIP_RESET_WINDOWS - clean slate
+!|1\x1b0000$-=NO_WIPES=Disabled$          query cmd sets variable NO_WIPES=Disabled
+!|1\x1b0000$SBAROFF$                      hide the status bar
+!|w0000000000                             RIP_TEXT_WINDOW - zero-size (off)
+\x01|1\x1b0000$DTW$                       disable text window
+\x01|1\x1b0000$COFF$                      cursor off
+\x01|1\x1b0000$RESET(OVERFLOW)$           clear column-overflow state
+\x01|n2000                                2-digit coordinates
+\x01|M08                                  8-bit palette mode
+\x01|W00                                  RIP_WRITE_MODE - COPY
+\x01|fZKQO                                world frame 1280x960
+\x01|2P10000ZKQO00030000                  RIP_DEFINE_PORT - offscreen port 1, 1280x960
+\x01|J10                                  base math 36 (MegaNums)
+\x01|1b0000HS0Y000G000000STRIP6.BMP       RIP_LOAD_BITMAP at (0,0), 640x34 region
+\x01|c0F                                  draw color 15
+\x01|y0000BW0X040000001a1a000000dixon     extended font style - outline font "dixon"
+```
+
+(`\x01` = SOH, `\x1b` = ESC; both are literal single bytes on the wire.
+Lines end CRLF. Note the mixed introducers — SOH mid-scene is legal — and
+`$…$` terminal-control variables doing setup work alongside drawing
+commands.)
+
+### Chaining, escaping, and continuation
+
+*Evidence: 2.00a4; corpus; SyncTERM (ripper.c:18204–18232, 18563–18576).*
+
+```text
+!|c0F|=00000001|S010F                     three commands, one line: color,
+                                          line style, fill style
+!|@0A0ASay \| for a pipe                  \| = literal pipe inside a text
+                                          parameter (not a delimiter)
+!|p04000A000A0M0M2S0M2S000A00\            RIP_FILL_POLYGON with the vertex
+0A                                        list continued across lines: odd
+                                          trailing backslash before CR
+!|! any prose after the bang-pipe-bang    comment command - ignored by the
+                                          terminal, ubiquitous in the corpus
+```
+
+### A minimal constructed scene
+
+*(Constructed example — not from the corpus; commands and field widths
+follow the entries in pages 08–11.)*
+
+```text
+!|*|J10|n2000|M08|fZKQO                   reset + standard prologue
+!|c0F|=00000001|S010F                     white pen, solid 1px line, solid fill
+!|K05052S1U                               filled rectangle (5,5)-(100,66)
+!|Y02000909                               font style: small stroked font, 9x9
+!|@0F0PHello, RIPscrip 3.0                text at (15,25)
+!|1b000000000000000000LOGO.BMP            bitmap at (0,0), unscaled
+!|#                                       RIP_NO_MORE - scene complete
+```
+
 ## Command Documentation Legend
 
 *Evidence: editorial; format follows 2.00a4.*

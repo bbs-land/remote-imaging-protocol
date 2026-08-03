@@ -1,0 +1,116 @@
+|!
+!|J10
+!|n2000
+!|M08
+!|fZKQO
+!|W00
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Basic screen definitions (e.g., title)
+!|!
+!|10000$-=TITLE=Telnet Site Listings$
+!|!
+!|!
+!|10000$-=BACK=>TELQUEST.RET$
+!|!
+!|!
+!|-------------------------------------------------------------------------
+!|! What RIP file do we call from our demo screens to return here?
+!|!
+!|10000$-=RETURN=>TELLISTS.RET$
+!|!
+!|!
+!|!
+!|10000$-=TITLE=Telnet Site Listings$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Draw the title at the top of the screen
+!|!
+!|c0E|!                               Foreground color yellow
+!|k3K|!                               Background color a darkish brown/gold
+!|y0000BX1e060000001a1a000000Marin|!  Marin, centered, bold w/ dropshadow
+!|!
+!|@HR34<<TITLE>>
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show the copyright line
+!|!
+!|c09|!                              Foreground color bright blue 
+!|k01|!                              Background color dark blue
+!|y0000BW0e020000001a1a000000Marin|! Marin centered, non-bold w/ dropshadow
+!|!
+!|@HI4QCopyright ¨ 1997  TeleGrafix Communications, Inc.  All Rights Reserved
+!|!
+!|!
+!|S0101
+!|k00
+!|N00
+!|c0F
+!|y0000B00m040000001a1a000000Marin
+!|@0K6RThere are a number of Telnet listings available on the World
+!|@0K84Wide Web.  Below are some links to some sights that have good
+!|@0K9Elistings of BBS'es, and public access Telnet systems.
+!|y0000B00o040000001a1a000000Marin
+!|1B00000200LC040F000F080700000F07000000
+!|1U13AFBQE20000<><>
+!|1UCJAFN6E20000<><>
+!|1UNZAFYME20000<><>
+!|1U13ESBQIF0000<><>
+!|1UCJESN6IF0000<><>
+!|1UNZESYMIF0000<><>
+!|1UCJJ5N6N40000<><>
+!|1UNZJ5YMN40000<><>
+!|c0E
+!|y0000BW0i020000001a1a000000Dixon
+!|@6EC0Freenets
+!|@HUC0Hytelnet
+!|@TAC0Internet BBS Guide
+!|@6EGAInternet University
+!|@HUGATelnet Games
+!|y0000BY0i020000001a1a000000Dixon
+!|@TAGAthedirectory
+!|y0000BW0i020000001a1a000000Dixon
+!|@HUKOU.S. Government
+!|@TAKOWorld BBS Sites
+!|c00
+!|y0000BW0V000000001a1a000000Dixon
+!|@6ECWduke.usask.ca/~scottp/
+!|@6EDPfree.html
+!|@HUCWlibrary.usask.ca/hytelnet
+!|@TACWdeep.com/sbi.htm
+!|@6EH6caso.com/iu/research/
+!|@6EHZtelnet.html
+!|@HUH6www.mudconnect.com
+!|@TAH6www.thedirectory.org
+!|@HULSwww.fedworld.gov
+!|@TALSaug3.augsburg.edu/
+!|@TAMOschwartz/ebbs.htm
+!|c0F
+!|y0000BW0c020000001a1a000000Dixon
+!|=001EKF01
+!|!
+!|W00
+!|c0E|k0J
+!|y0000BW0r040000001a1a000000Dixon
+!|!
+!|1b1YJUAJMR0000000000TELBACK.BMP|@66LOBack
+!|!
+!|!
+!|10000$=-MSG1=Listings of community Freenets$
+!|10000$=-MSG2=Hytelnet Public Library Listings$
+!|10000$=-MSG3=Listings of Telnet'able BBS'es$
+!|10000$=-MSG4=Internet University Telnet List$
+!|10000$=-MSG5=Telnet Games (MUDs and MOOs)$
+!|10000$=-MSG6=TheDirectory (BBS/Net Sites)$
+!|10000$=-MSG7=U.S. Government Sites$
+!|10000$=-MSG8=World BBS/Telnet Sites$
+!|10000$=-MSG9=Return to the Questions Menu$
+!|!
+!|!
+!|10000$COMPAT$
+!|!
+!|#|#|#
+

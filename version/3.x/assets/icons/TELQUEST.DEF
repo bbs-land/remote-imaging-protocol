@@ -1,0 +1,57 @@
+|!
+!|!-------------------------------------------------------------------------
+!|! Basic screen definitions (e.g., title)
+!|!
+!|10000$-=TITLE=Questions and Information$
+!|!
+!|!
+!|-------------------------------------------------------------------------
+!|! What RIP file do we call from our demo screens to return here?
+!|!
+!|10000$-=RETURN=>TELQUEST.RET$
+!|!
+!|!-------------------------------------------------------------------------
+!|! Labels for each of the six buttons
+!|!
+!|10000$-=LAB1=RIPscrip-3$
+!|10000$-=LAB2=Telnet$
+!|10000$-=LAB3=Telnet Sites$
+!|10000$-=LAB4=Using RIPtel$
+!|10000$-=LAB5=Keyboard$
+!|10000$-=LAB6=Browsers$
+!|!              
+!|! 
+!|!-------------------------------------------------------------------------
+!|! Text variables to execute when one of the six buttons are clicked
+!|!
+!|10000$-=TTRACKER=http://www.telegrafix.com/telnet$
+!|10000$-=CMD1=TGMENU_HELP(1045)$
+!|10000$-=CMD2=TGMENU_HELP(1008)$
+!|10000$-=CMD3=GOTOURL(TTRACKER)$
+!|10000$-=CMD4=TGMENU_HELP(1003)$
+!|10000$-=CMD5=TGMENU_HELP(1011)$
+!|10000$-=CMD6=TGMENU_HELP(1132)$
+!|!              
+!|!-------------------------------------------------------------------------
+!|! Where should we go when we click on the "back" button?
+!|! 
+!|10000$-=BACK=>MENU.RET$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Define the status messages displayed when the user hovers over one of
+!|! the mouse fields on the screen
+!|!
+!|10000$=-MSG1=Information about RIPscrip-3$
+!|10000$=-MSG2=What is Telnet anyway?$
+!|10000$=-MSG3=Go to the TeleGrafix Telnet Tracker Web site$
+!|10000$=-MSG4=Information about using RIPtel$
+!|10000$=-MSG5=Using the keyboard with RIPtel$
+!|10000$=-MSG6=Using a Web Browser with RIPtel$
+!|!             
+!|10000$=-MSG7=Return to the main menu$
+!|!
+!|!
+!|!
+!|!
+!|#|#|#

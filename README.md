@@ -46,33 +46,27 @@ tools.
 
 | Version | Date | Notes |
 |---|---|---|
-| **1.54** | July 1993 | The widely deployed classic standard: EGA 640×350×16 graphics, drawing primitives, fills, fonts, icons, mouse fields, buttons, and text variables. |
-| **2.00 (alpha 4)** | December 1994 | A major proposed redesign (never finalized): drawing ports, data tables and backup areas, world coordinates, 256-color and direct-RGB modes, audio playback, DIB bitmaps, and an expanded multi-level command set. |
-| **3.0** | December 1996 | A technical white paper (by Jeff Reeder) summarizing the next-generation architecture and goals — resolution independence, Internet/WWW applications, and multimedia — rather than a full command reference. |
+| **[1.5x](version/1.5x/ripscrip/README.md)** | July 1993 | The widely deployed classic standard: EGA 640×350×16 graphics, drawing primitives, fills, fonts, icons, mouse fields, buttons, and text variables. [RIPScrip-1.54.txt](version/1.5x/text/RIPScrip-1.54.txt) |
+| **[2.x](version/2.x/ripscrip/README.md)** | December 1994 | A major proposed redesign (never finalized): drawing ports, data tables and backup areas, world coordinates, 256-color and direct-RGB modes, audio playback, DIB bitmaps, and an expanded multi-level command set. [RIPScrip-2.0-alpha-4.txt](version/2.x/text/RIPScrip-2.0-alpha-4.txt) |
+| **[3.x](version/3.x/ripscrip/README.md)** | December 1996 | A technical white paper (by Jeff Reeder) summarizing the next-generation architecture and goals — resolution independence, Internet/WWW applications, and multimedia — rather than a full command reference. [White paper](version/3.x/whitepaper/README.md) |
 
-## Specifications
+The Markdown editions are split into linked sections suitable for browsing and for generating a documentation website.
 
-| Version | Markdown edition | Original text |
-|---|---|---|
-| RIPscrip 1.5x | [Specification (linked Markdown)](version/1.5x/ripscrip/README.md) | [RIPScrip-1.54.txt](version/1.5x/text/RIPScrip-1.54.txt) |
-| RIPscrip 2.x | [Specification (linked Markdown)](version/2.x/ripscrip/README.md) | [RIPScrip-2.0-alpha-4.txt](version/2.x/text/RIPScrip-2.0-alpha-4.txt) |
-| RIPscrip 3.x | [Protocol reference, reconstructed (linked Markdown)](version/3.x/ripscrip/README.md) · [White paper](version/3.x/whitepaper/README.md) | [RIPScrip-3.x-technical-whitepaper.txt](version/3.x/text/RIPScrip-3.x-technical-whitepaper.txt) |
-
-The Markdown editions are faithful conversions of the original specification
-documents, split into linked sections suitable for browsing and for generating
-a documentation website.
 
 ## Repository layout
 
 ```
 version/
   1.5x/
+    assets/     Fonts and icons distributed with RIPterm 1.54
     ripscrip/   Markdown edition of the RIPscrip 1.54 specification
     text/       Original specification text
   2.x/
+    assets/     2.x-era distribution assets (recovery in progress)
     ripscrip/   Markdown edition of the RIPscrip 2.00 alpha 4 specification
     text/       Original specification text
   3.x/
+    assets/     Fonts, icons, and demo content distributed with RIPtel 3.1
     research/   Research notes from reverse-engineering 3.0-era artifacts
     ripscrip/   Reconstructed 3.0 protocol reference (mirrors the 2.x layout)
     text/       RIPscrip 3.0 technical white paper (original text)

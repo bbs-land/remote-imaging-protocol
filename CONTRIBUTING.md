@@ -134,8 +134,21 @@ provenance. Additional preservation clone: `~/src/rip-tools/RIPterm154/`
 
 | `artifacts/RIPtel/` | **Extracted RIPtel 3.1 install** (driver 3.0.7, Oct 1997): `RIPTEL.EXE`, WinHelp docs (`RIPTEL.HLP`, `RIPSCRIP.HLP`), ~110 authentic RIPscrip 3.0 demo scripts in `ICONS/` (.RIP/.FN/.DEF/.MNU/.MSE/.RET/.ENT/.EXT/.COL), 10 `.CHR` stroke fonts + 8 `.RFF` outline fonts in `FONTS/`, demo BMP/JPG images | Extracted from `artifacts/riptel-3.10/rtel3100.exe` install |
 
+| `artifacts/ripterm-2.30/extracted/` | Base files from an **installed** RIPterm 2.30 copy (docs incl. `RIPTERM.DOC`/`ARTWORK.DOC`, DIALCONV/RIPTECH/REGISTER executables, HMI sound drivers, splash bitmaps, `RIPterm.app` config; binaries dated 1995-11-28, docs 1997-10). The install **aborted before the `ICONS\`/`FONTS\` components** — the RW* icon set and `.CHR`/`.FNT`/`.FF1` fonts remain unrecovered. | Installed from `rtrm2300.exe` under Wine (aborted run) |
+
 When adding a new artifact, keep this provenance table up to date. RIPdraw
 has not yet been located in any archive.
+
+### Distribution assets in-repo (`version/<v>/assets/`)
+
+Original fonts/icons/audio distributed with each version are preserved in
+`version/<v>/assets/{fonts,icons,audio}/`, each with a README documenting
+every file. These are historical artifacts: `.gitattributes` stores
+everything under `assets/` **byte-exact** (`-text`; binary extensions also go
+through LFS). Do not re-encode, convert, or "fix" asset files; additions
+require a README row and provenance. Audio directories are empty (no audio
+ever shipped — RIPtel stored WAVs alongside icons, with no dedicated
+directory) and exist to receive future recoveries.
 
 ## Website tooling
 

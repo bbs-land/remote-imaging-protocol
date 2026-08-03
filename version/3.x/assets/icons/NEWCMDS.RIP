@@ -1,0 +1,68 @@
+|!
+!|*|!         Reset the screen
+!|S0101|!     Setup the fill color (blue)
+!|=00000001|! Solid line 1 pixel wide
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show our grid (center points)
+!|!
+!|N01|c08
+!|!
+!|! Show horizontal lines first
+!|!
+!|L0015HR15
+!|L003FHR3F
+!|L005PHR5P
+!|L007THR7T
+!|!
+!|! Now show the vertical lines
+!|!
+!|L2000209Q
+!|L5000509Q
+!|L8000809Q
+!|LB000B09Q
+!|LE000E09Q
+!|!
+!|! Change settings for subsequent example figures
+!|!
+!|c0F|!       Set color to white
+!|=00000003|! Solid line 3 pixel wide
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show RIP_SKEWED_OVAL
+!|!
+!|N01|&20151G0M1M
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show RIP_FILLED_SKEWED_OVAL
+!|!       
+!|N01|-203F1G0M1M|!  With    a border
+!|N00|-205P1G0M1M|!  Without a border
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show a RIP_SKEWED_OVAL_ARC
+!|!
+!|N01|]50151G0M20601M
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show a RIP_SKEWED_OVAL_PIE_SLICE
+!|!
+!|N01|[503F1G0M20601M|! With    a border
+!|N00|[505P1G0M20601M|! Without a border
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show a RIP_SKEWED_OVAL_CHORD
+!|!
+!|N01|+803F1G0M20601M|! With    a border
+!|N00|+805P1G0M20601M|! Without a border
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show a RIP_FILLED_OVAL_CHORD
+!|!
+!|N01|_B03F90601G0M|! With    a border
+!|N00|_B05P90601G0M|! Without a border
+!|!
+!|!---------
+!|! All done
+!|!---------
+!|#|#|#

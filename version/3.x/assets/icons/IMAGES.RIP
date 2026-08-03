@@ -1,0 +1,76 @@
+|!
+!|!
+!|*
+!|!
+!|!
+!|10000$DTW$
+!|!
+!|!-------------------------------------------------------------------------
+!|!  Display the blue faded background on 256 colors+, else solid blue
+!|!
+!|1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>
+!|!
+!|!
+!|J10
+!|n2000
+!|M08
+!|fZKQO
+!|W00
+!|c0E|k3K
+!|y0000BW1Q080000001a1a000000Marin|@HS2ARIPscrip Images
+!|S0101
+!|k00
+!|N00
+!|y0000800o000000001a1a000000Marin
+!|1B00000200LC040F00003Y2T000W0F00000000
+!|1U1E4I80940000<><>
+!|1U1EB5GUIC0000<><>
+!|1UIIB5XYIC0000<><>
+!|c0F
+!|y0000B00a040000001a1a000000Dixon
+!|@1I42JPEG Photos
+!|@9V42Stretched BMP Bitmaps
+!|@1SAMNormal Wallpaper
+!|@IWAMStaggered Wallpaper
+!|y0000800o000000001a1a000000Marin
+!|1U9O4IG9940000<><>
+!|1UH94IJM940000<><>
+!|1UKP4IXY940000<><>
+!|1i1E4I80940004000000000000
+!|1p0000BRIDGE02.JPG
+!|1b9O4IG8940004000000256COLOR.BMP
+!|1bH84IJM940004000000256COLOR.BMP
+!|1bKO4IXY940004000000256COLOR.BMP
+!|!
+!|v1EB5GUIC
+!|1b30306K4K000G000000BRICK.BMP
+!|!
+!|vIIB5XYIC
+!|1b20305K4K001C000000BRICK.BMP
+!|v0000ZKQO
+!|c0B
+!|y0000B00a040000001a1a000000Dixon
+!|@1AK2RIPscrip-3 supports two image file formats: JPEG and BMP.  We use JPEG for
+!|@1AL6photographic images because of its high compression, and because it is an
+!|@1AMAinternational standard.  BMP images are used for high-speed bitmap images
+!|@1ANEwhere size isn't as important as display speed.  All image formats support two
+!|@1AOIkinds of wallpapering.  RIP-3 is the only technology that supports transparent
+!|@1APMBMP bitmap images!  Future editions of RIPscrip will support PNG images.
+!|1bRSE6WYI20008000000GEAR.BMP
+!|S012I
+!|N01
+!|c00
+!|=001EKF02
+!|p07SEC0SEDAUEDAU4DYUSDAXKDAXKC0
+!|y0000BW0U000000001a1a000000Dixon
+!|@UYCWTransparent
+!|10000$COMPAT$
+!|!
+!|!
+!|fZKQO
+!|1bVU0QYY1S0000000000back.bmp
+!|1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endif>>
+!|fHR9S
+!|!
+!|!
+!|#|#|#

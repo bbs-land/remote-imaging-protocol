@@ -1,0 +1,56 @@
+(WINCHESTER, VA) - Traffic on the information superhighway can accelerate
+to warp speed by using rapid RIPscrip-3 Internet multimedia technology
+from TeleGrafix Communications Inc.
+
+Over three years in the making, RIPscrip-3 (Remote Imaging Protocol
+scripting language) promises to energize the Internet industry by busting
+the bandwidth bottleneck that turns the World Wide Web into the World Wide
+Wait.
+ 
+RIPscrip-3 multimedia technology is specifically designed for use with the
+Internet and it provides high-performance with any computer system. 
+RIPscrip-3 allows anyone to create, transmit and display high-quality
+graphics, photos and audio clips rapidly over normal telephone lines,
+cellular phones, the World Wide Web, Telnet, BBS or any other data
+communications link.
+
+RIPscrip uses advanced mathmatics to encode images as compact text files
+that are sent quickly over any communications connection. Since RIPscrip
+files are text-based and extremely bandwidth-efficient, complex images can
+be transmitted and displayed quickly without bogging down phone lines. 
+This makes RIPscrip perfectly suited for the Internet, BBS systems and
+corporate intranets. 
+
+RIPscrip-3 goes well beyond anything seen before on the Internet.  With
+television-style special effects, speedy JPEG images, digitized sound,
+24-bit color, and a high-tech font system, RIPscrip-3 provides a dazzling
+online multimedia experience.  
+
+The first generation of RIPscrip, introduced in 1992, was a worldwide hit
+with DOS users and the BBS industry.  Now TeleGrafix is providing its
+award-winning technology to Microsoft Windows users of the Internet.  
+
+RIPtel Visual Telnet software brings graphical communications to the world
+of Telnet, allowing thousands of government databases and corporate legacy
+computing systems to become as visually exciting and easy to use as the
+World Wide Web.
+
+Internet users no longer need contend with frustrating "command-line" text
+interfaces or arcane commands in order to navigate Telnet sites.  With
+RIPtel Visual Telnet, companies and organizations can turn their online
+systems into totally "point-and-click" graphical services much like Web --
+and they can save enormous amounts of money by eliminating the conversion
+of information in legacy systems to Web formats.  All that is needed is
+RIPscrip-3 technology from TeleGrafix!
+
+And TeleGrafix is moving to energize the Web!   New browser plug-ins for
+Netscape and Microsoft Internet Explorer let Windows 95 and NT users enjoy
+the efficient, high-quality graphics of tomorrow, without the painfully
+slow download speeds of the Web today.  RIPscrip-3 images can be directly
+embedded in Web pages as a speedy substitute for bulky GIF images.  
+
+For more information about these exciting products, please visit
+TeleGrafix's Web site at www.telegrafix.com, or visit our Telnet site at 
+telnet.telegrafix.com.
+
+--- END ---

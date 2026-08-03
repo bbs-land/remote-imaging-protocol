@@ -1,0 +1,28 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|!
+!|10000$MCURSOR(6)$
+!|!
+!|1R00000000TELKILL.FN|!  Kill all mouse fields and queries
+!|10000<<IF $NO_WIPES$="" or $NO_WIPES$="NONE">>$>TELPORT.FN$<<ELSE>>$RESET$<<ENDIF>>
+!|10000<<IF $NO_WIPES$!="" AND $NO_WIPES$!="NONE" AND $COLORS$<"256">>$>BLUEBACK.FN$<<ELSEIF $NO_WIPES$!="" AND $NO_WIPES$!="NONE">>$>BLUEFADE.FN$<<ELSE>>$NULL$<<ENDIF>>
+!|!
+!|!-------------------------------------------------------------------------
+!|!
+!|1R00000000TELDRAW.DEF|!   Define the variables for the engineering menu
+!|1R00000000TEL3X2.MNU|!    Show the main menu
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Choose a random wipe to wipe off the screen image
+!|!
+!|10000<<IF $TGMENU_WIPES$="1" and ($NO_WIPES$="" or $NO_WIPES$="NONE")>>$>WIPE$RAND(24,2,4)$.FN$<<else>>$NULL$<<ENDIF>>
+!|!
+!|!
+!|1R00000000TEL3X2.MSE|!    Create the mouse fields for the main menu
+!|!
+!|10000$MCURSOR(0)$
+!|!
+!|!
+!|#|#|#

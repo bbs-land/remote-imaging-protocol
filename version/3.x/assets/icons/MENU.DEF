@@ -1,0 +1,52 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|!-------------------------------------------------------------------------
+!|! Define the button labels used in our 3x3 button menu
+!|!
+!|10000$-=LAB1=Bookmarks$
+!|10000$-=LAB2=Demos$
+!|10000$-=LAB3=Help$
+!|10000$-=LAB4=Macros$
+!|10000$-=LAB5=Questions$
+!|10000$-=LAB6=Quit$
+!|10000$-=LAB7=Scrollback$
+!|10000$-=LAB8=Setup$
+!|10000$-=LAB9=Web$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Define the text variables commands that are executed when one of these
+!|! nine buttons are selected
+!|!
+!|10000$-=CMD1=TGMENU_DIALDIR$
+!|10000$-=CMD2=>TELDEMOS.FN$
+!|10000$-=CMD3=TGMENU_HELP(CONTENTS)$
+!|10000$-=CMD4=TGMENU_MACROS$
+!|10000$-=CMD5=>TELQUEST.FN$
+!|10000$-=CMD6=TGMENU_EXIT$
+!|10000$-=CMD7=TGMENU_SCROLLBACK$
+!|10000$-=CMD8=TGMENU_SETUP$
+!|10000$-=CMD9=TGMENU_WEB$
+!|!
+!|10000$-=CMD10=TGMENU_REGISTER$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Define the status messages displayed when the user hovers over one of
+!|! the mouse fields on the screen
+!|!
+!|10000$=-MSG1=Visit your favorite Telnet sites$
+!|10000$=-MSG2=Demonstrations of RIPscrip graphics$
+!|10000$=-MSG3=Help using RIPtel Visual Telnet$
+!|10000$=-MSG4=Use keyboard shortcuts$
+!|10000$=-MSG5=Questions, answers and other Information$
+!|10000$=-MSG6=Quit RIPtel Visual Telnet$
+!|10000$=-MSG7=Review information no longer on your screen$
+!|10000$=-MSG8=RIPtel setup options$
+!|10000$=-MSG9=Visit the World Wide Web$
+!|!
+!|10000$=-MSG10=RIPtel registration information$
+!|!
+!|!
+!|#|#|#

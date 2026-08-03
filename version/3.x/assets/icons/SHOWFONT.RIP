@@ -1,0 +1,57 @@
+|!
+!|!
+!|*
+!|!
+!|10000$dtw$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|!  Display the blue faded background on 256 colors+, else solid blue
+!|!
+!|1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>
+!|!
+!|c0E|k3K
+!|y0000BW1K080000001a1a000000Marin
+!|@FR20Scalable Outline Fonts
+!|!
+!|y0000BW0a020000001a1a000000Dixon
+!|1B80FH010PWG080F000F080700000E07000000
+!|1U143S00000000<><>
+!|!
+!|k00
+!|y0000BW0j020000001a1a000000Marin
+!|@5054Choose a Font
+!|!
+!|y0000BW0a020000001a1a000000Dixon
+!|!
+!|! wwhhooffffssffbbBBddssgg22uuccprrrrr
+!|1B0R0R030GPU000F000F080702020E07000000
+!|1U38603SHO1U00radionew.bmp<>Brush<>[2:]Brush
+!|1U38763SHO1V00radionew.bmp<>Cobb<>[2:]Cobb
+!|1U388A3SHO1W00radionew.bmp<>Default<>[2:]Default
+!|1U389E3SHO2100radionew.bmp<>Dixon<>[2:]Dixon
+!|1U38AI3SHO1X00radionew.bmp<>Eureka<>[2:]Eureka
+!|1U38BM3SHO2510radionew.bmp<>Marin<>[2:]Marin
+!|1U38CQ3SHO2700radionew.bmp<>Oakland<>[2:]Oakland
+!|1U38DU3SHO2B00radionew.bmp<>Symbol<>[2:]Symbol
+!|!
+!|1B6I300200LC020F005S2S0600000F5S000000
+!|1U1UFF00000000<><>
+!|!
+!|y0000BW0a020000001a1a000000dixon
+!|@50GOShow it
+!|@50HSto me!
+!|!
+!|10000$-=FONT_NAME=Marin$
+!|!
+!|1R00000000SHOWFONT.FN
+!|!
+!|1M001QFD8GIF3000000$-=FONT_NAME=<<?2>>$$>SHOWFONT.FN$
+!|!
+!|fZKQO
+!|1bVU0QYY1S0000000000back.bmp
+!|1M00VT0QYY1R1000000$>FONTS.RIP$
+!|fHR9S
+!|!
+!|#|#|#
+

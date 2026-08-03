@@ -36,6 +36,16 @@ The valid settings at this time are:
 
 If an illegal Set Base Math command is received (an illegal base math setting), RIPscrip will default to MegaNums.
 
+*[Editor's note: the ALPHA 4 draft assigns level-0 command `b` to both this
+command and [RIP_EXTENDED_TEXT_WINDOW](08-level-0-commands-a-f.md#rip_extended_text_window) —
+an unresolved collision in the draft. The shipping RIPscrip 3.0 driver
+resolved it by moving RIP_SET_BASE_MATH to level-0 **`J`** (so the format
+above became `!|J <base_math>`, e.g. `!|J10` for MegaNums), leaving `b` to
+the extended text window. This is confirmed by the RIPtel 3.1 demo corpus,
+where `J10` opens 90 of 116 TeleGrafix-authored scripts and is annotated
+"Set base math to MegaNums (base 36)" in TeleGrafix's own comments. See the
+[3.x entry](../../3.x/ripscrip/09-level-0-commands-g-r.md#rip_set_base_math).]*
+
 ## RIP_SET_BORDER
 
 *Added in RIPscrip v2.A3.*

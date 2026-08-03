@@ -1,0 +1,30 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|1M00409ACIC81000000ID=1:$<<CMD1>>$
+!|1M00DH9ALYC81000000ID=2:$<<CMD2>>$
+!|1M00MX9AVEC81000000ID=3:$<<CMD3>>$
+!|1M0040D4CIFZ1000000ID=4:$<<CMD4>>$
+!|1M00DHD4LYFZ1000000ID=5:$<<CMD5>>$
+!|1M00MXD4VEFZ1000000ID=6:$<<CMD6>>$
+!|!
+!|1M00DHK4LXMZ1000000ID=7:$<<BACK>>$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Create a port for the status line backup area, and copy the area where
+!|! the status line will go into that drawing port.
+!|!
+!|2P10000NO1800010000
+!|2C05KHNT8IV10000NO18000000|! Copy the screen image to the port
+!|!
+!|!
+!|!--------------------------------------------------------------------------
+!|! Setup our mouse entry/exit queries to do our status line, and mouse
+!|! cursor changing.
+!|!
+!|15000$MCURSOR(4)$$>tel3x2.ent$
+!|16000$MCURSOR(0)$$>tel3x2.ext$
+!|!
+!|!
+!|#|#|#

@@ -1,0 +1,110 @@
+|!
+!|!
+!|*
+!|!
+!|10000$dtw$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|!  Display the blue faded background on 256 colors+, else solid blue
+!|!
+!|1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>
+!|!
+!|!
+!|fHR9S
+!|!
+!|N01
+!|k01
+!|S0409|!       Setup the fill color (blue)
+!|c07|!         Set color to light gray
+!|=00000003|!   Solid line 3 pixel wide
+!|!
+!|Y00000200
+!|@1009RIP_POLY_POLYGON
+!|!
+!|c0E|!         Set color to yellow
+!|!
+!|<05\
+041010701070701070\
+03402060602060\
+03602080404050\
+04201K901K902K202K\
+041A5A905A90801A80
+!|!
+!|!-------------------------------------------------------------------------
+!|! Put in a colored circle so you can see the transparency aspect
+!|!
+!|N00
+!|S010G|GDM2020
+!|S010H|GDM201X
+!|S010I|GDM201U
+!|S010J|GDM201R
+!|S010K|GDM201O
+!|S010L|GDM201L
+!|S010M|GDM201I
+!|S010N|GDM201F
+!|S010O|GDM201C
+!|S010P|GDM2019
+!|S010Q|GDM2016
+!|S010R|GDM2013
+!|S010S|GDM2010
+!|S010T|GDM200X
+!|S010U|GDM200U
+!|S010V|GDM200R
+!|N01
+!|!
+!|!
+!|S0409|!     Setup the fill color (blue)
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show a couple of poly-polygons with and without borders
+!|!
+!|! With borders:
+!|!
+!|<03\
+04A010D010D030A030\
+03BM1ACU2UA62U\
+04A615CU15CU25A625
+!|!
+!|! Without borders:
+!|!
+!|N00
+!|<03\
+04E010H010H030E030\
+03FM1AGU2UE62U\
+04E615GU15GU25E625
+
+!|!-------------------------------------------------------------------------
+!|! Now put in some description
+!|!
+!|k00
+!|c08
+!|=00000001
+!|c0F
+!|!
+!|c0B
+!|k00
+!|!
+!|fZKQO
+!|y0000B00a040000001a1a000000Dixon
+!|!
+!|@K0CIThis object is a single RIPscrip
+!|@K0DOcommand.  It is called a poly-
+!|@K0EUpolygon, composed of multiple 
+!|@K0G0polygons all of which are drawn 
+!|@K0H6at the same time.  The "holes" 
+!|@K0ICyou see in this object cannot be 
+!|@K0JKachieved with multiple polygon 
+!|@K0KPcommands.  This is useful for 
+!|@K0LUcreating polygon style objects 
+!|@K0MZwith holes in them to achieve a 
+!|@K0O4particular effect.
+!|!
+!|fHR9S
+!|!
+!|fZKQO
+!|1bVU0QYY1S0000000000back.bmp
+!|1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endif>>
+!|fHR9S
+!|!
+!|#|#|#

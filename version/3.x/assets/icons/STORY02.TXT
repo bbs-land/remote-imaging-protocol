@@ -1,0 +1,14 @@
+(TOKYO) - Japanese computer users will communicate graphically over the
+Internet in their native language when new RIPscrip-3 software is released
+in Tokyo later this year.
+Japan's powerful Ministry of International Trade and Industry has funded
+development of "RIP-J", a Japanese version of RIPscrip-3 multimedia
+technology, as part of that nation's "Network 2000" Project, an initiative
+to create the world's most advanced telecommunications system.
+RIPscrip-3 is attracting wide attention in the Japanese Internet community,
+and Media Interface Co. Ltd. of Tokyo is now promoting its adoption as a
+multimedia standard for the Japanese computer industry. 
+RIPscrip-3 makes it possible to use any language on the Internet, including
+those using Asian, Middle Eastern or other character systems. 
+
+--- END ---

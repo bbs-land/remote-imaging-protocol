@@ -452,6 +452,11 @@ These pre-defined fonts must be supported by all RIPscrip 2.0 and later software
 
 **Attributes used:** Base Math (current setting)
 
+*[Editor's note: the ALPHA 4 draft assigns `b` to both this command and
+[RIP_SET_BASE_MATH](10-level-0-commands-s-w.md#rip_set_base_math). The
+shipping RIPscrip 3.0 driver kept `b` for the extended text window and moved
+RIP_SET_BASE_MATH to `J` — see the note on that entry.]*
+
 This RIPscrip command is a more sophisticated way of defining a text window than by using the older [RIP_TEXT_WINDOW](10-level-0-commands-s-w.md#rip_text_window) command. The older command doesn't permit you the luxury of creating a truly resolution independent text window - this command does and is far superior in design to the older RIPscrip 1.xx RIP_TEXT_WINDOW command. If at all possible, you should use this command instead of the older command as it provides more flexibility and more methods of interfacing with the text window via text variable query statements.
 
 This version of a text window works by establishing a bounding rectangle that is to contain the actual text window display region. This bounding rectangle is specified just like you would in drawing a filled rectangle, by indicating the upper-left X/Y coordinates and the lower-right X/Y coordinates of the bounding rectangle. Note that the lower-right corner of the bounding rectangle is non-inclusive to the bounding rectangle region, just like with filled rectangles. See the earlier section entitled ["THE MATHEMATICS OF GRAPHICS AND COORDINATES"](05-coordinates-and-math.md) for more detailed information on this subject and why it is important.

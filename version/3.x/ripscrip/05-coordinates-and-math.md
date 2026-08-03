@@ -44,6 +44,71 @@ That line — inline comment included — is TeleGrafix's own, from ONLINE.RIP; 
 
 This resolves a defect in the 2.00 ALPHA 4 draft, which assigned level-0 `b` to **both** RIP_SET_BASE_MATH and RIP_EXTENDED_TEXT_WINDOW — an unshippable collision. The 3.0 driver's corpus shows the resolution: SET_BASE_MATH moved to `J` on the wire, leaving `b` to the extended text window. This edition documents `J` as the 3.0 opcode throughout.
 
+## Choosing MegaNums vs UltraNums
+
+*Evidence: 2.00a4; corpus; SyncTERM (ripper.c:9107–9131).*
+
+Which base a command's parameters use is a **global mode**, not a
+per-command choice: after `!|J10` every base-math-governed field in every
+subsequent command reads as base-36; after `!|J1S`, base-64. Individual
+commands differ only in whether they *obey* the mode — each entry in the
+command pages carries a base-math line, which is one of:
+
+- **current setting** — the common case: coordinates, dimensions, radii,
+  vertex counts, and most numeric fields.
+- **MegaNums only** — commands that must parse before the mode is knowable
+  or that reset it: `RIP_SET_BASE_MATH` itself (its `10`/`1S` argument is
+  always base-36), and anything that follows a
+  [RIP_RESET_WINDOWS](08-level-0-commands-symbols-a-f.md#rip_reset_windows)
+  (a reset silently returns the mode to base 36 — re-send `J` immediately
+  if the scene needs otherwise).
+- **not numeric** — text parameters (always last in a command) ignore base
+  math entirely.
+
+### Worked encodings
+
+A field's value is `first_digit × base + second_digit` (and so on for wider
+fields). Digit values: `0`–`9` = 0–9, `A`–`Z` = 10–35, then (UltraNums only)
+`a`–`z` = 36–61, `#` = 62, `&` = 63.
+
+| Value | 2-digit MegaNum | 2-digit UltraNum |
+|---|---|---|
+| 14 | `0E` | `0E` |
+| 64 | `1S` | `10` |
+| 960 | `QO` (26×36+24) | `F0` (15×64+0) |
+| 1280 | `ZK` (35×36+20) | `K0` (20×64+0) |
+| 1295 | `ZZ` (max) | `KF` |
+| 4095 | — overflows | `&&` (max) |
+
+So the ubiquitous corpus line `!|fZKQO` is a 1280×960 world frame in
+MegaNums — and note that TeleGrafix's chosen frame fits 2-digit MegaNums
+with 15 to spare (1295 max). A constructed UltraNum equivalent would be
+`!|J1S|fK0F0` *(constructed example — see the caution below)*.
+
+### Decision guide
+
+| Largest coordinate in either axis | Recommended encoding |
+|---|---|
+| ≤ 1,295 | 2-digit MegaNums (the default; what every TeleGrafix scene does) |
+| 1,296 – 4,095 | 2-digit UltraNums (`J1S`) — same wire size, larger range — **or** 3-digit MegaNums via [RIP_SET_COORDINATE_SIZE](#rip_set_coordinate_size) |
+| 4,096 – 46,655 | 3-digit MegaNums, or 3-digit UltraNums (max 262,143, capped by the 32,767 world limit) |
+| larger | wider coordinate size; keep total field width ≤ 5 digits (32-bit arithmetic limit per 2.00a4) |
+
+UltraNums earn one byte per coordinate over 3-digit MegaNums in the
+1,296–4,095 band — meaningful at 2,400 baud when a scene is thousands of
+drawing operations.
+
+### Interoperability caution
+
+*Evidence: corpus; SyncTERM.*
+
+**No UltraNum usage has been observed in the wild.** All 116 TeleGrafix
+demo scripts run `J10` MegaNums, and SyncTERM cannot parse UltraNums at all
+— its number reader (`parse_mega`, ripper.c:9107–9131) treats `a`–`z` as
+*case-insensitive base-36 digits*, so a base-64 scene would silently
+mis-decode rather than fail. MegaNums are the only wire-proven encoding;
+treat UltraNums as documented-but-unexercised.
+
 ## RIP_SET_COORDINATE_SIZE
 
 *Evidence: 2.00a4; HLP; corpus.*

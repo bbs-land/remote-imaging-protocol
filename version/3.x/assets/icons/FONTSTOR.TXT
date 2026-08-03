@@ -1,0 +1,20 @@
+RIPscrip-3 has two built-in font systems to provide added flexibility for
+high-end graphics applications.  These "vector" and "scalable" fonts
+provide great flexibility in text display.  A powerful column system is
+available for displaying formatted text.  Try clicking on the buttons to
+the right to see how the column system can be used.  
+
+The different font systems let you to display text in different
+orientations, and with different kinds of effects.  For example, you can
+enable dropshadowing to give your text a 3-D shadowed appearance, or you
+can turn bold, italic, underline or strikethrough on (outline fonts only).
+You can control both horizontal and vertical alignment of text, causing
+text to be centered, left or right-aligned.  And the outline font system
+even let's you control the rotation of text.  You can rotate text in one
+of sixteen different possible combinations for added support for
+international language display purposes, or just to get a nice effect.
+
+Dozens of additional fonts will be available soon for distribution with
+RIPscrip-3 software.  These TrueType(tm)-style fonts will greatly extend 
+the available typefaces both in the "stock" editions of RIPscrip-3 
+software, and in additional add-on font packs.

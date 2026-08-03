@@ -185,8 +185,17 @@ other languages).
   - [ ] Other era tools worth having (third-party RIP editors, BBS-side RIP
         doors/menus) as discovered — the archived `ftp.telegrafix.com` index
         pages on the Wayback Machine list more candidates
-- [ ] Extract fonts/icons/sample scripts from these distributions into the
-      test corpus (once its layout is decided)
+- [x] Extract distribution assets into `version/<v>/assets/{fonts,icons,audio}/`
+      with per-directory READMEs: 1.5x (184 icons + 11 fonts from RIPTM154.ZIP),
+      3.x (234 icons/demo files + 20 fonts from RIPtel 3.1); byte-exact via
+      `.gitattributes` assets rule; audio dirs empty (nothing ever shipped)
+- [ ] Recover the RIPterm 2.30 `ICONS\`/`FONTS\` components — the Wine
+      install run aborted after the base files (recovered: docs, splash
+      bitmaps, ARTWORK.DOC manifest, HMI sound drivers → partially populated
+      `version/2.x/assets/`); re-run the installer to completion, or decode
+      the Wise payload compression, to obtain the `RW*` icon set and the
+      `.CHR`/`.FNT`/`.FF1` fonts
+- [ ] Extract sample scripts into the test corpus (once its layout is decided)
 - [ ] Note DOS emulation setup for running them (DOSBox-X config) if/when
       behavioral testing is needed
 

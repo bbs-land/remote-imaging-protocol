@@ -1,0 +1,35 @@
+|!
+!|*
+!|10000$dtw$
+!|J10
+!|n2000
+!|M08
+!|fZKQO
+!|W00
+!|S010R
+!|N00
+!|K0000ZLQP
+!|c00
+!|=001EKF01
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Assign what our title text should be
+!|!
+!|10000$-=TITLE_TEXT=RIPscrip Graphics$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Define our colors (foreground and background)
+!|!
+!|c0F|k0K|1R00000000shadowdo.fn
+!|c0F|k0L|1R00000000shadowdo.fn
+!|c0F|k0M|1R00000000shadowdo.fn
+!|c0F|k0N|1R00000000shadowdo.fn
+!|c0F|k0O|1R00000000shadowdo.fn
+!|c0F|k0P|1R00000000shadowdo.fn
+!|c0F|k0Q|1R00000000shadowdo.fn
+!|c0F|k0R|1R00000000shadowdo.fn
+!|!
+!|10000$COMPAT$
+!|#|#
