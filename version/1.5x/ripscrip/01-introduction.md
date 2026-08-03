@@ -1,0 +1,45 @@
+# Introduction
+
+[Contents](README.md) · [Next: Protocol Structure & Syntax ▶](02-protocol-structure.md)
+
+**RIPscrip Graphics Protocol Specification**
+Remote Imaging Protocol
+
+## INTRODUCTION
+
+As system operators of many bulletin board systems, we've often wished for some form of Graphical User Interface for our boards. Like most Sysops, we've come across many solutions. But they all seemed to fall short in one way or another: inadequate for THIS system, incomplete, difficult to implement, too complex, or lacking in graphics development tools. In short, we became frustrated.
+
+So, we decided to write our own Graphical Script Language.
+
+RIPscrip stands for "Remote Imaging Protocol Script" language. This graphical language is our answer to the graphics needs of the BBS community and has serious tools for implementation and practical use.
+
+
+## REVISION HISTORY NOTATION
+
+*Added in RIPscrip v1.54.*
+
+This document is a historical document. Periodically throughout the text are things that were added to the specification at specific revisions. These additions/changes can be easily pinpointed by looking for notation symbols in the right margin of the document. If you notice to the right of this paragraph are the symbols "> 1.54" which indicate that this section was added in the v1.54 revision of the RIPscrip Protocol Specification. This notational convenience was added to make quick determination of new changes fast and easy.
+
+## USE OF THE RIPscrip LANGUAGE
+
+The RIPscrip language is made publicly available and is freely licensed by TeleGrafix Communications, Inc. By freely licensed, we mean that the language can be used in the creation of other products. It does not mean that RIPscrip is public domain. TeleGrafix maintains the copyright of the RIPscrip language.
+
+RIPscrip, RIPaint, RIPdraw, and RIPterm are trademarks of TeleGrafix Communications, Inc. If you make a product that uses RIPscrip, you must state in your program's "About Box" and documentation that this product uses RIPscrip and the trademark statement. You may not use RIPterm, RIPaint, RIPdraw, or RIPterm in the name of your product.
+
+If you have any questions regarding these issues, contact TeleGrafix Communications, Inc. at 714/379-2131.
+
+## DEFINITION
+
+RIPscrip is a text based Script language for displaying online graphics. The script language conforms to 7-bit ASCII, avoiding the use of Extended ASCII characters. This allows transmission over X.25 networks and other carriers that do not support full 8-bit binary transfers easily. RIPscrip allows RIPscrip graphical statements to be mixed with printable ASCII text and [de facto standard] ANSI/VT-100 directives. RIPscrip can dynamically determine what is graphics and what is text and display them appropriately in separate windows (a graphics window and a text window). And if you must have your own proprietary commands, RIPscrip has room for that too.
+
+## HOW DOES RIPscrip WORK?
+
+RIPscrip uses a flexible, and very efficient script language for its graphical statements. Its efficiency stems from its compactness and developmental planning. It is entirely Object Oriented instead of Raster Oriented for efficient transmission of data and powerful editing capabilities (using RIPaint for example). The language is open ended enough so that literally trillions of different graphics commands can be implemented as needed. RIPscrip is not a proprietary protocol standard and is open to suggestion from the rest of the world.
+
+Earlier Graphical Script Languages (Avatar and Skypix among others), utilize special command characters to indicate which graphics command is to be executed. This precludes their use on systems that are limited to ASCII printable text. Traditional script languages use English words to accomplish things (eg, `BOX 0,0 100,50`). This kind of thing is incredibly bulky, especially when you consider that pictures are usually not simple things, but comprised of hundreds or thousands of individual graphical operations (eg, line, circles, fills, text, etc.). With this in mind, a human-readable script language was completely inappropriate for the relatively limited bandwidth of conventional modems.
+
+So, one of our main strategies for this language was to make it as efficient as possible without going completely binary. This allows the immediate installation of the protocol onto any ASCII text-based host system -- because the language consists entirely of ASCII printable characters. We justify the unreadability of the language by pointing out the limitations of today's modems and phone lines -- the language must be compact.
+
+---
+
+[Contents](README.md) · [Next: Protocol Structure & Syntax ▶](02-protocol-structure.md)
