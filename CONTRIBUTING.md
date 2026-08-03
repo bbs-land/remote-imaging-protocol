@@ -69,7 +69,9 @@ git clone <repo>    # LFS content downloads automatically
   C structs become fenced ` ```text ` / ` ```c ` blocks.
 - Anchors follow GitHub slug rules: lowercase, spaces → `-`, underscores kept
   (`#rip_text_window`), `$` stripped (`$DATE$` → `#date`).
-- Cross-link liberally between pages; run a link/anchor check after edits.
+- Cross-link liberally between pages; run `python3 tools/check-links.py`
+  after edits (validates every file/anchor target across the doc trees;
+  skips fenced and inline code).
 
 ## Technical specifications (`techspecs/`)
 
