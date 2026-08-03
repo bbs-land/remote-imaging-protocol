@@ -189,12 +189,18 @@ other languages).
       with per-directory READMEs: 1.5x (184 icons + 11 fonts from RIPTM154.ZIP),
       3.x (234 icons/demo files + 20 fonts from RIPtel 3.1); byte-exact via
       `.gitattributes` assets rule; audio dirs empty (nothing ever shipped)
-- [ ] Recover the RIPterm 2.30 `ICONS\`/`FONTS\` components — the Wine
-      install run aborted after the base files (recovered: docs, splash
-      bitmaps, ARTWORK.DOC manifest, HMI sound drivers → partially populated
-      `version/2.x/assets/`); re-run the installer to completion, or decode
-      the Wise payload compression, to obtain the `RW*` icon set and the
-      `.CHR`/`.FNT`/`.FF1` fonts
+- [ ] Populate `version/2.x/assets/` — currently empty by design (each
+      directory holds a TODO-stub README). The Wine install of the RIPterm
+      2.30 installer aborts after the base files, before the `ICONS\`/`FONTS\`
+      components; the base files it did produce (docs incl. RIPTERM.DOC and
+      the ARTWORK.DOC icon manifest, splash bitmaps, HMI sound drivers) are
+      kept for reference in `~/src/rip-tools/artifacts/ripterm-2.30/extracted/`
+      but were deliberately not committed as assets. Sourcing an archive copy
+      of a complete installed RIPterm 2.3 is in progress (2026-08); layout is
+      expected to resemble 3.x/RIPtel. Alternative: decode the Wise installer
+      payload compression. When a complete copy lands: stage icons/fonts,
+      write the per-directory READMEs (file tables + provenance, matching the
+      1.5x/3.x style)
 - [ ] Extract sample scripts into the test corpus (once its layout is decided)
 - [ ] Note DOS emulation setup for running them (DOSBox-X config) if/when
       behavioral testing is needed

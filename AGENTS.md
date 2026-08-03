@@ -18,3 +18,6 @@ Key points:
   preserved verbatim. Corrections and inferred details belong in `techspecs/`
   or editor's notes, with sources cited.
 - LF line endings everywhere; 2.x original text is CP437.
+- Renderer/implementation details (canvas sizes, 4:3 aspect policy) belong
+  in [IMPLEMENTATION.md](IMPLEMENTATION.md), never in the `version/`
+  language docs.

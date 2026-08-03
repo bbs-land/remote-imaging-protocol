@@ -150,6 +150,12 @@ require a README row and provenance. Audio directories are empty (no audio
 ever shipped — RIPtel stored WAVs alongside icons, with no dedicated
 directory) and exist to receive future recoveries.
 
+## Implementation guidance
+
+Renderer/terminal implementation details (canvas sizes, aspect-ratio policy)
+live in [IMPLEMENTATION.md](IMPLEMENTATION.md) — deliberately outside the
+`version/` language docs, which document the language only.
+
 ## Website tooling
 
 The documentation website will be built with **VitePress**, with **Deno** as
