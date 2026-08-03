@@ -1,0 +1,24 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|!-------------------------------------------------------------------------
+!|! Reset the screen environment
+!|!
+!|10000$RESET$
+!|!
+!|!
+!|10000$MCURSOR(6)$
+!|!
+!|!-------------------------------------------------------------------------
+!|!  Display the blue faded background on 256 colors+, else solid blue
+!|!
+!|1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>
+!|!
+!|!
+!|1R00000000MENU.DEF|!  Define the variables for the main menu
+!|1R00000000MENU.MNU|!  Show the menu itself
+!|1R00000000MENU.MSE|!  Define the mouse fields
+!|!
+!|10000$MCURSOR(0)$
+!|!
+!|#|#|#

@@ -1,6 +1,11 @@
 # Default: treat as text, normalize to LF in repo and on checkout
 * text=auto eol=lf
 
+# Distribution assets are historical artifacts: store byte-exact (many are
+# DOS-era text with CR/CRLF endings or CP437 content). LFS rules below still
+# apply to binary extensions within.
+version/*/assets/** -text
+
 # RIPscrip scripts and ANSI art: line endings are significant test data —
 # store and check out byte-for-byte, preserving CRLF or LF however the file
 # exists. (DOS-era files use uppercase extensions; cover both cases.)

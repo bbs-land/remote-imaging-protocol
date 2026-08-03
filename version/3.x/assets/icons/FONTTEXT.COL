@@ -1,0 +1,39 @@
+|!
+!|!
+!|1K
+!|!
+!|J10
+!|n2000
+!|M08
+!|fZKQO
+!|W00
+!|!
+!|S0101
+!|N00
+!|!
+!|! K0U2WYZA8
+!|!
+!|2C10000ZK720002WZKA8000000|! Copy the screen image to the port
+!|!
+!|k00
+!|N00
+!|S0101
+!|c0B
+!|y0000B00e040000001a1a000000Dixon
+!|!
+!|1e0U2WYOAF0100010000000000
+!|!
+!|1R00000000$overflow(1,cur)$
+!|!
+!|1E
+!|!
+!|1M00VJAAWNBA1000000ID=6:$overflow(1,prev,setverbose)$$>fonttext.col$
+!|1M00WLAAXMBA1000000ID=7:$overflow(1,next,setverbose)$$>fonttext.col$
+!|1M00XLAAYPBA1000000ID=8:$>fonts.rip$
+!|!
+!|fZKQO
+!|1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endif>>
+!|fHR9S
+!|!
+!|#|#|#
+

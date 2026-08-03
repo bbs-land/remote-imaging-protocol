@@ -1,0 +1,223 @@
+!|!-------------------------------------------------------------------------
+!|! Change these to the values you want for your content
+!|!-------------------------------------------------------------------------
+!|!
+!|10000$-=MAIN_FILE=newspapr.rip$|!     Name of this RIP file
+!|!
+!|10000$-=MAIN_STORY=story01.txt$|!     Filename containing main story
+!|10000$-=MAIN_AUTHOR=Jeff Reeder$|!    Author of main story
+!|10000$-=MAIN_TITLE=Rapid RIPscrip-3 Rocks The Net$
+!|!
+!|10000$-=SUB_STORY=story02.txt$|!      Filename containing secondary story
+!|10000$-=SUB_AUTHOR=Pat Clawson$|!     Author of secondary story
+!|10000$-=SUB_TITLE=RIPscrip-3 Gains Japanese Support$
+!|!
+!|!  
+!|10000$-=NO_WIPES=Disabled$
+!|!  
+!|!-------------------------------------------------------------------------
+!|*
+!|10000$SBAROFF$
+!|w0000000000
+!|S010U
+!|B0000HS9Q
+!|c00
+!|W00
+!|S0118
+!|B0M0B3712
+!|R0M0B3712
+!|S0100
+!|B0K0D0M14
+!|B0L123414
+!|!
+!|!-------------------------------------------------------------------------
+!|! Reset all overflow files
+!|!
+!|10000$RESET(OVERFLOW)$$-=RETURN=>TELDEMOS.RET$
+!|!
+!|!
+!|y00002X0M020000001a1a000000dixon
+!|c0E
+!|k00
+!|@1X0W< Back
+!|c0F
+!|N00|S0101
+!|1M000M0B37121000000ID=1:<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endif>>
+!|y0000210z020000001a1a000000marin
+!|c18
+!|@3X19RIPscrip Graphics
+!|!
+!|c00
+!|=00000002|L001G991G|L9V1GDG1G|LE41GHR1G
+!|=00000001|L001SHR1S
+!|!
+!|y00000109000000001n1a000000Marin
+!|!
+!|@0A1PA TELEGRAFIX COMMUNICATIONS, INC. SOFTWARE PRODUCTION
+!|@A81PONLINE MULTIMEDIA
+!|@E21PELECTRONIC NEWSPAPERS
+!|!
+!|!
+!|l0E0A20462046244B244B9G469G469K0A9K0A9G059G05240A240A200A20
+!|!
+!|S0118|B0E23422S|B0827482O
+!|S0166|B082W489D|B0E98429H
+!|!
+!|=010GUT01
+!|L0E4J434J
+!|L0E664366
+!|L0E7T437T
+!|!
+!|c00
+!|y0000010X000000001S1a000000Marin
+!|@4L2L$&MAIN_TITLE$
+!|!
+!|=00000002|L4L2X912X
+!|=00000001|L4L3A913A
+!|!
+!|!
+!|!
+!|k00
+!|y00002X0K020000001a1a000000dixon
+!|c0F
+!|@272MI N S I D E
+!|!
+!|!
+!|y00002X0D020000001a1a000000dixon
+!|S0118
+!|B0F33103J|@0S3F3 
+!|B0F4N1053|@0P4Z12
+!|B0F6B106R|@0P6N18
+!|B0F7X108D|@0R8921
+!|!
+!|c00
+!|y0000010D000000001a1a000000dixon
+!|!
+!|@153FWeather
+!|@154ZHoroscopes
+!|@156NBusiness
+!|@1589Photo Gallery
+!|!
+!|y0000000A000000001a1a000000marin
+!|1e0F3M434G0100000000000000
+!|!-------------------------------------------------------------------------
+Southern California was pounded
+with nearly two weeks of rain.
+Hundreds left homeless as a result.
+!|!-------------------------------------------------------------------------
+!|1E
+!|!
+!|1e0F5742650100000000000000
+!|!-------------------------------------------------------------------------
+What do the stars hold in store
+for you?  Ask your cosmic guide
+about your fate for the day.
+!|!-------------------------------------------------------------------------
+!|1E
+!|!
+!|1e0F6U427P0100000000000000
+!|!-------------------------------------------------------------------------
+TeleGrafix Communications opens
+up the information superhighway
+to full multimedia technology.
+!|!-------------------------------------------------------------------------
+!|1E
+!|!
+!|1e0F8G419D0100000000000000
+!|!-------------------------------------------------------------------------
+Want to sell something?  A picture
+is worth a thousand words!  How
+about placing a photo ad with us?
+!|!-------------------------------------------------------------------------
+!|1E
+!|!
+!|!
+!|!
+!|y00000X0A00000000251a000000dixon
+!|@6P37By $&MAIN_AUTHOR$
+!|!
+!|c0O
+!|L9D2W9D9K
+!|LDK4RDK66
+!|!
+!|y0000000C000000001a1a000000dixon
+!|c00
+!|1e4L3D919K0100010000000000
+!|1e9L4SDF681100010000000000
+!|1eDP4SHI5V2100010000000000
+!|!-------------------------------------------------------------------------
+!|1R00000000$&MAIN_STORY$
+!|!-------------------------------------------------------------------------
+!|1E
+!|!
+!|!
+!|l0D9Q6CHD6CHD6GHI6GHI9GHD9GHD9K9Q9K9Q9G9L9G9L6G9Q6G9Q6C
+!|!
+!|S0166
+!|B9U6FH99H
+!|B9P6JHE9D
+!|!
+!|=00000002|LA16ZH46Z
+!|=00000001|LA17CH47C
+!|!
+!|y00000X0G000000001a1a000000Marin
+!|@DK6T$&SUB_TITLE$
+!|!
+!|y00000X0A00000000251a000000dixon
+!|@DJ79By $&SUB_AUTHOR$
+!|!
+!|!
+!|y0000000C000000001a1a000000dixon
+!|!
+!|1eA17FH48Y3200010000000000
+!|!-------------------------------------------------------------------------
+!|1R00000000$&SUB_STORY$
+!|!-------------------------------------------------------------------------
+!|1E
+!|!
+!|!
+!|1i9L2WBY4D0004000000000000|1p0000JUPITER.JPG
+!|1iCD2WEQ4D0004000000000000|1p0000ASTRO.JPG
+!|1iF52WHI4D0004000000000000|1p0000GALAXY.JPG
+!|!
+!|y00000109000000001a1a000000cobb
+!|!
+!|R9L2WBY4C|L9L4LBY4L|@9L4IJupiter
+!|RCD2WEQ4C|LCD4LEQ4L|@CD4IAstronaut
+!|RF52WHI4C|LF54LHI4L|@F54IGlobular Cluster
+!|!
+!|J10
+!|n2000
+!|M08
+!|fZKQO
+!|1bVUG0YYH20001000000NAVIGATE.BMP
+!|1PV4OM000
+!|1M000G7Y8ICC1000000ID=2:$-=RETURN=>NEWSPAPR.RIP$$>TWEATHER.RIP$
+!|1M000GCG8GGU1000000ID=3:$>N2_HORO.RIP$
+!|1M000GGY8ELC1000000ID=4:$>N2_BUSI.RIP$
+!|1M000GLG8CPQ1000000ID=5:$>N2_PHOTO.RIP$
+!|!
+!|1M00VWG0WUH01000000ID=6:$overflow(1,prev,setverbose)$$>demo-01.col$
+!|1M00WUG0XUH01000000ID=7:$overflow(1,next,setverbose)$$>demo-01.col$
+!|1M00XWG0YYH01000000ID=8:$>newspapr.rip$
+!|!
+!|1M00V4OMW4PM1000000ID=9:$overflow(2,prev,setverbose)$$>demo-02.col$
+!|1M00W4OMX4PM1000000ID=10:$overflow(2,next,setverbose)$$>demo-02.col$
+!|1M00X6OMY6PM1000000ID=11:$>newspapr.rip$
+!|!
+!|y00000G0S000000001a1a000000Marin
+!|@VAGQPage $overflow(1,page)$
+!|!
+!|y0000000S000000001a1a000000Marin
+!|@KEPGPage $overflow(2,page)$
+!|!
+!|!
+!|15000$MCURSOR(4)$
+!|16000$MCURSOR(0)$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|10000$COMPAT$
+!|#
+!|#
+!|#

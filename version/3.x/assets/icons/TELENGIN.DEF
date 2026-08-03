@@ -1,0 +1,56 @@
+|!
+!|!-------------------------------------------------------------------------
+!|! Basic screen definitions (e.g., title)
+!|!
+!|10000$-=TITLE=Engineering Demos$
+!|!
+!|!
+!|-------------------------------------------------------------------------
+!|! What RIP file do we call from our demo screens to return here?
+!|!
+!|10000$-=RETURN=>TELENGIN.RET$
+!|!
+!|!-------------------------------------------------------------------------
+!|! Labels for each of the six buttons
+!|!
+!|10000$-=LAB1=Architecture$
+!|10000$-=LAB2=Drafting$
+!|10000$-=LAB3=Shuttle$
+!|10000$-=LAB4=Space$
+!|10000$-=LAB5=Weather$
+!|10000$-=LAB6=blank$
+!|!             
+!|! 
+!|!-------------------------------------------------------------------------
+!|! Text variables to execute when one of the six buttons are clicked
+!|!
+!|10000$-=CMD1=>FOUND.RIP$
+!|10000$-=CMD2=>SAILBOAT.RIP$
+!|10000$-=CMD3=>SPACSHUT.RIP$
+!|10000$-=CMD4=>SHUTTLE.RIP$
+!|10000$-=CMD5=>TWEATHER.RIP$
+!|10000$-=CMD6=NULL$
+!|!             
+!|!-------------------------------------------------------------------------
+!|! Where should we go when we click on the "back" button?
+!|! 
+!|10000$-=BACK=>TELDEMOS.RET$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Define the status messages displayed when the user hovers over one of
+!|! the mouse fields on the screen
+!|!
+!|10000$=-MSG1=Architectural foundation plans$
+!|10000$=-MSG2=Top and side views of the plans for a sailboat$
+!|10000$=-MSG3=Top and side views of the space shuttle$
+!|10000$=-MSG4=More space shuttle engineering designs$
+!|10000$=-MSG5=Weather reporting$
+!|10000$=-MSG6=Insert engineering drawing here$
+!|!             
+!|10000$=-MSG7=Return to the demo menu$
+!|!
+!|!
+!|!
+!|!
+!|#|#|#

@@ -1,0 +1,26 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|!
+!|10000$MCURSOR(6)$
+!|!
+!|1R00000000TELKILL.FN|!  Kill all mouse fields and queries
+!|1R00000000TELPORT.FN|!  Create full-screen drawing port with blue fade
+!|!
+!|!-------------------------------------------------------------------------
+!|!
+!|1R00000000MENU.DEF|!   Define the variables for the main menu
+!|1R00000000MENU.MNU|!   Show the main menu
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Wipe off the screen image if setup says so, and show the new one
+!|!
+!|10000<<IF $TGMENU_WIPES$="1">>$>WIPE01.FN$<<else>>$NULL$<<ENDIF>>
+!|!
+!|1R00000000MENU.MSE|!   Create the mouse fields for the main menu
+!|!
+!|10000$MCURSOR(0)$
+!|!
+!|!
+!|#|#|#

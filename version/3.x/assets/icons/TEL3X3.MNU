@@ -1,0 +1,45 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|!-------------------------------------------------------------------------
+!|! Draw the title at the top of the screen
+!|!
+!|c0E|!                               Foreground color yellow
+!|k3K|!                               Background color a darkish brown/gold
+!|y0000BX1e060000001a1a000000Marin|!  Marin, centered, bold w/ dropshadow
+!|!
+!|@HR34<<TITLE>>
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show the copyright line
+!|!
+!|c09|!                              Foreground color bright blue 
+!|k01|!                              Background color dark blue
+!|y0000BW0e020000001a1a000000Marin|! Marin centered, non-bold w/ dropshadow
+!|!
+!|@HI4QCopyright ¨ 1997  TeleGrafix Communications, Inc.  All Rights Reserved
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Show the six buttons and their labels
+!|!
+!|W00
+!|c0E|k0J
+!|y0000BW0r040000001a1a000000Dixon
+!|!
+!|!
+!|1b3Y7YCCAY0000000000TELBUT.BMP|@809U<<LAB1>>
+!|1bDE7YLSAY0000000000TELBUT.BMP|@HK9U<<LAB2>>
+!|1bMU7YV8AY0000000000TELBUT.BMP|@R09U<<LAB3>>
+!|1b3YBSCCEP0000000000TELBUT.BMP|@80DM<<LAB4>>
+!|1bDEBSLSEP0000000000TELBUT.BMP|@HKDM<<LAB5>>
+!|1bMUBSV8EP0000000000TELBUT.BMP|@R0DM<<LAB6>>
+!|1b3YFMCCIM0000000000TELBUT.BMP|@80HI<<LAB7>>
+!|1bDEFMLSIM0000000000TELBUT.BMP|@HKHI<<LAB8>>
+!|1bMUFMV8IM0000000000TELBUT.BMP|@R0HI<<LAB9>>
+!|!
+!|!
+!|1bDILELWNY0000000000TELBACK.BMP|@HIN0Back
+!|!
+!|#|#|#

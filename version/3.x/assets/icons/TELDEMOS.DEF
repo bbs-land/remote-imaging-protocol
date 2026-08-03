@@ -1,0 +1,56 @@
+|!
+!|!-------------------------------------------------------------------------
+!|! Basic screen definitions (e.g., title)
+!|!
+!|10000$-=TITLE=RIPscrip Demonstrations$
+!|!
+!|!
+!|-------------------------------------------------------------------------
+!|! What RIP file do we call from our demo screens to return here?
+!|!
+!|10000$-=RETURN=>TELDEMOS.RET$
+!|!
+!|!-------------------------------------------------------------------------
+!|! Labels for each of the six buttons
+!|!
+!|10000$-=LAB1=Commands$
+!|10000$-=LAB2=Drawings$
+!|10000$-=LAB3=Engineering$
+!|10000$-=LAB4=Newsletter$
+!|10000$-=LAB5=Newspaper$
+!|10000$-=LAB6=Online$
+!|!              
+!|! 
+!|!-------------------------------------------------------------------------
+!|! Text variables to execute when one of the six buttons are clicked
+!|!
+!|10000$-=CMD1=>TELCMDS.FN$
+!|10000$-=CMD2=>TELDRAW.FN$
+!|10000$-=CMD3=>TELENGIN.FN$
+!|10000$-=CMD4=>DRAGON.RIP$
+!|10000$-=CMD5=>NEWSPAPR.RIP$
+!|10000$-=CMD6=>ONLINE.RIP$
+!|!              
+!|!-------------------------------------------------------------------------
+!|! Where should we go when we click on the "back" button?
+!|! 
+!|10000$-=BACK=>MENU.RET$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Define the status messages displayed when the user hovers over one of
+!|! the mouse fields on the screen
+!|!
+!|10000$=-MSG1=Examples of many RIPscrip graphics commands$
+!|10000$=-MSG2=Some simple drawings in RIPscrip$
+!|10000$=-MSG3=Examples of some engineering applications$
+!|10000$=-MSG4=A creative newsletter demonstration$
+!|10000$=-MSG5=Display an example of an online newspaper$
+!|10000$=-MSG6=How to get a real-life online demonstration$
+!|!             
+!|10000$=-MSG7=Return to the main menu$
+!|!
+!|!
+!|!
+!|!
+!|#|#|#

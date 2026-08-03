@@ -1,0 +1,26 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|!
+!|10000$MCURSOR(6)$
+!|!
+!|10000<<IF $NO_WIPES$="" OR $NO_WIPES$="NONE">>$>TELPORT.FN$<<ELSE>>$RESET$<<ENDIF>>
+!|10000<<IF $NO_WIPES$!="" AND $NO_WIPES$!="NONE" AND $COLORS$<"256">>$>BLUEBACK.FN$<<ELSEIF $NO_WIPES$!="" AND $NO_WIPES$!="NONE">>$>BLUEFADE.FN$<<ELSE>>$NULL$<<ENDIF>>
+!|!
+!|!-------------------------------------------------------------------------
+!|!
+!|1R00000000TELDEMOS.DEF|! Define the variables for the main menu
+!|1R00000000TEL3X2.MNU|!   Show the main menu
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Wipe off the screen image if setup says so, and show the new one
+!|!
+!|10000<<IF $TGMENU_WIPES$="1" and ($NO_WIPES$="" or $NO_WIPES$="NONE")>>$>WIPE01.FN$<<else>>$NULL$<<ENDIF>>
+!|!
+!|1R00000000TEL3X2.MSE|!   Create the mouse fields for the main menu
+!|!
+!|10000$RESET(TV,NO_WIPES)$$MCURSOR(0)$
+!|!
+!|!
+!|#|#|#

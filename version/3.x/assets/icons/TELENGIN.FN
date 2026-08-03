@@ -1,0 +1,25 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|10000$MCURSOR(6)$
+!|!
+!|1R00000000TELKILL.FN|!  Kill all mouse fields and queries
+!|1R00000000TELPORT.FN|!  Create full-screen drawing port with blue fade
+!|!
+!|!-------------------------------------------------------------------------
+!|!
+!|1R00000000TELENGIN.DEF|!  Define the variables for the engineering menu
+!|1R00000000TEL3X2.MNU|!    Show the 3x2 button menu
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Wipe off the screen image if setup says so, and show the new one
+!|!
+!|10000<<IF $TGMENU_WIPES$="1">>$>WIPE00.FN$<<else>>$NULL$<<ENDIF>>
+!|!
+!|1R00000000TEL3X2.MSE|!    Create the mouse fields for a 3x2 menu
+!|!
+!|10000$MCURSOR(0)$
+!|!
+!|!
+!|#|#|#

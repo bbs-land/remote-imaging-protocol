@@ -1,0 +1,33 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|!-------------------------------------------------------------------------
+!|! Create a full-screen drawing port in port slot #1 and draw the blue
+!|! faded background onto it.
+!|!
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Choose a random wipe to wipe off the screen image
+!|!
+!|10000<<IF $TGMENU_WIPES$="1">>$>NEWPORT.FN$<<else>>$NULL$<<ENDIF>>
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|!  Display the blue faded background on 256 colors+, else solid blue
+!|!
+!|1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Bluefade does things at 640x350, so we need to reset out environment
+!|! back to 1280x960 world coordinates.
+!|!
+!|J10|!    Set base math to MegaNums (36)
+!|n2000|!  Set X/Y coordinate size to 2 bytes
+!|M08|!    Set color palette mapping mode (not RGB encoding)
+!|fZKQO|!  Set world coordinates to 1280x960
+!|!
+!|!
+!|#|#|#
+

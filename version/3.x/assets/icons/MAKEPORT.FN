@@ -1,0 +1,10 @@
+|!
+!|!
+!|10000$SENV(PUSH)$    Save RIPscrip environment settings
+!|J10                   Set base math to MegaNums (base 36)
+!|n2000|!               Set 2 byte X/Y coordinates
+!|M08|!                 Set color palette mode
+!|fZKQO                 Set world coordinats to 1280x960
+!|2p0000|!              Delete all ports (screen is unaffected)
+!|2P10000ZKQO00010000|! Create port #1 to be full screen sized
+!|10000$SENV(POP$      Restore RIPscrip environment settings

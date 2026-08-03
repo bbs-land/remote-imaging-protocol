@@ -1,0 +1,34 @@
+|!
+!|J10|n2000|M08|fZKQO
+!|!
+!|1M000ZACBSE41000000ID=1:$-=WEBURL=http://duke.usask.ca/~scottp/free.html$$GOTOURL(WEBURL)$
+!|1M00CDACNAE41000000ID=2:$-=WEBURL=http://library.usask.ca/hytelnet$$GOTOURL(WEBURL)$
+!|1M00NVACYQE41000000ID=3:$-=WEBURL=http://deep.com/sbi.htm$$GOTOURL(WEBURL)$
+!|1M000ZEOBSIJ1000000ID=4:$-=WEBURL=http://caso.com/iu/research/telnet.html$$GOTOURL(WEBURL)$
+!|1M00CDEONAIJ1000000ID=5:$-=WEBURL=http://www.mudconnect.com$$GOTOURL(WEBURL)$
+!|1M00NVEOYQIJ1000000ID=6:$-=WEBURL=http://www.thedirectory.org$$GOTOURL(WEBURL)$
+!|1M00CDJ1NAN81000000ID=7:$-=WEBURL=http://www.fedworld.gov$$GOTOURL(WEBURL)$
+!|1M00NVJ1YQN81000000ID=8:$-=WEBURL=http://aug3.augsburg.edu/schwartz/ebbs.htm$$GOTOURL(WEBURL)$
+!|!
+!|1M001WJUAKMP1000000ID=9:$<<BACK>>$
+!|!
+!|!
+!|!-------------------------------------------------------------------------
+!|! Create a port for the status line backup area, and copy the area where
+!|! the status line will go into that drawing port.
+!|!
+!|2p1000|!                     Make sure port #1 is deleted
+!|2P10000OM1L00010000|!        Define port #1
+!|2C05COBTSPR10000OG1G000000|! Copy the screen image to the port
+!|!
+!|!
+!|!--------------------------------------------------------------------------
+!|! Setup our mouse entry/exit queries to do our status line, and mouse
+!|! cursor changing.
+!|!
+!|15000$MCURSOR(4)$$>tellists.ent$
+!|16000$MCURSOR(0)$$>tellists.ext$
+!|!
+!|!
+!|#|#|#
+

@@ -1,0 +1,116 @@
+Preface by:
+Jim Thompson of Western News Service
+
+As Managing Editor of Western News Service and Technology columnist for
+Boardwatch Magazine, I have had a front row seat to the center stage
+drama of the online world.  From the beginnings of home-grown bulletin
+board programs to the newest in client-server systems, I have watched
+this passing parade both as a journalist and a sysop.  During this time,
+few things have seized my attention or captured my imagination.  But,
+like any great drama, just when you think you have seen it all, along
+comes a new twist on an old plot.  With the release of RIPmaster, Alan
+McNamee has created that new twist.
+
+Thanks to Alan, I have had the unique opportunity to watch from the
+front row as RIPmaster evolved from an idea to the remarkable program
+that it is today. After looking at, and reviewing every other system on
+the market that promises a full graphical interface, I have chosen
+Alan's program for our use at Western News Service.  For me, that choice
+was easy.  Our system is dedicated to providing working journalists with
+information and news.  When you are on a deadline, aside from accuracy,
+the most important thing is speed -- the news just can't wait.  For us,
+RIPmaster was a natural because of its incredible speed.  It is almost
+like magic to watch a menu, that is comprised of various fonts, graphics
+and photos, display in the blink of an eye. RIPmaster is the fastest
+online graphical system, period.
+
+But Alan's obsession with making this the fastest system in the world
+did not end there.  He has also created one of the most flexible and
+adaptable programs that I have ever encountered.  As you use the
+program, you will find that there are few limitations here.  The news
+reader allows you to duplicate a letterhead or page layout.  This was a
+major advantage for us since it allows for the replication of a
+newspaper format.  The ability to link a database to the news reader
+provides a whole new dimension to an online system and pushes the
+boundaries of information dissemination. The capability of creating
+three-dimensional charts "on-the-fly" is an important tool for the
+sysop.  It also provides the user with a easy-to-understand graphical
+representation of complex data.  Of course, these are only a few of the
+innovations that Alan has built into RIPmaster.
+
+As a reporter, it is my job to be skeptical especially when it comes to
+claims of something being the best.  I have examined this program from
+every angle both as a reporter and a user.  I can say without
+reservation, that RIPmaster is the best, fastest and most versatile
+online graphical system available.
+
+Jim Thompson
+
+
+
+
+
+
+
+RIPscrip 3.0 PRESS RELEASE
+
+The electronic world known as the information superhighway just took a
+left turn thanks to a small company in Winchester, Virginia named
+TeleGrafix Communications, Inc.  They released a new version of their
+previously available RIPscrip graphics technology to revolutionize the
+online industry.  This new level of online graphics allows anybody who
+runs an online service to show their customers high-quality graphics, 
+photos and audio clips over normal telephone lines, the World Wide Web,
+Telnet or just about any other kind of data communications link.
+
+What makes all of this possible is the way that RIPscrip is designed - the
+entire language is entirely text-based.  Unlike other textual graphics
+languages, RIPscrip is very compact by design.  This allows for very
+extensive graphics to be shown without bogging down the communications
+line.  A side effect of its text nature is that it can be
+transmitted over any online service that can transmit text. That is over
+99.9% of the online community.  This makes it perfectly suited for the
+Internet and the nearly 100,000 BBS systems throughout the world servicing
+millions of computer users.
+
+With the addition of JPEG images, digitized sound, 24-bit color, and a
+high-tech font system, RIPscrip has the means to launch the online world
+into the 21st century.
+
+And now TeleGrafix has offered its award winning technology to Microsoft
+Windows users.  Their new RIPtel Visual Telnet software brings graphical
+communications to the world of Telnet.  This previously text-only
+interface has been a great barrier to end-users who are just starting to
+get online.  Those users who are bored of the World Wide Web and want
+more, find it frustrating when they try to use Telnet to get different
+kinds of information.  Having to know what type of command to enter, or
+how to navigate around different, dissimilar computer systems is a
+daunting task, fraught with frustration and dissatisfaction to the general
+consumer.  But with RIPtel Visual Telnet, companies and organizations
+running Telnet sites can turn their systems into a totally "point-and-click"
+graphical online service, much like the World Wide Web is today.  All that
+is needed is RIPscrip-3 technology from TeleGrafix!
+
+And if that wasn't enough, TeleGrafix has now brought its technology to
+the World Wide Web!  New plugins for Netscape and Internet Explorer let
+Windows 95 and NT users enjoy the efficient, high-quality graphics of
+tomorrow, without the painfully slow download speeds of the Web today. 
+These soon to be released plugin products will enhance the World Wide Web
+with a graphics technology that has been proven in the online industry
+since 1992, and continues to evolve on a daily basis.
+
+Two plugins will be available.  The first, RIPview, is an inline viewer of
+RIPscrip graphics for Netscape or Internet Explorer.  It allows you to
+view online RIPscrip graphics directly in your Web browser's HTML pages. 
+The second plugin, the Inline RIPtel plugin, allows you to have inline
+telnet sessions embedded directly in your Web pages.  Running an online
+BBS via Telnet?  Simply make a Web page with all of your important
+information, and add a RIPtel Visual Telnet embed command in the page, and
+when the user goes to that page, he will automatically open a telnet
+connection to your system - right there in your web page!
+
+For more information about these products, and this exciting technology,
+visit TeleGrafix's Web site at www.telegrafix.com.
+
+--- END ---
+
