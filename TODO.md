@@ -8,8 +8,15 @@ need a decision before the tasks under them can be finalized.
 
 - [x] Convert RIPscrip 1.54 specification to linked Markdown (`version/1.5x/ripscrip/`, 21 files)
 - [x] Convert RIPscrip 2.00 alpha 4 specification to linked Markdown (`version/2.x/ripscrip/`, 22 files)
-- [ ] Convert the RIPscrip 3.0 technical white paper to linked Markdown (`version/3.x/ripscrip/`)
-- [ ] Update the main README Specifications table when the 3.x edition lands (currently marked *text only for now*)
+- [x] Convert the RIPscrip 3.0 technical white paper to linked Markdown
+      (`version/3.x/ripscrip/` files 01–08), plus an editorial reconstructed
+      reference (files 09–11) from SyncTERM `ripper.c` evidence with
+      per-claim citations
+- [x] Update the main README Specifications table when the 3.x edition lands
+- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C
+      Library manual PDF, extraction of the RIPtel 3.10 / RIPterm 2.30
+      installers, and the seven known-but-unimplemented command descriptors
+      (see `version/3.x/ripscrip/10-reconstructed-command-set.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from
       implementations — as clearly-marked editor's notes, never silent edits
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the

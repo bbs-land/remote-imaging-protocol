@@ -56,7 +56,7 @@ tools.
 |---|---|---|
 | RIPscrip 1.5x | [Specification (linked Markdown)](version/1.5x/ripscrip/README.md) | [RIPScrip-1.54.txt](version/1.5x/text/RIPScrip-1.54.txt) |
 | RIPscrip 2.x | [Specification (linked Markdown)](version/2.x/ripscrip/README.md) | [RIPScrip-2.0-alpha-4.txt](version/2.x/text/RIPScrip-2.0-alpha-4.txt) |
-| RIPscrip 3.x | *(text only for now)* | [RIPScrip-3.x-technical-whitepaper.txt](version/3.x/text/RIPScrip-3.x-technical-whitepaper.txt) |
+| RIPscrip 3.x | [White paper + reconstructed reference (linked Markdown)](version/3.x/ripscrip/README.md) | [RIPScrip-3.x-technical-whitepaper.txt](version/3.x/text/RIPScrip-3.x-technical-whitepaper.txt) |
 
 The Markdown editions are faithful conversions of the original specification
 documents, split into linked sections suitable for browsing and for generating
@@ -73,6 +73,7 @@ version/
     ripscrip/   Markdown edition of the RIPscrip 2.00 alpha 4 specification
     text/       Original specification text
   3.x/
+    ripscrip/   Markdown edition: white paper conversion + reconstructed reference
     text/       RIPscrip 3.0 technical white paper
 ```
 
