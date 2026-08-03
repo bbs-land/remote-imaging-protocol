@@ -1,0 +1,27 @@
+{
+  // Repo default: UTF-8, LF only (matches .gitattributes)
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+
+  // RIPscrip scripts and ANSI art are DOS-era terminal streams:
+  // CP437-encoded with CRLF line endings. Assign them a language id so the
+  // language-scoped encoding/eol overrides below apply.
+  "files.associations": {
+    "*.rip": "ripscrip",
+    "*.RIP": "ripscrip",
+    "*.ans": "ansi",
+    "*.ANS": "ansi"
+  },
+  "[ripscrip]": {
+    "files.encoding": "cp437",
+    "files.eol": "\r\n",
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false
+  },
+  "[ansi]": {
+    "files.encoding": "cp437",
+    "files.eol": "\r\n",
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false
+  }
+}

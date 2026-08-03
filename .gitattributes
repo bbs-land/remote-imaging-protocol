@@ -1,0 +1,36 @@
+# Default: treat as text, normalize to LF in repo and on checkout
+* text=auto eol=lf
+
+# RIPscrip scripts and ANSI art: line endings are significant test data —
+# store and check out byte-for-byte, preserving CRLF or LF however the file
+# exists. (DOS-era files use uppercase extensions; cover both cases.)
+*.[rR][iI][pP] -text
+*.[aA][nN][sS] -text
+
+# ------------------------------------------------------------------
+# Binary formats tracked via Git LFS
+# (RIP-era binary formats + archives; case-insensitive patterns)
+# ------------------------------------------------------------------
+# RIP icons / hot icons
+*.[iI][cC][nN] filter=lfs diff=lfs merge=lfs -text
+*.[hH][iI][cC] filter=lfs diff=lfs merge=lfs -text
+# Borland BGI stroked fonts and drivers (RIPterm fonts)
+*.[cC][hH][rR] filter=lfs diff=lfs merge=lfs -text
+*.[bB][gG][iI] filter=lfs diff=lfs merge=lfs -text
+# Bitmap fonts
+*.[fF][nN][tT] filter=lfs diff=lfs merge=lfs -text
+# Raster images (PCX era, DIB/BMP in RIPscrip 2.x, web formats in 3.x,
+# and golden-render reference images)
+*.[pP][cC][xX] filter=lfs diff=lfs merge=lfs -text
+*.[bB][mM][pP] filter=lfs diff=lfs merge=lfs -text
+*.[dD][iI][bB] filter=lfs diff=lfs merge=lfs -text
+*.[gG][iI][fF] filter=lfs diff=lfs merge=lfs -text
+*.[jJ][pP][gG] filter=lfs diff=lfs merge=lfs -text
+*.[jJ][pP][eE][gG] filter=lfs diff=lfs merge=lfs -text
+*.[pP][nN][gG] filter=lfs diff=lfs merge=lfs -text
+# Audio (RIPscrip 2.x WAV playback, 3.x MIDI)
+*.[wW][aA][vV] filter=lfs diff=lfs merge=lfs -text
+*.[mM][iI][dD] filter=lfs diff=lfs merge=lfs -text
+# Archives and DOS-era executables/installers
+*.[zZ][iI][pP] filter=lfs diff=lfs merge=lfs -text
+*.[eE][xX][eE] filter=lfs diff=lfs merge=lfs -text

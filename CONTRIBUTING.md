@@ -5,10 +5,41 @@ specifications. This document records the technical conventions used while
 generating and maintaining the documentation, so that new material stays
 consistent with what exists.
 
+## Checkout & repository setup
+
+This repo uses **Git LFS** for binary content — install it and enable it
+before (or right after) cloning:
+
+```sh
+git lfs install     # once per machine
+git clone <repo>    # LFS content downloads automatically
+# in an existing clone that predates LFS: git lfs pull
+```
+
+`.gitattributes` governs everything (see the file for the full list):
+
+- Default: `* text=auto eol=lf` — text files are normalized to LF in the
+  repo and on checkout.
+- **`.rip` and `.ans` files are exempt** (`-text`, both upper/lower case):
+  line endings are significant test data, so they are stored and checked out
+  byte-for-byte — CRLF or LF, however the file exists. Do not "fix" them.
+  These files are **CP437-encoded, not UTF-8** — they are DOS-era terminal
+  streams, and CP437 is the assumed terminal representation. Do not
+  re-encode them; view with a CP437-aware tool or via
+  `iconv -f CP437 -t UTF-8`. (Possible future `.utf8.rip`/`.utf8.ans`
+  extensions for UTF-8 variants are an open discussion — see TODO.md.)
+- RIP-era binary formats are tracked via LFS, case-insensitively: icons
+  (`.icn`, `.hic`), fonts (`.chr`, `.bgi`, `.fnt`), images (`.pcx`, `.bmp`,
+  `.dib`, `.gif`, `.jpg/.jpeg`, `.png`), audio (`.wav`, `.mid`), and
+  archives/executables (`.zip`, `.exe`). Add new binary extensions to
+  `.gitattributes` with the same LFS pattern before committing such files.
+
 ## Repository conventions
 
-- **Line endings:** LF only, in every file.
-- **Encoding:** Everything is UTF-8. The original specification text files
+- **Line endings:** LF only, in every file — except `.rip`/`.ans`, which are
+  preserved as-is (see above).
+- **Encoding:** Everything is UTF-8 — except `.rip`/`.ans` files, which are
+  CP437 (see above). The original specification text files
   have been normalized from their as-sourced form: CP437 → UTF-8 (box-drawing
   and block glyphs preserved; the C0-range CP437 glyphs `0x10/0x11/0x1E/0x1F`
   mapped to `►◄▲▼`, which codecs treat as control bytes), CRLF → LF, and

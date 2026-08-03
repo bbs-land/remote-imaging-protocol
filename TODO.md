@@ -94,6 +94,10 @@ generation/tooling scripts (`deno task`).
 
 - [ ] **Discuss:** layout — top-level `corpus/` shared by docs/tests/crates,
       per-version `version/<v>/samples/`, or fixtures inside the Rust crates
+- [ ] **Discuss:** encoding-variant extensions — `.rip`/`.ans` are assumed
+      **CP437** (the DOS terminal representation) and stored byte-for-byte;
+      decide on future extensions for other encodings (e.g. `.utf8.rip` /
+      `.utf8.ans`, or others) and how tooling should detect/declare encoding
 - [ ] Collect real-world `.RIP` art and BBS screens (art packs, archived BBS
       distributions), with provenance notes
 - [ ] Extract sample icons, fonts, and scripts from original TeleGrafix
@@ -154,7 +158,14 @@ other languages).
 ## Housekeeping
 
 - [ ] Commit the existing work (everything to date is uncommitted on `main`)
-- [ ] Add `.gitattributes` (`* text=auto eol=lf`) to enforce LF
+- [x] Add `.gitattributes`: LF normalization by default; `.rip`/`.ans`
+      exempt (`-text`, byte-for-byte, CRLF preserved for testing); RIP-era
+      binary formats + `.zip`/`.exe` tracked via Git LFS (case-insensitive)
+- [x] Enable Git LFS in the repo (`git lfs install --local`; hooks updated) —
+      contributors need `git lfs install` once per machine, see CONTRIBUTING
+- [ ] Verify LFS behavior on the remote (GitHub LFS quota/bandwidth) when the
+      first binary content is pushed; decide whether large `artifacts/`-style
+      binaries belong in-repo at all or stay in `~/src/rip-tools/`
 - [ ] **Discuss:** licensing — the reproduced specs remain © TeleGrafix; the
       original documentation, machine-readable spec, corpus metadata, and Rust
       code need an explicit license (and possibly separate ones)
@@ -172,3 +183,5 @@ Collected from the sections above — each needs a short discussion:
 5. Website deployment target and publishing strategy
 6. Rust workspace layout, crate naming, and scope sequence
 7. Licensing for original (non-TeleGrafix) content and code
+8. Encoding-variant extensions for corpus files (`.rip`/`.ans` = CP437 for
+   now; `.utf8.rip`/`.utf8.ans` or similar for future UTF-8 variants?)
