@@ -47,8 +47,9 @@ need a decision before the tasks under them can be finalized.
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the
       source) based on actual implementation behavior (SyncTERM `ripper.c`,
       icy_parser_core), cited and marked as reconstructed
-- [ ] Port the link/anchor checker (currently a scratchpad Python script) into
-      the repo as a Deno script; wire into CI so cross-links stay valid
+- [ ] Port the link/anchor checker (currently a scratchpad Python script
+      under tools/check-links.py) into the repo as a Deno script; wire into 
+      CI so cross-links stay valid.
 
 ## Documentation restructure (direction, 2026-08-03)
 
@@ -62,8 +63,6 @@ formats), making version deltas legible.
 - [x] Restructure the 3.x docs to mirror the 2.x layout: `version/3.x/ripscrip/`
       is now a 22-file reconstructed protocol reference with per-claim evidence
       tags; the faithful white-paper conversion moved to `version/3.x/whitepaper/`
-- [x] `temp/syncterm-missing-feature-rip3.md` — checklist of RIP 3.0 features
-      absent from SyncTERM, linked to the docs where each is specified
 - [ ] **Discuss:** whether 1.5x/2.x docs also get feature-aligned
       companion pages, and how the taxonomy feeds the website layer
 
