@@ -2,6 +2,18 @@
 
 Documentation and extended information around RIPScrip/RIPTerm/RIPtel specifications.
 
+## Files
+
+### Terminal
+
+* [RIPTel 3.1](https://files.bbs.land/rip/riptel.msi) - Windows 7+ (patched)
+* RIPTerm 2.3 (Need working installer)
+* [RIPTerm 1.54](https://files.bbs.land/rip/RipTerm-1.54.zip) - DOS/DOSBox
+
+### Paint
+
+* [RIPaint 1.52](https://files.bbs.land/rip/RIPaint-1.52.zip) - DOS/DOSBox
+
 ## RIPscrip
 
 RIPscrip ("Remote Imaging Protocol Script language") is a text-based script
