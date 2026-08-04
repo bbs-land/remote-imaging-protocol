@@ -8,7 +8,7 @@ Documentation and extended information around RIPScrip/RIPTerm/RIPtel specificat
 
 * [RIPTel 3.1](https://files.bbs.land/rip/riptel.msi) - Windows 7+ (patched)
 * RIPTerm 2.3 (Need working installer)
-* [RIPTerm 1.54](https://files.bbs.land/rip/RipTerm-1.54.zip) - DOS/DOSBox
+* [RIPTerm 1.54](https://files.bbs.land/rip/RIPTM154.ZIP) - DOS/DOSBox
 
 ### Paint
 
