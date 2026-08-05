@@ -4,7 +4,7 @@ Documentation and extended information around RIPScrip/RIPTerm/RIPtel specificat
 
 | **Documentation** | **Terminal** | **Paint**
 |---|---|---|
-| [RIPScrip 3.x](version/3.x/ripscrip/README.md) | [RIPTel 3.1](https://files.bbs.land/rip/riptel.msi) - Windows 7+ (patched) | - |
+| [RIPScrip 3.x](version/3.x/ripscrip/README.md) | [RIPTel 3.1](https://files.bbs.land/rip/riptel.msi) - Windows 7+ (patched, PCMicro) | - |
 | [RIPScrip 2.x](version/2.x/ripscrip/README.md) | - | - |
 | [RIPScrip 1.5x](version/1.5x/ripscrip/README.md) | [RIPTerm 1.54](https://files.bbs.land/rip/RIPTM154.ZIP) DOS | [RIPaint 1.52](https://files.bbs.land/rip/RIPaint-1.52.zip) DOS |
 
