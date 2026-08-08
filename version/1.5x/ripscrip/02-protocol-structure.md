@@ -49,7 +49,7 @@ The basic syntax rules are as follows:
 
 12. A RIPscrip sequence CAN begin in a column other than column #0, if the exclamation mark prefix is replaced with a Ctrl-A (Start Of Header [SOH]) character, or Ctrl-B (STX) character. Since 99.9% of all BBS' do not allow users to enter most control characters, users will be unable to begin RIPscrip sequences in the middle of a command line. Only the host should be able to do this. This prevents people from cluttering teleconference, or other areas of a host with spurious RIPscrip sequences.
 
-13. If the last couple of bytes on a RIPscrip text line are backslashes, special care must be taken to make sure that they are not interpretted as a line-continuation. If a literal backslash is desired as the last position on the line, it must be specified as a double-backslash (eg, `\\`). If a line-continuation is used then there would have to be three backslashes used on the line as in the following example: *(v1.54)*
+13. If the last couple of bytes on a RIPscrip text line are backslashes, special care must be taken to make sure that they are not interpretted as a line-continuation. If a literal backslash is desired as the last position on the line, it must be specified as a double-backslash (eg, `\\`). If a line-continuation is used then there would have to be three backslashes used on the line as in the following example: _(v1.54)_
 
     ```text
     !|@2233this is a text line with a literal \\\
@@ -66,17 +66,17 @@ The basic syntax rules are as follows:
 
 RIPscrip predominantly uses non-ANSI command sequences. In a couple of situations though, an ANSI sequence is allowed to perform a specific function. There are currently three separate ANSI sequences defined in the RIPscrip protocol to perform various actions. They are as follows:
 
-`ESC[!` — Query RIPscrip version number. RIPterm will respond with `RIPSCRIPxxyyvs` where "xx" is equal to the major version number (zero padded), "yy" is equal to the minor version number (zero padded), "v" is the vendor code of the terminal program (see below), and "s" is the vendor's sub-version code for their software. For v1.54, the returned sequence for RIPterm (Vendor Code "1") would be `RIPSCRIP015410`. Another example, v1.23 with a Vendor Code of "2" and a sub-revision code of "5" would return `RIPSCRIP012325`. *(v1.54)*
+`ESC[!` — Query RIPscrip version number. RIPterm will respond with `RIPSCRIPxxyyvs` where "xx" is equal to the major version number (zero padded), "yy" is equal to the minor version number (zero padded), "v" is the vendor code of the terminal program (see below), and "s" is the vendor's sub-version code for their software. For v1.54, the returned sequence for RIPterm (Vendor Code "1") would be `RIPSCRIP015410`. Another example, v1.23 with a Vendor Code of "2" and a sub-revision code of "5" would return `RIPSCRIP012325`. _(v1.54)_
 
-Valid Vendor Codes are: *(v1.54)*
+Valid Vendor Codes are: _(v1.54)_
 
-| CODE | VENDOR |
-|------|--------|
-| 0 | Generic RIPscrip terminal (vendor unknown) |
-| 1 | RIPterm (from TeleGrafix Communications) |
-| 2 | Qmodem Pro (from Mustang Software, Inc) |
+| CODE | VENDOR                                     |
+| ---- | ------------------------------------------ |
+| 0    | Generic RIPscrip terminal (vendor unknown) |
+| 1    | RIPterm (from TeleGrafix Communications)   |
+| 2    | Qmodem Pro (from Mustang Software, Inc)    |
 
-This ANSI sequence is often used for "Auto-Sensing" if a RIPscrip terminal exists on the remote end of the connection. If a non-RIPscrip terminal receives this ANSI sequence, it will ignore it. *(v1.54)*
+This ANSI sequence is often used for "Auto-Sensing" if a RIPscrip terminal exists on the remote end of the connection. If a non-RIPscrip terminal receives this ANSI sequence, it will ignore it. _(v1.54)_
 
 `ESC[0!` — Same as `ESC [ !` (see above)
 
@@ -86,7 +86,7 @@ This ANSI sequence is often used for "Auto-Sensing" if a RIPscrip terminal exist
 
 ## MISCELLANEOUS NOTES/INFORMATION
 
-*Added in RIPscrip v1.54.*
+_Added in RIPscrip v1.54._
 
 Later in this document, references are made to [Mouse Fields](09-mouse-fields.md) and [Mouse Buttons](12-buttons.md). Specifically, it is noted that up to 128 of these types of commands may exist simultaneously on-screen. This means that you can have 128 mouse fields, 128 mouse buttons, or any combination of the above, but combined, their total number cannot exceed 128.
 

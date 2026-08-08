@@ -2,18 +2,18 @@
 
 [◀ Prev: Numbers, Coordinates & Math](05-coordinates-and-math.md) · [Contents](README.md) · [Next: Protocol Definition & Syntax ▶](07-protocol-definition.md)
 
-*Reconstructed edition — see [Contents](README.md) for the evidence legend.*
+_Reconstructed edition — see [Contents](README.md) for the evidence legend._
 
 ## The Color System
 
-*Evidence: 2.00a4; HLP.*
+_Evidence: 2.00a4; HLP._
 
 RIPscrip 1.x colors were 16 out of a 64-color master palette, with an EGA-derived bit-swapped encoding. The 2.x/3.0 engine replaces this with a **256-entry drawing palette** (color lookup table): each entry maps a color number 0–255 to an arbitrary RGB combination, set by `RIP_ONE_DRAWING_PALETTE` and `RIP_SET_DRAWING_PALETTE` with an explicit bits-per-component precision. Up to 36 complete palettes live in the [color palette table](03-data-tables.md), switchable with `RIP_SwitchPalette`.
 
 The 3.0.7 driver's error strings pin the concrete limits of the shipping engine:
 
 | Limit | Error-string evidence |
-|---|---|
+| --- | --- |
 | Palette indices 0–255 | "Color palette base is out of range (>255)" |
 | Max **256 colors** per palette command | "Too many colors in color palette command (>256)" |
 | Legacy system-palette color values 0–63 | "Invalid system palette color value (>63)" |
@@ -25,7 +25,7 @@ The 0–63 system-palette range is the 1.54 desktop palette living on: the old `
 
 ### Palette Mapping vs. Direct RGB
 
-*Evidence: 2.00a4; HLP; corpus.*
+_Evidence: 2.00a4; HLP; corpus._
 
 Two color modes exist, selected by **RIP_SET_COLOR_MODE** (wire opcode `M`) or `$COLORMODE$`:
 
@@ -36,7 +36,7 @@ Commands whose color parameters obey the current mode are marked `:CM` in the co
 
 ## Audio
 
-*Evidence: 2.00a4; HLP.*
+_Evidence: 2.00a4; HLP._
 
 ### Background WAV Playback
 
@@ -53,31 +53,31 @@ The terminal-side master switch is the **`AUDIO=TRUE`** toggle in the `[CONFIG]`
 
 ### Tones and Sweeps
 
-Beyond WAV playback, the 3.0.7 driver contains a tone-generation command family: its error strings validate tone commands with **frequency, duration, and increment sweep** parameters ("start frequency greater than stop", zero increment/duration errors). These generators sit behind the named-sound text variables — `$BEEP$`, `$MUSIC$`, `$ALARM$`, `$BLIP$`, `$PHASER$`, `$REVPHASER$` — documented in RIPTEL.HLP's variable tables. `$RESET(SOUND)$` resets the sound subsystem. No wire-level opcode for direct tone commands has been recovered from the corpus *(the demos ship no audio at all)*.
+Beyond WAV playback, the 3.0.7 driver contains a tone-generation command family: its error strings validate tone commands with **frequency, duration, and increment sweep** parameters ("start frequency greater than stop", zero increment/duration errors). These generators sit behind the named-sound text variables — `$BEEP$`, `$MUSIC$`, `$ALARM$`, `$BLIP$`, `$PHASER$`, `$REVPHASER$` — documented in RIPTEL.HLP's variable tables. `$RESET(SOUND)$` resets the sound subsystem. No wire-level opcode for direct tone commands has been recovered from the corpus _(the demos ship no audio at all)_.
 
 ## Text Windows and Terminal Emulation
 
-*Evidence: 2.00a4; HLP; corpus.*
+_Evidence: 2.00a4; HLP; corpus._
 
 A text window is a screen region where raw (non-RIPscrip) text is routed, with ANSI and VT-102 emulation: colors, cursor movement, scrolling margins, wrap/chop. Up to 36 text windows are defined in the [text window table](03-data-tables.md); the default is full-screen 80×25. A deactivated current window silently discards incoming text — the demos lean on `$DTW$` (deactivate text window) constantly to keep stray host text off their graphics.
 
 ### The Extended Text Window (`0b`)
 
-*Evidence: 2.00a4; HLP; corpus.*
+_Evidence: 2.00a4; HLP; corpus._
 
 3.0 keeps the classic `RIP_TEXT_WINDOW` (`w`, text-cell coordinates and MicroANSI font numbers) and adds **RIP_EXTENDED_TEXT_WINDOW** at level-0 **`b`** (`RIP_ExtendedTextWindow` in the 3.0.7 inventory; the opcode is unambiguous now that SET_BASE_MATH lives at `J` — see [Numbers, Coordinates & Math](05-coordinates-and-math.md)). The extended form defines text windows in world coordinates for resolution independence, with font-ID selection, and is queryable via `$ISEXTWIN$`. RIPTEL.HLP's strings confirm the richer text-window model: row/column positions, wrap/chop designator, domain designator, text metric mode (`RIP_TextMetric` is in the inventory), write mode, and article/column bindings into the flowed-text system ("Invalid text article number", "Invalid text column number").
 
 ### MicroANSI Fonts (`.maf`)
 
-*Evidence: HLP (file headers).*
+_Evidence: HLP (file headers)._
 
 Terminal text is rendered from **MicroANSI** bitmap fonts shipped as `RIPscrip.maf` — header `RIPterm v2.0 MicroANSI Font File`. The file carries per-resolution tables for **three display resolutions** — 640×480, 800×600, and 1024×768 — each with about five font-size subtables, so text windows keep proportion as the device resolution changes. (Text-mode geometries offered by RIPtel: 80×43, 91×43, 80×25, 91×25, 40×25.) Graphical text uses the separate font systems: BGI stroked `.CHR` vector fonts and the `.RFF` outline fonts of RIP_EXTENDED_FONT_STYLE, covered in the command pages.
 
 ### Overlapping Windows and Viewports
 
-*Evidence: 2.00a4.*
+_Evidence: 2.00a4._
 
-Multiple text windows and viewports may overlap freely, and no compositing occurs — everything is just pixels on the screen. Draw a circle across a text window and then scroll the window, and part of the circle scrolls with it; text written where two windows overlap is simply graphics on top of the other window. RIPscrip preserves no record of *what* drew a pixel; the final screen state is the only truth. Mouse regions are the one place ordering matters: overlapping regions are scanned most-recent-first on a click.
+Multiple text windows and viewports may overlap freely, and no compositing occurs — everything is just pixels on the screen. Draw a circle across a text window and then scroll the window, and part of the circle scrolls with it; text written where two windows overlap is simply graphics on top of the other window. RIPscrip preserves no record of _what_ drew a pixel; the final screen state is the only truth. Mouse regions are the one place ordering matters: overlapping regions are scanned most-recent-first on a click.
 
 ---
 

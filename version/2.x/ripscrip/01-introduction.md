@@ -12,12 +12,11 @@ So, we decided to write our own graphical script language.
 
 RIPscrip stands for "Remote Imaging Protocol script" language. This graphical language is our answer to the graphics needs of the BBS community and has serious tools for implementation and practical use.
 
-
 ## Use of the RIPscrip Language
 
 The RIPscrip language is made publicly available and is freely licensed by TeleGrafix Communications, Inc. By freely licensed, we mean that the language can be used in the creation of other products. It does not mean that RIPscrip is public domain. TeleGrafix maintains the copyright of the RIPscrip language.
 
-RIPscrip, RIPaint, RIPdraw, and RIPterm are trademarks of TeleGrafix Communications, Inc. If you make a product that uses RIPscrip, you must state in your program's "About Box" and documentation that this product uses RIPscrip and the trademark statement. You may not use RIPterm, RIPaint, RIPdraw, or RIPterm in the name of your product. You may also not use any of the preceding names in your product literature without prior written consent from an officer of TeleGrafix Communications, Inc. *(v2.A3)*
+RIPscrip, RIPaint, RIPdraw, and RIPterm are trademarks of TeleGrafix Communications, Inc. If you make a product that uses RIPscrip, you must state in your program's "About Box" and documentation that this product uses RIPscrip and the trademark statement. You may not use RIPterm, RIPaint, RIPdraw, or RIPterm in the name of your product. You may also not use any of the preceding names in your product literature without prior written consent from an officer of TeleGrafix Communications, Inc. _(v2.A3)_
 
 If you have any questions regarding these issues, contact TeleGrafix Communications, Inc. at (714) 379-2131.
 
@@ -35,15 +34,15 @@ So, one of our main strategies for this language was to make it as efficient as 
 
 ## Revision History Notation
 
-This document is a historical document. Periodically throughout the text are things that were added to the specification at specific revisions. These additions/changes can be easily pinpointed by looking for notation symbols in the right margin of the document. If you notice to the right of this paragraph are the symbols "> v1.54" which indicate that this section was added in the v1.54 revision of the RIPscrip Protocol Specification. This notational convenience was added to make quick determination of new changes fast and easy. *(v1.54)*
+This document is a historical document. Periodically throughout the text are things that were added to the specification at specific revisions. These additions/changes can be easily pinpointed by looking for notation symbols in the right margin of the document. If you notice to the right of this paragraph are the symbols "> v1.54" which indicate that this section was added in the v1.54 revision of the RIPscrip Protocol Specification. This notational convenience was added to make quick determination of new changes fast and easy. _(v1.54)_
 
-THIS VERSION OF THE RIP 2.0 SPECIFICATION IS AN ONGOING CULMINATION OF THINGS AND IDEAS FROM MANY PEOPLE. WITH THAT IN MIND, THERE ARE GOING TO BE NUMEROUS REVISIONS OF THE DOCUMENT, SO WE ARE USING A SPECIAL NOTATIONAL CONVENTION IN THE RIGHT MARGIN FOR THE SPECIFICATION. THE FIRST REVISION OF THE DOCUMENT WILL HAVE "v.2A0" TO INDICATE V2.0 REVISION A0 (ALPHA 0). EACH SUB-REVISION OF THIS DOCUMENT WILL INCREMENT THE 0 TO A HIGHER VALUE. IF WE GO BEYOND 9 (WE HOPE NOT), THEN WE'LL CHANGE "A" TO "B", AND SO ON, AND SO ON... *(v2.A0)*
+THIS VERSION OF THE RIP 2.0 SPECIFICATION IS AN ONGOING CULMINATION OF THINGS AND IDEAS FROM MANY PEOPLE. WITH THAT IN MIND, THERE ARE GOING TO BE NUMEROUS REVISIONS OF THE DOCUMENT, SO WE ARE USING A SPECIAL NOTATIONAL CONVENTION IN THE RIGHT MARGIN FOR THE SPECIFICATION. THE FIRST REVISION OF THE DOCUMENT WILL HAVE "v.2A0" TO INDICATE V2.0 REVISION A0 (ALPHA 0). EACH SUB-REVISION OF THIS DOCUMENT WILL INCREMENT THE 0 TO A HIGHER VALUE. IF WE GO BEYOND 9 (WE HOPE NOT), THEN WE'LL CHANGE "A" TO "B", AND SO ON, AND SO ON... _(v2.A0)_
 
-The following sub-sections give detailed information about what has changed in each sub-revision of the RIPscrip specification. *(v2.A4)*
+The following sub-sections give detailed information about what has changed in each sub-revision of the RIPscrip specification. _(v2.A4)_
 
 ### Revision 2.A4
 
-*Added in RIPscrip v2.A4.*
+_Added in RIPscrip v2.A4._
 
 - Changed some of the parameters for user defined [text variables](17-text-variables-general.md). Specifically, we removed "DATE" and "DECIMAL", renamed "NAME" to "TONAME", and added "TOLOWER" and "TOUPPER". In addition, we clearly defined that two parameters are allowed for this variable - a mode parameter and a conversion parameter.
 
@@ -136,7 +135,7 @@ The following sub-sections give detailed information about what has changed in e
 
 ### Revision 2.A3
 
-*Added in RIPscrip v2.A3.*
+_Added in RIPscrip v2.A3._
 
 - Added the RIP_SWITCH_PALETTE command to switch from one palette slot entry to another.
 
@@ -158,7 +157,7 @@ The following sub-sections give detailed information about what has changed in e
 
 ### Revision 2.A2
 
-*Added in RIPscrip v2.A2.*
+_Added in RIPscrip v2.A2._
 
 - Documented standard for setting and determining foreign language support.
 
@@ -194,7 +193,7 @@ The following sub-sections give detailed information about what has changed in e
 
 ### Revision 2.A1
 
-*Added in RIPscrip v2.A1.*
+_Added in RIPscrip v2.A1._
 
 - Added the ability to embed raw UU-Encoded data blocks inside RIPscrip encoded files. This allows you to transmit bitmaps, sound files, and other raw generic binary data over 7-bit ASCII text connections (like Internet, CompuServe, etc).
 
@@ -248,7 +247,7 @@ The following sub-sections give detailed information about what has changed in e
 
 - An enhanced load icon command has been added which supports scaling and dithering. This is intended to replace the older RIP_LOAD_ICON command because it does the same thing, and much more!
 
-- Formally defined what a "clipboard slot" is under 2.0 *(v2.A2)*
+- Formally defined what a "clipboard slot" is under 2.0 _(v2.A2)_
 
 - Officially defined the file format specification for 2.0 icon bitmap files. The official file format is BMP files (device independent bitmaps). See the [end of this document](21-icon-file-format.md) for a technical file format specification.
 
@@ -266,7 +265,7 @@ The following sub-sections give detailed information about what has changed in e
 
 ### Revision 2.A0
 
-*Added in RIPscrip v2.A1.*
+_Added in RIPscrip v2.A1._
 
 - Defined the resolution independent coordinate system nature of RIPscrip 2.0 (device coordinate frame, world coordinate frame and local [viewport] coordinate frames).
 
@@ -278,7 +277,7 @@ The following sub-sections give detailed information about what has changed in e
 
 - Defined 36 separate graphical drawing style slots
 
-- Defined multiple clipboard slots *(v2.A2)*
+- Defined multiple clipboard slots _(v2.A2)_
 
 - Added a Delay command
 
@@ -304,7 +303,7 @@ The following sub-sections give detailed information about what has changed in e
 
 ## Differences from 1.54 and 2.00 Formats
 
-*Added in RIPscrip v2.A1.*
+_Added in RIPscrip v2.A1._
 
 In previous versions of RIPscrip, we used a simple Icon file format for its disk based bitmap icons. In 2.00 we introduce a newer, more superior file format (the BMP/DIB file format). This is a device independent bitmap format that accomodates monochrome images, 16 color images, 256 color images and 24 bit images. There is no real form of compression internally but the capability for compression exists for future expandability. The reason for changing file formats was a very important one because the older format did not have the built-in facilities for resolution and color palette independence. This new format does. We chose the BMP file format because it is truly a device independent bitmap format. For details about the actual file format specification, see the [end of this document](21-icon-file-format.md).
 
@@ -312,15 +311,15 @@ Any place in the RIPscrip specification that used to refer to .ICN files now wil
 
 ## Backward Compatibility Topics
 
-With this release, XOR write modes now apply to all graphical primitives (also fill patterns). Overall this shouldn't pose any problems for 99% of all RIPscrip 1.54 files out there, but there might be a few that are affected - if in RIPaint, you enable XOR write mode and do a couple lines and rectangles, then do a circle or filled rectangle, the circle or filled rectangle will be drawn in COPY mode even though XOR mode is active. In a 2.0 terminal, this would cause the circles and filled in areas to be XOR'ed as well. In this regard, 2.0 is not 100.0% fully backward compatible. *(v2.A1)*
+With this release, XOR write modes now apply to all graphical primitives (also fill patterns). Overall this shouldn't pose any problems for 99% of all RIPscrip 1.54 files out there, but there might be a few that are affected - if in RIPaint, you enable XOR write mode and do a couple lines and rectangles, then do a circle or filled rectangle, the circle or filled rectangle will be drawn in COPY mode even though XOR mode is active. In a 2.0 terminal, this would cause the circles and filled in areas to be XOR'ed as well. In this regard, 2.0 is not 100.0% fully backward compatible. _(v2.A1)_
 
-Also with this release, the world coordinate/resolution independent aspect of the language handles filled-in areas a bit differently (see the [world coordinate system section](05-coordinates-and-math.md) below). Filled-rectangles don't fill all the way to the right or bottom borders of the rectangle - they are inset by one pixel from the right and up one line from the bottom. The reasons for this are described in the world coordinate section of this document. This can cause one pixel gaps in 1.54 files that wouldn't happen in 2.0 related files. *(v2.A1)*
+Also with this release, the world coordinate/resolution independent aspect of the language handles filled-in areas a bit differently (see the [world coordinate system section](05-coordinates-and-math.md) below). Filled-rectangles don't fill all the way to the right or bottom borders of the rectangle - they are inset by one pixel from the right and up one line from the bottom. The reasons for this are described in the world coordinate section of this document. This can cause one pixel gaps in 1.54 files that wouldn't happen in 2.0 related files. _(v2.A1)_
 
-With v2.A3 of the specification, we have introduced a system of graphical ports, or [drawing ports](02-drawing-ports.md). These drawing ports are areas where actual drawing takes place. In 1.54 and prior versions, any graphics that are drawn (eg, lines, circles, etc) are drawn to the screen (the screen port). Under 2.0 you can define multiple drawing ports which may or may not be on the screen (eg, screen ports, or offscreen "clipboard" ports). Each drawing port can have one viewport associated with it, allowing you to modify the sub-region inside the port that drawn objects will be "clipped to" (a clipping rectangle). The screen is always port #0 and is formally known as the default screen port. Under 1.54 you were allowed to have an offscreen bitmap area known as the clipboard. Under 2.0, the clipboard is simply an offscreen "clipboard" port. You may switch to any defined port and subsequent drawing operations will apply to that port instead of the screen (unless the new port is a screen port). *(v2.A3)*
+With v2.A3 of the specification, we have introduced a system of graphical ports, or [drawing ports](02-drawing-ports.md). These drawing ports are areas where actual drawing takes place. In 1.54 and prior versions, any graphics that are drawn (eg, lines, circles, etc) are drawn to the screen (the screen port). Under 2.0 you can define multiple drawing ports which may or may not be on the screen (eg, screen ports, or offscreen "clipboard" ports). Each drawing port can have one viewport associated with it, allowing you to modify the sub-region inside the port that drawn objects will be "clipped to" (a clipping rectangle). The screen is always port #0 and is formally known as the default screen port. Under 1.54 you were allowed to have an offscreen bitmap area known as the clipboard. Under 2.0, the clipboard is simply an offscreen "clipboard" port. You may switch to any defined port and subsequent drawing operations will apply to that port instead of the screen (unless the new port is a screen port). _(v2.A3)_
 
-The older RIPscrip commands that deal with the clipboard are in essence, obsolete. When they are instructed to work with the clipboard, they work with the first offscreen "clipboard" port that they find. Some newer commands have been included, which are more powerful, that allow you to specifically designate a given port number to work with. You are allowed up to 36 separate graphical drawing ports, which port #0 is the screen and cannot be deleted. *(v2.A3)*
+The older RIPscrip commands that deal with the clipboard are in essence, obsolete. When they are instructed to work with the clipboard, they work with the first offscreen "clipboard" port that they find. Some newer commands have been included, which are more powerful, that allow you to specifically designate a given port number to work with. You are allowed up to 36 separate graphical drawing ports, which port #0 is the screen and cannot be deleted. _(v2.A3)_
 
-RIPscrip 1.x filled objects (filled ovals, filled polygons, etc) had a border around the object. These borders were drawn using the current drawing color, line thickness, and in some cases, line pattern. Under 2.0, these borders can be turned off (they are on by default). This allows you to draw filled circles in a particular fill pattern without any borders. We default to keeping borders on for backward compatibility reasons. If you don't want borders, you will have to shut them off. *(v2.A3)*
+RIPscrip 1.x filled objects (filled ovals, filled polygons, etc) had a border around the object. These borders were drawn using the current drawing color, line thickness, and in some cases, line pattern. Under 2.0, these borders can be turned off (they are on by default). This allows you to draw filled circles in a particular fill pattern without any borders. We default to keeping borders on for backward compatibility reasons. If you don't want borders, you will have to shut them off. _(v2.A3)_
 
 ---
 

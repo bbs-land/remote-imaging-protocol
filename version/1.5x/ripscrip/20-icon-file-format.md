@@ -1,6 +1,6 @@
 # Icon File Format
 
-*Added in RIPscrip v1.54.*
+_Added in RIPscrip v1.54._
 
 [◀ Prev: Text Variable Creation & Query](19-text-variable-creation.md) · [Contents](README.md)
 

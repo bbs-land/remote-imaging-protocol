@@ -32,7 +32,7 @@ If you do not specify a question, then the list default to the question:
 Choose one of the following:
 ```
 
-You may specify up to twenty entries for any one list. In RIPterm version 1.52 and earlier, the total length of a pick list was 256 bytes. In version 1.53 and later, this limit has been increased to 1024 bytes. *(v1.53)*
+You may specify up to twenty entries for any one list. In RIPterm version 1.52 and earlier, the total length of a pick list was 256 bytes. In version 1.53 and later, this limit has been increased to 1024 bytes. _(v1.53)_
 
 Some characters have special significance in the RIPscrip language. These characters are `!` (exclamation mark, or for you Unix-heads, bang), `\` (backslash), and `|` (vertical bar). To use these characters in a Text Response, they must be preceded by a backslash (`!` becomes `\!`, `\` becomes `\\`, and `|` becomes `\|`). RIPaint automatically adds these when creating Text Responses. You need to be aware of this only if you are editing RIPscrip files with a text editor. The `_` (underline) and `~` (tilde) characters used to indicate the hotkey in a Text Response are not able to be preceded by a backslash to be used by themselves. They will be returned to the host if they exist in a Text Response (not in the description), however everything after the underline or tilde will be underlined, and the first character will be considered the hotkey.
 

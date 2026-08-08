@@ -46,8 +46,8 @@ Without a flexible technology at your disposal, your dreams for a graphical onli
 
 ---
 
-*Copyright © 1997 TeleGrafix Communications Inc. All Rights Reserved.*\
-*Maintained by webmaster@telegrafix.com*
+_Copyright © 1997 TeleGrafix Communications Inc. All Rights Reserved._\
+_Maintained by webmaster@telegrafix.com_
 
 ---
 

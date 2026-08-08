@@ -94,7 +94,7 @@ Original fonts/icons/audio distributed with each version are preserved in `versi
 
 ## Implementation guidance
 
-Renderer/terminal implementation details (canvas sizes, aspect-ratio policy) live in [IMPLEMENTATION.md](IMPLEMENTATION.md) — deliberately outside the `version/` language docs, which document the language only.
+Renderer/terminal implementation details (canvas sizes, aspect-ratio policy) live in [version/IMPLEMENTATION.md](version/IMPLEMENTATION.md) — deliberately outside the language docs themselves, which document the language only.
 
 ## Website tooling
 

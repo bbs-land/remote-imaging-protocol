@@ -35,7 +35,7 @@ With RIPscrip graphics, you are working with an "industry-standard" technology, 
 Currently, RIPscrip graphics is supported in the vast majority of terminal software packages, and bulletin board products. Here is a list of some of the existing companies with RIPscrip capabilities in their product(s):
 
 | Terminals    | Platform  | BBS Software            |
-|--------------|-----------|-------------------------|
+| ------------ | --------- | ----------------------- |
 | RIPterm Pro  | MS-DOS    | The MajorBBS/WorldGroup |
 | Qmodem Pro   | MS-DOS    | Wildcat!                |
 | Qmodem Pro   | Windows   | TBBS                    |

@@ -1,33 +1,23 @@
 # RIPscrip 3.0 Protocol Reference (Reconstructed Edition)
 
-**RIPscrip 3.0** — the third-generation Remote Imaging Protocol scripting
-language (TeleGrafix Communications, Inc., 1996–1997), as shipped in RIPtel
-Visual Telnet 3.1 (RIPscrip driver 3.0.7).
+**RIPscrip 3.0** — the third-generation Remote Imaging Protocol scripting language (TeleGrafix Communications, Inc., 1996–1997), as shipped in RIPtel Visual Telnet 3.1 (RIPscrip driver 3.0.7).
 
-TeleGrafix never published a RIPscrip 3.0 language reference. This edition is
-an **editorial reconstruction**, structured to mirror the
-[2.x specification](../../2.x/ripscrip/README.md) that 3.0 directly evolved
-from, with the 3.x-era changes flattened into their proper sections. The
-official [3.0 Technical White Paper](../whitepaper/README.md) (prose only) is
-preserved separately as a faithful conversion.
+TeleGrafix never published a RIPscrip 3.0 language reference. This edition is an **editorial reconstruction**, structured to mirror the [2.x specification](../../2.x/ripscrip/README.md) that 3.0 directly evolved from, with the 3.x-era changes flattened into their proper sections. The official [3.0 Technical White Paper](../whitepaper/README.md) (prose only) is preserved separately as a faithful conversion.
 
 ## Evidence legend
 
 Every section and command entry carries an evidence tag:
 
 | Tag | Meaning |
-|---|---|
+| --- | --- |
 | `2.00a4` | Documented in the RIPscrip 2.00 alpha 4 specification, which 3.0 inherits (see the [2.x edition](../../2.x/ripscrip/README.md)) |
 | `WP` | Stated in the official 3.0 Technical White Paper |
 | `HLP` | Recovered from the RIPtel 3.1 help files / RIPSCRIP.DLL string table |
 | `corpus (FILE)` | Observed in the RIPtel 3.1 demo scripts (116 authentic TeleGrafix RIPscrip 3.0 files) |
 | `SyncTERM (ripper.c:N)` | Behavior of SyncTERM's open-source RIP 3.0 implementation |
-| *(hypothesis)* | Editorial inference — plausible but unconfirmed |
+| _(hypothesis)_ | Editorial inference — plausible but unconfirmed |
 
-Underlying research (full data, byte layouts, opcode census):
-[script census](../research/riptel-script-census.md) ·
-[help-file extraction](../research/riptel-help-extraction.md) ·
-[binary formats](../research/riptel-binary-formats.md)
+Underlying research (full data, byte layouts, opcode census): [script census](../research/riptel-script-census.md) · [help-file extraction](../research/riptel-help-extraction.md) · [binary formats](../research/riptel-binary-formats.md)
 
 ## Contents
 

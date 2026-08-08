@@ -45,7 +45,7 @@ The second method of numeric encoding was introduced in RIPscrip 2.0. It has bee
 Here is a table detailing the sizes of numbers that can be stored in various numbers of bytes, showing comparisons to decimal and hexadecimal encoding schemes:
 
 | Total Digits | Decimal | Hexa-Decimal | MegaNums      | UltraNums      |
-|--------------|---------|--------------|---------------|----------------|
+| ------------ | ------- | ------------ | ------------- | -------------- |
 | 1            | 9       | 15           | 35            | 63             |
 | 2            | 99      | 255          | 1,295         | 4,095          |
 | 3            | 999     | 4,095        | 46,655        | 262,143        |

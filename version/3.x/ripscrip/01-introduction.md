@@ -2,11 +2,11 @@
 
 [Contents](README.md) · [Next: Drawing Ports ▶](02-drawing-ports.md)
 
-*Reconstructed edition — see [Contents](README.md) for the evidence legend.*
+_Reconstructed edition — see [Contents](README.md) for the evidence legend._
 
 ## What RIPscrip 3.0 Is
 
-*Evidence: WP; 2.00a4.*
+_Evidence: WP; 2.00a4._
 
 RIPscrip ("Remote Imaging Protocol script") is TeleGrafix Communications' text-based graphical scripting language for online services. It encodes vector graphics, bitmapped images, mouse-driven user interfaces, fonts, audio, and terminal text into a stream of 7-bit printable ASCII that can be transmitted over any connection capable of carrying text, and intermixed freely with ordinary TTY and ANSI/VT-102 output. The language is object-oriented rather than raster-oriented: a scene is a sequence of compact drawing commands, not a bitmap.
 
@@ -22,11 +22,11 @@ Unlike the [1.5x](../../1.5x/ripscrip/README.md) and [2.x](../../2.x/ripscrip/RE
 4. **The 116-script RIPtel demo corpus** — TeleGrafix's own demo scenes (22,921 parsed commands, self-documented with 305 prose comments), the primary source for on-the-wire opcodes and syntax. See the [script census](../research/riptel-script-census.md).
 5. **SyncTERM's implementation** — `ripper.c` in the Synchronet source tree, the only open-source implementation that answers the version query as RIP 3.0. Cited by line number throughout.
 
-Every section in this edition carries an *Evidence:* line naming which of these sources supports it (`2.00a4`, `WP`, `HLP`, `corpus`, `SyncTERM`); editorial inferences are marked *(hypothesis)*. The full legend is in the [Contents](README.md).
+Every section in this edition carries an _Evidence:_ line naming which of these sources supports it (`2.00a4`, `WP`, `HLP`, `corpus`, `SyncTERM`); editorial inferences are marked _(hypothesis)_. The full legend is in the [Contents](README.md).
 
 ## The 3.0 Identity
 
-*Evidence: HLP; corpus; SyncTERM (ripper.c:7619).*
+_Evidence: HLP; corpus; SyncTERM (ripper.c:7619)._
 
 "RIPscrip 3.0" is a renaming, not a redesign. The evidence from RIPtel 3.1 (October 1997) is unambiguous:
 
@@ -38,10 +38,10 @@ In other words, RIPscrip 3.0 **is** the completed RIPscrip 2.x engine: the 2.00 
 
 ## Revision History
 
-*Evidence: 2.00a4; WP; HLP.*
+_Evidence: 2.00a4; WP; HLP._
 
 | Revision | Date | Notes |
-|---|---|---|
+| --- | --- | --- |
 | 1.54 | 1993 | Last published 1.x specification; the universal interoperability baseline. See the [1.5x edition](../../1.5x/ripscrip/README.md). |
 | 2.00 A0–A4 | 1993–Dec 1994 | The five ALPHA drafts of the 2.0 specification, introducing ports, tables, world coordinates, UltraNums, and the rest of the modern architecture. Per-revision change logs are preserved in the [2.x Introduction](../../2.x/ripscrip/01-introduction.md). |
 | 2.1 / 2.2 | 1995–1997 | The undocumented "RIPscrip-2" product era: the engine as shipped in the DOS RIPterm 2.20.00 (Nov 19, 1995), 2.20.01 (Nov 28, 1995), and 2.3 (Oct 25, 1997), with **no specification published after ALPHA 4** (no product labeled "2.1" has surfaced). The shipping engine moved past the draft — e.g. v2.20.01 added the icon-transparency flag (`<flags2>` bit 128) to RIP_BUTTON_STYLE, absent from the ALPHA 4 table. Features often credited to "3.x" were already shipping here — notably background **.WAV audio playback** (specified since ALPHA 3; RIPterm 2.2 shipped it with HMI sound drivers) and JPEG image display. See [Color, Audio & Text Windows](06-color-audio-text.md#background-wav-playback). |
@@ -52,7 +52,7 @@ One notable change between the 2.00a4 draft and the shipping 3.0: **GIF support 
 
 ## Differences from 2.00 ALPHA 4
 
-*Evidence: corpus; HLP; WP.*
+_Evidence: corpus; HLP; WP._
 
 Relative to the last published specification draft, the shipping 3.0 engine differs as listed below. Note that these differences accumulated **across the 2.1/2.2 product releases as well as the 3.0 renaming** — with no specifications published after ALPHA 4, the exact release where each feature landed is mostly unrecorded; where evidence exists (e.g. WAV audio shipping in the 2.1/2.2 era), the relevant section says so.
 
@@ -65,18 +65,18 @@ Relative to the last published specification draft, the shipping 3.0 engine diff
 
 ## Differences from 1.54
 
-*Evidence: 2.00a4; HLP; corpus.*
+_Evidence: 2.00a4; HLP; corpus._
 
 Everything the 2.00 ALPHAs introduced applies: ports, tables, backup areas, world coordinates, 256/direct-RGB color, base-math variation, and the expanded command levels — the fundamentals chapters of this edition cover each. For interoperating with 1.54-era content, 3.0 provides the **`$COMPAT$`** text variable, which sets the environment to RIPscrip 1.54 settings — the classic 640×350 EGA coordinate space and defaults. TeleGrafix's own demo scenes issue `$COMPAT$` before playing 1.54-style artwork (21 uses in the corpus), making it the standard bridge between the two coordinate worlds. The driver also retains 1.54 `.ICN` icon handling, converting old icons to BMP on the fly ("Can't convert RIP 1.54 Icon %s to 2.0 BMP format!").
 
 ## Implementation Status
 
-*Evidence: SyncTERM; editorial survey.*
+_Evidence: SyncTERM; editorial survey._
 
 No modern implementation covers RIPscrip 3.0 in full:
 
 | Implementation | Coverage |
-|---|---|
+| --- | --- |
 | SyncTERM | 1.54 plus a substantial subset of 2.x/3.0 additions; the only implementation answering the version query as 3.0 (`RIPSCRIP030001`). Its RIPv3 mode is "idealized, not bug-compatible" with 1.54. |
 | icy_tools, fTelnet, PabloDraw | RIPscrip 1.54 only (varying subsets). |
 | Qodem | Detects and discards RIP sequences. |

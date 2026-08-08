@@ -34,4 +34,4 @@
 
 ### Appendix
 
-20. [Icon File Format](20-icon-file-format.md) — the RIPscrip icon file format specification *(v1.54)*
+20. [Icon File Format](20-icon-file-format.md) — the RIPscrip icon file format specification _(v1.54)_

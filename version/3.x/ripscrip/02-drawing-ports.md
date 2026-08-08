@@ -2,22 +2,22 @@
 
 [◀ Prev: Introduction](01-introduction.md) · [Contents](README.md) · [Next: Data Tables ▶](03-data-tables.md)
 
-*Reconstructed edition — see [Contents](README.md) for the evidence legend.*
+_Reconstructed edition — see [Contents](README.md) for the evidence legend._
 
 ## Drawing Ports — What They Are
 
-*Evidence: 2.00a4; HLP.*
+_Evidence: 2.00a4; HLP._
 
 A drawing port is an area where graphics can be drawn. At any moment there is exactly one **current drawing port** — the port that receives graphical drawing operations. Ports come in two types:
 
 1. **Screen (visual) drawing ports** — rectangular regions of the user's actual screen. Drawing to a screen port appears immediately. Screen ports divide the display into separate drawing areas that can be switched between at will.
 2. **Offscreen bitmap drawing ports** (also called **clipboard ports**) — drawing surfaces that are not part of the visible screen. Graphics drawn to an offscreen port are invisible until copied to a screen port. Offscreen ports are used to compose scenes out of sight and reveal them whole, to cache bitmaps loaded from disk, to save screen regions under dialog boxes, and to drive transition animation (see the observed usage below).
 
-The 3.0 driver additionally distinguishes **snapshot ports** — offscreen ports created by capturing screen contents — in its error strings ("No mouse/button fields on offscreen drawing ports"). *Evidence: HLP.*
+The 3.0 driver additionally distinguishes **snapshot ports** — offscreen ports created by capturing screen contents — in its error strings ("No mouse/button fields on offscreen drawing ports"). _Evidence: HLP._
 
 ### The Port Table
 
-*Evidence: 2.00a4; HLP.*
+_Evidence: 2.00a4; HLP._
 
 Ports live in a 36-slot [data table](03-data-tables.md), entries numbered **0–35**:
 
@@ -28,7 +28,7 @@ Some things cannot be done to offscreen ports: mouse fields and clickable button
 
 ## Ports and Coordinates
 
-*Evidence: 2.00a4.*
+_Evidence: 2.00a4._
 
 Each port has its own coordinate origin: (0,0) is the upper-left corner of the port, and a port of width W and height H runs to (W−1,H−1). Drawing a circle centered at (50,50) into a port whose upper-left sits at (10,10) on the screen actually paints it centered at (60,60) in screen terms — the port supplies "port relative" coordinates, so hosts can lay out graphs, game maps, and panels without recomputing absolute positions.
 
@@ -44,11 +44,11 @@ Each port remembers its own drawing state, including:
 
 ## Ports and Viewports
 
-*Evidence: 2.00a4.*
+_Evidence: 2.00a4._
 
 Every drawing port has an associated **viewport** — a clipping rectangle inside the port that defines its drawing limits. Anything drawn beyond the viewport's edge is truncated (clipped), like coloring inside invisible lines. By default a port's viewport is the full size of the port; it can be redefined to any rectangle within the port. A viewport definition extending beyond the port is adjusted to fit; one completely outside the port is ignored as an error.
 
-The viewport also shifts the coordinate origin: (0,0) for drawing operations is the upper-left corner of the *viewport*, not the port. All drawing operations are relative to, and clipped by, the current port's viewport. So a point at (50,50) inside a viewport that starts at (40,40) inside a port that starts at (25,25) on the screen lands at screen position (25+40+50, 25+40+50) = (115,115).
+The viewport also shifts the coordinate origin: (0,0) for drawing operations is the upper-left corner of the _viewport_, not the port. All drawing operations are relative to, and clipped by, the current port's viewport. So a point at (50,50) inside a viewport that starts at (40,40) inside a port that starts at (25,25) on the screen lands at screen position (25+40+50, 25+40+50) = (115,115).
 
 ```text
 ╔═════════════════════════════ Screen ══╗
@@ -65,17 +65,17 @@ The viewport also shifts the coordinate origin: (0,0) for drawing operations is 
 
 ## Copying Data Between Ports
 
-*Evidence: 2.00a4.*
+_Evidence: 2.00a4._
 
 Graphics data is copied between ports (or within one port) in rectangular blocks, via [RIP_PORT_COPY](../../2.x/ripscrip/12-level-2-commands.md#rip_port_copy) and related commands. The rules:
 
-- **Both viewports apply.** The copy honors the viewport of the source *and* the destination port; pixels outside either viewport are not transferred. If the source or destination rectangle lies completely outside its port's viewport, the copy is not performed.
+- **Both viewports apply.** The copy honors the viewport of the source _and_ the destination port; pixels outside either viewport are not transferred. If the source or destination rectangle lies completely outside its port's viewport, the copy is not performed.
 - **Mismatched rectangles scale.** The source and destination rectangles need not be the same size; if they differ in width or height, the source image is scaled to fit the destination rectangle. Only the data remaining after viewport truncation is scaled — no blank zones are ever introduced.
-- Copies to and from **protected** ports are allowed: copying alters a port's *contents*, not its protected *configuration* (see [Data Tables](03-data-tables.md)).
+- Copies to and from **protected** ports are allowed: copying alters a port's _contents_, not its protected _configuration_ (see [Data Tables](03-data-tables.md)).
 
 ## Observed Usage in the 3.0 Era
 
-*Evidence: corpus (WIPE00.FN–WIPE24.FN); HLP.*
+_Evidence: corpus (WIPE00.FN–WIPE24.FN); HLP._
 
 The port system is the workhorse of TeleGrafix's own 3.0 demo material. The RIPtel demo corpus contains **9,104 uses of `2C` (RIP_PORT_COPY)** — by far the most frequent command after `RIP_LINE` — almost all of them in the WIPE00–WIPE24 "wipe" transition library: each wipe composes the next scene in an offscreen port, then reveals it with a sequence of narrow port-to-screen copies to animate slides, splits, and dissolves. The supporting pattern (define port 1 full-screen, copy the screen into it, switch, draw, copy back) appears throughout the `.FN` function scenes, with TeleGrafix's own comments narrating it: "Create a port for the status line backup area, and copy the area where the status line will go into that drawing port."
 

@@ -1,27 +1,23 @@
 # RIPtel 3.1 Demo Corpus - RIPscrip 3.0 Script Census
 
-Source: `/home/tracker1/src/rip-tools/artifacts/RIPtel/ICONS/` - 116 script files
-(.RIP .FN .DEF .MNU .MSE .RET .ENT .EXT .COL) shipped with RIPtel 3.1 'Visual Telnet'
-(TeleGrafix, (c) 1995-1997; driver RIPscrip 3.0.7). Parser: `parse_riptel.py` in this
-directory; raw data: `census.json`.
+Source: `/home/tracker1/src/rip-tools/artifacts/RIPtel/ICONS/` - 116 script files (.RIP .FN .DEF .MNU .MSE .RET .ENT .EXT .COL) shipped with RIPtel 3.1 'Visual Telnet' (TeleGrafix, (c) 1995-1997; driver RIPscrip 3.0.7). Parser: `parse_riptel.py` in this directory; raw data: `census.json`.
 
 **Totals:** 22921 commands parsed (0 parse errors), 72 distinct (level, opcode) pairs, 1683 comment commands (305 with prose), 269 distinct `$...$` variables.
 
-| Classification | distinct opcodes |
-|---|---|
-| known-1.54 | 35 |
-| known-2.x | 16 |
-| 2.00a4-documented | 7 |
-| SyncTERM-descriptor-only | 3 |
-| COMPLETELY NEW | 11 |
+| Classification           | distinct opcodes |
+| ------------------------ | ---------------- |
+| known-1.54               | 35               |
+| known-2.x                | 16               |
+| 2.00a4-documented        | 7                |
+| SyncTERM-descriptor-only | 3                |
+| COMPLETELY NEW           | 11               |
 
 ## 1. Full opcode census
 
-Levels: no digit = level 0; `1x` = level 1; `2x` = level 2. No level-3+ commands appear in the corpus.
-Coordinates are MegaNums (2-char base-36) after the ubiquitous `J10` prologue.
+Levels: no digit = level 0; `1x` = level 1; `2x` = level 2. No level-3+ commands appear in the corpus. Coordinates are MegaNums (2-char base-36) after the ubiquitous `J10` prologue.
 
 | Lvl | Cmd | Name (spec/reconstructed) | Class | Count | Files | Example args (trunc 60) |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | 0 | `"` | RIP_BOUNDED_TEXT (hypothesized name) | COMPLETELY NEW | 1 | 1: BOUNDS.RIP | `2020A03000This is just another` |
 | 0 | `#` | RIP_NO_MORE | known-1.54 | 287 | 95: NEWS.RIP, BLUEBACK.FN, BUTTONS.RIP, CURVES.RIP, DEMO-01.COL… |  |
 | 0 | `&` | RIP_SKEWED_OVAL | COMPLETELY NEW | 3 | 2: SHAPES.RIP, NEWCMDS.RIP | `20151G0M1M`; `W44W281810`; `VY4Q281810` |
@@ -95,74 +91,86 @@ Coordinates are MegaNums (2-char base-36) after the ubiquitous `J10` prologue.
 | 2 | `p` | RIP_DELETE_PORT | known-2.x | 12 | 12: DL.FN, DR.FN, DRAGON.RIP, FONTS.RIP, FXSHWIMG.FN… | `1000`; `00`; `0000` |
 | 2 | `s` | RIP_SWITCH_PORT | known-2.x | 35 | 31: FXSHWIMG.FN, SHADOW.FN, SPECLEFX.RIP, DBACK.FN, DRAGON.RIP… | `002`; `100`; `000` |
 
-Absent but expected: level-1 `w` (PLAY_AUDIO - no audio files ship with the demo), `F` (FILE_QUERY), `D` (DEFINE),
-`I`/`W` (icon load/write - no .ICN files), level-2 `W R B E A T Y`, all level-3/9, and SyncTERM descriptor-only `0<ESC>`, `1O`, `1N`, `1S`.
+Absent but expected: level-1 `w` (PLAY_AUDIO - no audio files ship with the demo), `F` (FILE_QUERY), `D` (DEFINE), `I`/`W` (icon load/write - no .ICN files), level-2 `W R B E A T Y`, all level-3/9, and SyncTERM descriptor-only `0<ESC>`, `1O`, `1N`, `1S`.
 
 ## 2. COMPLETELY NEW / previously-unidentified opcodes
 
 NEWCMDS.RIP is a Rosetta stone: its comments name six new level-0 drawing primitives outright.
 
 ### `0|&` - RIP_SKEWED_OVAL
+
 - Occurrences: 3 in 2 file(s): SHAPES.RIP, NEWCMDS.RIP
 - Examples: `20151G0M1M`; `W44W281810`; `VY4Q281810`
 - Named explicitly in NEWCMDS.RIP comment. Args (5x meganum-pair): x, y, x_rad, y_rad, rotation. Ex `&W44W281810`.
 
 ### `0|-` - RIP_FILLED_SKEWED_OVAL
+
 - Occurrences: 12 in 8 file(s): SHAPES.RIP, NEWCMDS.RIP, TELCMDS.DEF, TELDEMOS.DEF, TELDRAW.DEF
 - Examples: `203F1G0M1M`; `205P1G0M1M`; `W48S281810`
 - Named explicitly in NEWCMDS.RIP. Same 5-field args as `&`; honors RIP_SET_BORDER (`N01`/`N00` with/without border demos). NOTE: only the 6 uses in SHAPES.RIP (4) and NEWCMDS.RIP (2) are genuine; the other 6 occurrences (TELCMDS/TELDEMOS/TELDRAW/TELENGIN/TELQUEST.DEF and TELLISTS.MNU, 1 each) are authoring typos - `!|-----` separator comments missing the `!` - which the shipping driver evidently tolerates.
 
 ### `0|]` - RIP_SKEWED_OVAL_ARC
+
 - Occurrences: 3 in 2 file(s): SHAPES.RIP, NEWCMDS.RIP
 - Examples: `50151G0M20601M`; `W4GK2818006O10`; `VYGE2818006O10`
 - Named explicitly in NEWCMDS.RIP. Args (7x 2#): x, y, x_rad, y_rad, start_ang, end_ang, rotation. Ex `]50151G0M20601M`.
 
 ### `0|[` - RIP_SKEWED_OVAL_PIE_SLICE
+
 - Occurrences: 6 in 2 file(s): SHAPES.RIP, NEWCMDS.RIP
 - Examples: `503F1G0M20601M`; `505P1G0M20601M`; `W4KG2818006O10`
 - Named explicitly in NEWCMDS.RIP. Same 7-field args as `]`; border controlled by `N`.
 
 ### `0|+` - RIP_SKEWED_OVAL_CHORD
+
 - Occurrences: 6 in 2 file(s): SHAPES.RIP, NEWCMDS.RIP
 - Examples: `803F1G0M20601M`; `805P1G0M20601M`; `OWKG2818006O10`
 - Named explicitly in NEWCMDS.RIP. Same 7-field args as `]`; draws/fills the chord segment.
 
 ### `0|_` - RIP_FILLED_OVAL_CHORD
+
 - Occurrences: 6 in 2 file(s): SHAPES.RIP, NEWCMDS.RIP
 - Examples: `B03F90601G0M`; `B05P90601G0M`; `HYKG006O2818`
 - Named explicitly in NEWCMDS.RIP (note: not 'skewed'). Args (6x 2#): x, y, start_ang, end_ang, x_rad, y_rad - angle pair comes BEFORE radii here, and no rotation field. Ex `_B03F90601G0M`.
 
 ### `0|"` - RIP_BOUNDED_TEXT (hypothesized name)
+
 - Occurrences: 1 in 1 file(s): BOUNDS.RIP
 - Examples: `2020A03000This is just another`
 - BOUNDS.RIP comment: 'Show the bounded text command', drawn immediately after a same-coordinate `R2020A030` rectangle labeled 'Show our bounding box'. Args: x0 y0 x1 y1 (2# each) + 2-digit flags + text; text wraps/clips inside the box. Ex `"2020A03000This is just another...`.
 
 ### `0|;` - RIP_MARKER (hypothesized name)
+
 - Occurrences: 361 in 2 file(s): MARKER2.RIP, MARKER.RIP
 - Examples: `1L40001S1S0000`; `4840011S1S0000`; `6T40021S1S0000`
 - MARKER.RIP title text: 'RIPscrip Markers'. 14-char args = 7x 2#: x, y, marker_type (00-0C row 1, 0E.. in MARKER2), x_size, y_size, then 4 more digits (rotation 2# + flags 2#? - `0000`, `0003`, `8C03` observed). Draws predefined marker/symbol glyphs at a point using current fill style; MARKER2.RIP cycles fill colors S010G..S010V per marker.
 
 ### `0|<` - RIP_POLY_POLYGON (hypothesized name)
+
 - Occurrences: 3 in 1 file(s): POLYPOLY.RIP
 - Examples: `05041010701070701070034020606020600360208040405004201K901K90`; `0304A010D010D030A03003BM1ACU2UA62U04A615CU15CU25A625`; `0304E010H010H030E03003FM1AGU2UE62U04E615GU15GU25E625`
 - POLYPOLY.RIP title '@1009RIP_POLY_POLYGON' and comments 'Show a couple of poly-polygons with and without borders'. Args: npoly (2#) then per-polygon [nverts (2#) + nverts x (x,y)]. Multi-contour polygon with even-odd fill (demo shows transparency through the holes); border via `N`. Ex `<0504101070...` = 5 contours.
 
 ### `0|J` - RIP_SET_BASE_MATH (actual wire opcode)
+
 - Occurrences: 94 in 90 file(s): NEWS.RIP, ONLINE.RIP, SEANITE.RIP, TELPORT.FN, BLUEBACK.FN
 - Examples: `10`; `10                   Set base math to MegaNums (base 36)`
 - In 90/116 files as the standard prologue `J10|n2000|M08|fZKQO`. ONLINE.RIP carries inline comment 'Set base math to MegaNums (base 36)' after `J10` - arg `10` = 36 in base-36. The 2.00a4 spec draft lists SET_BASE_MATH as level-0 `b`, which collides with EXTENDED_TEXT_WINDOW; the shipping 3.0 driver evidently moved it to `J`.
 
 ### `1|e` - RIP_EXTENDED_BEGIN_TEXT / text-column region (new)
+
 - Occurrences: 21 in 8 file(s): NEWSPAPR.RIP, DEMO-01.COL, N2_HORO.RIP, DBACK.FN, DRAGON.RIP
 - Examples: `3W7DGRMD0100010000000000`; `LP7DYKMD1100010000000000`; `4L3D919K0100010000000000`
 - FONTS.RIP carries the field map comment `!|! xxyyxxyycaffffccrrrrrrrr`: x0 y0 x1 y1 (2# each), c=column#, a=article/stream#, ffff=flags, cc=?, rrrrrrrr=reserved. Opens a flowed-text column region; raw text lines (or `1R` reads of .TXT/$OVERFLOW()$/$&VAR$ content) follow, terminated by `1E` (RIP_END_TEXT). Multi-column chains use c=0,1,2 with same stream (`01`,`11`,`21` in DBACK.FN/DEMO-01.COL); overflow pages retrieved via `$overflow(stream,prev|next|cur[,setverbose])$` and `$RESET(OVERFLOW)$`. This is the 'powerful column system' FONTSTOR.TXT advertises.
 
 ### `1|A` - Unknown - text-flow settings? (single occurrence)
+
 - Occurrences: 1 in 1 file(s): NEWS.RIP
 - Examples: `010000`
 - Only `1A010000` in NEWS.RIP, issued right before building the flowed newspaper article (between a divider line `L` and the `1T...01/11/21/31` linked text columns). 6-digit args = 3x 2#. SyncTERM's descriptor says 7 words ('2#'x7), which does NOT match the observed 6 chars. Plausibly justification/hyphenation settings for the text-flow system (e.g. justify=01).
 
 ### Notes on descriptor-only / spec-name confirmations
+
 - `0|y`: RIP_EXTENDED_FONT_STYLE - heavily used (430x). Confirms 2.00a4 name; args much richer than SyncTERM's 4-word descriptor: 26 chars + font name, e.g. `y0000BW1Q080000001a1a000000Marin`. FONTS.RIP line 114 carries the authoritative field map comment `!|!sfFFFFZZOOSSCCBBCCWWRRRRRR` = s(1) f(1) FFFF(4 flags) ZZ(2 size) OO(2 orientation) SS CC BB CC WW (2 each) RRRRRR(6 reserved); the rotation demo varies the SS field (`00`->`E4`/`gC`) with per-line labels '0 x 0', '180 x 90', '180 x 270' etc. covering all 16 char-x-text rotation combos. Fields include size/scale (`1a1a` ~ x/y scale), style flags (bold/dropshadow per TELLISTS.MNU inline comment 'Marin, centered, bold w/ dropshadow'), rotation (16 orientations per FONTSTOR.TXT). Scalable outline fonts seen: Marin, Dixon, Symbol, Cobb (+ family suffixes ' TH' thin, ' CN' condensed, ' WD' wide, ' EX' expanded, ' HO' hollow, ' HT', ' HC', ' HW', ' HE'). Font name can be a variable: `...000000$&FONT_NAME$`.
 - `0|D`: RIP_SET_DRAWING_PALETTE - single use in BLUEFADE.FN: `D0W0W8000000040008000...` sets a long run of 256-color palette entries for the faded background.
 - `0|<ESC>`: not observed in corpus (level-0 ESC).
@@ -172,7 +180,7 @@ NEWCMDS.RIP is a Rosetta stone: its comments name six new level-0 drawing primit
 269 distinct forms. Syntax families observed:
 
 | Form | Distinct | Meaning | Examples |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `$NAME$` | 81 | predefined/system or user variable read | `$COLORS$` `$COMPAT$` `$DTW$` `$COFF$` `$SBAROFF$` `$RESET$` `$NULL$` `$RETURN$` |
 | `$FUNC(args)$` | 23 | parameterized variable/function | `$D(1)$` (delay, 197 uses) `$MCURSOR(0)$` `$RESET(OVERFLOW)$` `$RESET(PAL)$` `$overflow(1,next,setverbose)$` `$GOTOURL(WEBURL)$` `$INUSE(TV,NEXT_IMG)$` |
 | `$-=NAME=value$` | 122 | set user variable (2.x `-=` set form) | `$-=RETURN=>NEWSPAPR.RIP$` `$-=WEBURL=http://...$` `$-=TITLE=Telnet Site Listings$` |
@@ -181,39 +189,35 @@ NEWCMDS.RIP is a Rosetta stone: its comments name six new level-0 drawing primit
 
 Top 20 by count:
 
--  197  `$D(1)$`  (e.g. SHADOW.FN: 1<ESC>0000$D(1)$)
--   41  `$NULL$`  (e.g. BUTTONS.RIP: 1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endi)
--   22  `$RETURN$`  (e.g. BUTTONS.RIP: 1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endi)
--   22  `$<<RETURN>>$`  (e.g. BUTTONS.RIP: 1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endi)
--   21  `$COMPAT$`  (e.g. BLUEBACK.FN: 1<ESC>0000$COMPAT$)
--   21  `$&FONT_NAME$`  (e.g. SHOWFONT.FN: @I064$&FONT_NAME$:)
--   20  `$MCURSOR(0)$`  (e.g. DEMO-01.COL: 1<ESC>6000$MCURSOR(0)$)
--   16  `$NO_WIPES$`  (e.g. TELDEMOS.RET: 1<ESC>0000<<IF $NO_WIPES$="" OR $NO_WIPES$="NONE">>$>TELPORT.FN$<<ELSE>>$R)
--   15  `$COLORS$`  (e.g. BUTTONS.RIP: 1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>)
--   15  `$TGMENU_WIPES$`  (e.g. MENU.RET: 1<ESC>0000<<IF $TGMENU_WIPES$="1">>$>WIPE01.FN$<<else>>$NULL$<<ENDIF>>)
--   14  `$DTW$`  (e.g. BLUEBACK.FN: 1<ESC>0000$COFF$$DTW$)
--   13  `$MCURSOR(6)$`  (e.g. MENU.FN: 1<ESC>0000$MCURSOR(6)$)
--   10  `$>newspapr.rip$`  (e.g. DEMO-01.COL: 1M00XWG0YYH01000000ID=8:$>newspapr.rip$)
--    8  `$GOTOURL(WEBURL)$`  (e.g. TELLISTS.MSE: 1M000ZACBSE41000000ID=1:$-=WEBURL=http://duke.usask.ca/~scottp/free.ht)
--    7  `$MCURSOR(4)$`  (e.g. DEMO-01.COL: 1<ESC>5000$MCURSOR(4)$)
--    7  `$SBAROFF$`  (e.g. DRAGON.RIP: 1<ESC>0000$SBAROFF$)
--    6  `$dtw$`  (e.g. CURVES.RIP: 1<ESC>0000$dtw$)
--    6  `$>demo-01.col$`  (e.g. DEMO-01.COL: 1M00VWG0WUH01000000ID=6:$overflow(1,prev,setverbose)$$>demo-01.col$)
--    6  `$>demo-02.col$`  (e.g. DEMO-01.COL: 1M00V4OMW4PM1000000ID=9:$overflow(2,prev,setverbose)$$>demo-02.col$)
--    6  `$>WIPE00.FN$`  (e.g. TELCMDS.FN: 1<ESC>0000<<IF $TGMENU_WIPES$="1">>$>WIPE00.FN$<<else>>$NULL$<<ENDIF>>)
+- 197 `$D(1)$` (e.g. SHADOW.FN: 1<ESC>0000$D(1)$)
+- 41 `$NULL$` (e.g. BUTTONS.RIP: 1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endi)
+- 22 `$RETURN$` (e.g. BUTTONS.RIP: 1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endi)
+- 22 `$<<RETURN>>$` (e.g. BUTTONS.RIP: 1M00VT0QYY1R1000000<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endi)
+- 21 `$COMPAT$` (e.g. BLUEBACK.FN: 1<ESC>0000$COMPAT$)
+- 21 `$&FONT_NAME$` (e.g. SHOWFONT.FN: @I064$&FONT_NAME$:)
+- 20 `$MCURSOR(0)$` (e.g. DEMO-01.COL: 1<ESC>6000$MCURSOR(0)$)
+- 16 `$NO_WIPES$` (e.g. TELDEMOS.RET: 1<ESC>0000<<IF $NO_WIPES$="" OR $NO_WIPES$="NONE">>$>TELPORT.FN$<<ELSE>>$R)
+- 15 `$COLORS$` (e.g. BUTTONS.RIP: 1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>)
+- 15 `$TGMENU_WIPES$` (e.g. MENU.RET: 1<ESC>0000<<IF $TGMENU_WIPES$="1">>$>WIPE01.FN$<<else>>$NULL$<<ENDIF>>)
+- 14 `$DTW$` (e.g. BLUEBACK.FN: 1<ESC>0000$COFF$$DTW$)
+- 13 `$MCURSOR(6)$` (e.g. MENU.FN: 1<ESC>0000$MCURSOR(6)$)
+- 10 `$>newspapr.rip$` (e.g. DEMO-01.COL: 1M00XWG0YYH01000000ID=8:$>newspapr.rip$)
+- 8 `$GOTOURL(WEBURL)$` (e.g. TELLISTS.MSE: 1M000ZACBSE41000000ID=1:$-=WEBURL=http://duke.usask.ca/~scottp/free.ht)
+- 7 `$MCURSOR(4)$` (e.g. DEMO-01.COL: 1<ESC>5000$MCURSOR(4)$)
+- 7 `$SBAROFF$` (e.g. DRAGON.RIP: 1<ESC>0000$SBAROFF$)
+- 6 `$dtw$` (e.g. CURVES.RIP: 1<ESC>0000$dtw$)
+- 6 `$>demo-01.col$` (e.g. DEMO-01.COL: 1M00VWG0WUH01000000ID=6:$overflow(1,prev,setverbose)$$>demo-01.col$)
+- 6 `$>demo-02.col$` (e.g. DEMO-01.COL: 1M00V4OMW4PM1000000ID=9:$overflow(2,prev,setverbose)$$>demo-02.col$)
+- 6 `$>WIPE00.FN$` (e.g. TELCMDS.FN: 1<ESC>0000<<IF $TGMENU_WIPES$="1">>$>WIPE00.FN$<<else>>$NULL$<<ENDIF>>)
 
 ### New-in-3.0 variable machinery (not in 2.00a4 spec)
-- `$GOTOURL(var)$` - launches a web URL held in a user variable; TELLISTS.MNU wires mouse fields:
-  `1M00...ID=1:$-=WEBURL=http://duke.usask.ca/~scottp/free.html$$GOTOURL(WEBURL)$` (1997 web integration).
-- `$overflow(stream, cur|next|prev [,setverbose])$` and `$RESET(OVERFLOW)$` - paging through overflow
-  files produced by the flowed-text column system (used as `1R` read-scene filenames).
+
+- `$GOTOURL(var)$` - launches a web URL held in a user variable; TELLISTS.MNU wires mouse fields: `1M00...ID=1:$-=WEBURL=http://duke.usask.ca/~scottp/free.html$$GOTOURL(WEBURL)$` (1997 web integration).
+- `$overflow(stream, cur|next|prev [,setverbose])$` and `$RESET(OVERFLOW)$` - paging through overflow files produced by the flowed-text column system (used as `1R` read-scene filenames).
 - `$&NAME$` dereference form (see table).
 - `$INUSE(port,var)$` - tested in `<<IF>>` conditionals (N2_PHOTO.RIP image cycling).
-- `<<NAME>>` macro expansion inside args and inside `$...$`: `$<<RETURN>>$`, `$<<CMD1>>$`, `@809U<<LAB1>>` -
-  RIPtel-side template substitution (menu labels/commands injected from .DEF configuration).
-- `<<IF expr>> ... <<ELSE>> ... <<ENDIF>>` inline conditionals, evaluated before command execution:
-  `1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>` and
-  `1M...<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endif>>` (case-insensitive).
+- `<<NAME>>` macro expansion inside args and inside `$...$`: `$<<RETURN>>$`, `$<<CMD1>>$`, `@809U<<LAB1>>` - RIPtel-side template substitution (menu labels/commands injected from .DEF configuration).
+- `<<IF expr>> ... <<ELSE>> ... <<ENDIF>>` inline conditionals, evaluated before command execution: `1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>` and `1M...<<if $RETURN$!="">>$<<RETURN>>$<<else>>$NULL$<<endif>>` (case-insensitive).
 - `ID=n:` prefix on RIP_MOUSE host commands - numbered mouse-field identity (`1M00...1000000ID=2:$>...$`).
 
 ## 4. Comment listing (TeleGrafix's own annotations, grouped by file)
@@ -221,19 +225,24 @@ Top 20 by count:
 Decorative divider-only comments (dashes/blank) omitted; 305 prose comments total.
 
 ### BLUEBACK.FN
+
 - S0101
 
 ### BOUNDS.RIP
+
 - Show our bounding box
 - Show the bounded text command
 
 ### BUTTONS.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 
 ### CURVES.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 
 ### FONTS.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 - Create a port for the status line backup area, and copy the area where
 - the status line will go into that drawing port.
@@ -242,41 +251,46 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Copy the screen image to the port
 - xxyyxxyycaffffccrrrrrrrr
 - sfFFFFZZOOSSCCBBCCWWRRRRRR
-- 0   x 0
+- 0 x 0
 - 180 x 90
 - 180 x 270
-- 0   x 180
+- 0 x 180
 - 180 x 0
 - 180 x 180
 - 180 x 90
 - 180 x 270
-- 90  x 0
-- 90  x 180
-- 90  x 90
-- 90  x 270
+- 90 x 0
+- 90 x 180
+- 90 x 90
+- 90 x 270
 - 270 x 90
 - 270 x 270
 - 270 x 0
 - 270 x 180
 
 ### FONTTEXT.COL
+
 - K0U2WYZA8
 - Copy the screen image to the port
 
 ### IMAGES.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 
 ### MAKEPORT.FN
+
 - Set 2 byte X/Y coordinates
 - Set color palette mode
 - Delete all ports (screen is unaffected)
 - Create port #1 to be full screen sized
 
 ### MARKER.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 - ;WW200C1S1S0000
 
 ### MENU.DEF
+
 - Define the button labels used in our 3x3 button menu
 - Define the text variables commands that are executed when one of these
 - nine buttons are selected
@@ -284,12 +298,15 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - the mouse fields on the screen
 
 ### MENU.ENT
+
 - Paste original screen image back
 
 ### MENU.EXT
+
 - Paste original screen image back
 
 ### MENU.FN
+
 - Reset the screen environment
 - Display the blue faded background on 256 colors+, else solid blue
 - Define the variables for the main menu
@@ -297,11 +314,13 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Define the mouse fields
 
 ### MENU.MNU
-- Show the nine button images.  We'll put the mouse fields over them at
+
+- Show the nine button images. We'll put the mouse fields over them at
 - the bottom of this script.
 - Show the "unregistered version" notice button at the bottom
 
 ### MENU.MSE
+
 - Create the mouse fields over top of the button images
 - Create a port for the status line backup area, and copy the area where
 - the status line will go into that drawing port.
@@ -312,6 +331,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - cursor changing.
 
 ### MENU.RET
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the main menu
@@ -320,23 +340,26 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for the main menu
 
 ### N2_HORO.RIP
+
 - END OF FILE
 
 ### N2_TITLE.RIP
+
 - 1t1be transmitted over any online service that
-- 1t1can transmit text.  That is over 99.9% of
-- 1t1the online community.  This makes
+- 1t1can transmit text. That is over 99.9% of
+- 1t1the online community. This makes
 - 1t1it perfectly suited for the Internet
 - 1t1and the nearly 100,000 BBS systems
 - 1t1throughout the world servicing
 - 1t0millions of computer users.
-- 1t1   With the addition of JPEG images,
+- 1t1 With the addition of JPEG images,
 - 1t1digitized sound, 24-bit color, and a
 - 1t1high-tech font system, RIPscrip has
 - 1t1the means to launch the online world
 - 1t0into the 21st century.
 
 ### NEWCMDS.RIP
+
 - Reset the screen
 - Setup the fill color (blue)
 - Solid line 1 pixel wide
@@ -348,26 +371,28 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Solid line 3 pixel wide
 - Show RIP_SKEWED_OVAL
 - Show RIP_FILLED_SKEWED_OVAL
-- With    a border
+- With a border
 - Without a border
 - Show a RIP_SKEWED_OVAL_ARC
 - Show a RIP_SKEWED_OVAL_PIE_SLICE
-- With    a border
+- With a border
 - Without a border
 - Show a RIP_SKEWED_OVAL_CHORD
-- With    a border
+- With a border
 - Without a border
 - Show a RIP_FILLED_OVAL_CHORD
-- With    a border
+- With a border
 - Without a border
 - All done
 
 ### NEWPORT.FN
+
 - Make sure port #1 is deleted before continuing
 - Create the port the full size of the screen
 - Switch to port 1
 
 ### NEWSPAPR.RIP
+
 - Change these to the values you want for your content
 - Name of this RIP file
 - Filename containing main story
@@ -377,15 +402,18 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Reset all overflow files
 
 ### ONLINE.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 - L020000PQ
 - L0002ZE00
 - LZI00ZIPO
 
 ### POLYGONS.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 
 ### POLYPOLY.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 - Setup the fill color (blue)
 - Set color to light gray
@@ -399,32 +427,40 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Now put in some description
 
 ### SHADMOVE.RIP
+
 - Assign what our title text should be
 - Define our colors (foreground and background)
 
 ### SHAPES.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 
 ### SHOWFONT.FN
+
 - wwhhooffffssffbbBBddssgg22uuccprrrrr
 - wwhhooffffssffbbBBddssgg22uuccprrrrr
 
 ### SHOWFONT.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 - wwhhooffffssffbbBBddssgg22uuccprrrrr
 
 ### SPECLEFX.RIP
+
 - Display the blue faded background on 256 colors+, else solid blue
 - 1i2K5KBZCB0004
 - 1p0000<<IF $INUSE(TV,NEXT_IMG)$="0">>$-=NEXT_IMG=ASTRO.JPG$<<ENDIF>>$&NEXT_IMG$
 
 ### TEL3X2.ENT
+
 - Paste original screen image back
 
 ### TEL3X2.EXT
+
 - Paste original screen image back
 
 ### TEL3X2.MNU
+
 - Draw the title at the top of the screen
 - Foreground color yellow
 - Background color a darkish brown/gold
@@ -436,6 +472,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Show the six buttons and their labels
 
 ### TEL3X2.MSE
+
 - Create a port for the status line backup area, and copy the area where
 - the status line will go into that drawing port.
 - Copy the screen image to the port
@@ -443,12 +480,15 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - cursor changing.
 
 ### TEL3X3.ENT
+
 - Paste original screen image back
 
 ### TEL3X3.EXT
+
 - Paste original screen image back
 
 ### TEL3X3.MNU
+
 - Draw the title at the top of the screen
 - Foreground color yellow
 - Background color a darkish brown/gold
@@ -460,6 +500,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Show the six buttons and their labels
 
 ### TEL3X3.MSE
+
 - Create a port for the status line backup area, and copy the area where
 - the status line will go into that drawing port.
 - Make sure port #1 is deleted
@@ -469,6 +510,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - cursor changing.
 
 ### TELCMDS.DEF
+
 - Basic screen definitions (e.g., title)
 - What RIP file do we call from our demo screens to return here?
 - Labels for each of the six buttons
@@ -478,6 +520,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - the mouse fields on the screen
 
 ### TELCMDS.FN
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the engineering menu
@@ -486,6 +529,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for a 3x2 menu
 
 ### TELCMDS.RET
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the engineering menu
@@ -494,6 +538,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for the main menu
 
 ### TELDEMOS.DEF
+
 - Basic screen definitions (e.g., title)
 - What RIP file do we call from our demo screens to return here?
 - Labels for each of the six buttons
@@ -503,6 +548,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - the mouse fields on the screen
 
 ### TELDEMOS.FN
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the demo menu
@@ -511,12 +557,14 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for a 3x2 menu
 
 ### TELDEMOS.RET
+
 - Define the variables for the main menu
 - Show the main menu
 - Wipe off the screen image if setup says so, and show the new one
 - Create the mouse fields for the main menu
 
 ### TELDRAW.DEF
+
 - Basic screen definitions (e.g., title)
 - What RIP file do we call from our demo screens to return here?
 - Labels for each of the six buttons
@@ -526,6 +574,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - the mouse fields on the screen
 
 ### TELDRAW.FN
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the engineering menu
@@ -534,6 +583,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for a 3x2 menu
 
 ### TELDRAW.RET
+
 - Kill all mouse fields and queries
 - Define the variables for the engineering menu
 - Show the main menu
@@ -541,6 +591,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for the main menu
 
 ### TELENGIN.DEF
+
 - Basic screen definitions (e.g., title)
 - What RIP file do we call from our demo screens to return here?
 - Labels for each of the six buttons
@@ -550,6 +601,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - the mouse fields on the screen
 
 ### TELENGIN.FN
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the engineering menu
@@ -558,6 +610,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for a 3x2 menu
 
 ### TELENGIN.RET
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the engineering menu
@@ -566,15 +619,19 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for the main menu
 
 ### TELKILL.FN
+
 - Kill all mouse fields and entry/exit queries
 
 ### TELLISTS.ENT
+
 - Copy the screen image to the port
 
 ### TELLISTS.EXT
+
 - Copy the screen image to the port
 
 ### TELLISTS.FN
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Show the 3x2 button menu
@@ -582,6 +639,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for a 3x2 menu
 
 ### TELLISTS.MNU
+
 - Basic screen definitions (e.g., title)
 - What RIP file do we call from our demo screens to return here?
 - Draw the title at the top of the screen
@@ -594,6 +652,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Marin centered, non-bold w/ dropshadow
 
 ### TELLISTS.MSE
+
 - Create a port for the status line backup area, and copy the area where
 - the status line will go into that drawing port.
 - Make sure port #1 is deleted
@@ -603,6 +662,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - cursor changing.
 
 ### TELPORT.FN
+
 - Create a full-screen drawing port in port slot #1 and draw the blue
 - faded background onto it.
 - Choose a random wipe to wipe off the screen image
@@ -615,6 +675,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Set world coordinates to 1280x960
 
 ### TELQUEST.DEF
+
 - Basic screen definitions (e.g., title)
 - What RIP file do we call from our demo screens to return here?
 - Labels for each of the six buttons
@@ -624,6 +685,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - the mouse fields on the screen
 
 ### TELQUEST.FN
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the demo menu
@@ -632,6 +694,7 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for a 3x2 menu
 
 ### TELQUEST.RET
+
 - Kill all mouse fields and queries
 - Create full-screen drawing port with blue fade
 - Define the variables for the main menu
@@ -640,15 +703,19 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - Create the mouse fields for the main menu
 
 ### WIPE00.FN
+
 - Switch to port 0
 
 ### WIPE01.FN
+
 - Switch to port 0
 
 ### WIPE02.FN
+
 - Switch to port 0
 
 ### WIPE03.FN
+
 - Switch to port 0
 
 ## 5. External file references per script
@@ -715,46 +782,22 @@ Decorative divider-only comments (dashes/blank) omitted; 305 prose comments tota
 - **TELQUEST.RET**: 00000000TEL3X2.MNU, 00000000TEL3X2.MSE, 00000000TELKILL.FN, 00000000TELPORT.FN, 00000000TELQUEST.DEF, WIPE01.FN
 - **TWEATHER.RIP**: VU0QYY1S0000000000BACK.BMP
 
-Reference totals by type: BMP 84, FN 82, RIP 41, JPG 16 (JPEG photos via `1i`/`1p` RIP_IMAGE_STYLE/RIP_IMAGE),
-MSE 14, MNU 13, RET 13, DEF 12, COL 8, TXT 4 (flowed into `1e` columns via `1R`), ENT 4, EXT 4.
-No WAV/audio and no .ICN references. The .BMH files on disk (BUTTON.BMH, CHECKBOX.BMH, RADIO*.BMH) are never
-referenced by script - presumably auto-paired 'highlight' variants of same-named .BMP button images.
+Reference totals by type: BMP 84, FN 82, RIP 41, JPG 16 (JPEG photos via `1i`/`1p` RIP_IMAGE_STYLE/RIP_IMAGE), MSE 14, MNU 13, RET 13, DEF 12, COL 8, TXT 4 (flowed into `1e` columns via `1R`), ENT 4, EXT 4. No WAV/audio and no .ICN references. The .BMH files on disk (BUTTON.BMH, CHECKBOX.BMH, RADIO*.BMH) are never referenced by script - presumably auto-paired 'highlight' variants of same-named .BMP button images.
 
 ## 6. Syntax & wire-format observations
 
-- **Introducers:** 111 of 116 files use SOH (0x01) + `|` for exactly the FIRST command line and `!|` for all
-  the rest (DL.FN, DR.FN, DRAGON.RIP invert this, nearly all-SOH). SOH apparently marks start-of-scene for the
-  3.0 stream parser; `!|` remains the 1.54-compatible introducer.
-- **Line ends are CRLF** (spec says CR); `\` before the line end continues the current command
-  (POLYPOLY.RIP splits `<`-polygon vertex lists across physical lines).
-- **Standard prologue** in 90+ files: `J10|n2000|M08|fZKQO` = base-math 36, coordinate size 2000?, color mode 8bpp
-  (256 colors), world frame 1280x960 (`ZK`=35*36+20=1280, `QO`=26*36+24=960). Alternate frames: `HSDC`=640x480,
-  `HR9S`=639x352, `HRDC`=639x480.
-- **Inline trailing comments inside args:** the driver stops reading fixed-length args, so authors append
-  whitespace + English after them: `!|fZKQO                 Set world coordinats to 1280x960` (ONLINE.RIP),
-  same for `J10 ... Set base math to MegaNums (base 36)`. Also `!|command|! comment` chains everywhere.
-- **Field-layout crib comments** left by TeleGrafix: `!|! xxyyxxyycaffffccrrrrrrrr` for `1e` (FONTS.RIP),
-  `!|!sfFFFFZZOOSSCCBBCCWWRRRRRR` for `y` EXTENDED_FONT_STYLE (FONTS.RIP:114), and
-  `!|! wwhhooffffssffbbBBddssgg22uuccprrrrr` for `1B` BUTTON_STYLE (SHOWFONT.FN).
-- **Authoring typos tolerated by the driver:** CURVES.RIP:88 reads `|1<ESC>0000$COMPAT$` - the `!` introducer is
-  missing entirely; commented-out commands appear as comment text (`!|!S0101` BLUEBACK.FN, `!|!K0U2WYZA8` FONTTEXT.COL,
-  `!|! ;WW200C1S1S0000` MARKER.RIP).
-- **Flowed text**: after `1e` (or 1.54 `1T` with trailing column/stream digits, NEWS.RIP), RAW text lines with no
-  `!|` introducer are the column content, terminated by `1E`; content can also come from `1R` reading a .TXT file,
-  `$OVERFLOW(1,CUR)$`, or `$&MAIN_STORY$`. NEWS.RIP draws a drop-cap via `@A91G` + single char, then flows
-  'wo years ago...' - the article text is a 1995 TeleGrafix press essay on RIPscrip 2.0/RIPterm Professional.
-- **`!|` with nothing after it** is a harmless no-op line (SHOWFONT.FN); `!|----` (missing `!`) in 6 files
-  accidentally parses as the new filled-skewed-oval opcode `-` with dash args - the shipped driver evidently
-  tolerates garbage args.
-- **Level-2 usage is massive but narrow:** 9104x `2C` PORT_COPY (the WIPE00-24.FN transition library is almost
-  entirely port-copy animation), plus `2P`/`2p`/`2s` define/delete/switch port. No `2W` PORT_WRITE etc.
-- **Buttons** use bitmap skins (`1b` + TELBUT.BMP etc.) instead of 1.54 chiseled buttons; `1B` button-style +
-  `1U` with `<><>` empty icon/label blocks used as chisel-frame decorations.
-- **File-extension conventions:** .FN = function/subroutine scenes (wipes, backgrounds, port setup), .MNU = menu
-  screen, .MSE = mouse-field overlay, .RET = return-to-scene stub, .ENT/.EXT = enter/exit transition, .DEF = menu
-  definition (sets `<<CMDn>>`/`<<LABn>>` user vars), .COL = multi-column flowed-text scene.
-- **2.00a4 spec collision resolved:** the draft assigns level-0 `b` to both EXTENDED_TEXT_WINDOW and
-  SET_BASE_MATH; the shipping 3.0 driver uses `J` for SET_BASE_MATH (see section 2).
+- **Introducers:** 111 of 116 files use SOH (0x01) + `|` for exactly the FIRST command line and `!|` for all the rest (DL.FN, DR.FN, DRAGON.RIP invert this, nearly all-SOH). SOH apparently marks start-of-scene for the 3.0 stream parser; `!|` remains the 1.54-compatible introducer.
+- **Line ends are CRLF** (spec says CR); `\` before the line end continues the current command (POLYPOLY.RIP splits `<`-polygon vertex lists across physical lines).
+- **Standard prologue** in 90+ files: `J10|n2000|M08|fZKQO` = base-math 36, coordinate size 2000?, color mode 8bpp (256 colors), world frame 1280x960 (`ZK`=35*36+20=1280, `QO`=26*36+24=960). Alternate frames: `HSDC`=640x480, `HR9S`=639x352, `HRDC`=639x480.
+- **Inline trailing comments inside args:** the driver stops reading fixed-length args, so authors append whitespace + English after them: `!|fZKQO                 Set world coordinats to 1280x960` (ONLINE.RIP), same for `J10 ... Set base math to MegaNums (base 36)`. Also `!|command|! comment` chains everywhere.
+- **Field-layout crib comments** left by TeleGrafix: `!|! xxyyxxyycaffffccrrrrrrrr` for `1e` (FONTS.RIP), `!|!sfFFFFZZOOSSCCBBCCWWRRRRRR` for `y` EXTENDED_FONT_STYLE (FONTS.RIP:114), and `!|! wwhhooffffssffbbBBddssgg22uuccprrrrr` for `1B` BUTTON_STYLE (SHOWFONT.FN).
+- **Authoring typos tolerated by the driver:** CURVES.RIP:88 reads `|1<ESC>0000$COMPAT$` - the `!` introducer is missing entirely; commented-out commands appear as comment text (`!|!S0101` BLUEBACK.FN, `!|!K0U2WYZA8` FONTTEXT.COL, `!|! ;WW200C1S1S0000` MARKER.RIP).
+- **Flowed text**: after `1e` (or 1.54 `1T` with trailing column/stream digits, NEWS.RIP), RAW text lines with no `!|` introducer are the column content, terminated by `1E`; content can also come from `1R` reading a .TXT file, `$OVERFLOW(1,CUR)$`, or `$&MAIN_STORY$`. NEWS.RIP draws a drop-cap via `@A91G` + single char, then flows 'wo years ago...' - the article text is a 1995 TeleGrafix press essay on RIPscrip 2.0/RIPterm Professional.
+- **`!|` with nothing after it** is a harmless no-op line (SHOWFONT.FN); `!|----` (missing `!`) in 6 files accidentally parses as the new filled-skewed-oval opcode `-` with dash args - the shipped driver evidently tolerates garbage args.
+- **Level-2 usage is massive but narrow:** 9104x `2C` PORT_COPY (the WIPE00-24.FN transition library is almost entirely port-copy animation), plus `2P`/`2p`/`2s` define/delete/switch port. No `2W` PORT_WRITE etc.
+- **Buttons** use bitmap skins (`1b` + TELBUT.BMP etc.) instead of 1.54 chiseled buttons; `1B` button-style + `1U` with `<><>` empty icon/label blocks used as chisel-frame decorations.
+- **File-extension conventions:** .FN = function/subroutine scenes (wipes, backgrounds, port setup), .MNU = menu screen, .MSE = mouse-field overlay, .RET = return-to-scene stub, .ENT/.EXT = enter/exit transition, .DEF = menu definition (sets `<<CMDn>>`/`<<LABn>>` user vars), .COL = multi-column flowed-text scene.
+- **2.00a4 spec collision resolved:** the draft assigns level-0 `b` to both EXTENDED_TEXT_WINDOW and SET_BASE_MATH; the shipping 3.0 driver uses `J` for SET_BASE_MATH (see section 2).
 
 ## 7. Non-RIP plain-text lines
 
@@ -762,4 +805,3 @@ referenced by script - presumably auto-paired 'highlight' variants of same-named
 - **N2_HORO.RIP**: 30 raw text line(s) (flowed column content), first: `Aries: Gift received represents love - beautiful, rare vase could be i`
 - **NEWS.RIP**: 26 raw text line(s) (flowed column content), first: `wo years ago, TeleGrafix Communications stunned the computer industry `
 - **NEWSPAPR.RIP**: 12 raw text line(s) (flowed column content), first: `Southern California was pounded`
-

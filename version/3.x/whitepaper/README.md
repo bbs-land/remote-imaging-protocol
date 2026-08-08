@@ -1,13 +1,8 @@
 # RIPscrip 3.0 Technical White Paper
 
-**RIPscrip 3.0** — Technical White Paper, December 6th, 1996. Written by Jeff
-Reeder. Copyright © 1992–1997 TeleGrafix Communications, Inc.
+**RIPscrip 3.0** — Technical White Paper, December 6th, 1996. Written by Jeff Reeder. Copyright © 1992–1997 TeleGrafix Communications, Inc.
 
-A faithful conversion of the white paper — the only official RIPscrip 3.0
-document TeleGrafix published. It is prose only (no command reference; it
-defers to a "RIPscrip 3.0 Language Reference" that never shipped). For the
-full reconstructed 3.x protocol reference, see the
-[3.x Markdown edition](../ripscrip/README.md).
+A faithful conversion of the white paper — the only official RIPscrip 3.0 document TeleGrafix published. It is prose only (no command reference; it defers to a "RIPscrip 3.0 Language Reference" that never shipped). For the full reconstructed 3.x protocol reference, see the [3.x Markdown edition](../ripscrip/README.md).
 
 ## Contents
 

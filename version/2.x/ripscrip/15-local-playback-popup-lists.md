@@ -18,7 +18,7 @@ Each "local RIP playback" variable you enter will search for the .RIP file in th
 
 ## Local Audio File Playback
 
-*Added in RIPscrip v2.A1.*
+_Added in RIPscrip v2.A1._
 
 In 2.0, we are introducing audio capability (both digitized and sequenced music). To further enhance our host command language, we are now offering an extension of local RIP file playback for audio files. This is "Local Audio File Playback". This command is nearly identical in syntax to the local RIP file playback command with a simple alteration. Instead of using the `>` character to signify RIPscrip file, you use the close paranthesis `)` as in the following example:
 
@@ -31,7 +31,7 @@ The file extension is unimportant. See the section of this document on [audio co
 
 ## Local Bitmap Playback (Display)
 
-*Added in RIPscrip v2.A1.*
+_Added in RIPscrip v2.A1._
 
 This command is much like the local RIPscrip playback or the local audio playback, but it intended to place a local bitmap (.BMP) file onto the screen. The bitmap will be displayed inside the current image settings as defined by the `RIP_IMAGE_STYLE` command and will adhere to the settings of that command. This mode of displaying a BMP file is the only method for showing a BMP via the image style settings.
 
@@ -49,7 +49,7 @@ Note that this uses the less-than sign unlike the greater than sign used for loc
 
 ## Local Image File Playback (Display)
 
-*Added in RIPscrip v2.A1.*
+_Added in RIPscrip v2.A1._
 
 This command is similar to the local bitmap playback except that dealing with raw bitmapped images, this command displays compressed photo-like images. Currently, only JPEG compressed image files are supported. This command takes a JPEG file and displays it based on the defined image style (set with a `RIP_IMAGE_STYLE`) command. If no image style is recorded, then the JPEG file is displayed inside the current viewport and will occupy the entire viewport's dimensions.
 
@@ -91,11 +91,11 @@ If you do not specify a question, then the list default to the question:
 Choose one of the following:
 ```
 
-You may specify up to 64 entries for any one list. *(v2.A1)*
+You may specify up to 64 entries for any one list. _(v2.A1)_
 
-In RIPterm version 1.52 and earlier, the total length of a pick list was 256 bytes. In version 1.53 and later, this limit has been increased to 1024 bytes. *(v1.53)*
+In RIPterm version 1.52 and earlier, the total length of a pick list was 256 bytes. In version 1.53 and later, this limit has been increased to 1024 bytes. _(v1.53)_
 
-In earlier revisions of RIPscrip, a maximum number of 20 entries in a picklist were allowed. This has been expanded to 64 for version 2.0. If the total number of entries makes the picklist too tall to fit on the screen then it should handle some form of scrolling mechanism. *(v2.A1)*
+In earlier revisions of RIPscrip, a maximum number of 20 entries in a picklist were allowed. This has been expanded to 64 for version 2.0. If the total number of entries makes the picklist too tall to fit on the screen then it should handle some form of scrolling mechanism. _(v2.A1)_
 
 Some characters have special significance in the RIPscrip language. These characters are `!` (exclamation mark, or for you Unix-heads, bang), `\` (backslash), and `|` (vertical bar). To use these characters in a Text Response, they must be preceded by a backslash (`!` becomes `\!`, `\` becomes `\\`, and `|` becomes `\|`). RIPaint automatically adds these when creating Text Responses. You need to be aware of this only if you are editing RIPscrip files with a text editor. The `_` (underline) and `~` (tilde) characters used to indicate the hotkey in a Text Response are not able to be preceded by a backslash to be used by themselves. They will be returned to the host if they exist in a Text Response (not in the description), however everything after the underline or tilde will be underlined, and the first character will be considered the hotkey.
 

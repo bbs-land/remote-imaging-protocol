@@ -2,8 +2,7 @@
 
 [Contents](README.md) · [Next: Protocol Structure & Syntax ▶](02-protocol-structure.md)
 
-**RIPscrip Graphics Protocol Specification**
-Remote Imaging Protocol
+**RIPscrip Graphics Protocol Specification** Remote Imaging Protocol
 
 ## INTRODUCTION
 
@@ -13,10 +12,9 @@ So, we decided to write our own Graphical Script Language.
 
 RIPscrip stands for "Remote Imaging Protocol Script" language. This graphical language is our answer to the graphics needs of the BBS community and has serious tools for implementation and practical use.
 
-
 ## REVISION HISTORY NOTATION
 
-*Added in RIPscrip v1.54.*
+_Added in RIPscrip v1.54._
 
 This document is a historical document. Periodically throughout the text are things that were added to the specification at specific revisions. These additions/changes can be easily pinpointed by looking for notation symbols in the right margin of the document. If you notice to the right of this paragraph are the symbols "> 1.54" which indicate that this section was added in the v1.54 revision of the RIPscrip Protocol Specification. This notational convenience was added to make quick determination of new changes fast and easy.
 

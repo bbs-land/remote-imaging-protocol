@@ -4,18 +4,18 @@
 
 ---
 
-Level-2 commands are "context" related commands. They are used when switching from one [data table](03-data-tables.md) to another, or are actually commands for manipulating actual data tables, or their entries. *(v2.A4)*
+Level-2 commands are "context" related commands. They are used when switching from one [data table](03-data-tables.md) to another, or are actually commands for manipulating actual data tables, or their entries. _(v2.A4)_
 
 ## RIP_DEFINE_PORT
 
-*Define a drawing port*
+_Define a drawing port_
 
-*Added in RIPscrip v2.A3.*
+_Added in RIPscrip v2.A3._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `P` |
+|               |                                                    |
+| ------------- | -------------------------------------------------- |
+| **Level**     | 2                                                  |
+| **Command**   | `P`                                                |
 | **Arguments** | `port-num:1 x0:XY y0:XY x1:XY y1:XY flags:4 res:4` |
 
 **Format:** `!|2P <port-num> <x0> <y0> <x1> <y1> <flags> <res>`
@@ -28,7 +28,7 @@ This command physically defines a new graphical [drawing port](02-drawing-ports.
 
 If the `<port-num>` that you are trying to define is already defined, and the port isn't protected, it is redefined (ie, deleted then re-created using the new parameters). If the port is defined and protected, then the port definition operation will fail and the port will be switched back to the screen port (#0) as previously described.
 
-The `<port-num>` parameter determines which entry in the master Port Table you wish to define. When working with ports, you need to be concerned about the port number you're working with - that's the location of the port, and that's how you access it when you need to switch ports - by port number. You are allows up to 36 separate grpahical ports (0-35 in decimal). Port #0 cannot be re-defined because it is always defined as the Screen Port. You can however, alter the viewport for Port #0 to make a sub-area on the screen to draw in (and clip). The viewport for Port #0 may also be deactivated as can the viewport on any other graphical Port. *(v2.A4)*
+The `<port-num>` parameter determines which entry in the master Port Table you wish to define. When working with ports, you need to be concerned about the port number you're working with - that's the location of the port, and that's how you access it when you need to switch ports - by port number. You are allows up to 36 separate grpahical ports (0-35 in decimal). Port #0 cannot be re-defined because it is always defined as the Screen Port. You can however, alter the viewport for Port #0 to make a sub-area on the screen to draw in (and clip). The viewport for Port #0 may also be deactivated as can the viewport on any other graphical Port. _(v2.A4)_
 
 To create a port, you need to specify the upper-left coordinate corner of the port and the lower-right coordinate of the rectangle bounding the port. The configuration of coordinates is different depending on the type of graphical port as declared by the `<flags>` parameter (see below). For Video Ports (onscreen ports), the `<x0>` and `<y0>` parameters define the upper-left corner of the port on the video screen, and the `<x1>` and `<y1>` values define the lower-right corner of the port. Together, they define the pixel width and height of the port (this adheres to global world coordinate systems). For Clipboard Ports (offscreen bitmap ports), you cannot have an upper-left corner - so the `<x0>` and `<y0>` parameters must be set to zero.
 
@@ -37,24 +37,24 @@ Once defined, the viewport for the given port is defined as the size of the port
 The `<flags>` parameter for this command allows you to make some important distinctions to the port. The possible port flags are OR'd together to create one final number where each bit represents some flag value. The possible flag values and what they mean are described as follows:
 
 | Value | Description |
-|---|---|
+| --- | --- |
 | 1 | Port is an offscreen (Clipboard) port. When this flag is specified, the `<x0>` and `<y0>` parameter are assumed to be zero (even if they aren't set to 0, they are treated as if they were). When a port is declared as a Clipboard Port, all graphical operations are performed to an offscreen bitmap port and do not appear on the screen (without you specifically using a port copy operation). If this flag is omitted, then the port is treated as a Video Port and any graphics drawn to the port will show up on the screen immediately (providing the viewport for this port isn't deactivated). |
 | 2 | Port is made the active drawing port immediately upon completion of this command. This has the net effect of creating the port and immediately switching to it. Without this flag, you would have to use a [RIP_SWITCH_PORT](#rip_switch_port) command to draw directly into this port. |
-| 4 | Deactivate this port's viewport immediately upon creation. This has the net effect of creating the port and setting the viewport to a deactivated status. *(v2.A4)* |
+| 4 | Deactivate this port's viewport immediately upon creation. This has the net effect of creating the port and setting the viewport to a deactivated status. _(v2.A4)_ |
 | 8 | The newly defined port is immediately protected. This means that the port cannot be deleted without explicitly unprotecting the port. |
 
 > **NOTE:** The `<res>` parameter is reserved for future use and should be set to "0000" for future compatibility with later RIPscrip revisions.
 
 ## RIP_DELETE_PORT
 
-*Deletes a specific port definition*
+_Deletes a specific port definition_
 
-*Added in RIPscrip v2.A3.*
+_Added in RIPscrip v2.A3._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `p` |
+|               |                                |
+| ------------- | ------------------------------ |
+| **Level**     | 2                              |
+| **Command**   | `p`                            |
 | **Arguments** | `port_num:1 dest_port:1 res:2` |
 
 **Format:** `!|2s <port_num> <dest_port> <res>`
@@ -71,12 +71,12 @@ The `<dest_port>` parameter defines the port number that will be switched to aft
 
 ## RIP_PORT_COPY
 
-*Copies graphics data from one port to another*
+_Copies graphics data from one port to another_
 
-*Added in RIPscrip v2.A3.*
+_Added in RIPscrip v2.A3._
 
-| | |
-|---|---|
+|  |  |
+| --- | --- |
 | **Level** | 2 |
 | **Command** | `C` |
 | **Arguments** | `source_port:1 sx0:XY sy0:XY sx1:XY sy1:XY dest-port:1 dx0:XY dy0:XY dx1:XY dy1:XY write-mode:1 res:5` |
@@ -95,13 +95,13 @@ The destination port parameters (dx0,dy0)..(dx1,dy1) define the destination rect
 
 The `<write_mode>` parameter determines the Raster Transfer mode that is used to write the image data to the destination rectangle. The possible value and their various effects on the destination image are as follows:
 
-| Mode | Description | Logical |
-|---|---|---|
-| 0 | Copy the image to the port verbatim | COPY |
-| 1 | Exclusive-OR image with the one already on the port | XOR |
-| 2 | Logically OR image with the one already on the port | OR |
-| 3 | Logically AND image with the one already on the port | AND |
-| 4 | Copy the inverse of the image onto the port | NOT |
+| Mode | Description                                          | Logical |
+| ---- | ---------------------------------------------------- | ------- |
+| 0    | Copy the image to the port verbatim                  | COPY    |
+| 1    | Exclusive-OR image with the one already on the port  | XOR     |
+| 2    | Logically OR image with the one already on the port  | OR      |
+| 3    | Logically AND image with the one already on the port | AND     |
+| 4    | Copy the inverse of the image onto the port          | NOT     |
 
 Working with a port copy operation, the source rectangle for the image is contained in the source port number. The destination rectangle is based in the destination port. If either of these rectangles extend outside of the respective ports' viewports, then they are adjusted accordingly - possibly scaling the image when it wasn't intended.
 
@@ -109,14 +109,14 @@ Working with a port copy operation, the source rectangle for the image is contai
 
 ## RIP_PORT_WRITE
 
-*Writes port image to a disk-based bitmap file*
+_Writes port image to a disk-based bitmap file_
 
-*Added in RIPscrip v2.A3.*
+_Added in RIPscrip v2.A3._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `W` |
+|               |                                                     |
+| ------------- | --------------------------------------------------- |
+| **Level**     | 2                                                   |
+| **Command**   | `W`                                                 |
 | **Arguments** | `port_num:1 x0:XY y0:XY x1:XY y1:XY res:4 filename` |
 
 **Format:** `!|2W <port_num> <x0> <y0> <x1> <y1> <res> <filename>`
@@ -128,7 +128,7 @@ Working with a port copy operation, the source rectangle for the image is contai
 This command physically takes the contents of the specific graphics port and writes it to a disk-based bitmap file (eg, a .BMP file). The specific area of the given port that is written to the disk is based on the (x0,y0)..(x1,y1) parameters. If all of these parameters are set to zeros, then the entire port's viewport is written to the desired bitmap file. If the (x1,y1) paraemters are set to zero, then the lower-right corner of the image is taken to be the lower-right corner of the port's viewport. The (x0,y0) parameters determine the upper-left corner of the image's location in the given graphics port. You could use any of the following three variations:
 
 | X0 | Y0 | X1 | Y1 | Description |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 0 | 0 | 0 | 0 | Grab the entire port's viewport for the image to be saved. |
 | 25 | 25 | 0 | 0 | Grab the image area from (25,25) to the lower-right of the port's viewport as the image data to be saved. |
 | 25 | 25 | 100 | 100 | Save the image data from (25,25) to (100,100) in the given graphics port to the destination bitmap file. |
@@ -139,14 +139,14 @@ The `<port_num>` parameter determines which graphics port is to be the source of
 
 ## RIP_SET_REFRESH
 
-*Sets a sequence to send host to refresh display*
+_Sets a sequence to send host to refresh display_
 
-*Added in RIPscrip v2.A1.*
+_Added in RIPscrip v2.A1._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `R` |
+|               |                        |
+| ------------- | ---------------------- |
+| **Level**     | 2                      |
+| **Command**   | `R`                    |
 | **Arguments** | `res:4 refresh_string` |
 
 **Format:** `!|2R <res> <refresh_string>`
@@ -161,14 +161,14 @@ The host command portion of this sequence can contain any kind of host command i
 
 ## RIP_SWITCH_BUTTON_STYLE
 
-*Switches to a new button style*
+_Switches to a new button style_
 
-*Added in RIPscrip v2.A4.*
+_Added in RIPscrip v2.A4._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `B` |
+|               |                |
+| ------------- | -------------- |
+| **Level**     | 2              |
+| **Command**   | `B`            |
 | **Arguments** | `bstyle_num:2` |
 
 **Format:** `!|2B <bstyle_num>`
@@ -185,14 +185,14 @@ When a [RIP_RESET_WINDOWS](09-level-0-commands-g-r.md#rip_reset_windows) or a pr
 
 ## RIP_SWITCH_ENVIRONMENT
 
-*Switches to a new environment*
+_Switches to a new environment_
 
-*Added in RIPscrip v2.A4.*
+_Added in RIPscrip v2.A4._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `E` |
+|               |             |
+| ------------- | ----------- |
+| **Level**     | 2           |
+| **Command**   | `E`         |
 | **Arguments** | `env_num:2` |
 
 **Format:** `!|2E <env_num>`
@@ -209,14 +209,14 @@ When a RIP_RESET_WINDOWS or a proper RIP_HEADER command is executed, then all un
 
 ## RIP_SWITCH_PALETTE
 
-*Switches to a new color palette*
+_Switches to a new color palette_
 
-*Added in RIPscrip v2.A3.*
+_Added in RIPscrip v2.A3._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `A` |
+|               |                 |
+| ------------- | --------------- |
+| **Level**     | 2               |
+| **Command**   | `A`             |
 | **Arguments** | `palette_num:2` |
 
 **Format:** `!|2A <palette_num>`
@@ -233,14 +233,14 @@ When a RIP_RESET_WINDOWS or a proper RIP_HEADER command is executed, then all un
 
 ## RIP_SWITCH_PORT
 
-*Switches to a new port*
+_Switches to a new port_
 
-*Added in RIPscrip v2.A3.*
+_Added in RIPscrip v2.A3._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `s` |
+|               |                            |
+| ------------- | -------------------------- |
+| **Level**     | 2                          |
+| **Command**   | `s`                        |
 | **Arguments** | `port-num:1 flags:2 res:3` |
 
 **Format:** `!|2s <port-num> <flags> <res>`
@@ -255,12 +255,12 @@ When the new port is activated, all subsequent drawing operations are performed 
 
 The `<flags>` parameter for this command allows you to specify one or more things that can alter the switching operation. The allowable flag values and their meanings are described as follows:
 
-| Value | Description |
-|---|---|
-| 1 | The destination port is immediately protected. |
-| 2 | The destination port is immediately un-protected |
-| 4 | The port being switched from is immediately protected. |
-| 8 | The port being switched from is immediately un-protected. |
+| Value | Description                                               |
+| ----- | --------------------------------------------------------- |
+| 1     | The destination port is immediately protected.            |
+| 2     | The destination port is immediately un-protected          |
+| 4     | The port being switched from is immediately protected.    |
+| 8     | The port being switched from is immediately un-protected. |
 
 If you try to switch to the same port that is already in use, nothing happens except for possibly the activation of one or more flag values. This allows you to protect or unprotect a port without switching ports. Port #0 cannot be either protected nor unprotected.
 
@@ -268,14 +268,14 @@ If you try to switch to the same port that is already in use, nothing happens ex
 
 ## RIP_SWITCH_TEXT_WINDOW
 
-*Switch to another Text Window (activate)*
+_Switch to another Text Window (activate)_
 
-*Added in RIPscrip v2.A0.*
+_Added in RIPscrip v2.A0._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `T` |
+|               |                      |
+| ------------- | -------------------- |
+| **Level**     | 2                    |
+| **Command**   | `T`                  |
 | **Arguments** | `window_num:1 res:1` |
 
 **Format:** `!|2T <window_num> <res>`
@@ -288,20 +288,20 @@ In RIPscrip, you are allowed to have up to 36 separate [text windows](06-color-a
 
 When you switch to another window, if that window hasn't been defined yet, then the current window definition is copied to the new window slot. When you switch to another window, the cursor is hidden in the previous window and re-drawn in the new window (if it was visible the last time the window was used).
 
-If you switch to a window that is "deactivated", it will hide the cursor from whatever window was previously active and then execute the proper deactivate text window sequence for the newly selected text window slot. *(v2.A4)*
+If you switch to a window that is "deactivated", it will hide the cursor from whatever window was previously active and then execute the proper deactivate text window sequence for the newly selected text window slot. _(v2.A4)_
 
 When a RIP_RESET_WINDOWS command is acted upon, any previously defined text window slots are erased and Window #0 is set to full screen mode (using the User's selected MicroANSI font), and the current window number is set to window #0.
 
 ## RIP_SWITCH_STYLE
 
-*Switches to a new Drawing Style Context*
+_Switches to a new Drawing Style Context_
 
-*Added in RIPscrip v2.A0.*
+_Added in RIPscrip v2.A0._
 
-| | |
-|---|---|
-| **Level** | 2 |
-| **Command** | `Y` |
+|               |                     |
+| ------------- | ------------------- |
+| **Level**     | 2                   |
+| **Command**   | `Y`                 |
 | **Arguments** | `style_num:1 res:1` |
 
 **Format:** `!|2Y <style_num> <res>`
@@ -310,7 +310,7 @@ When a RIP_RESET_WINDOWS command is acted upon, any previously defined text wind
 
 **Attributes used:** draw color, back color, line style, fill style, write mode, font style, viewport, base math (current setting)
 
-This command switches to a particular "drawing style". A drawing style is a combination of the following graphical settings: *(list as of v2.A1)*
+This command switches to a particular "drawing style". A drawing style is a combination of the following graphical settings: _(list as of v2.A1)_
 
 - Current drawing color
 - Current background drawing color

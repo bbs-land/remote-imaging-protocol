@@ -606,7 +606,7 @@ Hello worldThis is PlutoHello worldThis is Jupiter
 With all this talk about Templates, Text Variables, Local RIP file playback, pop-up pick lists and control characters, you might be interested in knowing what can be used where in the RIPscrip language. It has already been stated that Templates can be used only in Button Host Commands. Text Variables, Local RIP file playback, pop-up lists and control characters can be used in several places though. The places that these commands can be used and not used are listed in the following chart:
 
 | Command | Templates | Data Text Variables | Active Text Vars | Pick List | Ctrl Char | Local RIP |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| --- | :-: | :-: | :-: | :-: | :-: | :-: |
 | Button Host Commands | Y | Y | Y | Y | Y | Y |
 | Simple Mouse Fields | N | Y | Y | Y | Y | Y |
 | Query Command | N | Y | Y | Y | Y | Y |

@@ -2,15 +2,15 @@
 
 [◀ Prev: Data Tables](03-data-tables.md) · [Contents](README.md) · [Next: Numbers, Coordinates & Math ▶](05-coordinates-and-math.md)
 
-*Reconstructed edition — see [Contents](README.md) for the evidence legend.*
+_Reconstructed edition — see [Contents](README.md) for the evidence legend._
 
 ## The Backup Architecture
 
-*Evidence: 2.00a4; HLP.*
+_Evidence: 2.00a4; HLP._
 
 A data backup area is out-of-band storage for one type of [data table](03-data-tables.md) (or object, in the case of screens and mouse fields). Each backup area is composed of:
 
-- **One base save area** — a slot-less temporary parking place. Restoring from it does *not* clear it, so it can be re-read any number of times. It cannot be protected.
+- **One base save area** — a slot-less temporary parking place. Restoring from it does _not_ clear it, so it can be re-read any number of times. It cannot be protected.
 - **Ten data save slots**, numbered **0–9** — individually addressable storage. Restoring from a slot clears that slot (unless it is protected).
 - **A data save stack** — push/pop (LIFO) storage sharing capacity with the slots.
 
@@ -22,7 +22,7 @@ The 3.0.7 driver confirms all three mechanisms directly: the `$SAVE0$`–`$SAVE9
 
 ### The Fourteen Copy Paths
 
-*Evidence: 2.00a4.*
+_Evidence: 2.00a4._
 
 Data moves between the live table, the base area, the slots, and the stack along fourteen distinct paths:
 
@@ -64,20 +64,20 @@ Push/pop is what makes overlapping dialogs work: opening a window pushes the env
 
 ## Protection and Restoration
 
-*Evidence: 2.00a4.*
+_Evidence: 2.00a4._
 
 Data save slots (only those actually in use) can be individually protected. A protected slot survives restore-clearing and overwrites; it can only be changed by explicitly unprotecting it first, or by a hard reset. The base save area and the stack cannot be protected — protection contradicts their purposes.
 
-Entries *inside* a saved table retain their own protection status: restoring a table from backup restores each entry's protection along with its data. A whole table cannot be protected, so a backup-area restore is the one operation that can overwrite protected entries in the live table (with the saved copies).
+Entries _inside_ a saved table retain their own protection status: restoring a table from backup restores each entry's protection along with its data. A whole table cannot be protected, so a backup-area restore is the one operation that can overwrite protected entries in the live table (with the saved copies).
 
 ## The `$SAVE$` / `$RESTORE$` Variable Family
 
-*Evidence: HLP.*
+_Evidence: HLP._
 
 RIPTEL.HLP documents the uniform save/restore vocabulary the 3.0 engine exposes through [text variables](../../2.x/ripscrip/17-text-variables-general.md), pairing S-/R- forms per object type:
 
 | Save | Restore | Object |
-|---|---|---|
+| --- | --- | --- |
 | `$SAVE$`, `$SAVE0$`–`$SAVE9$`, `$SAVEALL$` | `$RESTORE$`, `$RESTORE0$`–`$RESTORE9$`, `$RESTOREALL$` | Graphics screen (base area, slots 0–9, or everything at once) |
 | `$SGS$` | `$RGS$` | Graphics style table |
 | `$SBS$` | `$RBS$` | Button style table |
@@ -89,19 +89,19 @@ RIPTEL.HLP documents the uniform save/restore vocabulary the 3.0 engine exposes 
 
 ## Individual Backup Areas
 
-*Evidence: 2.00a4; HLP.*
+_Evidence: 2.00a4; HLP._
 
 Backup areas exist for each of the following; each stores the current entry number plus the full 36-entry table unless noted:
 
 - **Button style table** and **graphical style table** — table plus current entry number.
 - **Drawing port table** — the 36 port definitions, the actual graphical contents of all offscreen/clipboard ports, the floating viewport query expression, and the clipboard port pointer. The 3.0.7 driver's strings confirm port backups carry **strip-based screen bitmap data** for the stored pixels.
-- **Text window table** — the 36 definitions plus the floating text-window query expression; window *contents* are not saved.
+- **Text window table** — the 36 definitions plus the floating text-window query expression; window _contents_ are not saved.
 - **Color palette table** — all 36 palettes plus the current entry number.
 - **Mouse field table** — the count and up to 128 field definitions; restoring button fields restores the click regions, not the button graphics.
 - **Screen** — a special backup area with no underlying table: each slot or base area holds a complete bitmap of the graphical screen with its associated palette and the status-bar state. This is the area behind `$SAVE0$`–`$SAVE9$` and `$SAVEALL$`.
 - **Environment table** — all 36 environments plus the current entry number.
 
-TeleGrafix's own demo scenes exercise the system constantly — the `.ENT`/`.EXT` transition stubs "Paste original screen image back" (their comment) around every menu excursion. *Evidence: corpus (MENU.ENT, TEL3X2.ENT).*
+TeleGrafix's own demo scenes exercise the system constantly — the `.ENT`/`.EXT` transition stubs "Paste original screen image back" (their comment) around every menu excursion. _Evidence: corpus (MENU.ENT, TEL3X2.ENT)._
 
 ---
 

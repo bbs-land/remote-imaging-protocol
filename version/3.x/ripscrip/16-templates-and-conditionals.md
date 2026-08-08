@@ -2,15 +2,15 @@
 
 [◀ Prev: Local File Playback & Pop-Up Lists](15-local-playback-popup-lists.md) · [Contents](README.md) · [Next: Column Text System ▶](17-column-text-system.md)
 
-*Reconstructed edition — see [Contents](README.md) for the evidence legend.*
+_Reconstructed edition — see [Contents](README.md) for the evidence legend._
 
-Templates are the Host Command Language's mechanism for *building* host commands out of pieces — the White Paper calls them "a cookie-cutter approach to host commands," constructed from whichever buttons are selected and which are not. The 2.x template system carries into 3.0 intact; layered on top of it, the 3.0 era adds something no published specification describes: a genuine **macro and conditional layer** (`<<NAME>>`, `<<IF>>…<<ELSE>>…<<ENDIF>>`) evaluated before command execution. This page covers both.
+Templates are the Host Command Language's mechanism for _building_ host commands out of pieces — the White Paper calls them "a cookie-cutter approach to host commands," constructed from whichever buttons are selected and which are not. The 2.x template system carries into 3.0 intact; layered on top of it, the 3.0 era adds something no published specification describes: a genuine **macro and conditional layer** (`<<NAME>>`, `<<IF>>…<<ELSE>>…<<ENDIF>>`) evaluated before command execution. This page covers both.
 
-*Evidence: WP; 2.00a4; corpus.*
+_Evidence: WP; 2.00a4; corpus._
 
 ## Command Blocks and the Three Host-Command Types
 
-*Evidence: 2.00a4.*
+_Evidence: 2.00a4._
 
 Templates exist only in **button** (`1U`) host commands — not in mouse fields or queries. A button's host-command segment may be sub-divided into multiple **command blocks** with the two-character delimiter `[]`, and each block is one of three types:
 
@@ -28,7 +28,7 @@ A command with no block delimiters at all is simply a direct host command. If tw
 
 ## Defining Templates — `[N:]`
 
-*Evidence: 2.00a4; SyncTERM (ripper.c:11949–11982, 11637–11882).*
+_Evidence: 2.00a4; SyncTERM (ripper.c:11949–11982, 11637–11882)._
 
 There are **36 template slots**, identified by the single meganum characters `0`–`9` and `A`–`Z`, one per button group. SyncTERM implements the full store/apply machinery (`ripper.c:11637–11882`).
 
@@ -37,20 +37,20 @@ There are **36 template slots**, identified by the single meganum characters `0`
 [G:]This is template #16's definition
 ```
 
-Crucially, a definition is *inert on receipt*: it becomes the **active** template for its group only when its button is clicked (or drawn pre-selected). Several buttons in one group may each carry a definition for the same slot; whichever was clicked most recently owns the slot.
+Crucially, a definition is _inert on receipt_: it becomes the **active** template for its group only when its button is clicked (or drawn pre-selected). Several buttons in one group may each carry a definition for the same slot; whichever was clicked most recently owns the slot.
 
 ## Radio Buttons and Check-Box Aggregation
 
-*Evidence: 2.00a4; SyncTERM (ripper.c:11736–11800).*
+_Evidence: 2.00a4; SyncTERM (ripper.c:11736–11800)._
 
 - **Radio groups** — exactly one button active at a time, so exactly one definition active per slot.
-- **Check-box groups** — zero or more buttons active. On every click the group's template is *recalculated*: the definitions of all currently-selected buttons are concatenated **in button-creation order**, not click order. SyncTERM's `process_template_definition` (`ripper.c:11736–11800`) implements exactly this — when the defining button belongs to a radio or check-box group, it concatenates the `template_cmd` of every selected button in the group, in creation order.
+- **Check-box groups** — zero or more buttons active. On every click the group's template is _recalculated_: the definitions of all currently-selected buttons are concatenated **in button-creation order**, not click order. SyncTERM's `process_template_definition` (`ripper.c:11736–11800`) implements exactly this — when the defining button belongs to a radio or check-box group, it concatenates the `template_cmd` of every selected button in the group, in creation order.
 
 Seven check-box fruits defined as `[2:]APPLES^m`, `[2:]ORANGES^m`, … clicked in the order 2, 1, 4 still yield the template `Apples^mOranges^mGrapes^m` — definition order, always.
 
 ## Template Embedding — `$?N$`
 
-*Evidence: 2.00a4; SyncTERM (ripper.c:11918–11923).*
+_Evidence: 2.00a4; SyncTERM (ripper.c:11918–11923)._
 
 `$?N$` — where `N` is a slot character `0`–`9` / `A`–`Z` — expands, inside a direct host command, to the stored text of that slot (`ripper.c:11918–11923`). The classic order form:
 
@@ -63,9 +63,9 @@ Clicking Submit with Apples and Cherries checked transmits `I wish to order APPL
 
 ## Template Chaining — `[ABC]`
 
-*Evidence: 2.00a4; SyncTERM (ripper.c:11949–11982).*
+_Evidence: 2.00a4; SyncTERM (ripper.c:11949–11982)._
 
-Chaining is embedding's inverse: instead of inserting a template into a host command, it feeds a host command *into* templates. The generic insertion code `$?$` (no slot character) inside a template definition marks where fed text lands:
+Chaining is embedding's inverse: instead of inserting a template into a host command, it feeds a host command _into_ templates. The generic insertion code `$?$` (no slot character) inside a template definition marks where fed text lands:
 
 ```text
 [4:]This template inserts $?$ here!
@@ -80,9 +80,9 @@ The final host command after all template processing is limited to **4096 bytes*
 
 ## The 3.0 Macro Layer — `<<NAME>>`
 
-*Evidence: corpus (MENU.DEF, MENU.MNU, MENU.MSE, MENU.ENT); SyncTERM absent.*
+_Evidence: corpus (MENU.DEF, MENU.MNU, MENU.MSE, MENU.ENT); SyncTERM absent._
 
-Beyond the slot templates, the RIPtel corpus reveals a second, entirely undocumented expansion mechanism: `<<NAME>>` expands to the value of the text variable `NAME` — anywhere in a command's argument text, including *inside* a `$…$` reference. No surveyed non-TeleGrafix implementation supports it.
+Beyond the slot templates, the RIPtel corpus reveals a second, entirely undocumented expansion mechanism: `<<NAME>>` expands to the value of the text variable `NAME` — anywhere in a command's argument text, including _inside_ a `$…$` reference. No surveyed non-TeleGrafix implementation supports it.
 
 The demo's menu system is built on it. A `.DEF` configuration file sets plain variables with the [set-syntax](14-host-commands.md):
 
@@ -92,7 +92,7 @@ The demo's menu system is built on it. A `.DEF` configuration file sets plain va
 !|1^[0000$=-MSG2=Demonstrations of RIPscrip graphics$
 ```
 
-and the *generic* menu scenes consume them by macro:
+and the _generic_ menu scenes consume them by macro:
 
 ```text
 !|1b3Y7YCCAY0000000000TELBUT.BMP|@809U<<LAB1>>       (button label text)
@@ -100,11 +100,11 @@ and the *generic* menu scenes consume them by macro:
 !|@HSKA$&MSG<<FIELDID>>$                             (macro composing a variable NAME)
 ```
 
-The second line is the striking one: `$<<CMD1>>$` expands `<<CMD1>>` to `>TELDEMOS.FN` *first*, yielding `$>TELDEMOS.FN$` — a [local playback directive](15-local-playback-popup-lists.md) assembled at run time. The third composes a variable *name* from the built-in `$FIELDID$`, then dereferences it with `$&…$`. One `.MSE` overlay and one `.MNU` screen thus serve every menu in the product; only the tiny `.DEF` files differ. Expansion evidently happens before `$…$` parsing *(hypothesis on the exact evaluation order)*.
+The second line is the striking one: `$<<CMD1>>$` expands `<<CMD1>>` to `>TELDEMOS.FN` _first_, yielding `$>TELDEMOS.FN$` — a [local playback directive](15-local-playback-popup-lists.md) assembled at run time. The third composes a variable _name_ from the built-in `$FIELDID$`, then dereferences it with `$&…$`. One `.MSE` overlay and one `.MNU` screen thus serve every menu in the product; only the tiny `.DEF` files differ. Expansion evidently happens before `$…$` parsing _(hypothesis on the exact evaluation order)_.
 
 ## Inline Conditionals — `<<IF>> … <<ELSEIF>> … <<ELSE>> … <<ENDIF>>`
 
-*Evidence: corpus (BUTTONS.RIP, TELDEMOS.RET, MENU.RET, SPECLEFX.RIP, FXSHWIMG.FN); SyncTERM absent.*
+_Evidence: corpus (BUTTONS.RIP, TELDEMOS.RET, MENU.RET, SPECLEFX.RIP, FXSHWIMG.FN); SyncTERM absent._
 
 The same `<<…>>` bracket introduces conditionals, evaluated before the containing command executes. Keywords are case-insensitive (`<<IF>>` and `<<if>>` both appear). The observed grammar:
 
@@ -114,7 +114,7 @@ The same `<<…>>` bracket introduces conditionals, evaluated before the contain
 
 with expressions built from `$…$` values, quoted string literals, the comparison operators `=` `!=` `<`, the connectives `AND` / `OR`, and parentheses. All from shipping TeleGrafix scripts:
 
-**Choosing a background by color depth** — the most common idiom, appearing as the *filename argument* of a `1R` (RIP_READ_SCENE):
+**Choosing a background by color depth** — the most common idiom, appearing as the _filename argument_ of a `1R` (RIP_READ_SCENE):
 
 ```text
 !|1R00000000<<IF $COLORS$<"256">>BLUEBACK.FN<<ELSE>>BLUEFADE.FN<<ENDIF>>
@@ -156,9 +156,9 @@ State machine, existence test, silent assignment, computed playback: a complete 
 
 ### Comparison Semantics
 
-*Evidence: corpus; editorial analysis.*
+_Evidence: corpus; editorial analysis._
 
-Operands are string-valued, and `$COLORS$<"256"` is the only ordering comparison observed. For the values that occur in practice (`16` vs `256` vs `65536`) lexical and numeric comparison happen to agree, so the corpus cannot distinguish which the driver performs — treat `<` on numbers other than these as unverified *(hypothesis)*. Equality against `""` tests emptiness/undefinedness and is used interchangeably with `="NONE"` sentinels by TeleGrafix's own scripts.
+Operands are string-valued, and `$COLORS$<"256"` is the only ordering comparison observed. For the values that occur in practice (`16` vs `256` vs `65536`) lexical and numeric comparison happen to agree, so the corpus cannot distinguish which the driver performs — treat `<` on numbers other than these as unverified _(hypothesis)_. Equality against `""` tests emptiness/undefinedness and is used interchangeably with `="NONE"` sentinels by TeleGrafix's own scripts.
 
 ---
 

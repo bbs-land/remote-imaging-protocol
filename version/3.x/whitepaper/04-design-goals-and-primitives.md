@@ -47,7 +47,7 @@ RIPscrip offers the developer a wide variety of vector graphics primitives to ac
 Of the many drawing primitives in RIPscrip, you'll find commands to perform the following drawing functions:
 
 | Command             | Borders only | Filled-only | Filled/Border |
-|---------------------|--------------|-------------|---------------|
+| ------------------- | ------------ | ----------- | ------------- |
 | Lines               | Yes          | No          | No            |
 | Points and pixels   | Yes          | No          | No            |
 | Graphical text      | Yes          | No          | No            |

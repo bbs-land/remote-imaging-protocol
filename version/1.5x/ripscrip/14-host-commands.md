@@ -16,17 +16,17 @@ Among the various abilities are:
 
 Not all BBS'es will allow you to use control characters on their Service. Regardless of that, the capability to send any Control Character exists for your Host Commands. The most commonly used Control Characters are:
 
-| Individual Control Characters | Special Keystrokes |
-|---|---|
-| `^@` ... Null (ASCII 0) | `^[[A` ... Up Arrow |
-| `^G` ... Beep | `^[[B` ... Down Arrow |
-| `^L` ... Clear Screen (Top of Form) | `^[[C` ... Right Arrow |
-| `^M` ... Carriage Return | `^[[D` ... Left Arrow |
-| `^C` ... Break (sometimes) | `^[[H` ... Home Key |
-| `^H` ... Backspace | `^[[K` ... End Key |
-| `^[` ... Escape character | `^[[L` ... Control Home |
-| `^S` ... Pause data transmission | |
-| `^Q` ... Resume data transmission | |
+| Individual Control Characters       | Special Keystrokes      |
+| ----------------------------------- | ----------------------- |
+| `^@` ... Null (ASCII 0)             | `^[[A` ... Up Arrow     |
+| `^G` ... Beep                       | `^[[B` ... Down Arrow   |
+| `^L` ... Clear Screen (Top of Form) | `^[[C` ... Right Arrow  |
+| `^M` ... Carriage Return            | `^[[D` ... Left Arrow   |
+| `^C` ... Break (sometimes)          | `^[[H` ... Home Key     |
+| `^H` ... Backspace                  | `^[[K` ... End Key      |
+| `^[` ... Escape character           | `^[[L` ... Control Home |
+| `^S` ... Pause data transmission    |                         |
+| `^Q` ... Resume data transmission   |                         |
 
 Some hosts use the `^` (caret) for their own purposes. In these cases, you can use the `` ` `` (backquote) character instead of the caret. Some systems allow you to specify the caret symbol as two carets (`^^`). Consult your Host Software documentation to determine the best method for your needs.
 

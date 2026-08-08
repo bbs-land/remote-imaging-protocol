@@ -1,57 +1,23 @@
 # Icons — RIPterm 1.54 Distribution
 
-The 184 `.ICN` files in this directory are the icon assets from TeleGrafix's
-original RIPterm 1.54 distribution (`RIPTM154.ZIP`, released July 15, 1993;
-all files in the archive are dated 1993-07-15). They are preserved byte-exact:
-the repo's `.gitattributes` marks `version/*/assets/**` as `-text` (no
-line-ending normalization), and the `*.ICN` pattern stores the binaries via
-Git LFS.
+The 184 `.ICN` files in this directory are the icon assets from TeleGrafix's original RIPterm 1.54 distribution (`RIPTM154.ZIP`, released July 15, 1993; all files in the archive are dated 1993-07-15). They are preserved byte-exact: the repo's `.gitattributes` marks `version/*/assets/**` as `-text` (no line-ending normalization), and the `*.ICN` pattern stores the binaries via Git LFS.
 
 ## What `.ICN` files are
 
-An `.ICN` file is a RIPscrip **icon** — a device-dependent bitmap in the exact
-binary format described in the spec's
-[Icon File Format](../../ripscrip/20-icon-file-format.md) page: a 4-byte
-header (width−1, height−1 as little-endian 16-bit integers) followed by
-planar scan-line data identical to Borland BGI's `getimage()`/`putimage()`
-buffer format, plus one trailing "trash" byte. Icons are the disk-based
-counterpart of the clipboard image commands:
-[RIP_WRITE_ICON](../../ripscrip/11-images-icons.md#rip_write_icon) saves the
-clipboard to an icon file, and
-[RIP_LOAD_ICON](../../ripscrip/11-images-icons.md#rip_load_icon) stamps an
-icon file onto the screen (the `.ICN` extension is appended automatically
-when a RIP_LOAD_ICON filename omits it).
+An `.ICN` file is a RIPscrip **icon** — a device-dependent bitmap in the exact binary format described in the spec's [Icon File Format](../../ripscrip/20-icon-file-format.md) page: a 4-byte header (width−1, height−1 as little-endian 16-bit integers) followed by planar scan-line data identical to Borland BGI's `getimage()`/`putimage()` buffer format, plus one trailing "trash" byte. Icons are the disk-based counterpart of the clipboard image commands: [RIP_WRITE_ICON](../../ripscrip/11-images-icons.md#rip_write_icon) saves the clipboard to an icon file, and [RIP_LOAD_ICON](../../ripscrip/11-images-icons.md#rip_load_icon) stamps an icon file onto the screen (the `.ICN` extension is appended automatically when a RIP_LOAD_ICON filename omits it).
 
 ## How RIPterm used them
 
-Per RIPTERM.DOC, icon files (`.ICN`, plus `.MSK` mask files and `.HIC` "hot
-icons" used with buttons) had to live in the `ICONS\` sub-directory of the
-RIPterm installation (optionally in per-host sub-directories, falling back to
-`ICONS\`). Hosts referenced them by bare filename — RIP_LOAD_ICON filenames
-may not contain path information. Icons also serve as button faces: an
-[RIP_BUTTON](../../ripscrip/12-buttons.md#rip_button) defined with the Icon
-Button flag (flag 128 in
-[RIP_BUTTON_STYLE](../../ripscrip/12-buttons.md#rip_button_style)) loads its
-image from an icon file, optionally with a `.HIC` hot icon as the alternate
-(selected) image. The original archive also shipped four `.MSK` masks
-(BUBBLE, CHROME, MOUSE, TANK) and three `.HIC` hot icons (BUTTON, RADIO,
-RADIOBUT) alongside these `.ICN` files; only the `.ICN` files are staged in
-this directory.
+Per RIPTERM.DOC, icon files (`.ICN`, plus `.MSK` mask files and `.HIC` "hot icons" used with buttons) had to live in the `ICONS\` sub-directory of the RIPterm installation (optionally in per-host sub-directories, falling back to `ICONS\`). Hosts referenced them by bare filename — RIP_LOAD_ICON filenames may not contain path information. Icons also serve as button faces: an [RIP_BUTTON](../../ripscrip/12-buttons.md#rip_button) defined with the Icon Button flag (flag 128 in [RIP_BUTTON_STYLE](../../ripscrip/12-buttons.md#rip_button_style)) loads its image from an icon file, optionally with a `.HIC` hot icon as the alternate (selected) image. The original archive also shipped four `.MSK` masks (BUBBLE, CHROME, MOUSE, TANK) and three `.HIC` hot icons (BUTTON, RADIO, RADIOBUT) alongside these `.ICN` files; only the `.ICN` files are staged in this directory.
 
 ## File reference
 
-Neither RIPTERM.DOC nor WHATSNEW.DOC describes individual icon files, so the
-descriptions below are inferred from the filenames (and obvious series), and
-grouped into families for readability. Pixel dimensions are read from each
-file's 4-byte header per the icon file format. A trailing `B` in a name
-(e.g. `80286B.ICN`) appears to mark an alternate rendering of the same
-artwork — typically a smaller, button-sized variant — but TeleGrafix
-documented no naming convention, so those pairings are inferred as well.
+Neither RIPTERM.DOC nor WHATSNEW.DOC describes individual icon files, so the descriptions below are inferred from the filenames (and obvious series), and grouped into families for readability. Pixel dimensions are read from each file's 4-byte header per the icon file format. A trailing `B` in a name (e.g. `80286B.ICN`) appears to mark an alternate rendering of the same artwork — typically a smaller, button-sized variant — but TeleGrafix documented no naming convention, so those pairings are inferred as well.
 
 ### Buttons, bevels & UI building blocks
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `BIGBUT.ICN` | 606 | 40x30 | Large blank button face |
 | `BLANKBEV.ICN` | 342 | 25x21 | Blank beveled button |
 | `BLANKBUT.ICN` | 210 | 21x17 | Blank button face |
@@ -95,17 +61,17 @@ documented no naming convention, so those pairings are inferred as well.
 
 ### Textures & pattern tiles
 
-| File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
-| `BRICKS.ICN` | 1,350 | 61x42 | Brick texture tile |
-| `BOXES.ICN` | 1,414 | 64x44 | Boxes pattern tile |
-| `CONCRETE.ICN` | 286 | 39x14 | Concrete texture strip |
-| `MOSAIC.ICN` | 1,446 | 64x45 | Mosaic pattern tile |
+| File           | Size (bytes) | Dimensions | Description            |
+| -------------- | -----------: | ---------- | ---------------------- |
+| `BRICKS.ICN`   |        1,350 | 61x42      | Brick texture tile     |
+| `BOXES.ICN`    |        1,414 | 64x44      | Boxes pattern tile     |
+| `CONCRETE.ICN` |          286 | 39x14      | Concrete texture strip |
+| `MOSAIC.ICN`   |        1,446 | 64x45      | Mosaic pattern tile    |
 
 ### RIPterm demo screens & panels
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `BIGBAR.ICN` | 6,370 | 293x43 | Wide toolbar/banner bar |
 | `DAILER.ICN` | 16,462 | 174x187 | Telephone dialing-pad panel ("dialer") |
 | `DAILER2.ICN` | 16,374 | 173x186 | Dialing-pad panel, variant |
@@ -132,7 +98,7 @@ documented no naming convention, so those pairings are inferred as well.
 ### TeleGrafix support-BBS menu icons
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `RTERM1.ICN` | 1,098 | 49x39 | RIPterm area icon |
 | `RBETA3.ICN` | 1,126 | 49x40 | Beta-test area icon |
 | `RDEMO.ICN` | 966 | 48x40 | Demos area icon |
@@ -147,7 +113,7 @@ documented no naming convention, so those pairings are inferred as well.
 ### BBS service & menu tiles
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `EMAIL.ICN` | 1,350 | 62x42 | E-mail menu tile |
 | `EMAIL3.ICN` | 1,414 | 64x44 | E-mail menu tile, variant |
 | `NEWS.ICN` | 1,350 | 62x42 | News/bulletins tile |
@@ -169,7 +135,7 @@ documented no naming convention, so those pairings are inferred as well.
 ### Hardware & electronics
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `80286.ICN` | 2,910 | 82x66 | Intel 80286 CPU chip label |
 | `80286B.ICN` | 2,366 | 73x59 | 80286 chip, smaller variant |
 | `80386.ICN` | 2,646 | 77x66 | Intel 80386 CPU chip label |
@@ -186,31 +152,31 @@ documented no naming convention, so those pairings are inferred as well.
 
 ### Money & payment-card logos
 
-| File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
-| `AMEREXP.ICN` | 1,302 | 67x36 | American Express card logo |
-| `VISA.ICN` | 1,302 | 67x36 | Visa card logo |
-| `MC.ICN` | 1,094 | 64x34 | MasterCard logo |
-| `DISCOVER.ICN` | 1,302 | 71x36 | Discover card logo |
-| `DINERCLB.ICN` | 1,726 | 74x43 | Diners Club card logo |
-| `DOLLAR.ICN` | 1,414 | 64x44 | Dollar-sign tile |
-| `QUARTER.ICN` | 2,206 | 74x55 | U.S. quarter coin |
+| File           | Size (bytes) | Dimensions | Description                |
+| -------------- | -----------: | ---------- | -------------------------- |
+| `AMEREXP.ICN`  |        1,302 | 67x36      | American Express card logo |
+| `VISA.ICN`     |        1,302 | 67x36      | Visa card logo             |
+| `MC.ICN`       |        1,094 | 64x34      | MasterCard logo            |
+| `DISCOVER.ICN` |        1,302 | 71x36      | Discover card logo         |
+| `DINERCLB.ICN` |        1,726 | 74x43      | Diners Club card logo      |
+| `DOLLAR.ICN`   |        1,414 | 64x44      | Dollar-sign tile           |
+| `QUARTER.ICN`  |        2,206 | 74x55      | U.S. quarter coin          |
 
 ### Third-party BBS & brand logos
 
-| File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
-| `PCBOARD.ICN` | 1,414 | 64x44 | PCBoard BBS logo |
-| `PCBOARD2.ICN` | 1,414 | 64x44 | PCBoard BBS logo, variant |
-| `WC_MAIN.ICN` | 4,766 | 132x70 | Wildcat! BBS main-menu artwork |
-| `WC_FILE.ICN` | 1,302 | 66x36 | Wildcat! BBS file-menu tile |
-| `WC_MSG.ICN` | 1,190 | 60x37 | Wildcat! BBS message-menu tile |
-| `GE.ICN` | 1,414 | 64x44 | GE logo tile |
+| File           | Size (bytes) | Dimensions | Description                    |
+| -------------- | -----------: | ---------- | ------------------------------ |
+| `PCBOARD.ICN`  |        1,414 | 64x44      | PCBoard BBS logo               |
+| `PCBOARD2.ICN` |        1,414 | 64x44      | PCBoard BBS logo, variant      |
+| `WC_MAIN.ICN`  |        4,766 | 132x70     | Wildcat! BBS main-menu artwork |
+| `WC_FILE.ICN`  |        1,302 | 66x36      | Wildcat! BBS file-menu tile    |
+| `WC_MSG.ICN`   |        1,190 | 60x37      | Wildcat! BBS message-menu tile |
+| `GE.ICN`       |        1,414 | 64x44      | GE logo tile                   |
 
 ### Games & entertainment tiles
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `ALCHEMY.ICN` | 1,414 | 64x44 | Alchemy game tile |
 | `ANDROIDS.ICN` | 1,414 | 64x44 | Androids game tile |
 | `BORDGAME.ICN` | 1,414 | 64x44 | Board-games tile |
@@ -244,7 +210,7 @@ documented no naming convention, so those pairings are inferred as well.
 ### Tank-game sprites & animation frames
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `1TANK.ICN` | 2,262 | 90x47 | Tank artwork (`TANK.MSK` mask shipped in the archive) |
 | `1TANKA.ICN` | 2,162 | 81x49 | Tank artwork, variant |
 | `1TANKBLK.ICN` | 2,982 | 92x62 | Tank artwork, black/silhouette variant |
@@ -266,7 +232,7 @@ documented no naming convention, so those pairings are inferred as well.
 ### Character animation & other art
 
 | File | Size (bytes) | Dimensions | Description |
-|---|---:|---|---|
+| --- | --: | --- | --- |
 | `MEOW1.ICN` | 646 | 37x32 | Cat-head animation frame 1 |
 | `MEOW2.ICN` | 626 | 37x31 | Cat-head animation frame 2 |
 | `MEOW3.ICN` | 606 | 37x30 | Cat-head animation frame 3 |

@@ -2,6 +2,8 @@
 
 A timeline of TeleGrafix Communications, Inc. and its RIPscrip products, as far as surviving documentation allows. Every date below is tied to a cited source; claims that rest on inference or a single recollection are flagged. See [RIGHTS.md](RIGHTS.md) for the fate of the intellectual property, and [README.md](README.md) for what each specification version represents.
 
+**Terminology:** **RIPscrip** is the language itself. **RIPterm** was TeleGrafix's BBS client for dial-up/modem connections; **RIPtel** was its telnet-based successor. RIPaint and RIPdraw were the companion paint/drawing tools.
+
 ## Origins (1992–1993)
 
 TeleGrafix Communications, Inc. was founded in **1992** in Huntington Beach, California by **Jeff Reeder** (who left AST Research to co-found), **Jim Bergman**, and **Mark Hayton**. Their idea: bring point-and-click vector graphics to text-only Bulletin Board Systems over dial-up modems.
@@ -37,7 +39,7 @@ The 2.0 specification circulated as five ALPHA drafts (A0–A4); the last publis
 Two things the record makes clear, contrary to common assumption:
 
 - **There was no "RIPterm 2.1"** — the shipped line jumps 2.0 → 2.20.00 → 2.20.01 → 2.3 — and **no RIPscrip 2.1/2.2 specification** was ever published; those numbers exist only as product versions.
-- **The 2.x RIPterm line was DOS throughout** (a promised Windows/Mac version never verifiably shipped). Features often credited to 3.x — background **.WAV audio**, JPEG display, SVGA/256-color modes, BMP icons — were shipping in this era (see the [3.x revision-history note](3.x/ripscrip/01-introduction.md#revision-history)).
+- **RIPterm 2.2/2.3 were Windows releases with DOS executables.** They were distributed and installed as Windows products — the 2.30 shareware installer is a Win16 executable, and 2.3 added a Windows setup/icon installer — but the client executable itself remained a DOS program (commonly run in a Windows DOS box); a Windows-native or Mac client never verifiably shipped. Features often credited to 3.x — background **.WAV audio**, JPEG display, SVGA/256-color modes, BMP icons — were shipping in this era (see the [3.x revision-history note](3.x/ripscrip/01-introduction.md#revision-history)).
 
 In **April 1996** the company relocated from Huntington Beach to Winchester, Virginia (near Clawson's home), reincorporating as a Virginia corporation.
 
@@ -47,10 +49,10 @@ In **April 1996** the company relocated from Huntington Beach to Winchester, Vir
 | --- | --- | --- |
 | ["Web & Telnet Sites Go Graphical with RIPscrip-3"](https://groups.google.com/g/comp.os.ms-windows.programmer.graphics/c/PMcnQe8n58Y) | Nov 12, 1996 | Usenet announcement by Clawson |
 | [RIPscrip 3.0 Technical White Paper](3.x/whitepaper/README.md) | Dec 6, 1996 | By Jeff Reeder — the only 3.0 document ever published. A promised 450-page specification never appeared |
-| RIPtel Visual Telnet pre-release | Dec 25, 1996 | Two years in development as codename "Mohawk"; Win 3.1/95/NT ([Washington Post](https://www.washingtonpost.com/archive/business/1997/01/06/upstaged-but-hardly-undone/a9d123c5-8c50-4012-b83f-a8a67b9d96eb/), [Usenet](https://groups.google.com/g/comp.bbs.majorbbs/c/x25xTrBYTH8)) |
+| RIPtel Visual Telnet 3.0 (pre-release) | Dec 25, 1996 | Two years in development as codename "Mohawk"; Win 3.1/95/NT, telnet-based ([Washington Post](https://www.washingtonpost.com/archive/business/1997/01/06/upstaged-but-hardly-undone/a9d123c5-8c50-4012-b83f-a8a67b9d96eb/), [Usenet](https://groups.google.com/g/comp.bbs.majorbbs/c/x25xTrBYTH8)); commercial release followed in 1997 |
 | **RIPtel Visual Telnet 3.1** | [Oct 21, 1997](https://web.archive.org/web/20010513104306/http://www.telegrafix.com:80/products/riptel/) | The final RIPscrip client, shipping RIPscrip driver 3.0.7 — the engine this repository's [3.x reconstruction](3.x/ripscrip/README.md) documents |
 
-(Whether any build was labeled exactly "3.0" is unrecorded; the Dec 1996 pre-release and a promised Feb 1997 commercial release carry no build numbers in surviving sources.)
+Later accounts (including Wikipedia) describe RIPscrip 3.0 as merely "planned" — that is wrong. RIPscrip 3.x **absolutely shipped**, as evidenced by the RIPtel 3.0 and 3.1 releases; what never appeared was the 3.0 _specification_ (the promised 450-page document), which is why the 3.x record here is a reconstruction.
 
 ## Decline and fade-out (1998–2006)
 

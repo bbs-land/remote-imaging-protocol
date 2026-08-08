@@ -1,18 +1,28 @@
 # TODO
 
-## Status snapshot (2026-08-03)
+## Status snapshot (2026-08-08)
 
-Complete: 1.5x and 2.x faithful Markdown editions; 3.x edition rebuilt to mirror the 2.x layout (22-page reconstructed reference with evidence tags, whitepaper conversion at `version/3.x/whitepaper/`, research notes at `version/3.x/research/`); RIPtel 3.1 fully analyzed (script census, help-file extraction, binary formats); assets staged for 1.5x and 3.x with per-file READMEs; `temp/syncterm-missing-feature-rip3.md` gap checklist; Git LFS + `.gitattributes` (LF default, `.rip`/`.ans` and `assets/**` byte-exact); reference repos + binaries in `~/src/rip-tools/` (see CONTRIBUTING); `tools/check-links.py` validates all doc links (0 broken at last run). Rendering guidance in `IMPLEMENTATION.md`.
+**Everything in the repo is committed on `main`.**
 
-**Nothing is committed yet** — all work sits uncommitted on `main`. First commit notes: LFS hooks are installed locally (`git lfs install --local` already run); expect harmless `LF will be normalized` warnings; verify LFS quota/bandwidth on the GitHub remote when binaries first push.
+Complete: 1.5x and 2.x Markdown reference editions; 3.x edition rebuilt to mirror the 2.x layout (22-page reconstructed reference with evidence tags, whitepaper conversion at `version/3.x/whitepaper/`, research notes at `version/3.x/research/`); RIPtel 3.1 fully analyzed (script census, help-file extraction, binary formats); assets staged for 1.5x and 3.x with per-file READMEs; `temp/syncterm-missing-feature-rip3.md` gap checklist; Git LFS + `.gitattributes` (LF default, `.rip`/`.ans` and `assets/**` byte-exact); reference repos + binaries in `~/src/rip-tools/` (see CONTRIBUTING); `tools/check-links.py` validates all doc links (0 broken at last run). Rendering guidance in `version/IMPLEMENTATION.md`.
 
-Likely next candidates: commit; 2.x assets (blocked on sourcing a complete RIPterm 2.3 — see Reference materials); techspecs pages for the binary formats; the seven open **Discuss** questions in the rollup at the bottom; VitePress site scaffold.
+Completed 2026-08-08 (history/licensing/conventions pass):
+
+- **Expanded history** — `version/HISTORY.md`: cited TeleGrafix/product timeline (spec releases 1.50→1.54, RIPterm 2.0/2.20/2.3, RIPtel 3.0/3.1, Searchlight/ProBoard era, domain expiry 2006), Pat Clawson's death (2015, identification caveat noted), Jeff Reeder as the only remaining principal likely to have more information.
+- **Licensing details** — `version/RIGHTS.md`: original TeleGrafix "freely licensed" wording quoted, common-law trademark findings, IP-in-limbo status; root `LICENSE` (CC0 1.0) covers all documentation unless noted, original `.txt` specs keep TeleGrafix terms, future libraries will be ISC. Main README licensing section updated to match.
+- **Version overview** — `version/README.md`: Wikipedia-informed protocol overview, per-version record status (1.5x fixed history / 2.x partially unknown / 3.x reconstruction), RIPscrip vs RIPterm (dial-up) vs RIPtel (telnet) naming distinction.
+- **Future enhancements** — `version/next/` placeholder linked from the main README and `version/IMPLEMENTATION.md` (new "Future directions" section).
+- **3.x errata** — SyncTERM's `ESC[2!` resume failure documented as a SyncTERM bug (not a protocol delineation); 2.x-product-era provenance recorded (WAV audio spec'd at 2.0 ALPHA 3, shipped in RIPterm 2.20.00; 2.20.01 extended the wire protocol past ALPHA 4).
+- **Markdown conventions** — CONTRIBUTING/AGENTS updated: reference-editions rule replaces "faithful conversion", hyphen bullets, no hard word-wraps (soft wrap in editors), Prettier with `.prettierrc` (`proseWrap: never`); all repo Markdown reformatted/unwrapped.
+- **Docs layout** — `IMPLEMENTATION.md` moved to `version/IMPLEMENTATION.md` with all links updated.
+
+Likely next candidates: 2.x assets (blocked on sourcing a complete RIPterm 2.3 — see Reference materials); techspecs pages for the binary formats; the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold.
 
 ---
 
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). Checked items are done; **Discuss:** items need a decision before the tasks under them can be finalized.
 
-## Specifications (faithful Markdown editions)
+## Specifications (Markdown reference editions)
 
 - [x] Convert RIPscrip 1.54 specification to linked Markdown (`version/1.5x/ripscrip/`, 21 files)
 - [x] Convert RIPscrip 2.00 alpha 4 specification to linked Markdown (`version/2.x/ripscrip/`, 22 files)
@@ -20,6 +30,7 @@ Planned work for this repository, grouped by area. Working conventions live in [
 - [x] Update the main README Specifications table when the 3.x edition lands
 - [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF, extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.x/ripscrip/10-reconstructed-command-set.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from implementations — as clearly-marked editor's notes, never silent edits
+  - [x] First errata pass (2026-08-08): SyncTERM `ESC[2!` resume failure marked as a SyncTERM bug; 2.x-product-era provenance notes (WAV audio, JPEG) added to the 3.x edition
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the source) based on actual implementation behavior (SyncTERM `ripper.c`, icy_parser_core), cited and marked as reconstructed
 - [ ] Port the link/anchor checker (currently a scratchpad Python script under tools/check-links.py) into the repo as a Deno script; wire into CI so cross-links stay valid.
 
@@ -27,7 +38,7 @@ Planned work for this repository, grouped by area. Working conventions live in [
 
 Future documentation should **align consistently across versions by feature/subfeature** rather than mirroring each source document's structure (the 3.x whitepaper layout need not be preserved). Goal: each version's docs represent the whole feature space comparably (protocol syntax, drawing, fonts, UI objects, ports/tables, host commands, text variables, file formats), making version deltas legible.
 
-- [x] Restructure the 3.x docs to mirror the 2.x layout: `version/3.x/ripscrip/` is now a 22-file reconstructed protocol reference with per-claim evidence tags; the faithful white-paper conversion moved to `version/3.x/whitepaper/`
+- [x] Restructure the 3.x docs to mirror the 2.x layout: `version/3.x/ripscrip/` is now a 22-file reconstructed protocol reference with per-claim evidence tags; the white-paper conversion moved to `version/3.x/whitepaper/`
 - [ ] **Discuss:** whether 1.5x/2.x docs also get feature-aligned companion pages, and how the taxonomy feeds the website layer
 
 ## RIPscrip 3.x research
@@ -105,8 +116,11 @@ Goal: reusable, wasm-capable crates (wasm and/or cdylib for bindings from other 
 
 ## History & ecosystem
 
-- [ ] **Discuss:** scope — candidates: TeleGrafix company/product timeline (RIPterm/RIPaint/RIPdraw/RIPtel, the 2.x alpha demise, the 3.0/RIPtel era); a catalog of implementations past and present (clients, BBS packages, doors, editors, libraries) with status; preserved press articles/FAQs/adverts; a gallery of notable RIP scenes
-- [ ] Decide where it lives (`history/` top-level?) and how it feeds the website
+- [x] TeleGrafix company/product timeline — `version/HISTORY.md` (2026-08-08): cited release timeline (specs, RIPterm, RIPaint/RIPdraw, RIPtel), company arc through the 2006 domain expiry, and the principals (Clawson, Reeder, Bergman, Hayton)
+- [x] Rights/trademark status — `version/RIGHTS.md` (2026-08-08): original legal wording, common-law trademark findings, in-limbo status, repository licensing (CC0 docs / original `.txt` terms / ISC future libraries)
+- [x] Decide where it lives: under `version/` (HISTORY.md, RIGHTS.md, README.md overview) rather than a top-level `history/`
+- [ ] **Discuss:** remaining scope — a catalog of implementations past and present (clients, BBS packages, doors, editors, libraries) with status; preserved press articles/FAQs/adverts; a gallery of notable RIP scenes; how it all feeds the website
+- [ ] Deepen HISTORY.md as sources surface: Boardwatch scans, BBS Dev News #46 full text, authoritative USPTO TSDR trademark check
 
 ## Reference materials (`~/src/rip-tools/`)
 
@@ -127,11 +141,12 @@ Goal: reusable, wasm-capable crates (wasm and/or cdylib for bindings from other 
 
 ## Housekeeping
 
-- [ ] Commit the existing work (everything to date is uncommitted on `main`)
+- [x] Commit the existing work — everything in the repo is committed on `main` (2026-08-08)
 - [x] Add `.gitattributes`: LF normalization by default; `.rip`/`.ans` exempt (`-text`, byte-for-byte, CRLF preserved for testing); RIP-era binary formats + `.zip`/`.exe` tracked via Git LFS (case-insensitive)
 - [x] Enable Git LFS in the repo (`git lfs install --local`; hooks updated) — contributors need `git lfs install` once per machine, see CONTRIBUTING
 - [ ] Verify LFS behavior on the remote (GitHub LFS quota/bandwidth) when the first binary content is pushed; decide whether large `artifacts/`-style binaries belong in-repo at all or stay in `~/src/rip-tools/`
-- [ ] **Discuss:** licensing — the reproduced specs remain © TeleGrafix; the original documentation, machine-readable spec, corpus metadata, and Rust code need an explicit license (and possibly separate ones)
+- [x] Licensing decided (2026-08-08, see `version/RIGHTS.md` and root `LICENSE`): all documentation is CC0 1.0 unless noted; the original `.txt` specification texts keep their TeleGrafix terms; future library/code implementations will be ISC
+- [x] Markdown conventions adopted (2026-08-08, see CONTRIBUTING.md): hyphen bullets, no hard word-wraps (editors soft-wrap), Prettier with `.prettierrc` (`proseWrap: never`); full-repo reformat applied
 - [ ] **Discuss:** overall priority order across the areas above (several can proceed in parallel; nothing has been sequenced yet)
 
 ## Open questions (rollup)
@@ -141,8 +156,8 @@ Collected from the sections above — each needs a short discussion:
 1. Priority/sequencing across areas
 2. Test corpus layout
 3. Machine-readable spec form (tables / EBNF / Rust-as-source)
-4. History & ecosystem scope and location
+4. History & ecosystem remaining scope (implementations catalog, press archive, gallery) — location resolved: `version/`
 5. Website deployment target and publishing strategy
 6. Rust workspace layout, crate naming, and scope sequence
-7. Licensing for original (non-TeleGrafix) content and code
+7. ~~Licensing for original (non-TeleGrafix) content and code~~ — **resolved 2026-08-08**: CC0 docs / original `.txt` terms / ISC libraries (see `version/RIGHTS.md`)
 8. Encoding-variant extensions for corpus files (`.rip`/`.ans` = CP437 for now; `.utf8.rip`/`.utf8.ans` or similar for future UTF-8 variants?)

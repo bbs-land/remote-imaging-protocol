@@ -4,12 +4,12 @@
 
 ## RIP_DEFINE
 
-*Define a text variable*
+_Define a text variable_
 
-| | |
-|---|---|
-| **Level** | 1 |
-| **Command** | `D` |
+|               |                         |
+| ------------- | ----------------------- |
+| **Level**     | 1                       |
+| **Command**   | `D`                     |
 | **Arguments** | `flags:3 res:2 ...text` |
 
 **Format:** `!|1D <flags> <res> <text>`
@@ -22,11 +22,11 @@ This command is used to create a text variable on the Client system (i.e., the T
 
 The `<flags>` parameter of this command combines three separate values into one MegaNum flag that determines how the variable definition will operate. Here are the possible flag values:
 
-| Value | Description of Flag |
-|---|---|
-| 001 | Save Variable to database |
-| 002 | Cannot specify a blank response |
-| 004 | Non-interactive query |
+| Value | Description of Flag             |
+| ----- | ------------------------------- |
+| 001   | Save Variable to database       |
+| 002   | Cannot specify a blank response |
+| 004   | Non-interactive query           |
 
 When a variable is flagged as "Save to Database", it becomes a part of the Client system's actual configuration. The value is saved indefinitely until either changed, or manually erased. You may choose not to allow the user to enter a blank response. This basically requires them to enter some piece of information for the variable.
 
@@ -62,12 +62,12 @@ NOTE: The `<res>` parameter is reserved for future use by TeleGrafix Communicati
 
 ## RIP_QUERY
 
-*Query the contents of a text variable*
+_Query the contents of a text variable_
 
-| | |
-|---|---|
-| **Level** | 1 |
-| **Command** | \<escape\> |
+|               |                        |
+| ------------- | ---------------------- |
+| **Level**     | 1                      |
+| **Command**   | \<escape\>             |
 | **Arguments** | `mode:1 res:3 ...text` |
 
 **Format:** `!|1<escape> <mode> <res> <text>`
@@ -87,7 +87,7 @@ NOTE: This command is very flexible in that you can specify control characters, 
 Whether the information is transmitted instantly or not is dependent on the `<mode>` parameter. The `<mode>` parameter determines when data queries are processed. The possible settings for the `<mode>` parameter are as follows:
 
 | Mode | Description |
-|---|---|
+| --- | --- |
 | 0 | Process the query command NOW (upon receipt) |
 | 1 | Process when mouse clicked in Graphics Window |
 | 2 | Process when mouse clicked in Text Window (any text variables that return X or Y mouse coordinates return TEXT coordinates, not graphics coordinates in this mode. These coordinates are two-digit values instead of the graphical values that are four digits). |
@@ -113,12 +113,12 @@ NOTE: The `<res>` parameter is reserved for future use by TeleGrafix Communicati
 
 ## RIP_COPY_REGION
 
-*Copy screen region up/down*
+_Copy screen region up/down_
 
-| | |
-|---|---|
-| **Level** | 1 |
-| **Command** | `G` |
+|               |                                         |
+| ------------- | --------------------------------------- |
+| **Level**     | 1                                       |
+| **Command**   | `G`                                     |
 | **Arguments** | `x0:2 y0:2 x1:2 y1:2 res:2 dest_line:2` |
 
 **Format:** `!|1G <x0> <y0> <x1> <y1> <res> <dest_line>`
@@ -135,18 +135,18 @@ The original image area is left on the screen (is not cleared). So if you wish t
 
 If the destination region would place the image partially off-screen, then the entire command is ignored!
 
-This is one of the only graphical output commands that DOES NOT adhere to the [RIP_VIEWPORT](04-window-commands.md#rip_viewport) command. In other words, you can scroll graphical data outside the current graphical viewport (even over the text window!). *(v1.54)*
+This is one of the only graphical output commands that DOES NOT adhere to the [RIP_VIEWPORT](04-window-commands.md#rip_viewport) command. In other words, you can scroll graphical data outside the current graphical viewport (even over the text window!). _(v1.54)_
 
 NOTE: The `<res>` parameter is reserved for future development by TeleGrafix.
 
 ## RIP_READ_SCENE
 
-*Playback local .RIP file*
+_Playback local .RIP file_
 
-| | |
-|---|---|
-| **Level** | 1 |
-| **Command** | `R` |
+|               |                     |
+| ------------- | ------------------- |
+| **Level**     | 1                   |
+| **Command**   | `R`                 |
 | **Arguments** | `res:8 filename...` |
 
 **Format:** `!|1R <res> <filename>`
@@ -163,12 +163,12 @@ NOTE: The `<res>` parameter is reserved for future development by TeleGrafix. It
 
 ## RIP_FILE_QUERY
 
-*Query existing information on a particular file*
+_Query existing information on a particular file_
 
-| | |
-|---|---|
-| **Level** | 1 |
-| **Command** | `F` |
+|               |                            |
+| ------------- | -------------------------- |
+| **Level**     | 1                          |
+| **Command**   | `F`                        |
 | **Arguments** | `mode:2 res:4 filename...` |
 
 **Format:** `!|1F <mode> <res> <filename>`
@@ -184,7 +184,7 @@ There are a variety of ways you can query for filenames. The `<mode>` parameter 
 The following table is a listing of the possible values for `<mode>`:
 
 | Mode | Description |
-|---|---|
+| --- | --- |
 | 00 | Simply query the existence of the file. If it exists, a "1" is returned. Otherwise a "0" is returned to the Host (without a carriage return). |
 | 01 | Same as 0, except a carriage return is added after the response. |
 | 02 | Queries the existence of a file. If it does not exist, a "0" is returned to the Host followed by a carriage return. If it does exist, the returned text is a "1." followed by the file size (in decimal). The return sequence is terminated by a carriage return. An example of the returned text could be `1.20345`. |
@@ -193,12 +193,12 @@ The following table is a listing of the possible values for `<mode>`:
 
 ## RIP_ENTER_BLOCK_MODE
 
-*Enter block transfer mode with host*
+_Enter block transfer mode with host_
 
-| | |
-|---|---|
-| **Level** | 9 (system command) |
-| **Command** | \<escape\> |
+|               |                                                    |
+| ------------- | -------------------------------------------------- |
+| **Level**     | 9 (system command)                                 |
+| **Command**   | \<escape\>                                         |
 | **Arguments** | `mode:1 proto:1 file_type:2 res:4 [filename:2] <>` |
 
 **Format:** `!|9<escape> <proto> <file_type> <res> [filename] <>`
@@ -217,29 +217,29 @@ The `<mode>` parameter is to specify upload or download. Use "1" for upload mode
 
 The `<proto>` parameter is the file transfer protocol specifier. Possible values, and the protocols they refer to are:
 
-| Value | Protocol | Filename Required? |
-|---|---|---|
-| 0 | Xmodem (checksum) | Yes |
-| 1 | Xmodem (CRC) | Yes |
-| 2 | Xmodem-1K | Yes |
-| 3 | Xmodem-1K (G) | Yes |
-| 4 | Kermit | Yes |
-| 5 | Ymodem (batch) | No |
-| 6 | Ymodem-G | No |
-| 7 | Zmodem (crash recovery) | No |
+| Value | Protocol                | Filename Required? |
+| ----- | ----------------------- | ------------------ |
+| 0     | Xmodem (checksum)       | Yes                |
+| 1     | Xmodem (CRC)            | Yes                |
+| 2     | Xmodem-1K               | Yes                |
+| 3     | Xmodem-1K (G)           | Yes                |
+| 4     | Kermit                  | Yes                |
+| 5     | Ymodem (batch)          | No                 |
+| 6     | Ymodem-G                | No                 |
+| 7     | Zmodem (crash recovery) | No                 |
 
 ### File Types
 
 The `<file_type>` parameter determines what type of files are to be received during the block transfer. These are the valid parameters:
 
-| Value | Description of Block Transfer Contents |
-|---|---|
-| 0 | RIP file sequence (display it) |
-| 1 | RIP file sequence (store them) |
-| 2 | ICN file sequence (store them in proper directories) |
-| 3 | HLP file sequence (store it, and auto-load if needed) |
-| 4 | COMPOSITE DYNAMIC file sequence (batch protocols only) |
-| 5 | ACTIVE DYNAMIC file sequence (batch protocols only) |
+| Value | Description of Block Transfer Contents                 |
+| ----- | ------------------------------------------------------ |
+| 0     | RIP file sequence (display it)                         |
+| 1     | RIP file sequence (store them)                         |
+| 2     | ICN file sequence (store them in proper directories)   |
+| 3     | HLP file sequence (store it, and auto-load if needed)  |
+| 4     | COMPOSITE DYNAMIC file sequence (batch protocols only) |
+| 5     | ACTIVE DYNAMIC file sequence (batch protocols only)    |
 
 ### Filename Termination
 
@@ -265,12 +265,12 @@ NOTE: This command must be terminated with a carriage return. A vertical bar (`|
 
 ## RIP_NO_MORE
 
-*End of RIPscrip Scene*
+_End of RIPscrip Scene_
 
-| | |
-|---|---|
-| **Level** | 0 |
-| **Command** | `#` |
+|               |          |
+| ------------- | -------- |
+| **Level**     | 0        |
+| **Command**   | `#`      |
 | **Arguments** | \<none\> |
 
 **Format:** `!|#`
@@ -283,7 +283,7 @@ This command indicates that RIPscrip commands are complete. This allows the term
 
 For noise-immunity, the Host should transmit three or more RIP_NO_MORE command consecutively to make sure the message gets to the terminal. The terminal should also time-out if no data is received for a while, and assume RIP_NO_MORE.
 
-The actual duration of the "time-out" is entirely up to the implementor of their terminal program. A good recommended setting would be at least an entire second or more after the receipt of the last RIPscrip command. Raw ASCII/ANSI text does not contribute to the time-out in any way. Only an actual RIPscrip command could cause the time-out counter to be reset (thus starting the time-out countdown all over again). Timing-out is not a pre-requisite to supporting RIPscrip. It is a highly desirable feature to do this, but it is not required. *(v1.54)*
+The actual duration of the "time-out" is entirely up to the implementor of their terminal program. A good recommended setting would be at least an entire second or more after the receipt of the last RIPscrip command. Raw ASCII/ANSI text does not contribute to the time-out in any way. Only an actual RIPscrip command could cause the time-out counter to be reset (thus starting the time-out countdown all over again). Timing-out is not a pre-requisite to supporting RIPscrip. It is a highly desirable feature to do this, but it is not required. _(v1.54)_
 
 ---
 

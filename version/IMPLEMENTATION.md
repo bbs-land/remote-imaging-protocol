@@ -33,10 +33,10 @@ The original RIPTerm/RIPtel were built against DOS and Windows, and in both case
 
 ## Future directions (version/next)
 
-Forward-looking suggestions for implementations — modern asset formats, internal storage strategies, and text handling — are collected in [version/next/README.md](version/next/README.md) as candidates for an unofficial 3.5x/4.x enhancement to the specification. Highlights relevant to implementers today:
+Forward-looking suggestions for implementations — modern asset formats, internal storage strategies, and text handling — are collected in [next/README.md](next/README.md) as candidates for an unofficial 3.5x/4.x enhancement to the specification. Highlights relevant to implementers today:
 
 - **Asset substitution / hierarchical lookup** — when a script requests an icon (`.ICN`/`.BMP`) or audio (`.WAV`) file, an implementation may transparently satisfy it from a modern equivalent (`.PNG`, `.MP2`/`.MP3`, etc.) of the same base name, searching supported extensions in a defined preference order. This composes with the case-insensitive lookup above.
 - **Internal storage** — converting legacy assets to compact modern formats on load/import (palette-preserving `.PNG` for icons, compressed audio for `.WAV`) can dramatically reduce storage while remaining invisible to scripts.
 - **Fonts and UTF-8** — proposals for CP437 ↔ UTF-8 text-mode switching and for supporting common font formats (`.TTF`/`.OTF`/`.WOFF`/`.WOFF2`) with scaled, anti-aliased cell rendering.
 
-These are suggestions, not part of any historical specification — see [version/next/README.md](version/next/README.md) for the details and status.
+These are suggestions, not part of any historical specification — see [next/README.md](next/README.md) for the details and status.

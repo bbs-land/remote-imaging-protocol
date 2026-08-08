@@ -2,15 +2,15 @@
 
 [◀ Prev: Templates & Conditionals](16-templates-and-conditionals.md) · [Contents](README.md) · [Next: Text Variables: General, Date/Time & Sound ▶](18-text-variables-general.md)
 
-*Reconstructed edition — see [Contents](README.md) for the evidence legend.*
+_Reconstructed edition — see [Contents](README.md) for the evidence legend._
 
 Nothing in the published 1.54 or 2.00 Alpha 4 specifications resembles what this page documents: a **flowed-text column system** — define rectangular column regions, pour prose into them, chain columns so text flows from one into the next, paginate the overflow, and page through it with buttons. It is the flagship presentation feature of the 3.0 era. The White Paper closes its language tour by pointing at exactly this: to display "high-quality documents like those you would normally find in magazines or newspapers … you'd need to familiarize yourself with the multi-column system for extensive layout control." RIPtel's help lists "multiple-column text displays ('news articles')" among RIPscrip 3.0's features, and the demo's own FONTSTOR.TXT advertises that "a powerful column system is" provided. The entire mechanism is reconstructed here from the RIPtel demo corpus — TeleGrafix left a field-map comment that decodes the core command.
 
-*Evidence: WP; HLP; corpus (FONTSTOR.TXT).*
+_Evidence: WP; HLP; corpus (FONTSTOR.TXT)._
 
 ## Defining a Column Region — `1e`
 
-*Evidence: corpus (FONTS.RIP crib comment; NEWSPAPR.RIP, DEMO-01.COL and 6 more files).*
+_Evidence: corpus (FONTS.RIP crib comment; NEWSPAPR.RIP, DEMO-01.COL and 6 more files)._
 
 The level-1 command `e` — absent from every published specification — opens a rectangular text-column region. FONTS.RIP carries TeleGrafix's own positional field map as a comment directly above its use:
 
@@ -21,12 +21,12 @@ The level-1 command `e` — absent from every published specification — opens 
 which decodes as:
 
 | Field | Chars | Meaning |
-|---|---|---|
+| --- | --- | --- |
 | `xx` `yy` | 2+2 | Upper-left corner (x0, y0), MegaNum world coordinates |
 | `xx` `yy` | 2+2 | Lower-right corner (x1, y1) |
 | `c` | 1 | Column number within the stream |
 | `a` | 1 | Article/stream number |
-| `ffff` | 4 | Flags — `0001` observed on every region fed by `1R` with pagination, `0000` on inline clipped regions *(bit 0 = enable overflow buffering, hypothesis)* |
+| `ffff` | 4 | Flags — `0001` observed on every region fed by `1R` with pagination, `0000` on inline clipped regions _(bit 0 = enable overflow buffering, hypothesis)_ |
 | `cc` | 2 | Unknown — always `00` in the corpus |
 | `rrrrrrrr` | 8 | Reserved — always zero in the corpus |
 
@@ -40,9 +40,9 @@ A real region from the newspaper demo, decoded:
 
 ## Column Content — Raw Text Lines and `1E`
 
-*Evidence: corpus (NEWSPAPR.RIP, N2_HORO.RIP, NEWS.RIP).*
+_Evidence: corpus (NEWSPAPR.RIP, N2_HORO.RIP, NEWS.RIP)._
 
-Once a column region is open, content follows as **raw text lines** — lines with *no* `!|` introducer at all, a wire-format novelty with no 1.54/2.x precedent. The block is terminated by `1E` (RIP_END_TEXT, the 1.54 command in a new role). From NEWSPAPR.RIP's front-page "INSIDE" teaser boxes:
+Once a column region is open, content follows as **raw text lines** — lines with _no_ `!|` introducer at all, a wire-format novelty with no 1.54/2.x precedent. The block is terminated by `1E` (RIP_END_TEXT, the 1.54 command in a new role). From NEWSPAPR.RIP's front-page "INSIDE" teaser boxes:
 
 ```text
 !|1e0F3M434G0100000000000000
@@ -56,9 +56,9 @@ The parser is therefore modal: between `1e` (or its legacy equivalent, below) an
 
 ## Chained Columns and Streams
 
-*Evidence: corpus (DEMO-01.COL, N2_HORO.RIP, NEWSPAPR.RIP, DBACK.FN).*
+_Evidence: corpus (DEMO-01.COL, N2_HORO.RIP, NEWSPAPR.RIP, DBACK.FN)._
 
-Multi-column layout comes from opening *several* regions with ascending column numbers that share one stream number, then flowing content once. Text fills column 0, continues into column 1, then 2, and so on. The horoscope page chains three:
+Multi-column layout comes from opening _several_ regions with ascending column numbers that share one stream number, then flowing content once. Text fills column 0, continues into column 1, then 2, and so on. The horoscope page chains three:
 
 ```text
 !|1e083G5K9S0100000000000000      column 0, stream 1
@@ -70,7 +70,7 @@ Streams are independent articles: the newspaper front page runs its main story a
 
 ### The Legacy Form — `1T` With Column/Stream Digits
 
-*Evidence: corpus (NEWS.RIP, N2_TITLE.RIP).*
+_Evidence: corpus (NEWS.RIP, N2_TITLE.RIP)._
 
 The 1.54 command `1T` (RIP_BEGIN_TEXT) defined a text region with a two-digit reserved tail. RIPscrip 3.0 quietly reinterprets that tail as the same `c`,`a` pair, so 1.54-syntax files can feed the column system. NEWS.RIP builds a four-column newspaper page entirely this way:
 
@@ -85,7 +85,7 @@ N2_TITLE.RIP pairs `1T` with the 1.54 `1t` (RIP_REGION_TEXT) command instead of 
 
 ## Flowing Whole Files — `1R` on Plain Text
 
-*Evidence: corpus (NEWSPAPR.RIP, DRAGON.RIP, FONTS.RIP; STORY01.TXT, STORY02.TXT, DRAGON.TXT, FONTSTOR.TXT).*
+_Evidence: corpus (NEWSPAPR.RIP, DRAGON.RIP, FONTS.RIP; STORY01.TXT, STORY02.TXT, DRAGON.TXT, FONTSTOR.TXT)._
 
 Instead of inline raw lines, an open column set can be filled by `1R` (RIP_READ_SCENE) pointed at a **plain prose file**:
 
@@ -97,23 +97,23 @@ Instead of inline raw lines, an open column set can be filled by `1R` (RIP_READ_
 !|1E
 ```
 
-The named file (`STORY01.TXT` via the `$&…$` [dereference](14-host-commands.md)) is word-wrapped into the three open columns — it is **never parsed as RIPscrip**. The `.TXT` files in the corpus are ordinary paragraphs of prose, CRLF line ends, no introducers; the column system reflows them to fit. This split of *layout* (the `.RIP`/`.COL` scene) from *copy* (the `.TXT` file) is precisely a page-template system: change the story file, keep the layout. The `1R` target can equally be another variable, or an overflow page reference (next section).
+The named file (`STORY01.TXT` via the `$&…$` [dereference](14-host-commands.md)) is word-wrapped into the three open columns — it is **never parsed as RIPscrip**. The `.TXT` files in the corpus are ordinary paragraphs of prose, CRLF line ends, no introducers; the column system reflows them to fit. This split of _layout_ (the `.RIP`/`.COL` scene) from _copy_ (the `.TXT` file) is precisely a page-template system: change the story file, keep the layout. The `1R` target can equally be another variable, or an overflow page reference (next section).
 
 ## Pagination — `$OVERFLOW$` and `$RESET(OVERFLOW)$`
 
-*Evidence: corpus (DEMO-01.COL, NEWSPAPR.RIP).*
+_Evidence: corpus (DEMO-01.COL, NEWSPAPR.RIP)._
 
 Text that does not fit the defined columns is not lost — it paginates into per-stream **overflow buffers**. The parameterized variable `$OVERFLOW(…)$` (case-insensitive; the corpus writes it both ways) accesses them in two forms:
 
 | Form | Meaning |
-|---|---|
-| `$OVERFLOW(n,cur)$` | Stream *n*'s current page — used as a `1R` filename to flow that page into open columns |
-| `$OVERFLOW(n,next)$` / `$OVERFLOW(n,prev)$` | Step stream *n*'s page pointer forward/back |
+| --- | --- |
+| `$OVERFLOW(n,cur)$` | Stream _n_'s current page — used as a `1R` filename to flow that page into open columns |
+| `$OVERFLOW(n,next)$` / `$OVERFLOW(n,prev)$` | Step stream _n_'s page pointer forward/back |
 | `$OVERFLOW(n,page)$` | Expands to the current page number (a data variable) |
-| optional `,setverbose` third argument | Observed only on the button forms — presumably enables end-of-pages feedback *(hypothesis)* |
+| optional `,setverbose` third argument | Observed only on the button forms — presumably enables end-of-pages feedback _(hypothesis)_ |
 | `$RESET(OVERFLOW)$` | Discard all overflow buffers — NEWSPAPR.RIP issues it under the comment "Reset all overflow files" before building the page |
 
-The pagination *loop* is elegant: the pager scene re-plays **itself**. DEMO-01.COL's navigation fields step the pointer, then replay the very `.COL` template that re-reads the current page:
+The pagination _loop_ is elegant: the pager scene re-plays **itself**. DEMO-01.COL's navigation fields step the pointer, then replay the very `.COL` template that re-reads the current page:
 
 ```text
 !|1M00VWG0WUH01000000ID=6:$overflow(1,prev,setverbose)$$>demo-01.col$
@@ -122,7 +122,7 @@ The pagination *loop* is elegant: the pager scene re-plays **itself**. DEMO-01.C
 
 ## The `.COL` Page Template — Worked Example
 
-*Evidence: corpus (DEMO-01.COL, abridged).*
+_Evidence: corpus (DEMO-01.COL, abridged)._
 
 DEMO-01.COL is the complete pattern in one file: a reusable "continuation page" for stream 1 of the newspaper. Annotated and lightly abridged:
 
@@ -152,7 +152,7 @@ Every click on prev/next steps the stream pointer and replays this file; the fil
 
 ## Drop Caps
 
-*Evidence: corpus (NEWS.RIP).*
+_Evidence: corpus (NEWS.RIP)._
 
 NEWS.RIP demonstrates a typographic flourish the column system does not do natively — the author fakes it, instructively. A single oversized character is drawn at the first column's corner with plain `@` (RIP_TEXT_XY) in a large Marin face, and the flowed article text simply **starts mid-word**:
 
@@ -163,13 +163,13 @@ NEWS.RIP demonstrates a typographic flourish the column system does not do nativ
 wo years ago, TeleGrafix Communications stunned the computer industry with
 ```
 
-The article reads "**T**wo years ago…" — the capital lives outside the flow, the byte `0xAA` presumably selecting an ornamental capital *T* in the Marin outline font's extended range *(hypothesis)*. The flowed text wraps around nothing; the first column's region is simply drawn to start below/right of the cap.
+The article reads "**T**wo years ago…" — the capital lives outside the flow, the byte `0xAA` presumably selecting an ornamental capital _T_ in the Marin outline font's extended range _(hypothesis)_. The flowed text wraps around nothing; the first column's region is simply drawn to start below/right of the cap.
 
 ## The Newspaper Demo — Showcase
 
-*Evidence: corpus (NEWSPAPR.RIP, N2_TITLE.RIP, N2_HORO.RIP, N2_BUSI.RIP, N2_PHOTO.RIP, TWEATHER.RIP, DEMO-01.COL, DEMO-02.COL, STORY01.TXT, STORY02.TXT).*
+_Evidence: corpus (NEWSPAPR.RIP, N2_TITLE.RIP, N2_HORO.RIP, N2_BUSI.RIP, N2_PHOTO.RIP, TWEATHER.RIP, DEMO-01.COL, DEMO-02.COL, STORY01.TXT, STORY02.TXT)._
 
-The system's full showcase is an **electronic newspaper**, and TeleGrafix built it as a customizable product, not a canned screen. NEWSPAPR.RIP opens with a configuration block under the comment *"Change these to the values you want for your content"*:
+The system's full showcase is an **electronic newspaper**, and TeleGrafix built it as a customizable product, not a canned screen. NEWSPAPR.RIP opens with a configuration block under the comment _"Change these to the values you want for your content"_:
 
 ```text
 !|1^[0000$-=MAIN_STORY=story01.txt$|!     Filename containing main story
@@ -178,13 +178,13 @@ The system's full showcase is an **electronic newspaper**, and TeleGrafix built 
 !|1^[0000$-=SUB_STORY=story02.txt$|!      Filename containing secondary story
 ```
 
-The front page then draws a masthead in outline fonts, an "INSIDE" sidebar of four inline teaser columns (each an independent `1e` … `1E` block), the main headline as `@4L2L$&MAIN_TITLE$`, bylines as `By $&MAIN_AUTHOR$`, three chained columns flowing `$&MAIN_STORY$`, a boxed secondary story on stream 2 flowing `$&SUB_STORY$`, three captioned JPEG photographs (`1i`/`1p`), and a navigation strip of mouse fields into the section pages — weather map, horoscopes (chained inline columns), business, and a JPEG photo gallery. Overflow from both stories pages into DEMO-01.COL and DEMO-02.COL. Swap two `.TXT` files and two title variables and it is *your* newspaper — layout, pagination and navigation come free. Nothing else in the RIPscrip corpus, of any era, demonstrates this much of the 3.0 design working together.
+The front page then draws a masthead in outline fonts, an "INSIDE" sidebar of four inline teaser columns (each an independent `1e` … `1E` block), the main headline as `@4L2L$&MAIN_TITLE$`, bylines as `By $&MAIN_AUTHOR$`, three chained columns flowing `$&MAIN_STORY$`, a boxed secondary story on stream 2 flowing `$&SUB_STORY$`, three captioned JPEG photographs (`1i`/`1p`), and a navigation strip of mouse fields into the section pages — weather map, horoscopes (chained inline columns), business, and a JPEG photo gallery. Overflow from both stories pages into DEMO-01.COL and DEMO-02.COL. Swap two `.TXT` files and two title variables and it is _your_ newspaper — layout, pagination and navigation come free. Nothing else in the RIPscrip corpus, of any era, demonstrates this much of the 3.0 design working together.
 
 ## Open Questions
 
-*Evidence: corpus (NEWS.RIP); HLP; SyncTERM descriptor table.*
+_Evidence: corpus (NEWS.RIP); HLP; SyncTERM descriptor table._
 
-- **`1A`** — a single occurrence (`!|1A010000`, NEWS.RIP) immediately before the flowed newspaper article; plausibly justification/hyphenation settings for the flow engine *(hypothesis)*. SyncTERM carries a descriptor-only entry for `1A` with seven words, which does not match the six digits observed.
+- **`1A`** — a single occurrence (`!|1A010000`, NEWS.RIP) immediately before the flowed newspaper article; plausibly justification/hyphenation settings for the flow engine _(hypothesis)_. SyncTERM carries a descriptor-only entry for `1A` with seven words, which does not match the six digits observed.
 - **`RIP_SelectArticle`** — present in the RIPSCRIP.HLP command-name inventory, and the obvious candidate for re-selecting a stream/article after the fact; its wire opcode never appears in the corpus.
 - RIPSCRIP.HLP error strings — "Invalid text article number", "Invalid text column number", and a wrap/chop designator for text windows — confirm the engine validates both identifiers and supports at least two flow modes.
 - The `cc` field of the `1e` layout and the meaning of flag bits beyond bit 0 remain unknown; every corpus value is zero (and `0001`).

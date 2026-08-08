@@ -10,11 +10,13 @@ Documentation and extended information around RIPScrip/RIPTerm/RIPtel specificat
 
 Missing a working RIPTerm 2.2/2.3 installer as well as a more recent RIPaint version.
 
-More: [Version overview](version/README.md) · [History](version/HISTORY.md) · [Rights & licensing](version/RIGHTS.md) · [Future enhancements](version/next/README.md) · [Implementation notes](IMPLEMENTATION.md)
+More: [Version overview](version/README.md) · [History](version/HISTORY.md) · [Rights & licensing](version/RIGHTS.md) · [Future enhancements](version/next/README.md) · [Implementation notes](version/IMPLEMENTATION.md)
 
 ## RIPscrip
 
 RIPscrip ("Remote Imaging Protocol Script language") is a text-based script language for displaying online graphics, created by TeleGrafix Communications, Inc. in 1992. It was designed to bring a Graphical User Interface to Bulletin Board Systems (BBSes) over the limited bandwidth of dial-up modems, at a time when most online services were plain ASCII/ANSI text.
+
+**Naming:** RIPscrip is the language itself. **RIPterm** was TeleGrafix's BBS client for dial-up/modem connections, and **RIPtel** its telnet-based successor; RIPaint and RIPdraw were the companion art tools.
 
 Rather than transmitting raster images, RIPscrip is an **object-oriented (vector) drawing language**: scenes are composed of hundreds or thousands of compact drawing operations — lines, circles, polygons, fills, fonts, buttons, and mouse regions — streamed as printable text. Key design points:
 
@@ -70,6 +72,7 @@ version/
   README.md     Version overview — what each version's record represents
   HISTORY.md    TeleGrafix company and RIPterm/RIPtel release timeline
   RIGHTS.md     Trademarks, copyright status, and repository licensing
+  IMPLEMENTATION.md  Renderer/terminal implementation guidance
 ```
 
 ## Trademarks, copyright & licensing

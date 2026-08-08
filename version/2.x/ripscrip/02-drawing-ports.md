@@ -4,13 +4,13 @@
 
 ## How RIPscrip is Designed - Fundamental Topics
 
-*Added in RIPscrip v2.A4.*
+_Added in RIPscrip v2.A4._
 
 The sections that following describe specific areas of RIPscrip that are fundamental aspects of the language and its design. Each section is designed to give you information on one basic area of RIPscrip.
 
 ## Drawing Ports - What Are They?
 
-*Added in RIPscrip v2.A4.*
+_Added in RIPscrip v2.A4._
 
 A drawing port is an area where graphics can be drawn. This is much like having a tablet of paper, where each page can be drawn to individually. However, just like a tablet of paper, only the piece of paper that is on the top of the tablet can be drawn to (the current piece of paper). The same concept applies to drawing ports. At any one moment in time, there is a "current drawing port". This current port is the one that will display graphical drawing operations when they are received.
 

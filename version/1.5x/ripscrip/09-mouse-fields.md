@@ -6,19 +6,19 @@ This section covers the commands [RIP_MOUSE](#rip_mouse) and [RIP_KILL_MOUSE_FIE
 
 ## RIP_MOUSE
 
-*Defines a rectangular hot mouse region*
+_Defines a rectangular hot mouse region_
 
-| | |
-|---|---|
-| **Level** | 1 |
-| **Command** | `M` |
+|               |                                                    |
+| ------------- | -------------------------------------------------- |
+| **Level**     | 1                                                  |
+| **Command**   | `M`                                                |
 | **Arguments** | `num:2 x0:2 y0:2 x1:2 y1:2 clk:1 clr:1 res:5 text` |
 
 **Format:** `!|1M <num> <x0><y0><x1><y1> <clk><clr><res><text>`
 
 **Example:** `!|1M00001122331100000host command^M`
 
-**Attributes used:** Viewport *(v1.54)*
+**Attributes used:** Viewport _(v1.54)_
 
 This command ties together three things:
 
@@ -26,32 +26,32 @@ This command ties together three things:
 - A mouse-click event
 - A string of text to be transmitted by the terminal.
 
-This command defines a rectangular region on the screen that functions as a "hot" mouse area.  If the user clicks the [left] mouse button while pointing inside the region, then the terminal must transmit the `<text>` string to the Host.  The (x0,y0) parameter MUST be the upper-left corner, and (x1,y1) MUST be the lower-right corner of the region.
+This command defines a rectangular region on the screen that functions as a "hot" mouse area. If the user clicks the [left] mouse button while pointing inside the region, then the terminal must transmit the `<text>` string to the Host. The (x0,y0) parameter MUST be the upper-left corner, and (x1,y1) MUST be the lower-right corner of the region.
 
-The `<num>` parameter used to be used in the older RIPscrip v1.0 specification but is now obsolete.  For upwards compatibility, it should be set to "00". *(v1.54)*
+The `<num>` parameter used to be used in the older RIPscrip v1.0 specification but is now obsolete. For upwards compatibility, it should be set to "00". _(v1.54)_
 
-The `<clk>` parameter, if 1, indicates that the region should be visibly inverted while the mouse button is down.  This offers visual feedback. If `<clk>` is 0, the region will not be inverted while clicked.
+The `<clk>` parameter, if 1, indicates that the region should be visibly inverted while the mouse button is down. This offers visual feedback. If `<clk>` is 0, the region will not be inverted while clicked.
 
-The `<clr>` parameter, if 1, will physically zoom the text window to full screen size and clear the screen.  This is useful if the `<text>` parameter instructs the host to enter an area of the System that doesn't support RIPscrip graphics.
+The `<clr>` parameter, if 1, will physically zoom the text window to full screen size and clear the screen. This is useful if the `<text>` parameter instructs the host to enter an area of the System that doesn't support RIPscrip graphics.
 
-The `<text>` parameter is a Host command that gets sent when the field is clicked.  You may use a caret (^) to represent control characters, (e.g., `^M` for carriage return, `^G`, `^C`, etc.).
+The `<text>` parameter is a Host command that gets sent when the field is clicked. You may use a caret (^) to represent control characters, (e.g., `^M` for carriage return, `^G`, `^C`, etc.).
 
-When this command is stored in-memory, it is converted to global screen coordinates (for internal storage only).  This makes it so that if you have mouse regions defined in multiple different viewports, that each field will be properly inverted at the right location regardless of the currently defined viewport. *(v1.54)*
+When this command is stored in-memory, it is converted to global screen coordinates (for internal storage only). This makes it so that if you have mouse regions defined in multiple different viewports, that each field will be properly inverted at the right location regardless of the currently defined viewport. _(v1.54)_
 
-NOTE: All Mouse Fields are scanned in "last in, first out" order.  This means that the last-most received Mouse Field will be the first one scanned for a mouse click. *(v1.54)*
+NOTE: All Mouse Fields are scanned in "last in, first out" order. This means that the last-most received Mouse Field will be the first one scanned for a mouse click. _(v1.54)_
 
-NOTE:  You are limited to a maximum of 128 Mouse Regions or Mouse Buttons (128 total). *(v1.54)*
+NOTE: You are limited to a maximum of 128 Mouse Regions or Mouse Buttons (128 total). _(v1.54)_
 
 In addition, the 5-byte `<res>` parameter is RESERVED FOR FUTURE USE, and should be set to zeros (00000).
 
 ## RIP_KILL_MOUSE_FIELDS
 
-*Destroys all previously defined hot mouse regions*
+_Destroys all previously defined hot mouse regions_
 
-| | |
-|---|---|
-| **Level** | 1 |
-| **Command** | `K` |
+|               |          |
+| ------------- | -------- |
+| **Level**     | 1        |
+| **Command**   | `K`      |
 | **Arguments** | \<none\> |
 
 **Format:** `!|1K`
@@ -60,7 +60,7 @@ In addition, the 5-byte `<res>` parameter is RESERVED FOR FUTURE USE, and should
 
 **Attributes used:** none
 
-This command will "forget" all Mouse Regions.  Use it at the beginning of each Scene, so that one scene's Mouse Regions don't get used in another.
+This command will "forget" all Mouse Regions. Use it at the beginning of each Scene, so that one scene's Mouse Regions don't get used in another.
 
 ---
 

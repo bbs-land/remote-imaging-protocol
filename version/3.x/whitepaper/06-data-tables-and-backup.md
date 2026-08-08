@@ -6,16 +6,16 @@
 
 A fundamental concept in RIPscrip 3.0 is the idea of [data tables](../../2.x/ripscrip/03-data-tables.md). A data table is a list of data objects. There are a eight different types of data tables in RIPscrip, each serving a unique purpose. To the left, is a listing of the available data tables:
 
-| Port Type | Entries |
-| --- | --- |
-| Graphics style | 36 |
-| Button style | 36 |
-| Drawing port | 36 |
-| Text window | 36 |
-| Color palette | 36 |
-| Environment | 36 |
-| Mouse field | 128 |
-| Graphics screen | 1 |
+| Port Type       | Entries |
+| --------------- | ------- |
+| Graphics style  | 36      |
+| Button style    | 36      |
+| Drawing port    | 36      |
+| Text window     | 36      |
+| Color palette   | 36      |
+| Environment     | 36      |
+| Mouse field     | 128     |
+| Graphics screen | 1       |
 
 One such data table, the graphics style table, is for the storage of drawing attribute information. Parts of a graphics style are the settings for current drawing color, fill pattern, font style, raster-op, line pattern and more. In effect, it stores all of the graphical drawing attributes, or the "style" for graphics drawing in one central location.
 
@@ -51,7 +51,7 @@ There are multiple data backup areas - one for each type of data table. This is 
 
 The data table system can be visually broken down into three distinct areas: The Base Data Save Area, the Data Save Slots and the Stack Save Area. Visually, it can be described as follows:
 
-*[Editor's note: The original document included a diagram of the data backup system areas here; the image was lost in the HTML-to-text conversion of this white paper. An equivalent diagram appears in the RIPscrip 2.x edition under [Data Backup Areas](../../2.x/ripscrip/04-data-backup-areas.md).]*
+_[Editor's note: The original document included a diagram of the data backup system areas here; the image was lost in the HTML-to-text conversion of this white paper. An equivalent diagram appears in the RIPscrip 2.x edition under [Data Backup Areas](../../2.x/ripscrip/04-data-backup-areas.md).]_
 
 ## 3.9.1 Base Data Save Area
 

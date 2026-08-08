@@ -1,38 +1,19 @@
 # Icons — RIPtel 3.1 `ICONS\` directory
 
-The complete `ICONS\` directory from the RIPtel Visual Telnet 3.1 install
-(TeleGrafix Communications, Oct 1997; RIPscrip driver 3.0.7), copied verbatim —
-234 files. This is both RIPtel's demo corpus — the primary surviving body of
-real RIPscrip 3.0 scripts, and the source material for much of the 3.x
-reconstruction in this repo — and its UI art. Breakdown: 102 `.BMP`, 48 `.FN`,
-35 `.RIP`, 7 `.JPG`, 7 `.DEF`, 6 `.RET`, 5 `.MSE`, 5 `.BMH`, 4 each
-`.TXT`/`.MNU`/`.EXT`/`.ENT`, 3 `.COL`.
+The complete `ICONS\` directory from the RIPtel Visual Telnet 3.1 install (TeleGrafix Communications, Oct 1997; RIPscrip driver 3.0.7), copied verbatim — 234 files. This is both RIPtel's demo corpus — the primary surviving body of real RIPscrip 3.0 scripts, and the source material for much of the 3.x reconstruction in this repo — and its UI art. Breakdown: 102 `.BMP`, 48 `.FN`, 35 `.RIP`, 7 `.JPG`, 7 `.DEF`, 6 `.RET`, 5 `.MSE`, 5 `.BMH`, 4 each `.TXT`/`.MNU`/`.EXT`/`.ENT`, 3 `.COL`.
 
-Per-file findings below are drawn from the
-[script census](../../research/riptel-script-census.md) (every script parsed;
-22,921 commands, 0 parse errors; TeleGrafix's own comments preserved), the
-[binary-format triage](../../research/riptel-binary-formats.md), and the
-[File Formats](../../ripscrip/22-file-formats.md) reference. The flowed-text
-machinery the column demos exercise is documented in
-[Column Text System](../../ripscrip/17-column-text-system.md).
+Per-file findings below are drawn from the [script census](../../research/riptel-script-census.md) (every script parsed; 22,921 commands, 0 parse errors; TeleGrafix's own comments preserved), the [binary-format triage](../../research/riptel-binary-formats.md), and the [File Formats](../../ripscrip/22-file-formats.md) reference. The flowed-text machinery the column demos exercise is documented in [Column Text System](../../ripscrip/17-column-text-system.md).
 
-Storage is byte-exact (`version/*/assets/** -text` in the repo
-[.gitattributes](../../../../.gitattributes)): the scripts keep their DOS-era
-CRLF line endings and the SOH (0x01) start-of-scene introducer bytes, and the
-`.TXT` story files keep their bare-CR line breaks — all of it significant test
-data. `.BMP`/`.JPG` files are tracked via Git LFS.
+Storage is byte-exact (`version/*/assets/** -text` in the repo [.gitattributes](../../../../.gitattributes)): the scripts keep their DOS-era CRLF line endings and the SOH (0x01) start-of-scene introducer bytes, and the `.TXT` story files keep their bare-CR line breaks — all of it significant test data. `.BMP`/`.JPG` files are tracked via Git LFS.
 
-Note on audio: RIPscrip 3.0's local-playback search order is host directory
-first, then `ICONS\` — WAV audio files would live in this same directory, but
-RIPtel 3.1 shipped none (see [../audio/](../audio/README.md)).
+Note on audio: RIPscrip 3.0's local-playback search order is host directory first, then `ICONS\` — WAV audio files would live in this same directory, but RIPtel 3.1 shipped none (see [../audio/](../audio/README.md)).
 
-Two files are referenced by scripts but were never shipped: `SHADOWDO.FN`
-(called by SHADMOVE.RIP) and `TELLISTS.RET` (referenced by TELLISTS.MNU).
+Two files are referenced by scripts but were never shipped: `SHADOWDO.FN` (called by SHADMOVE.RIP) and `TELLISTS.RET` (referenced by TELLISTS.MNU).
 
 ## 1. Demo scenes (`.RIP`, 35 files)
 
 | File | Demo |
-|---|---|
+| --- | --- |
 | `BOUNDS.RIP` | Bounded-text demo: draws its bounding box ("Show our bounding box"), then the corpus's sole use of the new `"` RIP_BOUNDED_TEXT command wrapping text inside it. |
 | `BUTTONS.RIP` | Button and mouse-field showcase: bitmap-skinned buttons and radio/checkbox controls (RADIONEW/CHECKBOX BMPs), `<<IF $RETURN$...>>` conditional navigation. |
 | `CURVES.RIP` | Bezier and poly-Bezier curve demo. |
@@ -71,12 +52,10 @@ Two files are referenced by scripts but were never shipped: `SHADOWDO.FN`
 
 ## 2. Function / wipe library (`.FN`, 48 files)
 
-`.FN` files are the same wire format as `.RIP` — the extension is TeleGrafix's
-authoring convention for function/subroutine scenes invoked via
-`$>file$`/RIP_READ_SCENE.
+`.FN` files are the same wire format as `.RIP` — the extension is TeleGrafix's authoring convention for function/subroutine scenes invoked via `$>file$`/RIP_READ_SCENE.
 
 | File | Function |
-|---|---|
+| --- | --- |
 | `BLUEBACK.FN` | Solid dark-blue background — the under-256-color branch of the ubiquitous `<<IF $COLORS$<"256">>` background pick. |
 | `BLUEFADE.FN` | 256-color faded blue background: the corpus's only RIP_SET_DRAWING_PALETTE use, plus custom fill patterns. |
 | `DBACK.FN` | Dragon-story backdrop: STRIP6.BMP border strips, TORCH.BMP torches, GODRAG3.BMP dragon art, and the story's `1e` text columns. |
@@ -104,20 +83,19 @@ authoring convention for function/subroutine scenes invoked via
 
 ## 3. Menu system (`.DEF` `.MNU` `.MSE` `.RET` `.ENT` `.EXT`, 30 files)
 
-RIPtel's demo menus are a small framework of chained scenes, all in ordinary
-RIPscrip wire syntax — the extensions encode roles, per the census:
+RIPtel's demo menus are a small framework of chained scenes, all in ordinary RIPscrip wire syntax — the extensions encode roles, per the census:
 
 | Ext | Role | Confidence |
-|---|---|---|
+| --- | --- | --- |
 | `.DEF` | Menu definition: sets `<<LABn>>` button labels, `<<CMDn>>` per-button command variables, and hover status messages as user variables, later macro-expanded into the `.MNU`/`.MSE` scenes. | Verified (TeleGrafix's own comments) |
 | `.MNU` | Menu scene: draws title, copyright line, and the TELBUT.BMP button images with `<<LABn>>` labels. | Verified |
 | `.MSE` | Mouse-field overlay: creates the fields over the button images, builds a status-line backup port, and installs mouse entry/exit queries. | Verified |
 | `.RET` | Return/nav script: kills fields, rebuilds the port, redraws the owning menu, optionally through a wipe. | Verified |
-| `.ENT` | Mouse-field *entry* handler, run by the entry query (draws/restores the status-line area — "Paste original screen image back"). | Strong hypothesis (binding to entry queries inferred from `.MSE` comments) |
-| `.EXT` | Mouse-field *exit* handler, mirror of `.ENT`. | Strong hypothesis |
+| `.ENT` | Mouse-field _entry_ handler, run by the entry query (draws/restores the status-line area — "Paste original screen image back"). | Strong hypothesis (binding to entry queries inferred from `.MSE` comments) |
+| `.EXT` | Mouse-field _exit_ handler, mirror of `.ENT`. | Strong hypothesis |
 
 | File | Contents |
-|---|---|
+| --- | --- |
 | `MENU.DEF` | Labels, commands, and hover status messages for the nine main-menu buttons. |
 | `MENU.MNU` | Main-menu scene: nine TELBUT.BMP buttons ("Show the nine button images") + the unregistered-version notice (REGISTER.FN). |
 | `MENU.MSE` | Mouse fields over the nine buttons; status-line backup port; entry/exit queries. |
@@ -143,26 +121,20 @@ RIPscrip wire syntax — the extensions encode roles, per the census:
 
 ## 4. Column scenes (`.COL`, 3 files)
 
-Reusable page layouts for the 3.0
-[column text system](../../ripscrip/17-column-text-system.md): each defines
-`1e` column regions and re-renders the current `$overflow(...)$` page, so
-prev/next buttons simply re-invoke the same `.COL` file.
+Reusable page layouts for the 3.0 [column text system](../../ripscrip/17-column-text-system.md): each defines `1e` column regions and re-renders the current `$overflow(...)$` page, so prev/next buttons simply re-invoke the same `.COL` file.
 
 | File | Contents |
-|---|---|
+| --- | --- |
 | `DEMO-01.COL` | Newspaper main-story layout: three linked `1e` columns on stream 1, prev/next paging via `$overflow(1,prev,setverbose)$` / `$overflow(1,next,setverbose)$`, page counter, and nav mouse fields. |
 | `DEMO-02.COL` | Secondary-story layout on stream 2, same paging machinery. |
 | `FONTTEXT.COL` | Column layout used by FONTS.RIP to page the FONTSTOR.TXT story about the font and column systems. |
 
 ## 5. Story text (`.TXT`, 4 files)
 
-Plain ASCII prose with bare-CR line breaks and no markup at all. RIP_READ_SCENE
-(`1R`) flows a `.TXT` target as raw text into the previously defined `1e`
-columns, auto-paginating into overflow buffers — layout comes entirely from the
-calling scene.
+Plain ASCII prose with bare-CR line breaks and no markup at all. RIP_READ_SCENE (`1R`) flows a `.TXT` target as raw text into the previously defined `1e` columns, auto-paginating into overflow buffers — layout comes entirely from the calling scene.
 
 | File | Contents |
-|---|---|
+| --- | --- |
 | `DRAGON.TXT` | The dragon story flowed by DRAGON.RIP — Jim Thompson's Boardwatch preface. |
 | `STORY01.TXT` | TeleGrafix RIPscrip 3 press release — main story flowed by NEWSPAPR.RIP. |
 | `STORY02.TXT` | Second TeleGrafix press release — the secondary NEWSPAPR.RIP story. |
@@ -170,16 +142,12 @@ calling scene.
 
 ## 6. Images (102 `.BMP`, 7 `.JPG`, 5 `.BMH`)
 
-BMPs load via `1b` RIP_LOAD_BITMAP or the `$<FILE.BMP$` macro; JPEGs display
-via `1i`/`1p` RIP_IMAGE_STYLE/RIP_IMAGE or `$(FILE.JPG$`. A `.BMH` is a plain
-BMP holding the pre-rendered highlight/pressed state of its same-named `.BMP`
-control skin, auto-paired by RIPtel (never referenced by script; see
-[File Formats](../../ripscrip/22-file-formats.md#bmh--button-highlight-variants)).
+BMPs load via `1b` RIP_LOAD_BITMAP or the `$<FILE.BMP$` macro; JPEGs display via `1i`/`1p` RIP_IMAGE_STYLE/RIP_IMAGE or `$(FILE.JPG$`. A `.BMH` is a plain BMP holding the pre-rendered highlight/pressed state of its same-named `.BMP` control skin, auto-paired by RIPtel (never referenced by script; see [File Formats](../../ripscrip/22-file-formats.md#bmh--button-highlight-variants)).
 
 ### UI skins and controls (16 `.BMP` + 5 `.BMH`)
 
 | File | Description |
-|---|---|
+| --- | --- |
 | `BACK.BMP` | 53×19 "back" navigation button — placed bottom-right by nearly every demo scene. |
 | `BLANKBUT.BMP` | 21×17 blank small-button face. |
 | `BUTTON.BMP` / `BUTTON.BMH` | 22×17 generic pushbutton skin + highlight state. |
@@ -199,7 +167,7 @@ control skin, auto-paired by RIPtel (never referenced by script; see
 ### Textures and backgrounds (3 `.BMP`)
 
 | File | Description |
-|---|---|
+| --- | --- |
 | `BRICK.BMP` | 64×28 brick tile, tiled by IMAGES.RIP. |
 | `CONCRETE.BMP` | 39×14 concrete tile. |
 | `STRIP6.BMP` | 320×17 decorative border strip, tiled by DBACK.FN around the dragon story. |
@@ -207,7 +175,7 @@ control skin, auto-paired by RIPtel (never referenced by script; see
 ### Demo scene art (11 `.BMP`)
 
 | File | Description |
-|---|---|
+| --- | --- |
 | `256COLOR.BMP` | 80×50 256-color test image, shown at three scales by IMAGES.RIP. |
 | `COLUMN.BMP` | 85×201 classical column clip-art (unreferenced — name inference). |
 | `COMPUTER.BMP` | 122×225 computer clip-art (unreferenced — name inference). |
@@ -220,30 +188,24 @@ control skin, auto-paired by RIPtel (never referenced by script; see
 
 ### Photos (7 `.JPG`)
 
-320×200 (GALAXY 320×240) baseline JFIF photos for the JPEG demos
-(N2_TITLE/N2_PHOTO/NEWSPAPR/SPECLEFX/IMAGES/NEWS). Subjects inferred from
-names:
+320×200 (GALAXY 320×240) baseline JFIF photos for the JPEG demos (N2_TITLE/N2_PHOTO/NEWSPAPR/SPECLEFX/IMAGES/NEWS). Subjects inferred from names:
 
-| File | Description |
-|---|---|
-| `ASTRO.JPG` | Space/astronomy photo; FXSHWIMG.FN's default image. |
-| `BEACH2.JPG` | Beach photo (N2_PHOTO gallery). |
-| `BRIDGE02.JPG` | Bridge photo (N2_PHOTO, IMAGES.RIP). |
-| `DUSK_SEA.JPG` | Sea at dusk (N2_PHOTO gallery). |
-| `FIRCLOUD.JPG` | Fiery clouds/sunset (N2_PHOTO gallery). |
-| `GALAXY.JPG` | Galaxy photo (N2_TITLE, NEWSPAPR). |
-| `JUPITER.JPG` | Jupiter photo (N2_TITLE, NEWSPAPR, NEWS.RIP). |
+| File           | Description                                         |
+| -------------- | --------------------------------------------------- |
+| `ASTRO.JPG`    | Space/astronomy photo; FXSHWIMG.FN's default image. |
+| `BEACH2.JPG`   | Beach photo (N2_PHOTO gallery).                     |
+| `BRIDGE02.JPG` | Bridge photo (N2_PHOTO, IMAGES.RIP).                |
+| `DUSK_SEA.JPG` | Sea at dusk (N2_PHOTO gallery).                     |
+| `FIRCLOUD.JPG` | Fiery clouds/sunset (N2_PHOTO gallery).             |
+| `GALAXY.JPG`   | Galaxy photo (N2_TITLE, NEWSPAPR).                  |
+| `JUPITER.JPG`  | Jupiter photo (N2_TITLE, NEWSPAPR, NEWS.RIP).       |
 
 ### Menu-icon library (72 `.BMP`)
 
-BBS-menu icon art, overwhelmingly in a uniform ~64×44 16-color format — the
-size and palette of the classic RIPscrip 1.54 icon library, evidently converted
-from `.ICN` to BMP (the 3.0 driver has ICN→BMP conversion built in —
-hypothesis). Only FILECAB1 and the control skins above are actually referenced
-by the shipped scripts; all other descriptions are **inferred from filenames**.
+BBS-menu icon art, overwhelmingly in a uniform ~64×44 16-color format — the size and palette of the classic RIPscrip 1.54 icon library, evidently converted from `.ICN` to BMP (the 3.0 driver has ICN→BMP conversion built in — hypothesis). Only FILECAB1 and the control skins above are actually referenced by the shipped scripts; all other descriptions are **inferred from filenames**.
 
 | File | Description (name inference unless noted) |
-|---|---|
+| --- | --- |
 | `3&HALF.BMP` | 3½-inch diskette. |
 | `AE5.BMP` | American Express card logo (variant; card-shaped 67×36 like AMEREXP/VISA). |
 | `ALCHEMY.BMP` | "Alchemy" — door game / fantasy icon. |
