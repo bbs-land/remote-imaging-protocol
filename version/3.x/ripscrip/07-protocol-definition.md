@@ -26,7 +26,7 @@ The 3.0-era replies on record:
 
 Host software probing for "any RIP 3.0" should therefore match on the prefix `RIPSCRIP03` rather than a fixed length. The same string is available to host scripts as the **`$RIPVER$`** text variable (RIPTEL.HLP's own example for it is `RIPSCRIP015300`).
 
-Two behavioral notes from SyncTERM: `ESC[1!` is a one-way door in its implementation — the disabled parser never sees the `ESC[2!` that would re-enable it (ripper.c:18453–18459) — and the RIP version it answers with is per-BBS *configuration*, not negotiated from the wire. The 2.00a4 note also stands: for identifying the specific terminal product, the query's vendor code is obsolete in favor of `$TERMINFO()$`/`$IFS()$`.
+Two behavioral notes from SyncTERM. First, its `ESC[1!` handling is a one-way door — once disabled, its parser never sees the `ESC[2!` that should re-enable it (ripper.c:18453–18459). **This is a SyncTERM bug, not a protocol delineation**: the language defines disable (`ESC[1!`) and enable (`ESC[2!`) as a reversible pair, and a conforming terminal must resume RIPscrip processing when it receives `ESC[2!`. Do not treat SyncTERM's inability to restart RIP processing as license to drop the feature — implementations should keep watching for `ESC[2!` while disabled. Second, the RIP version SyncTERM answers with is per-BBS *configuration*, not negotiated from the wire. The 2.00a4 note also stands: for identifying the specific terminal product, the query's vendor code is obsolete in favor of `$TERMINFO()$`/`$IFS()$`.
 
 ## Command Syntax — General Structure
 

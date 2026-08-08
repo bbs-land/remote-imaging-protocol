@@ -40,6 +40,8 @@ Commands whose color parameters obey the current mode are marked `:CM` in the co
 
 ### Background WAV Playback
 
+> **Editor's note — provenance:** WAV audio is not a 3.0 innovation. RIP_PLAY_AUDIO entered the 2.0 specification at ALPHA 3 ("Added the RIP_PLAY_AUDIO command to playback a WAVE file" — 2.00a4 changelog) and **shipped** in the DOS RIPterm 2.20.00 (Nov 19, 1995): its manual documents `.WAV` digitized-sound support with an Audio Setup screen (Sound Blaster, Pro Audio Spectrum, Gravis, etc.), and the install carries HMI sound drivers dated to the 2.20.01 release. TeleGrafix's December 1995 "RIP-2 Internet Multimedia" press release already advertised "digital WAV sound". Like several other "3.x" features, it belongs to the 2.x product era that 3.0 inherits (see the [Introduction's revision history](01-introduction.md#revision-history)).
+
 Digitized audio is Microsoft **WAVE** format, played in the background while graphics and command processing continue. The 2.00a4 command `RIP_PLAY_AUDIO` (level 1, `w`) carries into the 3.0 inventory (`RIP_PlayAudio` in RIPSCRIP.HLP), with the same macro form `$)FILE.WAV$` in the host command language. Playback is effectively **single-channel**:
 
 - If a sound is already playing when a new RIP_PLAY_AUDIO arrives, the old file is **terminated** and replaced by the new one.
