@@ -75,6 +75,8 @@ version/
   IMPLEMENTATION.md  Renderer/terminal implementation guidance
 ```
 
+> **Note:** On 2026-08-08 the git history was rewritten (force-pushed) to convert the `version/3.x/assets/fonts/*.RFF` font binaries to Git LFS pointers throughout history — they had originally been committed as raw blobs. Only the commits touching those files changed; file contents are unaffected. Re-clone (or hard-reset to `origin/main`) if you have an older checkout.
+
 ## Trademarks, copyright & licensing
 
 RIPscrip, RIPterm, RIPaint, and RIPdraw were trademarks of TeleGrafix Communications, Inc. The original specification texts reproduced here (under `version/*/text/`) are Copyright © 1992–1997 TeleGrafix Communications, Inc. and are preserved for historical and interoperability purposes; with the company's closure the rights are effectively in limbo — see [version/RIGHTS.md](version/RIGHTS.md) for the full picture.
