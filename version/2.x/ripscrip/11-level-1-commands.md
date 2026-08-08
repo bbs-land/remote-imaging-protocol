@@ -958,6 +958,8 @@ This command will physically start a local .WAV file to play back on the user's 
 
 NOTE: The `<res>` parameter is for future expansion. For compatibility with future relases of RIPscrip, it should be set to "0000".
 
+> **Editor's note:** This command shipped. RIPterm Professional 2.0 (January 1995) implemented digitized `.WAV` playback via HMI "Sound Operating System" drivers, with an Audio Setup screen supporting 19 sound boards and a `-A` command-line switch to disable digitized audio (RIPTERM.DOC §4.3, §2.3). See the [2.x audio assets](../assets/audio/README.md).
+
 ## RIP_PUT_IMAGE
 
 _Pastes the clipboard port's contents to another port_

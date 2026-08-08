@@ -11,7 +11,7 @@ For content creators, limit the virtual canvas to the era-appropriate resolution
 | 1.5x | **640×350** (fixed) | EGA, 16 colors from the EGA palette. The language hardwires this geometry. |
 | 2.x / 3.x | **640×480**, **800×600**, or **1024×768** | Matches the resolutions RIPtel itself supported — its MicroANSI font file (`RIPscrip.maf`) carries per-resolution records for exactly these three modes. For **1280x960** the 640x480 size should be used, and rendered at 2x sclae to match the higher physical resolution. |
 
-The 2.x/3.x wire protocol is resolution-independent (world coordinate frames, `RIP_SET_WORLD_FRAME`); the canvas limit applies to the _device_ side an implementation renders into, not to world coordinates. World frames map onto the chosen canvas — e.g. the RIPtel demos' standard **1280×960** world frame is itself 4:3.
+The 2.x/3.x wire protocol is resolution-independent (world coordinate frames, `RIP_SET_WORLD_FRAME`); the canvas limit applies to the _device_ side an implementation renders into, not to world coordinates. World frames map onto the chosen canvas — e.g. the RIPtel demos' standard **1280×960** world frame is itself 4:3. RIPtel's default world view is **640×350** for 1.x compatibility, handled like any other world resolution: scaled to the display, not run as a native video mode (unlike RIPterm 2.0, which still offered EGA 640×350 as an actual mode).
 
 ## Aspect ratio
 

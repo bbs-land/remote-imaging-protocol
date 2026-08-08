@@ -59,7 +59,7 @@ version/
     ripscrip/   Markdown edition of the RIPscrip 1.54 specification
     text/       Original specification text
   2.x/
-    assets/     2.x-era distribution assets (recovery in progress)
+    assets/     Fonts, icons, and audio distributed with RIPterm Professional 2.0
     ripscrip/   Markdown edition of the RIPscrip 2.00 alpha 4 specification
     text/       Original specification text
   3.x/
