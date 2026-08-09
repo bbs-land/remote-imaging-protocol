@@ -18,6 +18,7 @@ Other than the original `.txt` documents preserved under `version/<v>/text/`, th
 | [2.x](2.x/ripscrip/README.md) | **Partially unknown.** The last published document is the 2.00 ALPHA 4 draft (December 1994) — ports, data tables, world coordinates, 256-color and direct-RGB modes, audio, DIB bitmaps. But the shipping "RIPscrip-2" engine (RIPterm 2.20/2.3, 1995–1997 — DOS releases throughout, installers and programs alike) moved beyond the draft with no further specification ever published. Recovering that era requires ongoing research and manual reconstruction. |
 | [3.x](3.x/ripscrip/README.md) | **Entirely a reconstruction.** RIPscrip 3.x absolutely shipped — released as the RIPtel Visual Telnet 3.0 and 3.1 clients — but TeleGrafix never published a 3.0 language reference, only a December 1996 technical [white paper](3.x/whitepaper/README.md) (by Jeff Reeder). The 3.x edition here is rebuilt from available sources and materials: the RIPtel 3.1 client, its help files and demo-script corpus, and SyncTERM's open-source implementation, with per-claim evidence tags. |
 | [next](next/README.md) | **Future enhancements.** A placeholder for forward-looking, unofficial extensions (modern image/audio formats, font handling, UTF-8) that implementations may adopt and that could become a 3.5x/4.x enhancement of the specification. |
+| [baseline](baseline/techspecs/README.md) | **Non-RIP baseline.** Specification references beyond RIPscrip itself: the ANSI/VT-x text emulation RIPterm and RIPtel actually documented and shipped (CP437, VT-102, Doorway, auto-sense), plus modern terminals (SyncTERM, icy_term) as reference points with historically unevidenced features explicitly marked. |
 
 ## Layout per version
 
@@ -27,8 +28,9 @@ version/<v>/
   ripscrip/   Markdown reference edition of the specification (reconstructed
               with evidence tags for 3.x)
   text/       Original specification text, preserved
-  techspecs/  (planned) Original documentation of binary formats and
-              implementation details
+  techspecs/  Original documentation of binary formats and implementation
+              details (full doc at a format's earliest version; later
+              versions document deltas)
 ```
 
 Renderer/implementation guidance (canvas sizes, aspect-ratio policy, asset handling) deliberately lives outside these language docs, in [IMPLEMENTATION.md](IMPLEMENTATION.md).

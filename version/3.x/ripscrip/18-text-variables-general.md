@@ -138,7 +138,7 @@ Any combination, in any order, between the opening `$` and the name; each may ap
 | Directive | Meaning | Evidence |
 | --- | --- | --- |
 | `*` | Answer required — the user cannot cancel the prompt | HLP |
-| `+` | Save the variable permanently to the [RIPSCRIP.DB database](22-file-formats.md#ripscripdb--text-variable-database) | HLP |
+| `+` | Save the variable permanently to the terminal's persistent variable store | HLP |
 | `%` | Save to the internal memory table only (lost when the session hangs up) | HLP |
 | `#` | Don't echo keystrokes — display `#` characters (password entry) | HLP |
 | `-` | Set the variable without prompting the user | HLP; corpus (122 distinct `$-=…$` forms) |
@@ -183,9 +183,9 @@ _(HLP)_
 
 ### Persistence
 
-Variables defined with the `+` directive (or RIP_DEFINE flag `001`) are written to `RIPSCRIP.DB`, the client-side [text-variable database](22-file-formats.md#ripscripdb--text-variable-database), and survive across sessions. SyncTERM mirrors this with `save_persistent_var`/`load_persistent_vars`, reloading persistent variables during interpreter startup.
+Variables defined with the `+` directive (or RIP_DEFINE flag `001`) are saved to a client-side persistent store and survive across sessions. Functionally this is nothing more than a **persistent key/value store** — variable name (≤ 20 characters) → string value (≤ 255 characters) — and that is all an implementation needs to provide. **How** it is stored is an implementation detail, not part of the protocol — RIPtel used a local database file, SyncTERM mirrors the behavior with `save_persistent_var`/`load_persistent_vars`, reloading persistent variables during interpreter startup; a new implementation may use any key/value-capable storage it likes so long as persistent variables survive across sessions and honor host deletion/protection semantics.
 
-_Evidence: HLP (RIPSCRIP.DB header "RIPscrip Text Variable Database"); SyncTERM (ripper.c:7899–7961, 19008)._
+_Evidence: HLP (RIPtel's variable-database strings — see the [resource-container research notes](../research/riptel-resource-containers.md)); SyncTERM (ripper.c:7899–7961, 19008)._
 
 ### Silent set & dereference
 

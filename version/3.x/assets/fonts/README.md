@@ -7,7 +7,7 @@ The complete `FONTS\` directory from the RIPtel Visual Telnet 3.1 install (TeleG
 - **`RIPscrip.maf`** — bitmap fonts for the ANSI/text terminal emulation, organized per screen resolution.
 - **`atf.cfg`** — the outline-font engine's binary catalog cache.
 
-Format internals are documented byte-level in the [binary-format triage](../../research/riptel-binary-formats.md); recovered help text on the font systems is in the [help extraction](../../research/riptel-help-extraction.md); the condensed reference pages are in [File Formats](../../ripscrip/22-file-formats.md).
+Format internals are documented byte-level in the [binary-format triage](../../research/riptel-binary-formats.md); recovered help text on the font systems is in the [help extraction](../../research/riptel-help-extraction.md); the condensed reference pages are in [File Formats](../../ripscrip/22-file-formats.md). The definitive format techspecs are the 2.x [FastFont](../../../2.x/techspecs/fastfont-fonts.md) and [MicroANSI](../../../2.x/techspecs/microansi-fonts.md) pages plus the 3.x deltas in [`version/3.x/techspecs/`](../../techspecs/README.md) ([RFF additions](../../techspecs/rff-additions.md), [RIPscrip.maf](../../techspecs/maf-fonts.md)).
 
 ## Inventory
 

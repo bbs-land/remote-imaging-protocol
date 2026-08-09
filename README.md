@@ -57,17 +57,22 @@ version/
   1.5x/
     assets/     Fonts and icons distributed with RIPterm 1.54
     ripscrip/   Markdown edition of the RIPscrip 1.54 specification
+    techspecs/  Binary formats and implementation details (icons, fonts, .RIP files, MegaNum, terminal behavior)
     text/       Original specification text
   2.x/
     assets/     Fonts, icons, and audio distributed with RIPterm Professional 2.0 and RIPterm 2.20/2.30
     ripscrip/   Markdown edition of the RIPscrip 2.00 alpha 4 specification
+    techspecs/  Binary formats new in the 2.x products (BMP icons, FastFont .FF1/.RFF, MicroANSI fonts, audio, palettes)
     text/       Original specification text
   3.x/
     assets/     Fonts, icons, and demo content distributed with RIPtel 3.1
     research/   Research notes from reverse-engineering 3.0-era artifacts
     ripscrip/   Reconstructed 3.0 protocol reference (mirrors the 2.x layout)
+    techspecs/  Deltas from the 2.x formats plus RIPtel resource containers
     text/       RIPscrip 3.0 technical white paper (original text)
     whitepaper/ Markdown edition of the white paper (converted from the original text)
+  baseline/
+    techspecs/  Non-RIP baseline references: ANSI/VT-x emulation in RIPterm/RIPtel, modern terminal comparison
   next/         Future, unofficial enhancement proposals (3.5x/4.x candidates)
   README.md     Version overview — what each version's record represents
   HISTORY.md    TeleGrafix company and RIPterm/RIPtel release timeline

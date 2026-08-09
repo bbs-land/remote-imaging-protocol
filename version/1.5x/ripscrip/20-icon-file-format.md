@@ -19,6 +19,8 @@ After the header follows each scan-line of the bitmap. Each scan-line is segment
 
 After the first scan-line's segments follows the next scan-line's four segments (or 8), and so on. After all the scan-lines is 1-byte of "trash" data which is never used and its value is undefined (who knows why?)...
 
+> **Editor's note:** the spec's "1-byte of trash" is incorrect — every shipped icon file carries **two** trailing trash bytes (file size = `4 + height × 4 × ⌈width/8⌉ + 2`, verified against all 191 `.ICN`/`.HIC`/`.MSK` files in the RIPterm 1.54 and 2.0 distributions, zero mismatches). The two bytes match Borland's `imagesize()` +6-byte overhead over the 4-byte header. See the [icon format techspec](../techspecs/icon-format.md) for the full analysis.
+
 The general format of an iconfile buffer is:
 
 ```text

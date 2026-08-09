@@ -143,7 +143,7 @@ The directive characters, per RIPTEL.HLP:
 | Char | Meaning                                                         |
 | ---- | --------------------------------------------------------------- |
 | `*`  | Answer required — the prompt cannot be cancelled                |
-| `+`  | Save the variable permanently to the database (`RIPSCRIP.DB`)   |
+| `+`  | Save the variable permanently to the persistent variable store  |
 | `%`  | Save to the internal memory table (lost at hang-up)             |
 | `#`  | Don't echo keystrokes — show `#`s (passwords)                   |
 | `-`  | **Set** the variable without prompting the user                 |
@@ -190,7 +190,7 @@ The host can also create variables with the level-1 `D` command rather than thro
 variable-identifier[,field-width]:[?question-text?][default-value]
 ```
 
-e.g. `FULL_NAME,30:?What is your full name?John Doe`, with field width defaulting to 60, and a flags word of `001` (save to database), `002` (blank response not allowed), `004` (non-interactive). Persistent variables live in `RIPSCRIP.DB` — RIPtel ships the file with header string "RIPscrip Text Variable Database". The host may also _delete_ variables; RIPtel confirms with the prompt _"The host wants to delete the variable %s. Proceed?"_, and protected variables trigger a "Data Security Activated" message — the data-security concern the 2.x specification urged implementors to address.
+e.g. `FULL_NAME,30:?What is your full name?John Doe`, with field width defaulting to 60, and a flags word of `001` (save persistently), `002` (blank response not allowed), `004` (non-interactive). Where persistent variables are stored is up to the implementation (see [Persistence](18-text-variables-general.md#persistence)). The host may also _delete_ variables; RIPtel confirms with the prompt _"The host wants to delete the variable %s. Proceed?"_, and protected variables trigger a "Data Security Activated" message — the data-security concern the 2.x specification urged implementors to address.
 
 ## Launching Web URLs — `$GOTOURL(NAME)$`
 

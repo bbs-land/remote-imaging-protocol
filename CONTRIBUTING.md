@@ -45,6 +45,9 @@ New original documentation of binary formats, structures, and implementation det
 - Document each format in the **earliest version** where it appears (e.g. the 1.5x font and icon formats belong in `version/1.5x/techspecs/`).
 - Later versions **reference** the earlier document and describe only the **changes/differences** (e.g. the icon format changed between 1.x and 2.x — `version/2.x/techspecs/` documents the delta, not the whole format).
 - Cite where each detail comes from: the specification section, or the reference implementation source file (`repo:path/file.c`), so claims can be re-verified.
+- **Format-first, software-only:** all techspecs center on the formats, assuming a software-only implementation — not talking directly to hardware like the legacy clients. The original hardware and software libraries may be referenced only insofar as they explain the structure to be implemented (e.g. Borland fonts defining the `.CHR` layout, clip-region semantics in icons) — not as operational detail (audio playback libraries, driver stacks, video registers; a modern OS/canvas provides those).
+- **No DOS driver detail:** VESA modes and DOS video-output/driver specifics are immaterial to modern implementations — document logical canvas/viewport/window sizes; era driver specifics survive only as brief commentary.
+- **Don't duplicate the `ripscrip/` reference pages:** link to them for wire commands and semantics. Techspecs cover what the spec docs don't — binary layouts, decoded structures, rendering behavior, and reconciliations against shipped files.
 
 ## Reference repositories (`~/src/rip-tools/`)
 

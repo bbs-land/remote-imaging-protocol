@@ -17,7 +17,7 @@ Completed 2026-08-08 (history/licensing/conventions pass):
 - **Docs layout** — `IMPLEMENTATION.md` moved to `version/IMPLEMENTATION.md` with all links updated.
 - **RIPterm 2.0 install interrogated & 2.x assets staged** — the two-disk RIPterm Professional 2.0 install (`~/src/rip-tools/RIPTerm2.0/extracted/`, files dated Feb 1995) catalogued in CONTRIBUTING; `version/2.x/assets/` populated (48 fonts incl. 5 Atech `.FF1` outline fonts + widget `.IMG`s, 95 icons incl. `SHADOW.RIP`, `RIPTERM.WAV`) with per-file READMEs. Key findings folded into the docs: WAV audio, JPEG, SVGA/256-color, and BMP icons all shipped in **2.0 (Jan 1995)**, not 2.2+; the 26-character RIP_EXTENDED_FONT_STYLE block predates 3.0 (SHADOW.RIP); `.FF1` → `.RFF` font lineage confirmed; auto-sense string `RIPSCRIP020000`; `.FF1`/`.RFF` added to LFS (existing `.RFF` files renormalized).
 
-Likely next candidates: techspecs pages for the binary formats; the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold.
+Likely next candidates: the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; the remaining techspecs research items (FastFont glyph-outline encoding above all).
 
 ---
 
@@ -29,7 +29,7 @@ Planned work for this repository, grouped by area. Working conventions live in [
 - [x] Convert RIPscrip 2.00 alpha 4 specification to linked Markdown (`version/2.x/ripscrip/`, 22 files)
 - [x] Convert the RIPscrip 3.0 technical white paper to linked Markdown (`version/3.x/ripscrip/` files 01–08), plus an editorial reconstructed reference (files 09–11) from SyncTERM `ripper.c` evidence with per-claim citations
 - [x] Update the main README Specifications table when the 3.x edition lands
-- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF, extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.x/ripscrip/10-reconstructed-command-set.md`)
+- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans — needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.x/ripscrip/10-reconstructed-command-set.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from implementations — as clearly-marked editor's notes, never silent edits
   - [x] First errata pass (2026-08-08): SyncTERM `ESC[2!` resume failure marked as a SyncTERM bug; 2.x-product-era provenance notes (WAV audio, JPEG) added to the 3.x edition
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the source) based on actual implementation behavior (SyncTERM `ripper.c`, icy_parser_core), cited and marked as reconstructed
@@ -50,31 +50,50 @@ The white paper is woefully incomplete — no command reference exists. Flush ou
 - [x] Mine SyncTERM's `ripper.c` (claims "RIP 3.0 compatible") for the actual 3.0 command set, syntax changes, and behaviors; document with citations (→ `version/3.x/ripscrip/09–11`)
 - [x] Compare other client sources for any 3.0 handling (all 1.54-only in code; RIPtermJS ships 2.x/3.x docs and RIP 2.0 samples)
 - [x] Obtain RIPtel itself and reverse-engineer: 3.1 install extracted to `~/src/rip-tools/artifacts/RIPtel/` and analyzed — 116 authentic 3.0 scripts censused (11 new opcodes incl. the skewed-oval family), RIPSCRIP.HLP string table yielded the full ~90-command inventory and limits, column system + `<<IF>>` macro layer discovered (→ `version/3.x/research/` and `version/3.x/ripscrip/12`)
-- [ ] Write up format findings as proper techspecs pages (`.RFF` Atech FastFont, `.maf` MicroANSI fonts, `.BMH`, `RIPSCRIP.RES`/`.DB`) in `version/<v>/techspecs/` per the earliest-version rule
+- [x] Write up format findings as proper techspecs pages (2026-08-08): `.RFF`/`ATF.CFG` in `version/2.x/techspecs/fastfont-fonts.md` + 3.x delta `rff-additions.md`; `.maf` in `microansi-fonts.md` + delta `maf-fonts.md` (directory records corrected to 60 bytes/name[36]; font subrecords are 50-byte headers + 255 glyphs — no truncation after all); `.BMH` in `icon-formats.md`; the RES/DB/HLP container decodes (help-resource format fully decoded: sparse ID-indexed offset table + CP437 strings) live in `version/3.x/research/riptel-resource-containers.md` — client packaging, not spec surface, so kept out of techspecs per discussion
 - [ ] Hunt for the "RIPscrip 3.0 protocol specification" and "RIP-2-C 3.0 developer tools" TeleGrafix listed as products (confirmed to have existed via RIPtel help text)
 
 ## Technical specifications (`version/<v>/techspecs/`)
 
 Original documentation of binary formats and implementation details. Rule (see CONTRIBUTING.md): full documentation lives in the **earliest** version where a format appears; later versions document only the differences.
 
+**Completed 2026-08-08** — full build-out of `version/{1.5x,2.x,3.x}/techspecs/` (21 pages) and the new `version/baseline/techspecs/` (ANSI/VT-x baseline references); per-version details in the checklists below. Conventions for these pages (format-first/software-only, no VESA/driver detail, no `ripscrip/` duplication) are codified in CONTRIBUTING.md. Remaining candidates below.
+
 ### 1.5x
 
-- [ ] Font formats — the stroked/bitmap fonts used by RIPterm (Borland BGI `.CHR` stroked fonts + bitmap font behavior), metrics, and how fonts map to `RIP_TEXT`/`RIP_FONT_STYLE`
-- [ ] Icon format (`.ICN`) — full binary layout, expanding on the spec's appendix with implementation detail
-- [ ] `.RIP` file conventions — line structure, continuation, embedded ANSI, auto-sensing prologue conventions used by real files
-- [ ] MegaNum/base-36 encoding notes and edge cases as implemented
-- [ ] Terminal behavior details not fully specified (clipping, write modes, fill pattern semantics) as observed in reference implementations
+- [x] Font formats (2026-08-08): `bgi-stroked-fonts.md` (`.CHR` headers/opcodes decoded, size→scale ratio table — size 4 is 1:1) and `bitmap-fonts.md` (`RIPTERM.FNT` container fully reverse-engineered: 5 CP437 charsets × 255 glyphs, 42-byte directory entries)
+- [x] Icon format (2026-08-08): `icon-format.md` — `.ICN`/`.MSK`/`.HIC` layout with worked decode; size formula `4 + h·4·⌈w/8⌉ + 2` verified against all 191 shipped files (spec's "one trash byte" corrected to two; editor's notes added to the spec page and icons README)
+- [x] `.RIP` file conventions (2026-08-08): `rip-file-format.md` — line structure, continuation, escaping, ANSI mixing, prologue conventions, the RIP_LOAD_ICON optional-`res`-field wild-data hazard
+- [x] MegaNum encoding (2026-08-08): `meganum-encoding.md` — digit set, widths, implemented edge cases (lowercase accepted, `-` = digit 0, early termination on `|`)
+- [x] Terminal behavior (2026-08-08): `terminal-behavior.md` — clipping, write/put modes, line/fill pattern semantics, resets (BGI-inherited behaviors marked where unverified against RIPterm)
 
 ### 2.x
 
-- [ ] Icon format changes from 1.x (the format changed — document the delta)
-- [ ] DIB/BMP support details
-- [ ] Audio format support (WAV playback, sound variables)
-- [ ] Palette / direct-RGB implementation details
+- [x] Icon format changes from 1.x (2026-08-08): `icon-formats.md` — `.BMP`/`.BMH` delta (shipped icons are full BMPs despite the spec's bare-DIB description; `.BMH` = plain BMP pressed state; `.BMM` never shipped, format marked inferred)
+- [x] DIB/BMP support details (2026-08-08): folded into `icon-formats.md` incl. the writer convention (sizeImage=0, XPelsPerMeter=width) and the `biCompression` erratum
+- [x] Audio format support (2026-08-08): `audio.md` — RIPTERM.WAV RIFF decode (PCM mono 8-bit 11,127 Hz); no shipped script uses `!|1w`
+- [x] Palette / direct-RGB (2026-08-08): `palette-rgb.md` — 16/256-color reality, 1024×768 ceiling, unexposed VESA 1280×1024 tier evidenced in the 2.30 EXE + MicroANSI/IMG assets
+- [x] Also (2026-08-08): `fastfont-fonts.md` (`.FF1` + `.RFF` fully decoded — 54-byte FF1 header, u16→u32 trailer-offset widening as the likely reformat motive, byte-identical glyph payloads, ATF.CFG structure), `microansi-fonts.md` (container decoded: u32 directory @0x2A, 60-byte resolution records incl. unshipped 1280×1024 set, MAF glyph-art revision), `ui-resources.md` (`.IMG` widget format decoded: 12-byte header, plane-sequential pre-shifted EGA planes; system `.FNT` partially decoded)
 
 ### 3.x
 
-- [ ] Whatever the 3.x research above uncovers (vector fonts, JPEG, MIDI, resolution independence)
+- [x] 3.x techspecs written as deltas (2026-08-08, `version/3.x/techspecs/`): `rff-additions.md` (BRUSH/EUREKA/OAKLAND decoded; upper-case style suffixes prove a separate converter run; no copyright trailer; BRUSH's >64 KiB trailer confirms the u16→u32 widening motive), `maf-fonts.md` (RIPscrip.maf: 6 resolutions incl. windowed-size sets, third glyph-art revision). The RES/DB/HLP container decodes were relocated to `version/3.x/research/riptel-resource-containers.md` (client packaging, not spec surface). JPEG is documented at its earliest appearance in `version/2.x/techspecs/jpeg-images.md`; MIDI/sequenced music confirmed to have never materialized in any spec or product
+
+### baseline (`version/baseline/techspecs/`)
+
+Non-RIP specification references: what the text side of the terminal supports.
+
+- [x] ANSI/VT-x support as documented and shipped in RIPterm/RIPtel (2026-08-08, `ansi-vt-support.md`): 1.54's RIPTERM.DOC Appendix B sequence table reproduced; 2.x four-toggle emulation (ANSI/RIPscrip/Doorway/VT-102); RIPtel per-bookmark ANSI/VT-102; auto-sense responses `RIPSCRIP015410`/`020000`/`03000…` with binary evidence
+- [x] Modern reference points (2026-08-08, `modern-terminal-reference.md`): SyncTERM/icy_term feature sets with a per-feature historical-evidence column — ANSI music, sixel, 256-color SGR, xterm mouse, bracketed paste, OSC 8, UTF-8 all confirmed absent from every RIPterm/RIPtel document and binary examined; Doorway mode and VT-102 are the historically evidenced ones
+
+### Further techspecs candidates (follow-up, ranked)
+
+- [ ] **FastFont glyph-outline encoding** — the highest-value open item: headers/style tables/kerning are decoded, but the outline data itself is not, so no software implementation can yet rasterize `.FF1`/`.RFF` fonts. Research-heavy (extends `2.x/techspecs/fastfont-fonts.md`); prior art worth trying: Atech's Publisher's Powerpak-era FastFont tools/docs, or diffing minimal glyph pairs
+- [ ] **2.x `.RIP` stream-convention delta** from the 1.5x `rip-file-format.md`: the SOH-prefixed `\x01|*` reset opener of the 2.2x-revised scripts, prologue/epilogue conventions observed across the shipped 2.x script corpus
+- [ ] **RIPaint 1.52 interrogation** for tool-side formats (patterns/palettes/project files, if any beyond `.RIP`) — may glean useful information even though RIPterm 1.54 is the canonical implementation of the generation; no functional 1.52→1.54 delta is known and no later 1.xx RIPaint is believed to have existed (the next known RIPaint is the unrecovered 2.x)
+- [ ] Low priority, preservation-only: full decode of the UI system `.FNT` glyph tables (host-invisible), and the `.MAC` keystroke-macro text format (`TYPE=EMULATION` files)
+
+Dropped after discussion (2026-08-08): decoding the `RIPTERM.RES`/`RIPSCRIP.RES` container directories — a detail of the prior software's packaging, not part of the specification surface an alternative implementation needs.
 
 ## Documentation website
 

@@ -4,7 +4,7 @@ The 184 `.ICN` files in this directory are the icon assets from TeleGrafix's ori
 
 ## What `.ICN` files are
 
-An `.ICN` file is a RIPscrip **icon** — a device-dependent bitmap in the exact binary format described in the spec's [Icon File Format](../../ripscrip/20-icon-file-format.md) page: a 4-byte header (width−1, height−1 as little-endian 16-bit integers) followed by planar scan-line data identical to Borland BGI's `getimage()`/`putimage()` buffer format, plus one trailing "trash" byte. Icons are the disk-based counterpart of the clipboard image commands: [RIP_WRITE_ICON](../../ripscrip/11-images-icons.md#rip_write_icon) saves the clipboard to an icon file, and [RIP_LOAD_ICON](../../ripscrip/11-images-icons.md#rip_load_icon) stamps an icon file onto the screen (the `.ICN` extension is appended automatically when a RIP_LOAD_ICON filename omits it).
+An `.ICN` file is a RIPscrip **icon** — a device-dependent bitmap in the exact binary format described in the spec's [Icon File Format](../../ripscrip/20-icon-file-format.md) page: a 4-byte header (width−1, height−1 as little-endian 16-bit integers) followed by planar scan-line data identical to Borland BGI's `getimage()`/`putimage()` buffer format, plus two trailing "trash" bytes (the spec says one, but every shipped file has two — see the [icon format techspec](../../techspecs/icon-format.md)). Icons are the disk-based counterpart of the clipboard image commands: [RIP_WRITE_ICON](../../ripscrip/11-images-icons.md#rip_write_icon) saves the clipboard to an icon file, and [RIP_LOAD_ICON](../../ripscrip/11-images-icons.md#rip_load_icon) stamps an icon file onto the screen (the `.ICN` extension is appended automatically when a RIP_LOAD_ICON filename omits it).
 
 ## How RIPterm used them
 

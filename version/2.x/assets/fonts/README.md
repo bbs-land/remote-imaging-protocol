@@ -7,7 +7,7 @@ The 54 files in this directory are the font-system assets of the RIPterm 2.x lin
 
 Everything is preserved byte-exact (`version/*/assets/**` is `-text`; the `*.CHR`/`*.BGI`/`*.FNT`/`*.FF1`/`*.RFF`/`*.EXE` patterns store the binaries via Git LFS). See the provenance table in [CONTRIBUTING.md](../../../../CONTRIBUTING.md).
 
-The shipped `FONTS\` directory evolved across the line: 2.0 shipped 10 `.CHR` + 5 `.FF1` + per-resolution `.FNT` system fonts + 26 widget `.IMG`s + `DEMO_ONE.EXE`/`EGAVGA.BGI`; the 2.20/2.30 installs pare this down to 10 `.CHR` + the five outline fonts + `ATF.CFG` (the `.FNT`/`.IMG` UI assets moved into the program's resource files, and the MicroANSI `RIPTERM.FNT` was revised and renamed `RIPTERM.MAF` — same 263,585-byte size and "RIPterm v2.0 MicroANSI Font File" header, new content).
+The shipped `FONTS\` directory evolved across the line: 2.0 shipped 10 `.CHR` + 5 `.FF1` + per-resolution `.FNT` system fonts + 26 widget `.IMG`s + `DEMO_ONE.EXE`/`EGAVGA.BGI`; the 2.20/2.30 installs pare this down to 10 `.CHR` + the five outline fonts + `ATF.CFG` (the `.FNT`/`.IMG` UI assets evidently moved into the program's resource files — the `RIPTERM.RES` container and matching EXE strings exist, though the packaging is unproven since the RES directory format is undecoded — and the MicroANSI `RIPTERM.FNT` was revised and renamed `RIPTERM.MAF` — same 263,585-byte size and "RIPterm v2.0 MicroANSI Font File" header, new content).
 
 RIPTERM.DOC (§2.1.4) requires font files — "`.CHR`, `.FNT`, or `.FF1` file extension" — to live in the `FONTS\` sub-directory under the RIPterm directory.
 

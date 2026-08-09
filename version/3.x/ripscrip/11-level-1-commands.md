@@ -124,7 +124,7 @@ _Define a text variable_
 
 **Attributes used:** Base Math (current setting) **Evidence:** 2.00a4 ([2.x entry](../../2.x/ripscrip/11-level-1-commands.md#rip_define) — flagged obsolete there already) · HLP (`RIP_Define`; the DLL also exports `RIP_DefineTextVariable`) · SyncTERM (ripper.c:15899) — not observed in the RIPtel demo corpus
 
-Creates a text variable, optionally saved to the terminal's database (RIPSCRIP.DB in the 3.0 driver) and optionally prompting the user. Already declared obsolete in 2.00a4 in favor of the enhanced in-line variable syntax, and the corpus confirms the succession: the demos define hundreds of variables exclusively through the `$-=NAME=value$` set form and the `$[directives]NAME[@question][=default]$` prompt syntax, never `1D`.
+Creates a text variable, optionally saved to the terminal's persistent variable store (see [Persistence](18-text-variables-general.md#persistence)) and optionally prompting the user. Already declared obsolete in 2.00a4 in favor of the enhanced in-line variable syntax, and the corpus confirms the succession: the demos define hundreds of variables exclusively through the `$-=NAME=value$` set form and the `$[directives]NAME[@question][=default]$` prompt syntax, never `1D`.
 
 ## RIP_END_TEXT
 

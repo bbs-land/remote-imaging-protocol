@@ -16,8 +16,6 @@ This page summarizes every file format a RIPscrip 3.0 client reads or writes, as
 | `atf.cfg` | Outline-font engine catalog/cache | corpus (FONTS/atf.cfg) |
 | `.maf` | MicroANSI bitmap terminal fonts | corpus (FONTS/RIPscrip.maf) |
 | `.CHR` | Borland BGI stroked (vector) fonts | 2.00a4; corpus |
-| `RIPSCRIP.RES` | Client resource container | corpus; HLP |
-| `RIPSCRIP.DB` | Persistent text-variable database | HLP; corpus |
 
 ## Legacy `.ICN` Icons (RIPscrip 1.54)
 
@@ -57,6 +55,8 @@ The scalable [outline-font system](10-level-0-commands-s-z.md) is powered by a *
 
 `FONTS/atf.cfg` is the engine's binary **catalog/cache**: filename + header copy for each RFF, then all 80 style records — a pre-scanned registry mapping style names to files so the rasterizer needn't open every font at startup. It is machine-generated and safe to rebuild.
 
+> _Editor's note:_ the FastFont format now has full byte-level documentation under the earliest-version rule — the header, style-record, glyph-section, kerning, and `ATF.CFG` layouts live in the [2.x techspec](../../2.x/techspecs/fastfont-fonts.md), and the RIPtel-specific delta (the BRUSH/EUREKA/OAKLAND families and the regenerated `atf.cfg`) in the [3.x techspec](../techspecs/rff-additions.md). Those pages supersede the research triage for format details.
+
 _Evidence: corpus (FONTS/_.RFF, atf.cfg — [binary triage §1](../research/riptel-binary-formats.md)); corpus (FONTS.RIP, TEL3X3.MNU font usage); WP (§3.4.1 outline-font system).*
 
 ## `.maf` — MicroANSI Bitmap Fonts
@@ -70,20 +70,6 @@ _Evidence: corpus (FONTS/RIPscrip.maf — [binary triage §1](../research/riptel
 The classic 1.54 vector "system font" set survives untouched: ten standard Borland BGI stroked-font files (BOLD, EURO, GOTH, LCOM, LITT, SANS, SCRI, SIMP, TRIP, TSCR), each beginning `PK\x08\x08` + "BGI Stroked Font V1.1". The format is Borland's, publicly documented, and unchanged; nothing RIPscrip-specific was added (LCOM/LITT were merely rebuilt with a newer Borland toolkit).
 
 _Evidence: 2.00a4 (system-font lineage); corpus (FONTS/_.CHR); HLP ("BGI font" error strings).*
-
-## `RIPSCRIP.RES` — Resource Container
-
-The client's resource file, required at startup ("resource file RIPscrip.res required"). Magic string: `\x04 "RIPterm v2.0 Resource File" \x04\n\r\x00\x1a`, followed by a u16 section count (6) and a directory. Observed contents: a high-entropy blob (registration data?), standard VGA DAC palettes (16-color EGA set, 16-step grayscale, 256-color RGB cube, 6-bit components), at least one embedded BMP, and — a shipping accident — a trailing fragment of generated C source (`resource_tvopt.rsc`, the text-variable prompt-dialog template naming "MS Sans Serif"). The directory format remains undecoded _(hypothesis: 6 sections keyed by the count field)_.
-
-Note the internal header says **"RIPterm v2.0"** — like the `.maf` magic, direct evidence that the RIPscrip 3.0 engine is the renamed RIPterm 2.x codebase (see [Introduction](01-introduction.md)).
-
-_Evidence: corpus (RIPSCRIP.RES — [binary triage §5](../research/riptel-binary-formats.md)); HLP (resource-file-required string)._
-
-## `RIPSCRIP.DB` — Text-Variable Database
-
-The persistent store behind `$+VAR$` [permanent user variables](18-text-variables-general.md#persistence). Header: `\x04 "RIPscrip Text Variable Database" \x04`. The DLL describes it as an indexed record database with a hash table, and its recommended corruption remedy is deletion ("Database is corrupted - Try deleting RIPSCRIP.DB"). The shipped file is 400 bytes of empty index scaffolding.
-
-_Evidence: HLP (header string, database error strings); corpus (RIPSCRIP.DB file)._
 
 ## Script Containers (`.RIP`, `.FN`, `.COL`, …)
 
