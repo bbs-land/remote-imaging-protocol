@@ -2,30 +2,17 @@
 
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items move to [DONE.md](DONE.md)** — this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
-Likely next up: the numbered-restructure review rounds (below); the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; FastFont glyph-outline research.
+Likely next up: the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; the machine-readable command/variable tables.
 
-## Documentation restructure (direction 2026-08-03; decisions 2026-08-08)
-
-Documentation should **align consistently across versions by feature/subfeature**, making version deltas legible, restructured into a **two-layer numbered hierarchy ordered by learning concerns** — `1.x` fundamentals (intro → protocol/command hierarchy → math/coordinates → world view/virtual canvas → terminal/ANSI view), `2.x` drawing, `3.x` media/interactive objects, …, command reference last. Decisions from the 2026-08-08 interview:
-
-- **Audience split:** `ripscrip/` serves the **content creator** (language semantics — what commands do, coordinates, what an icon is; no binary internals); `techspecs/` serves the **implementer** (binary layouts, parser edge cases, rendering behavior). Wire-level syntax is layered across both: authoring-level syntax (base-36 basics, escaping, line limits) in `ripscrip/`, parser edge cases in `techspecs/`, cross-linked.
-- **Self-contained vs delta:** each version's `ripscrip/` is **self-contained** — creators read only their version, so prior-generation content backfills in (outlines carry per-section backfill sources); `techspecs/` stay **delta-based** with cross-directory references for implementers.
-- **File layout:** flat numbered files per directory (`1.0-introduction.md`, `1.2-math-and-coordinates.md`, …); both `ripscrip/` and `techspecs/` get numbered hierarchies (techspecs in implementer learning order). Per-version outlines may diverge — sections may be missing or numbered differently across versions; the reference chapter is pinned at `9` so it aligns everywhere.
-- **Staging:** top-level **`version-transition/`** is the staging area for the AFTER state, with pinned-release version dirs: `version-transition/{v1.54,v2.30,v3.1}/{ripscrip,techspecs}/`. Content promotes into `version/` when approved.
-- **Glossary:** one shared, spec-first glossary (TeleGrafix's terms — world coordinates, drawing port, viewport, text window — canonical; modern aliases such as virtual canvas / world stage listed per entry), staged at `version-transition/GLOSSARY.md`, final home `version/GLOSSARY.md`.
-
-Tasks:
-
-- [ ] **User's final review pass** on `version-transition/` — QA sweep + generation-naming adjustment complete (see DONE.md); remaining judgment items: (a) "2.2-era" wording in two stream-convention spots (normalize to "2.20-era"?), (b) the METRIC struct in v2.30 4.3-buttons (techspecs-flavored but spec-verbatim), (c) transition README's v3.1 line — an agent set it to "RIPscrip 3.x generation" per the directive, possibly overriding a hand-edit ("3.0 generation") from commit a957f93 — confirm preferred wording, (d) borderline citation-vs-generic "2.30" calls kept pinned (System Dir prompts, icon-distribution facts — flagged in the N2 report); **no promotion/moves until this pass**
-- [ ] Flesh out `version-transition/GLOSSARY.md` from the stub as migration proceeds; enforce glossary terms consistently across pages
-- [ ] Promotion pass: move `version-transition/<v>/` over `version/<v>/`, rewrite links repo-wide, run `tools/check-links.py` + Prettier, retire the transition dir
+The **documentation restructure is complete** (2026-08-09) — `version/{1.54,2.30,3.1}/{ripscrip,techspecs}/` now carry the numbered two-layer hierarchy with the creator/implementer audience split, and the shared glossary lives at `version/GLOSSARY.md`. The structure and its principles are documented in [version/README.md](version/README.md); the work log is in [DONE.md](DONE.md).
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans — needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.1/ripscrip/10-reconstructed-command-set.md`)
+- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans — needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.1/ripscrip/9.0-command-reference.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from implementations — as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08, see DONE.md)
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the source) based on actual implementation behavior (SyncTERM `ripper.c`, icy_parser_core), cited and marked as reconstructed
-- [ ] Port the link/anchor checker (currently a scratchpad Python script under tools/check-links.py) into the repo as a Deno script; wire into CI so cross-links stay valid.
+- [ ] Grow `version/GLOSSARY.md` as new terms surface, and keep the canonical terms used consistently across pages
+- [ ] Port the link/anchor checker (`tools/check-links.py`, currently Python) to a Deno script; wire into CI so cross-links stay valid
 
 ## RIPscrip 3.x research
 
@@ -45,7 +32,7 @@ Rules in CONTRIBUTING.md: earliest-version placement, format-first/software-only
 Decisions made: **VitePress** for the site, **Deno** as the runtime for all generation/tooling scripts (`deno task`).
 
 - [ ] Scaffold the VitePress site (config, theme, `deno task` wrappers)
-- [ ] Generate sidebar/nav from the directory + README structure rather than hand-maintaining it (the numbered restructure above is designed to feed this)
+- [ ] Generate sidebar/nav from the directory + README structure rather than hand-maintaining it (the numbered `N.M` hierarchy under `version/<v>/` is designed to feed this)
 - [ ] Verify rendering of box-drawing/CP437-derived content, wide GFM tables, and `text`/`c` fenced blocks
 - [ ] Landing page drawing from the main README
 - [ ] **Discuss:** deployment target (GitHub Pages via Actions? custom domain under bbs.land?) and repo/branch strategy for generated output
