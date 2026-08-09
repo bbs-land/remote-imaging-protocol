@@ -1,6 +1,13 @@
-# Fonts — RIPterm Professional 2.0 Distribution
+# Fonts — RIPterm 2.x Distributions
 
-The 48 files in this directory are the font-system assets from TeleGrafix's **RIPterm Professional 2.0** (released January 23–24, 1995; installed files dated 1995-01-27 to 1995-02-01): the complete `FONTS\` sub-directory of an installed copy, plus `RIPTERM.FNT` from the program directory. They are preserved byte-exact (`version/*/assets/**` is `-text`; the `*.CHR`/`*.BGI`/`*.FNT`/`*.FF1`/`*.EXE` patterns store the binaries via Git LFS). Source install: `~/src/rip-tools/RIPTerm2.0/extracted/` (see the provenance table in [CONTRIBUTING.md](../../../../CONTRIBUTING.md)).
+The 54 files in this directory are the font-system assets of the RIPterm 2.x line, from two recovered installs:
+
+- **RIPterm Professional 2.0** (released January 23–24, 1995; installed files dated 1995-01-27 to 1995-02-01) — 48 files: the complete `FONTS\` sub-directory of an installed copy, plus `RIPTERM.FNT` from the program directory. Source: `~/src/rip-tools/RIPTerm2.0/extracted/`.
+- **RIPterm 2.30** (shareware "Evaluation Edition", October 27, 1997) — 6 files: the five `.RFF` outline fonts (dated 1997-04-18/19, the only 1997-dated assets in the entire 2.30 install) plus `ATF.CFG` (carried unchanged from the 2.20 build of 1995-11-28). Source: `~/src/rip-tools/artifacts/ripterm-2.30/extracted/FONTS/`.
+
+Everything is preserved byte-exact (`version/*/assets/**` is `-text`; the `*.CHR`/`*.BGI`/`*.FNT`/`*.FF1`/`*.RFF`/`*.EXE` patterns store the binaries via Git LFS). See the provenance table in [CONTRIBUTING.md](../../../../CONTRIBUTING.md).
+
+The shipped `FONTS\` directory evolved across the line: 2.0 shipped 10 `.CHR` + 5 `.FF1` + per-resolution `.FNT` system fonts + 26 widget `.IMG`s + `DEMO_ONE.EXE`/`EGAVGA.BGI`; the 2.20/2.30 installs pare this down to 10 `.CHR` + the five outline fonts + `ATF.CFG` (the `.FNT`/`.IMG` UI assets moved into the program's resource files, and the MicroANSI `RIPTERM.FNT` was revised and renamed `RIPTERM.MAF` — same 263,585-byte size and "RIPterm v2.0 MicroANSI Font File" header, new content).
 
 RIPTERM.DOC (§2.1.4) requires font files — "`.CHR`, `.FNT`, or `.FF1` file extension" — to live in the `FONTS\` sub-directory under the RIPterm directory.
 
@@ -27,7 +34,7 @@ The same ten stroked vector fonts distributed with RIPterm 1.54 (see the [1.5x f
 
 The scalable outline-font engine behind [RIP_EXTENDED_FONT_STYLE](../../ripscrip/08-level-0-commands-a-f.md#rip_extended_font_style) (`!|y`, added in spec revision 2.A1 as "True Type style" fonts). The `.FF1` files are **Atech Software's FastFont format** — `.FF1` is Atech's own extension, and each file (except the rebranded `DEFAULT.FF1`) ends with the trailer `COPR:` + "Copyright 1991, Atech Software, Carlsbad CA". `DEFAULT.FF1`'s trailer instead reads "RIPterm 2.0 font system Copyright TeleGrafix Communications Inc. 1995".
 
-These five families are the **direct ancestors of RIPscrip 3.x's `.RFF` fonts**: RIPtel 3.1 ships all five renamed to `.RFF` ("RIPscrip FastFont", lightly revised — e.g. MARIN 56,112 → 56,526 bytes) and adds three more families (BRUSH, EUREKA, OAKLAND). See the [3.x fonts README](../../../3.x/assets/fonts/README.md) and the [3.x file-formats page](../../../3.x/ripscrip/22-file-formats.md#rff-outline-fonts--atech-fastfont) for the decoded header/style-record layout, which applies to these files as well.
+These five families are the **direct ancestors of RIPscrip 3.x's `.RFF` fonts** — and the recovered RIPterm 2.30 install pins the transition to **RIPterm 2.30, not RIPtel**: 2.30 replaces all five `.FF1` files with `.RFF` conversions dated April 1997 (see the next section). See the [3.x fonts README](../../../3.x/assets/fonts/README.md) and the [3.x file-formats page](../../../3.x/ripscrip/22-file-formats.md#rff-outline-fonts--atech-fastfont) for the decoded header/style-record layout.
 
 | File | Size (bytes) | Family |
 | --- | --: | --- |
@@ -38,6 +45,20 @@ These five families are the **direct ancestors of RIPscrip 3.x's `.RFF` fonts**:
 | `SYMBOL.FF1` | 43,187 | Symbol |
 
 `DEMO_ONE.EXE` (117,175 bytes) is the FF1 **font viewer** utility that README.DOC documents: "a utility for viewing the FF1 outline font files used by RIPterm v2.0 … located in the FONTS directory."
+
+## RIPscrip FastFont outline fonts (`.RFF`) — RIPterm 2.30
+
+RIPterm 2.30 (October 1997) ships the same five families **converted from `.FF1` to `.RFF`** — a reformat, not a rename: the magic differs (e.g. `DIXON.FF1` starts `bd 7a 00 01`, `DIXON.RFF` starts `3b a3 00 00`), the header fields are reordered, and the glyph payload matches from about offset 0x38 on. RIPterm 2.30's `RIPTERM.EXE` correspondingly changes its font-browser filter from `%s*.ff1` to `%s*.rff`. All five files are **byte-identical (md5) to the copies RIPtel 3.1 ships** — the RIPscrip-3 font set originates here; RIPtel only adds three more families (BRUSH, EUREKA, OAKLAND).
+
+| File          | Size (bytes) | File date  | Family (vs `.FF1` size) |
+| ------------- | -----------: | ---------- | ----------------------- |
+| `COBB.RFF`    |       62,725 | 1997-04-18 | Cobb (62,311)           |
+| `DEFAULT.RFF` |       31,596 | 1997-04-19 | Default (31,228)        |
+| `DIXON.RFF`   |       42,071 | 1997-04-18 | Dixon (41,657)          |
+| `MARIN.RFF`   |       56,526 | 1997-04-18 | Marin (56,112)          |
+| `SYMBOL.RFF`  |       43,601 | 1997-04-18 | Symbol (43,187)         |
+
+`ATF.CFG` (684 bytes, dated 1995-11-28) is the Atech font-manager configuration file shipped alongside the fonts in the 2.20/2.30 `FONTS\` directory (byte-identical in both; RIPtel 3.1's `atf.cfg` differs).
 
 ## Terminal and system fonts (`.FNT`)
 

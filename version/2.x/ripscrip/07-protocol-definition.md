@@ -28,7 +28,7 @@ This ANSI sequence is often used for "Auto-Sensing" if a RIPscrip terminal exist
 >
 > You still use this escape sequences to detect RIPscrip capability, but to determine the specific terminal program or manufacturer, use the `$TERMINFO()$` text variable. To determine specific capabilities of the terminal, use the `$IFS()$` text variable (Is Function Supported). To determine the current language that the terminal is running in, use the `$LANGUAGE$` text variable (see the text variable section later for more details). _(v2.A3)_
 
-> **Editor's note:** The shipping RIPterm Professional 2.0 binary carries the literal auto-sense response string `RIPSCRIP020000` — version 02.00 with the trailing vendor/sub-version digits zeroed (RIPTERM.EXE strings; see the install provenance in [CONTRIBUTING.md](../../../CONTRIBUTING.md)).
+> **Editor's note:** Every shipping RIPterm 2.x binary — Professional 2.0, 2.20.01, and 2.30 — carries the same literal auto-sense response string `RIPSCRIP020000`: version 02.00 with the trailing vendor/sub-version digits zeroed (RIPTERM.EXE strings from all three recovered installs; see the provenance table in [CONTRIBUTING.md](../../../CONTRIBUTING.md)). The reported language level never advanced past 2.00.00 through the end of the RIPterm line in October 1997, even as the product versions did; RIPterm 2.3's documentation likewise states it "supports the RIPscrip 2.0 language fully" (RIPTERM.FAQ v1.7).
 
 `ESC[0!` — Same as `ESC [ !` (see above)
 

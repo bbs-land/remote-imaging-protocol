@@ -17,7 +17,7 @@ Completed 2026-08-08 (history/licensing/conventions pass):
 - **Docs layout** — `IMPLEMENTATION.md` moved to `version/IMPLEMENTATION.md` with all links updated.
 - **RIPterm 2.0 install interrogated & 2.x assets staged** — the two-disk RIPterm Professional 2.0 install (`~/src/rip-tools/RIPTerm2.0/extracted/`, files dated Feb 1995) catalogued in CONTRIBUTING; `version/2.x/assets/` populated (48 fonts incl. 5 Atech `.FF1` outline fonts + widget `.IMG`s, 95 icons incl. `SHADOW.RIP`, `RIPTERM.WAV`) with per-file READMEs. Key findings folded into the docs: WAV audio, JPEG, SVGA/256-color, and BMP icons all shipped in **2.0 (Jan 1995)**, not 2.2+; the 26-character RIP_EXTENDED_FONT_STYLE block predates 3.0 (SHADOW.RIP); `.FF1` → `.RFF` font lineage confirmed; auto-sense string `RIPSCRIP020000`; `.FF1`/`.RFF` added to LFS (existing `.RFF` files renormalized).
 
-Likely next candidates: remaining 2.2/2.3-era assets (blocked on sourcing a complete RIPterm 2.3 — see Reference materials); techspecs pages for the binary formats; the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold.
+Likely next candidates: techspecs pages for the binary formats; the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold.
 
 ---
 
@@ -128,7 +128,7 @@ Goal: reusable, wasm-capable crates (wasm and/or cdylib for bindings from other 
 - [x] Research and clone open-source implementations for local grepping: `sbbs` (SyncTERM), `icy_tools`, `pablodraw`, `RIPtermJS`, `fTelnet`, `qodem` — documented in CONTRIBUTING.md
 - [x] Download original runtime binaries for reverse-engineering reference, under `~/src/rip-tools/`, and document each (source URL, version, contents) in CONTRIBUTING.md:
   - [x] RIPterm 1.54 (`RIPterm154/` preservation repo, incl. original ZIP + DOSBox setup) and RIPterm 1.52 (`artifacts/ripterm-1.52/`)
-  - [x] RIPterm 2.30 shareware, Win16 (`artifacts/ripterm-2.30/`, via Wayback)
+  - [x] RIPterm 2.30 shareware, DOS (`artifacts/ripterm-2.30/RIPT2300.zip` — complete distribution via VOGONS, 2026-08-08; the Wayback `rtrm2300.exe` is truncated and kept for provenance only)
   - [x] RIPtel Visual Telnet 3.10, Win16 (`artifacts/riptel-3.10/`, via Wayback)
   - [x] RIPaint 1.52 (`artifacts/ripaint-1.52/`, includes sample `.RIP` files)
   - [ ] RIPdraw — not yet located in any archive; keep hunting
@@ -137,7 +137,7 @@ Goal: reusable, wasm-capable crates (wasm and/or cdylib for bindings from other 
   - [ ] Other era tools worth having (third-party RIP editors, BBS-side RIP doors/menus) as discovered — the archived `ftp.telegrafix.com` index pages on the Wayback Machine list more candidates
 - [x] Extract distribution assets into `version/<v>/assets/{fonts,icons,audio}/` with per-directory READMEs: 1.5x (184 icons + 11 fonts from RIPTM154.ZIP), 2.x (95 icons + 48 fonts + `RIPTERM.WAV` from the RIPterm Professional 2.0 install), 3.x (234 icons/demo files + 20 fonts from RIPtel 3.1); byte-exact via `.gitattributes` assets rule
 - [x] Populate `version/2.x/assets/` — done 2026-08-08 from the two-disk RIPterm Professional 2.0 install (`~/src/rip-tools/RIPTerm2.0/extracted/`): complete `FONTS\` (10 `.CHR`, 5 Atech `.FF1`, per-resolution `.FNT` + widget `.IMG`s, `DEMO_ONE.EXE`), `ICONS\` (91 `.BMP`, 3 `.BMH`, `SHADOW.RIP`), `RIPTERM.FNT`, and `RIPTERM.WAV`, with per-file READMEs
-- [ ] Recover the 2.2/2.3-era assets still missing: the Wine install of the RIPterm 2.30 installer aborts after the base files, before the `ICONS\`/`FONTS\` components (base files kept in `~/src/rip-tools/artifacts/ripterm-2.30/extracted/`, incl. the ARTWORK.DOC icon manifest — the RW\* icon set and 2.2-era font revisions remain unrecovered). Sourcing an archive copy of a complete installed RIPterm 2.3 is in progress (2026-08); alternative: decode the Wise installer payload compression. When a complete copy lands: stage the deltas vs the 2.0 set and extend the 2.x asset READMEs
+- [x] Recover the 2.2/2.3-era assets — complete RIPterm 2.30 shareware distribution recovered 2026-08-08 (VOGONS; `artifacts/ripterm-2.30/RIPT2300.zip`, full 251-file set unpacked to `artifacts/ripterm-2.30/extracted/` incl. `FONTS\` and `ICONS\`); deltas vs the 2.0 set staged into `version/2.x/assets/` and the asset READMEs extended (2026-08-08 interrogation)
 - [ ] Extract sample scripts into the test corpus (once its layout is decided)
 - [ ] Note DOS emulation setup for running them (DOSBox-X config) if/when behavioral testing is needed
 

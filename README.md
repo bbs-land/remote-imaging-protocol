@@ -4,13 +4,13 @@ Documentation and extended information around RIPScrip/RIPTerm/RIPtel specificat
 
 | **Documentation** | **Terminal** | **Paint** |
 | --- | --- | --- |
-| [RIPScrip 3.x](version/3.x/ripscrip/README.md) | [RIPTel 3.1](https://files.bbs.land/rip/riptel.msi) - Windows 7+ (patched, PCMicro) | - |
-| [RIPScrip 2.x](version/2.x/ripscrip/README.md) | - | - |
-| [RIPScrip 1.5x](version/1.5x/ripscrip/README.md) | [RIPTerm 1.54](https://files.bbs.land/rip/RIPTM154.ZIP) DOS | [RIPaint 1.52](https://files.bbs.land/rip/RIPaint-1.52.zip) DOS |
+| [RIPScrip 3.x](version/3.x/ripscrip/README.md) | [RIPTel 3.1](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTel%203.1/riptel.msi) - Windows 7+ (patched, PCMicro) | - |
+| [RIPScrip 2.x](version/2.x/ripscrip/README.md) | [RIPTerm 2.30](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%202.30/RIPT2300.zip) DOS | - |
+| [RIPScrip 1.5x](version/1.5x/ripscrip/README.md) | [RIPTerm 1.54](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%201.54/RIPTM154.ZIP) DOS | [RIPaint 1.52](https://files.bbs.land/rip/RIPaint-1.52.zip) DOS |
 
-Missing a working RIPTerm 2.2/2.3 installer as well as a more recent RIPaint version.
+The complete RIPterm 2.3 shareware distribution was recovered in August 2026 (see [CONTRIBUTING.md](CONTRIBUTING.md)); still missing is a a more recent RIPaint version (RIPaint-2).
 
-More: [Version overview](version/README.md) · [History](version/HISTORY.md) · [Rights & licensing](version/RIGHTS.md) · [Future enhancements](version/next/README.md) · [Implementation notes](version/IMPLEMENTATION.md)
+More: [Version overview](version/README.md) · [History](version/HISTORY.md) · [Downloads](version/DOWNLOADS.md) · [Rights & licensing](version/RIGHTS.md) · [Future enhancements](version/next/README.md) · [Implementation notes](version/IMPLEMENTATION.md)
 
 ## RIPscrip
 
@@ -59,7 +59,7 @@ version/
     ripscrip/   Markdown edition of the RIPscrip 1.54 specification
     text/       Original specification text
   2.x/
-    assets/     Fonts, icons, and audio distributed with RIPterm Professional 2.0
+    assets/     Fonts, icons, and audio distributed with RIPterm Professional 2.0 and RIPterm 2.20/2.30
     ripscrip/   Markdown edition of the RIPscrip 2.00 alpha 4 specification
     text/       Original specification text
   3.x/
@@ -71,6 +71,7 @@ version/
   next/         Future, unofficial enhancement proposals (3.5x/4.x candidates)
   README.md     Version overview — what each version's record represents
   HISTORY.md    TeleGrafix company and RIPterm/RIPtel release timeline
+  DOWNLOADS.md  Preserved original distributions on the files.bbs.land mirror
   RIGHTS.md     Trademarks, copyright status, and repository licensing
   IMPLEMENTATION.md  Renderer/terminal implementation guidance
 ```
