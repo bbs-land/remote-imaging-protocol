@@ -2,7 +2,7 @@
 
 [Contents](README.md) · [Next: ANSI-BBS / VT-x Emulation in RIPterm and RIPtel ▶](ansi-vt-support.md)
 
-This directory documents the **non-RIP baseline** that RIPscrip layers on top of: the ANSI/VT-x text terminal emulation that the _text_ side of a RIP-capable terminal supports. RIPscrip was explicitly designed to be "mixed with printable ASCII text and [de facto standard] ANSI/VT-100 directives" ([RIPscrip 1.54 spec, "WHAT IS RIPscrip?"](../../1.5x/text/RIPScrip-1.54.txt)), so every RIPscrip terminal is _also_ an ANSI-BBS terminal — and an implementer of RIPscrip needs to know exactly how much of one.
+This directory documents the **non-RIP baseline** that RIPscrip layers on top of: the ANSI/VT-x text terminal emulation that the _text_ side of a RIP-capable terminal supports. RIPscrip was explicitly designed to be "mixed with printable ASCII text and [de facto standard] ANSI/VT-100 directives" ([RIPscrip 1.54 spec, "WHAT IS RIPscrip?"](../../1.54/text/RIPScrip-1.54.txt)), so every RIPscrip terminal is _also_ an ANSI-BBS terminal — and an implementer of RIPscrip needs to know exactly how much of one.
 
 The primary evidence here is **TeleGrafix's own products and documentation**: RIPterm 1.54 and RIPterm 2.x for DOS (2.30, the final release, stands as the definitive 2.x reference), RIPtel Visual Telnet 3.1 for Windows, their manuals (`RIPTERM.DOC`, `README.DOC`, `WHATSNEW.DOC`), help files, and the shipped binaries themselves. Modern open-source implementations (SyncTERM, icy_term) are treated strictly as **secondary, modern reference points** — useful for knowing what today's ANSI-BBS baseline looks like, but never as evidence of what the historical products did.
 
@@ -16,8 +16,8 @@ The primary evidence here is **TeleGrafix's own products and documentation**: RI
 - RIPterm 1.54 install: `~/src/rip-tools/RIPterm154/DOS/RIPTERM/` (`RIPTERM.DOC`, `WHATSNEW.DOC`, `RIPTERM.EXE`)
 - RIPterm Professional 2.0 install: `~/src/rip-tools/RIPTerm2.0/extracted/` (`RIPTERM.DOC`, `README.DOC`, `ANSI.MAC`, `VT100.MAC`, `RIPTERM.EXE`)
 - RIPterm 2.30 shareware install (with the 2.20.00/2.20.01 change logs): `~/src/rip-tools/artifacts/ripterm-2.30/extracted/` (`RIPTERM.DOC`, `README.DOC`, `RIPTERM.FAQ`, `RIPTERM.EXE`)
-- RIPtel Visual Telnet 3.1 install: `~/src/rip-tools/artifacts/RIPtel/` (`readme.txt`, `RIPTEL.EXE`, `RIPTEL.HLP`, `MESSAGES.HLP`), plus the in-repo help-string research in [version/3.x/research/](../../3.x/research/riptel-help-extraction.md)
-- Specification texts: [RIPscrip 1.54](../../1.5x/text/RIPScrip-1.54.txt), [RIPscrip 2.0 alpha 4](../../2.x/text/RIPScrip-2.0-alpha-4.txt), [RIPscrip 3.x technical whitepaper](../../3.x/text/RIPScrip-3.x-technical-whitepaper.txt)
+- RIPtel Visual Telnet 3.1 install: `~/src/rip-tools/artifacts/RIPtel/` (`readme.txt`, `RIPTEL.EXE`, `RIPTEL.HLP`, `MESSAGES.HLP`), plus the in-repo help-string research in [version/3.1/research/](../../3.1/research/riptel-help-extraction.md)
+- Specification texts: [RIPscrip 1.54](../../1.54/text/RIPScrip-1.54.txt), [RIPscrip 2.0 alpha 4](../../2.30/text/RIPScrip-2.0-alpha-4.txt), [RIPscrip 3.x technical whitepaper](../../3.1/text/RIPScrip-3.x-technical-whitepaper.txt)
 - Modern references: `~/src/rip-tools/sbbs/` (SyncTERM + cterm, incl. the `sbbs:src/conio/cterm.adoc` sequence manual), `~/src/rip-tools/icy_tools/` (icy_term + icy_parser_core), `~/src/rip-tools/qodem/` (auto-sense handling only)
 
 Every capability claim about RIPterm/RIPtel on these pages is cited to a TeleGrafix document (with section), to direct binary evidence (`strings` on a shipped executable, cited by artifact path), or to a specification section. Where a feature left _no_ trace in any TeleGrafix material examined, that absence is stated explicitly — it is a finding, not an omission.

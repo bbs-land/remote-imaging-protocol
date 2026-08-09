@@ -13,11 +13,7 @@ VitePress site build.
 """
 import re, os, sys, glob
 
-DEFAULT_DIRS = [
-    'version/1.5x/ripscrip', 'version/2.x/ripscrip',
-    'version/3.x/ripscrip', 'version/3.x/whitepaper', 'version/3.x/research',
-    'version/1.5x/assets', 'version/2.x/assets', 'version/3.x/assets',
-]
+DEFAULT_DIRS = ['version']
 
 def slugify(h):
     h = re.sub(r'[*`\[\]()]', '', h).strip().lower()

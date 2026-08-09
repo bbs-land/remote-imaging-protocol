@@ -4,13 +4,13 @@
 
 The RIPscrip language and its specifications were created and published by **TeleGrafix Communications, Inc.** — originally a California corporation (Huntington Beach), reincorporated in Virginia after the company's April 1996 move to Winchester, VA. The published specifications carry "Copyright © 1992–1993" (1.54) and "Copyright © 1992–1994" (2.00 ALPHA 4) notices; product materials run through © 1997.
 
-TeleGrafix's stated policy, from the 1.54 specification (preserved verbatim in [1.5x/text/RIPScrip-1.54.txt](1.5x/text/RIPScrip-1.54.txt)):
+TeleGrafix's stated policy, from 1.54 specification (preserved verbatim in [1.5x/text/RIPScrip-1.54.txt](1.54/text/RIPScrip-1.54.txt)):
 
 > The RIPscrip language is made publicly available and is freely licensed by TeleGrafix Communications, Inc. By freely licensed, we mean that the language can be used in the creation of other products. It does not mean that RIPscrip is public domain. TeleGrafix maintains the copyright of the RIPscrip language.
 >
 > RIPscrip, RIPaint, RIPdraw, and RIPterm are trademarks of TeleGrafix Communications, Inc.
 
-The 2.00 ALPHA 4 specification repeats this wording, adding (at ALPHA 3) that the product names may not be used in product literature without written consent. By 1997, the RIPterm 2.3 license also claimed "Remote Imaging Protocol" and "TeleGrafix" themselves as trademarks. All TeleGrafix documents use "(TM)" — never "(R)" — and no U.S. federal trademark registration for RIPSCRIP, RIPTERM, or TELEGRAFIX has been found: the marks appear to have been claimed at common law only.
+The 2.00 ALPHA 4 specification repeats this wording, adding (at ALPHA 3) that the product names may not be used in product literature without written consent. By 1997, the RIPterm 2.30 license also claimed "Remote Imaging Protocol" and "TeleGrafix" themselves as trademarks. All TeleGrafix documents use "(TM)" — never "(R)" — and no U.S. federal trademark registration for RIPSCRIP, RIPTERM, or TELEGRAFIX has been found: the marks appear to have been claimed at common law only.
 
 Note also that not everything TeleGrafix shipped was theirs: portions of the 2.x-era bundled artwork were copyright Xtelnet Oy (Finland), used under their own attribution terms.
 
@@ -26,7 +26,7 @@ The original materials are preserved here for **historical, archival, and intero
 
 | Content | License |
 | --- | --- |
-| Original TeleGrafix specification texts under `version/*/text/` (the 1.5x and 2.x `.txt` specs, and the 3.0 white paper text) | Original TeleGrafix copyright — preserved verbatim, unaltered terms |
+| Original TeleGrafix specification texts under `version/*/text/` (1.5x and 2.x `.txt` specs, and the 3.0 white paper text) | Original TeleGrafix copyright — preserved verbatim, unaltered terms |
 | All other documentation in this repository (Markdown editions, techspecs, research notes, guides, this file) — unless a file notes otherwise | [CC0 1.0](../LICENSE) — public domain dedication, free to use for any purpose |
 | Future library/code implementations developed in this repository | **ISC license** — for liberal use in any project |
 
