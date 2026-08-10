@@ -427,19 +427,6 @@ RIPscrip stands for "Remote Imaging Protocol script" language.  This
 graphical language is our answer to the graphics needs of the BBS
 community and has serious tools for implementation and practical use.
 
-For more information on RIPaint, RIPdraw, RIPterm or RIPscrip
-development tools (RIP2C, RIP2PAS, etc), contact:
-
-     TeleGrafix Communications, Inc.
-     16458 Bolsa Chica #15
-     Huntington Beach, CA  92649
-
-     VOICE: (714) 379-2131
-     FAX  : (714) 379-2132
-     BBS  : (714) 379-2133
-
-     Internet:rip.support@telegrafix.com
-
 
 
 ╔════════════════════════════════════╗

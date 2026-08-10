@@ -4792,17 +4792,17 @@ This example is a bit more involved.  It brings the concept of Radio
 Buttons into the picture, which is part of the Button command. A Radio
 Button is like having a list of options on your screen, only one of which
 can be selected at any
-one time.  When using    ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-templates with Radio     º   Protocols            Download which file?  º
-Buttons, you can quickly º   ÄÄÄÄÄÄÄÄÄ            ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ  º
-and elegantly define a   º   X X-Modem             ş File #1            º
-menu that can do one     º   ş Y-Modem             X File #2            º
-thing in one mode, or    º   ş Y-Modem Batch       ş File #3            º
-something totally        º   ş Z-Modem                                  º
-different in another     º ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ º
-mode.  An example of     º ³           Begin Download Now!            ³ º
-the above menu might be  º ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ º
-as follows:              ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+one time.  When using    â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+templates with Radio     â•‘   Protocols            Download which file?  â•‘
+Buttons, you can quickly â•‘   â”€â”€â”€â”€â”€â”€â”€â”€â”€            â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€  â•‘
+and elegantly define a   â•‘   X X-Modem             â–  File #1            â•‘
+menu that can do one     â•‘   â–  Y-Modem             X File #2            â•‘
+thing in one mode, or    â•‘   â–  Y-Modem Batch       â–  File #3            â•‘
+something totally        â•‘   â–  Z-Modem                                  â•‘
+different in another     â•‘ â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â•‘
+mode.  An example of     â•‘ â”‚           Begin Download Now!            â”‚ â•‘
+the above menu might be  â•‘ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â•‘
+as follows:              â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 In the preceding example #2, a group of Radio Buttons were used on the
 right side of the screen to determine which file should be downloaded.
@@ -4827,19 +4827,19 @@ above example could be modified to accommodate this as follows:
 
 The screen might appear something like this:
 
-        ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-        º   Protocols            Download which file?  º
-        º   ÄÄÄÄÄÄÄÄÄ            ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ  º
-        º   X X-Modem             ş File #1            º
-        º   ş Y-Modem             X File #2            º
-        º   ş Y-Modem Batch       ş File #3            º
-        º   ş Z-Modem         ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ º
-        º                     ³    Enter Filename    ³ º
-        º                     ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ º
-        º ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ º
-        º ³           Begin Download Now!            ³ º
-        º ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ º
-        ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+        â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+        â•‘   Protocols            Download which file?  â•‘
+        â•‘   â”€â”€â”€â”€â”€â”€â”€â”€â”€            â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€  â•‘
+        â•‘   X X-Modem             â–  File #1            â•‘
+        â•‘   â–  Y-Modem             X File #2            â•‘
+        â•‘   â–  Y-Modem Batch       â–  File #3            â•‘
+        â•‘   â–  Z-Modem         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â•‘
+        â•‘                     â”‚    Enter Filename    â”‚ â•‘
+        â•‘                     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â•‘
+        â•‘ â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â•‘
+        â•‘ â”‚           Begin Download Now!            â”‚ â•‘
+        â•‘ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â•‘
+        â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 NOTE:  To get the radio button graphic show above, an Icon Button
        must be used.  The empty circle is an icon, and the filled
@@ -4850,12 +4850,12 @@ on that button, it would first try to replace $FILENAME$ with a text
 variable.  It will find that such a variable does not exist, and will
 then pop-up the following question on the screen:
 
-       ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-       º                 Enter "FILENAME"                 º
-       º ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ º
-       º ³ Û                                            ³ º
-       º ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ º
-       ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+       â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+       â•‘                 Enter "FILENAME"                 â•‘
+       â•‘ â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â•‘
+       â•‘ â”‚ â–ˆ                                            â”‚ â•‘
+       â•‘ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â•‘
+       â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 If the user typed in DEMOFILE.TXT, then that filename is inserted
 where $FILENAME$ was, resulting in (for example):

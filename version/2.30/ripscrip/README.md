@@ -1,10 +1,10 @@
-# RIPscrip 2.30 — Language Reference
+# RIPscrip 2.30 - Language Reference
 
-**Source specification: "RIPscrip Graphics Protocol Language Technical Reference", Version 2.00 — Revision ALPHA 4** (proposed enhancements), December 13th, 1994, TeleGrafix Communications, Inc. — the last published 2.x document, preserved verbatim as [`RIPScrip-2.0-alpha-4.txt`](../../2.30/text/RIPScrip-2.0-alpha-4.txt). The definitive implementation is **RIPterm 2.30**, the final 2.x release; where the shipping engine and the ALPHA 4 draft diverge, these pages document the engine and mark the difference. The record for this generation is **partially unknown**: the shipping engine (RIPterm 2.20/2.30, 1995–1997) moved beyond the draft and no further specification was ever published, so parts of what follows come from reconstruction against shipped binaries and content.
+**Source specification: "RIPscrip Graphics Protocol Language Technical Reference", Version 2.00 - Revision ALPHA 4** (proposed enhancements), December 13th, 1994, TeleGrafix Communications, Inc. - the last published 2.x document, preserved verbatim as [`RIPScrip-2.0-alpha-4.txt`](../../2.30/text/RIPScrip-2.0-alpha-4.txt). The definitive implementation is **RIPterm 2.30**, the final 2.x release; where the shipping engine and the ALPHA 4 draft diverge, these pages document the engine and mark the difference. The record for this generation is **partially unknown**: the shipping engine (RIPterm 2.20/2.30, 1995-1997) moved beyond the draft and no further specification was ever published, so parts of what follows come from reconstruction against shipped binaries and content.
 
-Content-creator documentation for the 2.x generation. This page is the table of contents: each entry links the page and gives a one-line scope. Chapter numbers align with [v1.54](../../1.54/ripscrip/README.md) where the concept exists; chapter 7 is new to this generation. Binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md); shared terminology is defined in the [glossary](../../GLOSSARY.md).
+Content-creator documentation for the 2.x generation. Chapter numbers align with [v1.54](../../1.54/ripscrip/README.md) where the concept exists; chapter 7 is new to this generation. Binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md); shared terminology is defined in the [glossary](../../GLOSSARY.md).
 
-**Self-contained for creators:** unlike the techspecs (which stay delta-based and cross-reference other version directories), each version's `ripscrip/` docs stand alone — a creator working against 2.x reads only these pages. Material carried forward from the prior generation is merged in, with "as in 1.54" references pointing at the [v1.54 reference](../../1.54/ripscrip/README.md) for lineage.
+**Self-contained for creators:** unlike the techspecs (which stay delta-based and cross-reference other version directories), each version's `ripscrip/` docs stand alone - a creator working against 2.x reads only these pages. Material carried forward from the prior generation is merged in, with "as in 1.54" references pointing at the [v1.54 reference](../../1.54/ripscrip/README.md) for lineage.
 
 ## Contents
 
@@ -18,7 +18,7 @@ Content-creator documentation for the 2.x generation. This page is the table of 
   - **[2.0 Color Modes & Palettes](2.0-color-modes-and-palettes.md)** - 16-color, 256-color and direct-RGB modes; the 256-entry palette; palette commands; write modes
   - **[2.1 Lines](2.1-lines.md)** - pixel, line, polyline; line patterns and thickness as they extend the 1.54 model
   - **[2.2 Curves](2.2-curves.md)** - circle, oval, arc, oval arc, bezier, poly-bezier
-  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns; borders. Flood fill is documented only in 1.54 — this page carries the removal note (RIP_FILL was removed from the language in 2.x and is ignored by clients) plus the filled-object replacement table
+  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns; borders. Flood fill is documented only in 1.54 - this page carries the removal note (RIP_FILL was removed from the language in 2.x and is ignored by clients) plus the filled-object replacement table
 - **3. Text**
   - **[3.0 Text Output & Fonts](3.0-text-output-and-fonts.md)** - graphics text, stroked fonts, the extended (outline) font style, font directions, text regions as carried forward
 - **4. Media & interactive objects**
@@ -44,7 +44,7 @@ Content-creator documentation for the 2.x generation. This page is the table of 
   - **[7.1 Data Tables](7.1-data-tables.md)** - table definition, cells, host/terminal data exchange
   - **[7.2 Data Backup Areas](7.2-data-backup-areas.md)** - off-screen save/restore areas
 - **9. Reference** _(pinned at 9 across all versions)_
-  - **[9.0 Command Reference](9.0-command-reference.md)** - every command across levels 0–9: level, code, arguments and field widths, spec revision introduced
+  - **[9.0 Command Reference](9.0-command-reference.md)** - every command across levels 0-9: level, code, arguments and field widths, spec revision introduced
   - **[9.1 Text Variable Reference](9.1-text-variable-reference.md)** - every variable with format, category and availability
   - **[9.2 Version Identification Reference](9.2-versions.md)** - all known 2.x identification strings (`RIPSCRIP020000` across every shipping engine) with per-binary provenance
   - **[9.3 Host Command & Control Character Reference](9.3-host-command-reference.md)** - consolidated terminal→host reference: control characters, host-bound responses, host-side ANSI control

@@ -1,18 +1,19 @@
 # TODO
 
-Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items move to [DONE.md](DONE.md)** — this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
+Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items move to [DONE.md](DONE.md)** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
 Likely next up: the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; the machine-readable command/variable tables.
 
-The **documentation restructure is complete** (2026-08-09) — `version/{1.54,2.30,3.1}/{ripscrip,techspecs}/` now carry the numbered two-layer hierarchy with the creator/implementer audience split, and the shared glossary lives at `version/GLOSSARY.md`. The structure and its principles are documented in [version/README.md](version/README.md); the work log is in [DONE.md](DONE.md).
+The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.30,3.1}/{ripscrip,techspecs}/` now carry the numbered two-layer hierarchy with the creator/implementer audience split, and the shared glossary lives at `version/GLOSSARY.md`. The structure and its principles are documented in [version/README.md](version/README.md); the work log is in [DONE.md](DONE.md).
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans — needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.1/ripscrip/9.0-command-reference.md`)
-- [ ] Annotate the conversions with errata and clarifications discovered from implementations — as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08, see DONE.md)
+- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.1/ripscrip/9.0-command-reference.md`)
+- [ ] Annotate the conversions with errata and clarifications discovered from implementations - as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08, see DONE.md)
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the source) based on actual implementation behavior (SyncTERM `ripper.c`, icy_parser_core), cited and marked as reconstructed
 - [ ] Grow `version/GLOSSARY.md` as new terms surface, and keep the canonical terms used consistently across pages
 - [ ] Port the link/anchor checker (`tools/check-links.py`, currently Python) to a Deno script; wire into CI so cross-links stay valid
+- [ ] **Decide the redaction policy for TeleGrafix contact details in `version/*/text/`.** The 2.30 document's contact block was removed 2026-08-10, but inline mentions survive in both files (`RIPScrip-1.54.txt:86`, `RIPScrip-2.0-alpha-4.txt:452` - "Communications, Inc. at (714) 379-2131") and 1.54's full contact block (lines 41-48) is still present. **Discuss:** redact consistently across all `text/` documents, or leave the 1.54 record intact as verbatim history
 
 ## RIPscrip 3.x research
 
@@ -24,7 +25,7 @@ The **documentation restructure is complete** (2026-08-09) — `version/{1.54,2.
 Rules in CONTRIBUTING.md: earliest-version placement, format-first/software-only, no VESA/driver detail, no `ripscrip/` duplication. Build-out completed 2026-08-08 (see DONE.md); follow-up candidates, ranked:
 
 - [ ] FastFont follow-ups (optional, post-decode): cross-validate metrics fields via an AllType 2.0 FF1→Type 1 round-trip; fold stem-hint record semantics into the spec if grid-fitted rendering is ever wanted
-- [ ] **RIPaint 1.52 interrogation** for tool-side formats (patterns/palettes/project files, if any beyond `.RIP`) — may glean useful information even though RIPterm 1.54 is the canonical implementation of the generation; no functional 1.52→1.54 delta is known and no later 1.xx RIPaint is believed to have existed (the next known RIPaint is the unrecovered 2.x)
+- [ ] **RIPaint 1.52 interrogation** for tool-side formats (patterns/palettes/project files, if any beyond `.RIP`) - may glean useful information even though RIPterm 1.54 is the canonical implementation of the generation; no functional 1.52→1.54 delta is known and no later 1.xx RIPaint is believed to have existed (the next known RIPaint is the unrecovered 2.x)
 - [ ] Low priority, preservation-only: full decode of the UI system `.FNT` glyph tables (host-invisible), and the `.MAC` keystroke-macro text format (`TYPE=EMULATION` files)
 
 ## Documentation website
@@ -39,7 +40,7 @@ Decisions made: **VitePress** for the site, **Deno** as the runtime for all gene
 
 ## Machine-readable spec & grammar
 
-- [ ] **Discuss:** the source-of-truth form — options: hand-maintained JSON/TOML command tables; a formal EBNF grammar for the wire syntax; or Rust types in a spec crate that export JSON. (These compose — e.g. EBNF for syntax + tables for the command inventory.)
+- [ ] **Discuss:** the source-of-truth form - options: hand-maintained JSON/TOML command tables; a formal EBNF grammar for the wire syntax; or Rust types in a spec crate that export JSON. (These compose - e.g. EBNF for syntax + tables for the command inventory.)
 - [ ] Command inventory: every command across 1.54 / 2.0a4 / 3.x with level, code, arguments (types/widths), and version introduced/changed
 - [ ] Text variable inventory (same treatment)
 - [ ] Grammar for the byte-level syntax: `!|` lines, delimiters, MegaNums, escapes (`\|`, `\\`), line continuation, embedded text
@@ -47,8 +48,8 @@ Decisions made: **VitePress** for the site, **Deno** as the runtime for all gene
 
 ## Reference test corpus
 
-- [ ] **Discuss:** layout — top-level `corpus/` shared by docs/tests/crates, per-version `version/<v>/samples/`, or fixtures inside the Rust crates
-- [ ] **Discuss:** encoding-variant extensions — `.rip`/`.ans` are assumed **CP437** (the DOS terminal representation) and stored byte-for-byte; decide on future extensions for other encodings (e.g. `.utf8.rip` / `.utf8.ans`, or others) and how tooling should detect/declare encoding
+- [ ] **Discuss:** layout - top-level `corpus/` shared by docs/tests/crates, per-version `version/<v>/samples/`, or fixtures inside the Rust crates
+- [ ] **Discuss:** encoding-variant extensions - `.rip`/`.ans` are assumed **CP437** (the DOS terminal representation) and stored byte-for-byte; decide on future extensions for other encodings (e.g. `.utf8.rip` / `.utf8.ans`, or others) and how tooling should detect/declare encoding
 - [ ] Collect real-world `.RIP` art and BBS screens (art packs, archived BBS distributions), with provenance notes
 - [ ] Extract sample icons, fonts, and scripts from original TeleGrafix distributions (see Reference materials)
 - [ ] Author targeted conformance scripts per command/feature
@@ -60,21 +61,21 @@ Goal: reusable, wasm-capable crates (wasm and/or cdylib for bindings from other 
 
 - [ ] **Discuss:** workspace layout and crate naming (e.g. `crates/` with `ripscrip-parse`, `ripscrip-render`, `ripscrip-wasm`?), and scope sequencing (parser → renderer → terminal integration?)
 - [ ] Cargo workspace scaffold
-- [ ] Parser crate — target RIPscrip 1.54 first; emit a typed command stream
-- [ ] Renderer crate — EGA-faithful rasterization (fills, write modes, fonts)
+- [ ] Parser crate - target RIPscrip 1.54 first; emit a typed command stream
+- [ ] Renderer crate - EGA-faithful rasterization (fills, write modes, fonts)
 - [ ] wasm bindings + minimal browser demo; cdylib C ABI for other languages
 - [ ] Conformance harness driven by the test corpus and machine-readable spec
 - [ ] Study prior art: `icy_tools/crates/icy_parser_core/src/rip/`, SyncTERM `ripper.c`, PabloDraw `Source/Pablo/Formats/Rip/`
 
 ## History & ecosystem
 
-- [ ] **Discuss:** remaining scope — a catalog of implementations past and present (clients, BBS packages, doors, editors, libraries) with status; preserved press articles/FAQs/adverts; a gallery of notable RIP scenes; how it all feeds the website
+- [ ] **Discuss:** remaining scope - a catalog of implementations past and present (clients, BBS packages, doors, editors, libraries) with status; preserved press articles/FAQs/adverts; a gallery of notable RIP scenes; how it all feeds the website
 - [ ] Deepen HISTORY.md as sources surface: Boardwatch scans, BBS Dev News #46 full text, authoritative USPTO TSDR trademark check
 
 ## Reference materials (`~/src/rip-tools/`)
 
-- [ ] RIPdraw — not yet located in any archive; keep hunting
-- [ ] Other era tools worth having (third-party RIP editors, BBS-side RIP doors/menus) as discovered — the archived `ftp.telegrafix.com` index pages on the Wayback Machine list more candidates
+- [ ] RIPdraw - not yet located in any archive; keep hunting
+- [ ] Other era tools worth having (third-party RIP editors, BBS-side RIP doors/menus) as discovered - the archived `ftp.telegrafix.com` index pages on the Wayback Machine list more candidates
 - [ ] Extract sample scripts into the test corpus (once its layout is decided)
 - [ ] Note DOS emulation setup for running them (DOSBox-X config) if/when behavioral testing is needed
 
@@ -85,12 +86,12 @@ Goal: reusable, wasm-capable crates (wasm and/or cdylib for bindings from other 
 
 ## Open questions (rollup)
 
-Collected from the sections above — each needs a short discussion:
+Collected from the sections above - each needs a short discussion:
 
 1. Priority/sequencing across areas
 2. Test corpus layout
 3. Machine-readable spec form (tables / EBNF / Rust-as-source)
-4. History & ecosystem remaining scope (implementations catalog, press archive, gallery) — location resolved: `version/`
+4. History & ecosystem remaining scope (implementations catalog, press archive, gallery) - location resolved: `version/`
 5. Website deployment target and publishing strategy
 6. Rust workspace layout, crate naming, and scope sequence
 7. Encoding-variant extensions for corpus files (`.rip`/`.ans` = CP437 for now; `.utf8.rip`/`.utf8.ans` or similar for future UTF-8 variants?)

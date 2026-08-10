@@ -1,8 +1,8 @@
-# RIPscrip 1.54 — Language Reference
+# RIPscrip 1.54 - Language Reference
 
-**"Remote Imaging Protocol" — Revision 1.54** (July 19th, 1993), TeleGrafix Communications, Inc. — the widely deployed classic standard, fully documented by TeleGrafix's published specification and implemented by RIPterm 1.54. The verbatim source document is preserved as [`RIPScrip-1.54.txt`](../../1.54/text/RIPScrip-1.54.txt); this edition reorganizes it and, where the spec is wrong or silent, corrects it in clearly-marked editor's notes.
+**"Remote Imaging Protocol" - Revision 1.54** (July 19th, 1993), TeleGrafix Communications, Inc. - the widely deployed classic standard, fully documented by TeleGrafix's published specification and implemented by RIPterm 1.54. The verbatim source document is preserved as [`RIPScrip-1.54.txt`](../../1.54/text/RIPScrip-1.54.txt); this edition reorganizes it and, where the spec is wrong or silent, corrects it in clearly-marked editor's notes.
 
-Content-creator documentation for RIPscrip 1.54, in a two-layer numbered structure ordered by learning concerns. This page is the table of contents: each entry links the page and gives a one-line scope. Binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md); shared terminology is defined in the [glossary](../../GLOSSARY.md).
+_Content-creator reference; binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md), shared terminology in the [glossary](../../GLOSSARY.md)._
 
 ## Contents
 
@@ -16,11 +16,11 @@ Content-creator documentation for RIPscrip 1.54, in a two-layer numbered structu
   - **[2.0 Colors & Attributes](2.0-colors-and-attributes.md)** - the 16-color EGA palette, color selection, background/foreground attributes, write modes
   - **[2.1 Lines](2.1-lines.md)** - pixel, line, polyline; line patterns and thickness
   - **[2.2 Curves](2.2-curves.md)** - circle, oval, arc, oval arc, bezier
-  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns (stock and user-defined); flood fill (documented here only — removed from the language in later generations)
-- **3. Text** _(own chapter — sparse in 1.54, but text and font structures grow substantially in later generations)_
-  - **[3.0 Text Output & Fonts](3.0-text-output-and-fonts.md)** - graphics-window text, font styles 0–10 (bitmap and stroked), sizes, directions
+  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns (stock and user-defined); flood fill (documented here only - removed from the language in later generations)
+- **3. Text** _(own chapter - sparse in 1.54, but text and font structures grow substantially in later generations)_
+  - **[3.0 Text Output & Fonts](3.0-text-output-and-fonts.md)** - graphics-window text, font styles 0-10 (bitmap and stroked), sizes, directions
   - **[3.1 Text Regions](3.1-text-regions.md)** - defining and using text regions within the graphics window
-- **4. Media & interactive objects** _(no audio **files** in 1.54 — file-based audio begins in the 2.x generation; speaker tone generation exists here)_
+- **4. Media & interactive objects** _(no audio **files** in 1.54 - file-based audio begins in the 2.x generation; speaker tone generation exists here)_
   - **[4.0 Images & Icons](4.0-images-and-icons.md)** - clipboard copy/paste (scissors), loading and stamping icon files, masks and hot icons as content roles
   - **[4.1 Mouse Fields](4.1-mouse-fields.md)** - clickable regions, host-command emission, invert/reset behavior
   - **[4.2 Buttons](4.2-buttons.md)** - button styles, faces (plain/icon/clipboard), groups, hot icons
@@ -35,7 +35,7 @@ Content-creator documentation for RIPscrip 1.54, in a two-layer numbered structu
 - **6. Authoring & files**
   - **[6.0 Writing .RIP Files](6.0-writing-rip-files.md)** - authoring-level file conventions: line length, continuation, mixing ANSI and text, prologue conventions, CP437
   - **[6.1 Content File Roles](6.1-content-file-roles.md)** - what `.ICN`/`.MSK`/`.HIC` files are for and how hosts deliver them
-  - **[6.2 Asset Delivery & Storage](6.2-asset-delivery-and-storage.md)** - how a host gets assets onto the terminal: RIP_FILE_QUERY staleness check, then RIP_ENTER_BLOCK_MODE download; where files land — the system connection's directory when one is configured for the host (downloads go there), else the default `ICONS\`; lookup order is connection directory first, then the default ("file override")
+  - **[6.2 Asset Delivery & Storage](6.2-asset-delivery-and-storage.md)** - how a host gets assets onto the terminal: RIP_FILE_QUERY staleness check, then RIP_ENTER_BLOCK_MODE download; where files land - the system connection's directory when one is configured for the host (downloads go there), else the default `ICONS\`; lookup order is connection directory first, then the default ("file override")
 - **9. Reference** _(pinned at 9 across all versions)_
   - **[9.0 Command Reference](9.0-command-reference.md)** - every command: level, code, arguments and field widths, one-line purpose, section cross-reference
   - **[9.1 Text Variable Reference](9.1-text-variable-reference.md)** - every text variable with format and availability
