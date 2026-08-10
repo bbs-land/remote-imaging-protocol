@@ -2,6 +2,10 @@
 
 This repository preserves and extends the Remote Imaging Protocol (RIPscrip) specifications. This document records the technical conventions used while generating and maintaining the documentation, so that new material stays consistent with what exists.
 
+# Agents
+
+When running parallel worker agents, limit the number of parallel agents to 3 unless told otehrwise. You should also use a `WORKING.md` file in the project directory to coordinate such work. Tracking a work summary, testing details if any as well as the immediate task list, list of agents as they start, progress and finish a given task. This should allow for relatively easy continuation of broken work, or incomplete work due to a session window limit.
+
 ## Checkout & repository setup
 
 This repo uses **Git LFS** for binary content - install it and enable it before (or right after) cloning:
