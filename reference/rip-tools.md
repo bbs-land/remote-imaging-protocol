@@ -14,14 +14,28 @@ Peer repositories cloned for reference:
 | `~/src/rip-tools/pablodraw/` | https://github.com/cwensley/pablodraw | C# | ANSI/RIPscrip art editor/viewer (maintained fork of blocktronics/pablodraw). |
 | `~/src/rip-tools/fTelnet/` | https://github.com/rickparrish/fTelnet | TypeScript | HTML5 WebSocket BBS client with experimental RIP support. |
 | `~/src/rip-tools/qodem/` | https://codeberg.org/AutumnMeowMeow/qodem | C | Qmodem clone; detects and discards the RIP auto-sense (`CSI !`) - reference for the detection handshake only. |
+| `~/src/rip-tools/riplib/` | https://github.com/BradHawthorne/riplib | C99 | **RIPlib** - a portable RIPscrip rendering/parser core (MIT, © 2026 SimVU / Brad Hawthorne), extracted from the A2GSPU RP2350 firmware. A parallel, actively developed re-implementation covering v1.54 through v3.0 plus its own **v3.1/v3.2 extensions** (§A2G). Ships its own segmented specification under `docs/spec/`. **Active - track `main`** (see below). |
 
 Key entry points into the RIP code:
 
 - `sbbs/src/syncterm/ripper.c` - the entire SyncTERM RIP implementation (~19,000 lines).
 - `icy_tools/crates/icy_parser_core/src/rip/` - dedicated Rust RIP parser, with test scripts in `tests/rip/` and sample data in `benches/rip_data/`.
 - `pablodraw/Source/Pablo/Formats/Rip/` - C# RIP format implementation (commands, rendering, editing).
+- `riplib/docs/spec/` - RIPlib's own 12-segment specification; `06-v31-extensions.md` and `06a-v32-extensions.md` are the §A2G extension documents, `11-dll-deviations.md` its record of where RIPSCRIP.DLL 3.0.7 was found to deviate from the published behavior. Parser and renderer live in `riplib/src/ripscrip.c` and `riplib/src/drawing.c`.
 
 Clones are shallow (`git clone --depth 1`); run `git fetch --unshallow` in a repo if its history is needed. When adding a new reference repo, clone it into `~/src/rip-tools/` and add a row to this table.
+
+### RIPlib is a moving target - pull `main` regularly
+
+Unlike the other reference repositories (all historical or slow-moving), **RIPlib is under active development** and its specification documents are still changing. It is cloned with **full history** on the default branch **`main`**, not shallow. Refresh it at the start of any work session that touches the [3.0-riplib](../version/3.0-riplib/README.md), [3.1-riplib](../version/3.1-riplib/README.md) or [3.2-riplib](../version/3.2-riplib/README.md) trees:
+
+```sh
+git -C ~/src/rip-tools/riplib pull --ff-only origin main
+```
+
+Then re-check `docs/spec/06-v31-extensions.md`, `docs/spec/06a-v32-extensions.md`, `docs/spec/07-variables.md`, `docs/spec/10-appendices.md` (§A.1 command table and §A.8 version history), `docs/spec/11-dll-deviations.md` (the deviation register, and the natural counterpart to the comparison tree) and `CHANGELOG.md` for changes, and update the mirrored delta pages here. Each `version/3.x-riplib/` README records the upstream commit it was last reconciled against, so `git -C ~/src/rip-tools/riplib log --oneline <recorded-sha>..main -- docs/spec` gives the exact diff to review.
+
+**Three trees, two purposes.** [`version/3.0-riplib/`](../version/3.0-riplib/README.md) records where RIPlib's account of RIPscrip 3.0 conflicts with this repository's - questions of fact, resolvable by evidence. [`version/3.1-riplib/`](../version/3.1-riplib/README.md) and [`version/3.2-riplib/`](../version/3.2-riplib/README.md) document RIPlib's own extensions. Findings where RIPlib is right and this repository was incomplete go into the canonical pages instead, with attribution - see [`version/2.0/techspecs/2.1-fill-defects.md`](../version/2.0/techspecs/2.1-fill-defects.md).
 
 ## Original binaries & documents (`~/src/rip-tools/artifacts/`)
 

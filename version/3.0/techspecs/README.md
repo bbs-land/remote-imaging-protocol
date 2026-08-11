@@ -7,7 +7,8 @@ Original byte-level documentation of the binary formats shipped with **RIPtel Vi
 ## Contents
 
 - **1. Parsing & wire protocol** - _no 3.x-specific pages; the v2.0 chapter applies (a 3.x corpus-conventions delta would slot in at `1.0` if evidence warrants one)_
-- **2. Rendering semantics** - _no 3.x-specific pages; the v2.0 chapter applies_
+- **2. Rendering semantics** _(delta from v2.0)_
+  - **[2.0 Fill Defects (delta)](2.0-fill-defects-delta.md)** - the pie/chord fill leak and the never-applied patterned-flood brush were found by disassembling the 3.0 driver itself, so this is where they are directly evidenced; and the 3.x skewed-oval primitives are new commands built on the defective construction, so the generation widens the affected command set rather than merely inheriting it
 - **3. File formats** _(deltas from v2.0)_
   - **[3.2 FastFont Additions (.RFF / atf.cfg)](3.2-fastfont-additions.md)** - the three added families (BRUSH, EUREKA, OAKLAND), style-table observations, the regenerated atf.cfg
   - **[3.3 MicroANSI Delta (RIPscrip.maf)](3.3-microansi-maf-delta.md)** - new resolution set, cleaned directory, revised artwork vs the RIPterm 2.30 containers

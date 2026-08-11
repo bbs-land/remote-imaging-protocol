@@ -36,6 +36,8 @@ The language was freely licensed for implementation (though not public domain - 
 | **[1.5x](version/1.54/ripscrip/README.md)** | July 1993 | The widely deployed classic standard: EGA 640×350×16 graphics, drawing primitives, fills, fonts, icons, mouse fields, buttons, and text variables. [RIPScrip-1.54.txt](version/1.54/text/RIPScrip-1.54.txt) |
 | **[2.x](version/2.0/ripscrip/README.md)** | December 1994 | A major proposed redesign (never finalized): drawing ports, data tables and backup areas, world coordinates, 256-color and direct-RGB modes, audio playback, DIB bitmaps, and an expanded multi-level command set. [RIPScrip-2.0-alpha-4.txt](version/2.0/text/RIPScrip-2.0-alpha-4.txt) |
 | **[3.x](version/3.0/ripscrip/README.md)** | December 1996 | A technical white paper (by Jeff Reeder) summarizing the next-generation architecture and goals - resolution independence, Internet/WWW applications, and multimedia - rather than a full command reference. [White paper](version/3.0/text/RIPScrip-3.x-technical-whitepaper.txt) |
+| **[3.0-riplib](version/3.0-riplib/README.md)** | - | **Comparison record.** Where [RIPlib](https://github.com/BradHawthorne/riplib)'s account of RIPscrip 3.0 conflicts with the reconstruction above - opcode assignments, write-mode numbering, escape rules - stated with both sides' evidence, for discussion between the two projects. |
+| **[3.1-riplib](version/3.1-riplib/README.md)** · **[3.2-riplib](version/3.2-riplib/README.md)** | 2026 | **Not TeleGrafix.** Unofficial extensions defined and shipped by RIPlib, a parallel effort at a portable C99 RIPscrip core - §A2G.1-7 (`RIPSCRIP031001`) and §A2G.8-13 (`RIPSCRIP032001`). Documented here as **additions and differences only**, each checked against the 3.x record. |
 | **[next](version/next/README.md)** | - | Placeholder for future, unofficial enhancements to the specification - modern image/audio formats, font handling, and UTF-8 - candidates for a 3.5x/4.x revision. |
 
 The Markdown editions are split into linked sections suitable for browsing and for generating a documentation website.
@@ -47,6 +49,8 @@ Other than the original `.txt` documents preserved under `version/<v>/text/`, th
 - **1.54 / 1.5x** is fixed history - fully documented by the published specification, converted to Markdown from the original text.
 - **2.x** is somewhat unknown - the published record stops at the 2.00 ALPHA 4 draft, while the shipping 2.2-era engine (RIPterm 2.20/2.30) moved beyond it; recovering that era needs further research and manual work.
 - **3.x** is entirely a reconstruction from available sources and materials (RIPtel 3.1, its help files and demo corpus, and SyncTERM), with per-claim evidence tags.
+- **3.0-riplib** is a comparison record rather than a specification: the places where a parallel reconstruction effort and this one describe RIPscrip 3.0 differently, with both sides' evidence, so they can be settled as questions of fact.
+- **3.1-riplib / 3.2-riplib** are not part of the TeleGrafix record at all - they document a third party's 2026 extensions to the language, as deltas.
 
 See the [version overview](version/README.md) for details.
 
@@ -70,6 +74,14 @@ version/
     ripscrip/   Reconstructed 3.x language reference with per-claim evidence tags
     techspecs/  Deltas from the 2.x formats (FastFont additions, MicroANSI, storage model)
     text/       RIPscrip 3.0 technical white paper (original text)
+  3.0-riplib/   Where RIPlib's RIPscrip 3.0 conflicts with the 3.0 record above
+    ripscrip/   Opcode assignments and parameter semantics (incl. write-mode numbering)
+    techspecs/  Parsing rules and fill-pattern mapping
+  3.1-riplib/   Unofficial RIPlib §A2G.1-7 extensions - additions/differences only
+    ripscrip/   Language-visible additions (write modes, text direction, font attrs, port flags)
+    techspecs/  Implementation additions (parsing, fill patterns, FPU rendering, palette mapping)
+  3.2-riplib/   Unofficial RIPlib §A2G.8-13 extensions - additions/differences only
+    ripscrip/   Language-visible additions (state stack, radial gradient, <<DEBUG>>, variables)
   baseline/
     techspecs/  Non-RIP baseline references: ANSI/VT-x emulation in RIPterm/RIPtel, modern terminal comparison
   next/         Future, unofficial enhancement proposals (3.5x/4.x candidates)

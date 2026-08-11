@@ -18,7 +18,7 @@ Content-creator documentation for the 2.x generation. Chapter numbers align with
   - **[2.0 Color Modes & Palettes](2.0-color-modes-and-palettes.md)** - 16-color, 256-color and direct-RGB modes; the 256-entry palette; palette commands; write modes
   - **[2.1 Lines](2.1-lines.md)** - pixel, line, polyline; line patterns and thickness as they extend the 1.54 model
   - **[2.2 Curves](2.2-curves.md)** - circle, oval, arc, oval arc, bezier, poly-bezier
-  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns; borders. Flood fill is documented only in 1.54 - this page carries the removal note (RIP_FILL was removed from the language in 2.x as unreliable across resolutions) plus the filled-object replacement table
+  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns; borders; RIP_FILL, marked **[deprecated](../techspecs/2.1-fill-defects.md)**, with the filled-object replacements
 - **3. Text**
   - **[3.0 Text Output & Fonts](3.0-text-output-and-fonts.md)** - graphics text, stroked fonts, the extended (outline) font style, font directions, text regions as carried forward
 - **4. Media & interactive objects**

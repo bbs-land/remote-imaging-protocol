@@ -33,7 +33,7 @@ Underlying research (full data, byte layouts, opcode census): [script census](..
   - **[2.0 Color Modes & Palettes](2.0-color-modes-and-palettes.md)** - the color system as shipped in RIPtel
   - **[2.1 Lines](2.1-lines.md)** - pixel, line, polyline; line patterns and thickness
   - **[2.2 Curves](2.2-curves.md)** - circle, oval, arc, oval arc, bezier, plus the 3.x skewed-oval family from the script census
-  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns. Carries the flood-fill removal note as well: RIP_FILL is documented only in v1.54, removed since the 2.x generation and still absent from 3.x (no `RIP_Fill` in the RIPSCRIP.HLP inventory, never used in the RIPtel corpus), while filled shapes continue to work; SyncTERM's legacy 1.54 flood behavior is noted as a compatibility divergence
+  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns; RIP_FILL, marked **[deprecated](../techspecs/2.0-fill-defects-delta.md)** - missing from the RIPSCRIP.HLP inventory and the RIPtel corpus, yet still a live codepath in RIPSCRIP.DLL 3.0.7, with SyncTERM's legacy behavior noted as a compatibility divergence
 - **3. Text**
   - **[3.0 Text Output & Fonts](3.0-text-output-and-fonts.md)** - graphics text, outline fonts (eight RFF families)
   - **[3.1 Column Text System](3.1-column-text-system.md)** _(new in this generation)_ - the column-based text layout system discovered in the RIPtel corpus

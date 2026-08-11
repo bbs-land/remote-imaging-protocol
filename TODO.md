@@ -16,6 +16,30 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 - [ ] **Decode `char_rot2`, the unconfirmed sub-field in RIP_EXTENDED_FONT_STYLE's shipped 26-character block** (`version/2.0/ripscrip/3.0-text-output-and-fonts.md`). The 2.30 wire layout was reconstructed from 18 `!|y` uses in the shipping RIPterm 2.30 install and corroborated against six field names in 2.30's own `RIPTERM.HLP` error strings, but one slot varies independently of the adjacent `shadow` field across the corpus in a way that fits neither name, so it is marked unconfirmed rather than asserted. Settle it from a wider `!|y` corpus, `RIPTERM.EXE` parse code, or the RIP 2 C Library manual once OCR'd
 - [ ] **Decide the redaction policy for TeleGrafix contact details in `version/*/text/`.** The 2.0 document's contact block was removed 2026-08-10, but inline mentions survive in both files (`RIPScrip-1.54.txt:86`, `RIPScrip-2.0-alpha-4.txt:452` - "Communications, Inc. at (714) 379-2131") and 1.54's full contact block (lines 41-48) is still present. **Discuss:** redact consistently across all `text/` documents, or leave the 1.54 record intact as verbatim history
 
+## RIPlib alignment (`version/3.0-riplib/`, `3.1-riplib/`, `3.2-riplib/`)
+
+[RIPlib](https://github.com/BradHawthorne/riplib) is a parallel, actively developed portable C99 RIPscrip core. It reconstructs RIPscrip 3.0 from **disassembly of `RIPSCRIP.DLL` 3.0.7**, where this repository works from the RIPtel 3.1 help files and the 116-file demo corpus - complementary evidence, independently developed, not yet aligned. It also defines its own v3.1 (§A2G.1-7) and v3.2 (§A2G.8-13) extensions. Reconciled against riplib `main` @ `3e05ecb` (2026-06-30).
+
+**Baseline conflicts** (questions of fact about RIPscrip 3.0, in [`version/3.0-riplib/`](version/3.0-riplib/README.md)) - ranked by impact:
+
+- [ ] **Write-mode numbering** - the priority item. RIPlib assigns `|W01` = OR and `|W03` = XOR; 1.54, the 2.00a4/3.x table, 44 corpus uses, SyncTERM **and RIPlib's own `§DEAD.3`** all put XOR at `01` and OR at `02`. `|W01` is the common non-copy mode, so existing content renders wrong and nothing detects it ([page](version/3.0-riplib/ripscrip/2.0-write-modes.md))
+- [ ] **`|J` and `|f`** - RIPlib assigns them to SAVE_ICON and FONT_ATTRIB; here they are RIP_SET_BASE_MATH and RIP_SET_WORLD_FRAME, and 90 of 116 corpus scenes open `!|J10|n2000|M08|fZKQO`. One `grep` of any demo script settles the wire question ([page](version/3.0-riplib/ripscrip/9.0-command-inventory-comparison.md))
+- [ ] **Establish the provenance of RIPlib's punctuation-block names** (`&`, `-`, `+`, `[`, `]`, `_`, `;`, `<`) - here these are the 3.x skewed-oval family plus RIP_MARKER and RIP_POLY_POLYGON, named verbatim from TeleGrafix's own NEWCMDS.RIP comments. Same question for `|K` (filled rectangle vs kill-mouse-extended)
+- [ ] **Reclassify `|!`, `|(`, `|)`, `|1R`** upstream - RIPlib lists them as its own extensions; all four are inherited TeleGrafix commands with matching behavior. Zero-cost correction
+- [ ] **Verify RIPlib's baseline commands this repository cannot corroborate** - chiefly `RIP_GRADIENT_FILL` (`|28`), `RIP_FONT_ATTRIB` (`|f`) and the Level-2 digit opcodes, absent from the help inventory, the 2.00a4 draft and the corpus. Dumping the DLL's dispatch table and diffing it against the corpus opcode census would settle most of the items above in one pass
+- [ ] **Text-escape attribution and rule 12** - `\!` is specification since 1.54, not a RIPlib extension; the SOH/STX alternate introducers are not implemented upstream, which is also why the v3.1 CSI trigger relaxation exists ([page](version/3.0-riplib/techspecs/1.0-stream-parsing-and-escapes.md))
+
+**Extension review** ([`3.1-riplib/`](version/3.1-riplib/README.md), [`3.2-riplib/`](version/3.2-riplib/README.md)):
+
+- [ ] **Raise the text-variable name collisions** - `$COMPAT$`, `$COPY$`, `$PROT$`, `$YEAR$` (v3.1) and `$HOUR$`, `$DOW$`, `$MONTH$` (v3.2) take names that denote different, corpus-attested things in 2.x/3.x. Every value RIPlib wants already has a canonical name (`$MHOUR$`, `$WDAY$`, `$MONTHNUM$`, `$DAY$`, `$FYEAR$`), so most of this is renameable at no cost to the features
+- [ ] Decide whether any §A2G item is worth adopting into [`version/next/`](version/next/README.md) as a candidate for a future 3.5x/4.x revision (the state stack and the layout/introspection variables are the strongest candidates; both would need names that do not collide)
+
+**Upkeep:**
+
+- [ ] **Pull `git -C ~/src/rip-tools/riplib pull --ff-only origin main` at the start of any session touching these trees**, re-check `docs/spec/06-v31-extensions.md`, `06a-v32-extensions.md`, `07-variables.md`, `10-appendices.md` (§A.1, §A.8), `11-dll-deviations.md` and `CHANGELOG.md`, and update the deltas + the recorded commit in each tree's README (procedure: [reference/rip-tools.md](reference/rip-tools.md#riplib-is-a-moving-target---pull-main-regularly))
+- [ ] Confirm the fill defects adopted from RIPlib's disassembly (`§BUG.6` pie/chord leak, `§DEAD.7` patterned flood brush) also hold in a **2.x-era** `RIPTERM.EXE` - currently generalized backward from the 3.0 driver on engine-lineage grounds, and flagged as such in [`version/2.0/techspecs/2.1-fill-defects.md`](version/2.0/techspecs/2.1-fill-defects.md)
+- [ ] Re-check the other RIP_FILL claims that rest on 3.x help/corpus **silence**. `§DEAD.7` showed the 3.0 driver still implements flood fill, correcting a "not implemented at all" inference on [3.0's RIP_FILL entry](version/3.0/ripscrip/2.3-shapes-and-fills.md#rip_fill) and in [errata.md](version/2.0/ripscrip/errata.md#rip_fill-declared-removed-but-still-implemented) (which also notes the stray-`!|F` behavior was undetermined - it is now determined). Other claims derived the same way may need the same treatment
+
 ## RIPscrip 3.x research
 
 - [ ] Inventory all known 3.0-era material beyond the white paper (RIPtel, WebRunner, TeleGrafix press releases, beta announcements, Usenet/FAQ posts)
