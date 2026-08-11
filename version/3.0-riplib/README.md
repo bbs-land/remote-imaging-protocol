@@ -41,6 +41,8 @@ The `-riplib` suffix follows the vendor-tree convention in [CONTRIBUTING.md](../
 
 ## Contents
 
+**[Conflict summary (`CONFLICTS.md`)](CONFLICTS.md)** - every clear conflict across this tree and the two extension trees, numbered and condensed to a line or two each, for citing in discussion upstream. Start here; the pages below carry the evidence.
+
 **[Language-level conflicts (`ripscrip/`)](ripscrip/README.md)**
 
 - **[2.0 Write Mode Numbering](ripscrip/2.0-write-modes.md)** - **the priority item.** Which numbers `|W` assigns to XOR, OR and AND. RIPlib's own DLL analysis agrees with this repository's table; a separate reading of the specification led it to renumber anyway
