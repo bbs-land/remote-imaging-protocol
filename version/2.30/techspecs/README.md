@@ -1,4 +1,4 @@
-# RIPscrip 2.30 - Technical Specifications
+# RIPscrip 2.00 - Technical Specifications
 
 Original byte-level documentation of the binary file formats and implementation details of the RIPscrip 2.x product family - RIPterm Professional 2.0 through the final **RIPterm 2.30** release, which is treated throughout as the definitive reference. These are original techspecs, not spec conversions: every reverse-engineered claim cites the ALPHA 4 specification section, a recovered document, or an artifact path with observed bytes, and details that could not be verified are marked as such. Note that none of the open-source RIP reference implementations (SyncTERM `ripper.c`, icy_tools, RIPtermJS, PabloDraw) parses the 2.x binary containers documented here - they implement the 1.54 wire language - so these pages are currently the only implementer documentation for these formats.
 
