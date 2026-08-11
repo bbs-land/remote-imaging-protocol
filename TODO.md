@@ -1,15 +1,15 @@
 # TODO
 
-Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items move to [DONE.md](DONE.md)** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
+Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
 Likely next up: the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; the machine-readable command/variable tables.
 
-The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,3.0}/{ripscrip,techspecs}/` now carry the numbered two-layer hierarchy with the creator/implementer audience split, and the shared glossary lives at `version/glossary.md`. The structure and its principles are documented in [version/README.md](version/README.md); the work log is in [DONE.md](DONE.md).
+The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,3.0}/{ripscrip,techspecs}/` now carry the numbered two-layer hierarchy with the creator/implementer audience split, and the shared glossary lives at `version/glossary.md`. The structure and its principles are documented in [version/README.md](version/README.md).
 
 ## Specifications (Markdown reference editions)
 
 - [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.0/ripscrip/9.0-command-reference.md`)
-- [ ] Annotate the conversions with errata and clarifications discovered from implementations - as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08, see DONE.md)
+- [ ] Annotate the conversions with errata and clarifications discovered from implementations - as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08)
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the source) based on actual implementation behavior (SyncTERM `ripper.c`, icy_parser_core), cited and marked as reconstructed
 - [ ] Grow `version/glossary.md` as new terms surface, and keep the canonical terms used consistently across pages
 - [ ] Port the link/anchor checker (`tools/check-links.py`, currently Python) to a Deno script; wire into CI so cross-links stay valid
@@ -23,7 +23,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Technical specifications (`version/<v>/techspecs/`)
 
-Rules in CONTRIBUTING.md: earliest-version placement, format-first/software-only, no VESA/driver detail, no `ripscrip/` duplication. Build-out completed 2026-08-08 (see DONE.md); follow-up candidates, ranked:
+Rules in CONTRIBUTING.md: earliest-version placement, format-first/software-only, no VESA/driver detail, no `ripscrip/` duplication. Build-out completed 2026-08-08; follow-up candidates, ranked:
 
 - [ ] FastFont follow-ups (optional, post-decode): cross-validate metrics fields via an AllType 2.0 FF1→Type 1 round-trip; fold stem-hint record semantics into the spec if grid-fitted rendering is ever wanted
 - [ ] **RIPaint 1.52 interrogation** for tool-side formats (patterns/palettes/project files, if any beyond `.RIP`) - may glean useful information even though RIPterm 1.54 is the canonical implementation of the generation; no functional 1.52→1.54 delta is known and no later 1.xx RIPaint is believed to have existed (the next known RIPaint is the unrecovered 2.x)
