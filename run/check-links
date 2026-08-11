@@ -1,0 +1,183 @@
+#!/usr/bin/env -S deno run --allow-read
+/**
+ * Link and anchor checker for the Markdown docs.
+ *
+ * Validates every [text](path#anchor) link in the given directories (or the
+ * repo's standard doc trees when run with no arguments): the target file must
+ * exist and the #anchor must match a heading slug in the target (GitHub slug
+ * rules: lowercase, spaces to '-', punctuation stripped, underscores kept,
+ * '$' stripped - em dashes produce double hyphens). Fenced code blocks are
+ * skipped. Exit code 1 if any link is broken.
+ *
+ * Ported from the original tools/check-links.py (2026-08-11); behavior and
+ * output are unchanged. Uses node:* APIs only, so it runs under Deno, Node
+ * and Bun alike - see CONTRIBUTING.md, "Project scripts (`run/`)".
+ */
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { posix as path } from "node:path";
+import process from "node:process";
+
+const DEFAULT_DIRS = ["."];
+const SKIP_DIRS = new Set([".git", "node_modules", "temp"]);
+
+/** GitHub heading -> anchor slug. */
+function slugify(heading: string): string {
+  return heading
+    .replace(/[*`\[\]()]/g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}_\s-]/gu, "")
+    .replace(/ /g, "-");
+}
+
+/** File contents as lines, with any CR stripped so CRLF files behave. */
+function linesOf(file: string): string[] {
+  return readFileSync(file, "utf8").split("\n").map((l) =>
+    l.replace(/\r$/, "")
+  );
+}
+
+const anchorCache = new Map<string, Set<string>>();
+
+/** Every heading slug in a Markdown file, ignoring fenced code blocks. */
+function anchorsOf(file: string): Set<string> {
+  const cached = anchorCache.get(file);
+  if (cached) return cached;
+
+  const anchors = new Set<string>();
+  let fenced = false;
+  for (const line of linesOf(file)) {
+    if (line.startsWith("```")) {
+      fenced = !fenced;
+      continue;
+    }
+    if (fenced) continue;
+    const m = /^(#{1,6})\s+(.*)/.exec(line);
+    if (m) anchors.add(slugify(m[2]));
+  }
+
+  anchorCache.set(file, anchors);
+  return anchors;
+}
+
+/** Every *.md directly in `dir` (non-recursive), in sorted order. */
+function markdownIn(dir: string): string[] {
+  return readdirSync(dir, { withFileTypes: true })
+    .filter((e) =>
+      e.isFile() && !e.name.startsWith(".") && e.name.endsWith(".md")
+    )
+    .map((e) => e.name)
+    .sort();
+}
+
+/** Every *.md under `dir`, recursively, in sorted order. */
+function markdownUnder(dir: string): string[] {
+  const found: string[] = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith(".") || SKIP_DIRS.has(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...markdownUnder(full));
+    else if (entry.name.endsWith(".md")) found.push(full);
+  }
+  return found.sort();
+}
+
+function isDir(p: string): boolean {
+  try {
+    return statSync(p).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+function exists(p: string): boolean {
+  try {
+    statSync(p);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function isFile(p: string): boolean {
+  try {
+    return statSync(p).isFile();
+  } catch {
+    return false;
+  }
+}
+
+/** Report every broken link in `files`; returns the number of bad links. */
+function check(files: string[]): number {
+  let bad = 0, total = 0;
+
+  for (const file of files) {
+    let fenced = false;
+    let lineNo = 0;
+
+    for (let line of linesOf(file)) {
+      lineNo++;
+      if (line.startsWith("```")) {
+        fenced = !fenced;
+        continue;
+      }
+      if (fenced) continue;
+
+      line = line.replace(/`[^`]*`/g, ""); // ignore links inside inline code
+
+      for (const m of line.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
+        const target = m[1];
+        total++;
+        if (/^(https?:\/\/|mailto:)/.test(target)) continue;
+
+        const hash = target.indexOf("#");
+        const rel = hash === -1 ? target : target.slice(0, hash);
+        const frag = hash === -1 ? "" : target.slice(hash + 1);
+        const resolved = rel
+          ? path.normalize(path.join(path.dirname(file), rel))
+          : file;
+
+        if (!exists(resolved)) {
+          console.log(`${file}:${lineNo} MISSING FILE -> ${target}`);
+          bad++;
+          continue;
+        }
+        if (frag && isFile(resolved) && !anchorsOf(resolved).has(frag)) {
+          console.log(`${file}:${lineNo} MISSING ANCHOR -> ${target}`);
+          bad++;
+        }
+      }
+    }
+  }
+
+  console.log(`${bad} bad of ${total} links across ${files.length} files`);
+  return bad;
+}
+
+function main(argv: string[]): number {
+  if (argv.includes("-h") || argv.includes("--help")) {
+    const defaults = DEFAULT_DIRS.join(", ");
+    console.log([
+      "usage: run/check-links [dir ...]",
+      "",
+      "Checks the file and #anchor target of every Markdown link under the given",
+      `directories (default: ${defaults}) plus the root *.md files.`,
+      "Exits 1 if any link is broken.",
+    ].join("\n"));
+    return 0;
+  }
+
+  const dirs = argv.length ? argv : DEFAULT_DIRS.filter(isDir);
+  const missing = dirs.filter((d) => !isDir(d));
+  if (missing.length) {
+    console.error(`no such directory: ${missing.join(", ")}`);
+    return 2;
+  }
+
+  const files = dirs.flatMap(markdownUnder);
+  files.push(...markdownIn(".")); // plus the root-level docs (README, TODO, ...)
+
+  return check(files) ? 1 : 0;
+}
+
+process.exit(main(process.argv.slice(2)));

@@ -19,6 +19,17 @@ git clone <repo>    # LFS content downloads automatically
 - RIP-era binary formats are tracked via LFS, case-insensitively: icons (`.icn`, `.hic`), fonts (`.chr`, `.bgi`, `.fnt`, `.ff1`, `.rff`), images (`.pcx`, `.bmp`, `.dib`, `.gif`, `.jpg/.jpeg`, `.png`), audio (`.wav`, `.mid`), and archives/executables (`.zip`, `.exe`). Add new binary extensions to `.gitattributes` with the same LFS pattern before committing such files. Tiny binary sidecar formats (`.bmh` hot icons, `.img` widget images) are deliberately stored plain, covered by the `version/*/assets/** -text` rule.
 - **Before adding files of any new type, check `.gitattributes` covers the extension** - LFS pattern for binary formats, `-text` exemption for line-ending-significant formats (see the `.rip`/`.ans` rule above) - and add the missing pattern first. Getting this wrong is expensive after the fact: the `.RFF` fonts were originally committed without an LFS rule, and scrubbing the raw blobs required rewriting history (2026-08-08 force-push; see the note in [README.md](README.md#repository-layout)).
 
+## Editor setup
+
+**Visual Studio Code is the reference editor/IDE for this repository** - `.vscode/settings.json` and `.vscode/extensions.json` are checked in, so a fresh clone opens with the right encoding, line endings, and formatting behavior. Other editors are perfectly welcome; they just have to honor the same conventions by hand.
+
+- On first open, VS Code offers the recommended extensions - accept both:
+  - **Prettier** (`esbenp.prettier-vscode`) - the formatter of record. The checked-in settings make it the default formatter for Markdown, enable **format on save**, and point it at the repo's `.prettierrc`/`.prettierignore`. Without it, Markdown is not formatted and `run/lint` will flag your edits.
+  - **Deno** (`denoland.vscode-deno`) - the language server for the scripts under `run/`, scoped to that directory via `deno.enablePaths`. Without it, VS Code reports phantom errors on `npm:`/`jsr:`/`node:` imports.
+- Markdown soft-wraps in the editor (`editor.wordWrap`) rather than hard-wrapping in the file - see the [Markdown style](#markdown-style-all-markdown-files) rule on hard wraps.
+- `.rip`/`.ans` files get CP437 encoding and CRLF line endings via language-scoped overrides, with trailing-whitespace trimming and final-newline insertion **off**; everything else is UTF-8 with LF. Do not override these locally.
+- **Whatever editor you use:** format Markdown with Prettier, keep files UTF-8/LF (except `.rip`/`.ans`), and run `run/lint` and `run/check-links` before committing.
+
 ## Repository conventions
 
 - **Markdown file naming:** outside the repository root, the only CAPITALIZED Markdown filename is `README.md` - every other `.md` file is lowercase (`glossary.md`, `history.md`, `errata.md`, `reference/rip-tools.md`). This makes each directory's `README.md` - the index for that directory - easy to spot at a glance. Root-level files (`README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `TODO.md`, `DONE.md`, `LICENSE`) keep their conventional uppercase names.
@@ -34,13 +45,13 @@ git clone <repo>    # LFS content downloads automatically
 
 - Bullet points use hyphens (`-`), never asterisks (`*`).
 - **No hard word-wraps** inside paragraphs or bullet points - one line per paragraph/bullet. Editors should rely on virtual/soft wrapping; hard wraps break rendering.
-- Use **Prettier** for Markdown formatting in your editor - the repo's `.prettierrc` sets `proseWrap: never` so it unwraps rather than re-wraps.
+- Use **Prettier** for Markdown formatting - the repo's `.prettierrc` sets `proseWrap: never` so it unwraps rather than re-wraps. Your editor should do this on save (see [Editor setup](#editor-setup)); `run/lint` reports off-style files and `run/format` fixes them.
 - Each page: one H1, then a nav line at top and bottom (after a `---` rule): `[◀ Prev: X](file.md) · [Contents](README.md) · [Next: Y ▶](file.md)`
 - Command entries: `## RIP_XXX` heading, italic one-line function summary, then a GFM table for Level/Command/Arguments.
 - `**Format:**` and `**Example:**` lines use inline code and stay **outside** tables (pipes inside code spans break GFM cells).
 - ASCII-art tables become GFM tables (escape `|` as `\|`); diagrams and C structs become fenced ` ```text ` / ` ```c ` blocks.
 - Anchors follow GitHub slug rules: lowercase, spaces → `-`, underscores kept (`#rip_text_window`), `$` stripped (`$DATE$` → `#date`).
-- Cross-link liberally between pages; run `python3 tools/check-links.py` after edits (validates every file/anchor target across the doc trees; skips fenced and inline code).
+- Cross-link liberally between pages; run `run/check-links` after edits (validates every file/anchor target across the doc trees; skips fenced and inline code). Do this after any rename or relocation, when links break silently.
 
 ## Technical specifications (`techspecs/`)
 
@@ -65,6 +76,18 @@ Original fonts/icons/audio distributed with each version are preserved in `versi
 
 Renderer/terminal implementation details (canvas sizes, aspect-ratio policy) live in [version/implementation.md](version/implementation.md) - deliberately outside the language docs themselves, which document the language only.
 
+## Project scripts (`run/`)
+
+Every script this repository ships - checkers, formatters, generators, one-off utilities - lives under `run/` and is invoked from the repository root, with **Deno** as the canonical runtime:
+
+```sh
+run/check-links          # validate every Markdown file/anchor link
+run/lint                 # report Markdown files that are off-style
+run/format               # rewrite Markdown files to the repository style
+```
+
+**Prefer an existing `run/` script over an ad-hoc equivalent** - it encodes the repository's configuration and stays correct as that configuration changes. The catalogue of scripts, the conventions they follow (extensionless executable entry points, Bash or Deno TypeScript, `node:*` over `Deno.*`, supporting modules under `run/lib/`, dependency declaration, `deno task` wrappers), and the checklist for adding one are in **[run/README.md](run/README.md)** - read it before writing a new script.
+
 ## Website tooling
 
-The documentation website will be built with **VitePress**, with **Deno** as the runtime for any generation/tooling scripts. Keep generated output out of the repository; scripts should be runnable via `deno task`.
+The documentation website will be built with **VitePress**, with **Deno** as the runtime for any generation/tooling scripts. Keep generated output out of the repository; site scripts follow the `run/` conventions above and get a `deno task` wrapper like everything else.

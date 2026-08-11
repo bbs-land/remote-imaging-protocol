@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Report Markdown files that do not match the repository's Prettier style.
+#
+# Reports only - nothing is modified; run/format applies the fixes. Exits 1 if
+# any file is off-style, so it is safe to use as a CI or pre-commit gate.
+set -euo pipefail
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  cat <<'USAGE'
+usage: run/lint [file-or-glob ...]
+
+Checks every Markdown file in the repository (or just the given ones) against
+the Prettier style in .prettierrc, honoring .prettierignore. Reports only -
+run/format rewrites the offending files. Exits 1 if any file is off-style.
+USAGE
+  exit 0
+fi
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+source run/lib/prettier.sh
+run_prettier --check "$@"

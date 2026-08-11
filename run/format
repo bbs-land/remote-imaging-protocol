@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Rewrite Markdown files in place to the repository's Prettier style.
+#
+# The counterpart to run/lint: same files, same configuration, but it fixes
+# what the checker only reports. Prints each file it touched.
+set -euo pipefail
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  cat <<'USAGE'
+usage: run/format [file-or-glob ...]
+
+Reformats every Markdown file in the repository (or just the given ones) to the
+Prettier style in .prettierrc, honoring .prettierignore. Files are rewritten in
+place - review the diff before committing. run/lint reports without rewriting.
+USAGE
+  exit 0
+fi
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+source run/lib/prettier.sh
+run_prettier --write "$@"

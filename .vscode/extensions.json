@@ -1,0 +1,17 @@
+{
+  // Visual Studio Code is this repository's reference editor - see
+  // CONTRIBUTING.md, "Editor setup". Other editors are fine; these are the
+  // extensions that make the repo's conventions automatic in VS Code.
+  "recommendations": [
+    // Formatter of record for Markdown. Settings.json makes it the default
+    // formatter for [markdown] and enables format-on-save; without it,
+    // Markdown will not be formatted and run/lint will flag your edits.
+    "esbenp.prettier-vscode",
+
+    // Language server for the Deno scripts under run/ (scoped to that
+    // directory via "deno.enablePaths"). Without it, VS Code reports phantom
+    // errors on npm:/jsr:/node: imports.
+    "denoland.vscode-deno"
+  ],
+  "unwantedRecommendations": []
+}

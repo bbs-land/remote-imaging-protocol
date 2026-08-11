@@ -23,5 +23,26 @@
     "files.eol": "\r\n",
     "files.insertFinalNewline": false,
     "files.trimTrailingWhitespace": false
-  }
+  },
+
+  // Prettier is the formatter of record for Markdown, and .prettierrc sets
+  // proseWrap: never - paragraphs stay on one line and the editor soft-wraps
+  // them. Requires the esbenp.prettier-vscode extension, which VS Code offers
+  // from .vscode/extensions.json on first open. The same configuration is
+  // applied on the command line by run/lint and run/format.
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on"
+  },
+  "prettier.configPath": ".prettierrc",
+  "prettier.ignorePath": ".prettierignore",
+  // Never fall back to extension defaults if the repo config is missing -
+  // silently formatting to the wrong style is worse than not formatting.
+  "prettier.requireConfig": true,
+
+  // Deno is the runtime for the scripts under run/ only; the rest of the
+  // repository is documentation, so the language server stays scoped.
+  "deno.enablePaths": ["run"],
+  "deno.lint": true
 }

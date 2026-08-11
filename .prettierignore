@@ -1,0 +1,5 @@
+# Mirrors .gitignore - transient working files are not part of the formatted tree.
+node_modules/
+temp/
+WORKING.md
+DONE.md

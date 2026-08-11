@@ -6,7 +6,16 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 - Follow [CONTRIBUTING.md](CONTRIBUTING.md) for all content, naming, and formatting conventions - especially the version naming (language vs client) rule, the verbatim `version/<v>/text/` record, and the Markdown style section.
 - External reference repositories and original-era artifacts are catalogued in [reference/rip-tools.md](reference/rip-tools.md) - use the `~/src/rip-tools/` paths exactly as listed there.
-- After edits, verify: `python3 tools/check-links.py` and `npx prettier --check` on the touched Markdown.
+- After edits, verify with the repository's own scripts: `run/check-links` and `run/lint` (add `run/format` to fix what `run/lint` reports).
+
+## Use the `run/` scripts
+
+Repository scripts live under `run/`; their catalogue and conventions are in [run/README.md](run/README.md). Read it before writing a new one, and do not create new top-level script directories.
+
+- **Reach for an existing `run/` script before hand-rolling a command.** They encode the repository's configuration - ignore lists, pinned tool versions, slug rules - and stay correct as that configuration changes, which an improvised `find`/`grep`/`npx` pipeline will not.
+- **After renames, relocations, or any bulk edit, run `run/check-links`** - moving a file breaks inbound links and anchors silently, and this is the only thing that catches it.
+- **Format with `run/format`, not by hand** - never hand-wrap prose or hand-tune Markdown spacing to match the style; let the formatter do it, then confirm with `run/lint`.
+- **If you find yourself repeating an incantation, add it as a `run/` script** rather than repeating it across sessions - following the conventions in [run/README.md](run/README.md), including the `deno task` wrapper and the table row.
 
 ## Session work log (`DONE.md`)
 

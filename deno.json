@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "check-links": "deno run --allow-read run/check-links",
+    "lint": "bash run/lint",
+    "format": "bash run/format"
+  }
+}

@@ -81,6 +81,12 @@ reference/
   downloads.md  Preserved original distributions on the files.bbs.land mirror
   rights.md     Trademarks, copyright status, and repository licensing
   rip-tools.md  External reference repositories and original-era artifacts (~/src/rip-tools/)
+run/            Repository scripts - run from the repo root (Deno; also `deno task <name>`)
+  README.md     Script catalogue and the conventions for adding one
+  check-links   Validates every Markdown file/anchor link across the doc trees
+  lint          Reports Markdown files that are off-style (Prettier)
+  format        Rewrites Markdown files to the repository style
+  lib/          Supporting modules the scripts import or source
 ```
 
 > **Note:** On 2026-08-08 the git history was rewritten (force-pushed) to convert the `version/3.0/assets/fonts/*.RFF` font binaries to Git LFS pointers throughout history - they had originally been committed as raw blobs. Only the commits touching those files changed; file contents are unaffected. Re-clone (or hard-reset to `origin/main`) if you have an older checkout.

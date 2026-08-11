@@ -1,0 +1,12 @@
+{
+  "version": "5",
+  "specifiers": {
+    "npm:prettier@3.9.6": "3.9.6"
+  },
+  "npm": {
+    "prettier@3.9.6": {
+      "integrity": "sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==",
+      "bin": true
+    }
+  }
+}
