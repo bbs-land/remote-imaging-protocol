@@ -27,7 +27,7 @@ In **1994**, broadcasting-industry veteran **Pat Clawson** purchased a large sta
 
 ## The 2.x era (1993-1997)
 
-The 2.0 specification circulated as five ALPHA drafts (A0-A4); the last published RIPscrip document of any kind is [**2.00 ALPHA 4**, Dec 13, 1994](2.30/ripscrip/README.md).
+The 2.0 specification circulated as five ALPHA drafts (A0-A4); the last published RIPscrip document of any kind is [**2.00 ALPHA 4**, Dec 13, 1994](2.0/ripscrip/README.md).
 
 | Release | Date | Notes |
 | --- | --- | --- |
@@ -42,7 +42,7 @@ Three things the record makes clear, contrary to common assumption:
 
 - **"RIPterm 2.1" did exist - but only as Test Drive crippleware.** The commercial/shareware line jumps 2.0 → 2.20.00 → 2.20.01 → 2.30, and the gap is filled by the crippleware Test Drive releases v2.10.00 (Aug 13, 1995) and v2.11.00 (Sep 7, 1995) - documented by the v2.11.00 README.DOC changelog in the [preserved distribution](DOWNLOADS.md). **No RIPscrip 2.1/2.2 specification** was ever published; those numbers exist only as product versions.
 - **Every RIPterm 2.x release was a DOS product - installers and programs alike.** RIPterm 2.0 was a two-disk DOS install; the 2.30 shareware distribution installs via `INSTALL.BAT` and a PKZIP self-extractor, and the client itself is a 32-bit DOS4GW protected-mode DOS executable throughout the line. The 2.30 install ships Windows DOS-box conveniences (`.PIF` launch profiles, icons, HMI `.386` sound drivers for enhanced-mode Windows) but no Windows program; a Windows-native or Mac client never verifiably shipped.
-- **The "multimedia" features often credited to 3.x shipped in January 1995 with RIPterm Pro 2.0** - background **.WAV audio**, JPEG display, SVGA/256-color modes, BMP icons, and Atech outline fonts are all present in the 2.0 install, not later additions of the 2.2x or 3.x releases (see the [3.x revision-history note](3.1/ripscrip/1.0-introduction.md#revision-history) and the [2.x assets](2.30/assets/fonts/README.md)).
+- **The "multimedia" features often credited to 3.x shipped in January 1995 with RIPterm Pro 2.0** - background **.WAV audio**, JPEG display, SVGA/256-color modes, BMP icons, and Atech outline fonts are all present in the 2.0 install, not later additions of the 2.2x or 3.x releases (see the [3.x revision-history note](3.0/ripscrip/1.0-introduction.md#revision-history) and the [2.x assets](2.0/assets/fonts/README.md)).
 
 In **April 1996** the company relocated from Huntington Beach to Winchester, Virginia (near Clawson's home), reincorporating as a Virginia corporation.
 
@@ -51,9 +51,9 @@ In **April 1996** the company relocated from Huntington Beach to Winchester, Vir
 | Event | Date | Notes |
 | --- | --- | --- |
 | ["Web & Telnet Sites Go Graphical with RIPscrip-3"](https://groups.google.com/g/comp.os.ms-windows.programmer.graphics/c/PMcnQe8n58Y) | Nov 12, 1996 | Usenet announcement by Clawson |
-| [RIPscrip 3.0 Technical White Paper](3.1/text/RIPScrip-3.x-technical-whitepaper.txt) | Dec 6, 1996 | By Jeff Reeder - the only 3.0 document ever published. A promised 450-page specification never appeared |
+| [RIPscrip 3.0 Technical White Paper](3.0/text/RIPScrip-3.x-technical-whitepaper.txt) | Dec 6, 1996 | By Jeff Reeder - the only 3.0 document ever published. A promised 450-page specification never appeared |
 | RIPtel Visual Telnet 3.0 (pre-release) | Dec 25, 1996 | Two years in development as codename "Mohawk"; Win 3.1/95/NT, telnet-based ([Washington Post](https://www.washingtonpost.com/archive/business/1997/01/06/upstaged-but-hardly-undone/a9d123c5-8c50-4012-b83f-a8a67b9d96eb/), [Usenet](https://groups.google.com/g/comp.bbs.majorbbs/c/x25xTrBYTH8)); commercial release followed in 1997 |
-| **RIPtel Visual Telnet 3.1** | [Oct 21, 1997](https://web.archive.org/web/20010513104306/http://www.telegrafix.com:80/products/riptel/) | The final RIPscrip client, shipping RIPscrip driver 3.0.7 - the engine this repository's [3.x reconstruction](3.1/ripscrip/README.md) documents |
+| **RIPtel Visual Telnet 3.1** | [Oct 21, 1997](https://web.archive.org/web/20010513104306/http://www.telegrafix.com:80/products/riptel/) | The final RIPscrip client, shipping RIPscrip driver 3.0.7 - the engine this repository's [3.x reconstruction](3.0/ripscrip/README.md) documents |
 
 Later accounts (including Wikipedia) describe RIPscrip 3.0 as merely "planned" - that is wrong. RIPscrip 3.x **absolutely shipped**, as evidenced by the RIPtel 3.0 and 3.1 releases; what never appeared was the 3.0 _specification_ (the promised 450-page document), which is why the 3.x record here is a reconstruction.
 
@@ -80,4 +80,4 @@ No shutdown was ever announced; the company simply faded. The telegrafix.com dom
 - Usenet announcements via Google Groups historical archives (linked inline above)
 - [Tedium - "The Great Graphics Face-Off" (2020)](https://tedium.co/2020/07/21/bbs-graphics-history-ripscrip-naplps/)
 - [ProBoard history file](http://software.bbsdocumentary.com/IBM/DOS/PROBOARD/pbhistory.txt) · [BBS Software Development News #13](http://archives.thebbs.org/bbsnews/bbsnews13.html)
-- This repository's preserved originals: [1.54 spec](1.54/text/RIPScrip-1.54.txt), [2.00 ALPHA 4 spec](2.30/text/RIPScrip-2.0-alpha-4.txt), [3.0 white paper](3.1/text/RIPScrip-3.x-technical-whitepaper.txt), and the RIPterm 2.30 / RIPtel 3.1 install artifacts catalogued in [CONTRIBUTING.md](../CONTRIBUTING.md)
+- This repository's preserved originals: [1.54 spec](1.54/text/RIPScrip-1.54.txt), [2.00 ALPHA 4 spec](2.0/text/RIPScrip-2.0-alpha-4.txt), [3.0 white paper](3.0/text/RIPScrip-3.x-technical-whitepaper.txt), and the RIPterm 2.30 / RIPtel 3.1 install artifacts catalogued in [CONTRIBUTING.md](../CONTRIBUTING.md)

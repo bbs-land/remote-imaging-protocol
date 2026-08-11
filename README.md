@@ -1,12 +1,12 @@
 # Remote Imaging Protocol (RIPscrip)
 
-Documentation and extended information around RIPScrip/RIPTerm/RIPtel specifications.
+Documentation and extended information around RIPScrip/RIPterm/RIPtel specifications.
 
 | **Documentation** | **Terminal** | **Paint** |
 | --- | --- | --- |
-| [RIPScrip 3.x](version/3.1/ripscrip/README.md) | [RIPTel 3.1](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTel%203.1/riptel.msi) - Windows 7+ (patched, PCMicro) | - |
-| [RIPScrip 2.x](version/2.30/ripscrip/README.md) | [RIPTerm 2.30](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%202.30/RIPT2300.zip) DOS | - |
-| [RIPScrip 1.5x](version/1.54/ripscrip/README.md) | [RIPTerm 1.54](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%201.54/RIPTM154.ZIP) DOS | [RIPaint 1.52](https://files.bbs.land/rip/RIPaint%20Installers/RIPaint%201.52/RIPAINT.ZIP) DOS |
+| [RIPScrip 3.x](version/3.0/ripscrip/README.md) | [RIPtel 3.1](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTel%203.1/riptel.msi) - Windows 7+ (patched, PCMicro) | - |
+| [RIPScrip 2.x](version/2.0/ripscrip/README.md) | [RIPterm 2.30](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%202.30/RIPT2300.zip) DOS | - |
+| [RIPScrip 1.5x](version/1.54/ripscrip/README.md) | [RIPterm 1.54](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%201.54/RIPTM154.ZIP) DOS | [RIPaint 1.52](https://files.bbs.land/rip/RIPaint%20Installers/RIPaint%201.52/RIPAINT.ZIP) DOS |
 
 Missing is a a more recent RIPaint version (RIPaint-2).
 
@@ -34,8 +34,8 @@ The language was freely licensed for implementation (though not public domain - 
 | Version | Date | Notes |
 | --- | --- | --- |
 | **[1.5x](version/1.54/ripscrip/README.md)** | July 1993 | The widely deployed classic standard: EGA 640×350×16 graphics, drawing primitives, fills, fonts, icons, mouse fields, buttons, and text variables. [RIPScrip-1.54.txt](version/1.54/text/RIPScrip-1.54.txt) |
-| **[2.x](version/2.30/ripscrip/README.md)** | December 1994 | A major proposed redesign (never finalized): drawing ports, data tables and backup areas, world coordinates, 256-color and direct-RGB modes, audio playback, DIB bitmaps, and an expanded multi-level command set. [RIPScrip-2.0-alpha-4.txt](version/2.30/text/RIPScrip-2.0-alpha-4.txt) |
-| **[3.x](version/3.1/ripscrip/README.md)** | December 1996 | A technical white paper (by Jeff Reeder) summarizing the next-generation architecture and goals - resolution independence, Internet/WWW applications, and multimedia - rather than a full command reference. [White paper](version/3.1/text/RIPScrip-3.x-technical-whitepaper.txt) |
+| **[2.x](version/2.0/ripscrip/README.md)** | December 1994 | A major proposed redesign (never finalized): drawing ports, data tables and backup areas, world coordinates, 256-color and direct-RGB modes, audio playback, DIB bitmaps, and an expanded multi-level command set. [RIPScrip-2.0-alpha-4.txt](version/2.0/text/RIPScrip-2.0-alpha-4.txt) |
+| **[3.x](version/3.0/ripscrip/README.md)** | December 1996 | A technical white paper (by Jeff Reeder) summarizing the next-generation architecture and goals - resolution independence, Internet/WWW applications, and multimedia - rather than a full command reference. [White paper](version/3.0/text/RIPScrip-3.x-technical-whitepaper.txt) |
 | **[next](version/next/README.md)** | - | Placeholder for future, unofficial enhancements to the specification - modern image/audio formats, font handling, and UTF-8 - candidates for a 3.5x/4.x revision. |
 
 The Markdown editions are split into linked sections suitable for browsing and for generating a documentation website.
@@ -59,12 +59,12 @@ version/
     ripscrip/   Language reference for content creators (numbered pages)
     techspecs/  Binary formats and implementation details (icons, fonts, .RIP files, MegaNum, rendering behavior)
     text/       Original specification text
-  2.30/
+  2.0/
     assets/     Fonts, icons, and audio distributed with RIPterm Professional 2.0 and RIPterm 2.20/2.30
     ripscrip/   Language reference for the 2.x generation (self-contained, 1.54 material backfilled)
     techspecs/  Formats new in the 2.x products (BMP icons, FastFont .FF1/.RFF, MicroANSI fonts, audio, palettes)
     text/       Original specification text (2.00 alpha 4)
-  3.1/
+  3.0/
     assets/     Fonts, icons, and demo content distributed with RIPtel 3.1
     research/   Research notes from reverse-engineering 3.0-era artifacts
     ripscrip/   Reconstructed 3.x language reference with per-claim evidence tags
@@ -81,7 +81,7 @@ version/
   IMPLEMENTATION.md  Renderer/terminal implementation guidance
 ```
 
-> **Note:** On 2026-08-08 the git history was rewritten (force-pushed) to convert the `version/3.1/assets/fonts/*.RFF` font binaries to Git LFS pointers throughout history - they had originally been committed as raw blobs. Only the commits touching those files changed; file contents are unaffected. Re-clone (or hard-reset to `origin/main`) if you have an older checkout.
+> **Note:** On 2026-08-08 the git history was rewritten (force-pushed) to convert the `version/3.0/assets/fonts/*.RFF` font binaries to Git LFS pointers throughout history - they had originally been committed as raw blobs. Only the commits touching those files changed; file contents are unaffected. Re-clone (or hard-reset to `origin/main`) if you have an older checkout.
 
 ## Trademarks, copyright & licensing
 

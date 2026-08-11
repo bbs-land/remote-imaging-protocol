@@ -15,8 +15,8 @@ Other than the original `.txt` documents preserved under `version/<v>/text/`, th
 | Version | Status of the record |
 | --- | --- |
 | [1.54](1.54/ripscrip/README.md) | **Fixed history.** RIPscrip 1.54 (July 1993) is the widely deployed classic standard, fully documented by TeleGrafix's published specification: EGA 640×350×16 graphics, drawing primitives, fills, fonts, icons, mouse fields, buttons, and text variables. The Markdown edition mirrors the original published text. |
-| [2.30](2.30/ripscrip/README.md) | **Partially unknown.** The last published document is the 2.00 ALPHA 4 draft (December 1994) - ports, data tables, world coordinates, 256-color and direct-RGB modes, audio, DIB bitmaps. But the shipping "RIPscrip-2" engine (RIPterm 2.20/2.30, 1995-1997 - DOS releases throughout, installers and programs alike) moved beyond the draft with no further specification ever published. Recovering that era requires ongoing research and manual reconstruction. |
-| [3.1](3.1/ripscrip/README.md) | **Entirely a reconstruction.** RIPscrip 3.x absolutely shipped - released as the RIPtel Visual Telnet 3.0 and 3.1 clients - but TeleGrafix never published a 3.0 language reference, only a December 1996 technical [white paper](3.1/text/RIPScrip-3.x-technical-whitepaper.txt) (by Jeff Reeder). The 3.x edition here is rebuilt from available sources and materials: the RIPtel 3.1 client, its help files and demo-script corpus, and SyncTERM's open-source implementation, with per-claim evidence tags. |
+| [2.0](2.0/ripscrip/README.md) | **Partially unknown.** The last published document is the 2.00 ALPHA 4 draft (December 1994) - ports, data tables, world coordinates, 256-color and direct-RGB modes, audio, DIB bitmaps. But the shipping "RIPscrip-2" engine (RIPterm 2.20/2.30, 1995-1997 - DOS releases throughout, installers and programs alike) moved beyond the draft with no further specification ever published. Recovering that era requires ongoing research and manual reconstruction. |
+| [3.0](3.0/ripscrip/README.md) | **Entirely a reconstruction.** RIPscrip 3.x absolutely shipped - released as the RIPtel Visual Telnet 3.0 and 3.1 clients - but TeleGrafix never published a 3.0 language reference, only a December 1996 technical [white paper](3.0/text/RIPScrip-3.x-technical-whitepaper.txt) (by Jeff Reeder). The 3.x edition here is rebuilt from available sources and materials: the RIPtel 3.1 client, its help files and demo-script corpus, and SyncTERM's open-source implementation, with per-claim evidence tags. |
 | [next](next/README.md) | **Future enhancements.** A placeholder for forward-looking, unofficial extensions (modern image/audio formats, font handling, UTF-8) that implementations may adopt and that could become a 3.5x/4.x enhancement of the specification. |
 | [baseline](baseline/techspecs/README.md) | **Non-RIP baseline.** Specification references beyond RIPscrip itself: the ANSI/VT-x text emulation RIPterm and RIPtel actually documented and shipped (CP437, VT-102, Doorway, auto-sense), plus modern terminals (SyncTERM, icy_term) as reference points with historically unevidenced features explicitly marked. |
 
@@ -25,17 +25,19 @@ Other than the original `.txt` documents preserved under `version/<v>/text/`, th
 ```
 version/
   GLOSSARY.md      Shared, spec-first glossary of terms used across all versions
-  <v>/             Pinned release directories: 1.54, 2.30, 3.1
+  <v>/             Language-version directories: 1.54, 2.0, 3.0
     ripscrip/      Language reference for the content creator (numbered pages)
     techspecs/     Technical specifications for the implementer (numbered pages)
     text/          Original specification text, preserved verbatim
     assets/        Original fonts/icons/audio distributed with that version
-  3.1/research/    Reverse-engineering records behind the 3.x reconstruction
+  3.0/research/    Reverse-engineering records behind the 3.x reconstruction
   baseline/        Non-RIP references (ANSI/VT-x emulation, modern terminals)
   next/            Forward-looking, unofficial extension proposals
 ```
 
-Version directories are named for the **definitive release** of each generation - 1.54, 2.30, 3.1 - not the generation (1.x/2.x/3.x), which is how the prose refers to the families.
+Version directories are named for the **RIPscrip language version** each generation reports - 1.54, 2.0, 3.0 - not for the client that shipped it. The distinction matters because the two numbers diverge: every 2.x client identifies as `RIPSCRIP020000` whether it is RIPterm 2.0, 2.20.01 or 2.30, and RIPtel 3.1 ships RIPscrip driver 3.0.7. The language stayed at 2.0 and 3.0 while the products kept incrementing.
+
+Within a directory, `ripscrip/` and `techspecs/` document the **language** at that version, while `assets/` preserves what the **last client of the generation** shipped - so `2.0/assets/` holds RIPterm 2.30's fonts and icons, and `3.0/assets/` holds RIPtel 3.1's. Prose refers to the families as 1.x/2.x/3.x, and names a specific product in full ("RIPterm 2.30", "RIPtel 3.1") whenever the claim is about the client rather than the language.
 
 ## How the docs are organized
 

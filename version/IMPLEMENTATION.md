@@ -29,7 +29,7 @@ Wide-screen support is out of scope for now.
 
 ## Case Insensitiviy
 
-The original RIPTerm/RIPtel were built against DOS and Windows, and in both cases, are effectively case-insensitive by nature. Implementers may want to either transform/store all asset files as lowercase and use regardless of the case of the request for an icon or audio file, or otherwise pre-load and track the asset directories to handle/translate case-insensitive access.
+The original RIPterm/RIPtel were built against DOS and Windows, and in both cases, are effectively case-insensitive by nature. Implementers may want to either transform/store all asset files as lowercase and use regardless of the case of the request for an icon or audio file, or otherwise pre-load and track the asset directories to handle/translate case-insensitive access.
 
 ## Future directions (version/next)
 

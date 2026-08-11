@@ -16,8 +16,8 @@ The primary evidence here is **TeleGrafix's own products and documentation**: RI
 - RIPterm 1.54 install: `~/src/rip-tools/RIPterm154/DOS/RIPTERM/` (`RIPTERM.DOC`, `WHATSNEW.DOC`, `RIPTERM.EXE`)
 - RIPterm Professional 2.0 install: `~/src/rip-tools/RIPTerm2.0/extracted/` (`RIPTERM.DOC`, `README.DOC`, `ANSI.MAC`, `VT100.MAC`, `RIPTERM.EXE`)
 - RIPterm 2.30 shareware install (with the 2.20.00/2.20.01 change logs): `~/src/rip-tools/artifacts/ripterm-2.30/extracted/` (`RIPTERM.DOC`, `README.DOC`, `RIPTERM.FAQ`, `RIPTERM.EXE`)
-- RIPtel Visual Telnet 3.1 install: `~/src/rip-tools/artifacts/RIPtel/` (`readme.txt`, `RIPTEL.EXE`, `RIPTEL.HLP`, `MESSAGES.HLP`), plus the in-repo help-string research in [version/3.1/research/](../../3.1/research/riptel-help-extraction.md)
-- Specification texts: [RIPscrip 1.54](../../1.54/text/RIPScrip-1.54.txt), [RIPscrip 2.0 alpha 4](../../2.30/text/RIPScrip-2.0-alpha-4.txt), [RIPscrip 3.x technical whitepaper](../../3.1/text/RIPScrip-3.x-technical-whitepaper.txt)
+- RIPtel Visual Telnet 3.1 install: `~/src/rip-tools/artifacts/RIPtel/` (`readme.txt`, `RIPTEL.EXE`, `RIPTEL.HLP`, `MESSAGES.HLP`), plus the in-repo help-string research in [version/3.0/research/](../../3.0/research/riptel-help-extraction.md)
+- Specification texts: [RIPscrip 1.54](../../1.54/text/RIPScrip-1.54.txt), [RIPscrip 2.0 alpha 4](../../2.0/text/RIPScrip-2.0-alpha-4.txt), [RIPscrip 3.x technical whitepaper](../../3.0/text/RIPScrip-3.x-technical-whitepaper.txt)
 - Modern references: `~/src/rip-tools/sbbs/` (SyncTERM + cterm, incl. the `sbbs:src/conio/cterm.adoc` sequence manual), `~/src/rip-tools/icy_tools/` (icy_term + icy_parser_core), `~/src/rip-tools/qodem/` (auto-sense handling only)
 
 Every capability claim about RIPterm/RIPtel on these pages is cited to a TeleGrafix document (with section), to direct binary evidence (`strings` on a shipped executable, cited by artifact path), or to a specification section. Where a feature left _no_ trace in any TeleGrafix material examined, that absence is stated explicitly - it is a finding, not an omission.
