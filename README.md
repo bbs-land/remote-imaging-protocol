@@ -10,7 +10,7 @@ Documentation and extended information around RIPScrip/RIPterm/RIPtel specificat
 
 Missing is a a more recent RIPaint version (RIPaint-2).
 
-More: [Version overview](version/README.md) · [History](version/HISTORY.md) · [Downloads](version/DOWNLOADS.md) · [Rights & licensing](version/RIGHTS.md) · [Future enhancements](version/next/README.md) · [Implementation notes](version/IMPLEMENTATION.md)
+More: [Version overview](version/README.md) · [History](version/history.md) · [Downloads](reference/downloads.md) · [Rights & licensing](reference/rights.md) · [Future enhancements](version/next/README.md) · [Implementation notes](version/implementation.md)
 
 ## RIPscrip
 
@@ -74,17 +74,19 @@ version/
     techspecs/  Non-RIP baseline references: ANSI/VT-x emulation in RIPterm/RIPtel, modern terminal comparison
   next/         Future, unofficial enhancement proposals (3.5x/4.x candidates)
   README.md     Version overview - the record per version, and how the docs are organized
-  GLOSSARY.md   Canonical terminology shared across every version
-  HISTORY.md    TeleGrafix company and RIPterm/RIPtel release timeline
-  DOWNLOADS.md  Preserved original distributions on the files.bbs.land mirror
-  RIGHTS.md     Trademarks, copyright status, and repository licensing
-  IMPLEMENTATION.md  Renderer/terminal implementation guidance
+  glossary.md   Canonical terminology shared across every version
+  history.md    TeleGrafix company and RIPterm/RIPtel release timeline
+  implementation.md  Renderer/terminal implementation guidance
+reference/
+  downloads.md  Preserved original distributions on the files.bbs.land mirror
+  rights.md     Trademarks, copyright status, and repository licensing
+  rip-tools.md  External reference repositories and original-era artifacts (~/src/rip-tools/)
 ```
 
 > **Note:** On 2026-08-08 the git history was rewritten (force-pushed) to convert the `version/3.0/assets/fonts/*.RFF` font binaries to Git LFS pointers throughout history - they had originally been committed as raw blobs. Only the commits touching those files changed; file contents are unaffected. Re-clone (or hard-reset to `origin/main`) if you have an older checkout.
 
 ## Trademarks, copyright & licensing
 
-RIPscrip, RIPterm, RIPaint, and RIPdraw were trademarks of TeleGrafix Communications, Inc. The original specification texts reproduced here (under `version/*/text/`) are Copyright © 1992-1997 TeleGrafix Communications, Inc. and are preserved for historical and interoperability purposes; with the company's closure the rights are effectively in limbo - see [version/RIGHTS.md](version/RIGHTS.md) for the full picture.
+RIPscrip, RIPterm, RIPaint, and RIPdraw were trademarks of TeleGrafix Communications, Inc. The original specification texts reproduced here (under `version/*/text/`) are Copyright © 1992-1997 TeleGrafix Communications, Inc. and are preserved for historical and interoperability purposes; with the company's closure the rights are effectively in limbo - see [reference/rights.md](reference/rights.md) for the full picture.
 
 Unless noted otherwise, all other documentation in this repository is dedicated to the public domain under [CC0 1.0](LICENSE). Future library implementations developed in this repository will be **ISC** licensed for liberal usage.

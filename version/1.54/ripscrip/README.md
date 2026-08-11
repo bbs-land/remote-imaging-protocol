@@ -2,7 +2,7 @@
 
 **"Remote Imaging Protocol" - Revision 1.54** (July 19th, 1993), TeleGrafix Communications, Inc. - the widely deployed classic standard, fully documented by TeleGrafix's published specification and implemented by RIPterm 1.54. The verbatim source document is preserved as [`RIPScrip-1.54.txt`](../../1.54/text/RIPScrip-1.54.txt); this edition reorganizes it and, where the spec is wrong or silent, corrects it in clearly-marked editor's notes.
 
-_Content-creator reference; binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md), shared terminology in the [glossary](../../GLOSSARY.md)._
+_Content-creator reference; binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md), shared terminology in the [glossary](../../glossary.md)._
 
 ## Contents
 

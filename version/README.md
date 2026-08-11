@@ -4,7 +4,7 @@ RIPscrip (Remote Imaging Protocol Script language) is a vector-graphics scriptin
 
 A RIP-capable terminal interpreted the command stream and rendered graphics in a viewport while ordinary text flowed to a separate text window. TeleGrafix's own clients were **RIPterm** (dial-up/modem BBS connections) and later **RIPtel** (telnet) - RIPscrip is the language both spoke - alongside a number of third-party programs. Buttons and mouse fields sent host commands back to the BBS, making full point-and-click services possible over a 2400-baud connection. Conceptually it occupied the niche that Flash and SVG would later fill on the web: compact, resolution-oriented vector scenes over thin pipes.
 
-RIPscrip saw real adoption in the BBS world of 1993-1996 - supported by major BBS packages and terminal programs - though it never displaced ANSI art as the dominant online graphics form. The public World Wide Web drained the BBS ecosystem rapidly in the late 1990s, ending RIPscrip development and, ultimately, TeleGrafix itself. See [HISTORY.md](HISTORY.md) for the company and release timeline, and [RIGHTS.md](RIGHTS.md) for the copyright/trademark situation and this repository's licensing.
+RIPscrip saw real adoption in the BBS world of 1993-1996 - supported by major BBS packages and terminal programs - though it never displaced ANSI art as the dominant online graphics form. The public World Wide Web drained the BBS ecosystem rapidly in the late 1990s, ending RIPscrip development and, ultimately, TeleGrafix itself. See [history.md](history.md) for the company and release timeline, and [rights.md](../reference/rights.md) for the copyright/trademark situation and this repository's licensing.
 
 ## What this documentation is
 
@@ -24,7 +24,7 @@ Other than the original `.txt` documents preserved under `version/<v>/text/`, th
 
 ```
 version/
-  GLOSSARY.md      Shared, spec-first glossary of terms used across all versions
+  glossary.md      Shared, spec-first glossary of terms used across all versions
   <v>/             Language-version directories: 1.54, 2.0, 3.0
     ripscrip/      Language reference for the content creator (numbered pages)
     techspecs/     Technical specifications for the implementer (numbered pages)
@@ -47,14 +47,14 @@ Each version documents the **same features in the same order**, so version delta
 - **Audience split** - `ripscrip/` serves the **content creator** (language semantics: what commands do, coordinates, what an icon is; no binary internals). `techspecs/` serves the **implementer** (binary layouts, parser edge cases, rendering behavior). Wire syntax is layered across both: authoring-level syntax (base-36/base-64 basics, escaping, line limits) in `ripscrip/`, parser edge cases in `techspecs/`, cross-linked rather than duplicated.
 - **Self-contained vs delta** - each version's `ripscrip/` docs are **self-contained**: a creator reads only the version they are working against, so content carried from prior generations is backfilled in. The `techspecs/` stay **delta-based** - a format is documented in full at the earliest version where it appears, and later versions document only what changed (see [CONTRIBUTING.md](../CONTRIBUTING.md#technical-specifications-techspecs)).
 - **Format-first, software-only techspecs** - they center on the formats, assuming a modern software implementation; era hardware and driver detail (VESA modes, video registers, audio libraries) is out of scope except where it explains a structure.
-- **Shared glossary** - [GLOSSARY.md](GLOSSARY.md) holds the canonical terms, spec-first (TeleGrafix's own names - world coordinates, drawing port, viewport, text window) with modern aliases listed per entry; pages use those terms consistently.
+- **Shared glossary** - [glossary.md](glossary.md) holds the canonical terms, spec-first (TeleGrafix's own names - world coordinates, drawing port, viewport, text window) with modern aliases listed per entry; pages use those terms consistently.
 
-Renderer/implementation guidance (canvas sizes, aspect-ratio policy, asset handling) deliberately lives outside these language docs, in [IMPLEMENTATION.md](IMPLEMENTATION.md).
+Renderer/implementation guidance (canvas sizes, aspect-ratio policy, asset handling) deliberately lives outside these language docs, in [implementation.md](implementation.md).
 
 ## Further reading
 
-- [GLOSSARY.md](GLOSSARY.md) - canonical terminology shared by every version
-- [HISTORY.md](HISTORY.md) - TeleGrafix and the RIPterm/RIPtel release timeline
-- [RIGHTS.md](RIGHTS.md) - trademarks, copyright status, and repository licensing
+- [glossary.md](glossary.md) - canonical terminology shared by every version
+- [history.md](history.md) - TeleGrafix and the RIPterm/RIPtel release timeline
+- [rights.md](../reference/rights.md) - trademarks, copyright status, and repository licensing
 - [Wikipedia: RIPscrip](https://en.wikipedia.org/wiki/RIPscrip) - general reference
 - [BBS Documentary library - RIPscrip](http://www.bbsdocumentary.com/library/PROGRAMS/GRAPHICS/RIPSCRIPT/) - archived specs, white papers, and sample art

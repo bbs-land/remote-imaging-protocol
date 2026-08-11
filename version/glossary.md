@@ -1,6 +1,6 @@
 # Glossary (stub)
 
-Canonical terminology for use across all documentation, so the same concept always carries the same name. **Canonical terms are the specifications' own (spec-first)**; commonly used modern or informal names are listed as aliases on each entry. Version notes flag where a concept's name or meaning shifted between generations. This is a seed stub - entries grow during the restructure migration; final home is `version/GLOSSARY.md`.
+Canonical terminology for use across all documentation, so the same concept always carries the same name. **Canonical terms are the specifications' own (spec-first)**; commonly used modern or informal names are listed as aliases on each entry. Version notes flag where a concept's name or meaning shifted between generations. This is a seed stub - entries grow during the restructure migration; final home is `version/glossary.md`.
 
 ## Display model
 

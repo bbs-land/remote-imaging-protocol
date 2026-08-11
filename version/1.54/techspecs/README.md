@@ -2,7 +2,7 @@
 
 Original technical documentation for the binary formats and implementation behaviors of the RIPscrip 1.x family (RIPterm 1.52/1.54, RIPaint 1.52), with **1.54** as the definitive release. These pages are **not** part of TeleGrafix's specification text - they document, correct, and extend it from byte-level evidence, and every reverse-engineered claim is cited; anything unverifiable is marked as such.
 
-Language semantics are not repeated here - see the companion [language reference](../ripscrip/README.md); shared terminology is defined in the [glossary](../../GLOSSARY.md). Formats are documented in the earliest version where they appear (see [CONTRIBUTING.md](../../../CONTRIBUTING.md#technical-specifications-techspecs)); the [2.0](../../2.0/techspecs/README.md) and [3.0](../../3.0/techspecs/README.md) techspecs document only deltas and link back to these pages.
+Language semantics are not repeated here - see the companion [language reference](../ripscrip/README.md); shared terminology is defined in the [glossary](../../glossary.md). Formats are documented in the earliest version where they appear (see [CONTRIBUTING.md](../../../CONTRIBUTING.md#technical-specifications-techspecs)); the [2.0](../../2.0/techspecs/README.md) and [3.0](../../3.0/techspecs/README.md) techspecs document only deltas and link back to these pages.
 
 ## Contents
 

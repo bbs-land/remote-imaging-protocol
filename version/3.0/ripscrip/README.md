@@ -2,7 +2,7 @@
 
 **RIPscrip 3.0** - the third-generation Remote Imaging Protocol scripting language (TeleGrafix Communications, Inc., 1996-1997), as shipped in **RIPtel Visual Telnet 3.1** (RIPscrip driver 3.0.7), the only client that ever shipped it. Chapter numbers align with the [2.0 reference](../../2.0/ripscrip/README.md) the generation evolved from, with the 3.x-era changes flattened into their proper sections and sections unique to this generation marked; the official [3.0 Technical White Paper](../text/RIPScrip-3.x-technical-whitepaper.txt) (December 1996, by Jeff Reeder - prose only, the sole TeleGrafix document for the generation) is preserved separately as a faithful conversion.
 
-_Content-creator reference for the 3.x generation - entirely a reconstruction with per-claim evidence tags; binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md), shared terminology in the [glossary](../../GLOSSARY.md)._
+_Content-creator reference for the 3.x generation - entirely a reconstruction with per-claim evidence tags; binary layouts and parser edge cases live in the companion [technical specifications](../techspecs/README.md), shared terminology in the [glossary](../../glossary.md)._
 
 **Self-contained for creators:** unlike the delta-based techspecs, each version's `ripscrip/` docs stand alone - a creator working against 3.x reads only these pages. Material carried forward from the prior generation is merged in (the reconstructed 3.x sources are often sparser than their 2.0 counterparts), with "as in 2.0" references pointing at the [v2.0 reference](../../2.0/ripscrip/README.md); deeper 1.54 lineage resolves through the [v1.54 reference](../../1.54/ripscrip/README.md).
 
