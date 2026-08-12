@@ -8,8 +8,6 @@ Documentation and extended information around RIPScrip/RIPterm/RIPtel specificat
 | [RIPScrip 2.x](version/2.0/ripscrip/README.md) | [RIPterm 2.30](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%202.30/RIPT2300.zip) DOS | [RIPaint 2.1](<https://files.bbs.land/rip/RIPaint%20Installers/RIPaint%202.1%20(patched)/RIPaint%20v2.1%20(patched).zip>) |
 | [RIPScrip 1.5x](version/1.54/ripscrip/README.md) | [RIPterm 1.54](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%201.54/RIPTM154.ZIP) DOS | [RIPaint 1.52](https://files.bbs.land/rip/RIPaint%20Installers/RIPaint%201.52/RIPAINT.ZIP) DOS |
 
-Missing is a a more recent RIPaint version (RIPaint-2).
-
 More: [Version overview](version/README.md) · [History](version/history.md) · [Downloads](reference/downloads.md) · [Rights & licensing](reference/rights.md) · [Future enhancements](version/next/README.md) · [Implementation notes](version/implementation.md)
 
 ## RIPscrip
