@@ -2,6 +2,13 @@
 
 Original-era RIPscrip software preserved on the [files.bbs.land](https://files.bbs.land/rip/) mirror. URLs are case-sensitive and space-encoded exactly as listed. Reverse-engineering provenance for the copies used by this repository lives in [CONTRIBUTING.md](../CONTRIBUTING.md); release history and dating in [history.md](../version/history.md).
 
+## RIPscrip Remote Imaging Protocol Specification
+
+| Download | Notes |
+| --- | --- |
+| [RIPscrip 1.54](https://files.bbs.land/rip/telegrafix/ripscript-1.54-specification.zip) | July 19th, 1993 |
+| [RIPscrip 2.0-alpha4](https://files.bbs.land/rip/telegrafix/ripscript-2.0-alpha4-specification.zip) | December 16, 1994 |
+
 ## RIPterm (TeleGrafix DOS terminal)
 
 | Download | Size | Notes |
@@ -24,15 +31,7 @@ Original-era RIPscrip software preserved on the [files.bbs.land](https://files.b
 
 | Download | Size | Notes |
 | --- | --: | --- |
-| [RIPaint 1.52](https://files.bbs.land/rip/RIPaint%20Installers/RIPaint%201.52/RIPAINT.ZIP) | 502,749 | RIPaint v1.52 (DOS, 1993) |
-| [RIPaint 1.53](https://files.bbs.land/rip/RIPaint%20Installers/RIPaint%201.53/RIPAINT.ZIP) | 5,441,183 | RIPaint v1.53 (DOS, 1993) |
-| [RIPaint 2.1](<https://files.bbs.land/rip/RIPaint%20Installers/RIPaint%202.1%20(patched)/RIPaint%20v2.1%20(patched).zip>) | 3,762,409 | RIPaint v2.1 (DOS, 1997) |
-
-## RIPView
-
-Two unrelated programs share the name:
-
-| Download | Size | Notes |
-| --- | --: | --- |
-| [RIPView 1.00](https://files.bbs.land/rip/RIPView%20Installers/RIPView%201.00/RV100.ZIP) | 43,856 | RIPView 1.00 (2026) - modern open-source RIPscrip renderer in Free Pascal |
-| [RIPView 1.11](https://files.bbs.land/rip/RIPView%20Installers/RIPView%201.11/RV111.ZIP) | 112,054 | RIPView v1.11 (September 1994) - BBS door by Eric Theriault |
+| [RIPaint 1.53 (DOS, demo)](https://files.bbs.land/rip/telegrafix/ripaint-1.53-dos.demo.installation.zip) | 1,729,975 | RIPaint v1.53 (DOS, 1993) - demo installation |
+| [RIPaint 1.54 (DOS, registered)](https://files.bbs.land/rip/telegrafix/ripaint-1.54-dos.registered.patched.zip) | 1,370,417 | RIPaint v1.54 (DOS) - registered edition (patched) |
+| [RIPaint 2.1 (DOS, registered)](https://files.bbs.land/rip/telegrafix/ripaint-2.1-dos.registered.patched.zip) | 8,016,349 | RIPaint v2.1 (DOS, 1997) - registered edition (patched) |
+| [RIPaint 2.1 (Windows, demo)](https://files.bbs.land/rip/telegrafix/ripaint-2.1-win.demo.installation.zip) | 5,721,917 | RIPaint v2.1 (Windows) - demo installation |
