@@ -39,4 +39,4 @@ Both wrappers verify SHA-256, compile with native `cc -m32 -O0 -Wall -Wextra -We
 
 Corrected PORTW Format, PORTH's name and missing TYPE column, and PORTY1 Format to the same three-field form. Added a shared accepted-prefix/default/shorthand contract and an all-six callback warning, with links from every coordinate entry. Existing geometry and verbatim text/assets remain unchanged; numeric prose is explicitly labeled intended semantics. AGENTS.md records the distinction between parser rejection and unsafe inverted-callback fallthrough.
 
-Every #25 subquestion is answered. `run/lint`, `run/check-links` (**0 bad of 5,160 links across 210 files**) and `git diff --check` pass. File one complete PR dependent on #57; issue-only comparison starts at `4be4e3a`.
+Every #25 subquestion is answered. `run/lint`, `run/check-links` (**0 bad of 5,160 links across 210 files**) and `git diff --check` pass. Delivered in [PR #59](https://github.com/bbs-land/remote-imaging-protocol/pull/59), specification commit `0db4298`, dependent on #57; issue-only comparison starts at `4be4e3a`.
