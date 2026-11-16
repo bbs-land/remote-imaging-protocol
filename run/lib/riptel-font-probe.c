@@ -385,6 +385,27 @@ int main(int argc, char **argv) {
     require((a[18] & 0xffff) == 0,
             "y has no vertical-alignment input to renderer");
   }
+  /* Actual ordinary-text adapter forwards each byte without translation. */
+  for (unsigned named_face = 0; named_face < 2; ++named_face)
+    for (unsigned code = 1; code < 256; ++code) {
+      memset(args, 0, sizeof args);
+      args[3] = 25;
+      args[8] = 100;
+      prepare();
+      apply(args, named_face ? "SYMBOL" : "Marin");
+      pointer(viewport, viewport + 64);
+      put16(viewport + 65, 1280);
+      put16(viewport + 67, 960);
+      pointer(context + 0x4e, vector_state);
+      char text[] = {(char)code, (char)code, 0};
+      render_calls = 0;
+      ((placer)(image + 0x42870))(context, 200, 100, text);
+      require(render_calls == 1 &&
+                  captured.value[25] == (uint32_t)(uintptr_t)text &&
+                  !memcmp((void *)(uintptr_t)captured.value[25], text, 3),
+              "ordinary text adapter forwards exact raw bytes for normal and "
+              "symbol faces");
+    }
   memcpy(image + 0x40ed0, saved_renderer, 5);
   hook(0x3fb50, (void (*)(void))font_lookup);
   hook(0x3fdf0, (void (*)(void))renderer_log);

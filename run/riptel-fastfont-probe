@@ -18,6 +18,8 @@ mkdir -p "$3"
 output_path="$(cd "$3" && pwd)"
 probe_dir="$(mktemp -d "${TMPDIR:-/tmp}/riptel-fastfont-probe.XXXXXX")"
 xvfb_pid=""
+wine_started=""
+isolated_display=""
 cleanup() {
   local result=$?
   if [[ "$result" != 0 ]]; then
@@ -25,8 +27,10 @@ cleanup() {
       if [[ -f "$probe_dir/$log.log" ]]; then cp "$probe_dir/$log.log" "$output_path/$log.log"; fi
     done
   fi
+  if [[ -n "$wine_started" ]]; then
+    DISPLAY="$isolated_display" WINEPREFIX="$probe_dir/prefix" wineserver -k >/dev/null 2>&1 || true
+  fi
   if [[ -n "$xvfb_pid" ]]; then
-    WINEPREFIX="$probe_dir/prefix" wineserver -k >/dev/null 2>&1 || true
     kill "$xvfb_pid" >/dev/null 2>&1 || true
     wait "$xvfb_pid" >/dev/null 2>&1 || true
   fi
@@ -53,15 +57,18 @@ for ((attempt=0; attempt<100; ++attempt)); do
 done
 read -r display_number < "$probe_dir/display"
 if [[ ! "$display_number" =~ ^[0-9]+$ ]]; then echo "No isolated display allocated" >&2; exit 1; fi
-export DISPLAY=":$display_number"
+isolated_display=":$display_number"
+export DISPLAY="$isolated_display"
 export WINEPREFIX="$probe_dir/prefix"
 export WINEDEBUG=-all
 # winepath also runs only after the isolated display has been established.
+wine_started=1
 dll_windows="$(wine winepath.exe -w "$dll_path" 2>"$probe_dir/winepath.log")"
 runtime_windows="$(wine winepath.exe -w "$probe_dir/runtime" 2>>"$probe_dir/winepath.log")"
 cd "$output_path"
 if ! wine "$probe_dir/probe.exe" "$dll_windows" "$runtime_windows" >probe.log 2>&1; then
-  tail -30 probe.log >&2
+  sed -n "/^FAIL:/p; /^missing /p; /^failed glyph /p" probe.log >&2
+  echo "FastFont probe failed; diagnostics: $output_path/probe.log" >&2
   exit 1
 fi
-sed -n '/^loaded /p; /^realized /p; /^PASS:/p' probe.log
+sed -n '/^loaded /p; /^realized /p; /^used-stamp /p; /^PASS:/p' probe.log

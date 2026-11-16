@@ -102,6 +102,15 @@ int main(int argc, char **argv) {
           printf("failed glyph %u\n", c);
           return 6;
         }
+        if (c == 'E' && style) {
+          unsigned char *stamp =
+              *(unsigned char **)((unsigned char *)engine + 0x60c);
+          printf("used-stamp style=%s size=%u rva=%lx stride=%u height=%u "
+                 "offset=%d,%d direct=%d\n",
+                 styles[style], size, (unsigned long)(stamp - base), stamp[4],
+                 stamp[5], (int8_t)stamp[6], (int8_t)stamp[7],
+                 word((unsigned char *)engine + 0x5e6));
+        }
         if (c == 'A')
           memcpy(reference_a, bits, length);
         if (c == 'C')
@@ -147,6 +156,66 @@ int main(int argc, char **argv) {
       free(bits);
     }
   }
+  /* Independently vary DPI axes, orientation, face and width style. */
+  const unsigned dpi_profiles[][2] = {{72, 144}, {144, 72}, {36, 72}};
+  unsigned filter_cases = 0;
+  for (unsigned dpi = 0; dpi < 3; ++dpi)
+    for (unsigned orientation = 0; orientation < 4; ++orientation) {
+      unsigned instance = (uint16_t)word(v + 0x78 + orientation * 2);
+      int16_t changed = ((int16_t (*)(void *, unsigned, unsigned, unsigned,
+                                      unsigned, unsigned, unsigned, unsigned,
+                                      unsigned))(base + 0x4f230))(
+          engine, instance, dpi_profiles[dpi][0], dpi_profiles[dpi][1], 1440,
+          1440, 300, 300, orientation);
+      if (!changed)
+        return 10;
+      for (unsigned style = 1; style < 6; ++style)
+        for (unsigned face = 0; face < 4; ++face)
+          for (unsigned z = 0; z < 6; ++z) {
+            unsigned size = sizes[z];
+            *(uint16_t *)(v + 0x82) = orientation;
+            *(uint16_t *)(v + 0x1cc4) = 0;
+            int index = lookup(context, styles[style]);
+            unsigned realized_bytes =
+                index < 0 ? 0 : (uint16_t)realize(context, index, size, face);
+            if (!realized_bytes) {
+              printf("FAIL: realize dpi=%u,%u orientation=%u face=%u style=%s "
+                     "size=%u index=%d\n",
+                     dpi_profiles[dpi][0], dpi_profiles[dpi][1], orientation,
+                     face, styles[style], size, index);
+              return 11;
+            }
+            unsigned char *rf = ((void *(*)(void *, void *))(base + 0x52340))(
+                engine, *(void **)(v + 0x86));
+            if (!rf)
+              return 11;
+            unsigned char *representation =
+                ((void *(*)(void *, void *, unsigned, unsigned))(
+                    base + 0x56950))(engine, rf, face, 0);
+            if (!representation)
+              return 11;
+            unsigned axis = dpi_profiles[dpi][orientation & 1];
+            unsigned expected =
+                (unsigned)word(rf + 4) * axis * (face & 1 ? 4 : 2) / 7200;
+            unsigned limit = face & 1 ? 7 : 4;
+            if (expected > limit)
+              expected = limit;
+            if ((face & 1) && !expected)
+              expected = 1;
+            if (representation[3] != expected) {
+              printf("FAIL: dpi=%u,%u orientation=%u face=%u style=%s p=%d "
+                     "filter=%u expected=%u\n",
+                     dpi_profiles[dpi][0], dpi_profiles[dpi][1], orientation,
+                     face, styles[style], word(rf + 4), representation[3],
+                     expected);
+              return 12;
+            }
+            ((void (*)(void *, void *))(base + 0x523c0))(engine, rf);
+            ++filter_cases;
+          }
+    }
+  printf("PASS: %u anisotropic/rotated/face/style hollow filter cases\n",
+         filter_cases);
   printf("PASS: 288 original-engine glyph measurements; solid nested/duplicate "
          "oracle\n");
   return 0;
