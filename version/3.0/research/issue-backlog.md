@@ -6,7 +6,9 @@
 
 Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`; its [derivation note](issue-3-extended-font-style.md) contains the complete evidence record. Review/merge is pending.
 
-Next action: refresh GitHub state and start the oldest issue without a complete resolution PR, expected to be #4 (column/article/overflow semantics). Research one issue at a time. The original-instruction and isolated glyph probes from #3 are available for reuse; GUI isolation is mandatory.
+Active: [issue #4](https://github.com/bbs-land/remote-imaging-protocol/issues/4), branch `issue-4-column-overflow`; read its [derivation note](issue-4-column-overflow.md). No resolution PR yet. This branch starts from #3’s delivered branch to reuse tools and workflow; record the dependency in its eventual PR if #29 is still unmerged.
+
+Next action: recover the column/article state layout, `1e` validation and OVERFLOW/RESET handlers from the driver, then build original-instruction state probes. GUI isolation is mandatory. Remain on #4 until all subquestions have complete primary-source answers.
 
 ## Queue and delivery
 
