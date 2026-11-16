@@ -37,7 +37,7 @@ static unsigned registered_callback(const char *name) {
       return registered[i].callback;
   return 0;
 }
-static unsigned random_value, key_state, errors, port_defined;
+static unsigned random_value, key_state, errors, port_defined, modifier_calls;
 static unsigned definition(void *ctx, unsigned slot) {
   (void)ctx;
   (void)slot;
@@ -45,6 +45,7 @@ static unsigned definition(void *ctx, unsigned slot) {
 }
 static unsigned random_number(void) { return random_value; }
 static unsigned __attribute__((stdcall)) async_key(unsigned key) {
+  ++modifier_calls;
   require(key == 0x10 || key == 0x11, "modifier query key code");
   return key_state;
 }
@@ -90,6 +91,242 @@ static const char *invoke(unsigned rva, unsigned count) {
 }
 static void equal(const char *actual, const char *expected, const char *why) {
   require(actual && !strcmp(actual, expected), why);
+}
+static unsigned char registry[256 * 10], host_commands[0x1200];
+static unsigned user_calls, playback_calls;
+static char last_playback[512], fixture_result[4096];
+static const char *fixture_name[16], *fixture_value[16];
+static unsigned fixture_count;
+static int registration_order(const void *a, const void *b) {
+  return strcmp(((const struct registration *)a)->name,
+                ((const struct registration *)b)->name);
+}
+static unsigned user_variable(void *ctx, void *parsed, const char **out) {
+  (void)ctx;
+  ++user_calls;
+  for (unsigned i = 0; i < fixture_count; ++i)
+    if (!strcasecmp((char *)parsed, fixture_name[i])) {
+      snprintf(fixture_result, sizeof fixture_result, "%s", fixture_value[i]);
+      *out = fixture_result;
+      return 1;
+    }
+  fixture_result[0] = 0;
+  *out = fixture_result;
+  return 1;
+}
+static unsigned playback(void *ctx, const char *name, unsigned flags) {
+  (void)ctx;
+  (void)flags;
+  ++playback_calls;
+  snprintf(last_playback, sizeof last_playback, "%s", name);
+  return 1;
+}
+static unsigned now(unsigned *value) {
+  if (value)
+    *value = 1000;
+  return 1000;
+}
+static unsigned snapshot(void *ctx, void *xy) {
+  (void)ctx;
+  put32(xy, 297);
+  put32((char *)xy + 4, 321);
+  return 0;
+}
+static void release_scratch(void **p) {
+  if (*p)
+    free(*p);
+  *p = NULL;
+}
+static unsigned scratch_allocate(void **p, unsigned size) {
+  *p = calloc(1, size);
+  return *p != NULL;
+}
+static void pipeline_prepare(void) {
+  prepare();
+  qsort(registered, registered_count, sizeof registered[0], registration_order);
+  for (unsigned i = 0; i < registered_count; ++i) {
+    pointer(registry + i * 10, (void *)registered[i].name);
+    pointer(registry + i * 10 + 4, image + registered[i].callback);
+    put16(registry + i * 10 + 8, registered[i].flags);
+  }
+  pointer(variables + 0x44e, registry);
+  put16(variables + 0x44c, registered_count);
+  memset(host_commands, 0, sizeof host_commands);
+  pointer(context + 0x2e, host_commands);
+  hook(0xf16b, (void (*)(void))user_variable);
+  hook(0x65453, (void (*)(void))strchr);
+  hook(0x65493, (void (*)(void))strncpy);
+  hook(0x655f3, (void (*)(void))strcmp);
+  hook(0x65965, (void (*)(void))strstr);
+  hook(0x68918, (void (*)(void))strcat);
+  hook(0x68dd0, (void (*)(void))strlen);
+  hook(0x75940, (void (*)(void))strncasecmp);
+  hook(0x6bcb0, (void (*)(void))memcpy);
+  hook(0x6bb20, (void (*)(void))isalnum);
+  hook(0x68b20, (void (*)(void))toupper);
+  hook(0x65ca3, (void (*)(void))scratch_allocate);
+  hook(0x65cbf, (void (*)(void))release_scratch);
+  hook(0x6f230, noop);
+  hook(0x68ff0, (void (*)(void))now);
+  hook(0x69c90, (void (*)(void))now);
+  hook(0x2814d, (void (*)(void))snapshot);
+  hook(0x324a, (void (*)(void))playback);
+  user_calls = playback_calls = modifier_calls = fixture_count = 0;
+  last_playback[0] = 0;
+}
+static void fixture(const char *name, const char *value) {
+  require(fixture_count < 16, "fixture bound");
+  fixture_name[fixture_count] = name;
+  fixture_value[fixture_count++] = value;
+}
+static unsigned preprocess(char *text) {
+  return ((unsigned (*)(void *, char *, unsigned))(image + 0x4c213))(
+      context, text, 4096);
+}
+static unsigned expand_codes(char *text, unsigned flags, unsigned pre) {
+  return ((unsigned (*)(void *, char *, unsigned, unsigned, unsigned))(
+             image + 0x4b0e4))(context, text, 4096, flags, pre) &
+         0xffff;
+}
+static void pipeline_checks(void) {
+  char text[4096];
+  pipeline_prepare();
+  fixture("N", "2");
+  strcpy(text, "<<IF $N$<\"10\">>YES<<ELSE>>NO<<ENDIF>>");
+  require(preprocess(text) == 1,
+          "original conditional pipeline accepts variable/literal");
+  equal(text, "YES",
+        "original conditional comparison distinguishes numeric ordering");
+  require(user_calls == 1, "conditional value read once");
+  pipeline_prepare();
+  fixture("CMD", ">TEST.FN");
+  strcpy(text, "$<<CMD>>$");
+  require(expand_codes(text, 0xff, 1) == 1,
+          "computed playback expansion succeeds");
+  equal(text, "", "computed playback consumed");
+  equal(last_playback, "TEST.FN",
+        "preprocessor composes dollar playback directive");
+  require(playback_calls == 1 && user_calls == 1,
+          "computed playback evaluated once");
+  pipeline_prepare();
+  fixture("A", "$SHIFT$");
+  key_state = 0x8000;
+  strcpy(text, "$A$");
+  require(expand_codes(text, 0xff, 1) == 1, "dollar result expansion succeeds");
+  equal(text, "$SHIFT$",
+        "inserted dollar result is not rescanned for dollar codes");
+  pipeline_prepare();
+  fixture("A", "<<B>>");
+  fixture("B", "C");
+  strcpy(text, "<<A>>");
+  require(preprocess(text) == 1, "nested named macro expansion succeeds");
+  equal(text, "C", "named macro result is rescanned by preprocessor");
+  require(user_calls == 2, "nested macros evaluate twice");
+  pipeline_prepare();
+  fixture("N", "1");
+  key_state = 0x8000;
+  strcpy(text, "<<IF $N$=0 AND $SHIFT$=1>>Y<<ELSE>>N<<ENDIF>>");
+  require(preprocess(text) == 1, "boolean conditional parses");
+  equal(text, "N", "false AND result");
+  require(modifier_calls == 1, "AND does not short-circuit operand evaluation");
+  pipeline_prepare();
+  fixture("N", "0");
+  fixture("A", "X");
+  strcpy(text, "<<IF $N$=1>><<A>>$SHIFT$<<ELSE>>N<<ENDIF>>");
+  require(expand_codes(text, 0xff, 1) == 1, "inactive branch expansion");
+  equal(text, "N", "inactive branch removed");
+  require(user_calls == 2 && modifier_calls == 0,
+          "named angle macros in inactive text still evaluate; dollar code is "
+          "discarded");
+  pipeline_prepare();
+  fixture("N", "$SHIFT$");
+  strcpy(text, "<<IF $N$=\"$SHIFT$\">>Y<<ELSE>>N<<ENDIF>>");
+  require(preprocess(text) == 1, "quoted right operand parses");
+  equal(text, "Y", "quoted right operand is literal text");
+  require(modifier_calls == 0,
+          "comparison does not recursively evaluate dollar text in values");
+}
+static char transmitted[8192];
+static unsigned transmissions;
+static void output_capture(void *ctx, const char *text) {
+  (void)ctx;
+  ++transmissions;
+  strncat(transmitted, text, sizeof transmitted - strlen(transmitted) - 1);
+}
+static void *host_scratch(void *ctx) {
+  (void)ctx;
+  return calloc(1, 8192);
+}
+static void host_release(void *ctx, void *p) {
+  (void)ctx;
+  free(p);
+}
+static unsigned host_command(char *text) {
+  return ((unsigned (*)(void *, char *, int, unsigned))(image + 0x4ab3e))(
+             context, text, -1, 0xff) &
+         0xffff;
+}
+static void template_value(unsigned slot, const char *value) {
+  require((((unsigned (*)(void *, const char *, unsigned))(image + 0x48838))(
+               context, value, slot) &
+           0xffff) == 1,
+          "original template storage");
+}
+static void host_pipeline_checks(void) {
+  char text[4096];
+  hook(0x15396, (void (*)(void))host_scratch);
+  hook(0x153fe, (void (*)(void))host_release);
+  hook(0x6947, (void (*)(void))output_capture);
+  hook(0x7705, noop);
+  pipeline_prepare();
+  fixture("A", "$B$");
+  fixture("B", "$SHIFT$");
+  strcpy(text, "$A$");
+  require(host_command(text) != 0xffff,
+          "original host pipeline accepts nested variables");
+  equal(transmitted, "$SHIFT$", "host does exactly two ordinary dollar passes");
+  transmitted[0] = 0;
+  transmissions = 0;
+  pipeline_prepare();
+  key_state = 0x8000;
+  template_value(3, "$SHIFT$");
+  strcpy(text, "$?3$");
+  require(host_command(text) != 0xffff, "host template embedding accepted");
+  equal(transmitted, "1",
+        "first-level template contents receive second dollar pass");
+  transmitted[0] = 0;
+  transmissions = 0;
+  template_value(4, "$?3$");
+  strcpy(text, "$?4$");
+  require(host_command(text) != 0xffff, "nested template embedding accepted");
+  equal(transmitted, "$SHIFT$", "second-level template contents remain raw");
+  transmitted[0] = 0;
+  transmissions = 0;
+  pipeline_prepare();
+  fixture("N", "2");
+  strcpy(text, "[3:]<<N>>-$SHIFT$");
+  require(host_command(text) != 0xffff,
+          "template definition host block accepted");
+  equal((char *)(uintptr_t)u32(host_commands + 0x100e + 3 * 4), "2-$SHIFT$",
+        "angle macros evaluate at template definition while dollar code is "
+        "stored");
+  require(!transmissions, "template definition does not transmit");
+  pipeline_prepare();
+  for (unsigned i = 0; i < 9; ++i) {
+    char value[32];
+    snprintf(value, sizeof value, "<<?%u>>", i + 1);
+    template_value(i, value);
+  }
+  template_value(9, "END");
+  strcpy(text, "<<?0>>");
+  require(preprocess(text) == 1,
+          "eight changed preprocessor passes report success");
+  equal(text, "<<?8>>",
+        "template-driven angle recursion stops after eight passes");
+  require(preprocess(text) == 1,
+          "remaining angle template chain can run again");
+  equal(text, "END",
+        "second preprocessing invocation finishes remaining chain");
 }
 int main(int argc, char **argv) {
   if (argc != 2)
@@ -187,6 +424,8 @@ int main(int argc, char **argv) {
           "numeric 10 is not less than 2");
   require(compare(context, a, b, 4, 1) == 1,
           "nonnumeric ordering uses case-insensitive strings");
+  pipeline_checks();
+  host_pipeline_checks();
   printf("PASS: %u preliminary macro/variable checks\n", checks);
   return 0;
 }
