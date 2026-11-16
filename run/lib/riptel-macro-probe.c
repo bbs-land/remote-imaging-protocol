@@ -718,6 +718,27 @@ static void parser_edge_checks(void) {
         require(!out, "empty-token active or rejected expression has no value");
     }
   }
+  for (unsigned length = 20; length <= 21; ++length) {
+    char wire[128] = "$XFER(";
+    memset(wire + 6, 'A', length);
+    strcpy(wire + 6 + length, ")$");
+    unsigned short consumed = 0;
+    int parsed = (short)((unsigned (*)(void *, const char *, void *))(
+        image + 0x15602))(variables, wire, &consumed);
+    require(parsed == (length == 20 ? 1 : -1),
+            "original parser accepts 20-byte arguments and rejects 21");
+  }
+  for (unsigned count = 40; count <= 41; ++count) {
+    char wire[128] = "$XFER(";
+    for (unsigned i = 0; i < count; ++i)
+      strcat(wire, i ? ",A" : "A");
+    strcat(wire, ")$");
+    unsigned short consumed = 0;
+    int parsed = (short)((unsigned (*)(void *, const char *, void *))(
+        image + 0x15602))(variables, wire, &consumed);
+    require(parsed == (count == 40 ? 1 : -1),
+            "original parser accepts 40 nonempty arguments and rejects 41");
+  }
 }
 int main(int argc, char **argv) {
   if (argc != 2)
@@ -818,6 +839,6 @@ int main(int argc, char **argv) {
   effects_checks();
   remaining_variable_checks();
   parser_edge_checks();
-  printf("PASS: %u preliminary macro/variable checks\n", checks);
+  printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }

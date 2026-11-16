@@ -4,7 +4,7 @@
 
 ## Status and scope
 
-Started 2026-11-16 for [issue #6](https://github.com/bbs-land/remote-imaging-protocol/issues/6), branch `issue-6-macro-evaluation`, starting from `9b1872a` (delivered PR #31, dependent on #30/#29). Queue refresh confirms #6 is the oldest RealDeuce issue without a complete resolution PR. Investigation incomplete; no resolution PR yet.
+Started 2026-11-16 for [issue #6](https://github.com/bbs-land/remote-imaging-protocol/issues/6), branch `issue-6-macro-evaluation`, starting from `9b1872a` (delivered PR #31, dependent on #30/#29). Queue refresh confirms #6 is the oldest RealDeuce issue without a complete resolution PR. Complete primary-source answers published and validation passed; no resolution PR yet. Earlier checkpoints below preserve the investigation history and are superseded by the final findings.
 
 Required answers:
 
@@ -85,7 +85,7 @@ Current total: **65,815 preliminary checks**. New distinguishing oracles:
 - One `0x4b0e4` pass on `$A$`, with A=`$SHIFT$`, leaves `$SHIFT$` literally. Its original insertion helper `0x65987` returns a pointer **after** inserted text, and the dollar-code scan continues there. This corrects the earlier unresolved “current-position” interpretation.
 - Original host response routine `0x4acd9` calls `0x4b0e4` **twice**, first with flags masked by `0xff5f` (deferring control-character and backslash processing), then with full flags. Host entry `0x4ab3e` runs angle preprocessing once before segmentation and these two ordinary passes. With A=`$B$` and B=`$SHIFT$`, host source `$A$` transmits literal `$SHIFT$`; there is no third ordinary pass.
 - Original template #3=`$SHIFT$`, source `$?3$` transmits modifier state (`1` with the controlled down-key provider). Template #4=`$?3$`, source `$?4$` instead transmits literal `$SHIFT$`: first-level inserted content gets the second ordinary pass, second-level content remains raw.
-- Host source `[3:]<<N>>-$SHIFT$`, with N=`2`, stores **`2-$SHIFT$`** as template #3 and transmits nothing. Angle preprocessing therefore occurs at definition receipt; ordinary dollar code is stored for later use. The inherited “evaluate templates only on use” claim needs this qualification.
+- Host source `[3:]<<N>>-$SHIFT$`, with N=`2`, stores **`2-$SHIFT$`** as template #3 and transmits nothing. Angle preprocessing therefore occurs when that definition’s host command is processed (button activation, not universally network receipt); ordinary dollar code is stored for later use. The inherited “evaluate templates only on use” claim needs this qualification.
 - A=`<<B>>`, B=`C`, source `<<A>>` becomes `C`. The named-angle insertion branch `0x4cc45–0x4cc6d` keeps scanning at the insertion position, allowing immediate named-macro re-expansion within a worker pass.
 - Angle-template syntax is **`<<?N>>`**. Its insertion branch `0x4cb5f–0x4cb85` advances beyond inserted content; nested angle directives in that content wait for another worker pass. A fixture chain template 0=`<<?1>>` through 8=`<<?9>>`, template 9=`END`, turns source `<<?0>>` into **`<<?8>>`** after one wrapper call (eight changed passes, reported as success). A second wrapper call reaches `END`. The eight-pass cap is not a general bound on immediate named-macro recursion.
 - `<<IF $N$=0 AND $SHIFT$=1>>Y<<ELSE>>N<<ENDIF>>`, N=`1`, returns `N` but still calls the modifier provider. AND does **not** short-circuit leaf evaluation; boolean reduction occurs after operands are evaluated.
@@ -164,9 +164,19 @@ Nested IF within an inactive parent is syntax-checked without evaluating its com
 
 All requested issue subquestions now have primary-source answers and independently distinguishing oracles. The normal reference entries must include the integer-conversion/endpoint, pass-order/precedence, omitted-token and template-offset quirks. The inherited template narrative should be clearly qualified so its intended marker-substitution examples are not presented as observed deterministic RIPtel output. Preserve original version/text sources unchanged.
 
-## Next action
+## Publication review
 
-Publish the complete #6 contract in `5.2-templates-and-conditionals.md`, the listed entries in `5.1-text-variables.md` and the variable index, with cross-links to these derivations. Clarify caller-context restrictions (ordinary text one pass versus host two passes; original TEXT_METRIC’s 0x81 mask versus usual drawing 0x83), active versus getter behavior and P’s user-variable fallback. Then format, lint, check links/diff and file a complete PR dependent on #31, linking an issue-only comparison from `9b1872a`. Do not advance to #7 before delivery.
+The reference now distinguishes definition host-command processing/activation from network receipt; the `[3:]` native fixture proves the former. Comparison evaluation failure returns Boolean false from `0x4bd00`; do not turn that into a blanket claim that every evaluation error aborts preprocessing. Missing ENDIF is a separately checked structural failure.
+
+Final parser boundary inspection: `0x15afe–0x15b8c` caps nonempty argument count at 40 and each stored argument at 20 bytes; `0x15ed9–0x15ef6` omits empty fields. Added native checks at 20/21 bytes and 40/41 arguments to verify those limits independently of callback arity. XFER consequently has at most 37 filename arguments after its three required keywords. The final probe count is **66,202**; intermediate preliminary counts above are historical checkpoints.
+
+## Publication and validation
+
+Published the complete contract in chapters 5.1/5.2 and the variable index, with related cursor, clipboard and directory cross-references corrected. The inherited template examples are qualified by the shipped offset defect; the ordinary-text/TEXT_METRIC/host consumer rules and all issue subquestions are covered. Original text records and assets remain unchanged.
+
+Validation on 2026-11-16: `run/riptel-macro-probe <unchanged-dll>` captured 179 original registrations and passed **66,202 native checks**. `run/format`, `run/lint`, `run/check-links` (**0 bad of 4,579 links across 188 files**) and `git diff --check` pass. No GUI/Wine was used. The probe controls external services and captures the unsafe chain insertion rather than executing its invalid write.
+
+Next: commit/push the complete answer and file its resolution PR dependent on #31, linking an issue-only comparison from `9b1872a`; record delivery here and in the research backlog, then refresh GitHub before advancing to #7.
 
 ---
 
