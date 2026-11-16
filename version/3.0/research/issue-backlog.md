@@ -56,7 +56,7 @@ Issue #27 is delivered in [PR #61](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #28 is delivered in [PR #62](https://github.com/bbs-land/remote-imaging-protocol/pull/62), branch `issue-28-tone-variable-contract`, dependent on #61. Its [derivation](issue-28-tone-variable-contract.md) records **1,576,902 macro checks**, original six-note MUSIC, BLIP 1000/25, required T pair, no added BEEP/BLIP gaps, invalid sweeps without fallback and bounded WORD cycles. Specification commit `a68e71b`; issue-only comparison starts at `b0827a4`. Formatting, 5,229 links and diff checks pass; earlier-version sources/artifacts unchanged; task temporary paths removed. Review/merge is pending.
 
-Next: [#33](https://github.com/bbs-land/remote-imaging-protocol/issues/33), filled-rectangle line patterns versus border rules. Post-#62 refresh confirms #3–#28 have complete PRs; remaining queue #33, #38, #42, #46, #51, #53, #54, #58.
+Active: [#33](https://github.com/bbs-land/remote-imaging-protocol/issues/33), filled-rectangle line patterns versus border rules. Branch `issue-33-filled-rectangle-borders` starts at `4819dcb`; [incremental derivation](issue-33-filled-rectangle-borders.md). Next: original pen/ROP captures before corrections. Post-#62 refresh confirms #3–#28 have complete PRs; remaining queue #33, #38, #42, #46, #51, #53, #54, #58.
 
 ## Queue and delivery
 
