@@ -2,6 +2,8 @@
   "tasks": {
     "check-links": "deno run --allow-read run/check-links",
     "lint": "bash run/lint",
-    "format": "bash run/format"
+    "format": "bash run/format",
+    "riptel-inspect": "deno run --allow-read run/riptel-inspect",
+    "riptel-font-probe": "bash run/riptel-font-probe"
   }
 }
