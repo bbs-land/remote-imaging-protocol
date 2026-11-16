@@ -10,7 +10,7 @@ Issue #4 is delivered in [PR #30](https://github.com/bbs-land/remote-imaging-pro
 
 Active: [issue #5](https://github.com/bbs-land/remote-imaging-protocol/issues/5), branch `issue-5-scene-headers`; read its [derivation note](issue-5-scene-headers.md). No resolution PR yet. The branch starts at `996b1a3` to reuse the delivered #3/#4 tools and workflow.
 
-Next action: recover header dispatch discrimination and segment effects from the driver, then trace each unresolved entry point. Stay on #5 until every requested item is resolved or explicitly classified from complete primary evidence. All new commits carry the requested Codex co-author trailer.
+Next action: finish review and required checks for #5’s complete derived contract, then file its PR with the PR #30 dependency and an issue-only comparison from `996b1a3`. Header framing/flags/protection, all three recovered entry points, explicit SyncTERM-only exclusions and audio classification are now documented; read the note’s final findings before resuming. All new commits carry the requested Codex co-author trailer.
 
 ## Queue and delivery
 

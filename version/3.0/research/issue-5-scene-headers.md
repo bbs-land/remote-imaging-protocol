@@ -4,7 +4,7 @@
 
 ## Status and questions
 
-Started 2026-11-16 for [issue #5](https://github.com/bbs-land/remote-imaging-protocol/issues/5), branch `issue-5-scene-headers`, starting from `996b1a3` (issue #4’s delivered branch, PR #30; itself dependent on PR #29). No resolution PR yet; investigation incomplete. Queue refresh confirms #5 is the oldest issue without a complete resolution PR.
+Started 2026-11-16 for [issue #5](https://github.com/bbs-land/remote-imaging-protocol/issues/5), branch `issue-5-scene-headers`, starting from `996b1a3` (issue #4’s delivered branch, PR #30; itself dependent on PR #29). No resolution PR yet; the complete answer is derived and undergoing final documentation/verification. The incremental observations below preserve the investigation history; the final findings supersede earlier pending items. Queue refresh confirms #5 is the oldest issue without a complete resolution PR.
 
 Required: shipped header byte grammar, framing/termination, field widths/radices, reset/protection behavior and a complete example; identify or explicitly exclude RIP_TextMetric, RIP_FontAttrib, RIP_SwitchDirectory, SyncTERM-only 1N/1O/1S and level-0 ESC from the executable 3.0 contract; distinguish an audio table from a single headerable state object. Article selection’s wire-layout reconciliation remains with issue #2.
 
@@ -73,9 +73,67 @@ Common table-segment backup calls are `0x23d6e(context,type,-1)` to delete base,
 
 Environment setter `0x3e989` silently rejects widths outside 2..5; `0x3e943` accepts RGB bit count 0..8, silently rejecting >8. These downstream checks differ from the earlier misindexed validator. Both write parser and current environment state directly without a protection check; the complete header/protection sequence still needs probing.
 
-## Next action
+## Final header effects and protection findings
 
-Extend the native header probe to execute global and segment effect routines, recording underlying reset/switch/protection/backup calls and actual state changes. Trace the remaining table-segment functions and their backup/reset helpers; test environment setters and character-set mismatch. Then fully derive TextMetric outputs and SwitchDirectory behavior. Keep #5 incomplete and do not file a partial resolution PR.
+The expanded native probe now executes the original global header handler and each segment consumer. Leaf reset/switch/delete/UI routines are explicitly intercepted to record calls, while environment setters, style default copying, global lock/revision storage, original byte parsing and a separate backup-deletion helper run unchanged. This is controlled routine execution, not end-to-end client behavior. No Wine or desktop process is involved. The published flag tables come from the full consumer instruction ranges plus their downstream helper traces, not inferred bit names.
+
+Global order: validator `0x1774f`; hard reset `0x16665(context,0)` when bit 1, otherwise drawing reset `0x16220(context,0,1,1)` when bit 2; revision stored at environment-system +0x1a; previous input lock released by `0x16b51`; bit 4 calls `0x16b24` (wait cursor 6, lock +0x1c=1, timeout state +0x1e=0); bit 8 selects zero in all six tables; bit 16 calls refresh-clear `0x3e41a`; then segments in wire order. The wrapper `0x1cae1` skips application when driver state +0x104 is nonzero and marks metrics dirty through `0x3c37e` even after failed validation. It has no blanket drawing-port protection guard. `#` releases input lock. Zero flags still remember revision and release an existing lock. No new cursor is forced when there was no prior lock.
+
+Hard reset’s `0x16665` sequence clears refresh/audio state, removes table and saved-area protection, deletes backup areas/stacks and rebuilds table defaults. The drawing-reset path preserves the usual protected table entries; individual segment routines retain their own protection exceptions below. Do not treat a segment selection as an automatic reset of the selected entry.
+
+| Segment | Consumer / key downstream routines | Derived behavior |
+| --- | --- | --- |
+| Button 0 | `0x16bf4`; delete `0x4558d`, protect `0x454c4`, switch `0x4576f` | Flags 1/2/4 delete unprotected nonzero/select supplied/delete others preserving current; 8/16/32 base/one-numbered/stack backup deletion; 64 current unprotected defaults; 128 all unprotected defaults |
+| Graphics style 1 | `0x16d58`; delete `0x391fd`, protect `0x390e4`, switch `0x394fe` | Same common low bits and current/all default split; actual default record copying is checked with protected and unprotected current style |
+| Port 2 | `0x16ec1`; delete `0x33112`, screen geometry `0x33d82`, switch `0x3393c` | Additional flag 4 deletes current physical target; common delete-others and backup bits shift left one position. Viewport helpers `0x33f55`, `0x34067`, `0x340bd` implement disable/enable, full-bounds rectangle reset and clipping application; query helpers `0x33e20`/`0x33e40` clear global/per-port queries |
+| Text window 3 | `0x170c8`; delete `0x39ac8`, reset geometry/cursor `0x83a5`, switch `0xe0dc` | Common low six bits; active-state helper `0x2bf9e` toggles bit 0; erase/home `0x4597b`; query helpers `0x2d663`/`0x2d677`; cursor helper `0x18e33` toggles cursor bit 1 and `0x18bf7` handles active/visible caret state |
+| Palette 4 | `0x172c5`; defaults `0x3e2e7` | Common low six bits. Both 64 and 128 reset only the currently selected defined unprotected palette: the 64 branch loops but checks loop index against current before acting. Native capture sees exactly one reset |
+| Environment 5 | `0x173f5`; base `0x3e8eb`, coordinate width `0x3e989`, RGB `0x3e943` | Common low six bits. Flag 64 scans defined unprotected environments and restores selection; 128 directly defaults current, including protected current. Additional setters execute in ascending bit order; 256 takes precedence over 512, 2048 is followed/overridden by 4096, and 16384 follows/overrides 8192 |
+| Mouse 6 | `0x17658`; field deletion `0x12d63` | Flag 1 uses mask 15 (button fields), 2 uses mask 23 (simple fields), both use mask 7; flags 4/8/16 delete base/one-numbered/stack saves |
+| Audio 7 | `0x176dd` -> `0x37e41` | Flag 1 invokes PlaySoundA(NULL,NULL,0x20001). Wrapper argument is ignored. No table slot or separate MIDI-stop action |
+| Screen 8 | `0x176ef` | Flag 1 clears with stock BLACK_BRUSH (4); 2/4/8 delete base/one-numbered/stack saves |
+| Charset 9 | `0x17b7a` | Stores charset byte at environment-system +0x10, but its two-argument descriptor conflicts with the three-argument stride; see accepted misalignment below |
+
+Backup family numbers are button 0, style 1, port 2, text window 3, palette 4, mouse 5, screen 6, environment 7. All numbered-save flags invoke `0x23d6e(context,family,-2)` once. A controlled test restores that helper’s original instructions, supplies three present saves with slot 0 protected, and verifies that only slot 1 is deleted and the count decrements once; slot 2 survives. Stack-clear helper `0x24648` instead repeats `-4` until failure.
+
+Port bit 4 checks current physical target (+0xa), definition and protection before calling `0x33112(context,physical,0)`, then clears physical selection even if deletion failed. That helper explicitly refuses deliberate deletion of port 0 (`0x33137–0x33155`); protected physical targets skip the call and retain selection. Delete-others bit 8 also resets screen-port geometry when a nonzero logical port remains current (`0x16fb7–0x16fc7`). Logical selection (+8) and physical target (+0xa) must not be conflated.
+
+Environment’s misindexed validator does not replace setter range checks. Width setter accepts 2..5; RGB setter accepts **0..8**, not the validator’s misapplied 1..8 slot constraint. Both silently ignore out-of-range fields, update current state/parser when valid, and do not consult protection. Native checks exercise protected direct setters and invalid fields. Flag 128’s default-setting path has the same direct behavior; flag 64’s scan checks protection first. Palette 64’s current-only action is a separate shipped defect. Button definition/protection bitmaps are distinct from record flags; an early suspicion that default copying corrupted protection was rejected after resolving the table layout.
+
+### Framing and integration oracles
+
+The final probe checks all ten selectors, mixed descriptors, ten accepted versus eleven rejected declared segments, backslash-CRLF continuation both inside and between fields, all global flag combinations 0..63, and each defined segment flag’s original control path. Declared count zero ignores parsed extras; well-formed headers should still contain exactly the declared segments. Validation runs before global effects and does not provide runtime rollback.
+
+Constructed `!|h01000201502O2220` plus CRLF invokes the original byte parser, header consumer and environment setters. `02O2` base 64 is 9730 (2+512+1024+8192): drawing reset, environment slot 2, base 36, width 2 and WCF 1280×960. This is a checked generated example, not recovered corpus content.
+
+Two additional original-parser integration cases prove settings affect the next chained command: `!|h01000001500G0230|L001002003004` changes coordinate width to 3 and decodes the following line as 1,2,3,4; `!|h0100000150040220|q0a` changes radix to 64 and decodes q’s argument as 36. An initially failed radix test was a **harness defect**: the replacement CRT character-type table had digit/whitespace bits but omitted uppercase/lowercase bits used by the original numeric parser. Adding those bits fixed it without changing driver instructions.
+
+The type-9 mismatch is not equivalent to “charset can never execute.” `!|h01000002900200060` plus CRLF parses to `[1,0,2,9,0,2,6,0]`: charset 0 followed by port flags 6/slot 0. Original validation/application advances three arguments after type 9, so it accepts and executes charset 0 then mouse flags 0, with no port switch. This accepted misalignment is checked natively. Other combinations can read outside the intended argument structure. Publish no invented extra wire field and no independently consistent charset grammar.
+
+### Final entry-point details
+
+q’s exhaustive 0..4095 tests confirm only 0..15 are accepted, flags accumulate, zero does not clear, and protected/system-font styles reject it. r’s numeric reserved field is not read; invalid mode/domain return before TEXTDATA processing. The complete routine shows a 1023-byte input copy, NUL at scratch +0x3ff and expansion call with limit 0x3fe. Its renderer call at `0x2080d` supplies zero coordinates and a NULL text argument; it prepares the outline font without drawing the supplied string. It ignores the renderer’s return before querying width/height. Primitive results are narrowed to signed 16 bits; world conversion `0x310f2` sign-extends that value, multiplies by the appropriate world dimension, signed-divides by the corresponding device dimension and stores the low 16 bits. The reply uses `%hd` decimal text and final CR, with colon separators for per-byte results.
+
+Native tests check literal-empty input in both font modes: the outline branch returns without reply (`0x20660–0x2066b` checks original input); system-font width is zero, system-font height follows its metric, and list modes return CR. Nonempty `$VAR$` expanded to empty still produces the outline reply, confirming the early test’s operand. Font/OS metric providers are controlled, so these tests establish protocol control/formatting and not real-font pixel dimensions.
+
+Directory probe confirms the complete original setter/path-construction behavior, whitespace-only accepted as empty after trim, exact `.`/`..` rejected, literal empty rejected and host callback absence suppressing all work. Trimming/uppercasing occur **before expansion**, not a second time afterward. Literal `$OFF$` clears without creation; expanded `$OFF$` is an ordinary name. Creation failure leaves the selected name changed. Host directory is a single name, not a switchable drawing table.
+
+The missing SyncTERM-only entries are now explicitly excluded: the **complete original dispatch table** lacks 1N, 1O, 1S and level-0 ESC, and the original byte parser yields no callback for each constructed test record. Level-0 ESC as a RIP opcode is distinct from ANSI autodetection and from actual level-1/2/9 ESC commands. This classification resolves the issue’s request without importing guessed field semantics. Article selection remains with issue #2.
+
+## Verification and next action
+
+Run the SHA-guarded native probes against the unchanged source DLL:
+
+```sh
+run/riptel-header-probe /path/to/ripscrip.dll
+run/riptel-font-probe /path/to/ripscrip.dll
+run/riptel-column-probe /path/to/ripscrip.dll
+run/lint
+run/check-links
+git diff --check
+```
+
+Final native verification passes: **9,176 header/parser/entry checks**, **31,713 font checks** and **23,013 column checks** against the unchanged SHA-verified DLL. Repository link validation passes **4,529 links across 187 files**, and Markdown lint and `git diff --check` pass. Documentation review also removed stale Alpha 4 audio flags and blanket header-reset assumptions from related reference pages. All issue subquestions are resolved by the published header contract, q/r/level-2 ESC entries, explicit four-opcode exclusion and single audio-action classification. File the complete #5 PR declaring its dependency on PR #30 and linking an issue-only comparison from `996b1a3`; record delivery before advancing to #6.
 
 ---
 
