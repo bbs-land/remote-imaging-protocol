@@ -58,7 +58,7 @@ Issue #28 is delivered in [PR #62](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #33 is delivered in [PR #63](https://github.com/bbs-land/remote-imaging-protocol/pull/63), branch `issue-33-filled-rectangle-borders`, dependent on #62. Its [derivation](issue-33-filled-rectangle-borders.md) records **119,770 fill checks**, current-pen/current-write-mode K borders, original custom-type GDI mapping, width limits and combined/separate background-gap passes. Specification commit `982a59e`; issue-only comparison starts at `4819dcb`. Formatting, 5,249 links and diff checks pass; historical sources/assets unchanged; task temporary files removed. Review/merge is pending.
 
-Next: [#38](https://github.com/bbs-land/remote-imaging-protocol/issues/38), rounded-rectangle radius units, bounds, degeneration and interior. Post-#63 refresh leaves queue #38, #42, #46, #51, #53, #54, #58.
+Active: [#38](https://github.com/bbs-land/remote-imaging-protocol/issues/38), rounded-rectangle radius units, bounds, degeneration and interior. Branch `issue-38-rounded-rectangle-geometry` starts at `f1e044a`; [incremental derivation](issue-38-rounded-rectangle-geometry.md). Next: original U/u radius/parser/geometry/interior captures. Post-#63 refresh leaves queue #38, #42, #46, #51, #53, #54, #58.
 
 ## Queue and delivery
 
