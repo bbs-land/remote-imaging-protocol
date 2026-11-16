@@ -1274,6 +1274,35 @@ static void environment_query_checks(void) {
   expand_codes(expression, 0x83, 1);
   equal(expression, "custom-X:custom-Y",
         "unregistered legacy X/Y names use ordinary user-variable namespace");
+  pipeline_prepare();
+  install_environment_records();
+  strcpy(expression, "$WORLDH(CUR,1000)$");
+  expand_codes(expression, 0x83, 1);
+  require(u16(variables + 0x436) && u16(env_record(0) + 3) == 960,
+          "ordinary WORLDH CUR setter has same original target error");
+  pipeline_prepare();
+  install_environment_records();
+  strcpy(expression, "$WORLDH(5,1000)$");
+  expand_codes(expression, 0x83, 1);
+  require(!u16(variables + 0x436) && u16(env_record(0) + 3) == 1000 &&
+              u16(env_record(5) + 3) == 350,
+          "ordinary WORLDH setter modifies current, not named target");
+  pipeline_prepare();
+  install_environment_records();
+  strcpy(expression, "$WORLDW(BOGUS,1234)$");
+  expand_codes(expression, 0x83, 1);
+  require(!u16(variables + 0x436) && u16(env_record(0) + 1) == 1234,
+          "ordinary WORLDW parser permits ignored invalid target text");
+  pipeline_prepare();
+  install_environment_records();
+  strcpy(expression, "$COLORMODE(CUR,RGB,1)$");
+  expand_codes(expression, 0x83, 1);
+  require(!u16(variables + 0x436) && env_record(0)[7] == 1 &&
+              active_environment[0x3a] == 1,
+          "ordinary color macro accepts and activates one-bit precision");
+  strcpy(expression, "$COLORMODE$");
+  expand_codes(expression, 0x83, 1);
+  equal(expression, "1", "ordinary color query reports one-bit precision");
 }
 
 int main(int argc, char **argv) {
