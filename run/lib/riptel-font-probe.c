@@ -283,7 +283,8 @@ static void cursor_fixture(unsigned scale, unsigned outline, unsigned font,
   style[8] = direction;
   style[0x24] = outline;
   put16(style + 0x25, flags);
-  style[0x51] = direction;
+  put16(style + 0x59, direction * 900);
+  put32(style + 0x53, flags & 4 ? 0x10 : flags & 2 ? 0x20 : 0);
   text_draws = classic_width_calls = outline_width_calls = 0;
 }
 static void cursor_checks(void) {

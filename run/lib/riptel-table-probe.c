@@ -605,6 +605,8 @@ static void backup_query_checks(void) {
   pointer(port_system + 0x2a, NULL);
   port[0] = 1;
   port[0x17] = 1; /* existing protected live target */
+  put32(port + 0x5c, 717);
+  put32(port + 0x60, 818);
   require(((unsigned (*)(void *, void *))(image + 0x22226))(ctx, save_record) ==
                   1 &&
               stream_position == stream_length,
@@ -620,13 +622,13 @@ static void backup_query_checks(void) {
   require(u16(port_system + 8) == 5 && port[0] == 1 && port[0x17] == 1,
           "whole-port backup restores selection and saved protection over "
           "protected live entry");
-  require(
-      !memcmp(port + 0x4a, saved_image, sizeof saved_image) &&
-          u16(port + 0x5a) == 43 && u32(port + 0x5c) == 515 &&
-          u32(port + 0x60) == 616 &&
-          !memcmp(old_styles, style_records, sizeof style_records) &&
-          !memcmp(old_env, env_records, sizeof env_records),
-      "port backup owns image/cursor and captures no style/environment state");
+  require(!memcmp(port + 0x4a, saved_image, sizeof saved_image) &&
+              u16(port + 0x5a) == 43 && u32(port + 0x5c) == 717 &&
+              u32(port + 0x60) == 818 &&
+              !memcmp(old_styles, style_records, sizeof style_records) &&
+              !memcmp(old_env, env_records, sizeof env_records),
+          "port restore recovers image, discards saved cursor, changes no "
+          "style/environment");
   clear_queries();
 }
 static void observable_checks(void) {
