@@ -8,7 +8,7 @@ Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-lan
 
 Active: [issue #4](https://github.com/bbs-land/remote-imaging-protocol/issues/4), branch `issue-4-column-overflow`; read its [derivation note](issue-4-column-overflow.md). No resolution PR yet. This branch starts from #3’s delivered branch to reuse tools and workflow; record the dependency in its eventual PR if #29 is still unmerged.
 
-Next action: recover the column/article state layout, `1e` validation and OVERFLOW/RESET handlers from the driver, then build original-instruction state probes. GUI isolation is mandatory. Remain on #4 until all subquestions have complete primary-source answers.
+Next action: review and deliver the complete #4 reference draft; the original-instruction column/overflow probe passes 23,013 checks, including raw flow and lazy replay. GUI isolation is mandatory. Remain on #4 until all subquestions have complete primary-source answers.
 
 ## Queue and delivery
 

@@ -17,6 +17,10 @@ Repository scripts live under `run/`; their catalogue and conventions are in [ru
 - **Format with `run/format`, not by hand** - never hand-wrap prose or hand-tune Markdown spacing to match the style; let the formatter do it, then confirm with `run/lint`.
 - **If you find yourself repeating an incantation, add it as a `run/` script** rather than repeating it across sessions - following the conventions in [run/README.md](run/README.md), including the `deno task` wrapper and the table row.
 
+## Commit attribution
+
+The user requests Codex co-authorship for this work. Add the trailer `Co-authored-by: Codex <codex@openai.com>` to every new commit.
+
 ## Session work log (`DONE.md`)
 
 `DONE.md` is the agent-facing work log for a session or workflow - it records what actually changed, with dates and short result summaries, so work can be resumed or reviewed mid-session. It affects agents only; it is in `.gitignore`, is never committed, and is cleared regularly as changes are committed to git. Treat it as scratch: **check that the file exists before trying to edit existing content in it** - if it is missing, start a fresh one rather than assuming prior entries survive. The committed backlog stays in [TODO.md](TODO.md), which is updated as tasks start and finish (see [CONTRIBUTING.md](CONTRIBUTING.md#repository-conventions)); do not link to `DONE.md` from committed documentation, since it will not exist in a clean checkout.
