@@ -84,7 +84,9 @@ The reference now gives command-specific positive-sweep/degenerate decisions, al
 
 `run/format` applied to all changed Markdown; `run/lint` passed; `run/check-links` passed **4859 links across 198 files** before this validation record; `git diff --check` and wrapper syntax passed. The final native probe passes **18,106,873 checks**. Original 1.54/2.0 text hashes remain unchanged and no task arc temporary directories remain. All issue subquestions are answered by the documented command-specific contract and stated API boundary.
 
-Inspect the final issue-only change, inspect the final issue-only change, then commit/push and file the complete #14 PR dependent on #41. Issue-only comparison begins at **2950732**. Record delivery and refresh creation order before #15; do not merge, manually close, or wait for review.
+Delivered in [PR #43](https://github.com/bbs-land/remote-imaging-protocol/pull/43), branch `issue-14-arc-sweeps`, dependent on #41. Specification commit **5b17e84**; initial native checkpoint **b22d5f8**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/2950732...issue-14-arc-sweeps) starts at delivered #13's final commit. Review/merge is pending; no issue was manually closed and no PR was merged. All new commits carry Codex co-authorship.
+
+Post-publication creation-order refresh confirms **#15**, Bézier equations/subdivision/block grammar, is the next RealDeuce issue without a complete resolution PR. The refresh also adds **#42** after #38. Start #15 from this delivery checkpoint and continue without waiting for review.
 
 ## Temporary-file cleanup
 
