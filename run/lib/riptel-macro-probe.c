@@ -902,6 +902,202 @@ static void date_time_checks(void) {
   printf("Original DATETIME: 12/05/93 14:38:50; %u dates and 86400 times\n",
          dates);
 }
+/* FILEDEL keeps original ordinary lookup, basename parsing and unlink. Only
+ * access/DeleteFileA and the user-configured search-path provider are services.
+ */
+static unsigned char file_state[0x700], file_options[0x700], root_path[256],
+    search_object[8], search_methods[32];
+static char search_cache[1024], configured_search[1024];
+static char access_paths[32][512], delete_paths[16][512];
+static unsigned access_count, delete_count, present_mask, delete_failure;
+static const char *search_provider(void *ctx, const char *set) {
+  require(ctx == context && !set,
+          "FILEDEL only queries configured search path");
+  return configured_search;
+}
+static int file_access(const char *path, unsigned mode) {
+  require(mode == 0 && access_count < 32,
+          "bounded existence-only access query");
+  snprintf(access_paths[access_count], sizeof access_paths[0], "%s", path);
+  return (present_mask & (1u << access_count++)) ? 0 : -1;
+}
+static unsigned __attribute__((stdcall)) file_delete(const char *path) {
+  require(delete_count < 16, "bounded deletion capture");
+  snprintf(delete_paths[delete_count++], sizeof delete_paths[0], "%s", path);
+  return !delete_failure;
+}
+static unsigned __attribute__((stdcall)) file_last_error(void) { return 5; }
+static void file_configure(const char *host, const char *search) {
+  put16(context, 0x9df3);
+  memset(file_state, 0, sizeof file_state);
+  memset(file_options, 0, sizeof file_options);
+  memset(root_path, 0, sizeof root_path);
+  memset(search_methods, 0, sizeof search_methods);
+  pointer(context + 0x32, file_state);
+  pointer(context + 0x36, file_options);
+  pointer(context + 0x72, root_path);
+  pointer(context + 6, search_object);
+  pointer(search_object, search_cache);
+  pointer(search_object + 4, search_methods);
+  pointer(search_methods + 0x10, (void *)search_provider);
+  strcpy((char *)root_path + 0x16, "C:\\RIP");
+  strcpy((char *)file_state + 0x462, host);
+  strcpy(configured_search, search);
+  access_count = delete_count = present_mask = delete_failure = 0;
+  hook(0x758e0, (void (*)(void))file_access);
+  pointer(image + 0x965dc, (void *)file_delete);
+  pointer(image + 0x96600, (void *)file_last_error);
+}
+static void file_prepare(const char *host, const char *search) {
+  prepare();
+  file_configure(host, search);
+}
+static void filedel_checks(void) {
+  require(registered_callback("FILEDEL") == 0x28434,
+          "original registration identifies FILEDEL callback");
+  for (unsigned host = 0; host < 2; ++host)
+    for (unsigned hit = 0; hit < (host ? 5u : 4u); ++hit) {
+      file_prepare(host ? "HOST" : "", "D:\\LIB;EXTRA");
+      present_mask = 1u << hit;
+      strcpy(params, "X.BMP");
+      require(!invoke(0x28434, 1) && !u16(variables + 0x436),
+              "FILEDEL has no text result or error for nonempty argument list");
+      unsigned candidates = host ? 4 : 3;
+      require(access_count == (hit < candidates ? hit + 1 : candidates) &&
+                  delete_count == (hit < candidates ? 1u : 0u),
+              "FILEDEL deletes first ordinary-lookup hit or none");
+      const char *expected[] = {"C:\\RIP\\HOST\\X.BMP", "C:\\RIP\\ICONS\\X.BMP",
+                                "D:\\LIB\\X.BMP", "C:\\RIP\\EXTRA\\X.BMP"};
+      for (unsigned n = 0; n < access_count; ++n)
+        equal(access_paths[n], expected[n + !host],
+              "FILEDEL lookup order includes shared and user search paths");
+      if (delete_count)
+        equal(delete_paths[0], expected[hit + !host],
+              "FILEDEL passes first resolved path to original unlink");
+    }
+  file_prepare("HOST", "D:\\LIB;EXTRA");
+  present_mask = 15;
+  delete_failure = 1;
+  strcpy(params, "X.BMP");
+  require(
+      !invoke(0x28434, 1) && access_count == 1 && delete_count == 1 &&
+          !u16(variables + 0x436),
+      "deletion failure is ignored and does not fall through to lower tiers");
+  const struct {
+    const char *input, *candidate, *wire_candidate;
+  } cases[] = {
+      {"X.BMP", "C:\\RIP\\HOST\\X.BMP", "C:\\RIP\\HOST\\X.BMP"},
+      {"C:X.BMP", "C:\\RIP\\HOST\\C:X.BMP", "C:\\RIP\\HOST\\C:X.BMP"},
+      {"C:\\DIR\\X.BMP", "C:\\RIP\\HOST\\C:\\DIR\\X.BMP",
+       "C:\\RIP\\HOST\\C:DIRX.BMP"},
+      {"DIR/X.BMP", "C:\\RIP\\HOST\\X.BMP", NULL},
+      {"DIR\\X.BMP", "C:\\RIP\\HOST\\DIR\\X.BMP", "C:\\RIP\\HOST\\DIRX.BMP"},
+      {"../X.BMP", "C:\\RIP\\HOST\\X.BMP", NULL},
+      {"..\\X.BMP", "C:\\RIP\\HOST\\..\\X.BMP", "C:\\RIP\\HOST\\..X.BMP"},
+      {"\\X.BMP", "C:\\RIP\\HOST\\\\X.BMP", "C:\\RIP\\HOST\\X.BMP"},
+      {"/X.BMP", "C:\\RIP\\HOST\\X.BMP", NULL},
+      {"\\\\S\\X.BMP", "C:\\RIP\\HOST\\\\\\S\\X.BMP", NULL},
+      {"*.BMP", "C:\\RIP\\HOST\\.BMP", NULL},
+      {"X?.BMP", "C:\\RIP\\HOST\\.BMP", NULL},
+      {"X.BMP/", NULL, NULL},
+      {"X.BMP\\", "C:\\RIP\\HOST\\X.BMP\\", NULL},
+      {".", "C:\\RIP\\HOST\\.", "C:\\RIP\\HOST\\."},
+      {"..", "C:\\RIP\\HOST\\..", "C:\\RIP\\HOST\\.."},
+      {"", NULL, NULL},
+      {" A.BMP", "C:\\RIP\\HOST\\ A.BMP", "C:\\RIP\\HOST\\ A.BMP"},
+      {"A B.BMP", "C:\\RIP\\HOST\\A B.BMP", "C:\\RIP\\HOST\\A B.BMP"},
+      {"A:B.BMP", "C:\\RIP\\HOST\\A:B.BMP", "C:\\RIP\\HOST\\A:B.BMP"},
+      {"[X].BMP", "C:\\RIP\\HOST\\.BMP", NULL},
+      {"X*Y.BMP", "C:\\RIP\\HOST\\Y.BMP", NULL},
+      {"X;Y.BMP", "C:\\RIP\\HOST\\Y.BMP", NULL},
+      {"X|Y.BMP", "C:\\RIP\\HOST\\Y.BMP", NULL},
+  };
+  for (unsigned n = 0; n < sizeof cases / sizeof cases[0]; ++n) {
+    file_prepare("HOST", "");
+    present_mask = 1;
+    strcpy(params, cases[n].input);
+    require(!invoke(0x28434, 1) && !u16(variables + 0x436),
+            "FILEDEL skips or processes each argument without variable error");
+    require(access_count == (cases[n].candidate ? 1u : 0u) &&
+                delete_count == access_count,
+            "original FILEDEL path transformation determines attempted lookup");
+    if (cases[n].candidate)
+      equal(delete_paths[0], cases[n].candidate,
+            "original FILEDEL forwards exact transformed path to unlink");
+  }
+  const char *literal_names[] = {"x.icn", "X.HIC", "X.MSK", "X"};
+  for (unsigned n = 0; n < 4; ++n) {
+    file_prepare("HOST", "");
+    present_mask = 1;
+    strcpy(params, literal_names[n]);
+    invoke(0x28434, 1);
+    char expected[128];
+    snprintf(expected, sizeof expected, "C:\\RIP\\HOST\\%s", literal_names[n]);
+    equal(delete_paths[0], expected,
+          "FILEDEL preserves supplied case/extension and supplies no default "
+          "extension");
+  }
+  for (unsigned c = 0; c < 256; ++c) {
+    unsigned char rejected[] = {34, 42, 43, 44, 47, 59, 60,
+                                61, 62, 63, 91, 93, 124};
+    unsigned accepted = c >= 32 && c <= 127;
+    for (unsigned n = 0; n < sizeof rejected; ++n)
+      if (c == rejected[n])
+        accepted = 0;
+    unsigned actual = ((unsigned (*)(unsigned))(image + 0x65c44))(c) & 0xffff;
+    require(actual == accepted,
+            "original filename-tail character predicate for every byte");
+  }
+  file_prepare("HOST", "");
+  require(!invoke(0x28434, 0) && u16(variables + 0x436) == 1 && !access_count &&
+              !delete_count,
+          "FILEDEL requires at least one argument");
+  file_prepare("HOST", "");
+  present_mask = 7;
+  strcpy(params, "ONE.BMP");
+  strcpy(params + 21, "");
+  strcpy(params + 42, "TWO.BMP");
+  require(!invoke(0x28434, 3) && !u16(variables + 0x436) && delete_count == 2,
+          "FILEDEL continues past an empty argument and returns no text");
+  equal(delete_paths[0], "C:\\RIP\\HOST\\ONE.BMP",
+        "first FILEDEL argument uses current host");
+  equal(delete_paths[1], "C:\\RIP\\HOST\\TWO.BMP",
+        "later FILEDEL argument is independently resolved");
+  for (unsigned n = 0; n < sizeof cases / sizeof cases[0]; ++n) {
+    if (!*cases[n].input)
+      continue;
+    for (unsigned full = 0; full < 2; ++full) {
+      pipeline_prepare();
+      file_configure("HOST", "");
+      present_mask = 1;
+      char text[4096], original[4096];
+      snprintf(text, sizeof text, "A$FILEDEL(%s)$B", cases[n].input);
+      strcpy(original, text);
+      require(expand_codes(text, full ? 0xff : 0xff5f, 1) == 1,
+              "ordinary FILEDEL text processing succeeds even when expression "
+              "is rejected");
+      require(
+          access_count == (cases[n].wire_candidate ? 1u : 0u) &&
+              delete_count == access_count && !u16(variables + 0x436),
+          "original dollar argument grammar determines callback reachability");
+      if (cases[n].wire_candidate) {
+        equal(text, "AB", "active FILEDEL expansion returns no value");
+        equal(delete_paths[0], cases[n].wire_candidate,
+              "original parser/backslash handling forwards exact filename to "
+              "deletion");
+      } else if (!(full && !strcmp(cases[n].input, "X.BMP\\"))) {
+        equal(text, original, "rejected FILEDEL expression remains literal");
+      } else {
+        equal(text, "A$FILEDEL(X.BMP)$B",
+              "full ordinary pass removes trailing escape after parser "
+              "rejection");
+      }
+    }
+  }
+  printf("Original FILEDEL: shared/search-path lookup, exact path cases and "
+         "all 256 name bytes verified\n");
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -1012,6 +1208,7 @@ int main(int argc, char **argv) {
   host_quote_checks();
   port_size_query_checks();
   date_time_checks();
+  filedel_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
