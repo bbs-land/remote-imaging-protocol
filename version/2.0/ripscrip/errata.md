@@ -164,6 +164,14 @@ The draft's own behavior confirms the reading: the two sibling commands announce
 
 ## 7.0 Drawing Ports
 
+### Viewport diagram screen coordinate
+
+**What the draft says:** the point at viewport (50,50), port (90,90) is labeled screen (125,125), while the port origin is screen (25,25) and the viewport origin is port (40,40).
+
+**What's correct:** (25+40+50,25+40+50) = **(115,115)**. This is a coordinate-addition correction independent of any client's bitmap sizing convention. The [port-geometry derivation](../../3.0/research/issue-10-port-geometry.md) separately establishes the later RIPtel 3.1 extent/copy contract and the size-query defect; those later-client findings are not generalized to 2.x runtime behavior.
+
+**How the reference page renders it:** the [Ports and Viewports diagram](7.0-drawing-ports.md#ports-and-viewports) labels the point (115,115).
+
 ### RIP_DELETE_PORT: command `2p`, not `2s`
 
 **What the draft says:** the Format and Example lines both read `!|2s <port_num> <dest_port> <res>` / `!|2s500000` (draft lines 10473-10474) - the switch-port opcode, copied from the immediately preceding RIP_SWITCH_PORT entry.

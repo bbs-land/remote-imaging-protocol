@@ -249,7 +249,19 @@ int main(int argc, char **argv) {
       !errors && blits == 1 && !stretches &&
           !memcmp(captured, (int[]){0, 1, 1, 1, 0, 0, 1, 1}, 8 * sizeof(int)),
       "vertical verbatim clipping also preserves one-to-one dimensions");
-  printf("PASS: %u preliminary port allocation/query/copy geometry checks\n",
+  for (unsigned fit = 0; fit < 2; ++fit) {
+    prepare(8, 1, 8, 1);
+    viewport(1, 2, 1);
+    viewport(0, 4, 1);
+    unsigned copy[] = {1, 0, 0, 4, 1, 0, 1, 0, fit ? 4 : 0, fit ? 1 : 0, 0, 0};
+    invoke(0x46372, copy);
+    require(!errors && blits == !fit && stretches == fit,
+            "source clipping preserves initial scale choice");
+    require(!memcmp(captured, (int[]){1, 0, fit ? 3 : 2, 1, 0, 0, 2, 1},
+                    8 * sizeof(int)),
+            "source clipping shortens paired destination only without scaling");
+  }
+  printf("PASS: %u port allocation/query/copy geometry checks\n",
          checks);
   return 0;
 }
