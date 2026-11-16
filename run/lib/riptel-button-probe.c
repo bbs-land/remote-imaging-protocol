@@ -1,6 +1,7 @@
 /* Original button initialization/definition/reset and consumers.
  * Host services are controlled; no GUI or Windows raster-parity claim. */
 #include "riptel-probe-image.h"
+#include <ctype.h>
 static unsigned char ctx[512], system_state[0x5c], entries[36 * 0x1c],
     active[128], world[128], palettes[0x900], options[512];
 static unsigned errors;
@@ -208,6 +209,111 @@ static void definition_checks(void) {
   require(!errors && u16(entries + 6) == 1,
           "style flags truncate to stored low word");
 }
+
+static unsigned char ctor_ports[128], ctor_port_entries[36 * 0x78], mouse[128],
+    mouse_entries[128 * 0xa3], graphics[16], graphics_entry[0x61],
+    env_entries[36 * 16], captured_field[0xa3];
+static uint16_t character_types[256];
+static char scratch_text[4096];
+static unsigned drawn;
+static void *scratch(void *c) {
+  require(c == ctx, "button owned scratch context");
+  return scratch_text;
+}
+static void scratch_release(void *c, void *p) {
+  require(c == ctx && p == scratch_text, "button scratch release");
+}
+static unsigned capture_draw(void *c, void *field, unsigned a, unsigned b,
+                             unsigned d) {
+  require(c == ctx && (a & 0xffff) == 1 && (b & 0xffff) == 0 &&
+              (d & 0xffff) == 1,
+          "original first draw dispatch arguments");
+  memcpy(captured_field, field, sizeof captured_field);
+  ++drawn;
+  return 0;
+}
+static void creation_prepare(unsigned scale) {
+  prepare(scale);
+  memset(ctor_ports, 0, sizeof ctor_ports);
+  memset(ctor_port_entries, 0, sizeof ctor_port_entries);
+  memset(mouse, 0, sizeof mouse);
+  memset(mouse_entries, 0, sizeof mouse_entries);
+  memset(graphics, 0, sizeof graphics);
+  memset(graphics_entry, 0, sizeof graphics_entry);
+  memset(env_entries, 0, sizeof env_entries);
+  memset(captured_field, 0, sizeof captured_field);
+  pointer(ctx + 0x22, ctor_ports);
+  pointer(ctor_ports, ctor_port_entries);
+  put16(ctor_ports + 0xa, 2);
+  ctor_port_entries[0] = 1;
+  memcpy(ctor_port_entries + 0x3a, (int[]){5, 7, 645, 487}, 16);
+  pointer(ctx + 0x1e, mouse);
+  pointer(mouse, mouse_entries);
+  pointer(ctx + 0xa, graphics);
+  pointer(graphics, graphics_entry);
+  graphics_entry[5] = 0;
+  put16(graphics_entry + 6, 1);
+  pointer(world, env_entries);
+  put16(env_entries + 1, 640 * scale);
+  put16(env_entries + 3, 480 * scale);
+  drawn = 0;
+}
+static void create(uint32_t *args, const char *text) {
+  ((void (*)(void *, unsigned, void *, const char *))(image + 0xa952))(
+      ctx, 7, args, text);
+}
+static void creation_checks(void) {
+  hook(0x15396, (void (*)(void))scratch);
+  hook(0x153fe, (void (*)(void))scratch_release);
+  hook(0x65431, (void (*)(void))strcpy);
+  hook(0x654a8, (void (*)(void))strlen);
+  hook(0x68b20, (void (*)(void))toupper);
+  hook(0x2a4d3, (void (*)(void))capture_draw);
+  const unsigned host[] = {0x18cf6, 0x18bf7, 0x343e4, 0x342ad, 0x34319};
+  for (unsigned i = 0; i < sizeof host / sizeof host[0]; ++i)
+    hook(host[i], noop);
+  for (unsigned i = 0; i < 256; ++i)
+    character_types[i] = (isdigit(i) ? 4 : 0) | (isspace(i) ? 8 : 0) |
+                         (isupper(i) ? 1 : 0) | (islower(i) ? 2 : 0);
+  pointer(image + 0x87908, character_types);
+  for (unsigned scale = 1; scale <= 4; scale *= 2)
+    for (unsigned w = 0; w < 2; ++w)
+      for (unsigned h = 0; h < 2; ++h) {
+        creation_prepare(scale);
+        uint32_t style[16];
+        fixture_args(style);
+        style[0] = w ? 64 : 0;
+        style[1] = h ? 32 : 0;
+        define(style);
+        uint32_t xy[] = {20, 40, 180, 160, 0, 0, 0};
+        create(xy, "<><>");
+        unsigned x0 = 5 + 20 / scale, y0 = 7 + 40 / scale;
+        unsigned x1 = w && h ? x0 + 64 / scale : 5 + 180 / scale;
+        unsigned y1 = w && h ? y0 + 32 / scale : 7 + 160 / scale;
+        require(!errors && drawn == 1 && u32(captured_field) == x0 &&
+                    u32(captured_field + 4) == y0 &&
+                    u32(captured_field + 8) == x1 &&
+                    u32(captured_field + 0xc) == y1 &&
+                    captured_field[0x2d] == 8 / scale,
+                "fixed dimensions require both nonzero; mixed zero uses "
+                "complete dynamic rectangle");
+        require(u16(captured_field + 0x3a) == 640 * scale &&
+                    u16(captured_field + 0x3c) == 480 * scale,
+                "button field captures creation world dimensions independently "
+                "of device geometry");
+        creation_prepare(scale);
+        fixture_args(style);
+        style[0] = w ? 64 : 0;
+        style[1] = h ? 32 : 0;
+        define(style);
+        uint32_t no_far[] = {20, 40, 0, 0, 0, 0, 0};
+        create(no_far, "<><>");
+        require(!errors && drawn == (w && h),
+                "zero dynamic end with one/both style sizes zero skips empty "
+                "nonmouse plain button");
+      }
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -226,6 +332,7 @@ int main(int argc, char **argv) {
   pointer(image + 0x964f4, (void *)global_unlock);
   defaults_checks();
   definition_checks();
+  creation_checks();
   printf("PASS: %u button-style checks\n", checks);
   return 0;
 }
