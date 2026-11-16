@@ -70,6 +70,22 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 
 **How the reference page renders it:** [2.0's Scope and color effects section](2.0-color-modes-and-palettes.md#scope-and-color-effects) already states the 2.x scope correctly ("all line drawing operations... any fill-based operations... level-0 drawing primitives... fonts"); this entry is comparative history for context, not a body-fact gap.
 
+### RGB component example: 04140C and blue 12
+
+**What the draft says:** the packed hexadecimal example is 04140D and the table's blue hex is 0Dh, while the combined binary string and the table's blue binary/decimal are 00001100 / 12 (draft lines 3539–3550).
+
+**What's correct:** 00001100 = 0Ch = 12; the complete binary string is 04140C. The corrected example consistently uses 04140C / blue 12. This is an arithmetic correction, not a change to the RGB layout or a claim about differing clients. See the [source and derivation](../../3.0/research/issue-9-rgb-examples.md#derivation).
+
+**How the reference page renders it:** [Palette Mapping and Direct RGB Mode](2.0-color-modes-and-palettes.md#palette-mapping-and-direct-rgb-mode) corrects the packed hexadecimal value and blue hexadecimal cell; the original binary and decimal values remain.
+
+### C palette-index expression requires grouped shifts
+
+**What the draft says:** after the correct formula `32 + BLUE + GREEN*4 + RED*32`, it gives `32 + BLUE + GREEN<<2 + RED<<5` as its C equivalent (draft lines 3640–3644).
+
+**What's correct:** use `32 + BLUE + (GREEN << 2) + (RED << 5)`. C addition binds more tightly than shifting, and shifts associate left to right; the original expression means `((32 + BLUE + GREEN) << (2 + RED)) << 5`. BLUE=1/GREEN=2/RED=3 should give 137, whereas the old C grouping gives 35840 with sufficiently wide integers. The [derivation](../../3.0/research/issue-9-rgb-examples.md#derivation) cites the primary C grammar. Neither the palette entries nor the arithmetic formula changes.
+
+**How the reference page renders it:** [Default RGB Values of Color Lookup Table](2.0-color-modes-and-palettes.md#default-rgb-values-of-color-lookup-table) groups both shifts, labels the block as C, and includes the 137 worked result.
+
 ## 2.2 Curves
 
 ### RIP_POLY_BEZIER_LINE: command `t`, not `z`

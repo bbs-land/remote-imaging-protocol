@@ -16,6 +16,10 @@ The intended palette formula is `32 + BLUE + GREEN*4 + RED*32`. In C the shifts 
 
 A direct Python arithmetic calculation reproduced hex 04140C / components 4,20,12 and index values 137 / 137 / 35840 for multiplication, corrected shifts and original C grouping respectively. No runtime client probe or new regression test is warranted for these reversible prose/example changes.
 
+## Changes and validation
+
+Both canonical Markdown chapters now use packed 04140C, table blue 0Ch, grouped C shifts and the 137 example. The 2.0 errata records both original errors; the 3.0 reconstruction carries inline derivation links. Original text, all 256 palette table entries and the correct multiplication expressions are unchanged. Repository-wide `run/lint`, `run/check-links` (0 bad of 4,686 links across 192 files) and `git diff --check` pass; the original text SHA-256 still matches the source identity above.
+
 ## Next action
 
 Correct both Markdown color chapters, use a proper C code fence/semicolon and include the 137 example. In 2.0 put the original-draft discrepancy in errata; in 3.0 add an inline reconstruction evidence pointer. Keep original text, palette table and unrelated implementation claims untouched. Format and run the required repository checks, then file one PR dependent on #35 with an issue-only comparison from cfa54b5, and record delivery before selecting #10.
