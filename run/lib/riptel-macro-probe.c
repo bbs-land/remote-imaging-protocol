@@ -1319,6 +1319,144 @@ static void environment_query_checks(void) {
   equal(expression, "1", "ordinary color query reports one-bit precision");
 }
 
+/* Screen wrappers retain original dispatch; manager boundary is captured here.
+ * A separate screen/manager probe must establish real snapshot effects. */
+struct backup_action {
+  unsigned op, family;
+  int slot;
+};
+static struct backup_action backup_actions[32];
+static unsigned backup_action_count, backup_manager_success;
+static unsigned backup_action(void *c, unsigned op, unsigned family, int slot) {
+  require(c == context && backup_action_count < 32, "bounded backup dispatch");
+  backup_actions[backup_action_count++] =
+      (struct backup_action){op, family, slot};
+  return backup_manager_success;
+}
+static unsigned backup_save(void *c, unsigned family, int slot) {
+  return backup_action(c, 0, family, slot);
+}
+static unsigned backup_restore(void *c, unsigned family, int slot) {
+  return backup_action(c, 1, family, slot);
+}
+static unsigned backup_push(void *c, unsigned family) {
+  return backup_action(c, 2, family, -4);
+}
+static unsigned backup_pop(void *c, unsigned family) {
+  return backup_action(c, 3, family, -4);
+}
+static unsigned backup_delete(void *c, unsigned family, int slot) {
+  return backup_action(c, 4, family, slot);
+}
+static void backup_trace(unsigned op, int slot, unsigned all,
+                         unsigned consume) {
+  const unsigned order[] = {3, 2, 5, 6, 4, 0, 1, 7};
+  unsigned n = all ? 8 : 1;
+  require(backup_action_count == n * (1 + consume),
+          "backup wrapper exact operation count, including ignored failures");
+  for (unsigned i = 0; i < n; ++i) {
+    unsigned family = all ? order[i] : 6;
+    require(backup_actions[i].op == op && backup_actions[i].family == family &&
+                backup_actions[i].slot == slot,
+            "original screen/all wrapper family order and destination");
+    if (consume)
+      require(backup_actions[n + i].op == 4 &&
+                  backup_actions[n + i].family == family &&
+                  backup_actions[n + i].slot == slot,
+              "numeric restore deletes after all restore attempts regardless "
+              "status");
+  }
+}
+static void screen_dispatch_checks(void) {
+  hook(0x23bd3, (void (*)(void))backup_save);
+  hook(0x23ca6, (void (*)(void))backup_restore);
+  hook(0x23d0b, (void (*)(void))backup_push);
+  hook(0x211f6, (void (*)(void))backup_pop);
+  hook(0x23d6e, (void (*)(void))backup_delete);
+  const char *names[] = {"SAVE", "RESTORE", "SAVEALL", "RESTOREALL"};
+  const unsigned callbacks[] = {0x2493a, 0x2475d, 0x27332, 0x270c2};
+  for (unsigned i = 0; i < 4; ++i)
+    require(registered_callback(names[i]) == callbacks[i],
+            "original registration confirms screen/all callback");
+  for (unsigned success = 0; success < 2; ++success) {
+    backup_manager_success = success;
+    for (unsigned all = 0; all < 2; ++all)
+      for (unsigned restore = 0; restore < 2; ++restore)
+        for (unsigned which = 0; which < 14; ++which) {
+          prepare();
+          backup_action_count = 0;
+          unsigned count = which == 0 ? 0 : 1;
+          if (which == 1)
+            strcpy(params, "BASE");
+          else if (which == 2)
+            strcpy(params, "base");
+          else if (which == 3)
+            strcpy(params, restore ? "pop" : "push");
+          else if (which >= 4)
+            snprintf(params, 21, "%u", which - 4);
+          require(!invoke(callbacks[2 * all + restore], count) &&
+                      !u16(variables + 0x436),
+                  "original backup wrapper action returns empty with no syntax "
+                  "error");
+          backup_trace(which == 3 ? (restore ? 3 : 2) : restore,
+                       which < 3    ? -1
+                       : which == 3 ? -4
+                                    : (int)which - 4,
+                       all, restore && which >= 4);
+        }
+    for (unsigned restore = 0; restore < 2; ++restore)
+      for (unsigned slot = 0; slot < 10; ++slot) {
+        char name[32];
+        snprintf(name, sizeof name, "%s%u", restore ? "RESTORE" : "SAVE", slot);
+        unsigned rva = restore ? (slot ? 0x2486b + (slot - 1) * 0x17 : 0x24816)
+                               : (slot ? 0x24a25 + (slot - 1) * 0x17 : 0x249e2);
+        require(
+            registered_callback(name) == rva,
+            "all 20 original numbered aliases registered, including RESTORE0");
+        prepare();
+        backup_action_count = 0;
+        require(!invoke(rva, 0) && !u16(variables + 0x436),
+                "numbered alias accepts no parameters");
+        backup_trace(restore, slot, 0, restore);
+        backup_action_count = 0;
+        strcpy(params, "0");
+        require(!invoke(rva, 1) && u16(variables + 0x436) &&
+                    !backup_action_count,
+                "numbered alias rejects an argument before dispatch");
+      }
+  }
+  for (unsigned i = 0; i < 4; ++i)
+    for (unsigned invalid = 0; invalid < 4; ++invalid) {
+      prepare();
+      backup_action_count = 0;
+      strcpy(params, invalid == 0   ? "10"
+                     : invalid == 1 ? "-1"
+                     : invalid == 2 ? "OTHER"
+                                    : "0");
+      strcpy(params + 21, "1");
+      require(!invoke(callbacks[i], invalid == 3 ? 2 : 1) &&
+                  u16(variables + 0x436) && !backup_action_count,
+              "backup wrapper invalid selector/count has no manager effects");
+    }
+  const char *wire[] = {"A$SAVE$B", "A$RESTORE0$B", "A$SAVEALL(3)$B",
+                        "A$RESTOREALL(3)$B"};
+  for (unsigned i = 0; i < 4; ++i) {
+    pipeline_prepare();
+    backup_action_count = 0;
+    char text[4096];
+    strcpy(text, wire[i]);
+    expand_codes(text, 0xff, 1);
+    equal(text, "AB", "ordinary backup macro dispatch expands action to empty");
+    require(!u16(variables + 0x436),
+            "backup action pipeline has no variable error");
+    backup_trace(i == 1 || i == 3,
+                 i == 0   ? -1
+                 : i == 1 ? 0
+                          : 3,
+                 i >= 2, i == 1 || i == 3);
+  }
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -1431,6 +1569,7 @@ int main(int argc, char **argv) {
   date_time_checks();
   filedel_checks();
   environment_query_checks();
+  screen_dispatch_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
