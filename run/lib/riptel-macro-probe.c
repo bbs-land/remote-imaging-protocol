@@ -2,6 +2,7 @@
  * No GUI. The wrapper verifies the supplied DLL before this maps its image. */
 #include "riptel-probe-image.h"
 #include <ctype.h>
+#include <setjmp.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -1457,6 +1458,231 @@ static void screen_dispatch_checks(void) {
   }
 }
 
+/* Capture original synchronous Beep requests, never play audio. Sweep guards
+ * escape only after a complete 16-bit cycle, including malformed endpoints. */
+static unsigned tone_count, tone_hash, tone_return = 1, tone_guard, tone_cycle;
+static unsigned tones[16][2], last_tone[2];
+static jmp_buf tone_escape;
+static unsigned tone_digest(unsigned hash, unsigned f, unsigned ms) {
+  return (hash * 16777619u ^ f) * 16777619u ^ ms;
+}
+static unsigned __attribute__((stdcall)) tone_beep(unsigned frequency,
+                                                   unsigned ms) {
+  if (tone_guard && tone_count == 65536) {
+    tone_cycle = 1;
+    longjmp(tone_escape, 1);
+  }
+  if (tone_count < 16) {
+    tones[tone_count][0] = frequency;
+    tones[tone_count][1] = ms;
+  }
+  last_tone[0] = frequency;
+  last_tone[1] = ms;
+  ++tone_count;
+  tone_hash = tone_digest(tone_hash, frequency, ms);
+  return tone_return;
+}
+static void tone_clear(void) {
+  tone_count = tone_hash = tone_cycle = 0;
+  memset(tones, 0, sizeof tones);
+}
+static void tone_invoke(unsigned rva, unsigned argc) {
+  tone_clear();
+  tone_guard = 1;
+  if (!setjmp(tone_escape))
+    require(!invoke(rva, argc), "tone action callback returns NULL");
+  tone_guard = 0;
+}
+static void tone_checks(void) {
+  const char *names[] = {"ALARM",  "BEEP",      "BLIP", "MUSIC",
+                         "PHASER", "REVPHASER", "T"};
+  const unsigned rvas[] = {0x8600, 0x868e, 0x873a, 0x87e6,
+                           0x8892, 0x89d2, 0x8b0d};
+  for (unsigned n = 0; n < 7; ++n)
+    require(registered_callback(names[n]) == rvas[n],
+            "original tone registration");
+  pointer(image + 0x964fc, (void *)tone_beep);
+  for (unsigned kind = 0; kind < 3; ++kind) {
+    unsigned rva = kind == 0 ? 0x868e : kind == 1 ? 0x873a : 0x8b0d;
+    unsigned duration = kind == 1 ? 25 : 75;
+    for (unsigned argc = 0; argc <= 3; ++argc) {
+      prepare();
+      strcpy(params, "600");
+      strcpy(params + 21, "17");
+      tone_invoke(rva, argc);
+      unsigned valid = argc <= 2 && (kind < 2 || argc == 2);
+      require(u16(variables + 0x436) == !valid && tone_count == valid &&
+                  !tone_cycle,
+              "T requires two arguments; BEEP/BLIP accept omitted trailing "
+              "arguments");
+      if (valid)
+        require(tones[0][0] == (argc ? 600u : 1000u) &&
+                    tones[0][1] == (argc == 2 ? 17u : duration),
+                "original simple-tone defaults and explicit arguments");
+    }
+    for (unsigned axis = 0; axis < 2; ++axis)
+      for (unsigned value = 0; value <= 65536; ++value) {
+        prepare();
+        strcpy(params, "1");
+        strcpy(params + 21, "1");
+        snprintf(params + 21 * axis, 21, "%u", value);
+        tone_invoke(rva, 2);
+        unsigned valid = value <= 65535;
+        require(u16(variables + 0x436) == !valid && tone_count == valid &&
+                    !errors,
+                "simple tones accept every unsigned WORD including zero, "
+                "reject 65536");
+        if (valid)
+          require(tones[0][axis] == value && tones[0][1 - axis] == 1,
+                  "frequency/duration reaches Beep unchanged");
+      }
+    for (unsigned axis = 0; axis < 2; ++axis) {
+      const char *invalid[] = {"-1", "A", ""};
+      for (unsigned n = 0; n < 3; ++n) {
+        prepare();
+        strcpy(params, "1");
+        strcpy(params + 21, "1");
+        strcpy(params + 21 * axis, invalid[n]);
+        tone_invoke(rva, 2);
+        require(u16(variables + 0x436) && !tone_count,
+                "invalid simple-tone parameter rejects");
+      }
+    }
+  }
+  const unsigned music[][2] = {{1125, 17}, {775, 14}, {625, 10},
+                               {725, 14},  {825, 10}, {600, 25}};
+  const unsigned counts[] = {0, 1, 3, 4, 65535, 65536};
+  for (unsigned which = 0; which < 2; ++which)
+    for (unsigned n = 0; n < sizeof counts / sizeof counts[0]; ++n) {
+      prepare();
+      snprintf(params, 21, "%u", counts[n]);
+      tone_clear();
+      tone_guard = 0;
+      unsigned rva = which ? 0x87e6 : 0x8600;
+      require(!invoke(rva, 1), "repeating tone returns NULL");
+      unsigned expected = 0, hash = 0;
+      if (counts[n] <= 65535)
+        for (unsigned repeat = 0; repeat < counts[n]; ++repeat)
+          for (unsigned note = 0; note < (which ? 6u : 2u); ++note) {
+            unsigned f = which ? music[note][0] : note ? 160 : 320;
+            unsigned ms = which ? music[note][1] : note ? 225 : 200;
+            hash = tone_digest(hash, f, ms);
+            ++expected;
+          }
+      require(u16(variables + 0x436) == (counts[n] > 65535) &&
+                  tone_count == expected && tone_hash == hash,
+              "exact MUSIC/ALARM note sequence repeated with "
+              "zero/count/overflow behavior");
+    }
+  for (unsigned which = 0; which < 2; ++which) {
+    prepare();
+    tone_clear();
+    tone_guard = 0;
+    require(!invoke(which ? 0x87e6 : 0x8600, 0),
+            "default repeated tone returns NULL");
+    require(!u16(variables + 0x436) && tone_count == (which ? 24u : 6u),
+            "MUSIC defaults four repeats; ALARM three");
+    prepare();
+    tone_invoke(which ? 0x87e6 : 0x8600, 2);
+    require(u16(variables + 0x436) && !tone_count,
+            "MUSIC/ALARM reject extra parameters");
+  }
+  /* Every omitted suffix preserves that argument's default; invalid values
+   * reject rather than falling back. Low-word loop arithmetic can wrap. */
+  const unsigned values[] = {0, 1, 50, 2500, 65535, 65536};
+  for (unsigned up = 0; up < 2; ++up)
+    for (unsigned a = 0; a < 6; ++a)
+      for (unsigned b = 0; b < 6; ++b)
+        for (unsigned c = 0; c < 6; ++c)
+          for (unsigned d = 0; d < 6; ++d) {
+            unsigned v[] = {values[a], values[b], values[c], values[d]};
+            prepare();
+            for (unsigned i = 0; i < 4; ++i)
+              snprintf(params + i * 21, 21, "%u", v[i]);
+            tone_invoke(up ? 0x89d2 : 0x8892, 4);
+            unsigned valid = v[0] <= 65535 && v[1] <= 65535 && v[2] > 0 &&
+                             v[2] <= 65535 && v[3] > 0 && v[3] <= 65535 &&
+                             (up ? v[0] < v[1] : v[0] > v[1]);
+            unsigned expected = 0, hash = 0, f = v[0], cycle = 0;
+            if (valid) {
+              while (up ? f <= v[1] : f >= v[1]) {
+                if (expected == 65536) {
+                  cycle = 1;
+                  break;
+                }
+                hash = tone_digest(hash, f, v[3]);
+                ++expected;
+                f = (up ? f + v[2] : f - v[2]) & 65535;
+              }
+            }
+            require(u16(variables + 0x436) == !valid &&
+                        tone_count == expected && tone_hash == hash &&
+                        tone_cycle == cycle,
+                    "sweep ordering, zero rejection, no default fallback and "
+                    "exact 16-bit loop behavior");
+          }
+  for (unsigned up = 0; up < 2; ++up)
+    for (unsigned argc = 0; argc <= 5; ++argc) {
+      prepare();
+      unsigned v[] = {up ? 50 : 2500, up ? 2500 : 50, 20, 2};
+      for (unsigned i = 0; i < 4; ++i)
+        snprintf(params + i * 21, 21, "%u", v[i]);
+      strcpy(params + 84, "1");
+      tone_invoke(up ? 0x89d2 : 0x8892, argc);
+      unsigned valid = argc <= 4;
+      require(u16(variables + 0x436) == !valid &&
+                  tone_count == (valid ? 123u : 0u) &&
+                  (!valid ||
+                   (tones[0][0] == v[0] && tones[0][1] == 2 &&
+                    last_tone[0] == (up ? 2490u : 60u) && last_tone[1] == 2)) &&
+                  !tone_cycle,
+              "sweep accepts each omitted suffix with exact defaults and "
+              "rejects a fifth argument");
+    }
+  for (unsigned up = 0; up < 2; ++up)
+    for (unsigned field = 0; field < 4; ++field) {
+      prepare();
+      strcpy(params, up ? "50" : "2500");
+      strcpy(params + 21, up ? "2500" : "50");
+      strcpy(params + 42, "20");
+      strcpy(params + 63, "2");
+      strcpy(params + field * 21, "A");
+      tone_invoke(up ? 0x89d2 : 0x8892, 4);
+      require(u16(variables + 0x436) && !tone_count,
+              "nonnumeric sweep field rejects without default sound");
+    }
+  const char *valid_forms[] = {"$BEEP$",     "$BEEP(600)$", "$BEEP(600,17)$",
+                               "$BLIP$",     "$BLIP(600)$", "$T(600,17)$",
+                               "$MUSIC(1)$", "$PHASER$",    "$REVPHASER$"};
+  for (unsigned api = 0; api < 2; ++api) {
+    tone_return = api;
+    for (unsigned n = 0; n < sizeof valid_forms / sizeof valid_forms[0]; ++n) {
+      pipeline_prepare();
+      tone_clear();
+      char text[4096];
+      snprintf(text, sizeof text, "A%sB", valid_forms[n]);
+      require(
+          expand_codes(text, 0xff, 1) == 1 && !strcmp(text, "AB") &&
+              !u16(variables + 0x436) && tone_count,
+          "full expansion consumes valid tone action even if OS Beep fails");
+    }
+  }
+  const char *bad[] = {"A$T$B", "A$T(600)$B", "A$PHASER(1,2)$B",
+                       "A$REVPHASER(2,1)$B", "A$PHASER(2500,50,20,0)$B"};
+  for (unsigned n = 0; n < sizeof bad / sizeof bad[0]; ++n) {
+    pipeline_prepare();
+    tone_clear();
+    char text[4096];
+    strcpy(text, bad[n]);
+    unsigned status = expand_codes(text, 0xff, 1);
+    require(status == 1 && !strcmp(text, bad[n]) && !tone_count &&
+                u16(variables + 0x436),
+            "full expansion reports invalid tone instead of default fallback");
+  }
+  printf("Original tones: six-note MUSIC, BLIP 1000/25, required T pair, no "
+         "added gaps; invalid sweeps reject; bounded WORD cycles\n");
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -1570,6 +1796,7 @@ int main(int argc, char **argv) {
   filedel_checks();
   environment_query_checks();
   screen_dispatch_checks();
+  tone_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
