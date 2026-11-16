@@ -6,7 +6,11 @@
 static unsigned char ctx[512], parser[256], graphics[64], style[0x61],
     objects[64], palette[0x900], world[128], ports[128], entries[36 * 0x78];
 static unsigned errors, brush_calls, solids, rectangles, drawing_dc, active_dc;
-static unsigned compatible_calls;
+static unsigned compatible_calls, border_probe, created_pen, created_kind,
+    created_width;
+static unsigned rop_mode[4], background_mode[4];
+static unsigned captured_pen[8], captured_brush[8], captured_rop[8],
+    captured_background[8];
 static unsigned selected[4][3], text_color[4], back_color[4];
 static int clip[4][4], region[4], drawn[8][4];
 static unsigned char bitmap_bits[8], brush_bits[8];
@@ -57,7 +61,9 @@ static unsigned __attribute__((stdcall)) select_object(unsigned dc,
   require(dc >= 1 && dc <= 3, "controlled DC range");
   /* GDI keeps independent selections for brushes, pens and bitmaps.
    * Distinct original objects stand in for the otherwise opaque defaults. */
-  unsigned kind = obj == 5 || obj == 22 ? 2 : obj == 18 || obj == 21 ? 1 : 0;
+  unsigned kind = obj == 5 || obj == 22                   ? 2
+                  : obj == 18 || obj == 21 || obj >= 1000 ? 1
+                                                          : 0;
   unsigned old = selected[dc][kind];
   selected[dc][kind] = obj;
   return old ? old : 20 + kind;
@@ -109,14 +115,17 @@ static unsigned __attribute__((stdcall)) set_back(unsigned dc, unsigned rgb) {
 }
 static unsigned __attribute__((stdcall)) set_background_mode(unsigned dc,
                                                              unsigned mode) {
-  require(dc == active_dc && mode == 2,
-          "filled rectangle requests opaque background");
-  return 2;
+  require(dc == active_dc && (border_probe || mode == 2),
+          "filled rectangle background mode");
+  unsigned old = border_probe ? background_mode[dc] : 2;
+  background_mode[dc] = mode;
+  return old;
 }
 static unsigned __attribute__((stdcall)) set_rop(unsigned dc, unsigned mode) {
-  (void)dc;
-  (void)mode;
-  return 13;
+  require(dc == active_dc, "drawing ROP context");
+  unsigned old = rop_mode[dc];
+  rop_mode[dc] = mode;
+  return old;
 }
 static unsigned __attribute__((stdcall)) set_rect(int *r, int x, int y,
                                                   int right, int bottom) {
@@ -146,8 +155,13 @@ static unsigned __attribute__((stdcall)) rectangle(unsigned dc, int x, int y,
                                                    int right, int bottom) {
   require(rectangles < 8 && dc == active_dc,
           "original rectangle uses active port DC");
-  require(selected[dc][0] == 6 && text_color[dc] == 1 && back_color[dc] == 2,
+  require((selected[dc][0] == 6 || (border_probe && selected[dc][0] == 15)) &&
+              text_color[dc] == 1 && back_color[dc] == 2,
           "original rectangle uses mask brush and fill/background colors");
+  captured_pen[rectangles] = selected[dc][1];
+  captured_brush[rectangles] = selected[dc][0];
+  captured_rop[rectangles] = rop_mode[dc];
+  captured_background[rectangles] = background_mode[dc];
   drawing_dc = dc;
   memcpy(drawn[rectangles++], (int[]){x, y, right, bottom}, sizeof region);
   return 1;
@@ -213,6 +227,85 @@ static void verify_mask(const unsigned char *expected) {
             "original inversion preserves foreground-one mask semantics");
   }
 }
+static unsigned __attribute__((stdcall))
+create_pen(unsigned kind, unsigned width, unsigned color_token) {
+  require(color_token == 9, "K pen is draw color");
+  created_kind = kind;
+  created_width = width;
+  created_pen = 1000 + kind * 256 + width;
+  return created_pen;
+}
+static unsigned __attribute__((stdcall)) inflate(int *r, int x, int y) {
+  r[0] -= x;
+  r[1] -= y;
+  r[2] += x;
+  r[3] += y;
+  return 1;
+}
+static void border_checks(void) {
+  pointer(image + 0x963d4, (void *)create_pen);
+  pointer(image + 0x96698, (void *)inflate);
+  border_probe = 1;
+  const unsigned styles[] = {0, 2, 3, 1, 4}, rops[] = {13, 7, 15, 9, 6},
+                 widths[] = {1, 2, 3, 255, 256};
+  for (unsigned scale = 1; scale <= 2; ++scale)
+    for (unsigned port_type = 1; port_type <= 4; port_type += 3)
+      for (unsigned flags = 0; flags < 4; ++flags)
+        for (unsigned line = 0; line < 5; ++line)
+          for (unsigned width = 0; width < 5; ++width)
+            for (unsigned mode = 0; mode < 5; ++mode)
+              for (unsigned border = 0; border < 2; ++border) {
+                prepare(scale, port_type);
+                put16(style, 9);
+                unsigned fill[] = {0x80, 0, 0, 0, 0, 0, 0, 0, 1};
+                invoke(0x1c55f, fill);
+                unsigned ls[] = {flags, line, 0xaaaa, widths[width]};
+                invoke(0x1cd15, ls);
+                unsigned effective = widths[width];
+                if (flags & 2) {
+                  effective /= scale;
+                  if (!effective)
+                    effective = 1;
+                }
+                require(!errors && created_kind == styles[line] &&
+                            created_width == (effective & 255) &&
+                            u32(objects + 8) == created_pen &&
+                            u16(style + 0x1e) == 0xaaaa,
+                        "original line handler builds mapped GDI pen; custom "
+                        "mask retained in record");
+                invoke(0x2102c, &mode);
+                invoke(0xdcf1, &border);
+                require(u16(style + 0x22) == border && style[4] == mode,
+                        "wire N/W store requested border/write mode");
+                text_color[active_dc] = 1;
+                back_color[active_dc] = 2;
+                rop_mode[active_dc] = 13;
+                background_mode[active_dc] = 2;
+                unsigned xy[] = {0, 0, 16 * scale, 12 * scale};
+                invoke(0x1bee5, xy);
+                unsigned passes = border && flags != 1 ? 2 : 1;
+                require(!errors && rectangles == passes,
+                        "K performs separate fill/border except line flags "
+                        "exactly one");
+                for (unsigned pass = 0; pass < passes; ++pass) {
+                  unsigned pen_handle =
+                      border && (pass || flags == 1) ? created_pen : 18;
+                  require(captured_pen[pass] == pen_handle &&
+                              captured_brush[pass] == (pass ? 15u : 6u) &&
+                              captured_rop[pass] == rops[mode] &&
+                              captured_background[pass] == (pass ? 1u : 2u),
+                          "K border retains current pen and write ROP; "
+                          "borderless fill uses NULL pen");
+                }
+                require(u16(style + 0x1e) == 0xaaaa && style[0x1c] == line &&
+                            u32(objects + 8) == created_pen &&
+                            style[4] == mode && background_mode[active_dc] == 2,
+                        "K does not normalize mask, pen, write mode or "
+                        "background state");
+              }
+  border_probe = 0;
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -307,6 +400,7 @@ int main(int argc, char **argv) {
                   !memcmp(drawn[3], (int[]){13, 3, 22, 12}, sizeof region),
               "filled rectangle world conversion and stored viewport offset");
     }
+  border_checks();
   printf("PASS: %u original fill-mask/brush/consumer checks\n", checks);
   return 0;
 }
