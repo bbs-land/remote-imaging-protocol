@@ -59,9 +59,11 @@ File services **0x6b560 / 0x75790 / 0x6b1c0 / 0x6b490** serve the original bytes
 
 Native capture does not rasterize Windows pixels or establish an earlier client's runtime painting. The same BOLD/TSCR bytes are pinned in 1.54, so the data-observation corrections apply there; the **painting contract is explicitly RIPtel 3.1 / driver 3.0.7 evidence**. Original text/assets stay byte-exact. Build directories have EXIT cleanup and core dumps are disabled. Tool type checks/lint and documentation checks are recorded with delivery.
 
-## Next action
+## Complete answer and validation
 
-The exact answer is recovered: opcode 01 occurs in six records, is consumed without painting/state change by RIPtel, and scan_flag does not enable it; TSCR's unused-name observation is 02 03 00 00. Correct the earliest BGI techspec with this explicitly scoped original-consumer evidence, link the geometry/reproduction notes from the 3.0 inherited reference, run required checks and publish the complete #17 PR.
+All issue #17 requirements are now answered in the [corrected earliest-format techspec](../../1.54/techspecs/3.1-bgi-stroked-fonts.md#scan-records-and-riptel-rendering) and [3.0 inherited font reference](../ripscrip/6.1-content-file-roles.md#fonts-are-not-content-files): exact six-record census, RIPtel-specific consumed no-op semantics, ignored scan_flag, source-derived quote/colon/equals outlines and TSCR's nonzero unused header bytes. The painting claim remains scoped to this original client; the raw format observations are shared by the pinned historical payloads.
+
+Validation: **13,518,407 original loading/scan/consumer checks** with the SVG output argument, successful Deno type checking and lint for the inspector/module, `run/lint`, `run/check-links` (zero bad links), and `git diff --check`. The SVG was viewed through a headless conversion; its temporary preview was deleted immediately. Original text/assets were not edited, no GUI was launched, and the scoped probe build directories were removed. PR delivery is recorded after publication.
 
 ---
 
