@@ -16,7 +16,7 @@ Issue #7 is delivered in [PR #34](https://github.com/bbs-land/remote-imaging-pro
 
 Issue #8 is delivered in [PR #35](https://github.com/bbs-land/remote-imaging-protocol/pull/35), branch `issue-8-bmm-masks`, dependent on #34. Its [derivation note](issue-8-bmm-masks.md) records all BMM/renderer/button references, **4,975 native checks**, controlled-GDI limits, depth/palette/mode/key behavior and a four-pixel oracle; specification commit `1a42258`. The issue-only comparison starts at `a6da898`. Review/merge is pending.
 
-Next active issue: [#9](https://github.com/bbs-land/remote-imaging-protocol/issues/9), RGB component example and C palette-index expression. GitHub refreshed after #35 publication: this is the oldest issue without a complete resolution PR. Start a new branch from the delivered #8 checkpoint, correct canonical and inherited Markdown copies while preserving original text records, and record the arithmetic derivation. No disassembly is needed for this bounded issue. All new commits carry the requested Codex co-author trailer.
+Active: [issue #9](https://github.com/bbs-land/remote-imaging-protocol/issues/9), RGB example and palette-index expression, branch `issue-9-rgb-examples` from `cfa54b5` (delivered #8 / PR #35). Read its [derivation note](issue-9-rgb-examples.md). Source arithmetic settles both corrections: packed 04140C / blue 12, and parenthesized C shifts giving index 137 for BLUE=1/GREEN=2/RED=3. Next: correct both Markdown chapters and the 2.0 errata, preserve original text, validate and file the complete PR. No disassembly is needed. All new commits carry Codex co-authorship.
 
 ## Queue and delivery
 
