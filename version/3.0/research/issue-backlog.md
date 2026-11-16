@@ -4,9 +4,9 @@
 
 ## Resume here
 
-Updated 2026-11-16. Active: [issue #3](https://github.com/bbs-land/remote-imaging-protocol/issues/3), on branch `issue-3-extended-font-style`. No resolution PR yet. Read the [derivation note](issue-3-extended-font-style.md) before continuing.
+Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`; its [derivation note](issue-3-extended-font-style.md) contains the complete evidence record. Review/merge is pending.
 
-Next action: finalize and validate the #3 reference changes and reproduction tools, then file the complete resolution PR. The DLL, handler/consumer geometry and original-font rotation oracle have been recovered; see the derivation note. Do not advance until every question in #3 is answered.
+Next action: refresh GitHub state and start the oldest issue without a complete resolution PR, expected to be #4 (column/article/overflow semantics). Research one issue at a time. The original-instruction and isolated glyph probes from #3 are available for reuse; GUI isolation is mandatory.
 
 ## Queue and delivery
 

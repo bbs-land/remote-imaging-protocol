@@ -4,7 +4,7 @@
 
 ## Status and questions
 
-Investigation started 2026-11-16 for [issue #3](https://github.com/bbs-land/remote-imaging-protocol/issues/3). The field meanings, validation, ordinary text-consumer mapping and renderer control flow have now been established. The corrected command entry is drafted; final review and delivery are still pending.
+Investigation started 2026-11-16 for [issue #3](https://github.com/bbs-land/remote-imaging-protocol/issues/3). The field meanings, validation, ordinary text-consumer mapping and renderer control flow have now been established. The complete answer is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`. Validation passed; review/merge remains with the maintainers. Continue with issue #4 as directed by the research backlog.
 
 Required answers: each fixed field’s offset, width, radix, role, units, validation, defaults and effects; all style and justification flags; string and character rotation; both `CC` fields; `BB`, `WW` and `1a1a`; reserved fields; font selection/fallback; exact decode of `!|y0000BW1Q080000001a1a000000Marin`; and independently checked rotation cases. Investigate reset/state interactions and invalid-command behavior as needed to make the contract complete.
 
