@@ -18,7 +18,7 @@ Issue #8 is delivered in [PR #35](https://github.com/bbs-land/remote-imaging-pro
 
 Issue #9 is delivered in [PR #36](https://github.com/bbs-land/remote-imaging-protocol/pull/36), branch `issue-9-rgb-examples`, dependent on #35. Its [derivation note](issue-9-rgb-examples.md) records primary draft lines/hash and C grammar, both arithmetic corrections, original-text preservation and required checks; correction commit `23335d5`. The issue-only comparison starts at `cfa54b5`. Review/merge is pending.
 
-Next active issue: [#10](https://github.com/bbs-land/remote-imaging-protocol/issues/10), offscreen-port extents, copy/clipping precedence and viewport diagram arithmetic. GitHub refreshed after #36 publication confirms it is oldest without a complete resolution PR. Start a branch from delivered #9 and derive original define-port, port-size query and copy paths; no exact Windows raster reproduction is requested. All new commits carry Codex co-authorship.
+Active: [issue #10](https://github.com/bbs-land/remote-imaging-protocol/issues/10), branch `issue-10-port-geometry` from `1a0bcc8` (delivered #9 / PR #36). Read the [derivation note](issue-10-port-geometry.md). Initial static traces locate define-port handler/allocator (0x466ec / 0x3326f), copy handler/compositor (0x46372 / 0x134d0), world conversion and coupled no-scale trim. Next: execute allocation/copy geometry and actual PORTW/PORTH callbacks, then correct canonical/inherited prose and the diagram. No exact Windows raster reproduction is requested; no PR yet. All new commits carry Codex co-authorship.
 
 ## Queue and delivery
 
