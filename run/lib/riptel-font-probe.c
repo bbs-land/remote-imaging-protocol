@@ -224,6 +224,141 @@ static void *lookup_realized(void *engine, void *descriptor) {
   return lookup_font;
 }
 
+/* Issue 24: execute original MOVE/TEXT/TEXT_XY cursor stores. Renderer and
+ * width providers are deliberately controlled, with distinguishable widths. */
+static unsigned char cursor_port[128], cursor_strings[128];
+static unsigned text_draws, classic_width_calls, outline_width_calls;
+static int text_anchor_x, text_anchor_y;
+static unsigned metric_classic(void *c, const char *text, unsigned mode) {
+  (void)c;
+  (void)text;
+  (void)mode;
+  ++classic_width_calls;
+  return 13;
+}
+static unsigned metric_outline(void *c, const char *text) {
+  (void)c;
+  (void)text;
+  ++outline_width_calls;
+  return 37;
+}
+static void classic_text(void *c, unsigned mode, int x, int y,
+                         const char *text) {
+  (void)c;
+  (void)mode;
+  (void)text;
+  text_anchor_x = (int16_t)x;
+  text_anchor_y = (int16_t)y;
+  ++text_draws;
+}
+static void outline_text(void *c, int x, int y, const char *text) {
+  (void)c;
+  (void)text;
+  text_anchor_x = (int16_t)x;
+  text_anchor_y = (int16_t)y;
+  ++text_draws;
+}
+static void cursor_fixture(unsigned scale, unsigned outline, unsigned font,
+                           unsigned direction, unsigned flags) {
+  prepare();
+  memset(style, 0, sizeof style);
+  memset(port, 0, sizeof port);
+  memset(cursor_port, 0, sizeof cursor_port);
+  memset(cursor_strings, 0, sizeof cursor_strings);
+  pointer(context + 0x22, port);
+  pointer(port, cursor_port);
+  cursor_port[0] = 1;
+  put32(cursor_port + 0x3a, 5);
+  put32(cursor_port + 0x3e, 7);
+  put32(cursor_port + 0x5c, 300);
+  put32(cursor_port + 0x60, 400);
+  pointer(context + 0x32, cursor_strings);
+  pointer(cursor_strings + 0x42, temporary);
+  pointer(context + 0x4e, vector_state);
+  put32(viewport + 0x24, 640 * scale);
+  put32(viewport + 0x28, 480 * scale);
+  put32(viewport + 0x2c, 640);
+  put32(viewport + 0x30, 480);
+  style[5] = font;
+  style[8] = direction;
+  style[0x24] = outline;
+  put16(style + 0x25, flags);
+  style[0x51] = direction;
+  text_draws = classic_width_calls = outline_width_calls = 0;
+}
+static void cursor_checks(void) {
+  const unsigned os_hooks[] = {0xe6e9,  0x18cf6, 0x343e4, 0x342ad, 0x34319,
+                               0x18bf7, 0x10f0,  0x39808, 0x2830,  0x1820};
+  for (unsigned i = 0; i < sizeof os_hooks / sizeof os_hooks[0]; ++i)
+    hook(os_hooks[i], noop);
+  hook(0x65493, (void (*)(void))strncpy);
+  hook(0x6bcb0, (void (*)(void))strncpy);
+  hook(0x655e2, (void (*)(void))strcasecmp);
+  hook(0x1410, (void (*)(void))metric_classic);
+  hook(0x3fcd0, (void (*)(void))metric_outline);
+  hook(0x21a0, (void (*)(void))classic_text);
+  hook(0x42870, (void (*)(void))outline_text);
+  pointer(image + 0x96400, (void *)gdi_attribute);
+  const unsigned hflags[] = {0, 1, 2, 4};
+  const unsigned vflags[] = {0, 8, 16, 32, 64};
+  typedef void (*text_handler)(void *, unsigned, uint32_t *, const char *);
+  for (unsigned scale = 1; scale <= 2; ++scale)
+    for (unsigned outline = 0; outline < 2; ++outline)
+      for (unsigned font = 0; font < 2; ++font)
+        for (unsigned direction = 0; direction < (outline ? 4u : 2u);
+             ++direction)
+          for (unsigned h = 0; h < 4; ++h)
+            for (unsigned v = 0; v < 5; ++v) {
+              cursor_fixture(scale, outline, font, direction,
+                             hflags[h] | vflags[v]);
+              uint32_t xy[] = {100, 80};
+              ((text_handler)(image + 0x1cef0))(context, 2, xy, NULL);
+              require(u32(cursor_port + 0x5c) == 5 + 100 / scale &&
+                          u32(cursor_port + 0x60) == 7 + 80 / scale,
+                      "MOVE stores converted device coordinates plus viewport "
+                      "origin");
+              ((text_handler)(image + 0x20169))(context, 0, NULL, "AB");
+              require(!error_message && text_draws == 1 &&
+                          text_anchor_x == 5 + 100 / (int)scale &&
+                          text_anchor_y == 7 + 80 / (int)scale &&
+                          u32(cursor_port + 0x5c) ==
+                              5 + 100 / scale + (outline ? 37 : 13) &&
+                          u32(cursor_port + 0x60) == 7 + 80 / scale &&
+                          classic_width_calls == !outline &&
+                          outline_width_calls == outline,
+                      "TEXT unconditionally advances X for every "
+                      "justification/direction");
+              cursor_fixture(scale, outline, font, direction,
+                             hflags[h] | vflags[v]);
+              ((text_handler)(image + 0x20cbc))(context, 2, xy, "AB");
+              unsigned uses_classic_width = !outline && font != 0;
+              require(
+                  !error_message && text_draws == 1 &&
+                      text_anchor_x == 5 + 100 / (outline ? (int)scale : 1) &&
+                      text_anchor_y == 7 + 80 / (outline ? (int)scale : 1) &&
+                      u32(cursor_port + 0x5c) ==
+                          5 + 100 / (outline ? scale : 1) +
+                              (uses_classic_width ? 13 : 37) &&
+                      u32(cursor_port + 0x60) ==
+                          7 + 80 / (outline ? scale : 1) &&
+                      classic_width_calls == uses_classic_width &&
+                      outline_width_calls == !uses_classic_width,
+                  "TEXT_XY replaces cursor from anchor regardless "
+                  "justification; "
+                  "classic font zero incorrectly uses outline metric");
+            }
+  cursor_fixture(1, 1, 0, 1, 4);
+  ((text_handler)(image + 0x20cbc))(context, 2, (uint32_t[]){100, 80}, "");
+  require(error_message && !text_draws && u32(cursor_port + 0x5c) == 300 &&
+              u32(cursor_port + 0x60) == 400,
+          "empty TEXT_XY rejects before cursor replacement");
+  error_message = NULL;
+  cursor_port[0x17] |= 2;
+  ((text_handler)(image + 0x20169))(context, 0, NULL, "AB");
+  require(!error_message && !text_draws && u32(cursor_port + 0x5c) == 300,
+          "disabled TEXT viewport leaves cursor unchanged");
+}
+
 int main(int argc, char **argv) {
   if (argc != 2) {
     fprintf(stderr, "Usage: probe DLL\n");
@@ -671,6 +806,7 @@ int main(int argc, char **argv) {
         offset == 0x212 + offsets[n],
         "original outline file lookup uses direct relative glyph offset slot");
   }
+  cursor_checks();
   printf("PASS: %u checks against original decoder, radix selector, handler "
          "and text consumer\n",
          checks);

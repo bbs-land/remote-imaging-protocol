@@ -517,6 +517,11 @@ static void whole_reset_checks(void) {
       macro(0x43d38, 1, args);
       require(!errors && !u16(variables + 0x436),
               "original SOFT/HARD macro and outer reset execute");
+      require(u16(style_records) == 15 && u16(style_records + 2) == 0 &&
+                  style_records[5] == 0 && u16(style_records + 6) == 1 &&
+                  style_records[9] == 1 && u16(style_records + 0x1a) == 15 &&
+                  !style_records[0x24] && !u16(style_records + 0x25),
+              "original SOFT/HARD style reset uses fixed classic defaults");
       for (unsigned i = 1; i < 36; ++i) {
         require(u16(entry(i) + 0x300) == (hard ? 0u : (flags & 1 ? flags : 0u)),
                 "soft preserves protected palettes; hard removes protection "
@@ -584,6 +589,14 @@ static void backup_query_checks(void) {
   put16(port + 1, 5);
   port[0x17] = 1;
   pointer(port + 0x64, local_query);
+  const uint32_t saved_image[] = {11, 22, 333, 444};
+  memcpy(port + 0x4a, saved_image, sizeof saved_image);
+  put16(port + 0x5a, 43);
+  put32(port + 0x5c, 515);
+  put32(port + 0x60, 616);
+  unsigned char old_styles[sizeof style_records], old_env[sizeof env_records];
+  memcpy(old_styles, style_records, sizeof style_records);
+  memcpy(old_env, env_records, sizeof env_records);
   require(((unsigned (*)(void *, void *))(image + 0x219a9))(ctx, save_record) ==
               1,
           "original whole-port serializer saves resident queries");
@@ -607,6 +620,13 @@ static void backup_query_checks(void) {
   require(u16(port_system + 8) == 5 && port[0] == 1 && port[0x17] == 1,
           "whole-port backup restores selection and saved protection over "
           "protected live entry");
+  require(
+      !memcmp(port + 0x4a, saved_image, sizeof saved_image) &&
+          u16(port + 0x5a) == 43 && u32(port + 0x5c) == 515 &&
+          u32(port + 0x60) == 616 &&
+          !memcmp(old_styles, style_records, sizeof style_records) &&
+          !memcmp(old_env, env_records, sizeof env_records),
+      "port backup owns image/cursor and captures no style/environment state");
   clear_queries();
 }
 static void observable_checks(void) {
@@ -652,6 +672,218 @@ static void palette_sequence_checks(void) {
               !memcmp(entry(5), defaults, sizeof defaults),
           "explicit reselection defines reset palette with defaults again");
 }
+
+/* Issue 24: original selection/state paths, with only OS presentation and
+ * brush realization controlled. Run before whole_reset_checks installs its
+ * broader hooks. */
+static unsigned char active_config[128], state_options[512];
+static unsigned selected_cursor;
+static unsigned __attribute__((stdcall)) cursor_capture(unsigned cursor) {
+  selected_cursor = cursor;
+  return 1;
+}
+static void wire_state(unsigned rva, unsigned a, unsigned b) {
+  uint32_t args[] = {a, b};
+  ((void (*)(void *, unsigned, void *, const char *))(image + rva))(ctx, 2,
+                                                                    args, NULL);
+}
+static void state_prepare(void) {
+  prepare();
+  memset(active_config, 0, sizeof active_config);
+  memset(state_options, 0, sizeof state_options);
+  pointer(ctx + 2, active_config);
+  pointer(ctx + 0x36, state_options);
+  put16(env_system + 0xa, 0);
+  put16(style_system + 8, 0);
+  put32(env_system + 0x24, 640);
+  put32(env_system + 0x28, 480);
+  put32(env_system + 0x2c, 640);
+  put32(env_system + 0x30, 480);
+  for (unsigned n = 0; n < 36; ++n) {
+    memcpy(style_records + n * 0x61, image + 0x762e8, 0x61);
+    style_records[n * 0x61 + 0x21] = 2;
+    unsigned char *port = port_records + n * 0x78;
+    port[0] = 1;
+    put16(port + 1, n);
+    put32(port + 0x6c, 1);
+    put32(port + 0x4a, 100 + n);
+    put32(port + 0x4e, 200 + n);
+    put32(port + 0x52, 300 + n);
+    put32(port + 0x56, 400 + n);
+    put16(port + 0x5a, n);
+    put32(port + 0x5c, 500 + n);
+    put32(port + 0x60, 600 + n);
+  }
+  for (unsigned n = 0; n < 8; ++n)
+    put32(mouse_system + 0x24 + 4 * n, 1000 + n);
+  selected_cursor = 0;
+}
+static void state_ownership_checks(void) {
+  hook(0x11210, noop); /* GDI brush construction, traced separately in #12. */
+  hook(0x45038, noop);
+  pointer(image + 0x963d4, (void *)three_args);
+  pointer(image + 0x963d0, (void *)one_arg);
+  pointer(image + 0x96670, (void *)cursor_capture);
+  pointer(image + 0x966e4, (void *)one_arg);
+  hook(0x2148a, (void (*)(void))stream_open);
+  hook(0x215a5, (void (*)(void))stream_write);
+  hook(0x21777, (void (*)(void))stream_read);
+  hook(0x21543, (void (*)(void))stream_close);
+  state_prepare();
+  require(u16(style_records) == 15 && u16(style_records + 2) == 0 &&
+              style_records[4] == 0 && style_records[5] == 0 &&
+              u16(style_records + 6) == 1 && style_records[8] == 0 &&
+              style_records[9] == 1 && u16(style_records + 0x1a) == 15 &&
+              style_records[0x1c] == 0 && style_records[0x1d] == 1 &&
+              u16(style_records + 0x1e) == 0 && style_records[0x20] == 0 &&
+              u16(style_records + 0x22) == 1 && style_records[0x24] == 0 &&
+              u16(style_records + 0x25) == 0 && !style_records[0x27] &&
+              u16(style_records + 0x4f) == 0 &&
+              u16(style_records + 0x5f) == 100,
+          "original fixed style defaults, including exact palette indices");
+  for (unsigned n = 1; n < 36; ++n) {
+    state_prepare();
+    put16(style_records, 23);
+    style_records[n * 0x61 + 0x21] = 0;
+    wire_state(0x46e41, n, 0);
+    require(!errors && u16(style_system + 8) == n &&
+                u16(style_records + n * 0x61) == 15 &&
+                style_records[n * 0x61 + 0x21] == 2,
+            "wire first-use SWITCH_STYLE uses fixed defaults, not old style");
+    require(call_slot(0x391fd, n) == 1 && u16(style_records + n * 0x61) == 15,
+            "original style initializer uses same fixed record");
+  }
+  for (unsigned n = 0; n < 36; ++n)
+    for (unsigned m = 0; m < 36; ++m) {
+      state_prepare();
+      unsigned char original_ports[sizeof port_records];
+      unsigned char original_env[sizeof env_records];
+      memcpy(original_ports, port_records, sizeof port_records);
+      memcpy(original_env, env_records, sizeof env_records);
+      put16(port_system + 8, n);
+      wire_state(0x46e41, m, 0);
+      require(u16(port_system + 8) == n &&
+                  !memcmp(port_records, original_ports, sizeof port_records) &&
+                  !memcmp(env_records, original_env, sizeof env_records),
+              "style selection changes no port cursor/image or environment");
+      unsigned char original_styles[sizeof style_records];
+      memcpy(original_styles, style_records, sizeof style_records);
+      require(call_slot(0x3393c, m) == 1 && u16(style_system + 8) == m &&
+                  !memcmp(style_records, original_styles, sizeof style_records),
+              "port selection changes no style selection or record");
+      require(!memcmp(port_records, original_ports, sizeof port_records),
+              "port selection retains all independent cursor/image values");
+    }
+  for (unsigned style_protected = 0; style_protected < 2; ++style_protected)
+    for (unsigned env_protected = 0; env_protected < 2; ++env_protected) {
+      state_prepare();
+      put16(style_system + 8, 5);
+      style_records[5 * 0x61 + 0x21] = 2 | style_protected;
+      env_records[0] = 1 | (env_protected << 1);
+      unsigned char old_styles[sizeof style_records];
+      memcpy(old_styles, style_records, sizeof style_records);
+      wire_state(0x1f3fd, 1, 8);
+      wire_state(0xdc96, 6, 0);
+      require(
+          env_records[7] == (env_protected ? 0 : 8) &&
+              active_config[0x3a] == (env_protected ? 0 : 8) &&
+              env_records[8] == (env_protected ? 0 : 6) &&
+              selected_cursor == (env_protected ? 0u : 1006u) &&
+              !memcmp(old_styles, style_records, sizeof style_records),
+          "wire color/mouse owned by environment; style protection irrelevant");
+      errors = 0;
+      const char *mouse[] = {"4"};
+      macro(0x34750, 1, mouse);
+      require(!errors && env_records[8] == 4 && selected_cursor == 1004,
+              "MCURSOR side effect bypasses environment protection");
+      const char *current_color[] = {"CUR", "RGB", "7"};
+      macro(0x17eac, 3, current_color);
+      require(!errors && env_records[7] == 7 && active_config[0x3a] == 7 &&
+                  !memcmp(old_styles, style_records, sizeof style_records),
+              "current COLORMODE macro also bypasses environment protection");
+    }
+  for (unsigned target_flags = 0; target_flags < 4; ++target_flags) {
+    state_prepare();
+    env_records[5 * 16] = target_flags;
+    const char *color[] = {"5", "RGB", "7"};
+    macro(0x17eac, 3, color);
+    require(!!u16(variables + 0x436) == !(target_flags & 1) &&
+                env_records[5 * 16 + 7] == (target_flags & 1 ? 7 : 0) &&
+                env_records[5 * 16] == target_flags && !active_config[0x3a] &&
+                !env_records[7],
+            "noncurrent color macro requires definition, bypasses protection, "
+            "edits only target");
+  }
+  for (unsigned protected_old = 0; protected_old < 2; ++protected_old) {
+    state_prepare();
+    env_records[0] = 1 | (protected_old << 1);
+    env_records[5] = 36;
+    env_records[6] = 2;
+    env_records[7] = 1;
+    env_records[8] = 2;
+    unsigned char *target = env_records + 5 * 16;
+    target[0] = 3;
+    target[5] = 64;
+    target[6] = 4;
+    target[7] = 8;
+    target[8] = 6;
+    put16(target + 1, 1280);
+    put16(target + 3, 960);
+    unsigned char old_styles[sizeof style_records],
+        old_ports[sizeof port_records];
+    memcpy(old_styles, style_records, sizeof style_records);
+    memcpy(old_ports, port_records, sizeof port_records);
+    wire_state(0x46da0, 5, 0);
+    require(!errors && u16(env_system + 0xa) == 5 &&
+                active_config[0x38] == 64 && active_config[0x39] == 4 &&
+                active_config[0x3a] == 8 && u32(env_system + 0x24) == 1280 &&
+                u32(env_system + 0x28) == 960,
+            "environment selection activates target math/color/world despite "
+            "protection");
+    require(
+        env_records[5] == 64 && env_records[6] == 4 && env_records[7] == 8 &&
+            env_records[8] == 2 && target[8] == 6,
+        "switch setters overwrite departing math/color fields, retain mouse");
+    require(
+        u16(style_system + 8) == 0 && u16(port_system + 8) == 0 &&
+            palette[4] == 7 && u16(button_system + 0xa) == 7 &&
+            u16(tw_system + 0xa) == 7 &&
+            !memcmp(old_styles, style_records, sizeof style_records) &&
+            !memcmp(old_ports, port_records, sizeof port_records),
+        "environment switch does not swap other table selections or states");
+    ((void (*)(void *))(image + 0x34635))(ctx);
+    require(selected_cursor == 1006 && u16(env_system + 0x1e) == 1,
+            "target environment supplies cursor at next presentation refresh");
+    wire_state(0x46da0, 0, 0);
+    require(active_config[0x3a] == 8 && active_config[0x38] == 64 &&
+                active_config[0x39] == 4,
+            "switching back exposes overwritten departing fields");
+  }
+  /* Save scope and original style-restore index destination defect. */
+  state_prepare();
+  put16(style_system + 8, 5);
+  put16(style_records + 7 * 0x61, 73);
+  require(((unsigned (*)(void *, void *))(image + 0x217f7))(ctx, save_record) ==
+              1,
+          "original whole-style serializer runs");
+  require(stream_length == 2 + sizeof style_records,
+          "style backup contains current index and exactly 36 style records");
+  put16(style_system + 8, 7);
+  memset(style_records, 0, sizeof style_records);
+  unsigned char old_ports[sizeof port_records], old_env[sizeof env_records];
+  memcpy(old_ports, port_records, sizeof port_records);
+  memcpy(old_env, env_records, sizeof env_records);
+  unsigned restore_result =
+      ((unsigned (*)(void *, void *))(image + 0x218bf))(ctx, save_record);
+  require(
+      (restore_result & 0xffff) == 1 && stream_position == stream_length &&
+          u16(style_system + 8) == 7 && u16(style_records + 7 * 0x61) == 73,
+      "style restore overwrites transient foreground, not saved current index");
+  require(!memcmp(old_ports, port_records, sizeof port_records) &&
+              !memcmp(old_env, env_records, sizeof env_records),
+          "style save/restore captures no port or environment state");
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -673,6 +905,9 @@ int main(int argc, char **argv) {
   for (unsigned i = 0; i < 256; ++i)
     character_types[i] = (isdigit(i) ? 4 : 0) | (isspace(i) ? 8 : 0) |
                          (isupper(i) ? 1 : 0) | (islower(i) ? 2 : 0);
+  unsigned char original_delete[5], original_env_switch[5];
+  memcpy(original_delete, image + 0x391fd, 5);
+  memcpy(original_env_switch, image + 0x3dac0, 5);
   const unsigned host_hooks[] = {0x3988f, 0x398ee, 0x2badd, 0x2bb24,
                                  0x391fd, 0x4558d, 0x39ac8, 0x3c37e,
                                  0xe6e9,  0x18cf6, 0x18bf7, 0x3dac0};
@@ -685,6 +920,10 @@ int main(int argc, char **argv) {
   family_checks();
   port_current_checks();
   header_upload_checks();
+  memcpy(image + 0x391fd, original_delete, 5);
+  memcpy(image + 0x3dac0, original_env_switch, 5);
+  state_ownership_checks();
+  hook(0x3dac0, noop);
   whole_reset_checks();
   backup_query_checks();
   observable_checks();
