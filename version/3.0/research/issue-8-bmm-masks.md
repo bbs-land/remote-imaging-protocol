@@ -50,9 +50,61 @@ Original **`0x49f90` dibMerge** now runs on 4×1 source/destination fixtures for
 
 Original **`0x49ea0` 32-bit classifier** was executed with two black/white BGRA pixels, keys black, white and RGB(17,34,51). It marks neither pixel transparent in every case, including exact matching black and white. The routine’s final red-component test subtracts 0xff0000 from a sign-extended **16-bit** component argument before unsigned comparison, so normal byte-valued red components cannot set its Boolean bit; the later AND/test cannot mark any ordinary RGB key. Preserve this as a shipped color-key defect when publishing the fully traced path; do not substitute the 24-bit comparator for this original routine. No GUI was launched for either the rejected 16-bit case or the 32-bit defect.
 
+## Completed routing audit
+
+All seven previously listed `.BMM` addresses identify the **immediate operand**, one byte after its PUSH instruction. The actual PUSH RVAs and complete dispositions are:
+
+| PUSH RVA | Owner/path | Role |
+| --- | --- | --- |
+| 0xbf08 | RIP_FileQuery (`RIP_FileQuery()` error identity at string RVA 0x7a924) | Normalizes an explicitly queried MSK filename to BMM before one file lookup; no raster drawing. |
+| 0xc738 | RIP_LOAD_BITMAP | Normalizes the explicitly requested MSK name; one display call at 0xc957. |
+| 0xcc7e | RIP_LOAD_ICON | Same explicit normalization; one display call at 0xcdde. |
+| 0x279f2 | Clipboard icon writer 0x27930, called by write-icon handler at 0xdde5 | Normalizes output filename and calls 0x27a90 to write the clipboard raster. This is **not** a file-delete function; that early uncommitted working hypothesis was rejected. |
+| 0x28540 | FILEEXISTS text-variable callback | Normalizes the filename before checking existence; diagnostic identity `tvarProcFILEEXISTS()`. |
+| 0x389e3 | Local bitmap playback 0x38910 | Normalizes the explicitly supplied name; one COPY/no-key display call at 0x38b34. |
+| 0x46b3e | RIP_PortWrite | Normalizes output filename before writing the chosen port rectangle via 0x27a90; diagnostic identity `RIP_PortWrite()`. |
+
+The common renderer 0x4a410 has exactly six direct CALL sites in the complete DLL disassembly: **0xc957, 0xcdde, 0x2aa42, 0x2aafa, 0x2abb9, 0x38b34**. The middle three belong to `ripButtonDraw()`: hot-icon handling replaces the extension with BMH at 0x2a9ea and calls 0x4a410 at 0x2aa42; failure replaces it with BMP at 0x2aaa1 and calls at 0x2aafa; the ordinary icon branch calls at 0x2abb9. All three pass COPY and key -1. They never construct or fetch a companion BMM. This audit includes both name construction and downstream reader/display logic; it does not infer absence merely from the asset census.
+
+Consequently the resolution is **no automatic attached BMM raster** in these RIPtel 3.1 paths. BMM is a BMP filename role usable for explicit stamping. A host wanting a manual two-image composition must issue both loads, with the mask in AND mode and the source in OR mode. Different put modes have their ordinary meanings; the extension does not choose an implicit combine order or Boolean transparency test. Absence or different dimensions of an unreferenced same-name BMM has no effect.
+
+## Full original renderer with controlled drawing boundary
+
+The expanded [`run/riptel-bitmap-probe`](../../../run/riptel-bitmap-probe), including [`riptel-bitmap-services.h`](../../../run/lib/riptel-bitmap-services.h), passes **4,975 checks**. Reproduce from the checkout:
+
+```sh
+run/riptel-bitmap-probe /path/to/unchanged/ripscrip.dll
+```
+
+The wrapper verifies the DLL hash before mapping; it builds native i386 code with `cc -m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`. This checkpoint ran on FreeBSD 15.1 amd64 with clang 19.1.7 and Capstone 5.0.6. No original file or installed font is modified; no GUI is involved.
+
+Original instructions now execute **0x4a410** end to end, including BMP reader **0x4edc5**, geometry **0x49340**, 4-to-8-bit expansion **0x48a20**, palette remapping **0x4ea60**, display **0x4e42b**, mask generation **0x493c0**, background/source capture orchestration **0x48f20/0x49000**, requested-ROP intermediate composition, pure merge **0x49f90** and final COPY. The native fixture supplies an in-memory file (`fopen/fread/ftell/fseek/fclose` hooks), global-memory APIs, palette entries, RGB drawing surfaces, compatible-DC creation **0x48d60**, HBITMAP-to-DIB extraction **0x4de5f**, error capture and invalidation. The full hook/IAT list is executable in `renderer_checks()`; filename/lookup and early handler controls remain in `main()`. Palette activation mode 1 is not exercised; fixtures use the existing current palette (renderer mode 2). GUI dialogs are counted, never displayed.
+
+The surface model implements ordinary GDI RGB raster operations and nearest-neighbor scaling. Its RGB encoding is independently specified by Microsoft’s [GDI BITMAPINFOHEADER documentation](<https://learn.microsoft.com/en-us/previous-versions/dd183376(v=vs.85)>); [StretchDIBits](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-stretchdibits) documents the DIB_RGB_COLORS interpretation used by the actual import call. These current API references explain the controlled boundary; they are **not** proof that a modern header/compression/OS capability existed in the 1997 client. Original decoding/remapping/classification/merge are executed, whereas Windows rasterization, device-palette quantization and arbitrary stretch filters are not emulated or claimed tested.
+
+Fixtures are valid 40-byte Windows BMP headers, one plane, BI_RGB (0), positive height, packed color table and bottom-up DWORD-padded rows. Ordinary explicit BMM loads accept depths **1/4/8/16/24/32** and all five modes. Palette index 0 is deliberately **white**, index 1 **black**, raster 0,1,0,1: AND retains the background at index-zero white pixels and clears at index-one black pixels. Thus a nonzero-index transparency rule predicts the wrong result. Other modes agree with the independent RGB oracle. The reader opens exactly the requested file, once per invocation; there is no companion lookup within the original downstream code.
+
+The complete flag-8 route runs both black and white keys for every depth/mode. Depths 1/4/8/24 succeed and retain the original background at selected pixels; every other pixel is the requested ROP of source and original background. All 16-bit cases return AX=1 and a captured unknown-format error without changing the destination. All 32-bit cases succeed but select no transparent pixels, confirming the isolated classifier defect through final output. Flag-8 masks are generated internally, rescaled with the source geometry and applied **after** the intermediate ROP; they are not BMM files.
+
+Downscaling 4×1 to 2×1 and upscaling to 8×1 exercise original geometry and generated-mask orchestration with COPY/XOR/OR/AND/NOT, keyed and ordinary. Both use exactly one requested file; the fixture’s nearest-neighbor output and untouched pixels outside the rectangle match the independent oracle. This establishes independent dimensions and matched source/internal-mask target geometry, not original Windows stretch-filter parity. Missing explicitly requested BMM returns AX=1 before GDI, with no drawing; the higher command’s already-probed lookup failure takes its ordinary placeholder path. No BMM-specific missing-file or size-mismatch policy exists.
+
+A final explicit two-load oracle uses 1-bit MASK.BMM (palette 0 white, 1 black; raster 0x50) in AND mode and a 24-bit SOURCE.BMP containing black, RGB(F0,F0,0F), black, RGB(0F,0F,F0) in OR mode. On background RGB(12,34,56), final pixels are background, RGB(F0,F0,0F), background, RGB(0F,0F,F0). The fixture preserves the intermediate surface while replacing the in-memory file between the two supplied loads; no automatic second read is credited.
+
+### Color-key input and palette translation
+
+The wire key is validated at **0x44385** with third argument 0: only **0..255** are accepted. Original **0x16140** is then called with third argument 0. Its comparison at 0x161d3/0x161d5 preserves the supplied index when it is **below** the signed-word limit at palette+0x82b; otherwise it reads that entry’s current drawing-palette RGB and finds a nearest index through **0x16070**. An earlier transient reading reversed this branch; the native tests settle it. Initialization at 0x43efb–0x43f31 sets that limit to **2 for GetDeviceCaps(BITSPIXEL)==2, 16 for ==4, otherwise 236**. Do not describe it as a universal 256-entry pass-through or a file-palette index.
+
+Native checks restore these original routines after handler-routing tests, replace only palette locking **0x447c0/0x44802**, and exercise all 256 valid indices at limits 2/16/236. Logical palette entry 200 deliberately duplicates entry 7: 200 translates to 7 at limits 2/16, remains 200 at limit 236; other unique entries return themselves. Exact matches stop at the first matching index; for nonzero equal-distance candidates 0x16070 replaces the previous best on a tie, so the last minimum wins unless an exact match already stopped the search. Validation checks 0,1,255,256,1295. The full renderer tests supply the resulting key directly and a fixed OS grayscale palette, preserving this boundary explicitly.
+
+Internally 1-bit classification compares the source bit to zero/nonzero translated key; 4-bit data is expanded to 8-bit and mapped to the current OS palette; 8-bit pixels are mapped by nearest RGB palette entry before index equality; 24-bit pixels compare exact B/G/R against GetPaletteEntries(key,1). This differs from testing raw file index or generic RGB proximity for every depth. The 32-bit defect and 16-bit rejection described above still apply.
+
+### Fixture failures resolved
+
+The first full-render attempt rejected an apparently huge temporary surface: the native replacement had read entire argument slots although original 0x48d60 uses signed **low 16-bit** dimensions (upper bits may be stale). Masking/sign-extending those low words fixed the ABI. The next run drew correctly but counted `DestroyBitmapDC()` mismatch errors because the SelectObject fixture always returned 1; maintaining each DC’s selected bitmap restored the original previous-object/cleanup contract. These were harness defects, not client failures, and are not published as rendering limitations.
+
 ## Next action
 
-Continue #8 only. Finish BMM reference classification and button filename lookup, then exercise original BMP display/reader/GDI-boundary and transparent composition with tiny DIB fixtures. Verify accepted depths, palette-to-pixel transformations, 16/32-bit color-key differences, mode ordering and missing/mismatched dimensions. The current 100-check probe is preliminary and no mask rule or resolution PR is yet published. Keep findings under the 3.0 client scope; update the inherited 2.0 page with a qualified cross-reference rather than assuming backwards equivalence.
+The required #8 subquestions are now derived. Publish the qualified RIPtel 3.1 bitmap-mask delta, including explicit RGB algebra, supported profiled depths, absent/unreferenced/mismatched cases, exact key selection and the small independent mask/source oracle. Replace the 2.0 page’s speculative monochrome rule with a scope-qualified pointer; update 3.0 command/content-role pages. Keep the inherited icon decoder-field discrepancy recorded for the broader command-layout work rather than inferring unnamed fields here. Run required checks, commit with co-authorship, file the complete #8 PR dependent on #34 with an issue-only comparison from a6da898, record delivery, then refresh GitHub before #9.
 
 ---
 

@@ -1,6 +1,7 @@
 /* Original RIPtel explicit bitmap/icon load routing and transparent-color
  * classifier probes. File lookup, final GDI display and palette services are
- * controlled. This does not claim complete bitmap rendering or BMM semantics.
+ * controlled. Original renderer, decoder, classifiers and compositor execute;
+ * the native RGB surfaces are not an original Windows GDI implementation.
  */
 #include "riptel-probe-image.h"
 #include <stdio.h>
@@ -12,6 +13,7 @@ static unsigned char context[512], ports[128], entries[36 * 0x78],
 static unsigned lookup_calls, display_calls, missing, errors, rop;
 static int transparent;
 static char lookup_name[256], displayed_name[256];
+static unsigned char color_entry[5], validator_entry[5];
 static unsigned zero(void) { return 0; }
 static unsigned one(void) { return 1; }
 static void *scratch(void *ctx) {
@@ -189,6 +191,41 @@ static void release(void **target) {
   free(*target);
   *target = NULL;
 }
+static void color_key_checks(void) {
+  unsigned char logical[770] = {0};
+  memcpy(image + 0x16140, color_entry, 5);
+  memcpy(image + 0x44385, validator_entry, 5);
+  hook(0x447c0, noop);
+  hook(0x44802, noop);
+  prepare();
+  pointer(palette + 5, logical);
+  for (unsigned i = 0; i < 256; ++i) {
+    logical[3 * i] = i & 63;
+    logical[3 * i + 1] = i >> 6;
+  }
+  memcpy(logical + 200 * 3, logical + 7 * 3, 3);
+  unsigned limits[] = {2, 16, 236};
+  for (unsigned n = 0; n < 3; ++n) {
+    put16(palette + 0x82b, limits[n]);
+    for (unsigned i = 0; i < 256; ++i) {
+      unsigned result =
+          ((unsigned (*)(void *, unsigned, unsigned))(image + 0x16140))(context,
+                                                                        i, 0) &
+          0xffff;
+      require(result == (i == 200 && i >= limits[n] ? 7 : i),
+              "key translation preserves low indices; maps later drawing "
+              "colors to first exact logical-palette match");
+    }
+  }
+  unsigned values[] = {0, 1, 255, 256, 1295};
+  for (unsigned n = 0; n < 5; ++n) {
+    unsigned result = ((unsigned (*)(void *, unsigned, unsigned))(
+                          image + 0x44385))(context, values[n], 0) &
+                      0xffff;
+    require(result == (values[n] <= 255),
+            "bitmap key validator accepts only 0 through 255");
+  }
+}
 static void mask_and_merge_checks(void) {
   pointer(image + 0x964e4, (void *)lock_memory);
   pointer(image + 0x964f4, (void *)unlock_memory);
@@ -248,10 +285,14 @@ static void mask_and_merge_checks(void) {
             "transparent");
   }
 }
+#include "riptel-bitmap-services.h"
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
   load_image(argv[1]);
+  memcpy(renderer_entry, image + 0x4a410, 5);
+  memcpy(color_entry, image + 0x16140, 5);
+  memcpy(validator_entry, image + 0x44385, 5);
   hook(0x45038, noop);
   hook(0x3445b, (void (*)(void))zero);
   hook(0x44385, (void (*)(void))one);
@@ -279,8 +320,10 @@ int main(int argc, char **argv) {
   hook(0x69e40, (void (*)(void))strrchr);
   hook(0x655e2, (void (*)(void))strcasecmp);
   load_checks();
+  color_key_checks();
   classify_checks();
   mask_and_merge_checks();
-  printf("PASS: %u preliminary bitmap routing/classifier checks\n", checks);
+  renderer_checks();
+  printf("PASS: %u bitmap routing/renderer/mask/merge checks\n", checks);
   return 0;
 }
