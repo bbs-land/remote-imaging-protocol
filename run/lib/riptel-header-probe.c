@@ -727,7 +727,8 @@ static void header_checks(void) {
   header_prepare();
   ((void (*)(void *, unsigned, unsigned))(image + 0x172c5))(context, 0x40, 3);
   require(seen(0x3e2e7) == 1 && palette_table[4] == 2,
-          "palette all-default flag resets only current palette");
+          "palette flag 64 calls current upload service; leaf semantics "
+          "checked by table probe");
   header_prepare();
   execute_headers = 1;
   parse("!|h01000001500G0230|L001002003004\r\n");

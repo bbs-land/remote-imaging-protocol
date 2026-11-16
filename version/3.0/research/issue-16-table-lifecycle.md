@@ -32,7 +32,7 @@ Selection **0x442c3** checks INUSE, defaults an undefined record through 0x440f0
 
 Live copy helper **0x446eb(context,source,destination)** rejects same/out-of-range entries; an already-defined protected destination fails. It checks source INUSE and fails for an undefined source. The copy length is **0x302**, including flags, so a protected source appears to protect a writable nonzero destination. A destination zero explicitly clears protection after copying. Native confirmation and other table-family consumers are still required; do not generalize palette flags by analogy.
 
-**Correction lead affecting earlier header research:** **0x3e2e7 is a current-palette upload/realization helper**, not a default-RGB initializer. Its body converts the current record's RGB values, calls SetPaletteEntries, SelectPalette and RealizePalette; it never copies bootup RGB or changes defined flags. Header palette flag 64 loops defined/unprotected slots but calls this helper only for the current slot; flag 128 also only uploads the current defined/unprotected slot. The earlier issue #5 note/reference described those calls as resetting defaults. Reconcile those published claims in #16 after the actual palette lifecycle is natively established; do not silently repeat the earlier helper label.
+**Correction lead affecting earlier header research:** **0x3e2e7 is a current-palette upload/realization helper**, not a default-RGB initializer. Its body converts the current record's RGB values, calls SetPaletteEntries, SelectPalette and RealizePalette; it never copies bootup RGB or changes defined flags. Header palette flag 64 loops defined/unprotected slots but calls this helper only for the current slot; flag 128 was initially thought to use the same current-definition guard, but that interpretation is withdrawn by the direct guard execution below. The earlier issue #5 note/reference described those calls as resetting defaults. Reconcile those published claims in #16 after the actual palette lifecycle is natively established; do not silently repeat the earlier helper label.
 
 ## COPY validation leads
 
@@ -76,9 +76,11 @@ In addition to the first checkpoint hooks, per-family fixtures control synchroni
 
 GDI imports are controlled and never draw: SetRect, palette uploads/selection/realization, brush/pen creation, object selection/deletion, FillRect and background/text state setters. They establish API arguments and lifecycle/control decisions, not Windows pixel behavior. Actual source bytes on disk remain unchanged; hooks only modify the in-memory mapped service entries.
 
-## Next action
+## Complete answer and validation
 
-Every issue subquestion is now answered from original consumers. Publish the corrected COPY/current-port/query scope, family-specific protection, palette reset/status truth table and header correction; format and run required checks, then file the complete #16 PR. No PR yet.
+All issue #16 subquestions are answered in the corrected [COPY/current-port reference](../ripscrip/5.1-text-variables.md#copy), [live-copy validation and protection](../ripscrip/5.1-text-variables.md#live-entry-copy-validation-and-protection), [palette reset truth table](../ripscrip/7.1-data-tables.md#palette-reset-lifecycle) and RESET/ISPROT/CUR entries. The related palette-header error is corrected explicitly in the [header reference](../ripscrip/1.1-protocol-and-command-hierarchy.md#button-graphics-style-palette-and-environment-flags) and earlier issue #5 note; its original controlled probe's label now states only the dispatch it observes.
+
+Validation: **80,982 native table checks**, **66,219 macro/variable checks** at the registration checkpoint, **9,176 header/parser/entry checks** after correcting the fixture label. `run/lint` passes; `run/check-links` reports **0 bad of 4922 links across 201 files**; `git diff --check` passes. Original text/assets were not edited. Task-owned temporary executables, streams and request files are scoped and removed after use. No GUI or external messages were sent; PR delivery is recorded next after publication.
 
 ---
 
