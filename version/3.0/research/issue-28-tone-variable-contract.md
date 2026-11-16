@@ -23,3 +23,19 @@ PHASER defaults (2500,50,20,2), requires start>stop and nonzero increment/time; 
 Both sweeps update their frequency in a **16-bit register**. On underflow/overflow it wraps; some otherwise valid inputs cycle rather than terminate (downward stop zero and upward stop 65535 cannot satisfy the exit test). The fixture uses a setjmp/longjmp guard at the 65,537th Beep request, after one complete WORD domain; it compares original count/hash/cycle behavior with an independently expressed modular model. No unbounded audio/wait is executed. This shipped defect must be described separately from ordinary ordered sweep semantics.
 
 Expanded `run/riptel-macro-probe` passes **1,576,902 checks**: exhaustive 0..65536 frequency/duration values on both axes for BEEP/BLIP/T, arity/default/invalid forms, exact count/hash of MUSIC/ALARM through count 65535, 2×6⁴ sweep boundary combinations and every optional suffix, plus full expansion with OS success/failure. A first pipeline assertion expected expansion failure for invalid tone arguments; the original pipeline instead returns 1, retains the literal expression and sets its variable error word. Corrected the harness to assert that exact behavior. No primary observation required a fallback/default reinterpretation. Next: publish the complete requested contract and corrected original recipe, then required checks/PR.
+
+## Publication scope and reproduction
+
+The reconstructed tone chapter now states the original request contract for all seven registered tone variables. It corrects PHASER/REVPHASER endpoint direction, invalid-input rejection without fallback, sweep time-zero errors versus simple-tone zero forwarding, required T pair, missing BEEP/BLIP gaps, BLIP 1000 Hz / 25 ms default and exact six-note MUSIC. The adjacent ALARM second-duration discrepancy is also corrected from the same native source. The summary inventory and script catalogue point to this evidence; earlier version text/reference, WAV playback and SyncTERM code are unchanged. Shipped WORD wrap/cycling is explicitly separated from ordinary finite sweep semantics.
+
+Reproduction uses FreeBSD 15.1 amd64, clang 19.1.7 with native -m32 and the original DLL; see the wrapper for build/service boundaries:
+
+```sh
+run/riptel-macro-probe /path/to/original/ripscrip.dll
+run/format version/3.0/ripscrip/4.4-tone-and-sound-generation.md version/3.0/ripscrip/9.1-text-variable-reference.md
+run/lint
+run/check-links
+git diff --check
+```
+
+All **1,576,902 native macro checks** pass. New tests execute no audio or desktop GUI and write no real sound files; their temporary build directory is removed on wrapper EXIT. PR/request payloads use scoped TemporaryDirectory. Initial cross-reference used a nonexistent summary anchor; corrected it to the actual `sounds-active` heading before publication. Final required check results and PR link follow at delivery.
