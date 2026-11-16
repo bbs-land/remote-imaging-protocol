@@ -2,6 +2,7 @@
 // Inspect the fingerprinted RIPtel 3.1 driver. Exits nonzero on mismatch or invalid input.
 import { parseArgs } from "node:util";
 import { loadDriver } from "./lib/riptel-image.ts";
+import { checkCHRFonts } from "./lib/riptel-chr-fonts.ts";
 import { checkGlyphs } from "./lib/riptel-glyphs.ts";
 
 const { values, positionals } = parseArgs({
@@ -14,11 +15,12 @@ const { values, positionals } = parseArgs({
     decode: { type: "string" },
     verify: { type: "boolean" },
     glyphs: { type: "string" },
+    "chr-fonts": { type: "string" },
   },
 });
 if (values.help) {
   console.log(
-    "Usage: run/riptel-inspect DLL [--slot N] [--rva 0xRVA --length N] [--decode FONT_PAYLOAD] [--glyphs DIRECTORY] [--verify]",
+    "Usage: run/riptel-inspect DLL [--slot N] [--rva 0xRVA --length N] [--decode FONT_PAYLOAD] [--glyphs DIRECTORY] [--chr-fonts DIRECTORY] [--verify]",
   );
 } else {
   if (positionals.length !== 1) {
@@ -89,6 +91,9 @@ if (values.help) {
     result.typeface = payload.slice(26);
   }
   if (values.glyphs !== undefined) result.glyphs = checkGlyphs(values.glyphs);
+  if (values["chr-fonts"] !== undefined) {
+    result.chrFonts = checkCHRFonts(values["chr-fonts"]);
+  }
   console.log(
     JSON.stringify(
       values.verify ? { sha256: driver.sha256, verified: true } : result,

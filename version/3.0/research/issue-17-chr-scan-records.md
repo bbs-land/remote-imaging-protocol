@@ -35,9 +35,33 @@ At **0x1243–0x1271**, it stores header pointer `buffer+0x80` at state **+0x34*
 
 Relevant original strings: BOLD.CHR at RVA **0x79030**, TRIP.CHR **0x7909c**; file offset to RVA for these .data strings is +0x1a00. The loader's filename-table pointer is a .rdata address and must use its own section mapping. Do not conflate file offsets with RVAs.
 
+## Original glyph path and SCAN decision
+
+The normal classic branches of TEXT/TEXT_XY reach **0x21a0** (TEXT_XY call **0x20e85**, after font selection at **0x20e24**); it calls the string consumer **0x1860** at **0x24bd**. That routine calls the single-glyph consumer **0x18c0** at **0x18a2** for nonzero classic font IDs. This is the active classic path, separate from RFF/extended-font rendering.
+
+At **0x1a9c–0x1ad2**, the horizontal loop reads a record, advances its pointer by two, constructs the high-bit opcode and branches only for **0 END**, **2 MOVE**, **3 DRAW**. Opcode **1** falls through the default jump to the loop tail **0x1da1**, which continues reading because the END flag remains unset. The vertical loop **0x1dec–0x1e22** does exactly the same, defaulting to **0x210f**. It never interprets SCAN's low coordinate bits or changes pen state for that record. No contour close, flush, scan conversion or fill operation occurs. It is a consumed no-op, not END and not a replacement MOVE.
+
+MOVE calls MoveToEx; DRAW calls LineTo and SetPixel for its endpoint. All geometry still comes from these explicit records. The routine uses the header's count/first-character fields and ordinary metrics/scales; neither it nor the original loader uses stroke-header **+7 scan_flag** to select a scan behavior. There is no dormant SCAN implementation enabled by changing that byte.
+
+## Native probe and geometric oracle
+
+New **run/riptel-chr-probe DLL FONT_DIRECTORY [SVG_OUTPUT]** verifies the DLL and all ten original CHR SHA-256 hashes before compiling a scoped i386 routine probe. **run/riptel-inspect DLL --chr-fonts FONT_DIRECTORY** provides a reproducible hash/header/valid-glyph scan census. The new supporting module is `run/lib/riptel-chr-fonts.ts`; expected font hashes match the 3.0 LFS OIDs. Source font payloads are read from the original artifact mirror, never rewritten.
+
+On FreeBSD 15.1 amd64 / clang 19.1.7, `-m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`, the final probe passes **13,518,407 checks** when writing the SVG. It executes original loader **0x10f0**, glyph consumer **0x18c0**, string wrapper **0x1860**, width helper **0x1040**, bounds accumulator **0x10c0** and world conversion **0x310b8**. Every glyph-table entry in all ten files is invoked directly through the glyph helper at unit size in both orientations, both drawing passes/modes and converted/unconverted coordinates; removing SCAN records preserves every captured drawing/invalidation event and final state byte. This direct table-entry coverage does not claim to test the string wrapper's high-byte character mapping; affected ASCII glyphs are additionally verified through the original string wrapper.
+
+For the five affected codes, the full **0..255 scan_flag byte domain** is tested **before original loading**, in both orientations, both modes, converted/unconverted coordinates and sizes 1/4/10. All resulting drawing/state matches the scan_flag=0 baseline. A controlled glyph puts SCAN **between two DRAW records without an intervening MOVE**, so a pen reset cannot hide behind the shipped fonts' following MOVE. All **16,384 possible low-seven-bit x/y payload pairs** preserve drawing/state in both orientations and modes. The test mutates only owned in-memory font fixtures; no original artifact changes.
+
+The quote/colon/equals unit-scale original traces have **three MOVE calls, eight LineTo calls and eight endpoint SetPixel calls** each. They outline two four-edge closed contours and finally move to the advance position. A golden geometry check asserts the explicit source-derived points independently of the remove-SCAN comparison. **chr-scan-outline.svg** is generated directly from those original MoveToEx/LineTo arguments, using no fill. It was inspected with the headless rsvg-convert renderer; its temporary PNG/directory were removed immediately. This is a geometric oracle, not an exact Windows pixel image.
+
+## Controlled-service and verification boundary
+
+File services **0x6b560 / 0x75790 / 0x6b1c0 / 0x6b490** serve the original bytes from bounded memory and assert filename, flags, full read length and close behavior. Formatting **0x68440** uses host vsprintf. Color lookup **0x3dce0** returns controlled color IDs, and invalidation **0x13c69** records the original bounds. GDI imports record CreatePen **0x963d4**, SelectObject **0x963c0**, DeleteObject **0x963d0**, MoveToEx **0x963dc**, LineTo **0x963cc**, SetPixel **0x963c8**. Selection tracks its previous object. The original solid one-pixel pen, restoration, deletion and one final invalidation are asserted. Polygon **0x9641c**, FillRgn **0x96410** and PolyPolygon **0x96470** are failure traps; none is invoked. MessageBoxA **0x966f4** is also a failure trap, preventing any desktop dialog even on an unexpected original error path.
+
+Native capture does not rasterize Windows pixels or establish an earlier client's runtime painting. The same BOLD/TSCR bytes are pinned in 1.54, so the data-observation corrections apply there; the **painting contract is explicitly RIPtel 3.1 / driver 3.0.7 evidence**. Original text/assets stay byte-exact. Build directories have EXIT cleanup and core dumps are disabled. Tool type checks/lint and documentation checks are recorded with delivery.
+
 ## Next action
 
-Trace the original classic glyph reader/drawing loop downstream of 0x10f0 and its state +0x30/+0x34/+0x38. Build a bounded native fixture from the byte-exact BOLD file, capture its line/polygon/scan consumers and nonpainting state changes, and compare the actual six records plus controlled scan_flag/opcode perturbations. Preserve original scan decisions; never replace the decoder with a peer implementation. Once all painting/header questions are settled, correct the earliest BGI techspec with an explicit RIPtel-specific consumer note, update inherited 3.0 references, run required checks and file the complete #17 PR.
+The exact answer is recovered: opcode 01 occurs in six records, is consumed without painting/state change by RIPtel, and scan_flag does not enable it; TSCR's unused-name observation is 02 03 00 00. Correct the earliest BGI techspec with this explicitly scoped original-consumer evidence, link the geometry/reproduction notes from the 3.0 inherited reference, run required checks and publish the complete #17 PR.
 
 ---
 
