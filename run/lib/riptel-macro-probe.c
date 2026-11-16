@@ -816,6 +816,14 @@ int main(int argc, char **argv) {
           "original registrations identify requested processors");
   require(!registered_callback("P") && registered_callback("PCB") == 0x2d3ab,
           "P is not an alias in original built-in registration list");
+  require(registered_callback("COPY") == 0x194f5 &&
+              registered_callback("CUR") == 0x34f7d &&
+              registered_callback("RESET") == 0x43d38 &&
+              registered_callback("INUSE") == 0x12fbd &&
+              registered_callback("ISPROT") == 0x2daaa &&
+              registered_callback("PROT") == 0xe685 &&
+              registered_callback("UNPROT") == 0xe69c,
+          "original table-lifecycle callback registrations");
   printf("Captured %u original variable registrations\n", registered_count);
   prepare();
   strcpy(params, "9");
