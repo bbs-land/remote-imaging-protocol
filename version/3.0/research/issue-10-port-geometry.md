@@ -4,7 +4,7 @@
 
 ## Scope and primary source
 
-Started 2026-11-16 for [issue #10](https://github.com/bbs-land/remote-imaging-protocol/issues/10), oldest RealDeuce issue without a complete resolution PR after #36 publication. Branch `issue-10-port-geometry` starts at `1a0bcc8` (delivered #9). Required answers: exact physical port dimensions and PORTW/PORTH results for `2P10000ZKQO00030000` at world 1280×960/device 640×480; precedence of all-zero destination versus zero lower-right verbatim copy; whether clipping preserves an initially unscaled copy, especially 4×1 into a 2×1 viewport at x=1; correct the inherited viewport diagram's screen coordinate 125 to 115. Exact Windows raster/filter reproduction is not requested.
+Started 2026-11-16 for [issue #10](https://github.com/bbs-land/remote-imaging-protocol/issues/10), oldest RealDeuce issue without a complete resolution PR after #36 publication. Branch `issue-10-port-geometry` starts at `1a0bcc8` (delivered #9). Delivered in [PR #37](https://github.com/bbs-land/remote-imaging-protocol/pull/37), dependent on #36; primary specification commit `9034655`, [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/1a0bcc8...issue-10-port-geometry). Review/merge pending. Required answers: exact physical port dimensions and PORTW/PORTH results for `2P10000ZKQO00030000` at world 1280×960/device 640×480; precedence of all-zero destination versus zero lower-right verbatim copy; whether clipping preserves an initially unscaled copy, especially 4×1 into a 2×1 viewport at x=1; correct the inherited viewport diagram's screen coordinate 125 to 115. Exact Windows raster/filter reproduction is not requested.
 
 Primary binary: unchanged RIPtel 3.1 driver 3.0.7 DLL, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`, preferred base 0x10000000, provenance in the [first issue note](issue-3-extended-font-style.md#artifact-recovery-2026-11-16). All binary addresses below are RVAs. No GUI probes; only static/native routines with controlled OS services.
 
@@ -46,11 +46,13 @@ The existing macro probe now also executes original registration and the complet
 
 The [drawing-port chapter](../ripscrip/7.0-drawing-ports.md) now specifies extent boundaries separately from inclusive pixel-position illustrations, the exact 640×480 allocation and non-clamped larger offscreen case, actual failed size-query expansion versus intended dimensions, all-zero destination precedence and the before-clipping scale decision. It gives the requested 4×1-to-2×1 at X=1 result and final GDI dimensions. The 125→115 diagram correction appears in both Markdown editions with 2.0 errata; the inherited 2.0 runtime prose points to the qualified later-client contract. The 3.0 prologue caption now says world extent rather than physical bitmap size, and PORTW/PORTH entries flag the original callback defect.
 
-Native verification passes **1,207 port allocation/query/copy checks** and **66,218 macro/variable checks**. Repository-wide `run/lint`, `run/check-links` (0 bad of 4,721 links across 193 files) and `git diff --check` pass. Original `version/*/text/` and assets are unchanged. The controlled OS services capture allocation/geometry only; no Windows raster reproduction, GUI or desktop display is used. The exact query gate and macro results answer the remaining issue subquestion without repairing original instructions.
+Native verification passes **1,207 port allocation/query/copy checks** and **66,218 macro/variable checks**. Repository-wide `run/lint`, `run/check-links` (0 bad of 4,722 links across 193 files) and `git diff --check` pass. Original `version/*/text/` and assets are unchanged. The controlled OS services capture allocation/geometry only; no Windows raster reproduction, GUI or desktop display is used. The exact query gate and macro results answer the remaining issue subquestion without repairing original instructions.
 
-## Next action
+## Delivery and continuation
 
-File the complete #10 resolution PR dependent on #36, with an issue-only comparison from 1a0bcc8, then record delivery and refresh GitHub before issue #11. Keep the callback-dispatch and inverted-gate findings for the later query-argument issue #25; do not silently present intended numeric PORTW/PORTH values as historical output.
+Published [PR #37](https://github.com/bbs-land/remote-imaging-protocol/pull/37) with the complete extent/copy/query/diagram answer, original-instruction evidence, native verification and `Closes #10`. Do not merge or manually close issues. New commits include Codex co-authorship. Keep the callback-dispatch and inverted-gate findings for the later query-argument issue #25; do not silently present intended numeric PORTW/PORTH values as historical output.
+
+GitHub refreshed after publication confirms #11 is next: PIXEL versus POINT coordinate mapping/origins, line-thickness units under uniform/nonuniform world scaling, and an open-polyline N-versus-N-1 sentence correction. Start its own issue branch from this delivered checkpoint and stay serial.
 
 ---
 
