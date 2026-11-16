@@ -2,6 +2,19 @@
   "tasks": {
     "check-links": "deno run --allow-read run/check-links",
     "lint": "bash run/lint",
-    "format": "bash run/format"
+    "format": "bash run/format",
+    "riptel-inspect": "deno run --allow-read run/riptel-inspect",
+    "riptel-macro-probe": "bash run/riptel-macro-probe",
+    "riptel-arc-probe": "bash run/riptel-arc-probe",
+    "riptel-polygon-probe": "bash run/riptel-polygon-probe",
+    "riptel-fill-probe": "bash run/riptel-fill-probe",
+    "riptel-lines-probe": "bash run/riptel-lines-probe",
+    "riptel-port-probe": "bash run/riptel-port-probe",
+    "riptel-bitmap-probe": "bash run/riptel-bitmap-probe",
+    "riptel-framing-probe": "bash run/riptel-framing-probe",
+    "riptel-header-probe": "bash run/riptel-header-probe",
+    "riptel-column-probe": "bash run/riptel-column-probe",
+    "riptel-font-probe": "bash run/riptel-font-probe",
+    "riptel-font-glyphs": "bash run/riptel-font-glyphs"
   }
 }
