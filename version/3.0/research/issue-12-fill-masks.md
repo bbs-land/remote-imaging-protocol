@@ -67,11 +67,13 @@ The 3.0 reference now publishes all twelve eight-byte masks, the foreground/back
 
 The preserved text SHA-256 values before/after correction are identical: `version/1.54/text/RIPScrip-1.54.txt` = `1ff57d53fb81c06604bdb6d9eb35150c90cbe7d5acd7b5ead6a0758f3d957497`; `version/2.0/text/RIPScrip-2.0-alpha-4.txt` = `0da8a34644fa7c0ac7bf457ddfb6fe12288c1bff17c966f3d2b792af57c01982`. No assets change.
 
-`run/format` applied to all edited Markdown, `run/lint` passed, `run/check-links` passed **4,788 links across 195 files**, and `git diff --check` passed. The new C probe is formatted with clang-format 19 and builds with warnings as errors. Native verification passes 2,754 checks. All issue subquestions now have an exact answer within the stated primary-source scope.
+`run/format` applied to all edited Markdown, `run/lint` passed, `run/check-links` passed **4,789 links across 195 files**, and `git diff --check` passed. The new C probe is formatted with clang-format 19 and builds with warnings as errors. Native verification passes 2,754 checks. All issue subquestions now have an exact answer within the stated primary-source scope.
 
-## Delivery next action
+## Delivery and continuation
 
-Commit and push the specification corrections, then file the complete issue-12 PR dependent on #39 with `Closes #12` and an issue-only comparison from `e0bc91f`. Record the PR and specification commit here/backlog, then refresh GitHub creation order before starting #13. Do not wait for merge and do not manually close or merge issues/PRs.
+Delivered in [PR #40](https://github.com/bbs-land/remote-imaging-protocol/pull/40), branch `issue-12-fill-masks`, dependent on #39. Specification commit **ab03c0d**; native-evidence checkpoint **011f1b9**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/e0bc91f...issue-12-fill-masks) starts at delivered #11's final commit. Review/merge is pending; no issue was manually closed and no PR was merged. Every new commit has Codex co-authorship.
+
+Post-publication GitHub refresh confirms #13 (polygon wire counts/widths) is the oldest RealDeuce issue without a complete resolution PR. The queue remains #13 through #28, then #33 and #38. Start #13 on a branch from this delivery checkpoint and preserve the same primary-source/committed-note workflow.
 
 ---
 
