@@ -1,0 +1,99 @@
+#!/usr/bin/env -S deno run --allow-read
+// Inspect the fingerprinted RIPtel 3.1 driver. Exits nonzero on mismatch or invalid input.
+import { parseArgs } from "node:util";
+import { loadDriver } from "./lib/riptel-image.ts";
+import { checkGlyphs } from "./lib/riptel-glyphs.ts";
+
+const { values, positionals } = parseArgs({
+  allowPositionals: true,
+  options: {
+    help: { type: "boolean", short: "h" },
+    slot: { type: "string" },
+    rva: { type: "string" },
+    length: { type: "string", default: "40" },
+    decode: { type: "string" },
+    verify: { type: "boolean" },
+    glyphs: { type: "string" },
+  },
+});
+if (values.help) {
+  console.log(
+    "Usage: run/riptel-inspect DLL [--slot N] [--rva 0xRVA --length N] [--decode FONT_PAYLOAD] [--glyphs DIRECTORY] [--verify]",
+  );
+} else {
+  if (positionals.length !== 1) {
+    throw new Error("Supply exactly one DLL path; see --help");
+  }
+  const driver = loadDriver(positionals[0]);
+  const { bytes, offset } = driver;
+  const result: Record<string, unknown> = {
+    sha256: driver.sha256,
+    bytes: bytes.length,
+    imageBase: driver.imageBase,
+    sections: driver.sections,
+  };
+  if (values.slot !== undefined || values.decode !== undefined) {
+    const slot = Number(values.slot ?? "75");
+    if (!Number.isInteger(slot) || slot < 0 || slot >= 129) {
+      throw new Error("Slot must be 0..128");
+    }
+    const at = offset(0x80820 + slot * 40, 40);
+    const count = bytes.readInt32LE(at + 16);
+    result.dispatch = {
+      slot,
+      rva: 0x80820 + slot * 40,
+      handlerRva: bytes.readUInt32LE(at + 1) - driver.imageBase,
+      opcode: String.fromCharCode(bytes[at + 15]),
+      count,
+      types: [
+        ...bytes.subarray(at + 20, at + 20 + Math.min(Math.abs(count), 16)),
+      ],
+      flags: bytes.readUInt16LE(at + 38),
+    };
+  }
+  if (values.rva !== undefined) {
+    const rva = Number(values.rva), length = Number(values.length);
+    if (
+      !Number.isSafeInteger(rva) || !Number.isSafeInteger(length) || length < 1
+    ) throw new Error("Invalid range");
+    result.range = {
+      rva,
+      hex: bytes.subarray(offset(rva, length), offset(rva, length) + length)
+        .toString("hex"),
+    };
+  }
+  if (values.decode !== undefined) {
+    if (values.slot !== undefined && values.slot !== "75") {
+      throw new Error("Font decoding applies only to slot 75");
+    }
+    const payload = values.decode;
+    if (payload.length < 26) {
+      throw new Error("Font payload needs 26 fixed characters");
+    }
+    const table = offset(0x7dd30, 256);
+    const widths = [1, 1, 4, 2, 2, 2, 2, 2, 2, 2, 6];
+    let start = 0;
+    result.fields = widths.map((width, argument) => {
+      const wire = payload.slice(start, start + width);
+      let value = 0;
+      for (const char of wire) {
+        if (!/^[0-9A-Za-z#&]$/.test(char)) {
+          throw new Error(`Invalid base-64 digit: ${char}`);
+        }
+        value = (value * 64 + bytes[table + char.charCodeAt(0)]) >>> 0;
+      }
+      const field = { argument, offset: start, width, wire, value };
+      start += width;
+      return field;
+    });
+    result.typeface = payload.slice(26);
+  }
+  if (values.glyphs !== undefined) result.glyphs = checkGlyphs(values.glyphs);
+  console.log(
+    JSON.stringify(
+      values.verify ? { sha256: driver.sha256, verified: true } : result,
+      null,
+      2,
+    ),
+  );
+}
