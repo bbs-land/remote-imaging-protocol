@@ -12,7 +12,7 @@ Issue #5 is delivered in [PR #31](https://github.com/bbs-land/remote-imaging-pro
 
 Issue #6 is delivered in [PR #32](https://github.com/bbs-land/remote-imaging-protocol/pull/32), branch `issue-6-macro-evaluation`, dependent on #31. Its [derivation note](issue-6-macro-evaluation.md) records the complete answer, original instruction coverage, controlled-service limits and **66,202 native checks**; specification commit `1ccedf7`. The PR links an issue-only comparison from `9b1872a`. Review/merge is pending.
 
-Next: [issue #7](https://github.com/bbs-land/remote-imaging-protocol/issues/7), framing, escaping, parser priority, enable/disable and identification replies. GitHub refreshed in creation order after #6 delivery; #7 is the oldest RealDeuce issue without a complete resolution PR. Start its issue branch from the delivered #6 tip, create the derivation note and trace the actual RIPtel input parser and reply producers. No resolution PR yet. All new commits carry the requested Codex co-author trailer.
+Active: [issue #7](https://github.com/bbs-land/remote-imaging-protocol/issues/7), framing, escaping, parser priority, enable/disable and identification replies. Branch `issue-7-framing-identification` starts at `e450e1d` (delivered #6 / PR #32). Read its [derivation note](issue-7-framing-identification.md), then trace the actual RIPtel input parser/policy and reply producers. Existing header-probe framing hooks are controlled fixtures, not evidence of the original outer policy. No resolution PR yet. All new commits carry the requested Codex co-author trailer.
 
 ## Queue and delivery
 
