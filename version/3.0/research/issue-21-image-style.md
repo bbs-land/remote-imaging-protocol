@@ -112,9 +112,9 @@ All-zero wire style's fallback was exercised with a full 640×480 viewport. The 
 
 Final probe passes **66,904 checks**, adding bare query, lowercase/duplicate keyword OR and a protected current offscreen port changed by wire IMAGE_STYLE. These preserve the documented distinction between wire setter and macro protection gate. The earlier offset-only write lead at **0x47441** is a different record’s word-sized geometry field, not an image-state reset; matching +0x5a without identifying the record was insufficient evidence. The reset conclusions above come from original port records and executed outer resets.
 
-## Answer ready for specification
+## Resolution and validation
 
-All issue subquestions now have primary-source answers: no image-style deletion in shipped JPEG presentation; keyword/default/undefined/offscreen IMGSTYLE contracts; old-current plus port-zero reset exception; and black replacement clear on the fitted image with retained aspect margins and SRCCOPY image rows. Next update the implementor pages and resumption instructions, run required checks, and file one complete PR. Preserve the historical text editions unchanged.
+All issue subquestions now have primary-source answers: no image-style deletion in shipped JPEG presentation; keyword/default/undefined/offscreen IMGSTYLE contracts; old-current plus port-zero reset exception; and black replacement clear on the fitted image with retained aspect margins and SRCCOPY image rows. Specification commit **4d60a07** updates JPEG style/rendering/reset contracts, IMGSTYLE/playback, drawing-port/reset references and the encoded-stream stub. AGENTS.md records resumption cautions; the reusable native probe is catalogued with its deno task. **66,904 native checks**, `run/lint`, `run/check-links` (**0 bad of 5,055 links across 206 files**) and `git diff --check` pass. Original text editions and assets remain unchanged. Task-owned image build/debug temporary directories were checked absent after execution. Ready to file the complete resolution PR, dependent on #50, with an issue-only comparison from **508ceea**.
 
 ---
 
