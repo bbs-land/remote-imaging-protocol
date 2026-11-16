@@ -10,7 +10,7 @@ Issue #4 is delivered in [PR #30](https://github.com/bbs-land/remote-imaging-pro
 
 Issue #5 is delivered in [PR #31](https://github.com/bbs-land/remote-imaging-protocol/pull/31), branch `issue-5-scene-headers`; see its [derivation note](issue-5-scene-headers.md). Review/merge is pending. It depends on #30 and provides an issue-only comparison from `996b1a3`; primary specification commit is `ac4c168`.
 
-Next: [issue #6](https://github.com/bbs-land/remote-imaging-protocol/issues/6), macro evaluation and predefined variables. Refreshed open issues confirm it is the oldest issue without a complete resolution PR. Create its issue-specific branch from the delivered #5 branch to reuse the primary-source tools; record all questions and findings in a new issue note before investigating. All new commits carry the requested Codex co-author trailer.
+Active: [issue #6](https://github.com/bbs-land/remote-imaging-protocol/issues/6), macro evaluation and predefined variables. Refreshed open issues confirm it is the oldest issue without a complete resolution PR. Branch `issue-6-macro-evaluation` starts at `9b1872a` to reuse the delivered #5 tools. Read the [issue note](issue-6-macro-evaluation.md), then map actual macro registrations, trace expression/expansion pipelines and add distinguishing native probes. No resolution PR yet. All new commits carry the requested Codex co-author trailer.
 
 ## Queue and delivery
 
