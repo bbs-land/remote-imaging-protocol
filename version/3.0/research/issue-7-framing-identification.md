@@ -4,7 +4,7 @@
 
 ## Status and scope
 
-Started 2026-11-16 for [issue #7](https://github.com/bbs-land/remote-imaging-protocol/issues/7), branch `issue-7-framing-identification`, based on `e450e1d` (delivered #6 / PR #32). GitHub refreshed in creation order after that delivery: #7 is the oldest open RealDeuce issue without a complete resolution PR. Complete primary-source answer published and validated; no resolution PR yet.
+Started 2026-11-16 for [issue #7](https://github.com/bbs-land/remote-imaging-protocol/issues/7), branch `issue-7-framing-identification`, based on `e450e1d` (delivered #6 / PR #32). GitHub refreshed in creation order after that delivery: #7 is the oldest open RealDeuce issue without a complete resolution PR. Delivered in [PR #34](https://github.com/bbs-land/remote-imaging-protocol/pull/34), dependent on #32; complete primary-source answer published and validated. Specification commit `a66fd63`.
 
 Required answers: level/sublevel depth and a third digit; framing versus host-evaluation escaping; ESC priority inside unfinished RIP/ANSI input; disable, enable and resumption; exact RIPtel autosense and RIPVER producers/terminators; and an explicitly allowed complete reply for independent implementations without claiming TeleGrafix identity. Publish a distinguishing byte-stream/reply table. Preserve the inherited nine-digit grammar as historical if the shipped parser differs, and stop presenting SyncTERM as the RIPtel oracle.
 
@@ -69,7 +69,7 @@ The reference now publishes the original parser’s nine-digit depth, third/tent
 
 Validation on 2026-11-16: **203 original framing/identification checks**, **66,209 macro/variable checks**, `run/format`, `run/lint`, `run/check-links` (**0 bad of 4,613 links across 189 files**) and `git diff --check`. No GUI/Wine, desktop interaction, network transfer or resource-directory creation was used. AGENTS.md now also records producer-versus-client-translation and identity-policy distinctions for future reply research.
 
-Next: commit/push the complete answer and file a resolution PR dependent on #32, linking an issue-only comparison from `e450e1d`; record delivery and refresh GitHub before advancing to #8.
+Delivery: [PR #34](https://github.com/bbs-land/remote-imaging-protocol/pull/34), branch `issue-7-framing-identification`, dependent on #32; [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/e450e1d...issue-7-framing-identification), specification commit `a66fd63`. GitHub refresh confirms #8 is next in creation order without a complete resolution PR. Leave merge/issue closure to maintainers and continue serially.
 
 ---
 
