@@ -173,6 +173,25 @@ static void style_checks(void) {
   const char *numeric[] = {"0", "20", "40", "220", "240", "3"};
   require(!macro(6, numeric) && u16(vars + 0x436),
           "numeric IMGSTYLE flag argument is not a keyword");
+  prepare();
+  wire_style(20, 40, 220, 240, 3);
+  value = macro(0, NULL);
+  require(value && !strcmp(value, "20:40:222:242:3"),
+          "bare IMGSTYLE queries current image style");
+  const char *mixed[] = {"cur",    "20",     "40",      "220",   "240",
+                         "aspect", "ASPECT", "noclear", "usepal"};
+  require(!macro(9, mixed) && !u16(vars + 0x436),
+          "case-insensitive keywords and duplicate ASPECT are accepted");
+  rect_is(0, 10, 20, 111, 121, 13,
+          "duplicate keywords OR bits without accumulating duplicate values");
+  prepare();
+  defined_port(5, 4, 1);
+  put16(ports + 8, 5);
+  put32(ctx + 0x62, 6);
+  wire_style(20, 40, 220, 240, 7);
+  rect_is(
+      5, 10, 20, 111, 121, 7,
+      "wire IMAGE_STYLE changes protected current port unlike macro setter");
 }
 static unsigned fills, file_opens, file_closes, file_deletes, decoder_steps;
 static unsigned table_allocations, scan_copies, source_width, source_height;
