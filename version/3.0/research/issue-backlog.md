@@ -16,7 +16,9 @@ Issue #7 is delivered in [PR #34](https://github.com/bbs-land/remote-imaging-pro
 
 Issue #8 is delivered in [PR #35](https://github.com/bbs-land/remote-imaging-protocol/pull/35), branch `issue-8-bmm-masks`, dependent on #34. Its [derivation note](issue-8-bmm-masks.md) records all BMM/renderer/button references, **4,975 native checks**, controlled-GDI limits, depth/palette/mode/key behavior and a four-pixel oracle; specification commit `1a42258`. The issue-only comparison starts at `a6da898`. Review/merge is pending.
 
-Active: [issue #9](https://github.com/bbs-land/remote-imaging-protocol/issues/9), RGB example and palette-index expression, branch `issue-9-rgb-examples` from `cfa54b5` (delivered #8 / PR #35). Read its [derivation note](issue-9-rgb-examples.md). Source arithmetic settles both corrections: packed 04140C / blue 12, and parenthesized C shifts giving index 137 for BLUE=1/GREEN=2/RED=3. Next: correct both Markdown chapters and the 2.0 errata, preserve original text, validate and file the complete PR. No disassembly is needed. All new commits carry Codex co-authorship.
+Issue #9 is delivered in [PR #36](https://github.com/bbs-land/remote-imaging-protocol/pull/36), branch `issue-9-rgb-examples`, dependent on #35. Its [derivation note](issue-9-rgb-examples.md) records primary draft lines/hash and C grammar, both arithmetic corrections, original-text preservation and required checks; correction commit `23335d5`. The issue-only comparison starts at `cfa54b5`. Review/merge is pending.
+
+Next active issue: [#10](https://github.com/bbs-land/remote-imaging-protocol/issues/10), offscreen-port extents, copy/clipping precedence and viewport diagram arithmetic. GitHub refreshed after #36 publication confirms it is oldest without a complete resolution PR. Start a branch from delivered #9 and derive original define-port, port-size query and copy paths; no exact Windows raster reproduction is requested. All new commits carry Codex co-authorship.
 
 ## Queue and delivery
 

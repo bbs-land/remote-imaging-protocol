@@ -4,7 +4,7 @@
 
 ## Scope and source
 
-Started 2026-11-16 for [issue #9](https://github.com/bbs-land/remote-imaging-protocol/issues/9), the oldest RealDeuce issue without a complete resolution PR after #35 publication. Branch `issue-9-rgb-examples`, base `cfa54b5` (delivered #8). This is a bounded editorial/arithmetic correction: the issue explicitly requires no disassembly, and no client behavior or palette entry needs changing.
+Started 2026-11-16 for [issue #9](https://github.com/bbs-land/remote-imaging-protocol/issues/9), the oldest RealDeuce issue without a complete resolution PR after #35 publication. Branch `issue-9-rgb-examples`, base `cfa54b5` (delivered #8). Delivered in [PR #36](https://github.com/bbs-land/remote-imaging-protocol/pull/36), dependent on #35; primary correction commit `23335d5`, [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/cfa54b5...issue-9-rgb-examples). Review/merge pending. This is a bounded editorial/arithmetic correction: the issue explicitly requires no disassembly, and no client behavior or palette entry needs changing.
 
 Primary source: [ALPHA 4 text](../../2.0/text/RIPScrip-2.0-alpha-4.txt), SHA-256 `0da8a34644fa7c0ac7bf457ddfb6fe12288c1bff17c966f3d2b792af57c01982`. Lines 3539–3550 contain contradictory packed hex/table-blue values versus binary/decimal; lines 3640–3644 contain the correct arithmetic formula and an incorrectly parenthesized C equivalent. Preserve this original text record byte-for-byte. Repository search for `04140`, `00001100`, `INDEX = 32` and `BLUE.*GREEN.*RED` locates inherited copies in the 2.0 and 3.0 Markdown color chapters; the separate canvas/palette techspec uses the already-correct multiplication formula.
 
@@ -20,9 +20,9 @@ A direct Python arithmetic calculation reproduced hex 04140C / components 4,20,1
 
 Both canonical Markdown chapters now use packed 04140C, table blue 0Ch, grouped C shifts and the 137 example. The 2.0 errata records both original errors; the 3.0 reconstruction carries inline derivation links. Original text, all 256 palette table entries and the correct multiplication expressions are unchanged. Repository-wide `run/lint`, `run/check-links` (0 bad of 4,686 links across 192 files) and `git diff --check` pass; the original text SHA-256 still matches the source identity above.
 
-## Next action
+## Delivery and continuation
 
-Correct both Markdown color chapters, use a proper C code fence/semicolon and include the 137 example. In 2.0 put the original-draft discrepancy in errata; in 3.0 add an inline reconstruction evidence pointer. Keep original text, palette table and unrelated implementation claims untouched. Format and run the required repository checks, then file one PR dependent on #35 with an issue-only comparison from cfa54b5, and record delivery before selecting #10.
+Published [PR #36](https://github.com/bbs-land/remote-imaging-protocol/pull/36) with the complete correction, source derivation, validation and `Closes #9`. Do not merge or manually close issues. New commits include Codex co-authorship. GitHub refreshed after publication confirms #10 is the next oldest RealDeuce issue without a complete resolution PR: exact offscreen-port extents, zero-endpoint copy/clipping precedence and a viewport-diagram arithmetic correction. Continue on a new issue branch from this delivered checkpoint.
 
 ---
 
