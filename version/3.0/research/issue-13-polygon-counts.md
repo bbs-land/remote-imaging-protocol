@@ -53,13 +53,15 @@ At default XY=2, maximum aggregate V is **4094 in MegaNum**, achieved by four co
 
 The < handler's minimum-count/error guards do not amount to complete count/length validation: its per-pair guard compares a contour-relative expression with the overall argument count, rather than the current absolute argument index. Excess or incomplete commands must not be fed to it as a proof of safe rejection. The published valid limits derive from complete wire representations plus original parser capacity and positive original-consumer cases.
 
-## Specification and delivery next action
+## Specification, validation and delivery
 
 The reference now publishes exact l/P/p prefixes, two-digit maxima and the extra-read/closure distinction; < uses the first-versus-later contour count widths, the aggregate equation, reachable vertex maxima and maximum contour counts. The coordinate chapter's limits snapshot and command inventory now agree; original `RIP_PolyPolygon` error evidence replaces the name hypothesis. Earlier editions, original text and binary assets are untouched.
 
 `run/format` applied; `run/lint` passed; `run/check-links` passed **4818 links across 196 files**; `git diff --check` and wrapper `bash -n` passed. The completed native probe passes **215,447 checks**, with all required positive count/width/consumer boundaries. No issue subquestion remains unresolved.
 
-Commit/push the specification, and file the complete PR dependent on #40 with `Closes #13`. The issue-only comparison starts at 2754e2d. After recording delivery, refresh GitHub creation order before starting #14; do not wait for merge.
+Delivered in [PR #41](https://github.com/bbs-land/remote-imaging-protocol/pull/41), branch `issue-13-polygon-counts`, dependent on #40. Specification commit **b5ea028**; native-evidence checkpoint **2ae8009**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/2754e2d...issue-13-polygon-counts) starts at delivered #12's final commit. All new commits include Codex co-authorship. Review/merge is pending; no issue was manually closed and no PR was merged.
+
+Post-publication GitHub creation-order refresh confirms **#14** (arc start/end/sweep policy) is the oldest RealDeuce issue without a complete resolution PR. Start its branch and committed note from this delivery checkpoint; continue without waiting for merge.
 
 ---
 
