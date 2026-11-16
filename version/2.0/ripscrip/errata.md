@@ -86,6 +86,16 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 
 **How the reference page renders it:** [Default RGB Values of Color Lookup Table](2.0-color-modes-and-palettes.md#default-rgb-values-of-color-lookup-table) groups both shifts, labels the block as C, and includes the 137 worked result.
 
+## 2.1 Lines
+
+### Open polyline vertex and segment counts
+
+**What the draft says:** `npoints` is both the number of coordinate pairs and the number of sides of an open polyline.
+
+**What's correct:** N vertices give N-1 consecutive segments because the last vertex is not connected back to the first. The draft's own five-segment/six-vertex example already demonstrates this. The same inherited wording is corrected in the 1.54 and 3.0 Markdown editions; original text records remain unchanged. See the [derivation](../../3.0/research/issue-11-pixel-pen-units.md).
+
+**How the reference page renders it:** [RIP_POLYLINE](2.1-lines.md#rip_polyline) counts coordinate pairs as vertices and states N-1 segments.
+
 ## 2.2 Curves
 
 ### RIP_POLY_BEZIER_LINE: command `t`, not `z`

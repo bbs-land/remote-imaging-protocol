@@ -61,6 +61,6 @@ deno lint --ext=ts run/check-links
 deno check run/check-links      # type-check; no --ext needed
 ```
 
-The C sources `lib/riptel-font-probe.c`, `lib/riptel-column-probe.c`, `lib/riptel-header-probe.c`, `lib/riptel-framing-probe.c`, `lib/riptel-bitmap-probe.c`, `lib/riptel-macro-probe.c` and `lib/riptel-font-glyphs.c` support the binary routine probes; they are compiled by their Bash entry points into a temporary directory and are not standalone scripts. The native probes share PE mapping/observation helpers in `lib/riptel-probe-image.h`. Their wrappers verify the driver hash first and leave the supplied DLL unchanged. The glyph wrapper always allocates a private Xvfb display and Wine prefix before invoking any Wine utility.
+The C sources `lib/riptel-lines-probe.c`, `lib/riptel-port-probe.c`, `lib/riptel-font-probe.c`, `lib/riptel-column-probe.c`, `lib/riptel-header-probe.c`, `lib/riptel-framing-probe.c`, `lib/riptel-bitmap-probe.c`, `lib/riptel-macro-probe.c` and `lib/riptel-font-glyphs.c` support the binary routine probes; they are compiled by their Bash entry points into a temporary directory and are not standalone scripts. The native probes share PE mapping/observation helpers in `lib/riptel-probe-image.h`. Their wrappers verify the driver hash first and leave the supplied DLL unchanged. The glyph wrapper always allocates a private Xvfb display and Wine prefix before invoking any Wine utility.
 
 Files under `run/lib/` are picked up normally (`deno fmt run/lib`). Markdown - including this page - goes through `run/format`, not `deno fmt`.

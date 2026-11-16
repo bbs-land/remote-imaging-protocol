@@ -204,6 +204,11 @@ static void viewport_command_checks(void) {
   invoke(0x1e1d1, xy);
   require(pixel_x == 1 && pixel_y == 1 && !visible,
           "PIXEL ignores newly defined viewport origin and is clipped");
+  unsigned outside[] = {1400, 100, 1420, 120};
+  invoke(0x20f87, outside);
+  require(!errors && !memcmp(entries + 0x78 + 0x3a, (int[]){700, 50, 711, 61},
+                             sizeof filled),
+          "viewport producer stores out-of-port rectangle without clamping");
 }
 static void thickness_checks(void) {
   unsigned frames[][4] = {{1280, 960, 640, 480},

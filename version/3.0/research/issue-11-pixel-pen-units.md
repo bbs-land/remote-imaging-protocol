@@ -36,7 +36,7 @@ Microsoft's primary API documentation explains the controlled boundary: [SetPixe
 
 Following the actual producer matters: level-0 `v` handler **0x20f87** calls **0x33cc6**. The latter converts both endpoints, normalizes their order (0x2530b), adds one to right/bottom for inclusive endpoint input, and stores that rectangle directly at entry+0x3a. It **does not add an onscreen port's origin**, and it does not intersect with port bounds. Newly initialized onscreen ports begin with a viewport copied from their absolute screen bounds (as traced in issue #10); defining a viewport later replaces it with directly converted coordinates. Thus the draft's universal port-relative viewport-input explanation does not describe this shipped producer.
 
-The native fixture starts an onscreen port at screen (25,25), then executes original `v` arguments `(80,80,118,118)` under 2:1 world/device conversion. Stored viewport is **[40,40,60,60)**, not [65,65,85,85). Original POINT(2,2), thickness 1 then fills **[41,41,42,42)**; original PIXEL attempts (1,1) and is clipped. This is distinct from a synthetic stored viewport O=(65,65), which POINT correctly offsets to (66,66). The public contract must identify stored origins and the producer's missing port-origin addition rather than repeating the intended coordinate composition as client behavior.
+The native fixture starts an onscreen port at screen (25,25), then executes original `v` arguments `(80,80,118,118)` under 2:1 world/device conversion. Stored viewport is **[40,40,60,60)**, not [65,65,85,85). Original POINT(2,2), thickness 1 then fills **[41,41,42,42)**; original PIXEL attempts (1,1) and is clipped. An additional original viewport call with world (1400,100)..(1420,120) stores device [700,50,711,61), beyond the 640-pixel port boundary, confirming the missing clamp. This is distinct from a synthetic stored viewport O=(65,65), which POINT correctly offsets to (66,66). The public contract must identify stored origins and the producer's missing port-origin addition rather than repeating the intended coordinate composition as client behavior.
 
 ### Exact width/flag handling
 
@@ -48,7 +48,7 @@ The off-pixel background state is **not** simply first-field bit 0: original 0x1
 
 ## Reproducible native checkpoint
 
-New [`run/riptel-lines-probe`](../../../run/riptel-lines-probe) / [source](../../../run/lib/riptel-lines-probe.c), catalogued in run/README and deno.json, passes **165,026 checks**. Reproduce `run/riptel-lines-probe /path/to/unchanged/ripscrip.dll`; the wrapper fingerprints the original DLL and compiles native i386 with `cc -m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`. This run used FreeBSD 15.1 amd64, clang 19.1.7 and Capstone 5.0.7. Code RVAs map to original file offsets by subtracting 0xc00. Primary bytes are never rewritten; only private mapped instruction/import slots receive controlled-service hooks.
+New [`run/riptel-lines-probe`](../../../run/riptel-lines-probe) / [source](../../../run/lib/riptel-lines-probe.c), catalogued in run/README and deno.json, passes **165,027 checks**. Reproduce `run/riptel-lines-probe /path/to/unchanged/ripscrip.dll`; the wrapper fingerprints the original DLL and compiles native i386 with `cc -m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`. This run used FreeBSD 15.1 amd64, clang 19.1.7 and Capstone 5.0.7. Code RVAs map to original file offsets by subtracting 0xc00. Primary bytes are never rewritten; only private mapped instruction/import slots receive controlled-service hooks.
 
 Original X, j, LINE_STYLE, world conversion, stored viewport offset, DC selection, clip setup/restore, POINT expansion and ROP-selection instructions execute. Controlled services replace Win32 rectangle/region/pixel/fill/pen/brush/object calls; region and clipping capture explicitly model standard rectangle intersection, not original Windows rasterization. UI/context synchronization, caret hide/show, style locking, protection checks and palette-to-RGB lookup are controlled; exact hook/import lists are in `main()`. The fixture does **not** hook the tested coordinate, origin or width decisions. No GUI or font is loaded.
 
@@ -56,9 +56,17 @@ Placement cases cover three frames (2:1 reduction, 640×350 compatibility world 
 
 The first attempt to add the viewport-producer fixture faulted because the native context lacked its options pointer at +0x36; the original handler checks options+0x104. Supplying a zeroed options block fixed the fixture. This was a harness construction error, not an original-client crash or a reason to omit that path.
 
+## Editorial source and publication validation
+
+The polyline count correction is supported by the preserved originals: [1.54 text](../../1.54/text/RIPScrip-1.54.txt) lines 1484–1488 and [2.0 text](../../2.0/text/RIPScrip-2.0-alpha-4.txt) lines 6867–6871 equate count with sides but immediately show five sides/six vertices for an open path. Their SHA-256 values remain `1ff57d53fb81c06604bdb6d9eb35150c90cbe7d5acd7b5ead6a0758f3d957497` and `0da8a34644fa7c0ac7bf457ddfb6fe12288c1bff17c966f3d2b792af57c01982`. All three Markdown editions now state N vertices / N-1 segments, with a 1.54 editorial note and 2.0 errata. No original text or asset changed.
+
+The [3.0 Lines chapter](../ripscrip/2.1-lines.md) now answers both requested examples, complete origin ownership, POINT's thickness square, optional X-only thickness conversion, first-field flag behavior and byte truncation. Related 3.0 viewport/port prose identifies the original producer's direct context coordinates; corrected generic policy is separated from shipped defects. AGENTS.md adds the invalidation-versus-drawing and producer-versus-consumer distinctions for continuation.
+
+The final lines probe passes **165,027 checks**. Repository-wide `run/lint`, `run/check-links` and `git diff --check` pass; the link check before this final note update reported 0 bad of 4,756 links across 194 files. The fixture captures original decisions with controlled GDI services and does not claim Windows pen-edge/cap or font rendering. Required issue questions are complete; no alias or coordinate-space hypothesis remains in the corrected entries.
+
 ## Next action
 
-The issue's coordinate/thickness questions are derived, including the unexpected X origin defect, thickness-sensitive POINT, viewport producer origin behavior and optional X-scaled width flag. Publish these exact client behaviors in the 3.0 Lines chapter, qualify related viewport/port-coordinate prose, and distinguish corrected generic implementation policy from historical defects. Correct the open-polyline N/N-1 sentence in the 1.54/2.0/3.0 Markdown editions (2.0 errata, 3.0 evidence); preserve original text. Format, run required repository checks and file one complete PR dependent on #37 with an issue-only comparison from 068f84c. Then record delivery and refresh GitHub before issue #12.
+File the complete #11 resolution PR dependent on #37 with an issue-only comparison from 068f84c. Record delivery and refresh GitHub before selecting issue #12. Keep primary artifact identity and all controlled-service limits with the PR; all new commits include Codex co-authorship.
 
 ---
 
