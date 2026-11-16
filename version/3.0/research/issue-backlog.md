@@ -24,7 +24,7 @@ Issue #11 is delivered in [PR #39](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #12 is delivered in [PR #40](https://github.com/bbs-land/remote-imaging-protocol/pull/40), branch `issue-12-fill-masks`, dependent on #39. Its [derivation note](issue-12-fill-masks.md) records all twelve original masks, **2,754 native checks**, canonical row encodings, direct BAR/K consumers and drawing-context phase at two world scales. All 288 inherited diagram rows match the original table; historical text remains byte-exact. Specification commit `ab03c0d`; issue-only comparison starts at `e0bc91f`. Review/merge is pending.
 
-Next active issue: [#13](https://github.com/bbs-land/remote-imaging-protocol/issues/13), polygon count representation/reachable limits, multi-contour coordinate widths, aggregate vertex/contour limits. GitHub creation order refreshed after #40 publication; #13 is oldest without a complete resolution PR. Start its branch and committed note from this delivery checkpoint; all new commits carry Codex co-authorship.
+Active: [#13](https://github.com/bbs-land/remote-imaging-protocol/issues/13), branch `issue-13-polygon-counts` from `2754e2d` (delivered #12 / PR #40). Read the [derivation note](issue-13-polygon-counts.md). Original dispatch is fixed-2 count then repeating XY; multi-contour < has two fixed-2 initial numerals then repeating XY, including a possible later-contour-count width quirk. Parser argument cap is 0x2001; single-contour loops appear to convert N+1 pairs but pass N to GDI. Next: native parser/handler boundary evidence, then exact maxima/grammar and PR. No complete answer or PR yet.
 
 ## Queue and delivery
 
