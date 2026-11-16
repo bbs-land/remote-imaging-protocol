@@ -4,7 +4,7 @@
 
 ## Status and scope
 
-Started 2026-11-16 for [issue #8](https://github.com/bbs-land/remote-imaging-protocol/issues/8), branch `issue-8-bmm-masks`, based on `a6da898` (delivered #7 / PR #34). GitHub refreshed after that delivery confirms #8 is the oldest RealDeuce issue without a complete resolution PR. Derivation and implementor specification complete; resolution PR pending publication.
+Started 2026-11-16 for [issue #8](https://github.com/bbs-land/remote-imaging-protocol/issues/8), branch `issue-8-bmm-masks`, based on `a6da898` (delivered #7 / PR #34). GitHub refreshed after that delivery confirms #8 is the oldest RealDeuce issue without a complete resolution PR. Delivered in [PR #35](https://github.com/bbs-land/remote-imaging-protocol/pull/35), dependent on #34; review/merge pending. Primary specification commit `1a42258`; [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/a6da898...issue-8-bmm-masks).
 
 Required answers: accepted BMM pixel depths; bit/index versus resolved palette RGB; mask polarity; source/mask composition order under COPY/XOR/OR/AND/NOT; dimensions and missing/mismatched behavior; interaction with BMP transparent-color flags; and an independent small icon/mask pixel oracle. Do not prescribe a plausible 1-bit/nonzero-index convention from missing corpus examples. Establish whether a BMM is automatically consumed as an attached mask at all, or only an explicitly loaded bitmap using ordinary put modes.
 
@@ -104,11 +104,13 @@ The first full-render attempt rejected an apparently huge temporary surface: the
 
 ## Publication validation
 
-The [bitmap-mask delta](../techspecs/3.0-bitmap-mask-delta.md) answers every #8 subquestion, with qualified pointers from the inherited 2.0 format page and updated 3.0 command/content-role entries. `run/riptel-bitmap-probe` passes 4,975 checks; repository-wide `run/lint`, `run/check-links` (0 bad of 4,665 links across 191 files) and `git diff --check` pass. The first link check caught Prettier angle-wrapping a URL containing parentheses; percent-encoding that URL fixed it. AGENTS.md now records the signed-low-word and SelectObject fixture requirements.
+The [bitmap-mask delta](../techspecs/3.0-bitmap-mask-delta.md) answers every #8 subquestion, with qualified pointers from the inherited 2.0 format page and updated 3.0 command/content-role entries. `run/riptel-bitmap-probe` passes 4,975 checks; repository-wide `run/lint`, `run/check-links` (0 bad of 4,666 links across 191 files) and `git diff --check` pass. The first link check caught Prettier angle-wrapping a URL containing parentheses; percent-encoding that URL fixed it. AGENTS.md now records the signed-low-word and SelectObject fixture requirements.
 
-## Next action
+## Delivery and continuation
 
-The required #8 subquestions are now derived. Publish the qualified RIPtel 3.1 bitmap-mask delta, including explicit RGB algebra, supported profiled depths, absent/unreferenced/mismatched cases, exact key selection and the small independent mask/source oracle. Replace the 2.0 page’s speculative monochrome rule with a scope-qualified pointer; update 3.0 command/content-role pages. Keep the inherited icon decoder-field discrepancy recorded for the broader command-layout work rather than inferring unnamed fields here. Run required checks, commit with co-authorship, file the complete #8 PR dependent on #34 with an issue-only comparison from a6da898, record delivery, then refresh GitHub before #9.
+Published [PR #35](https://github.com/bbs-land/remote-imaging-protocol/pull/35) with `Closes #8`, source identity, findings, validation and controlled-GDI limits. Do not merge or manually close issues. It is based on upstream main for GitHub, but depends on the fork branches behind #34/#32/#31/#30/#29; use the issue-only comparison above when reviewing #8 alone. All new commits carry Codex co-authorship.
+
+GitHub refresh after publication confirms #9 is the next RealDeuce issue without a complete resolution PR. It asks only for bounded RGB example and C shift-precedence corrections, explicitly requiring no disassembly; start its own branch from this delivered checkpoint and preserve inherited copies. The refresh also found new RealDeuce issue #33 (filled-rectangle patterns), created after #28, so append it to the queue after #28 rather than sorting by number alone.
 
 ---
 
