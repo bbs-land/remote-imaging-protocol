@@ -419,6 +419,133 @@ static void presentation_checks(void) {
       }
 }
 
+static unsigned char reset_objects[6][1024], reset_style_records[36 * 0x61],
+    reset_environment[512];
+static unsigned one(void) { return 1; }
+static unsigned __attribute__((stdcall)) two_args(unsigned a, unsigned b) {
+  (void)a;
+  (void)b;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) three_args(unsigned a, unsigned b,
+                                                    unsigned c) {
+  (void)a;
+  (void)b;
+  (void)c;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) empty_rect(const int *r) {
+  return r[0] >= r[2] || r[1] >= r[3];
+}
+static void reset_fixture(void) {
+  prepare();
+  memset(reset_objects, 0, sizeof reset_objects);
+  memset(reset_style_records, 0, sizeof reset_style_records);
+  memset(reset_environment, 0, sizeof reset_environment);
+  pointer(ctx + 0x16, reset_objects[0]);
+  pointer(ctx + 0x1e, reset_objects[1]);
+  pointer(ctx + 0x3a, reset_objects[2]);
+  pointer(ctx + 0x46, reset_objects[3]);
+  pointer(ctx + 0xa, reset_objects[4]);
+  pointer(ctx + 0x12, reset_objects[5]);
+  pointer(reset_objects[4], reset_style_records);
+  pointer(world, reset_environment);
+  put16(ports + 8, 5);
+  defined_port(5, 1, 1);
+  defined_port(6, 1, 1);
+  defined_port(7, 1, 0);
+  for (unsigned n = 0; n < 8; ++n) {
+    memcpy(port(n) + 0x4a, (int[]){10 + n, 20 + n, 110 + n, 120 + n}, 16);
+    put16(port(n) + 0x5a, 63);
+  }
+}
+static void reset_checks(void) {
+  const unsigned controls[] = {
+      0x16b51, 0x3c37e, 0x3988f, 0x398ee, 0x27f8f, 0x3e41a, 0x3c1cf, 0x13c69,
+      0x35320, 0x391fd, 0x394fe, 0x11210, 0x3dce0, 0x10f0,  0x13d0,  0xe0dc,
+      0x3170d, 0x8577,  0x3d7d1, 0x3468a, 0x16b97, 0x3e8eb, 0x3e943, 0x3e989,
+      0x3e9d4, 0x31052, 0x3dc72, 0x3e126, 0x3e254, 0x18e33, 0x37e41, 0x23f20,
+      0x24660, 0x454c4, 0x4576f, 0x390e4, 0x2753a, 0x2fcf6, 0x3d8d0, 0x440f0,
+      0x441ed, 0x442c3, 0x3e2e7, 0x4558d, 0x39ac8, 0x3dac0, 0x32c1f};
+  for (unsigned n = 0; n < sizeof controls / sizeof controls[0]; ++n)
+    hook(controls[n], (void (*)(void))one);
+  pointer(image + 0x96418, (void *)one_arg);
+  pointer(image + 0x9667c, (void *)three_args);
+  pointer(image + 0x963d0, (void *)one_arg);
+  pointer(image + 0x963d4, (void *)three_args);
+  const unsigned two_slots[] = {0x963c0, 0x963f0, 0x96400, 0x963f8};
+  for (unsigned n = 0; n < 4; ++n)
+    pointer(image + two_slots[n], (void *)two_args);
+  pointer(image + 0x96690, (void *)empty_rect);
+  for (unsigned offscreen = 0; offscreen < 2; ++offscreen)
+    for (unsigned keep = 0; keep < 2; ++keep) {
+      reset_fixture();
+      port(5)[0] = offscreen ? 4 : 1;
+      ((void (*)(void *, unsigned, unsigned, unsigned))(image + 0x16220))(
+          ctx, keep, 0, 0);
+      require(!errors,
+              "original reset completes with unrelated subsystems controlled");
+      rect_is(5, -1, -1, -1, -1, 0,
+              "reset clears protected old-current image style before selection "
+              "changes");
+      rect_is(0, -1, -1, -1, -1, 0,
+              "reset initializes port-zero image style independently");
+      rect_is(6, 16, 26, 116, 126, 63,
+              "reset preserves other protected surviving port image style");
+      require(
+          port(5)[0] == (offscreen ? 4 : 1) && port(6)[0] == 1 &&
+              port(7)[0] == (keep ? 1 : 0),
+          "original port deletion skips protected ports and obeys keep-ports "
+          "route");
+      require(u16(ports + 8) == (keep ? 5 : 0),
+              "original reset current-port selection matches keep-ports route");
+    }
+  for (unsigned current = 0; current < 2; ++current)
+    for (unsigned header = 0; header < 2; ++header)
+      for (unsigned reset = 0; reset < (header ? 3u : 1u); ++reset) {
+        reset_fixture();
+        put16(ports + 8, current ? 5 : 0);
+        if (header) {
+          unsigned args[] = {1, reset, 0};
+          ((void (*)(void *, unsigned, const void *, const char *))(
+              image + 0x1cae1))(ctx, 3, args, NULL);
+        } else {
+          ((void (*)(void *, unsigned, const void *, const char *))(
+              image + 0x1f2f9))(ctx, 0, NULL, NULL);
+        }
+        require(!errors, "original RESET_WINDOWS/header reset entry completes");
+        if (header && !reset) {
+          rect_is(0, 10, 20, 110, 120, 63,
+                  "header without reset preserves zero-port image style");
+          rect_is(
+              5, 15, 25, 115, 125, 63,
+              "header without reset preserves protected target image style");
+        } else {
+          rect_is(0, -1, -1, -1, -1, 0,
+                  "reset/header default image area uses all-minus-one marker "
+                  "and zero flags");
+          require(u16(ports + 8) == 0,
+                  "reset/header selects port zero after reset");
+          if (header && reset == 1) {
+            require(!port(5)[0] && !port(6)[0] && !port(7)[0],
+                    "hard header reset removes nonzero protected ports");
+          } else {
+            if (current)
+              rect_is(
+                  5, -1, -1, -1, -1, 0,
+                  "drawing reset changes protected prior-current image style");
+            else
+              rect_is(
+                  5, 15, 25, 115, 125, 63,
+                  "drawing reset preserves protected noncurrent image style");
+            rect_is(6, 16, 26, 116, 126, 63,
+                    "drawing reset leaves other protected survivor image "
+                    "flags/area intact");
+          }
+        }
+      }
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -440,6 +567,7 @@ int main(int argc, char **argv) {
   style_checks();
   jpeg_checks();
   presentation_checks();
+  reset_checks();
   printf("PASS: %u image-style checks\n", checks);
   return 0;
 }

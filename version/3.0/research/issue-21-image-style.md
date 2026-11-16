@@ -80,9 +80,19 @@ A distinct raw record rectangle **(0,0,0,0)** causes explicit wrapper **0x3880e*
 
 The captured redraw-helper flag needed signed/unsigned **low-word** handling: original 0x3f12f uses AX for bit 32 and leaves unrelated high argument bits stale. Masking the controlled helper’s argument to 16 bits fixed its fixture assertion. This is an ABI-boundary correction, not a shipped image-flag defect.
 
+## Original outer reset/header checkpoint
+
+Expanded native probe passes **62,507 checks**. It preserves original SOFT **0x16220**, HARD **0x16665**, port deletion/destruction/initialization **0x33112 / 0x3302c / 0x3326f**, protection/unprotection **0x33821 / 0x3378a**, current selection **0x3393c**, port-zero initializer **0x33d82**, viewport setters **0x33cc6 / 0x33df3**, actual RESET_WINDOWS **0x1f2f9**, and HEADER **0x1cae1 / 0x1774f / 0x1799e**. Unrelated reset families and host/GDI services are controlled at the exact addresses catalogued in `reset_checks()` in the committed probe; these fixtures establish image/port lifecycle, not every other reset subsystem. Reset fixtures own all dependent context objects and style arrays.
+
+SOFT resets the **old current port's** image rectangle to all -1 and flags to zero before selecting/resetting anything else, even if that port is protected. The original port-system initializer independently resets **port zero** to the same defaults. A different protected surviving port retains its image rectangle and flags. Under SOFT keep-ports=0, an unprotected nonzero port is deleted; under keep-ports=1 it survives. These cases include old current screen and offscreen ports.
+
+Actual RESET_WINDOWS calls SOFT with `(keep_ports=0, clear=1, update=1)` and ends on port zero. Native tests start with current zero or protected port five, also protected port six and unprotected port seven: zero and the old current receive image defaults; protected noncurrent ports retain their style; seven disappears. HEADER flag 2 produces the same drawing-reset behavior. HEADER flag 0 leaves the image state unchanged. HEADER flag 1 performs HARD: nonzero ports disappear despite protection, and port zero has default image state. Thus “reset all image areas in every surviving port” is incorrect. The all-minus-one marker means **use the viewport at display time**, rather than copying its current dimensions into the record; default flags are **zero**.
+
+An initial native reset crash came from omitted **0x3988f / 0x398ee** thread synchronization service fixtures; adding those controlled services allowed the original reset/port code to run. No result from that harness failure is attributed to the driver. Debug builds used a scoped temporary directory and were removed when finished.
+
 ## Next action
 
-Style and full JPEG-presentation checkpoints are complete, but the issue remains incomplete. Next audit post-transfer/encoded reception cleanup independently of style bit 2, and execute original outer reset/header producers on protected/surviving ports. The current full-entry native result disproves the all-zero disable claim; keep that correction distinct from the raw-zero internal sentinel and controlled decoder scope. Do not file the resolution PR until the remaining cleanup/reset questions are settled.
+Style and full JPEG-presentation checkpoints are complete, but the issue remains incomplete. Next audit post-transfer/encoded reception cleanup independently of style bit 2, and finish tracing independent received-file cleanup. Original outer reset/header image-state producers are now verified on protected/surviving ports. The current full-entry native result disproves the all-zero disable claim; keep that correction distinct from the raw-zero internal sentinel and controlled decoder scope. Do not file the resolution PR until the remaining cleanup/reset questions are settled.
 
 ---
 
