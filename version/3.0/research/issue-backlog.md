@@ -32,7 +32,7 @@ Issue #15 is delivered in [PR #44](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #16 is delivered in [PR #45](https://github.com/bbs-land/remote-imaging-protocol/pull/45), branch `issue-16-table-lifecycle`, dependent on #44. Its [derivation note](issue-16-table-lifecycle.md) records **80,982 native table checks**, all copyable families' protection behavior, whole-expression permission rejection, palette reset/definition state, current-port selection, original query serialization and the corrected header upload/underflow interpretation. Specification commit `7c61942`; issue-only comparison starts at `6a4af0e`. Review/merge is pending.
 
-Active: [#17](https://github.com/bbs-land/remote-imaging-protocol/issues/17), intended branch `issue-17-chr-scan-records` from the delivered #16 checkpoint. Next: reproduce six BOLD.CHR opcode-01 records and TSCR unused-header bytes, then trace original RIPtel classic-font loading/stroke consumption and scan_flag behavior without GUI. Do not choose a no-op/fill interpretation from a peer decoder.
+Active: [#17](https://github.com/bbs-land/remote-imaging-protocol/issues/17), branch `issue-17-chr-scan-records` from `b1defa8` (delivered #16). Next: reproduce six BOLD.CHR opcode-01 records and TSCR unused-header bytes, then trace original RIPtel classic-font loading/stroke consumption and scan_flag behavior without GUI. The [active derivation](issue-17-chr-scan-records.md) reproduces all six records and TSCR bytes from original files (matching both 1.54/3.0 LFS OIDs) and identifies original classic-font loader 0x10f0 / context+0x52. Next: native original glyph-consumer and scan_flag evidence. Do not choose a no-op/fill interpretation from a peer decoder.
 
 ## Queue and delivery
 
