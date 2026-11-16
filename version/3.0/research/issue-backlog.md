@@ -14,7 +14,7 @@ Issue #6 is delivered in [PR #32](https://github.com/bbs-land/remote-imaging-pro
 
 Issue #7 is delivered in [PR #34](https://github.com/bbs-land/remote-imaging-protocol/pull/34), branch `issue-7-framing-identification`, dependent on #32. Its [derivation note](issue-7-framing-identification.md) records the complete framing/identification answer, static client traces, **203 native framing checks** and **66,209 macro checks**; specification commit `a66fd63`. The PR links an issue-only comparison from `e450e1d`. Review/merge is pending.
 
-Next: [issue #8](https://github.com/bbs-land/remote-imaging-protocol/issues/8), BMM mask raster and compositing. GitHub refreshed after #7 delivery confirms it is oldest without a complete resolution PR. Start from the delivered #7 tip, record the derivation note, and trace original bitmap loading, palette/depth handling, mask composition and absence/mismatch/transparent-color behavior. No resolution PR yet. All new commits carry the requested Codex co-author trailer.
+Active: [issue #8](https://github.com/bbs-land/remote-imaging-protocol/issues/8), BMM mask raster and compositing. Branch `issue-8-bmm-masks` starts at `a6da898` (delivered #7 / PR #34). Read its [derivation note](issue-8-bmm-masks.md), then trace original extension references, BMP decoding, explicit/button image display and compositing. Establish whether BMM is an automatic attached mask at all before assigning a mask convention. No resolution PR yet. All new commits carry the requested Codex co-author trailer.
 
 ## Queue and delivery
 
