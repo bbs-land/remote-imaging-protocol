@@ -63,5 +63,5 @@ Underlying research (full data, byte layouts, opcode census): [script census](..
 - **9. Reference** _(pinned at 9 across all versions)_
   - **[9.0 Command Reference](9.0-command-reference.md)** - the reconstructed ~90-command inventory with evidence tags, including known-but-unimplemented descriptors
   - **[9.1 Text Variable Reference](9.1-text-variable-reference.md)** - every variable with format, category and availability
-  - **[9.2 Version Identification Reference](9.2-versions.md)** - all known 3.0 identification strings (`RIPSCRIP03000` from the HLP quote, `RIPSCRIP030001` from SyncTERM) with provenance, plus the `$RIPVER$` documentation oddity
+  - **[9.2 Version Identification Reference](9.2-versions.md)** - the original driver’s exact `RIPSCRIP030001` replies, terminators, shared `$RIPVER$` value and the allowed generic implementation profile; historical help quotes are distinguished
   - **[9.3 Host Command & Control Character Reference](9.3-host-command-reference.md)** - consolidated terminal→host reference: control characters, host-bound responses, host-side ANSI control

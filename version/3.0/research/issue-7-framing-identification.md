@@ -4,7 +4,7 @@
 
 ## Status and scope
 
-Started 2026-11-16 for [issue #7](https://github.com/bbs-land/remote-imaging-protocol/issues/7), branch `issue-7-framing-identification`, based on `e450e1d` (delivered #6 / PR #32). GitHub refreshed in creation order after that delivery: #7 is the oldest open RealDeuce issue without a complete resolution PR. Primary-source traces and native distinguishing checks complete; publication pending, no resolution PR yet.
+Started 2026-11-16 for [issue #7](https://github.com/bbs-land/remote-imaging-protocol/issues/7), branch `issue-7-framing-identification`, based on `e450e1d` (delivered #6 / PR #32). GitHub refreshed in creation order after that delivery: #7 is the oldest open RealDeuce issue without a complete resolution PR. Complete primary-source answer published and validated; no resolution PR yet.
 
 Required answers: level/sublevel depth and a third digit; framing versus host-evaluation escaping; ESC priority inside unfinished RIP/ANSI input; disable, enable and resumption; exact RIPtel autosense and RIPVER producers/terminators; and an explicitly allowed complete reply for independent implementations without claiming TeleGrafix identity. Publish a distinguishing byte-stream/reply table. Preserve the inherited nine-digit grammar as historical if the shipped parser differs, and stop presenting SyncTERM as the RIPtel oracle.
 
@@ -63,9 +63,13 @@ The exact engine identification value is **14 ASCII bytes**, hex `52 49 50 53 43
 
 Interpret the six suffix digits using the inherited **major(2), minor(2), vendor(1), vendor-subversion(1)** format, not the mistaken MMmmrr/revision reading. Thus RIPtel’s `030001` is language 03.00, generic vendor 0, subversion 1; it is not its product version 3.1 or DLL build 3.0.7. For new compatible engines, explicitly permit `RIPSCRIP030000` (generic vendor 0, subversion 0) as this reconstruction’s interoperability profile: default/0 reply exactly those 14 bytes without NUL/CR/LF; selector 3 adds one CR; RIPVER returns the phrase without a terminator. This is a documented compatible choice based on the inherited generic-vendor allocation, not a claimed historical TeleGrafix response.
 
-## Next action
+## Publication and validation
 
-Publish these complete #7 answers in framing/identification entries and their related summary/index links, preserving historical help quotes as incomplete documentary text. Add the distinguishing stream/reply table and label the stale-prefix defect and generic-engine reply policy. Then run formatting, lint, links, diff and relevant probes; file a complete resolution PR dependent on #32, with issue-only comparison from `e450e1d`. Do not advance to #8 before delivery.
+The reference now publishes the original parser’s nine-digit depth, third/tenth-digit behavior, stale-prefix defect, retained quotes, actual line terminators, ESC priority and non-resetting resumption, with distinguishing stream tables. Version entries share the original 14-byte phrase and exact terminators, and explicitly permit the generic profile separately from historical identity. Related introduction/index/help-summary cross-references are corrected. Original text records and binary assets remain unchanged.
+
+Validation on 2026-11-16: **203 original framing/identification checks**, **66,209 macro/variable checks**, `run/format`, `run/lint`, `run/check-links` (**0 bad of 4,613 links across 189 files**) and `git diff --check`. No GUI/Wine, desktop interaction, network transfer or resource-directory creation was used. AGENTS.md now also records producer-versus-client-translation and identity-policy distinctions for future reply research.
+
+Next: commit/push the complete answer and file a resolution PR dependent on #32, linking an issue-only comparison from `e450e1d`; record delivery and refresh GitHub before advancing to #8.
 
 ---
 
