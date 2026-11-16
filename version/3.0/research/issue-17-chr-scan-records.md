@@ -65,6 +65,10 @@ All issue #17 requirements are now answered in the [corrected earliest-format te
 
 Validation: **13,518,407 original loading/scan/consumer checks** with the SVG output argument, successful Deno type checking and lint for the inspector/module, `run/lint`, `run/check-links` (zero bad links), and `git diff --check`. The SVG was viewed through a headless conversion; its temporary preview was deleted immediately. Original text/assets were not edited, no GUI was launched, and the scoped probe build directories were removed. PR delivery is recorded after publication.
 
+## Delivery
+
+[PR #47](https://github.com/bbs-land/remote-imaging-protocol/pull/47) is open, branch `issue-17-chr-scan-records`, dependent on #45. Primary specification commit **e16c18c**; native checkpoint **ed6ca06**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/b1defa8...issue-17-chr-scan-records) starts at the delivered #16 checkpoint. No merge or manual issue closure was performed. All new commits include Codex co-authorship. The refreshed queue selects **#18** next and adds newly filed #46 after #42.
+
 ---
 
 [Research backlog](issue-backlog.md) · [BGI format](../../1.54/techspecs/3.1-bgi-stroked-fonts.md)
