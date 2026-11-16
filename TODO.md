@@ -42,7 +42,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## RIPscrip 3.x research
 
-- [ ] Resolve RealDeuce’s GitHub clarification backlog serially from primary evidence; active issue: #23, COLORMODE undefined reply and WORLD names/ranges (#3–#22 delivered in linked resolution PRs). Resume from the [research backlog](version/3.0/research/issue-backlog.md).
+- [ ] Resolve RealDeuce’s GitHub clarification backlog serially from primary evidence; active issue: #24, graphics-style/port/environment ownership, defaults and text cursors (#3–#23 delivered in linked resolution PRs). Resume from the [research backlog](version/3.0/research/issue-backlog.md).
 
 - [ ] Inventory all known 3.0-era material beyond the white paper (RIPtel, WebRunner, TeleGrafix press releases, beta announcements, Usenet/FAQ posts)
 - [ ] Hunt for the "RIPscrip 3.0 protocol specification" and "RIP-2-C 3.0 developer tools" TeleGrafix listed as products (confirmed to have existed via RIPtel help text)
