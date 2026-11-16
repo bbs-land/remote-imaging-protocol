@@ -4,7 +4,7 @@
 
 ## Status and questions
 
-Started 2026-11-16 for [issue #4](https://github.com/bbs-land/remote-imaging-protocol/issues/4), branch `issue-4-column-overflow`. No resolution PR yet; the complete answer is drafted and final review/validation is pending. The branch starts at #3’s delivered branch (PR #29) to reuse the primary-source tools and workflow. If #29 remains unmerged, a PR against upstream main will include that dependency; identify it explicitly and compare the issue-specific commits separately.
+Started 2026-11-16 for [issue #4](https://github.com/bbs-land/remote-imaging-protocol/issues/4), branch `issue-4-column-overflow`. The complete answer is delivered in [PR #30](https://github.com/bbs-land/remote-imaging-protocol/pull/30); validation passed. Maintainer review/merge is pending. The branch starts at #3’s delivered branch (PR #29) to reuse the primary-source tools and workflow. If #29 remains unmerged, a PR against upstream main will include that dependency; identify it explicitly and compare the issue-specific commits separately.
 
 Required answers: `1e` flags and `cc`; article/column ranges and numbering scope; flow order; retained content and page position after region redefinition; `$OVERFLOW(article,direction[,setverbose])$` results, side effects, notifications and reset rules; expected NEWS.RIP/NEWSPAPR.RIP states before/after navigation, end and reset. `1A` identification and wire layout remain in issue #2; trace its effects only as needed for this contract.
 
@@ -73,7 +73,7 @@ NEWS.RIP defines legacy slots 0..3 of article 1 without enabling overflow; from 
 
 `run/riptel-column-probe <dll>` passes 23,013 checks after completion of the raw-flow and macro-dispatch phases. The native build uses `-m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`; supporting C is formatted with clang-format 19. The wrapper checks SHA-256 before mapping the image and deletes only its temporary build directory. Probe source and documentation are committed; no artifact binaries are added.
 
-Current reference draft answers all issue #4 subquestions, with primary evidence and reproducible state oracles. Next action: final diff review, repository lint/link/whitespace checks, then file a complete resolution PR. If #29 is unmerged, identify it as the dependency and provide an issue-specific comparison from `ca92e10` onward. Keep issue #4 active until that PR exists.
+The complete reference answers all issue #4 subquestions, with primary evidence and reproducible state oracles. Delivered in PR #30 after `run/lint`, `run/check-links` (4,510 links across 186 files), `git diff --check`, Bash syntax and the 23,013-check native probe passed. PR #30 declares its dependency on unmerged PR #29 and links the issue-specific comparison from `ca92e10`. Continue with issue #5 after refreshing GitHub state.
 
 ---
 

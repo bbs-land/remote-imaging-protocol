@@ -6,9 +6,9 @@
 
 Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`; its [derivation note](issue-3-extended-font-style.md) contains the complete evidence record. Review/merge is pending.
 
-Active: [issue #4](https://github.com/bbs-land/remote-imaging-protocol/issues/4), branch `issue-4-column-overflow`; read its [derivation note](issue-4-column-overflow.md). No resolution PR yet. This branch starts from #3’s delivered branch to reuse tools and workflow; record the dependency in its eventual PR if #29 is still unmerged.
+Issue #4 is delivered in [PR #30](https://github.com/bbs-land/remote-imaging-protocol/pull/30), branch `issue-4-column-overflow`; see its [derivation note](issue-4-column-overflow.md). Review/merge is pending. It depends on #29 and provides an issue-specific comparison from `ca92e10`.
 
-Next action: review and deliver the complete #4 reference draft; the original-instruction column/overflow probe passes 23,013 checks, including raw flow and lazy replay. GUI isolation is mandatory. Remain on #4 until all subquestions have complete primary-source answers.
+Next action: refresh GitHub state and start the oldest issue without a complete resolution PR, expected #5 (scene headers and unrecovered wire entry points). The column/overflow probe passes 23,013 checks and needs no GUI. Preserve the mandatory private-display rule for any future GUI work.
 
 ## Queue and delivery
 
