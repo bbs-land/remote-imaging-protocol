@@ -47,6 +47,32 @@ Original byte-parser callbacks independently identify:
 - SwitchDirectory: level-2 ESC, physical slot 110 with callback command index 121, width 4 and string tail, flags 0x000f/current radix; handler `0x46f66–0x47125`. A null host-service callback at context +0x5e suppresses it. Requires a nonempty string; scratch copy is trimmed/normalized, literal $OFF$ clears host directory before macro expansion, otherwise expands variables, checks length <=12, rejects characters in `\:*?+/",;><=[]|`, rejects special dot combinations, calls host-directory setter `0x6b36`, then `0x3f5ff`. Full normalization/path behavior and callbacks still need effect tests.
 - The complete table has no level-1 N/O/S or level-0 ESC; the original parser emits no callback for test records with those opcodes. They may be classified outside this driver’s executable command contract after finishing the dispatch audit; do not import SyncTERM-only descriptors.
 
+## Entry-point effect probes and client reply trace
+
+The expanded native probe passes 8,315 preliminary checks. It now executes the complete original q/r/directory handlers with controlled host calls, identity macro expansion (or one explicit test replacement), synthetic primitive/font metrics and captured directory creation. q is exhaustively tested over 0..4095; it only accepts 0..15, ORs those bits, rejects system-font mode/protected style and preserves other flags.
+
+TextMetric r’s third four-digit argument is consumed but not read. Modes 0/1 return whole-string width/height, modes 2/3 return per-byte width/height values separated by colons, all with one final CR. Domain 0 converts device values back to world units via the actual helper `0x310f2` (signed 16-bit value times world dimension divided by device dimension, truncated); domain 1 leaves device units. The handler copies/expands the input into retained `$TEXTDATA$` (at most 1023 bytes) or uses that buffer for the case-insensitive `$TEXTDATA$` sentinel. The original outline branch makes a zero-position/font-initialization call to the renderer, then queries metrics. Synthetic width 3 per byte, height 7, world/device ratio 2 yields for `ab`: domain-1 responses `6\r`, `7\r`, `3:3\r`, `7:7\r`, and domain-0 `12\r`, `14\r`, `6:6\r`, `14:14\r`. Both system and extended font paths are checked. Mode >=4 and domain >=2 reject before output. The metric call does not draw glyphs in this path; the controlled renderer call still needs a final argument-effect review.
+
+Reply helper `0x6947` validates the instance then sends client window message 0x4c8 with the result string as lParam. To trace its wire consequence, unpacked a separate copy of original `riptel.exe` using UPX 5.2.1 (no execution):
+
+```sh
+upx -d -o artifacts/riptel-3.1-pcmicro/riptel-unpacked.exe artifacts/riptel-3.1-pcmicro/extracted/riptel.exe
+```
+
+Unpacked file: 605696 bytes, SHA-256 `953a4d08042e6ddef7d581341faefde0e1c868fe00dd57ad83be1557c2524d13`. Original EXE/hash remain those recorded in issue #3. EXE addresses here are RVAs relative to image base **0x400000**, not the DLL’s base. Window dispatcher `0x74ee` routes message 0x4c8 to `0x844e`; with a connection active it calls `0x63ee`, which places the string in the outgoing buffer. That function adds LF after CR when global 0x452528 is zero (`0x6421–0x6430`); therefore distinguish the engine’s CR-terminated response from client-configured line-ending translation. Its message send at `0x647c` requests connection output. Source may be reproduced with objdump or the external annotated disassembler after setting its IB to 0x400000.
+
+Directory handler trims then uppercases literal input (`0x65424` -> `0x75820`), checks literal $OFF$ before expansion, expands other text, validates <=12 bytes, rejects the listed separators and exact `.` / `..`, stores the name with original `RIP_SetHostDirectory` (`0x6b36`), then calls `0x3f5ff`. The latter constructs install-root + backslash + host name and calls `0x6c430`, which wraps CreateDirectoryA. Creation failure is ignored and does not roll back the selected name. Expanded `$OFF$` is a literal directory name, not the clear sentinel. No host-service callback at context +0x5e means a silent no-op. The native probe executes the setter and path-construction routines unchanged, captures the creation call (always failing), and checks uppercase/trim/store/root confinement, invalid names, pre-expansion OFF behavior and callback gating.
+
+A failed metric harness attempt lacked the active viewport-entry pointer used by the outline branch at `0x2078c`. GDB located the null dereference; supplying the original viewport structure shape fixed the harness. No GUI or original-client process was launched.
+
+## Additional header-effect observations (still incomplete)
+
+The audio segment’s flag 1 directly reaches PlaySoundA(NULL,NULL,0x20001) through `0x37e41`; it stops waveform playback. The argument to that wrapper is ignored. Do not describe it as an audio table or assume it stops independent MIDI playback without a separate trace.
+
+Common table-segment backup calls are `0x23d6e(context,type,-1)` to delete base, `…,type,-2` to delete a numbered saved area, and `0x24648(context,type)` to pop/delete stack entries until failure. **Important shipped defect:** `0x23d6e(...,-2)` returns after the first successfully deleted unprotected numbered save slot; header flags invoke it only once. It does not clear every numbered save slot in one call. Verify this with a controlled backup-record probe before publishing the flag table.
+
+Environment setter `0x3e989` silently rejects widths outside 2..5; `0x3e943` accepts RGB bit count 0..8, silently rejecting >8. These downstream checks differ from the earlier misindexed validator. Both write parser and current environment state directly without a protection check; the complete header/protection sequence still needs probing.
+
 ## Next action
 
 Extend the native header probe to execute global and segment effect routines, recording underlying reset/switch/protection/backup calls and actual state changes. Trace the remaining table-segment functions and their backup/reset helpers; test environment setters and character-set mismatch. Then fully derive TextMetric outputs and SwitchDirectory behavior. Keep #5 incomplete and do not file a partial resolution PR.
