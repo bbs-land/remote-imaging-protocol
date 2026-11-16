@@ -19,6 +19,7 @@
     "riptel-header-probe": "bash run/riptel-header-probe",
     "riptel-column-probe": "bash run/riptel-column-probe",
     "riptel-font-probe": "bash run/riptel-font-probe",
-    "riptel-font-glyphs": "bash run/riptel-font-glyphs"
+    "riptel-font-glyphs": "bash run/riptel-font-glyphs",
+    "riptel-image-probe": "bash run/riptel-image-probe"
   }
 }

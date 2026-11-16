@@ -36,9 +36,21 @@ The exported client entry **RIP_ShowImageWithCurrentStyle 0x69d8** calls **0x381
 
 Reset producers identified: SOFT **0x16220** stores image rectangle all **-1** and flags zero on the **current port** at **0x16298–0x162eb** before later selection/reset work. Port-system initializer **0x33d82** initializes record zero image rectangle all -1 and flags zero. Other image-flag writes occur **0x1671b / 0x169d1** (outer resets), **0x22616 / 0x2c63d** (other state consumers), **0x47441** (header/segment path). Trace exact outer gates and effects on protected/surviving ports in native tests rather than assuming full-viewport values or all-port resets.
 
+## Native style checkpoint
+
+New `run/riptel-image-probe DLL` passes **401 original-instruction checks** on FreeBSD 15.1 amd64 / clang 19.1.7. It SHA-verifies the unchanged DLL, disables core dumps, compiles in a task-owned temporary directory and removes the build through its EXIT trap. No GUI or real filesystem mutation runs.
+
+Preserved: original IMAGE_STYLE **0xc39a**, IMGSTYLE **0x2f1be**, selector parsing **0x98fc**, definition/protection/current selection **0x338bc / 0x33821 / 0x3393c**, coordinate normalization/conversion and original adjacent synchronization RETs. Controlled host/display hooks: **0x45038 / 0x18cf6 / 0x18bf7 / 0x343e4 / 0x342ad / 0x34319 / 0x13c69 / 0xe6e9**; report **0x38e47**, memory string/format/decimal primitives **0x65431 / 0x655e2 / 0x65604 / 0x68440**, ASCII class table **0x87908**, SetRect IAT **0x96618**. World/device fixture is 1280×960 / 640×480. Original registration push bytes confirm callback identity before probing.
+
+Verified all flags 0–63 accepted, 64 rejected unchanged with one report; corner ordering and far endpoint+1; all-zero command stores (0,0,1,1). Every IMGSTYLE keyword combination 0–15 replaces previous flags; no keywords resets them to zero, not retention. Literal numeric extra `3` is rejected as unknown keyword. Setter temporarily selects a valid target and restores previous current/DC. Both screen type 1 and offscreen type 4 are valid; CUR is not screen-only. Undefined slot 5 yields `-1`, no variable error and remains undefined. Invalid slot 36 sets variable error.
+
+Original viewport-disabled bit 2 at port+0x17 yields `-1` for **getter and setter**, without variable error. A protected but enabled target still allows the getter; setter returns no text and does not change rectangle/flags. A writable enabled target is modified. Query of device rectangle (10,20,111,121) at scale 2 returns **`20:40:222:242:15`**: stored far extents are converted directly, not decremented back to original inclusive input (220,240). Record this query discrepancy if documenting the newly recovered getter.
+
+First probe failure was an inconsistent screen-port DC fixture: current logical screen port 5 still uses port zero’s DC, whereas an offscreen port uses its own DC. Preserving original selection exposed that error; fixing fixture DC initialization resolved it. A second expectation mistakenly treated a disabled-viewport setter as NULL; the original early gate returns `-1` as the getter does. Both corrections are reflected in assertions, not classified as driver failures.
+
 ## Next action
 
-Trace **0x37fb5** and its JPEG/display helpers, actual delete calls, image-state default/reset producers and clear/margin GDI calls. Reuse table/port geometry fixtures where useful but preserve the relevant original operations. Native coverage must include every flag combination, area zero/one storage, local versus delivered invocation, IMGSTYLE default/keywords/getter/invalid/undefined/offscreen targets, protected surviving ports under reset/header, and captured background/margin write modes. Record controlled decoder/GDI boundaries; do not assert Windows pixel parity.
+IMGSTYLE/state checkpoint is complete, but the issue remains incomplete. Extend the native probe through original JPEG preparation/FillRect consumers with controlled decoder/file services; audit client post-transfer deletion separately, then execute actual outer reset/header producers on protected/surviving ports. Verify one-pixel/disabled presentation, all image flags, local versus received entry points and exact COPY/black-fill behavior under NOCLEAR+ASPECT. Keep remaining evidence gaps here and do not file the resolution PR yet.
 
 ---
 
