@@ -6,6 +6,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 - Follow [CONTRIBUTING.md](CONTRIBUTING.md) for all content, naming, and formatting conventions - especially the version naming (language vs client) rule, the verbatim `version/<v>/text/` record, and the Markdown style section.
 - External reference repositories and original-era artifacts are catalogued in [reference/rip-tools.md](reference/rip-tools.md). The user authorized `/usr/home/admin/RIP/rip-tools/` as this workspace’s persistent mirror of `~/src/rip-tools/`; preserve the catalogue’s relative paths under that root. Keep artifacts outside the specification checkout and identify them by provenance and hashes, not the machine-specific root.
+- Clean up task-owned `/tmp` files as soon as their purpose is complete. Prefer a scoped temporary directory with a shell EXIT trap or Python `TemporaryDirectory`, including for PR request/body files; remove completed debug binaries, generated drafts and captures after preserving needed evidence. Never delete unrelated tasks' files. Persistent original artifacts and necessary reproduction evidence belong in the external artifact mirror, not `/tmp`. The user explicitly requested this cleanup on 2026-11-16.
 - After edits, verify with the repository's own scripts: `run/check-links` and `run/lint` (add `run/format` to fix what `run/lint` reports).
 
 ## Use the `run/` scripts

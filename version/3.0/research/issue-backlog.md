@@ -26,7 +26,7 @@ Issue #12 is delivered in [PR #40](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #13 is delivered in [PR #41](https://github.com/bbs-land/remote-imaging-protocol/pull/41), branch `issue-13-polygon-counts`, dependent on #40. Its [derivation note](issue-13-polygon-counts.md) records **215,447 native checks**, all legal XY widths, exact maximum count prefixes, later-contour XY counts, 8193-value aggregate/truncation behavior, maximum contours/vertices and the stale extra conversion. Specification commit `b5ea028`; issue-only comparison starts at `2754e2d`. Review/merge is pending.
 
-Next active issue: [#14](https://github.com/bbs-land/remote-imaging-protocol/issues/14), arc start/end ordering, empty/full/wrapped/multiple sweeps and pie/chord/skewed boundary policy. GitHub creation order refreshed after #41 publication. Start its branch/note from this delivery checkpoint, preserve primary evidence and continue without waiting for merge.
+Active: [#14](https://github.com/bbs-land/remote-imaging-protocol/issues/14), branch `issue-14-arc-sweeps` from `2950732` (delivered #13 / PR #41). Read its [derivation note](issue-14-arc-sweeps.md). Initial original dispatch/static traces show O ignores its angle fields and draws Ellipse, while V uses a separate arc helper; skewed variants use an order-dependent angle normalizer 0x138e8 and inclusive point generator 0x10160. Next: native full-domain normalization and actual consumer arguments across empty/full/wrapped/multiple cases, then normative/defect distinctions and a complete PR. No complete sweep answer or PR yet. Clean up task-owned temporary files as required by the user and AGENTS.md.
 
 ## Queue and delivery
 
