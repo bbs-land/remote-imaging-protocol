@@ -34,7 +34,9 @@ Issue #16 is delivered in [PR #45](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #17 is delivered in [PR #47](https://github.com/bbs-land/remote-imaging-protocol/pull/47), branch `issue-17-chr-scan-records`, dependent on #45. Its [derivation note](issue-17-chr-scan-records.md) records **13,518,407 native checks**, original classic-font loading/glyph/string consumers, consumed no-op SCAN semantics, ignored scan_flag, all payload pairs and original outline geometry. It corrects the six-record census and TSCR unused bytes. Specification commit `e16c18c`; issue-only comparison starts at `b1defa8`. Review/merge is pending.
 
-Active: [#18](https://github.com/bbs-land/remote-imaging-protocol/issues/18), branch `issue-18-date-time-format` from `314fae6` (delivered #17). The [derivation](issue-18-date-time-format.md) settles all bytes: numeric `MM/DD/YY HH:MM:SS`, 17 characters with zero padding and no line ending; YEAR syntax and two-digit rollover verified. Native checkpoint `f66a24f` passes **388,202 checks**. Reference/9.1 and agent guidance now updated; next run required checks and file the complete resolution PR. New #46 follows #42 in creation order.
+Issue #18 is delivered in [PR #48](https://github.com/bbs-land/remote-imaging-protocol/pull/48), branch `issue-18-date-time-format`, dependent on #47. Its [derivation](issue-18-date-time-format.md) settles numeric DATETIME bytes, zero padding, separators, absent line ending and YEAR syntax/rollover, with **388,202 native checks**. Specification commit `7e4a35e`; issue-only comparison starts at `314fae6`. Review/merge is pending.
+
+Next active issue: [#19](https://github.com/bbs-land/remote-imaging-protocol/issues/19), legacy ICN conversion palette and inherited filesystem effects. The post-#48 GitHub refresh confirms creation order; branch from this delivery checkpoint and begin a committed derivation. Queue remains #19–#28, #33, #38, #42, #46.
 
 ## Queue and delivery
 

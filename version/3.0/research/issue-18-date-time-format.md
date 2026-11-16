@@ -54,9 +54,9 @@ All requested bytes are settled. Correct YEAR Syntax to `$YEAR$`; document no pa
 
 `run/lint` passes; `run/check-links` reports **0 bad of 4968 links across 203 files**; `git diff --check` passes. `run/riptel-macro-probe` passes **388,202 checks**. Original text/assets are untouched. Every issue commit carries the requested Codex co-author trailer.
 
-## Next action
+## Delivery and next action
 
-Native checkpoint **f66a24f** records the complete byte matrix. The 3.0 reference and 9.1 rows now state the verified output and correct YEAR syntax; AGENTS.md records the formatter/fixture distinction, and TODO.md points at the current issue. Next run required checks and file the complete #18 PR with an issue-only comparison from 314fae6.
+Delivered in [PR #48](https://github.com/bbs-land/remote-imaging-protocol/pull/48), branch `issue-18-date-time-format`, dependent on #47. Specification commit **7e4a35e**; native checkpoint **f66a24f**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/314fae6...issue-18-date-time-format) excludes preceding pending work. Review/merge is pending; do not merge or manually close the issue. The 2026-11-16 post-delivery refresh confirms #19 is next; begin its ICN conversion palette/filesystem research on a new branch from this delivery checkpoint.
 
 ---
 
