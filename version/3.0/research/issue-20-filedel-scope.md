@@ -56,9 +56,13 @@ The direct tail predicate **0x65c44** is independently checked for all **256 inp
 
 Microsoft’s [Win32 filename/path rules](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file) identify backslash-separated components and `..` parent components; its [path-format documentation](https://learn.microsoft.com/en-us/dotnet/standard/io/file-path-formats) distinguishes drive-relative from absolute names. These describe the controlled OS boundary, not this client’s parser. A captured prefixed path containing a colon, directory name, dot component or trailing separator is **not** proof that Windows accepts it as an existing regular file. In particular, the raw-helper parent-component observations must not be presented as a verified ordinary FILEDEL wire traversal: the parser removes/rejects backslashes as above.
 
+## Validation
+
+`run/lint` passes; `run/check-links` reports **0 bad of 5021 links across 205 files**; `git diff --check` passes. `run/riptel-macro-probe` passes **388,884 original-instruction checks**, including the new FILEDEL matrix. Original text/assets are untouched. Probe builds and other task-owned temporary paths are removed by scoped cleanup; commits carry Codex co-authorship.
+
 ## Next action
 
-Checkpoint this complete native evidence, verify the remaining generic argument escape rule if needed, then replace the storage hypothesis with first-hit all-tier deletion, no-host fallback and caller-only provenance semantics. Correct FILEDEL’s malformed Format line, document actual parser/path behavior and qualify inherited reject-all-filenames guidance. Add AGENTS.md parser/helper cautions, run required checks and file the complete #20 PR after review of the exact wire cases.
+Native evidence checkpoint **cd15984** records the complete matrix. The FILEDEL entry, storage workflow, 9.1 row and connection-directory delta now state first-hit all-tier deletion, no-host fallback, caller-only provenance and exact decoded-macro argument behavior. The malformed Format line is fixed; the older filename guidance now distinguishes this later-client exception. AGENTS.md records parser-versus-helper cautions. Next required checks and complete #20 PR with an issue-only comparison from a3dc068.
 
 ---
 
