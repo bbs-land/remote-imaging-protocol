@@ -161,6 +161,93 @@ static void classify_checks(void) {
   require(mask[0] == 1 && mask[1] == 0,
           "24-bit classifier matches exact BGR components");
 }
+static void *__attribute__((stdcall)) lock_memory(void *handle) {
+  return handle;
+}
+static unsigned __attribute__((stdcall)) unlock_memory(void *handle) {
+  (void)handle;
+  return 0;
+}
+static unsigned __attribute__((stdcall)) caps(unsigned dc, unsigned which) {
+  (void)dc;
+  return which == 12 ? 24 : 1;
+}
+static unsigned __attribute__((stdcall))
+dialog(unsigned owner, const char *text, const char *title, unsigned flags) {
+  (void)owner;
+  (void)text;
+  (void)title;
+  (void)flags;
+  ++errors;
+  return 1;
+}
+static unsigned allocate(void **target, unsigned length) {
+  *target = calloc(1, length);
+  return *target != NULL;
+}
+static void release(void **target) {
+  free(*target);
+  *target = NULL;
+}
+static void mask_and_merge_checks(void) {
+  pointer(image + 0x964e4, (void *)lock_memory);
+  pointer(image + 0x964f4, (void *)unlock_memory);
+  pointer(image + 0x96484, (void *)caps);
+  pointer(image + 0x966f4, (void *)dialog);
+  hook(0x65ca3, (void (*)(void))allocate);
+  hook(0x65cbf, (void (*)(void))release);
+  header(16, 4, 1);
+  errors = 0;
+  unsigned mask_handle =
+      ((unsigned (*)(void *, unsigned, void *, unsigned, unsigned, unsigned,
+                     unsigned))(image + 0x493c0))(context, 1, dib, 4, 1, 0, 0);
+  require(mask_handle == 0 && errors == 1,
+          "original transparent-mask creation rejects 16-bit source");
+  unsigned char source[2048], target[2048], selection[4] = {0, 1, 0, 1};
+  unsigned depths[] = {1, 4, 8, 16, 24, 32};
+  for (unsigned n = 0; n < sizeof depths / sizeof depths[0]; ++n) {
+    unsigned depth = depths[n];
+    header(depth, 4, 1);
+    memcpy(source, dib, sizeof dib);
+    memcpy(target, dib, sizeof dib);
+    unsigned char *src =
+        ((unsigned char *(*)(void *))(image + 0x4e1ec))(source);
+    unsigned char *dst =
+        ((unsigned char *(*)(void *))(image + 0x4e1ec))(target);
+    unsigned bytes = (4 * depth + 7) / 8;
+    memset(src, 0, bytes);
+    memset(dst, 255, bytes);
+    unsigned ok = ((unsigned (*)(void *, unsigned, unsigned, void *, void *))(
+        image + 0x49f90))(source, 4, 1, target, selection);
+    require(ok == 1, "original merge accepts supported pixel depth");
+    if (depth == 1)
+      require((dst[0] & 0xf0) == 0x50,
+              "1-bit merge retains selection-one pixels");
+    else if (depth == 4)
+      require(dst[0] == 0x0f && dst[1] == 0x0f,
+              "4-bit merge retains selection-one pixels");
+    else {
+      unsigned step = depth / 8;
+      for (unsigned x = 0; x < 4; ++x)
+        for (unsigned byte = 0; byte < step; ++byte)
+          require(
+              dst[x * step + byte] == (selection[x] ? 255 : 0),
+              "merge keeps destination for selection one and source for zero");
+    }
+  }
+  header(32, 2, 1);
+  unsigned char pixels[8] = {255, 255, 255, 255, 0, 0, 0, 0}, selected[4];
+  unsigned keys[][3] = {{0, 0, 0}, {255, 255, 255}, {17, 34, 51}};
+  for (unsigned n = 0; n < 3; ++n) {
+    memset(selected, 0, sizeof selected);
+    ((void (*)(void *, void *, void *, unsigned, unsigned, unsigned, unsigned))(
+        image + 0x49ea0))(dib, pixels, selected, 4, keys[n][0], keys[n][1],
+                          keys[n][2]);
+    require(selected[0] == 0 && selected[1] == 0,
+            "32-bit classifier does not mark matching black/white RGB as "
+            "transparent");
+  }
+}
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -193,6 +280,7 @@ int main(int argc, char **argv) {
   hook(0x655e2, (void (*)(void))strcasecmp);
   load_checks();
   classify_checks();
+  mask_and_merge_checks();
   printf("PASS: %u preliminary bitmap routing/classifier checks\n", checks);
   return 0;
 }
