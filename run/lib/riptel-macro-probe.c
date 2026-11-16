@@ -1098,6 +1098,184 @@ static void filedel_checks(void) {
          "all 256 name bytes verified\n");
 }
 
+static unsigned char environment_records[36 * 16], active_environment[128],
+    environment_options[512];
+static unsigned char *env_record(unsigned n) {
+  return environment_records + n * 16;
+}
+static void install_environment_records(void) {
+  memset(environment_records, 0, sizeof environment_records);
+  memset(active_environment, 0, sizeof active_environment);
+  pointer(context + 2, active_environment);
+  memset(environment_options, 0, sizeof environment_options);
+  pointer(context + 0x36, environment_options);
+  pointer(view, environment_records);
+  env_record(0)[0] = env_record(5)[0] = 1;
+  put16(env_record(0) + 1, 1280);
+  put16(env_record(0) + 3, 960);
+  put16(env_record(5) + 1, 640);
+  put16(env_record(5) + 3, 350);
+  env_record(0)[5] = 36;
+  env_record(5)[5] = 64;
+  env_record(5)[7] = 8;
+}
+static void environment_fixture(void) {
+  prepare();
+  install_environment_records();
+}
+static void environment_query_checks(void) {
+  require(registered_callback("COLORMODE") == 0x17eac &&
+              registered_callback("WORLD") == 0x8d5e &&
+              registered_callback("WORLDH") == 0x8fe0 &&
+              registered_callback("WORLDW") == 0x91e8,
+          "original registration identifies color/world callbacks");
+  require(!registered_callback("WORLDX") && !registered_callback("WORLDY"),
+          "complete original registry has no WORLDX/WORLDY aliases");
+  hook(0x3c37e, noop);
+  hook(0x45038, noop);
+  environment_fixture();
+  equal(invoke(0x17eac, 0), "0", "COLORMODE current palette query");
+  strcpy(params, "CUR");
+  equal(invoke(0x17eac, 1), "0", "COLORMODE explicit current query");
+  strcpy(params, "5");
+  equal(invoke(0x17eac, 1), "8", "COLORMODE defined RGB query");
+  strcpy(params, "6");
+  equal(invoke(0x17eac, 1), "-1",
+        "COLORMODE undefined environment returns exact minus one");
+  require(!u16(variables + 0x436) && !env_record(6)[0],
+          "undefined query has no error/definition side effect");
+  const unsigned world_callbacks[] = {0x8d5e, 0x8fe0, 0x91e8};
+  const char *world_expected[] = {"1280:960", "960", "1280"};
+  for (unsigned n = 0; n < 3; ++n) {
+    environment_fixture();
+    equal(invoke(world_callbacks[n], 0), world_expected[n],
+          "canonical world query axis/order");
+    strcpy(params, "6");
+    equal(invoke(world_callbacks[n], 1), "-1",
+          "world undefined target returns minus one");
+    require(!u16(variables + 0x436),
+            "world undefined query is not syntax error");
+  }
+  for (unsigned current = 0; current < 2; ++current)
+    for (unsigned bits = 0; bits <= 9; ++bits) {
+      environment_fixture();
+      strcpy(params, current ? "CUR" : "5");
+      strcpy(params + 21, "RGB");
+      snprintf(params + 42, 21, "%u", bits);
+      const char *value = invoke(0x17eac, 3);
+      unsigned target = current ? 0 : 5;
+      require(!value, "COLORMODE setter returns no value");
+      require(
+          u16(variables + 0x436) == (bits < 1 || bits > 8),
+          "COLORMODE macro accepts all one-through-eight RGB precision values");
+      require(env_record(target)[7] == (bits >= 1 && bits <= 8 ? bits
+                                        : current              ? 0
+                                                               : 8),
+              "COLORMODE stores requested precision without eight-only "
+              "restriction");
+      require(active_environment[0x3a] ==
+                  (current && bits >= 1 && bits <= 8 ? bits : 0),
+              "original active color setter also accepts precision one through "
+              "eight");
+    }
+  const unsigned values[] = {0, 1, 32767, 32768, 65535, 65536, 65537};
+  for (unsigned current = 0; current < 2; ++current)
+    for (unsigned x = 0; x < 7; ++x)
+      for (unsigned y = 0; y < 7; ++y) {
+        environment_fixture();
+        strcpy(params, current ? "CUR" : "5");
+        snprintf(params + 21, 21, "%u", values[x]);
+        snprintf(params + 42, 21, "%u", values[y]);
+        invoke(0x8d5e, 3);
+        unsigned rejected = values[x] > 65535 && values[y] > 65535;
+        require(u16(variables + 0x436) == rejected,
+                "WORLD rejects only when both dimensions exceed 65535");
+        unsigned target = current ? 0 : 5;
+        require(
+            u16(env_record(target) + 1) ==
+                    (rejected ? current ? 1280 : 640 : values[x] & 65535) &&
+                u16(env_record(target) + 3) ==
+                    (rejected ? current ? 960 : 350 : values[y] & 65535),
+            "WORLD stores low words including zero and dimensions above 32767");
+        require(u32(view + 0x24) ==
+                        (current && !rejected ? values[x] & 65535 : 1280) &&
+                    u32(view + 0x28) ==
+                        (current && !rejected ? values[y] & 65535 : 960),
+                "WORLD active setter zero-extends stored low-word dimensions");
+      }
+  const char *targets[] = {"CUR", "0", "5", "6", "BOGUS"};
+  for (unsigned current = 0; current < 2; ++current)
+    for (unsigned axis = 0; axis < 2; ++axis)
+      for (unsigned target = 0; target < 5; ++target)
+        for (unsigned n = 0; n < 7; ++n) {
+          environment_fixture();
+          put16(view + 0xa, current ? 5 : 0);
+          put32(view + 0x24, current ? 640 : 1280);
+          put32(view + 0x28, current ? 350 : 960);
+          strcpy(params, targets[target]);
+          snprintf(params + 21, 21, "%u", values[n]);
+          unsigned callback = axis ? 0x8fe0 : 0x91e8;
+          invoke(callback, 2);
+          unsigned rejected = target == 0 || values[n] > 65535;
+          require(
+              u16(variables + 0x436) == rejected,
+              "WORLDH/W setters reject CUR but accept non-CUR target strings");
+          unsigned active = current ? 5 : 0, offset = axis ? 3 : 1;
+          unsigned old = axis ? (current ? 350 : 960) : (current ? 640 : 1280);
+          require(
+              u16(env_record(active) + offset) == (rejected ? old : values[n]),
+              "WORLDH/W numeric or unknown target changes current environment");
+          require(!env_record(6)[0],
+                  "WORLDH/W does not define ignored undefined target");
+          require(u32(view + (axis ? 0x28 : 0x24)) ==
+                      (rejected ? old : values[n]),
+                  "WORLDH/W original active coordinate cache follows current "
+                  "record");
+        }
+  for (unsigned x = 0; x < 7; ++x)
+    for (unsigned y = 0; y < 7; ++y) {
+      environment_fixture();
+      unsigned arguments[] = {values[x], values[y]};
+      ((void (*)(void *, unsigned, const void *, const char *))(
+          image + 0x1f874))(context, 2, arguments, NULL);
+      unsigned accepted = values[x] <= 65535 && values[y] <= 65535;
+      require(u16(env_record(0) + 1) == (accepted ? values[x] : 1280) &&
+                  u16(env_record(0) + 3) == (accepted ? values[y] : 960),
+              "wire world frame accepts zero through 65535, rejects either "
+              "oversized dimension");
+      require(u32(view + 0x24) == (accepted ? values[x] : 1280) &&
+                  u32(view + 0x28) == (accepted ? values[y] : 960),
+              "wire world active state also has no 32767 gate");
+    }
+  for (unsigned bits = 0; bits <= 9; ++bits) {
+    environment_fixture();
+    unsigned arguments[] = {1, bits};
+    ((void (*)(void *, unsigned, const void *, const char *))(image + 0x1f3fd))(
+        context, 2, arguments, NULL);
+    require(env_record(0)[7] == (bits == 8 ? 8 : 0) &&
+                active_environment[0x3a] == (bits == 8 ? 8 : 0),
+            "wire RGB command alone requires exactly eight bits");
+  }
+  pipeline_prepare();
+  install_environment_records();
+  char expression[4096] = "$COLORMODE(6)$";
+  require(expand_codes(expression, 0x83, 1) == 1,
+          "original undefined color macro expansion succeeds");
+  equal(expression, "-1", "ordinary COLORMODE expansion emits exact minus one");
+  require(!u16(variables + 0x436),
+          "undefined color expansion sets no variable error");
+  strcpy(expression, "$WORLDH(5)$:$WORLDW(5)$");
+  expand_codes(expression, 0x83, 1);
+  equal(expression, "350:640",
+        "canonical H/W names dispatch height/width in macro pipeline");
+  fixture("WORLDX", "custom-X");
+  fixture("WORLDY", "custom-Y");
+  strcpy(expression, "$WORLDX$:$WORLDY$");
+  expand_codes(expression, 0x83, 1);
+  equal(expression, "custom-X:custom-Y",
+        "unregistered legacy X/Y names use ordinary user-variable namespace");
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -1209,6 +1387,7 @@ int main(int argc, char **argv) {
   port_size_query_checks();
   date_time_checks();
   filedel_checks();
+  environment_query_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
