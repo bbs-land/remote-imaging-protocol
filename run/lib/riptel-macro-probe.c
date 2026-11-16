@@ -785,7 +785,9 @@ static void port_size_query_checks(void) {
 }
 
 static int date_fixture[9];
+static unsigned date_clock_calls;
 static unsigned date_now(unsigned *value) {
+  ++date_clock_calls;
   if (value)
     *value = 1234567;
   return 1234567;
@@ -805,11 +807,100 @@ static void date_time_checks(void) {
   prepare();
   memcpy(date_fixture, (int[]){50, 38, 14, 5, 11, 93, 0, 338, 0},
          sizeof date_fixture);
-  const char *value = invoke(0x38f2a, 0);
-  require(value != NULL, "original date-time expansion succeeds");
-  printf("Original DATETIME December 5, 1993: [%s] length=%zu\n", value,
-         strlen(value));
+  equal(invoke(0x38f2a, 0), "12/05/93 14:38:50",
+        "original DATETIME December 5 example");
   equal(invoke(0x390ca, 0), "93", "original YEAR two-digit result");
+  /* Every valid date in 1970..2037, including leap dates and the century
+   * rollover. Expected bytes use explicit decimal fields, not host strftime. */
+  unsigned ordinal = 0, dates = 0;
+  const unsigned month_days[] = {31, 28, 31, 30, 31, 30,
+                                 31, 31, 30, 31, 30, 31};
+  for (unsigned year = 1970; year <= 2037; ++year) {
+    unsigned yday = 0;
+    date_fixture[5] = year - 1900;
+    char expected_year[3];
+    snprintf(expected_year, sizeof expected_year, "%02u", year % 100);
+    memset(result, 0xa5, 32);
+    const char *value = invoke(0x390ca, 0);
+    require(value == result && !memcmp(value, expected_year, 3) &&
+                (unsigned char)result[3] == 0xa5,
+            "YEAR is exactly two decimal digits then storage NUL");
+    for (unsigned month = 0; month < 12; ++month) {
+      unsigned days =
+          month_days[month] +
+          (month == 1 && year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+      date_fixture[4] = month;
+      for (unsigned day = 1; day <= days; ++day) {
+        date_fixture[3] = day;
+        date_fixture[6] = (ordinal++ + 4) % 7;
+        date_fixture[7] = yday++;
+        ++dates;
+        for (unsigned late = 0; late < 2; ++late) {
+          date_fixture[0] = late ? 59 : 0;
+          date_fixture[1] = late ? 59 : 0;
+          date_fixture[2] = late ? 23 : 0;
+          char expected[32];
+          snprintf(expected, sizeof expected, "%02u/%02u/%02u %02d:%02d:%02d",
+                   month + 1, day, year % 100, date_fixture[2], date_fixture[1],
+                   date_fixture[0]);
+          memset(result, 0xa5, 32);
+          value = invoke(0x38f2a, 0);
+          require(value == result && !memcmp(value, expected, 18) &&
+                      (unsigned char)result[18] == 0xa5,
+                  "DATETIME exact 17 bytes plus NUL at both day endpoints");
+          require(!u16(variables + 0x436) && !errors,
+                  "valid date has no variable error");
+        }
+      }
+    }
+  }
+  memcpy(date_fixture, (int[]){0, 0, 0, 5, 11, 93, 0, 338, 0},
+         sizeof date_fixture);
+  for (unsigned second = 0; second < 86400; ++second) {
+    date_fixture[0] = second % 60;
+    date_fixture[1] = second / 60 % 60;
+    date_fixture[2] = second / 3600;
+    char expected[32];
+    snprintf(expected, sizeof expected, "12/05/93 %02d:%02d:%02d",
+             date_fixture[2], date_fixture[1], date_fixture[0]);
+    memset(result, 0xa5, 32);
+    const char *value = invoke(0x38f2a, 0);
+    require(
+        value == result && !memcmp(value, expected, 18) &&
+            (unsigned char)result[18] == 0xa5,
+        "every time of day uses zero-padded 24-hour fields without newline");
+  }
+  const unsigned callbacks[] = {0x38f2a, 0x390ca};
+  for (unsigned n = 0; n < 2; ++n) {
+    unsigned rva = callbacks[n];
+    for (unsigned count = 1; count <= 2; ++count) {
+      unsigned before = date_clock_calls;
+      require(!invoke(rva, count) && u16(variables + 0x436) == 1,
+              "date/year callbacks reject arguments");
+      require(before == date_clock_calls,
+              "invalid date/year arity rejects before reading the clock");
+    }
+  }
+  /* Surrounding literal text exposes any returned newline or storage NUL in
+   * the original dollar-code parser/insertion path. */
+  const char *wires[] = {"A$DATETIME$B/$YEAR$C", "A$DATETIME()$B/$YEAR()$C"};
+  for (unsigned n = 0; n < 2; ++n) {
+    pipeline_prepare();
+    hook(0x68ff0, (void (*)(void))date_now);
+    hook(0x69c90, (void (*)(void))date_localtime);
+    memcpy(date_fixture, (int[]){50, 38, 14, 5, 11, 93, 0, 338, 0},
+           sizeof date_fixture);
+    char text[4096];
+    strcpy(text, wires[n]);
+    require(expand_codes(text, 0xff, 1) == 1,
+            "original date/year dollar expansion succeeds");
+    equal(text, "A12/05/93 14:38:50B/93C",
+          "date/year insertion preserves surrounding literals without newline");
+    require(!u16(variables + 0x436) && !errors,
+            "date/year macro expansion reports no error");
+  }
+  printf("Original DATETIME: 12/05/93 14:38:50; %u dates and 86400 times\n",
+         dates);
 }
 int main(int argc, char **argv) {
   if (argc != 2)
