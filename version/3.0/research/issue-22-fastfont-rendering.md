@@ -61,7 +61,11 @@ The table's first eight records have nominal diameters 1..8. At diameter 1..3 th
 
 The final presenter matrix also preserves **0xe6e9** style activation and captures its SetROP2 **IAT 0x96408**: the five wire modes select actual ROP2 values **13,7,15,9,6**, while the subsequent glyph BitBlt still uses 0xb8074a. A preliminary fixture expected 4 for the final mode; original converter **0xe6b3–0xe6e8** returns 6, and the fixture now checks that actual value. The style setter has no side path that changes the glyph mask colors based on write mode. This removes the earlier need to control style activation as a no-op and confirms the XOR premise against actual original activation.
 
-All four questions now have primary answers with reproduced distinguishing cases. Next update the implementor pages, preserve these client-specific findings separately from untested RIPterm 2.x semantics, run required checks, and file one complete #22 PR. The reusable wrapper/fixture task is catalogued; it removes all temporary builds/prefixes and keeps only the required ~120 KiB measurement log in the artifact mirror. No PR yet.
+## Resolution and validation
+
+All four questions have primary answers with reproduced distinguishing cases. Specification commit **4c80e0e** updates the 3.0 FastFont delta, adds a client-specific pointer from the base format and corrects the ordinary text reference's write-mode implication. AGENTS.md records continuation cautions. The reusable wrapper/fixture task is catalogued; it removes all temporary builds/prefixes and keeps only the required ~120 KiB measurement log in the artifact mirror.
+
+Final verification: **194,724 native checks**, **288 original-engine glyph measurements**, **1,440 anisotropic/orientation/face/style filter cases**, Deno fixture-generator type check, Bash wrapper syntax check, `run/lint`, `run/check-links` (**0 bad of 5,083 links across 207 files**) and `git diff --check` pass. The final engine run also exercises the explicit-DISPLAY Wine teardown guard. Task-owned temporary paths were checked absent afterward. All eight unchanged original RFFs match checkout LFS OIDs/content; original text/assets are unchanged in the branch diff. Ready to file the complete #22 PR, dependent on #52, with an issue-only comparison from **eb7ae2e**. No PR yet.
 
 ---
 
