@@ -16,6 +16,7 @@ TeleGrafix never published a RIPscrip 3.x language reference, so this edition is
 | `WP` | Stated in the official [3.0 Technical White Paper](../text/RIPScrip-3.x-technical-whitepaper.txt) |
 | `HLP` | Recovered from the RIPtel 3.1 help files / RIPSCRIP.DLL string table |
 | `corpus (FILE)` | Observed in the RIPtel 3.1 demo scripts (116 authentic TeleGrafix RIPscrip 3.0 files) |
+| `DLL` | Directly verified in a fingerprinted original driver; the linked research note supplies its hash, instruction locations and reproduction method |
 | `SyncTERM (ripper.c:N)` | Behavior of SyncTERM's open-source RIP 3.0 implementation |
 | _(hypothesis)_ | Editorial inference - plausible but unconfirmed |
 
