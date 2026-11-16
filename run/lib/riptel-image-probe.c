@@ -546,6 +546,84 @@ static void reset_checks(void) {
       }
 }
 
+static unsigned temp_appends, temp_reads, temp_closes, temp_unlinks;
+static unsigned char temp_file[32];
+static char temp_path[64];
+static const char *temporary_path(void *c, const char *name) {
+  require(c == ctx && !strcmp(name, "RIPSC007.TFL"),
+          "original temp list uses instance identifier");
+  strcpy(temp_path, name);
+  return temp_path;
+}
+static void *open_temp(const char *name, const char *mode) {
+  require(!strcmp(name, "RIPSC007.TFL"), "only memory temp-list file opens");
+  require(!strcmp(mode, "a+t") || !strcmp(mode, "r"),
+          "temp-list append/read modes");
+  memset(temp_file, 0, sizeof temp_file);
+  return temp_file;
+}
+static int append_temp(void *file, const char *fmt, const char *name) {
+  require(file == temp_file && fmt && !strcmp(name, "TEST.JPG"),
+          "original registration writes controlled JPEG name");
+  ++temp_appends;
+  return 0;
+}
+static int read_temp(void *file, const char *fmt, char *name) {
+  require(file == temp_file && fmt && !temp_reads,
+          "scripted single temp-list filename");
+  strcpy(name, "TEST.JPG");
+  temp_file[0xc] = 0x10;
+  ++temp_reads;
+  return 1;
+}
+static int close_temp(void *file) {
+  require(file == temp_file, "temp-list closes only memory file");
+  ++temp_closes;
+  return 0;
+}
+static int unlink_temp(const char *name) {
+  require(!strcmp(name, temp_unlinks ? "RIPSC007.TFL" : "TEST.JPG"),
+          "purge deletes registered filename then list");
+  ++temp_unlinks;
+  return 0;
+}
+static void reception_checks(void) {
+  for (unsigned type = 0; type < 1296; ++type) {
+    prepare();
+    unsigned args[] = {type, 0};
+    unsigned char before[sizeof entries];
+    memcpy(before, entries, sizeof before);
+    ((void (*)(void *, unsigned, const void *, const char *))(image + 0x252c0))(
+        ctx, 2, args, NULL);
+    require(
+        errors == (type > 1),
+        "encoded-stream stub accepts only types zero/one, otherwise reports");
+    require(!memcmp(before, entries, sizeof before),
+            "encoded-stream stub leaves all image port state unchanged");
+  }
+  hook(0x3f66, (void (*)(void))temporary_path);
+  hook(0x68f90, (void (*)(void))open_temp);
+  hook(0x68ec0, (void (*)(void))close_temp);
+  hook(0x6bc50, (void (*)(void))append_temp);
+  hook(0x6bc90, (void (*)(void))read_temp);
+  hook(0x6b480, (void (*)(void))unlink_temp);
+  for (unsigned flags = 0; flags < 64; ++flags)
+    for (unsigned zero_area = 0; zero_area < 2; ++zero_area) {
+      prepare();
+      put16(ctx + 0x7a, 7);
+      put16(port(0) + 0x5a, flags);
+      if (!zero_area)
+        memcpy(port(0) + 0x4a, (int[]){10, 20, 110, 120}, 16);
+      temp_appends = temp_reads = temp_closes = temp_unlinks = 0;
+      ((void (*)(void *, const char *))(image + 0x765d))(ctx, "TEST.JPG");
+      require(temp_appends == 1 && temp_closes == 1 && !temp_unlinks,
+              "AddTempFile registers but does not immediately delete JPEG");
+      ((void (*)(void *))(image + 0x18efa))(ctx);
+      require(temp_reads == 1 && temp_closes == 2 && temp_unlinks == 2,
+              "original temp purge is independent of image flags/zero area");
+    }
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -568,6 +646,7 @@ int main(int argc, char **argv) {
   jpeg_checks();
   presentation_checks();
   reset_checks();
+  reception_checks();
   printf("PASS: %u image-style checks\n", checks);
   return 0;
 }
