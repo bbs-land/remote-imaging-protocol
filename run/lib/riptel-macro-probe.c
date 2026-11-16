@@ -680,6 +680,23 @@ static void remaining_variable_checks(void) {
   require(modifier_calls == 0,
           "discarded earlier chain template is not dollar-evaluated");
 }
+/* Issue #7: framing retains these quotes; verify the original host stages. */
+static void host_quote_checks(void) {
+  char text[4096];
+  pipeline_prepare();
+  transmitted[0] = 0;
+  strcpy(text, "\\$SHIFT\\$");
+  require(host_command(text) != 0xffff, "both quoted dollars pass host stages");
+  equal(transmitted, "$SHIFT$", "final host pass removes quotes as literal text");
+  require(modifier_calls == 0, "fully quoted variable does not query modifier");
+  pipeline_prepare();
+  transmitted[0] = 0;
+  key_state = 0x8000;
+  strcpy(text, "\\$SHIFT$");
+  require(host_command(text) != 0xffff, "opening-only quote passes host stages");
+  equal(transmitted, "1", "first host pass evaluates opening-only quoted variable");
+  require(modifier_calls == 1, "opening-only quote is insufficient in two-pass host path");
+}
 static void parser_edge_checks(void) {
   static const struct {
     const char *wire;
@@ -839,6 +856,7 @@ int main(int argc, char **argv) {
   effects_checks();
   remaining_variable_checks();
   parser_edge_checks();
+  host_quote_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
