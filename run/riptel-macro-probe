@@ -3,6 +3,7 @@
 # Requires an i386/amd64 Unix host and a C compiler with 32-bit runtime support.
 # Exits nonzero on wrong artifact, build failure, or failed observation.
 set -euo pipefail
+ulimit -c 0
 root="$(cd "$(dirname "$0")/.." && pwd)"
 if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
   echo "Usage: run/riptel-macro-probe DLL (CC may select a compiler with -m32 support)"

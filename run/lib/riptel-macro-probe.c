@@ -783,6 +783,34 @@ static void port_size_query_checks(void) {
         "port-size parse-gate defect sets variable error without host report");
   }
 }
+
+static int date_fixture[9];
+static unsigned date_now(unsigned *value) {
+  if (value)
+    *value = 1234567;
+  return 1234567;
+}
+static void *date_localtime(const unsigned *value) {
+  require(value && *value == 1234567,
+          "date callback uses current local-time service");
+  return date_fixture;
+}
+static void date_time_checks(void) {
+  require(registered_callback("DATETIME") == 0x38f2a &&
+              registered_callback("YEAR") == 0x390ca,
+          "original registrations select date/time processors");
+  hook(0x6f230, noop);
+  hook(0x68ff0, (void (*)(void))date_now);
+  hook(0x69c90, (void (*)(void))date_localtime);
+  prepare();
+  memcpy(date_fixture, (int[]){50, 38, 14, 5, 11, 93, 0, 338, 0},
+         sizeof date_fixture);
+  const char *value = invoke(0x38f2a, 0);
+  require(value != NULL, "original date-time expansion succeeds");
+  printf("Original DATETIME December 5, 1993: [%s] length=%zu\n", value,
+         strlen(value));
+  equal(invoke(0x390ca, 0), "93", "original YEAR two-digit result");
+}
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -892,6 +920,7 @@ int main(int argc, char **argv) {
   parser_edge_checks();
   host_quote_checks();
   port_size_query_checks();
+  date_time_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
