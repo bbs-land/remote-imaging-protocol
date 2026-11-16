@@ -5,6 +5,7 @@
     "format": "bash run/format",
     "riptel-inspect": "deno run --allow-read run/riptel-inspect",
     "riptel-chr-probe": "bash run/riptel-chr-probe",
+    "riptel-icon-conversion-probe": "bash run/riptel-icon-conversion-probe",
     "riptel-table-probe": "bash run/riptel-table-probe",
     "riptel-macro-probe": "bash run/riptel-macro-probe",
     "riptel-bezier-probe": "bash run/riptel-bezier-probe",
