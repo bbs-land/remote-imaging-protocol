@@ -1,0 +1,68 @@
+# Issue #13: Polygon wire counts and multi-contour limits
+
+[Research backlog](issue-backlog.md) · [Polygon reference](../ripscrip/2.3-shapes-and-fills.md#rip_polygon) · [Polyline reference](../ripscrip/2.1-lines.md#rip_polyline)
+
+## Scope and source
+
+Started 2026-11-16 after [PR #40](https://github.com/bbs-land/remote-imaging-protocol/pull/40) delivered #12. GitHub creation-order refresh confirms [issue #13](https://github.com/bbs-land/remote-imaging-protocol/issues/13) is the oldest RealDeuce issue without a complete resolution PR. Branch `issue-13-polygon-counts` starts at **2754e2d**. Required answers: actual count width/radix and maximum valid prefixes for l/P/p; whether 4096 means storage or closure; multi-contour coordinate widths, aggregate versus per-contour vertex limits and maximum contour count.
+
+Use unchanged RIPtel 3.1 / driver 3.0.7 `ripscrip.dll`, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`, base 0x10000000, from the [catalogued original installer](../../../reference/rip-tools.md). Artifact mirror is outside this checkout, under `artifacts/riptel-3.1-pcmicro/`. All addresses below are RVAs. No GUI is needed; preserve original text and assets. All new commits have Codex co-authorship.
+
+## Initial original dispatch and static observations
+
+| Physical slot | Command | Handler RVA | Signed descriptor count | Width descriptors |
+| --- | --- | --- | --- | --- |
+| 45 | l | 0x1ed28 | -2 | 2, XY |
+| 52 | P | 0x1eb03 | -2 | 2, XY |
+| 53 | p | 0x1bc78 | -2 | 2, XY |
+| 13 | < | 0x1e80a | -4 | 2, 2, XY, XY |
+
+The original width helper **0x39de0** returns the literal descriptor width or, for signed byte -1, parser+0x39 coordinate size. The variable-argument numeric paths **0x3a819–0x3a82f / 0x3a996–0x3a9ac** update width only while the descriptor index is below the absolute descriptor count; later arguments retain the last width. Thus all l/P/p coordinates use XY. An important lead for <: its first two numerals are fixed width 2, then **every remaining numeral retains XY width**, potentially including later contour counts. Verify this through the original parser before publishing a simplified repeated `nverts:2` grammar.
+
+The numeric accumulator stores/increments its argument count and compares with **0x2001 (8193)** at **0x3a800 / 0x3a97d**, then enters state 8. Pending questions: whether 8193 is accepted, how excess input is discarded and whether dispatch still occurs. The numeric field's own two-character range is separately 1295 in base 36 or 4095 in base 64; no special 4096 representation has been found.
+
+Original P/l prologues reject only a one-argument input or an odd coordinate count, then use args[0] as the GDI vertex count. Their conversion loops initialize remaining count to **N+1** at **0x1ebca–0x1ebcf / 0x1edef–0x1edf4** and read that many pairs, but pass **N** to Polygon/Polyline at **0x1ec99 / 0x1eebe**. Filled p repeats the same pattern at **0x1bd2d–0x1bd41**. This is a possible extra-read defect, not evidence that an implicit closing point occupies the published Nth vertex. Native fixtures must provide trailing readable sentinel slots and capture the GDI count rather than treating stale data as an intentional closure. Do not run a count beyond the verified scratch extent.
+
+Multi-contour < uses a counts array at **0x89610** and points at **0x8b610**; the distance is 8192 bytes / 2048 count words. It requires at least two vertices per contour (**0x1e8a7**), accumulates all points into one buffer, checks supplied argument positions during traversal (**0x1e88e / 0x1e8d7**) and calls PolyPolygon with the declared number of contours and separate per-contour counts (**0x1ea72** on border-disabled path). No per-contour reallocation or independent 4096-point workspace appears. Need establish the aggregate parser budget, max contour count in each radix and all minimum/truncated cases natively.
+
+## Completed native parser and consumer verification
+
+`run/riptel-polygon-probe <artifact-root>/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll` passes **215,447 checks** on FreeBSD 15.1 amd64, clang 19.1.7, using the shared native i386 PE mapper with the unchanged verified driver. The wrapper compiles a temporary executable with `-m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`, removes it afterward and starts no GUI. The substantial check count reflects verification of every original decoded coordinate and every original point sent to a captured GDI consumer; fixture numeral construction/bounds do not inflate the count.
+
+Original byte parser **0x39e90**, reset **0x39d20**, width helper **0x39de0**, numeric decoders, J handler **0x1f32e**, n handler **0x1f39f**, downstream radix/coordinate setters **0x3e8eb/0x3e989** and all four polygon handlers execute. The probe uses both radices and every supported coordinate width **2..5**, with original J/n handlers establishing each setting. Maximum-size wire commands also carry their complete J/n prefixes; the exact width-three example published in the reference is parsed from a width-two starting state and sent to the original multi-contour consumer. The n setter explicitly admits 2..5 at **0x3e990–0x3e99a**. It verifies maximum-size l/P/p commands, each numeric coordinate, every point reaching Polygon/Polyline, multi-contour widths and all per-contour counts/points reaching PolyPolygon. Well-formed positive cases reach the original consumer; intentionally excessive/truncated cases stay on parser capture only.
+
+Exact hooks: framing-policy predicates **0x13c49/0x13c59** return zero (accept RIP framing); **0x45038, 0x18cf6, 0x18bf7, 0x3988f, 0x398ee, 0x13c69** are no-op entry/caret/UI/invalidation services; **0x343e4, 0x342ad, 0x34319, 0xe6e9** are no-op DC/clip/ROP services; selection helpers **0x13cfc, 0x13ce5, 0x13d10, 0x13d27** return handle 1; disabled viewport **0x3445b** and environment protection **0x3d9e1** return zero; error reporting **0x38e47** captures messages. Controlled IAT services: SetBkMode **0x963f0**, SelectObject **0x963c0**, Polygon **0x9641c**, Polyline **0x9647c**, PolyPolygon **0x96470**. Original world conversion **0x31084** and bounding-box expansion **0x254ee** execute against a 640×480 identity-scale fixture with stored viewport origin (5,3); every input point (1,2) reaches drawing as (6,5). GDI palette/rasterization/edge behavior and production host framing policy are outside this probe. CRT character-class table **0x87908** uses controlled ASCII classes, as in the existing header/framing probes.
+
+The initial parser experiment tested a directly supplied width 1; that is not a valid command setting. The completed tool uses original setters and all legal widths 2..5. No width-1 protocol claim is published. The original-control-flow findings did not require changing an artifact or silently repairing a handler.
+
+## Exact counts and single-contour closure
+
+All l/P/p count prefixes remain **two digits in the current radix**, independently of XY width. MegaNum maximum is **ZZ = 1295**; UltraNum maximum is **&& = 4095**. For the open case, `!|J10|lZZ` followed by 1295 XY pairs is the MegaNum maximum, and `!|J1S|l&&` followed by 4095 XY pairs is the UltraNum maximum; replace l with P or p for the closed/filled variants. J's own argument is always MegaNum. No special representation encodes 4096, and widening XY does not widen this count.
+
+Native sentinel verification proves the N+1 conversion is an extra read, not an implicit closing vertex: after supplying exactly N pairs, the fixture puts readable `(123,456)` in the next two argument slots. The original converts that pair to `(128,459)` in scratch slot N, while the captured Polygon/Polyline argument is exactly N. At N=4095 this means 4096 scratch points are converted but only 4095 are drawn. Even an open polyline follows this same defective loop. Closing comes from Polygon itself (Microsoft's primary [Polygon contract](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-polygon)); [Polyline](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-polyline) joins consecutive input points. Do not turn the stale extra pair into a closing point or add one to the wire count. The readme/HLP's advertised 4096 is not a reachable single-contour wire count; the evidence does not establish a special 4096 sentinel encoding or a portable allocation contract.
+
+## Exact multi-contour grammar and aggregate budget
+
+For <, the wire widths are **C:2 N1:2**, then N1 pairs of **x:XY y:XY**; every later contour is **Ni:XY** followed by Ni XY pairs. All numerals use current base math. The repeating-XY descriptor persists after the first four numerals: later contour counts are XY too. The native probe parses and draws two contours at every supported width/radix, verifying the full numeric vector. A later MegaNum contour with 4093 vertices parses and draws at width 3; describing every contour count as `:2` would incorrectly exclude it and desynchronize the stream.
+
+The parser accepts **8193 numeric values**, including counts. Explicit tests supply 8191, 8192, 8193 and 8194 complete two-character numeric fields; callbacks report 8191, 8192, 8193 and 8193 respectively. After collecting 8193, it discards further numeric input yet still dispatches the collected prefix at the command terminator. This is a shipped truncation defect, not safe rejection of an oversized shape. Production parsers should validate the complete self-consistent command before drawing.
+
+For a well-formed command with C contours and total V supplied vertices, the budget is **1 + C + 2V <= 8193**, with **Ni >= 2**, **C <= base²-1**, **N1 <= base²-1**, and **Ni <= base^XY-1 for i>1**. There is one shared aggregate budget, not 4096 vertices for each contour. The separate count workspace before the point buffer spans 2048 words; the valid numeric budget restricts contours earlier. Thus max C is **min(base²-1, floor(8192/5))**: **1295 (ZZ) in MegaNum**, **1638 (Pc) in UltraNum**, achieved with two vertices per contour. Both maxima are parsed and sent to original PolyPolygon. A parser-only test for 1639 two-vertex contours supplies 8196 numbers, captures only 8193 and deliberately never invokes the incomplete handler.
+
+At default XY=2, maximum aggregate V is **4094 in MegaNum**, achieved by four contours of **1295,1295,1295,209** (8193 numbers), or **4095 in UltraNum**, achieved by contours **4093,2** (8193 numbers; also reachable with one contour). With XY>=3, MegaNum also reaches **4095** using counts **2,4093**, since later contour counts follow XY width. Those three aggregate boundary cases are natively parsed and drawn. Increasing C consumes numeric budget and can lower V; this is not a per-contour 4096 limit.
+
+The < handler's minimum-count/error guards do not amount to complete count/length validation: its per-pair guard compares a contour-relative expression with the overall argument count, rather than the current absolute argument index. Excess or incomplete commands must not be fed to it as a proof of safe rejection. The published valid limits derive from complete wire representations plus original parser capacity and positive original-consumer cases.
+
+## Specification, validation and delivery
+
+The reference now publishes exact l/P/p prefixes, two-digit maxima and the extra-read/closure distinction; < uses the first-versus-later contour count widths, the aggregate equation, reachable vertex maxima and maximum contour counts. The coordinate chapter's limits snapshot and command inventory now agree; original `RIP_PolyPolygon` error evidence replaces the name hypothesis. Earlier editions, original text and binary assets are untouched.
+
+`run/format` applied; `run/lint` passed; `run/check-links` passed **4818 links across 196 files**; `git diff --check` and wrapper `bash -n` passed. The completed native probe passes **215,447 checks**, with all required positive count/width/consumer boundaries. No issue subquestion remains unresolved.
+
+Delivered in [PR #41](https://github.com/bbs-land/remote-imaging-protocol/pull/41), branch `issue-13-polygon-counts`, dependent on #40. Specification commit **b5ea028**; native-evidence checkpoint **2ae8009**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/2754e2d...issue-13-polygon-counts) starts at delivered #12's final commit. All new commits include Codex co-authorship. Review/merge is pending; no issue was manually closed and no PR was merged.
+
+Post-publication GitHub creation-order refresh confirms **#14** (arc start/end/sweep policy) is the oldest RealDeuce issue without a complete resolution PR. Start its branch and committed note from this delivery checkpoint; continue without waiting for merge.
+
+---
+
+[Research backlog](issue-backlog.md) · [Polygon reference](../ripscrip/2.3-shapes-and-fills.md#rip_polygon)
