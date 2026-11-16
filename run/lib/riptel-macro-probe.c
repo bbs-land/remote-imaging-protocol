@@ -762,25 +762,39 @@ static void parser_edge_checks(void) {
   }
 }
 static void port_size_query_checks(void) {
-  require(registered_callback("PORTW") == 0x2f863 &&
-              registered_callback("PORTH") == 0x2f642,
-          "original registration confirms port-size callback identities");
-  const char *cases[] = {"A$PORTW$B", "A$PORTH$B", "A$PORTW(CUR,PORT,DEVICE)$B",
-                         "A$PORTH(CUR,PORT,WORLD)$B"};
-  for (unsigned n = 0; n < 4; ++n) {
-    pipeline_prepare();
-    put16(ports + 8, 1);
-    port_entries[0x78] = 4;
-    put32(port_entries + 0x78 + 0xb, 640);
-    put32(port_entries + 0x78 + 0xf, 480);
-    char text[4096];
-    strcpy(text, cases[n]);
-    unsigned status = expand_codes(text, 0xff, 1);
-    require(status == 1 && !strcmp(text, cases[n]),
-            "ordinary macro expansion retains failed port-size expression");
-    require(
-        u16(variables + 0x436) == 1 && !errors,
-        "port-size parse-gate defect sets variable error without host report");
+  const char *names[] = {"PORTW",  "PORTH",  "PORTX0",
+                         "PORTX1", "PORTY0", "PORTY1"};
+  const unsigned callbacks[] = {0x2f863, 0x2f642, 0x2f95e,
+                                0x2fa45, 0x2fb2a, 0x2fc11};
+  const char *forms[] = {"",
+                         "(CUR)",
+                         "(1)",
+                         "(35)",
+                         "(CUR,PORT)",
+                         "(CUR,VIEW)",
+                         "(CUR,PORT,WORLD)",
+                         "(CUR,PORT,DEVICE)",
+                         "(cur,view,device)",
+                         "(035,view,world)"};
+  for (unsigned name = 0; name < 6; ++name) {
+    require(registered_callback(names[name]) == callbacks[name],
+            "original registration confirms all six port-query callbacks");
+    for (unsigned form = 0; form < 10; ++form) {
+      pipeline_prepare();
+      put16(ports + 8, 1);
+      port_entries[0x78] = 4;
+      put32(port_entries + 0x78 + 0xb, 640);
+      put32(port_entries + 0x78 + 0xf, 480);
+      char text[4096], expected[4096];
+      snprintf(text, sizeof text, "A$%s%s$B", names[name], forms[form]);
+      strcpy(expected, text);
+      unsigned status = expand_codes(text, 0xff, 1);
+      require(status == 1 && !strcmp(text, expected),
+              "ordinary expansion retains valid failed port-query expression");
+      require(u16(variables + 0x436) == 1 && !errors,
+              "all port-query parse-gate defects set variable error without "
+              "host report");
+    }
   }
 }
 

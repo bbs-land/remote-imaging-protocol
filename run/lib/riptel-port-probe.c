@@ -1,6 +1,7 @@
 /* Original port allocation and copy geometry, with controlled OS services.
  * Captures final rectangles without emulating Windows rasterization. */
 #include "riptel-probe-image.h"
+#include <ctype.h>
 #include <stdarg.h>
 #include <strings.h>
 static unsigned char ctx[512], ports[128], entries[36 * 0x78], world[128],
@@ -132,26 +133,92 @@ static void prepare(unsigned ww, unsigned wh, unsigned dw, unsigned dh) {
   errors = allocated_w = allocated_h = blits = stretches = 0;
   memset(captured, 0, sizeof captured);
 }
+static unsigned query_parse(unsigned count, char *params,
+                            unsigned char *decoded) {
+  return ((unsigned (*)(void *, unsigned, void *, void *))(image + 0x2f743))(
+             ctx, count, params, decoded) &
+         0xffff;
+}
 static void size_queries(void) {
-  char params[3 * 21] = {0};
-  strcpy(params, "CUR");
-  strcpy(params + 21, "PORT");
-  strcpy(params + 42, "DEVICE");
-  unsigned routines[] = {0x2f863, 0x2f642};
-  for (unsigned n = 0; n < 2; ++n)
-    for (unsigned count = 0; count <= 3; ++count) {
-      unsigned char decoded[12] = {0};
-      unsigned status = ((unsigned (*)(void *, unsigned, void *, void *))(
-                            image + 0x2f743))(ctx, count, params, decoded) &
-                        0xffff;
-      require(status == 1 && u16(decoded) == 1,
-              "original valid size-query parser returns AX one");
-      put16(vars + 0x436, 0);
-      const char *r = ((const char *(*)(void *, unsigned, void *))(
-          image + routines[n]))(ctx, count, params);
-      require(r == NULL && u16(vars + 0x436) == 1,
-              "original width/height callback rejects valid parser success");
-    }
+  static uint16_t character_types[256];
+  for (unsigned i = 0; i < 256; ++i)
+    character_types[i] = isdigit(i) ? 4 : 0;
+  pointer(image + 0x87908, character_types);
+  hook(0x65604, (void (*)(void))atoi);
+  char params[4 * 21] = {0};
+  const unsigned routines[] = {0x2f863, 0x2f642, 0x2f95e,
+                               0x2fa45, 0x2fb2a, 0x2fc11};
+  const unsigned currents[] = {0, 1, 35};
+  const char *types[] = {"PORT", "VIEW", "port", "view"};
+  const char *domains[] = {"WORLD", "DEVICE", "world", "device"};
+  for (unsigned c = 0; c < 3; ++c)
+    for (unsigned selector = 0; selector < 39; ++selector)
+      for (unsigned t = 0; t < 4; ++t)
+        for (unsigned d = 0; d < 4; ++d)
+          for (unsigned count = 0; count <= 3; ++count) {
+            put16(ports + 8, currents[c]);
+            if (selector < 36)
+              snprintf(params, 21, "%u", selector);
+            else
+              strcpy(params, selector == 36   ? "CUR"
+                             : selector == 37 ? "cur"
+                                              : "035");
+            strcpy(params + 21, types[t]);
+            strcpy(params + 42, domains[d]);
+            unsigned char decoded[12];
+            memset(decoded, 0xa5, sizeof decoded);
+            require(query_parse(count, params, decoded) == 1 &&
+                        u16(decoded) == (count && selector < 36 ? selector
+                                         : count && selector == 38
+                                             ? 35
+                                             : currents[c]) &&
+                        u32(decoded + 2) == (count > 1 ? t % 2 : 0) &&
+                        u32(decoded + 6) == (count > 2 ? d % 2 : 0) &&
+                        decoded[10] == 0xa5 && decoded[11] == 0xa5,
+                    "original port-query decoder accepts exactly positional "
+                    "port/type/domain prefixes and case-insensitive keywords");
+            for (unsigned n = 0; n < 6; ++n) {
+              put16(vars + 0x436, 0);
+              const char *r = ((const char *(*)(void *, unsigned, void *))(
+                  image + routines[n]))(ctx, count, params);
+              require(r == NULL && u16(vars + 0x436) == 1,
+                      "all six original port callbacks reject valid parser "
+                      "success");
+            }
+          }
+  const struct {
+    unsigned count;
+    const char *arg[4];
+  } invalid[] = {
+      {1, {""}},
+      {1, {"36"}},
+      {1, {"-1"}},
+      {1, {"Z"}},
+      {1, {"VIEW"}},
+      {1, {"WORLD"}},
+      {1, {"DEVICE"}},
+      {1, {"1x"}},
+      {2, {"CUR", "DEVICE"}},
+      {2, {"CUR", "WORLD"}},
+      {2, {"CUR", ""}},
+      {2, {"CUR", "BAD"}},
+      {3, {"CUR", "VIEW", "PORT"}},
+      {3, {"CUR", "PORT", "VIEW"}},
+      {3, {"CUR", "PORT", ""}},
+      {3, {"CUR", "PORT", "PIXEL"}},
+      {3, {"CUR", "DEVICE", "VIEW"}},
+      {4, {"CUR", "PORT", "WORLD", "DEVICE"}},
+  };
+  for (unsigned n = 0; n < sizeof invalid / sizeof invalid[0]; ++n) {
+    memset(params, 0, sizeof params);
+    for (unsigned a = 0; a < invalid[n].count; ++a)
+      strcpy(params + 21 * a, invalid[n].arg[a]);
+    unsigned char decoded[12];
+    memset(decoded, 0xa5, sizeof decoded);
+    require(query_parse(invalid[n].count, params, decoded) == 0,
+            "original decoder rejects shorthand, bad/missing/misordered fields "
+            "and extras; do not call inverted callbacks with invalid output");
+  }
 }
 
 int main(int argc, char **argv) {
@@ -261,7 +328,6 @@ int main(int argc, char **argv) {
                     8 * sizeof(int)),
             "source clipping shortens paired destination only without scaling");
   }
-  printf("PASS: %u port allocation/query/copy geometry checks\n",
-         checks);
+  printf("PASS: %u port allocation/query/copy geometry checks\n", checks);
   return 0;
 }
