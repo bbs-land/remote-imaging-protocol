@@ -17,6 +17,7 @@ run/format               # rewrite Markdown files to the repository style
 | [`check-links`](check-links) | Validates every `[text](path#anchor)` link across the doc trees - the target file must exist and the `#anchor` must match a heading slug. Skips fenced and inline code. Exits 1 on any broken link. | `deno task check-links` |
 | [`lint`](lint) | Reports Markdown files that do not match [`.prettierrc`](../.prettierrc). Reports only, never modifies. Exits 1 if any file is off-style. | `deno task lint` |
 | [`riptel-font-glyphs`](riptel-font-glyphs) | Renders four rotation oracles through the unmodified DLL and Marin font, using a private Xvfb display and Wine prefix; requires Wine and an i386 Windows cross-compiler. | `deno task riptel-font-glyphs` |
+| [`riptel-header-probe`](riptel-header-probe) | Executes original byte-parser and header/state routines with controlled host calls; no GUI. | `deno task riptel-header-probe` |
 | [`riptel-column-probe`](riptel-column-probe) | Executes original column/article handlers and overflow macro routines with controlled host services; no GUI. | `deno task riptel-column-probe` |
 | [`riptel-font-probe`](riptel-font-probe) | Executes original i386 decoder, font-handler and text-consumer instructions with controlled host calls; requires an x86 Unix host and a compiler supporting `-m32`. | `deno task riptel-font-probe` |
 | [`riptel-inspect`](riptel-inspect) | Fingerprints RIPtel 3.1’s driver and reads PE sections, dispatch records, RVA bytes and font payloads. `--help` lists options. | `deno task riptel-inspect` |
@@ -55,6 +56,6 @@ deno lint --ext=ts run/check-links
 deno check run/check-links      # type-check; no --ext needed
 ```
 
-The C sources `lib/riptel-font-probe.c`, `lib/riptel-column-probe.c` and `lib/riptel-font-glyphs.c` support the binary routine probes; they are compiled by their Bash entry points into a temporary directory and are not standalone scripts. Their wrappers verify the driver hash first and leave the supplied DLL unchanged. The glyph wrapper always allocates a private Xvfb display and Wine prefix before invoking any Wine utility.
+The C sources `lib/riptel-font-probe.c`, `lib/riptel-column-probe.c`, `lib/riptel-header-probe.c` and `lib/riptel-font-glyphs.c` support the binary routine probes; they are compiled by their Bash entry points into a temporary directory and are not standalone scripts. The native probes share PE mapping/observation helpers in `lib/riptel-probe-image.h`. Their wrappers verify the driver hash first and leave the supplied DLL unchanged. The glyph wrapper always allocates a private Xvfb display and Wine prefix before invoking any Wine utility.
 
 Files under `run/lib/` are picked up normally (`deno fmt run/lib`). Markdown - including this page - goes through `run/format`, not `deno fmt`.
