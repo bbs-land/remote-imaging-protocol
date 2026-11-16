@@ -36,7 +36,7 @@ Issue #17 is delivered in [PR #47](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #18 is delivered in [PR #48](https://github.com/bbs-land/remote-imaging-protocol/pull/48), branch `issue-18-date-time-format`, dependent on #47. Its [derivation](issue-18-date-time-format.md) settles numeric DATETIME bytes, zero padding, separators, absent line ending and YEAR syntax/rollover, with **388,202 native checks**. Specification commit `7e4a35e`; issue-only comparison starts at `314fae6`. Review/merge is pending.
 
-Next active issue: [#19](https://github.com/bbs-land/remote-imaging-protocol/issues/19), legacy ICN conversion palette and inherited filesystem effects. The post-#48 GitHub refresh confirms creation order; branch from this delivery checkpoint and begin a committed derivation. Queue remains #19–#28, #33, #38, #42, #46.
+Active: [#19](https://github.com/bbs-land/remote-imaging-protocol/issues/19), branch `issue-19-legacy-icon-conversion` from `36c17d2`. The [derivation](issue-19-legacy-icon-conversion.md) identifies a fixed default EGA conversion table and a possible stat-after-close timestamp defect; both require native execution and orchestration/startup traces. Next identify CRT functions, trace on-demand/startup conversion and capture original output/effects. Queue remains #19–#28, #33, #38, #42, #46.
 
 ## Queue and delivery
 
