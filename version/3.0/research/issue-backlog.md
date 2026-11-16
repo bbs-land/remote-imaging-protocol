@@ -8,7 +8,9 @@ Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-lan
 
 Issue #4 is delivered in [PR #30](https://github.com/bbs-land/remote-imaging-protocol/pull/30), branch `issue-4-column-overflow`; see its [derivation note](issue-4-column-overflow.md). Review/merge is pending. It depends on #29 and provides an issue-specific comparison from `ca92e10`.
 
-Next action: refresh GitHub state and start the oldest issue without a complete resolution PR, expected #5 (scene headers and unrecovered wire entry points). The column/overflow probe passes 23,013 checks and needs no GUI. Preserve the mandatory private-display rule for any future GUI work.
+Active: [issue #5](https://github.com/bbs-land/remote-imaging-protocol/issues/5), branch `issue-5-scene-headers`; read its [derivation note](issue-5-scene-headers.md). No resolution PR yet. The branch starts at `996b1a3` to reuse the delivered #3/#4 tools and workflow.
+
+Next action: recover header dispatch discrimination and segment effects from the driver, then trace each unresolved entry point. Stay on #5 until every requested item is resolved or explicitly classified from complete primary evidence. All new commits carry the requested Codex co-author trailer.
 
 ## Queue and delivery
 
