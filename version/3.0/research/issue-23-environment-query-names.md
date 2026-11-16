@@ -36,7 +36,11 @@ The white paper's **32767×32767** advertised world limit remains a historical s
 
 Ordinary expansion also executes the setters: `$WORLDH(CUR,1000)$` errors unchanged, `$WORLDH(5,1000)$` changes current height while slot five stays at 350, `$WORLDW(BOGUS,1234)$` changes current width without error, and `$COLORMODE(CUR,RGB,1)$` followed by `$COLORMODE$` activates/replies **1**. These parser-reachable cases agree with the callback fixtures; the findings are not confined to a direct helper API.
 
-Next update all affected canonical examples, syntax and restriction claims, with explicit wire/macro distinctions and the H/W setter defect, then required checks and one complete resolution PR. Original text editions stay unchanged; no PR yet.
+## Resolution and validation
+
+Specification commit **41b66bf** corrects COLORMODE’s undefined example and wire/macro range distinction; WORLDH/WORLDW names, syntax and setter examples; world range/overflow semantics; and the conflicting global world/RGB limit claims in chapters 1.2, 1.3 and 2.0. AGENTS.md and the probe catalogue record continuation guidance and expanded scope. The answer deliberately follows original executable validation rather than silently adopting the issue’s assumed global restrictions.
+
+Validation: **389,954 native macro/variable checks**, `run/lint`, `run/check-links` (**0 bad of 5,114 links across 208 files**) and `git diff --check` pass. Original text/assets are unchanged in the issue branch diff. Task-owned native/debug temporary paths were checked absent; no GUI or real file mutation runs. Ready to file the complete resolution PR, dependent on #55, with an issue-only comparison from **e5ed876**. No PR yet.
 
 ---
 
