@@ -2,6 +2,26 @@
   "tasks": {
     "check-links": "deno run --allow-read run/check-links",
     "lint": "bash run/lint",
-    "format": "bash run/format"
+    "format": "bash run/format",
+    "riptel-inspect": "deno run --allow-read run/riptel-inspect",
+    "riptel-chr-probe": "bash run/riptel-chr-probe",
+    "riptel-icon-conversion-probe": "bash run/riptel-icon-conversion-probe",
+    "riptel-table-probe": "bash run/riptel-table-probe",
+    "riptel-screen-probe": "bash run/riptel-screen-probe",
+    "riptel-macro-probe": "bash run/riptel-macro-probe",
+    "riptel-bezier-probe": "bash run/riptel-bezier-probe",
+    "riptel-arc-probe": "bash run/riptel-arc-probe",
+    "riptel-polygon-probe": "bash run/riptel-polygon-probe",
+    "riptel-fill-probe": "bash run/riptel-fill-probe",
+    "riptel-lines-probe": "bash run/riptel-lines-probe",
+    "riptel-port-probe": "bash run/riptel-port-probe",
+    "riptel-bitmap-probe": "bash run/riptel-bitmap-probe",
+    "riptel-framing-probe": "bash run/riptel-framing-probe",
+    "riptel-header-probe": "bash run/riptel-header-probe",
+    "riptel-column-probe": "bash run/riptel-column-probe",
+    "riptel-font-probe": "bash run/riptel-font-probe",
+    "riptel-font-glyphs": "bash run/riptel-font-glyphs",
+    "riptel-fastfont-probe": "bash run/riptel-fastfont-probe",
+    "riptel-image-probe": "bash run/riptel-image-probe"
   }
 }
