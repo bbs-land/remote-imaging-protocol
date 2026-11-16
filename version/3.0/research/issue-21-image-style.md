@@ -48,9 +48,31 @@ Original viewport-disabled bit 2 at port+0x17 yields `-1` for **getter and sette
 
 First probe failure was an inconsistent screen-port DC fixture: current logical screen port 5 still uses port zero’s DC, whereas an offscreen port uses its own DC. Preserving original selection exposed that error; fixing fixture DC initialization resolved it. A second expectation mistakenly treated a disabled-viewport setter as NULL; the original early gate returns `-1` as the getter does. Both corrections are reflected in assertions, not classified as driver failures.
 
+## Native JPEG preparation/scan-line checkpoint
+
+Expanded image probe passes **6,545 checks**. It preserves **0x37fb5** JPEG orchestration, **0x45d60** file/decompressor lifecycle, **0x29880** decoded-image preparation, **0x4d14d / 0x4d256 / 0x4d060 / 0x4d1fe** rectangle fitting/clear operations, **0x1525d** coordinate-map generation and **0x29ad0** scan-line painting. Controlled decoded images are 10×5 and 5×10, style rectangle (10,20,110,120); all **64 flag combinations** execute for both aspect orientations.
+
+Additional controlled services: dimension provider **0x57e80**, fopen/fclose **0x68f90 / 0x68ec0**, JPEG error/create/source/destroy **0x57fb0 / 0x57720 / 0x4aa40 / 0x57790**, setjmp **0x6c868**, temporary line-DIB allocation/header **0x4e13a / 0x4e103**, map allocation **0x15210**. The JPEG state dispatcher **0x29c30** is replaced with a single scripted decoded-image phase that supplies width/height, invokes original preparation **0x29880**, supplies one controlled byte row, invokes original scan-line consumer **0x29ad0**, then reports state-machine completion. This executes geometry and GDI consumers, not actual JPEG entropy/color decoding. Map/line buffers are owned static arrays, not leaks. IAT captures: stock brush **0x9640c**, FillRect **0x9667c**, OffsetRect **0x96610**, RealizePalette **0x963e0**, DeleteFileA **0x965dc**, StretchDIBits **0x96454**.
+
+Observed fills:
+
+| Flags affecting geometry/clear | Wide image fill | Tall image fill |
+| --- | --- | --- |
+| Neither ASPECT nor NOCLEAR | (10,20,110,120), one black FillRect | Same |
+| ASPECT, no NOCLEAR | (10,45,110,95), one black FillRect | (35,20,85,120), one black FillRect |
+| NOCLEAR, either ASPECT value | No FillRect | No FillRect |
+
+**ASPECT margins are not blacked out by this path.** High-level fitting supplies a fitted image rectangle to the lower wrapper; the later black clear covers only that fitted rectangle. Areas outside it retain prior contents, including under NOCLEAR. Other flag bits do not change these calls. Every actual row is painted through StretchDIBits with explicit **SRCCOPY 0xcc0020**, irrespective of the current vector write-mode convention. The stock BLACK_BRUSH selection also disproves an inherited current-background-color clear description for this implementation.
+
+Microsoft’s [FillRect contract](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-fillrect) describes filling with the supplied brush and exclusion of right/bottom borders; its [StretchDIBits contract](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-stretchdibits) defines the explicit raster-operation parameter. These current API documents describe the captured boundary, not a claim that the 1997 driver supported modern JPEG/PNG passthrough or exact host pixel parity. The native fixture checks original geometry/brush/ROP arguments without substituting its own fitting math.
+
+Original file/JPEG wrapper opens and closes the controlled image exactly once and never calls DeleteFileA for any flag combination, including DELETE. This is native proof for that wrapper path; complete presentation/disabled-area and client post-transfer entry points remain to test before resolving the issue’s deletion question. The first scripted decoder return used status 0 and caused another original-loop iteration; original status 1 means complete. Correcting the service status fixed the fixture, with no driver failure inferred.
+
+Client post-transfer cleanup lead: EXE thunk **0x36f82** jumps through IAT **0x45b838** to **RIP_AddTempFile**, not a direct delete routine. EXE **0x206eb–0x206fe** tests transfer-flag global **0x44c0b0** bit 1 and registers the completed filename for later cleanup. Original block-mode handler **0x24b4e** sends message 0x4c9 with the command’s fourth decoded field shifted to the high word, OR’d with file type, at **0x24f58–0x24f6b** and analogous protocol branches. This is separate transfer state, not an image-style flag read. Trace the eventual temp cleanup and native presentation/encoded reception before claiming all delivered-file behavior.
+
 ## Next action
 
-IMGSTYLE/state checkpoint is complete, but the issue remains incomplete. Extend the native probe through original JPEG preparation/FillRect consumers with controlled decoder/file services; audit client post-transfer deletion separately, then execute actual outer reset/header producers on protected/surviving ports. Verify one-pixel/disabled presentation, all image flags, local versus received entry points and exact COPY/black-fill behavior under NOCLEAR+ASPECT. Keep remaining evidence gaps here and do not file the resolution PR yet.
+Style and JPEG preparation/clear/scan-line checkpoints are complete, but the issue remains incomplete. Next extend through common presentation 0x3815f / explicit display 0x3880e and client export 0x69d8, with zero-area/one-pixel/default-area cases and captured file/temp operations. Audit post-transfer/encoded reception cleanup independently of style bit 2. Then execute original outer reset/header producers on protected/surviving ports. Do not file the resolution PR until those remaining state/effect questions are settled.
 
 ---
 

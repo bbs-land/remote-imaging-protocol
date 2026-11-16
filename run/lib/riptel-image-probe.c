@@ -171,6 +171,164 @@ static void style_checks(void) {
   require(!macro(6, numeric) && u16(vars + 0x436),
           "numeric IMGSTYLE flag argument is not a keyword");
 }
+static unsigned fills, file_opens, file_closes, file_deletes, decoder_steps;
+static unsigned table_allocations, scan_copies, source_width, source_height;
+static unsigned char source_row[32], destination_row[1024];
+static void *source_row_pointer = source_row;
+static int fill_rects[8][4];
+static unsigned char fake_dib[256], fake_error[256];
+static unsigned short map_tables[2][2048];
+static unsigned zero(void) { return 0; }
+static void dimensions(const char *name, unsigned *w, unsigned *h) {
+  (void)name;
+  *w = source_width;
+  *h = source_height;
+}
+static void *open_image(const char *name, const char *mode) {
+  require(name && mode && !strcmp(name, "TEST.JPG"),
+          "JPEG opens only controlled file");
+  ++file_opens;
+  return fake_dib;
+}
+static int close_image(void *f) {
+  require(f == fake_dib, "JPEG closes controlled file");
+  ++file_closes;
+  return 0;
+}
+static void *decoder_error(void *p) {
+  (void)p;
+  return fake_error;
+}
+static void *line_dib(unsigned width, unsigned height) {
+  require((short)width > 0 && (short)height == 1,
+          "bounded temporary JPEG line bitmap");
+  return fake_dib;
+}
+static void *dib_header(void *p) {
+  (void)p;
+  return fake_dib;
+}
+static unsigned short *map_allocate(unsigned count) {
+  require((short)count > 0 && (unsigned short)count < 2048 &&
+              table_allocations < 2,
+          "bounded JPEG coordinate map allocation");
+  return map_tables[table_allocations++];
+}
+static unsigned __attribute__((stdcall)) stock(unsigned n) {
+  require(n == 4, "original image clear uses BLACK_BRUSH");
+  return 1004;
+}
+static unsigned __attribute__((stdcall)) fill(unsigned dc, const int *r,
+                                              unsigned brush) {
+  require(dc == 1 && brush == 1004 && fills < 8,
+          "captured black FillRect on current drawing DC");
+  memcpy(fill_rects[fills++], r, 16);
+  return 1;
+}
+static unsigned __attribute__((stdcall)) offset(int *r, int x, int y) {
+  r[0] += x;
+  r[2] += x;
+  r[1] += y;
+  r[3] += y;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) one_arg(unsigned a) {
+  (void)a;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) delete_image(const char *name) {
+  require(name && *name, "captured nonempty image deletion name");
+  ++file_deletes;
+  return 1;
+}
+static unsigned __attribute__((stdcall))
+scan_copy(unsigned dc, int x, int y, int w, int h, int sx, int sy, int sw,
+          int sh, const void *bits, const void *header, unsigned usage,
+          unsigned rop) {
+  (void)x;
+  (void)y;
+  (void)sx;
+  (void)sy;
+  (void)sw;
+  (void)sh;
+  (void)usage;
+  require(dc == 1 && w > 0 && h == 1 && bits == destination_row &&
+              header == fake_dib,
+          "original JPEG scanline reaches captured current-DC StretchDIBits");
+  require(rop == 0xcc0020, "original JPEG scanline uses explicit SRCCOPY");
+  ++scan_copies;
+  return 1;
+}
+static unsigned decoder_step(void *c, unsigned dc) {
+  require(c == ctx && dc == 1 && !decoder_steps,
+          "one controlled decoded-image preparation phase");
+  ++decoder_steps;
+  put32(image_state + 0x231, source_width);
+  put32(image_state + 0x235, source_height);
+  require(((unsigned (*)(void *))(image + 0x29880))(ctx) == 1,
+          "original JPEG preparation executes with controlled dimensions");
+  put32(image_state + 0x26a, source_width);
+  put32(image_state + 0x286, 1);
+  pointer(image_state + 0x14a, &source_row_pointer);
+  pointer(image_state + 0x13a, destination_row);
+  memset(source_row, 0x5a, sizeof source_row);
+  ((void (*)(void *, unsigned))(image + 0x29ad0))(ctx, dc);
+  return 1;
+}
+static void jpeg_checks(void) {
+  hook(0x57e80, (void (*)(void))dimensions);
+  hook(0x68f90, (void (*)(void))open_image);
+  hook(0x68ec0, (void (*)(void))close_image);
+  hook(0x57fb0, (void (*)(void))decoder_error);
+  hook(0x57720, noop);
+  hook(0x4aa40, noop);
+  hook(0x6c868, (void (*)(void))zero);
+  hook(0x57790, noop);
+  hook(0x29c30, (void (*)(void))decoder_step);
+  hook(0x4e13a, (void (*)(void))line_dib);
+  hook(0x4e103, (void (*)(void))dib_header);
+  hook(0x15210, (void (*)(void))map_allocate);
+  pointer(image + 0x9640c, (void *)stock);
+  pointer(image + 0x9667c, (void *)fill);
+  pointer(image + 0x96610, (void *)offset);
+  pointer(image + 0x963e0, (void *)one_arg);
+  pointer(image + 0x965dc, (void *)delete_image);
+  pointer(image + 0x96454, (void *)scan_copy);
+  for (unsigned tall = 0; tall < 2; ++tall)
+    for (unsigned flags = 0; flags < 64; ++flags) {
+      prepare();
+      source_width = tall ? 5 : 10;
+      source_height = tall ? 10 : 5;
+      memcpy(port(0) + 0x4a, (int[]){10, 20, 110, 120}, 16);
+      put16(port(0) + 0x5a, flags);
+      fills = file_opens = file_closes = file_deletes = decoder_steps =
+          table_allocations = scan_copies = 0;
+      unsigned status =
+          ((unsigned (*)(void *, const char *, int, int, int, int))(
+              image + 0x37fb5))(ctx, "TEST.JPG", 10, 20, 110, 120) &
+          0xffff;
+      require(status == 1 && !errors && file_opens == 1 && file_closes == 1 &&
+                  decoder_steps == 1,
+              "original JPEG orchestration/preparation completes for all style "
+              "flags");
+      require(file_deletes == 0, "no original local JPEG wrapper/preparation "
+                                 "deletion for any flag combination");
+      require(fills == !(flags & 4),
+              "NOCLEAR suppresses original preparation FillRect");
+      require(scan_copies > 0,
+              "original scanline consumer paints controlled decoded row");
+      if (fills) {
+        const int *r = fill_rects[0];
+        require(r[0] == ((flags & 1) && tall ? 35 : 10) &&
+                    r[2] == ((flags & 1) && tall ? 85 : 110) &&
+                    r[1] == ((flags & 1) && !tall ? 45 : 20) &&
+                    r[3] == ((flags & 1) && !tall ? 95 : 120),
+                "ASPECT clear covers the fitted image only, leaving original "
+                "margins outside it");
+      }
+    }
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -190,6 +348,7 @@ int main(int argc, char **argv) {
                          (isupper(c) ? 1 : 0) | (islower(c) ? 2 : 0);
   pointer(image + 0x96618, (void *)set_rect);
   style_checks();
+  jpeg_checks();
   printf("PASS: %u image-style checks\n", checks);
   return 0;
 }
