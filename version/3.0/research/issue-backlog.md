@@ -6,7 +6,7 @@
 
 Updated 2026-11-16. Active: [issue #3](https://github.com/bbs-land/remote-imaging-protocol/issues/3), on branch `issue-3-extended-font-style`. No resolution PR yet. Read the [derivation note](issue-3-extended-font-style.md) before continuing.
 
-Next action: recover and fingerprint the RIPtel driver, then trace the `y` dispatch record, parser and font-style consumers. Do not advance until every question in #3 is answered.
+Next action: finalize and validate the #3 reference changes and reproduction tools, then file the complete resolution PR. The DLL, handler/consumer geometry and original-font rotation oracle have been recovered; see the derivation note. Do not advance until every question in #3 is answered.
 
 ## Queue and delivery
 
