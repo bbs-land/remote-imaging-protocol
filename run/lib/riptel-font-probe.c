@@ -179,7 +179,14 @@ static void decode(const char *wire, uint32_t *args) {
     pos += widths[i];
   }
 }
-static unsigned native_copies, copy_mask;
+static unsigned native_copies, copy_mask, active_rop2;
+static unsigned __attribute__((stdcall)) captured_rop2(unsigned dc,
+                                                       unsigned mode) {
+  require(dc == 1, "original write mode sets ROP2 on current DC");
+  unsigned old = active_rop2;
+  active_rop2 = mode;
+  return old;
+}
 static unsigned char copy_canvas[16], lookup_engine[0x900], lookup_font[0x8d],
     lookup_meta[128];
 static unsigned char slot_sentinels[224];
@@ -591,7 +598,7 @@ int main(int argc, char **argv) {
    */
   memcpy(image + 0x40660, saved_presenter, 5);
   hook(0x13c69, noop);
-  hook(0xe6e9, noop);
+  pointer(image + 0x96408, (void *)captured_rop2);
   pointer(image + 0x963bc, (void *)set_bitmap);
   pointer(image + 0x96618, (void *)glyph_rect);
   pointer(image + 0x963e4, (void *)glyph_blt);
@@ -610,6 +617,10 @@ int main(int argc, char **argv) {
         context, 1, command, NULL);
     require(style[4] == mode,
             "original write-mode command stores requested mode");
+    const unsigned vector_modes[] = {13, 7, 15, 9, 6};
+    require(active_rop2 == vector_modes[mode],
+            "original activation selects COPY/XOR/OR/AND/NOT ROP2 before glyph "
+            "copy");
     for (unsigned mask = 0; mask < 256; ++mask) {
       unsigned char bits = mask;
       memset(copy_canvas, 3, sizeof copy_canvas);
