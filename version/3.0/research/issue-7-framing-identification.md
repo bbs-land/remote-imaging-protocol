@@ -18,6 +18,18 @@ Issue #6 establishes the host evaluator’s two ordinary passes, first deferring
 
 No GUI/Wine is needed. Capture outputs and policy services natively/static-only; every new commit uses `Co-authored-by: Codex <codex@openai.com>`.
 
+## First static findings
+
+The original byte parser, not SyncTERM, accepts **nine level digits** in `1`..`9`: `0x39f08–0x39f10` recognizes those digits and `0x3a654–0x3a66e` appends until count 9, then a tenth digit enters discard state 12. Thus a third digit remains part of the level key, not the command character. The complete shipped dispatch table contains only empty, 1, 2, 3 and 9 keys; deeper keys are syntactically recognized but have no shipped command handlers. Unknown prefixes/opcodes resynchronize at pipe or line ending.
+
+Text escape state `0x3aa63–0x3aae2` strips the backslash only before SOH, STX or pipe; otherwise it retains backslash plus next byte for later processing. This directly corrects the alleged global framing unescape. Continuation state `0x3a42e–0x3a464` skips CR/LF/form-feed and resumes the prior state on the first byte after the physical line ending. Native distinguishing cases remain to execute.
+
+Literal **`RIPSCRIP030001`** is at data RVA `0x803b0` (file offset `0x7e9b0`), including the terminating NUL in storage. It is read by autosense callback **`0x355d9–0x35680`** and RIPVER callback **`0x4b6c1–0x4b6e2`**. The earlier reference’s strings-absence claim is false for this unchanged artifact. Autosense selector 0 sends the literal without CR/LF if emulation is enabled; selector 3 formats `%s%c` with a final CR. Selectors 1/2 call original `ripRIPscripEmulation` `0x31420` to disable/enable. RIPVER zero-argument returns the same literal; extra arguments set its syntax-error flag. An independent compatible reply can use the inherited **generic vendor 0** field; distinguish the explicit reconstruction policy from historical TeleGrafix bytes.
+
+Original outer `RIP_ProcessBuffer` **`0x57a2–0x58e1`** checks emulation for every byte, tries RIP byte parsing first when enabled, then routes unconsumed/fallback text through **`0x4d2d0`**. That text router calls column-flow interception `0x3ce24` (not ANSI), then ANSI parser **`0x37b7c`** when the text-window path permits it. Original ANSI dispatch **`0x37ab9`** reaches autosense callback above. The ANSI path remains reachable while RIP processing is disabled; do not adopt SyncTERM’s one-way-disable limitation.
+
+The ANSI parser recognizes ESC only in idle state (`0x37c05`); pending-sequence states have different handling. An ESC inside a pending RIP string reaches that RIP state rather than globally preempting it. Native tests must establish the exact interrupted-input outcomes and retention/resumption before publication.
+
 ## Next action
 
 Trace `0x39e90`, its framing/ANSI caller and version-producing callbacks; capture original byte parsing with distinguishable level/escape/ESC streams. Record all service hooks and exact state layouts, then test the complete reachable state transitions before publishing the answer.
