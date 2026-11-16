@@ -99,6 +99,26 @@ static void load_checks(void) {
       require(rop == ops[mode] && transparent == -1,
               "explicit BMM uses requested ordinary ROP with no color key");
     }
+  const char *legacy[] = {"TEST.ICN", "TEST.HIC", "TEST.MSK",
+                          "TEST.icn", "TEST.hic", "TEST.msk"};
+  const char *normalized[] = {"TEST.BMP", "TEST.BMH", "TEST.BMM"};
+  for (unsigned icon = 0; icon <= 1; ++icon)
+    for (unsigned n = 0; n < 6; ++n)
+      for (unsigned absent = 0; absent < 2; ++absent) {
+        prepare();
+        missing = absent;
+        unsigned args[9] = {0};
+        invoke(icon ? 0xcb38 : 0xc569, args, legacy[n]);
+        require(
+            lookup_calls == 1 && !strcmp(lookup_name, normalized[n % 3]),
+            "legacy load names normalize before the only controlled lookup");
+        require(
+            display_calls == !absent,
+            "missing normalized bitmap skips display without legacy lookup");
+        if (!absent)
+          require(!strcmp(displayed_name, normalized[n % 3]),
+                  "legacy reference displays normalized BMP/BMH/BMM name");
+      }
   prepare();
   unsigned args[9] = {0};
   invoke(0xc569, args, "MASK.MSK");

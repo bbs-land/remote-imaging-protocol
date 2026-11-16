@@ -20,9 +20,9 @@ A significant timestamp lead needs verification: the success tail **0x30355–0x
 
 ## Native checkpoint: palette, raster and filesystem effects
 
-New `run/riptel-icon-conversion-probe DLL` executes original converter **0x2fd73**, export **0x6a3c** and extension helpers **0x65549 / 0x65660 / 0x65766**, close **0x6b490**, handle invalidation **0x70250**, handle lookup **0x702e0**, fstat **0x6bf40** and unlink/remove **0x6b480 / 0x6b450**. Memory-only services replace open **0x6b560**, filelength **0x75790**, read **0x6b1c0**, seek **0x6b100**, write **0x6aed0**, commit **0x6ae60**, utime **0x6bd50**, error report **0x38ddf**, non-retrieving lookup **0x3f80e** and four memory/string primitives **0x68d70 / 0x68910 / 0x65431 / 0x65442 / 0x654a8** (five entry points). IAT controls: CloseHandle **0x965cc**, DeleteFileA **0x965dc**, MessageBoxA **0x966f4** and GetLastError **0x96600**. Original lower CRT functions retain their own error/descriptor behavior. No disk files are created/deleted by the modeled conversion, and no GUI is shown. The wrapper SHA-verifies the DLL, disables cores and removes its temporary build directory automatically.
+New `run/riptel-icon-conversion-probe DLL` executes original converter **0x2fd73**, export **0x6a3c** and extension helpers **0x65549 / 0x65660 / 0x65766**, close **0x6b490**, handle invalidation **0x70250**, handle lookup **0x702e0**, fstat **0x6bf40** and unlink/remove **0x6b480 / 0x6b450**. Memory-only services replace open **0x6b560**, filelength **0x75790**, read **0x6b1c0**, seek **0x6b100**, write **0x6aed0**, commit **0x6ae60**, utime **0x6bd50**, error report **0x38ddf**, non-retrieving lookup **0x3f80e** and five memory/string primitives **0x68d70 / 0x68910 / 0x65431 / 0x65442 / 0x654a8** (five entry points). IAT controls: CloseHandle **0x965cc**, DeleteFileA **0x965dc**, MessageBoxA **0x966f4** and GetLastError **0x96600**. Original lower CRT functions retain their own error/descriptor behavior. No disk files are created/deleted by the modeled conversion, and no GUI is shown. The wrapper SHA-verifies the DLL, disables cores and removes its temporary build directory automatically.
 
-Initial matrix passes **6,499 checks**, FreeBSD 15.1 amd64 / clang 19.1.7, including widths 1–32, two distinguishable rows, all sixteen indexes, both zeroed and poisoned current-palette structures; original BMP header/palette/bottom-up raster are captured. File effects cover every header/palette/row write failure, every input header/plane read failure, source/destination open failure and source-delete/utime failure.
+Expanded matrix passes **895,372 checks**, FreeBSD 15.1 amd64 / clang 19.1.7, including every width 1–640, two distinguishable rows, all sixteen indexes, both zeroed and poisoned current-palette structures; original BMP header/palette/bottom-up raster are captured. File effects cover every header/palette/row write failure, every input header/plane read failure, source/destination open failure and source-delete/utime failure.
 
 Fixed output RGB values by slot 0–15:
 
@@ -39,21 +39,47 @@ Destination **0x8101** means binary/write/create with **no truncation**: origina
 
 The original export always requests extension literal **BMP** at **0x79d5c**, including HIC/MSK input; native export cases confirm every one writes TEST.BMP. Do not silently carry over the older ICN→BMP / HIC→BMH / MSK→BMM conversion table as this export’s output naming behavior.
 
-## Client and playback trace in progress
+## Completed client and playback trace
 
-The static unpacked EXE imports RIP_ConvertIconToBmp at VA **0x45b830**, reached through thunk RVA **0x36f8e**. Its direct call is **0x206cf** inside **0x203e0**, after transfer engine **0x24020** returns. The completed-file list at global VA **0x44c0c0** is traversed; extension tests **0x2067b–0x206bf** select ICN/HIC/MSK and pass those names to the same export. Thus this actual conversion path uses the fixed table and defective timestamp tail above. Resolve startup claims against the complete reference scan before publishing.
+The static unpacked EXE imports RIP_ConvertIconToBmp at VA **0x45b830**, reached through thunk RVA **0x36f8e**. Its direct call is **0x206cf** inside **0x203e0**, after transfer engine **0x24020** returns. The completed-file list at global VA **0x44c0c0** is traversed; extension tests **0x2067b–0x206bf** select ICN/HIC/MSK and pass those names to the same export. Thus this actual conversion path uses the fixed table and defective timestamp tail above. A complete byte-reference scan below finds no independent startup conversion caller. The older 2.x ICONS startup scan/prompt is not an inherited behavior established in this recovered client. Conversion occurs after file reception, not as an implicit raw decoder in ordinary image loading.
 
-Original LOAD_BITMAP **0xc569** and LOAD_ICON **0xcb38** normalize `.ICN`→`.BMP`, `.HIC`→`.BMH`, `.MSK`→`.BMM` **before** their one lookup and ordinary BMP display. For example, bitmap normalization **0xc6eb–0xc740**, lookup **0xc781**. A raw legacy file merely present beside a missing normalized bitmap does not reach converter 0x2fd73 in those handler paths. Expand the existing routing fixture to verify all three names and missing cases. Do not call filename normalization itself conversion.
+Original LOAD_BITMAP **0xc569** and LOAD_ICON **0xcb38** normalize `.ICN`→`.BMP`, `.HIC`→`.BMH`, `.MSK`→`.BMM` **before** their one lookup and ordinary BMP display. For example, bitmap normalization **0xc6eb–0xc740**, lookup **0xc781**. A raw legacy file merely present beside a missing normalized bitmap does not reach converter 0x2fd73 in those handler paths. Expanded native routing checks in `run/riptel-bitmap-probe` verify both handlers, all three extensions in upper/lowercase and normalized-file present/missing outcomes: exactly one normalized lookup, display only when found; the complete bitmap probe now passes **5,035 checks**. Those cases control lookup services, not the network transfer. Do not call filename normalization itself conversion.
+
+The EXE-reference audit scans every raw-backed PE section for absolute target words and all .text offsets for E8 CALL / E9 JMP relative targets. Results:
+
+| Image / target | Absolute references | Relative CALL/JMP references |
+| --- | --- | --- |
+| EXE thunk VA 0x436f8e | None | CALL at RVA 0x206cf only |
+| EXE IAT VA 0x45b830 | .text RVA 0x36f90 (the thunk operand) only | None |
+| DLL export VA 0x10006a3c | None (the PE export table stores its RVA) | None |
+| DLL converter VA 0x1002fd73 | None | CALL at RVA 0x6aec only |
+
+The client imports this export statically, and the only local caller is the completed-file path. The transfer wrapper is called from EXE RVAs 0x5ca9 / 0x6874 / 0x867b / 0x87e7; 0x203e0 calls transfer engine 0x24020 at 0x20470, then iterates received files at 0x2051b–0x20711. The engine handles receive protocol selection, file reception and completed-file list construction; the adjacent code includes Telnet/socket suspension/restoration. A separate startup folder scan or alternate palette-selection converter is absent from these converter references. This establishes the actual recovered call graph; it does not assert what unexamined earlier clients did or what an external program might do with the public export.
+
+Static reproduction uses Python 3 + Capstone 5.0.7 and the catalogued `riplib/scripts/dll-disasm.py`. For the DLL:
+
+```sh
+python3 riplib/scripts/dll-disasm.py artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll 0x2fd73 --end 0x30491 -c 1000
+python3 riplib/scripts/dll-disasm.py artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll 0x6bf40 --end 0x6c290 -c 500
+```
+
+For the EXE, import that script as a Python module, set `IB = 0x400000` (its default is the DLL base), and invoke its main with the unpacked EXE path, RVA 0x203e0, `--end 0x20745 -c 500`. Import mapping identifies the converter IAT/thunk above. The complete reference scan can be reproduced independently by unpacking each section’s raw bytes and, for every .text offset `o`, checking byte E8/E9 followed by signed displacement `d` against `image_base + section_rva + (o - section_raw) + 5 + d`; absolute references are little-endian four-byte target values. Using all byte offsets avoids a linear disassembler stopping at embedded data.
+
+## Complete issue answer and scope
+
+The palette is the fixed RGBQUAD table, independent of current drawing or desktop palette. There is only one original converter in the recovered driver; any caller of this export, including the client’s post-reception path, uses that table. The presumed separate startup/on-demand converters are not a supported distinction in this RIPtel 3.1 artifact. Playback rewrites names and may request missing assets; it does not decode an existing raw ICN beside a missing BMP. Converted-file display is a separate operation with its own current-palette mapping.
+
+Source deletion is an actual attempted operation of this driver, not merely an older UI statement. Timestamp preservation is **not** a reliable contract: this driver closes the source first, ignores failed fstat and attempts utime using stack residue before unconditionally attempting source deletion. No fabricated timestamp can specify that residue. A new implementation that deliberately preserves source access/modification times is fixing this defect, not reproducing a verified original result. Original 2.x documentation remains evidence of intended earlier behavior only. Export destination naming (always BMP), non-truncating output and ignored cleanup/timestamp/delete failures are observable additional qualifications to inherited orchestration claims.
 
 ## Rejected readings / harness corrections
 
 - Initial static shorthand mistakenly labeled **0x65424** destination removal; its target **0x75820** actually uppercases the filename. The first captured event sequence (`SOFosTD`, without a destination-delete event) exposed this. The original output-open decoder independently confirms non-truncating OPEN_ALWAYS.
 - First probe used an incorrect guessed DeleteFileA IAT slot; gdb showed the unresolved import jump. Correct slot is **0x965dc**, established by disassembling **0x6b450**. The failed wrapper and scoped debug build removed their binaries; no core was retained. This is a harness error, not a driver defect.
-- The inherited claim that RIPtel ships no ICN files is too broad: this specific recovered MSI cabinet explicitly lists LORDARM[R]/other LORD legacy ICNs alongside BMPs. `lordarmr.icn` is 50566 bytes, SHA-256 **18dea2a2a2dc7a758936f430bd22023ec290428f0f2704bda56561799c21f65f**, header 7f 02 9d 00 (640×158); its paired BMP is 50678 bytes, SHA-256 **f66bf0ccc57a1a66cf09ffdf2f0728514c5d6eb299dbe848b3a35cb84ce6c562**. `cabextract -l artifacts/riptel-3.1-pcmicro/msi/Data1.cab` proves these are cabinet contents, not newly converted probe output. Correct the source-scope claim without changing assets.
+- The inherited claim that RIPtel ships no ICN files is too broad: this specific recovered MSI cabinet explicitly lists LORDARMR/other LORD legacy ICNs alongside BMPs. `lordarmr.icn` is 50566 bytes, SHA-256 **18dea2a2a2dc7a758936f430bd22023ec290428f0f2704bda56561799c21f65f**, header 7f 02 9d 00 (640×158); its paired BMP is 50678 bytes, SHA-256 **f66bf0ccc57a1a66cf09ffdf2f0728514c5d6eb299dbe848b3a35cb84ce6c562**. `cabextract -l artifacts/riptel-3.1-pcmicro/msi/Data1.cab` proves these are cabinet contents, not newly converted probe output. Correct the source-scope claim without changing assets.
 
 ## Next action
 
-Finish complete EXE converter call/reference scan and startup scope, add legacy/missing routing checks, verify the original full-file palette/raster at a larger width, then update the 3.0 reference and cross-version conversion link with explicit historical defects. Add AGENTS.md cautions, run required checks and file #19 only after the startup/on-demand premise is fully reconciled.
+All issue subquestions are settled by the completed static/native record. Update the 3.0 reference and bitmap delta with fixed palette and actual orchestration, qualify the 2.x inheritance link and 1.54 no-palette note, then record AGENTS.md cautions and required checks before filing the complete #19 PR.
 
 ---
 

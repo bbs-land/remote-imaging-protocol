@@ -186,7 +186,7 @@ static const unsigned ega_rgb[] = {0x000000, 0x0000aa, 0x00aa00, 0x00aaaa,
                                    0xff5555, 0xff55ff, 0xffff55, 0xffffff};
 static void palette_and_pixels(void) {
   /* Two rows expose bottom-up order, every index and partial-byte padding. */
-  for (unsigned width = 1; width <= 32; ++width) {
+  for (unsigned width = 1; width <= 640; ++width) {
     for (unsigned changed = 0; changed < 2; ++changed) {
       reset(width, 2);
       memset(palette, changed ? 0xff : 0, sizeof palette);
@@ -238,11 +238,10 @@ static void effects_and_failures(void) {
   for (unsigned i = 0; i < sizeof stat_buffer; ++i)
     require(stat_buffer[i] == 0xa5,
             "failed original fstat leaves stat untouched");
-  for (unsigned which = 0; which < 3; ++which) {
+  for (unsigned which = 0; which < 2; ++which) {
     reset(16, 2);
     fail_times = which == 0;
     fail_delete_source = which == 1;
-    fail_delete_target = which == 2;
     require(convert() == 1 && clock_attempts == 1 && removed_source == 1,
             "time/delete failure does not change successful conversion status");
     require(source_exists == (which == 1),
@@ -274,6 +273,12 @@ static void effects_and_failures(void) {
     require(convert() == 0 && source_exists && !target_exists && dialogs == 1,
             "every input header/plane read failure removes output only");
   }
+  reset(16, 2);
+  fail_write = 3;
+  fail_delete_target = 1;
+  require(
+      convert() == 0 && source_exists && target_exists && dialogs == 1,
+      "failed output cleanup can leave partial output beside retained source");
   const char *extensions[] = {"ICN", "HIC", "MSK"};
   for (unsigned i = 0; i < 3; ++i) {
     reset(16, 2);
