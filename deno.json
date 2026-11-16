@@ -4,6 +4,7 @@
     "lint": "bash run/lint",
     "format": "bash run/format",
     "riptel-inspect": "deno run --allow-read run/riptel-inspect",
+    "riptel-column-probe": "bash run/riptel-column-probe",
     "riptel-font-probe": "bash run/riptel-font-probe",
     "riptel-font-glyphs": "bash run/riptel-font-glyphs"
   }
