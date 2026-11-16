@@ -12,6 +12,8 @@ Source: `/home/tracker1/src/rip-tools/artifacts/RIPtel/ICONS/` - 116 script file
 | SyncTERM-descriptor-only | 3                |
 | COMPLETELY NEW           | 11               |
 
+**Bézier preview clarification:** the z/x examples below are truncated previews, not complete commands. Original parsing confirms the shared z/t/x grammar is `num:2 count:2 [type:1 record]...`, with no separate base-point header; literal types 0/3/4 have one pair and 1/2/5/6 have three pairs. See the [complete annotated z/t decodes](../ripscrip/2.2-curves.md#annotated-original-z-example) and [primary-source verification](issue-15-bezier-contracts.md).
+
 ## 1. Full opcode census
 
 Levels: no digit = level 0; `1x` = level 1; `2x` = level 2. No level-3+ commands appear in the corpus. Coordinates are MegaNums (2-char base-36) after the ubiquitous `J10` prologue.

@@ -482,6 +482,16 @@ int main(int argc, char **argv) {
   pointer(image + 0x963c0, (void *)select_object);
   pointer(image + 0x9641c, (void *)polygon);
   pointer(image + 0x9647c, (void *)polyline);
+  prepare_drawing(0, 2);
+  invoke_poly(1, count, captured);
+  require(!errors && draws == 1 && draw_count == 203 && draw_points[0] == 154 &&
+              draw_points[1] == 294 && draw_points[404] == 154 &&
+              draw_points[405] == 324,
+          "complete original z corpus vector draws 203 points with implicit "
+          "closure");
+  check_generator((int[]){0, 0, 0, 0, 0, 0, 64, 0}, 4);
+  require(!memcmp(generated, (int[]){0, 0, 1, 0, 8, 0, 64, 0}, 8 * sizeof(int)),
+          "four-point cubic oracle skips t=3/4 and retains exact endpoint");
   numerical_checks();
   consumer_checks();
   parser_checks();

@@ -79,9 +79,13 @@ Original parsing verifies all seven literal types, all three opcodes, both radix
 
 Controlled hooks: parser framing/protection **0x13c49 / 0x13c59 / 0x3d9e1**, dispatch bookkeeping **0x45038**, allocation/free **0x6bd40 / 0x6bd30**, reporter **0x38e47**, synchronization **0x3988f / 0x398ee**, selection helpers **0x13ce5 / 0x13cfc / 0x13d10 / 0x13d27**, handler guards/state setup **0x3445b / 0x18cf6 / 0x343e4 / 0x342ad / 0xe6e9 / 0x34319 / 0x18bf7**. Imports replaced: **0x963f0 SetBkMode**, **0x963c0 SelectObject**, **0x9641c Polygon**, **0x9647c Polyline**; ASCII classes via **0x87908**. The controlled drawing DC is 1, master DC 2, skipping unrelated invalidation-region construction. The source DLL stays unchanged; only its mapped service entries change. A first handler fixture crashed because return-side host services 0x34319/0x18bf7 were initially omitted; adding those hooks fixed the harness. This was not a driver rejection or curve defect. Every failed/completed build directory was removed by EXIT cleanup, and core dumps were disabled.
 
-## Next action
+## Complete answer and validation
 
-The primary-source contract is now recovered. Add the complete annotated original z/t decodes and numerical consumer contract to the implementor reference, replace the inherited base-point grammar and floating-point/B-spline claims, update the inventory/census, then run required checks and file the complete #15 PR. No PR yet.
+The [corrected curves reference](../ripscrip/2.2-curves.md#rip_bezier) now answers all four issue questions: ordinary cubic Bernstein geometry with X4/Y4 endpoint terms; exact integer sampling/range/zero/rounding and independent input/output caps; open-only terminal-curve rejection with whole-primitive semantics and closed/filled closure; and complete annotated original z/t decodes. The filled command, command inventory and census clarification use the same grammar. The [consumer techspec](../techspecs/2.2-bezier-consumer-contract.md) preserves arithmetic and topology separately from wire syntax. Earlier-client runtime behavior is not inferred, and verbatim text/assets remain untouched.
+
+Final native invocation with `extracted/shapes.rip` passes **16,900,918 checks**. It additionally submits the complete original first-z vector through the unchanged common consumer with a controlled 1280×960 world / 640×480 device conversion, capturing **203 points**, first (154,294), last (154,324); the polygon supplies the last straight closure. The file's complete scene is not rendered: unrelated command callbacks are deliberately skipped. An explicit four-point numerical oracle `(0,0),(0,0),(0,0),(64,0), N=4` gives **(0,0),(1,0),(8,0),(64,0)**, proving the missing t=3/4 sample independently of the general numerical expression.
+
+The wrapper's scoped build directory is removed after each success or failure. No source artifact was modified and no GUI process was started. `run/lint` passes, `run/check-links` reports **0 bad of 4894 links across 200 files**, and `git diff --check` passes. PR delivery is recorded below once published.
 
 ---
 
