@@ -39,3 +39,5 @@ git diff --check
 ```
 
 All **1,576,902 native macro checks** pass. New tests execute no audio or desktop GUI and write no real sound files; their temporary build directory is removed on wrapper EXIT. PR/request payloads use scoped TemporaryDirectory. Initial cross-reference used a nonexistent summary anchor; corrected it to the actual `sounds-active` heading before publication. Final required check results and PR link follow at delivery.
+
+Delivered in [PR #62](https://github.com/bbs-land/remote-imaging-protocol/pull/62), dependent on #61. Specification commit **a68e71b**, issue-only comparison starts at **b0827a4**. Required checks pass: 1,576,902 macro checks, formatting, 0 bad of 5,229 links and diff check. Task temporary build/PR paths are removed. Refreshed queue selects #33 next; do not merge or manually close #28.
