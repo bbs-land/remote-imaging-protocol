@@ -46,7 +46,7 @@ Issue #22 is delivered in [PR #55](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #23 is delivered in [PR #56](https://github.com/bbs-land/remote-imaging-protocol/pull/56), branch `issue-23-environment-query-names`, dependent on #55. Its [derivation](issue-23-environment-query-names.md) records **389,954 native checks**, exact -1 sentinel, no X/Y aliases, macro RGB 1..8 versus wire eight-only, actual 0..65535 world setter gates, asymmetric WORLD overflow and inverted H/W target setters. Specification commit `41b66bf`; issue-only comparison starts at `e5ed876`. Required checks pass; original text/assets unchanged; task temp paths removed. Review/merge is pending.
 
-Next: [#24](https://github.com/bbs-land/remote-imaging-protocol/issues/24), graphics-style/port/environment state ownership, defaults and text cursor updates. Post-#56 refresh confirms #3–#23 have complete PRs; remaining queue #24–#28, #33, #38, #42, #46, #51, #53, #54. Create the #24 branch from this delivery checkpoint and record original state-producer/activation/backup leads before changes.
+Active: [#24](https://github.com/bbs-land/remote-imaging-protocol/issues/24), graphics-style/port/environment state ownership, defaults and text cursor updates. Branch `issue-24-drawing-state-ownership` starts at `e33a1d7`; [incremental derivation](issue-24-drawing-state-ownership.md). Post-#56 refresh confirms #3–#23 have complete PRs; remaining queue #24–#28, #33, #38, #42, #46, #51, #53, #54. Next: trace original initialization/activation and extend native selection/backup/cursor fixtures before specification edits.
 
 ## Queue and delivery
 
