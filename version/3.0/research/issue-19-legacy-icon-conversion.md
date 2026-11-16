@@ -77,9 +77,13 @@ Source deletion is an actual attempted operation of this driver, not merely an o
 - First probe used an incorrect guessed DeleteFileA IAT slot; gdb showed the unresolved import jump. Correct slot is **0x965dc**, established by disassembling **0x6b450**. The failed wrapper and scoped debug build removed their binaries; no core was retained. This is a harness error, not a driver defect.
 - The inherited claim that RIPtel ships no ICN files is too broad: this specific recovered MSI cabinet explicitly lists LORDARMR/other LORD legacy ICNs alongside BMPs. `lordarmr.icn` is 50566 bytes, SHA-256 **18dea2a2a2dc7a758936f430bd22023ec290428f0f2704bda56561799c21f65f**, header 7f 02 9d 00 (640×158); its paired BMP is 50678 bytes, SHA-256 **f66bf0ccc57a1a66cf09ffdf2f0728514c5d6eb299dbe848b3a35cb84ce6c562**. `cabextract -l artifacts/riptel-3.1-pcmicro/msi/Data1.cab` proves these are cabinet contents, not newly converted probe output. Correct the source-scope claim without changing assets.
 
+## Validation
+
+`run/lint` passes; `run/check-links` reports **0 bad of 4994 links across 204 files**; `git diff --check` passes. The original-instruction probes pass **895,372 conversion checks** and **5,035 bitmap checks**. Original text/assets remain unchanged; commit trailers include Codex co-authorship. Task-owned conversion/debug temporary directories were removed by wrapper EXIT traps or Python TemporaryDirectory.
+
 ## Next action
 
-All issue subquestions are settled by the completed static/native record. Update the 3.0 reference and bitmap delta with fixed palette and actual orchestration, qualify the 2.x inheritance link and 1.54 no-palette note, then record AGENTS.md cautions and required checks before filing the complete #19 PR.
+All issue subquestions are settled by native checkpoint **e068876** and the completed static record. The 3.0 content-file reference and bitmap delta now state the actual conversion contract; the 2.x inheritance link and 1.54 no-palette note distinguish evidence scope. AGENTS.md records resumption cautions. Next run required checks and file the complete #19 PR with an issue-only comparison from 36c17d2.
 
 ---
 

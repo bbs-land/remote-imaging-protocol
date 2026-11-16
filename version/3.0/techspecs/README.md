@@ -12,7 +12,7 @@ Original byte-level documentation of the binary formats shipped with **RIPtel Vi
   - **[2.1 Arc Consumer Contract](2.1-arc-consumer-contract.md)** - original integer endpoint rays, command-specific empty/full decisions and skewed contour closure, verified through native consumers
   - **[2.2 Bézier Consumer Contract](2.2-bezier-consumer-contract.md)** - original integer interpolation, missing sample, device conversion order and independent 4094-point expansion budget
 - **3. File formats** _(deltas from v2.0)_
-  - **[3.0 Bitmap Masks (delta)](3.0-bitmap-mask-delta.md)** - explicit BMM stamping, accepted depth profile, RGB put-mode algebra, missing/dimension behavior, separate color-key selection and shipped 16/32-bit limitations, with a four-pixel oracle
+  - **[3.0 Bitmaps, Masks and Legacy Conversion (delta)](3.0-bitmap-mask-delta.md)** - explicit BMM stamping, accepted depth profile, RGB put-mode algebra, missing/dimension behavior, separate color-key selection and shipped 16/32-bit limitations, with a four-pixel oracle; fixed EGA legacy-conversion RGBQUAD table and packed output layout
   - **[3.2 FastFont Additions (.RFF / atf.cfg)](3.2-fastfont-additions.md)** - the three added families (BRUSH, EUREKA, OAKLAND), style-table observations, the regenerated atf.cfg
   - **[3.3 MicroANSI Delta (RIPscrip.maf)](3.3-microansi-maf-delta.md)** - new resolution set, cleaned directory, revised artwork vs the RIPterm 2.30 containers
 - **4. Storage & asset delivery** _(delta from v2.0)_

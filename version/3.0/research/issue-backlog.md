@@ -36,7 +36,7 @@ Issue #17 is delivered in [PR #47](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #18 is delivered in [PR #48](https://github.com/bbs-land/remote-imaging-protocol/pull/48), branch `issue-18-date-time-format`, dependent on #47. Its [derivation](issue-18-date-time-format.md) settles numeric DATETIME bytes, zero padding, separators, absent line ending and YEAR syntax/rollover, with **388,202 native checks**. Specification commit `7e4a35e`; issue-only comparison starts at `314fae6`. Review/merge is pending.
 
-Active: [#19](https://github.com/bbs-land/remote-imaging-protocol/issues/19), branch `issue-19-legacy-icon-conversion` from `36c17d2`. The [derivation](issue-19-legacy-icon-conversion.md) identifies a fixed default EGA conversion table and a possible stat-after-close timestamp defect; both require native execution and orchestration/startup traces. Next identify CRT functions, trace on-demand/startup conversion and capture original output/effects. Queue remains #19–#28, #33, #38, #42, #46.
+Active: [#19](https://github.com/bbs-land/remote-imaging-protocol/issues/19), branch `issue-19-legacy-icon-conversion` from `36c17d2`. The [derivation](issue-19-legacy-icon-conversion.md) settles the fixed EGA palette, failed stat-after-close timestamp path, source deletion, non-truncating writes, always-BMP export naming and actual post-transfer/client call graph. Native probes pass **895,372 conversion checks** and **5,035 bitmap checks**; checkpoint `e068876`. Reference/cross-version links and AGENTS.md now updated. Next required checks and complete PR delivery. Queue remains #19–#28, #33, #38, #42, #46.
 
 ## Queue and delivery
 
