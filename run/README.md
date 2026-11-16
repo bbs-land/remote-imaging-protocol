@@ -28,7 +28,7 @@ run/format               # rewrite Markdown files to the repository style
 | [`riptel-bezier-probe`](riptel-bezier-probe) | Executes original Bézier parsing/numerics and captured drawing consumers; no GUI. | `deno task riptel-bezier-probe` |
 | [`riptel-arc-probe`](riptel-arc-probe) | Executes original angle normalization and curve consumers with captured GDI calls; no GUI. | `deno task riptel-arc-probe` |
 | [`riptel-polygon-probe`](riptel-polygon-probe) | Executes original polygon count/coordinate parsing and controlled drawing consumers; no GUI. | `deno task riptel-polygon-probe` |
-| [`riptel-fill-probe`](riptel-fill-probe) | Executes original preset/custom fill-mask storage, monochrome brush construction and direct rectangle consumers with controlled GDI services; no GUI. | `deno task riptel-fill-probe` |
+| [`riptel-fill-probe`](riptel-fill-probe) | Executes original preset/custom fill-mask storage, monochrome brush construction and direct rectangle consumers including border pen/ROP/pass selection with controlled GDI services; no GUI. | `deno task riptel-fill-probe` |
 | [`riptel-lines-probe`](riptel-lines-probe) | Executes original pixel/point placement, viewport clipping and pen-width decisions with controlled GDI services; no GUI. | `deno task riptel-lines-probe` |
 | [`riptel-port-probe`](riptel-port-probe) | Executes original port definition, allocation, size-query failure and copy geometry with controlled OS services; no GUI. | `deno task riptel-port-probe` |
 | [`riptel-bitmap-probe`](riptel-bitmap-probe) | Executes original bitmap/icon routing, BMP reader/remapping/renderer, color-key translation, masks and merging with controlled file/GDI services; no GUI. | `deno task riptel-bitmap-probe` |

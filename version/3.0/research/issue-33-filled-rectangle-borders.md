@@ -21,3 +21,18 @@ Controlled service delta from #12: stdcall CreatePen **0x963d4** captures style/
 GDI boundary: Microsoft's primary [CreatePen contract](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createpen), read 2026-11-16, says dotted/dashed styles are supported only at width one or less; width>1 yields a solid pen, while width zero means one device pixel. That explains a **wide solid border**, not an unconditional K solid/COPY policy. Native captures establish the original requests; this API-defined raster limitation is a separate source-based inference. Pattern-gap background behavior is explicit in the original one-pass/two-pass calls, not an invented GDI simulation.
 
 Next: reconcile K and N prose, document the original custom-pen limitation and width distinction, run required checks, file complete PR dependent on #62. Original text/assets/artifacts remain unchanged and wrapper task build paths are removed on EXIT.
+
+## Complete reconciliation and validation
+
+The K entry now states current logical pen plus current write mode, including a width-one dotted/XOR example, the custom-type fixed GDI pen limitation and documented wide-pen solid behavior. It also distinguishes one opaque combined pass (line flags exactly1) from separate fill and transparent-gap border passes (flags0/2/3). N's contradictory unconditional solid/COPY paragraph is replaced by the original verified K rule; this does not generalize untested raster behavior to other filled primitives or earlier clients. The exact requested answer is therefore **not an unconditional solid COPY border**: the selected pen and write mode survive, subject to the documented GDI mapping/width limits. No exact Windows pixel-raster claim is made.
+
+Reproduction (FreeBSD 15.1 / clang19.1.7, native i386; wrapper verifies the DLL hash and removes its scoped build):
+
+```sh
+run/riptel-fill-probe /path/to/original/ripscrip.dll
+run/lint
+run/check-links
+git diff --check
+```
+
+The native matrix passes **119,770 checks**, including all #12 brush/pattern cases and 4,000 new K executions. Historical text, earlier-version reference and original assets/artifacts are unchanged. Final required checks and PR link are recorded at delivery.
