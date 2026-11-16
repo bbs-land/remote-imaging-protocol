@@ -4,7 +4,7 @@
 
 ## Scope and source
 
-Started 2026-11-16 for [issue #11](https://github.com/bbs-land/remote-imaging-protocol/issues/11), oldest RealDeuce issue without a complete resolution PR after #37 publication. Branch `issue-11-pixel-pen-units` starts at `068f84c` (delivered #10). Required answers: X versus j at world 1280×960/device 640×480, effects of port/viewport origins, thick=3 units under uniform and nonuniform conversion, and the inherited open-polyline N-vertices/N-1-segments wording. Exact edge/cap raster reproduction and marker behavior are outside this issue.
+Started 2026-11-16 for [issue #11](https://github.com/bbs-land/remote-imaging-protocol/issues/11), oldest RealDeuce issue without a complete resolution PR after #37 publication. Branch `issue-11-pixel-pen-units` starts at `068f84c` (delivered #10). Delivered in [PR #39](https://github.com/bbs-land/remote-imaging-protocol/pull/39), dependent on #37; primary specification commit `37553e5`, [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/068f84c...issue-11-pixel-pen-units). Review/merge pending. Required answers: X versus j at world 1280×960/device 640×480, effects of port/viewport origins, thick=3 units under uniform and nonuniform conversion, and the inherited open-polyline N-vertices/N-1-segments wording. Exact edge/cap raster reproduction and marker behavior are outside this issue.
 
 Use the unchanged RIPtel 3.1 / driver 3.0.7 DLL, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`, preferred base 0x10000000, with the established provenance and native isolation rules. Addresses below are RVAs. No GUI or desktop Wine.
 
@@ -64,9 +64,9 @@ The [3.0 Lines chapter](../ripscrip/2.1-lines.md) now answers both requested exa
 
 The final lines probe passes **165,027 checks**. Repository-wide `run/lint`, `run/check-links` and `git diff --check` pass; the link check before this final note update reported 0 bad of 4,756 links across 194 files. The fixture captures original decisions with controlled GDI services and does not claim Windows pen-edge/cap or font rendering. Required issue questions are complete; no alias or coordinate-space hypothesis remains in the corrected entries.
 
-## Next action
+## Delivery and continuation
 
-File the complete #11 resolution PR dependent on #37 with an issue-only comparison from 068f84c. Record delivery and refresh GitHub before selecting issue #12. Keep primary artifact identity and all controlled-service limits with the PR; all new commits include Codex co-authorship.
+Published [PR #39](https://github.com/bbs-land/remote-imaging-protocol/pull/39) with the complete coordinate/thickness/origin/polyline contract, source identity, native verification and `Closes #11`. Do not merge or manually close issues. New commits include Codex co-authorship. GitHub refreshed after publication confirms #12 is next: canonical eight-byte fill masks, contradictory numeric examples and device/port/viewport/primitive tiling phase. The refresh also adds RealDeuce issue #38 after #33 in creation order; append it at the end rather than reordering by issue number.
 
 ---
 
