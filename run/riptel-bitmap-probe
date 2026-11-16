@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Execute original RIPtel bitmap-routing/classifier instructions in an isolated 32-bit routine probe.
+# Execute original RIPtel bitmap-routing/renderer/mask instructions in an isolated 32-bit routine probe.
 # Requires an i386/amd64 Unix host and a C compiler with 32-bit runtime support.
 # Exits nonzero on wrong artifact, build failure, or failed observation.
 set -euo pipefail

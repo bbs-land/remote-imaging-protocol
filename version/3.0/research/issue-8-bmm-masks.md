@@ -4,7 +4,7 @@
 
 ## Status and scope
 
-Started 2026-11-16 for [issue #8](https://github.com/bbs-land/remote-imaging-protocol/issues/8), branch `issue-8-bmm-masks`, based on `a6da898` (delivered #7 / PR #34). GitHub refreshed after that delivery confirms #8 is the oldest RealDeuce issue without a complete resolution PR. Investigation incomplete; no resolution PR yet.
+Started 2026-11-16 for [issue #8](https://github.com/bbs-land/remote-imaging-protocol/issues/8), branch `issue-8-bmm-masks`, based on `a6da898` (delivered #7 / PR #34). GitHub refreshed after that delivery confirms #8 is the oldest RealDeuce issue without a complete resolution PR. Derivation and implementor specification complete; resolution PR pending publication.
 
 Required answers: accepted BMM pixel depths; bit/index versus resolved palette RGB; mask polarity; source/mask composition order under COPY/XOR/OR/AND/NOT; dimensions and missing/mismatched behavior; interaction with BMP transparent-color flags; and an independent small icon/mask pixel oracle. Do not prescribe a plausible 1-bit/nonzero-index convention from missing corpus examples. Establish whether a BMM is automatically consumed as an attached mask at all, or only an explicitly loaded bitmap using ordinary put modes.
 
@@ -76,11 +76,11 @@ The expanded [`run/riptel-bitmap-probe`](../../../run/riptel-bitmap-probe), incl
 run/riptel-bitmap-probe /path/to/unchanged/ripscrip.dll
 ```
 
-The wrapper verifies the DLL hash before mapping; it builds native i386 code with `cc -m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`. This checkpoint ran on FreeBSD 15.1 amd64 with clang 19.1.7 and Capstone 5.0.6. No original file or installed font is modified; no GUI is involved.
+The wrapper verifies the DLL hash before mapping; it builds native i386 code with `cc -m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie`. This checkpoint ran on FreeBSD 15.1 amd64 with clang 19.1.7 and Capstone 5.0.7. No original file or installed font is modified; no GUI is involved.
 
 Original instructions now execute **0x4a410** end to end, including BMP reader **0x4edc5**, geometry **0x49340**, 4-to-8-bit expansion **0x48a20**, palette remapping **0x4ea60**, display **0x4e42b**, mask generation **0x493c0**, background/source capture orchestration **0x48f20/0x49000**, requested-ROP intermediate composition, pure merge **0x49f90** and final COPY. The native fixture supplies an in-memory file (`fopen/fread/ftell/fseek/fclose` hooks), global-memory APIs, palette entries, RGB drawing surfaces, compatible-DC creation **0x48d60**, HBITMAP-to-DIB extraction **0x4de5f**, error capture and invalidation. The full hook/IAT list is executable in `renderer_checks()`; filename/lookup and early handler controls remain in `main()`. Palette activation mode 1 is not exercised; fixtures use the existing current palette (renderer mode 2). GUI dialogs are counted, never displayed.
 
-The surface model implements ordinary GDI RGB raster operations and nearest-neighbor scaling. Its RGB encoding is independently specified by Microsoft’s [GDI BITMAPINFOHEADER documentation](<https://learn.microsoft.com/en-us/previous-versions/dd183376(v=vs.85)>); [StretchDIBits](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-stretchdibits) documents the DIB_RGB_COLORS interpretation used by the actual import call. These current API references explain the controlled boundary; they are **not** proof that a modern header/compression/OS capability existed in the 1997 client. Original decoding/remapping/classification/merge are executed, whereas Windows rasterization, device-palette quantization and arbitrary stretch filters are not emulated or claimed tested.
+The surface model implements ordinary GDI RGB raster operations and nearest-neighbor scaling. Its RGB encoding is independently specified by Microsoft’s [GDI BITMAPINFOHEADER documentation](https://learn.microsoft.com/en-us/previous-versions/dd183376%28v%3Dvs.85%29); [StretchDIBits](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-stretchdibits) documents the DIB_RGB_COLORS interpretation used by the actual import call. These current API references explain the controlled boundary; they are **not** proof that a modern header/compression/OS capability existed in the 1997 client. Original decoding/remapping/classification/merge are executed, whereas Windows rasterization, device-palette quantization and arbitrary stretch filters are not emulated or claimed tested.
 
 Fixtures are valid 40-byte Windows BMP headers, one plane, BI_RGB (0), positive height, packed color table and bottom-up DWORD-padded rows. Ordinary explicit BMM loads accept depths **1/4/8/16/24/32** and all five modes. Palette index 0 is deliberately **white**, index 1 **black**, raster 0,1,0,1: AND retains the background at index-zero white pixels and clears at index-one black pixels. Thus a nonzero-index transparency rule predicts the wrong result. Other modes agree with the independent RGB oracle. The reader opens exactly the requested file, once per invocation; there is no companion lookup within the original downstream code.
 
@@ -101,6 +101,10 @@ Internally 1-bit classification compares the source bit to zero/nonzero translat
 ### Fixture failures resolved
 
 The first full-render attempt rejected an apparently huge temporary surface: the native replacement had read entire argument slots although original 0x48d60 uses signed **low 16-bit** dimensions (upper bits may be stale). Masking/sign-extending those low words fixed the ABI. The next run drew correctly but counted `DestroyBitmapDC()` mismatch errors because the SelectObject fixture always returned 1; maintaining each DC’s selected bitmap restored the original previous-object/cleanup contract. These were harness defects, not client failures, and are not published as rendering limitations.
+
+## Publication validation
+
+The [bitmap-mask delta](../techspecs/3.0-bitmap-mask-delta.md) answers every #8 subquestion, with qualified pointers from the inherited 2.0 format page and updated 3.0 command/content-role entries. `run/riptel-bitmap-probe` passes 4,975 checks; repository-wide `run/lint`, `run/check-links` (0 bad of 4,665 links across 191 files) and `git diff --check` pass. The first link check caught Prettier angle-wrapping a URL containing parentheses; percent-encoding that URL fixed it. AGENTS.md now records the signed-low-word and SelectObject fixture requirements.
 
 ## Next action
 
