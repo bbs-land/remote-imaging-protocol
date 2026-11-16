@@ -13,8 +13,11 @@ static const char alphabet[] =
 static unsigned zero(void) { return 0; }
 static void capture(void *ctx, unsigned s, unsigned n, uint32_t *args,
                     const char *tail) {
-  (void)ctx;
-  (void)tail;
+  if (s == 40 || s == 49) {
+    ((void (*)(void *, unsigned, uint32_t *, const char *))(
+        image + (s == 40 ? 0x1f32e : 0x1f39f)))(ctx, n, args, tail);
+    return;
+  }
   require(n <= 8193, "original parser argument capture bound");
   ++calls;
   slot = s;
@@ -70,6 +73,16 @@ static void number(unsigned value, unsigned width, unsigned radix) {
   if (value)
     require(0, "fixture value fits declared field width");
   position += width;
+}
+static void configured_start(char command, unsigned radix, unsigned width) {
+  start('J');
+  number(radix, 2, 36);
+  wire[position++] = '|';
+  wire[position++] = 'n';
+  number(width, 1, radix);
+  number(0, 3, radix);
+  wire[position++] = '|';
+  wire[position++] = command;
 }
 static void points(unsigned n, unsigned width, unsigned radix) {
   for (unsigned i = 0; i < n; ++i) {
@@ -217,7 +230,7 @@ int main(int argc, char **argv) {
     for (unsigned width = 2; width <= 5; ++width) {
       unsigned maximum = radix * radix - 1;
       for (unsigned c = 0; c < 3; ++c) {
-        start(commands[c]);
+        configured_start(commands[c], radix, width);
         number(maximum, 2, radix);
         points(maximum, width, radix);
         parse(radix, width);
@@ -252,6 +265,20 @@ int main(int argc, char **argv) {
       expected_vertices = 5;
       consumer(0x1e80a);
     }
+  strcpy(wire, "!|J10|n3000|<0203001002001002001002002001002001002");
+  position = strlen(wire);
+  parse(36, 2);
+  require(calls == 1 && slot == 13 && count == 13 &&
+              !memcmp(captured,
+                      (unsigned[]){2, 3, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2},
+                      13 * sizeof(unsigned)),
+          "exact reference stream changes XY width and parses later count as "
+          "three digits");
+  expected_counts[0] = 3;
+  expected_counts[1] = 2;
+  expected_contours = 2;
+  expected_vertices = 5;
+  consumer(0x1e80a);
   /* 8193 numeric arguments are accepted; subsequent fields are discarded.
    * These intentionally inconsistent counts are parser-capture-only cases. */
   for (unsigned n = 8191; n <= 8194; ++n) {
