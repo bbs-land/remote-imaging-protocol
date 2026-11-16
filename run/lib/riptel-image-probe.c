@@ -53,6 +53,7 @@ static void prepare(void) {
   memset(options, 0, sizeof options);
   memset(image_state, 0, sizeof image_state);
   memset(params, 0, sizeof params);
+  put16(ctx, 0x9df3);
   pointer(ctx + 0x22, ports);
   pointer(ports, entries);
   pointer(ctx + 0xe, world);
@@ -64,6 +65,8 @@ static void prepare(void) {
   put32(world + 0x28, 960);
   put32(world + 0x2c, 640);
   put32(world + 0x30, 480);
+  put32(ports + 0x3a, 640);
+  put32(ports + 0x3e, 480);
   defined_port(0, 1, 0);
   put32(ctx + 0x62, 1);
   result[0] = 0;
@@ -329,6 +332,93 @@ static void jpeg_checks(void) {
     }
 }
 
+static unsigned lookup_calls, access_calls, placeholders, notices, redraws;
+static unsigned lookup_image(void *c, char *name, unsigned mode,
+                             unsigned retrieve) {
+  require(c == ctx && !strcmp(name, "TEST.JPG") && mode == 0x35 &&
+              retrieve <= 1,
+          "original image presentation looks up one JPG resource");
+  ++lookup_calls;
+  return 0;
+}
+static int access_image(const char *name, unsigned mode) {
+  require(!strcmp(name, "TEST.JPG") && mode == 0,
+          "controlled existing JPEG access check");
+  ++access_calls;
+  return 0;
+}
+static unsigned is_jpeg(const char *name) {
+  require(!strcmp(name, "TEST.JPG"),
+          "controlled existing JPEG signature classification");
+  return 1;
+}
+static void placeholder(void *c, int a, int b, int d, int e, const char *name) {
+  (void)a;
+  (void)b;
+  (void)d;
+  (void)e;
+  (void)name;
+  require(c == ctx, "captured image placeholder drawing boundary");
+  ++placeholders;
+}
+static void notice(void *c, unsigned id, unsigned where) {
+  (void)c;
+  (void)id;
+  (void)where;
+  ++notices;
+}
+static void redraw(void *c, void *a, void *b, unsigned flags) {
+  (void)a;
+  (void)b;
+  require(c == ctx && ((flags & 0xffff) == 0 || (flags & 0xffff) == 32),
+          "captured image area redraw geometry boundary");
+  ++redraws;
+}
+static void presentation_checks(void) {
+  hook(0x3f80e, (void (*)(void))lookup_image);
+  hook(0x758e0, (void (*)(void))access_image);
+  hook(0xf363, (void (*)(void))is_jpeg);
+  hook(0x383b0, (void (*)(void))placeholder);
+  hook(0x41b8, (void (*)(void))notice);
+  hook(0x3ea2e, (void (*)(void))redraw);
+  hook(0x654a8, (void (*)(void))strlen);
+  hook(0x68910, (void (*)(void))strcpy);
+  for (unsigned flags = 0; flags < 64; ++flags)
+    for (unsigned entry = 0; entry < 2; ++entry)
+      for (unsigned area = 0; area < 3; ++area) {
+        prepare();
+        memcpy(port(0) + 0x4a, (int[]){10, 20, 110, 120}, 16);
+        if (area == 1)
+          wire_style(0, 0, 0, 0, flags);
+        else {
+          if (area == 2)
+            memset(port(0) + 0x4a, 0, 16);
+          put16(port(0) + 0x5a, flags);
+        }
+        source_width = 10;
+        source_height = 5;
+        fills = file_opens = file_closes = file_deletes = decoder_steps =
+            table_allocations = scan_copies = 0;
+        lookup_calls = access_calls = placeholders = notices = redraws = 0;
+        if (entry)
+          ((void (*)(void *, const char *))(image + 0x69d8))(ctx, "TEST.JPG");
+        else
+          ((unsigned (*)(void *, const char *, unsigned))(image + 0x3880e))(
+              ctx, "TEST.JPG", 1);
+        unsigned ignored = area == 2 && !entry;
+        require(!errors && file_deletes == 0 && lookup_calls == !ignored,
+                "all presentation paths retain image files for every style "
+                "flag combination");
+        require(file_opens == !ignored && file_closes == file_opens &&
+                    decoder_steps == file_opens,
+                "all-zero style falls back while only raw-zero explicit "
+                "presentation is ignored");
+        require(!placeholders && notices == ignored,
+                "raw-zero image sentinel blocks explicit entry only, with "
+                "notification");
+      }
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -349,6 +439,7 @@ int main(int argc, char **argv) {
   pointer(image + 0x96618, (void *)set_rect);
   style_checks();
   jpeg_checks();
+  presentation_checks();
   printf("PASS: %u image-style checks\n", checks);
   return 0;
 }
