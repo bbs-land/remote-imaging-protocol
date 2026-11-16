@@ -80,7 +80,11 @@ GDI imports are controlled and never draw: SetRect, palette uploads/selection/re
 
 All issue #16 subquestions are answered in the corrected [COPY/current-port reference](../ripscrip/5.1-text-variables.md#copy), [live-copy validation and protection](../ripscrip/5.1-text-variables.md#live-entry-copy-validation-and-protection), [palette reset truth table](../ripscrip/7.1-data-tables.md#palette-reset-lifecycle) and RESET/ISPROT/CUR entries. The related palette-header error is corrected explicitly in the [header reference](../ripscrip/1.1-protocol-and-command-hierarchy.md#button-graphics-style-palette-and-environment-flags) and earlier issue #5 note; its original controlled probe's label now states only the dispatch it observes.
 
-Validation: **80,982 native table checks**, **66,219 macro/variable checks** at the registration checkpoint, **9,176 header/parser/entry checks** after correcting the fixture label. `run/lint` passes; `run/check-links` reports **0 bad of 4922 links across 201 files**; `git diff --check` passes. Original text/assets were not edited. Task-owned temporary executables, streams and request files are scoped and removed after use. No GUI or external messages were sent; PR delivery is recorded next after publication.
+Validation: **80,982 native table checks**, **66,219 macro/variable checks** at the registration checkpoint, **9,176 header/parser/entry checks** after correcting the fixture label. `run/lint` passes; `run/check-links` reports **0 bad of 4926 links across 201 files**; `git diff --check` passes. Original text/assets were not edited. Task-owned temporary executables, streams and request files are scoped and removed after use. No GUI or external messages were sent; PR delivery is recorded next after publication.
+
+## Delivery
+
+[PR #45](https://github.com/bbs-land/remote-imaging-protocol/pull/45) is open from branch `issue-16-table-lifecycle`, dependent on #44. Primary specification commit **7c61942**; native checkpoints **15149e3 / 1a6f8eb**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/6a4af0e...issue-16-table-lifecycle) starts at the delivered #15 checkpoint. No merge or manual issue closure was performed. Codex co-authorship is included in every new commit. The refreshed creation-order queue selects **#17** next; no new RealDeuce issue was added to the remaining queue.
 
 ---
 
