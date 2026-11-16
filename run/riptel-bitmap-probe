@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Execute original RIPtel bitmap-routing/classifier instructions in an isolated 32-bit routine probe.
+# Requires an i386/amd64 Unix host and a C compiler with 32-bit runtime support.
+# Exits nonzero on wrong artifact, build failure, or failed observation.
+set -euo pipefail
+root="$(cd "$(dirname "$0")/.." && pwd)"
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  echo "Usage: run/riptel-bitmap-probe DLL (CC may select a compiler with -m32 support)"
+  exit 0
+fi
+if [[ $# != 1 ]]; then
+  echo "Supply one DLL path; see --help" >&2
+  exit 2
+fi
+deno run --allow-read "$root/run/riptel-inspect" "$1" --verify
+probe_dir="$(mktemp -d "${TMPDIR:-/tmp}/riptel-bitmap-probe.XXXXXX")"
+trap 'rm -rf "$probe_dir"' EXIT
+"${CC:-cc}" -m32 -O0 -Wall -Wextra -Werror -fno-pie -Wl,-no-pie "$root/run/lib/riptel-bitmap-probe.c" -o "$probe_dir/probe"
+"$probe_dir/probe" "$1"
