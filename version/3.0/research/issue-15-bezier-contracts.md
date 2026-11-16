@@ -87,6 +87,10 @@ Final native invocation with `extracted/shapes.rip` passes **16,900,918 checks**
 
 The wrapper's scoped build directory is removed after each success or failure. No source artifact was modified and no GUI process was started. `run/lint` passes, `run/check-links` reports **0 bad of 4894 links across 200 files**, and `git diff --check` passes. PR delivery is recorded below once published.
 
+## Delivery
+
+[PR #44](https://github.com/bbs-land/remote-imaging-protocol/pull/44) is open, branch `issue-15-bezier-contracts`, dependent on #43. Primary specification commit **d04a73d**; numerical checkpoint **c9e4394**; parser checkpoint **825e8e0**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/496a98c...issue-15-bezier-contracts) starts at the delivered #14 checkpoint. No merge or manual issue closure was performed. All new commits include the requested Codex co-authorship trailer. The post-delivery creation-order refresh selects **#16** next; #42 remains after #38.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Curves](../ripscrip/2.2-curves.md#rip_bezier)
