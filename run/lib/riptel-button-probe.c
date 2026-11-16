@@ -180,6 +180,14 @@ static void definition_checks(void) {
           require(entries[5 * 0x1c] == 0x5a,
                   "invalid/protected style definition unchanged");
       }
+  prepare(1);
+  put32(world + 0x24, 1280);
+  uint32_t nonuniform[16];
+  fixture_args(nonuniform);
+  define(nonuniform);
+  require(!errors && u16(entries) == 32 && u16(entries + 2) == 32 &&
+              u16(entries + 8) == 4,
+          "nonuniform world scales width/bevel by X and height by Y");
   unsigned char baseline[0x1c];
   for (unsigned other = 0; other < 36; ++other) {
     prepare(1);
@@ -531,38 +539,61 @@ static void renderer_checks(void) {
               "no-fill precedes pattern for every flags2 byte");
     }
   for (unsigned protect = 0; protect < 2; ++protect)
-    for (unsigned success = 0; success < 2; ++success) {
-      renderer_fixture(1, 0x8348, 0, "<><>");
-      put16(system_state + 0xa, 5);
-      system_state[0xc + 5] = 1;
-      system_state[0x30 + 5] = protect;
-      memset(entries + 5 * 0x1c, 0x5a, 0x1c);
-      clip_ok = success;
-      unsigned char expected[0x1c];
-      memcpy(expected, entries + 5 * 0x1c, 0x1c);
-      if (success)
-        put16(expected + 6, (0x8348 & 0x7c37) | 1);
-      require(draw_button(1) == !success && clip_count == 1 && !errors &&
-                  !memcmp(expected, entries + 5 * 0x1c, 0x1c) &&
-                  system_state[0x30 + 5] == protect,
-              "successful auto clip mutates even protected current flags; "
-              "failed capture leaves record");
-    }
+    for (unsigned success = 0; success < 2; ++success)
+      for (unsigned recess = 0; recess < 2; ++recess) {
+        renderer_fixture(1, 0x8348 | (recess ? 16 : 0), 0, "<><>");
+        put16(system_state + 0xa, 5);
+        system_state[0xc + 5] = 1;
+        system_state[0x30 + 5] = protect;
+        memset(entries + 5 * 0x1c, 0x5a, 0x1c);
+        clip_ok = success;
+        unsigned char expected[0x1c];
+        memcpy(expected, entries + 5 * 0x1c, 0x1c);
+        if (success)
+          put16(expected + 6, (0x8348 & 0x7c37) | 1);
+        require(draw_button(1) == !success && clip_count == 1 && !errors &&
+                    !memcmp(expected, entries + 5 * 0x1c, 0x1c) &&
+                    system_state[0x30 + 5] == protect,
+                "successful auto clip mutates even protected current flags; "
+                "failed capture leaves record");
+      }
+  /* Constructor must reject an absent clipboard even if ICON would win. */
+  hook(0x2a4d3, (void (*)(void))capture_draw);
+  for (unsigned icon = 0; icon < 2; ++icon) {
+    creation_prepare(1);
+    uint32_t args[16];
+    fixture_args(args);
+    args[3] = 1 | (icon ? 128 : 0);
+    define(args);
+    put16(ctor_ports + 0xa, 0xffff);
+    uint32_t xy[] = {20, 40, 180, 160, 0, 0, 0};
+    create(xy, "TEST.BMP<><>");
+    require(errors == 1 && !drawn && last_error &&
+                strstr(last_error, "Clipboard"),
+            "creation checks missing clipboard before multi-type renderer "
+            "precedence");
+  }
+  memcpy(image + 0x2a4d3, original_draw, 5);
   for (unsigned bits = 0; bits < 2; ++bits)
     for (unsigned hot = 0; hot < 2; ++hot)
-      for (unsigned fail = 0; fail < 3; ++fail) {
-        renderer_fixture(1, 0x1080, bits * 128, "TEST.BMP<><>");
-        if (hot)
-          captured_field[0x20] = 8;
-        bitmap_fail = fail;
-        unsigned result = draw_button(1);
-        require(result == (fail == 2 || (!hot && fail == 1)) &&
-                    bitmap_count == (hot && fail ? 2u : 1u),
-                "hot failure retries normal; normal failure rejects");
-        require(strstr(bitmap_names[0], hot ? ".BMH" : ".BMP") != NULL &&
-                    (!(hot && fail) || strstr(bitmap_names[1], ".BMP")),
-                "normal/hot/fallback file names");
-      }
+      for (unsigned fail = 0; fail < 3; ++fail)
+        for (unsigned redraw = 0; redraw < 3; ++redraw) {
+          renderer_fixture(1, 0x1080, bits * 128, "TEST.BMP<><>");
+          if (hot)
+            captured_field[0x20] = 8;
+          bitmap_fail = fail;
+          unsigned result =
+              redraw ? ((unsigned (*)(void *, void *, unsigned))(
+                           image + (redraw == 1 ? 0x2c338 : 0x2c380)))(
+                           ctx, captured_field, hot ? 0 : 1)
+                     : draw_button(1);
+          require(result == (fail == 2 || (!hot && fail == 1)) &&
+                      bitmap_count == (hot && fail ? 2u : 1u),
+                  "hot failure retries normal; normal failure rejects");
+          require(strstr(bitmap_names[0], hot ? ".BMH" : ".BMP") != NULL &&
+                      (!(hot && fail) || strstr(bitmap_names[1], ".BMP")),
+                  "normal/hot/fallback file names");
+        }
   for (unsigned types = 1; types < 8; ++types) {
     unsigned flags =
         (types & 1 ? 1 : 0) | (types & 2 ? 128 : 0) | (types & 4 ? 256 : 0);

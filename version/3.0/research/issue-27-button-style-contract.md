@@ -78,3 +78,22 @@ Harness corrections: direct renderer calls must reproduce the constructor/intera
 Original bevel emits four quadrilaterals spanning base rectangle expanded by the copied device bevel size. Size 0..8 × scales 1/2/4 verifies exact polygon bounds and pen width 1. Original black recess frame is base rectangle expanded by bevel+1; original outer recess starts at base near-(bevel+2). Both are device coordinates, with no second world conversion. Original sunken starts at near+(1,1), uses one-device-pixel pens and far-(1,1). These fixed one/two-pixel details stay fixed as device canvases/world ratios change. The input bevel is converted using **X ratio only at B definition**, stored WORD then copied/truncated to BYTE; that single device value is used horizontally and vertically. Fixed default/reset bevel is the literal device value 3. Label indentation remains the distinct creation-world rule proved above.
 
 Additional controls for this phase: color lookup 0x3dce0 returns an owned index; GDI GetStockObject/CreateSolidBrush/DeleteObject/SelectObject/CreatePen/Rectangle/MoveToEx/LineTo/SetPixel/Polygon/FrameRect are captured with their stdcall signatures. Polygon and line points originate in the original helpers; no Win32 raster parity or clipping claim is made. Original copies are restored in memory only and the original DLL remains unchanged. Temporary debug signal instrumentation was removed; no debug builds/core dumps survive wrapper EXIT.
+
+## Complete answer and validation
+
+The completed #27 reference now includes all initial/default fields and definition/current-reset behavior, mixed-zero sizing, explicit coordinate domains/formulas, corrected chisel rows, all requested rejection/precedence cases, protected auto-clip writes/failure ordering and the observed ineffective transparency bit. The two unfinished BEGIN REWORD blocks are replaced in the reconstructed Markdown; verbatim historical text is unchanged. SBS/RBS PUSH/POP wording now names the button-style table. Its backup object is family 0 in the actual codec table (0x21345/0x21622), already verified by #26, not the palette family.
+
+Final button probe **300,431 checks** adds nonuniform X/Y conversion, original U missing-clipboard rejection even with ICON also present, auto-clip with and without initial RECESS, and both actual selection/redraw wrappers **0x2c338 / 0x2c380**. Those wrappers set/clear/toggle selected field bit 8 and call the same renderer with initial=0 and their distinct redraw parameters; both reproduce the same unkeyed normal/hot/fallback requests with flags2 128 clear/set. A successful first capture clears initial RECESS in the field before the style write. Remaining differences from an actual Windows display are the explicitly controlled file/palette/GDI/font services, not unresolved requested flag decisions.
+
+Reproduction from repository root (original DLL path is in the external mirror):
+
+```sh
+run/riptel-button-probe /path/to/original/ripscrip.dll
+run/riptel-table-probe /path/to/original/ripscrip.dll
+run/riptel-bitmap-probe /path/to/original/ripscrip.dll
+run/lint
+run/check-links
+git diff --check
+```
+
+Button **300,431**, table **85,014** and bitmap **5,035** checks pass. Repository formatting/link checks pass (5,216 links before final note links); final publication checkpoint records the final total. No original artifact/text/assets changed. All task-scoped native build directories are removed by wrapper EXIT; no Wine, desktop GUI, real bitmap/snapshot files or retained /tmp debug outputs were used.
