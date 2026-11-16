@@ -48,7 +48,7 @@ Issue #23 is delivered in [PR #56](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #24 is delivered in [PR #57](https://github.com/bbs-land/remote-imaging-protocol/pull/57), branch `issue-24-drawing-state-ownership`, dependent on #56. Its [derivation](issue-24-drawing-state-ownership.md) records **85,014 native table checks** and **196,166 native font checks**, exclusive port/environment ownership, exact defaults, fixed-record first-use style selection, departing-environment overwrite, lost STYLE restore index, discarded PORT cursor and unconditional text cursor updates. Specification commit `9860120`; issue-only comparison starts at `e33a1d7`. Required checks pass; original text/assets unchanged; task temp paths removed. Review/merge is pending.
 
-Next: [#25](https://github.com/bbs-land/remote-imaging-protocol/issues/25), PORTW/PORTH/PORTY1 query argument lists. Post-#57 refresh confirms #3–#24 have complete PRs; remaining queue #25–#28, #33, #38, #42, #46, #51, #53, #54. Create the #25 branch from this delivery checkpoint and compare the original query callbacks, shared argument parser and existing #10 native cases before making changes.
+Active: [#25](https://github.com/bbs-land/remote-imaging-protocol/issues/25), PORTW/PORTH/PORTY1 query argument lists. Branch `issue-25-port-query-grammar` starts at `4be4e3a`; [incremental derivation](issue-25-port-query-grammar.md). Next: native shared-decoder grammar matrix and all-six-callback/macro checks, then reference corrections. Remaining queue #25–#28, #33, #38, #42, #46, #51, #53, #54; #3–#24 have complete PRs.
 
 ## Queue and delivery
 
