@@ -36,7 +36,9 @@ Issue #17 is delivered in [PR #47](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #18 is delivered in [PR #48](https://github.com/bbs-land/remote-imaging-protocol/pull/48), branch `issue-18-date-time-format`, dependent on #47. Its [derivation](issue-18-date-time-format.md) settles numeric DATETIME bytes, zero padding, separators, absent line ending and YEAR syntax/rollover, with **388,202 native checks**. Specification commit `7e4a35e`; issue-only comparison starts at `314fae6`. Review/merge is pending.
 
-Active: [#19](https://github.com/bbs-land/remote-imaging-protocol/issues/19), branch `issue-19-legacy-icon-conversion` from `36c17d2`. The [derivation](issue-19-legacy-icon-conversion.md) settles the fixed EGA palette, failed stat-after-close timestamp path, source deletion, non-truncating writes, always-BMP export naming and actual post-transfer/client call graph. Native probes pass **895,372 conversion checks** and **5,035 bitmap checks**; checkpoint `e068876`. Reference/cross-version links and AGENTS.md now updated. Next required checks and complete PR delivery. Queue remains #19–#28, #33, #38, #42, #46.
+Issue #19 is delivered in [PR #49](https://github.com/bbs-land/remote-imaging-protocol/pull/49), branch `issue-19-legacy-icon-conversion`, dependent on #48. Its [derivation](issue-19-legacy-icon-conversion.md) records the fixed EGA table, original source deletion, failed timestamp preservation, non-truncating output, always-BMP export naming and actual post-transfer call graph, with **895,372 conversion checks** and **5,035 bitmap checks**. Specification commit `bf96934`; issue-only comparison starts at `36c17d2`. Review/merge is pending.
+
+Next active issue: [#20](https://github.com/bbs-land/remote-imaging-protocol/issues/20), FILEDEL directory scope, host-created restriction and path handling. The post-#49 GitHub refresh confirms creation order. Branch from this delivery checkpoint and start a committed derivation. Queue remains #20–#28, #33, #38, #42, #46.
 
 ## Queue and delivery
 

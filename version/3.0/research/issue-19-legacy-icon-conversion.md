@@ -81,9 +81,9 @@ Source deletion is an actual attempted operation of this driver, not merely an o
 
 `run/lint` passes; `run/check-links` reports **0 bad of 4994 links across 204 files**; `git diff --check` passes. The original-instruction probes pass **895,372 conversion checks** and **5,035 bitmap checks**. Original text/assets remain unchanged; commit trailers include Codex co-authorship. Task-owned conversion/debug temporary directories were removed by wrapper EXIT traps or Python TemporaryDirectory.
 
-## Next action
+## Delivery and next action
 
-All issue subquestions are settled by native checkpoint **e068876** and the completed static record. The 3.0 content-file reference and bitmap delta now state the actual conversion contract; the 2.x inheritance link and 1.54 no-palette note distinguish evidence scope. AGENTS.md records resumption cautions. Next run required checks and file the complete #19 PR with an issue-only comparison from 36c17d2.
+Delivered in [PR #49](https://github.com/bbs-land/remote-imaging-protocol/pull/49), branch `issue-19-legacy-icon-conversion`, dependent on #48. Specification commit **bf96934**; native/static checkpoint **e068876**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/36c17d2...issue-19-legacy-icon-conversion) excludes preceding pending work. Review/merge is pending; do not merge or manually close the issue. The post-delivery GitHub refresh confirms #20 is next: branch from this delivery checkpoint and research FILEDEL scope, provenance enforcement and path handling.
 
 ---
 
