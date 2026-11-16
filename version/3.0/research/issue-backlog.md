@@ -42,7 +42,7 @@ Issue #20 is delivered in [PR #50](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #21 is delivered in [PR #52](https://github.com/bbs-land/remote-imaging-protocol/pull/52), branch `issue-21-image-style`, dependent on #50. Its [derivation](issue-21-image-style.md) records **66,904 native checks**, all-zero area fallback, nonoperative style DELETE versus transfer temp cleanup, IMGSTYLE keyword/default/undefined/offscreen behavior, old-current/port-zero reset scope, black fitted-image clear, retained aspect margins and SRCCOPY. Specification commit `4d60a07`; issue-only comparison starts at `508ceea`. Required checks pass; original text/assets unchanged; task temp directories removed. Review/merge is pending.
 
-Next: [#22](https://github.com/bbs-land/remote-imaging-protocol/issues/22), FastFont fill/hollow/overlap and character mapping. GitHub refresh after #52 confirms #3–#21 have complete PRs; remaining queue #22–#28, #33, #38, #42, #46, newly filed #51 (deferred query dispatch order). Create issue #22 branch from this delivery checkpoint and record its initial evidence gaps.
+Active: [#22](https://github.com/bbs-land/remote-imaging-protocol/issues/22), FastFont fill/hollow/overlap and character mapping. GitHub refresh after #52 confirms #3–#21 have complete PRs; remaining queue #22–#28, #33, #38, #42, #46, newly filed #51 (deferred query dispatch order). Branch `issue-22-fastfont-rendering` starts at `eb7ae2e`; its [initial derivation](issue-22-fastfont-rendering.md) records the four open questions and original engine/renderer leads. Next trace fill/hollow scan conversion, per-glyph bitmap composition and full byte mapping, then execute distinguishing cases.
 
 ## Queue and delivery
 
