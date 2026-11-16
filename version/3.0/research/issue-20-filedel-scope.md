@@ -60,9 +60,9 @@ Microsoft’s [Win32 filename/path rules](https://learn.microsoft.com/en-us/wind
 
 `run/lint` passes; `run/check-links` reports **0 bad of 5021 links across 205 files**; `git diff --check` passes. `run/riptel-macro-probe` passes **388,884 original-instruction checks**, including the new FILEDEL matrix. Original text/assets are untouched. Probe builds and other task-owned temporary paths are removed by scoped cleanup; commits carry Codex co-authorship.
 
-## Next action
+## Delivery and next action
 
-Native evidence checkpoint **cd15984** records the complete matrix. The FILEDEL entry, storage workflow, 9.1 row and connection-directory delta now state first-hit all-tier deletion, no-host fallback, caller-only provenance and exact decoded-macro argument behavior. The malformed Format line is fixed; the older filename guidance now distinguishes this later-client exception. AGENTS.md records parser-versus-helper cautions. Next required checks and complete #20 PR with an issue-only comparison from a3dc068.
+Delivered in [PR #50](https://github.com/bbs-land/remote-imaging-protocol/pull/50), branch `issue-20-filedel-scope`, dependent on #49. Specification commit **a321dfb**; native evidence checkpoint **cd15984**. The [issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/a3dc068...issue-20-filedel-scope) excludes preceding pending work. Review/merge is pending; do not merge or manually close the issue. The post-delivery GitHub refresh confirms #21 is next: image-style flags, defaults, protected-port reset and clear/margin write-mode behavior.
 
 ---
 

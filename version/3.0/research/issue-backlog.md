@@ -38,7 +38,9 @@ Issue #18 is delivered in [PR #48](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #19 is delivered in [PR #49](https://github.com/bbs-land/remote-imaging-protocol/pull/49), branch `issue-19-legacy-icon-conversion`, dependent on #48. Its [derivation](issue-19-legacy-icon-conversion.md) records the fixed EGA table, original source deletion, failed timestamp preservation, non-truncating output, always-BMP export naming and actual post-transfer call graph, with **895,372 conversion checks** and **5,035 bitmap checks**. Specification commit `bf96934`; issue-only comparison starts at `36c17d2`. Review/merge is pending.
 
-Active: [#20](https://github.com/bbs-land/remote-imaging-protocol/issues/20), branch `issue-20-filedel-scope` from `a3dc068`. The [derivation](issue-20-filedel-scope.md) now records **388,884 native macro/variable checks**, full ordinary first-hit host/shared/search-path deletion, no ownership gate, no-host fallback and exact parser-versus-helper path cases. Full dollar parsing removes single backslashes and rejects slash/wildcard forms; direct-helper behavior alone was insufficient. Native checkpoint `cd15984`; FILEDEL/storage/cross-version guidance and AGENTS.md now updated. Next required checks and complete PR delivery. Queue remains #20–#28, #33, #38, #42, #46.
+Issue #20 is delivered in [PR #50](https://github.com/bbs-land/remote-imaging-protocol/pull/50), branch `issue-20-filedel-scope`, dependent on #49. Its [derivation](issue-20-filedel-scope.md) records all-tier first-match deletion, caller-only host-created restriction, exact parser/helper path distinctions and **388,884 native checks**. Specification commit `a321dfb`; issue-only comparison starts at `a3dc068`. Review/merge is pending.
+
+Next active issue: [#21](https://github.com/bbs-land/remote-imaging-protocol/issues/21), image-style deletion flags, IMGSTYLE defaults/target validity, protected-port reset and JPEG clear/margin write modes. The post-#50 GitHub refresh confirms creation order. Branch from this delivery checkpoint and start a committed derivation. Queue remains #21–#28, #33, #38, #42, #46.
 
 ## Queue and delivery
 
