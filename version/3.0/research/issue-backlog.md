@@ -38,7 +38,7 @@ Issue #18 is delivered in [PR #48](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #19 is delivered in [PR #49](https://github.com/bbs-land/remote-imaging-protocol/pull/49), branch `issue-19-legacy-icon-conversion`, dependent on #48. Its [derivation](issue-19-legacy-icon-conversion.md) records the fixed EGA table, original source deletion, failed timestamp preservation, non-truncating output, always-BMP export naming and actual post-transfer call graph, with **895,372 conversion checks** and **5,035 bitmap checks**. Specification commit `bf96934`; issue-only comparison starts at `36c17d2`. Review/merge is pending.
 
-Next active issue: [#20](https://github.com/bbs-land/remote-imaging-protocol/issues/20), FILEDEL directory scope, host-created restriction and path handling. The post-#49 GitHub refresh confirms creation order. Branch from this delivery checkpoint and start a committed derivation. Queue remains #20–#28, #33, #38, #42, #46.
+Active: [#20](https://github.com/bbs-land/remote-imaging-protocol/issues/20), branch `issue-20-filedel-scope` from `a3dc068`. The [derivation](issue-20-filedel-scope.md) identifies callback 0x28434/helper 0x4524c using ordinary all-tier lookup and no ownership check; unusual tail parsing requires native path cases. Next preserve full lookup in a memory-only access/delete capture fixture and settle host/shared/search-path fallbacks, duplicate/failure behavior and exact path acceptance. Queue remains #20–#28, #33, #38, #42, #46.
 
 ## Queue and delivery
 
