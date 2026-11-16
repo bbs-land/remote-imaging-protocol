@@ -8,6 +8,8 @@ Started 2026-11-16 after [PR #47](https://github.com/bbs-land/remote-imaging-pro
 
 Primary artifact: unchanged RIPtel 3.1 / driver 3.0.7 `extracted/ripscrip.dll`, SHA-256 **83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8**, base **0x10000000**, from the [catalogued mirror](../../../reference/rip-tools.md), `artifacts/riptel-3.1-pcmicro/`. All code addresses are RVAs; .text file offsets are RVA-0xc00 and the .data string/table offsets below are RVA-0x1a00. Preserve original text/assets, use native/static work without GUI and remove task-owned temporary files.
 
+Source installer: [original RIPtel 3.1 MSI](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTel%203.1/riptel.msi), 17,949,184 bytes, SHA-256 **04915952dcb04013a164eae1b6f6c5f5335798053d4d0e69b3f4da24f812dd2c**. The catalogued extraction reads Data1.cab without installing/running the application.
+
 ## Original callbacks and first observation
 
 Original registration initializer records DATETIME at **0x38f2a** (registration **0x25d91–0x25d9c**) and YEAR at **0x390ca** (**0x262b9–0x262c9**). DATETIME supplies literal **`%c`** at **0x79658**, YEAR supplies **`%y`** at **0x80534**, to shared callback **0x38e9a**. The shared callback accepts no arguments; nonzero count marks variable syntax error and returns NULL before reading the clock.
@@ -48,9 +50,13 @@ These are formatting tests after controlled local-time conversion, not tests of 
 
 All requested bytes are settled. Correct YEAR Syntax to `$YEAR$`; document no parameters, two-digit zero padding and rollover. Replace the inherited DATETIME asctime assertion/example in the 3.0 reconstruction and 9.1 row with original-driver numeric output. December 5 produces `12/05/93 14:38:50`; December 19 produces `12/19/93 14:38:50`. December 19, 1993 was Sunday (native fixture calendar starts Thursday 1970-01-01), so the old Sat was independently wrong, but changing it to Sun would still leave the wrong output format. None of the issue’s three proposed textual layouts matches this original driver. Preserve verbatim source text and earlier client references.
 
+## Validation and delivery
+
+`run/lint` passes; `run/check-links` reports **0 bad of 4968 links across 203 files**; `git diff --check` passes. `run/riptel-macro-probe` passes **388,202 checks**. Original text/assets are untouched. Every issue commit carries the requested Codex co-author trailer.
+
 ## Next action
 
-Update the 3.0 reference/9.1 rows, agent guidance and active TODO, run required checks, then file the complete #18 PR with an issue-only comparison from 314fae6.
+Native checkpoint **f66a24f** records the complete byte matrix. The 3.0 reference and 9.1 rows now state the verified output and correct YEAR syntax; AGENTS.md records the formatter/fixture distinction, and TODO.md points at the current issue. Next run required checks and file the complete #18 PR with an issue-only comparison from 314fae6.
 
 ---
 
