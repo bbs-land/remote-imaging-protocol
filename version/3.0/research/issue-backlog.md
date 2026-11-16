@@ -8,9 +8,9 @@ Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-lan
 
 Issue #4 is delivered in [PR #30](https://github.com/bbs-land/remote-imaging-protocol/pull/30), branch `issue-4-column-overflow`; see its [derivation note](issue-4-column-overflow.md). Review/merge is pending. It depends on #29 and provides an issue-specific comparison from `ca92e10`.
 
-Active: [issue #5](https://github.com/bbs-land/remote-imaging-protocol/issues/5), branch `issue-5-scene-headers`; read its [derivation note](issue-5-scene-headers.md). No resolution PR yet. The branch starts at `996b1a3` to reuse the delivered #3/#4 tools and workflow.
+Issue #5 is delivered in [PR #31](https://github.com/bbs-land/remote-imaging-protocol/pull/31), branch `issue-5-scene-headers`; see its [derivation note](issue-5-scene-headers.md). Review/merge is pending. It depends on #30 and provides an issue-only comparison from `996b1a3`; primary specification commit is `ac4c168`.
 
-Next action: finish review and required checks for #5’s complete derived contract, then file its PR with the PR #30 dependency and an issue-only comparison from `996b1a3`. Header framing/flags/protection, all three recovered entry points, explicit SyncTERM-only exclusions and audio classification are now documented; read the note’s final findings before resuming. All new commits carry the requested Codex co-author trailer.
+Next: [issue #6](https://github.com/bbs-land/remote-imaging-protocol/issues/6), macro evaluation and predefined variables. Refreshed open issues confirm it is the oldest issue without a complete resolution PR. Create its issue-specific branch from the delivered #5 branch to reuse the primary-source tools; record all questions and findings in a new issue note before investigating. All new commits carry the requested Codex co-author trailer.
 
 ## Queue and delivery
 

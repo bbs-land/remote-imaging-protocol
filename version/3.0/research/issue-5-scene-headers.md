@@ -4,7 +4,7 @@
 
 ## Status and questions
 
-Started 2026-11-16 for [issue #5](https://github.com/bbs-land/remote-imaging-protocol/issues/5), branch `issue-5-scene-headers`, starting from `996b1a3` (issue #4’s delivered branch, PR #30; itself dependent on PR #29). No resolution PR yet; the complete answer is derived and undergoing final documentation/verification. The incremental observations below preserve the investigation history; the final findings supersede earlier pending items. Queue refresh confirms #5 is the oldest issue without a complete resolution PR.
+Started 2026-11-16 for [issue #5](https://github.com/bbs-land/remote-imaging-protocol/issues/5), branch `issue-5-scene-headers`, starting from `996b1a3` (issue #4’s delivered branch, PR #30; itself dependent on PR #29). Delivered in [PR #31](https://github.com/bbs-land/remote-imaging-protocol/pull/31), with complete specification, reproducible native probes and verification. It depends on unmerged PR #30 and provides an issue-only comparison from `996b1a3`. The incremental observations below preserve the investigation history; the final findings supersede earlier pending items. Queue refresh after delivery selects #6 as the next issue without a complete resolution PR.
 
 Required: shipped header byte grammar, framing/termination, field widths/radices, reset/protection behavior and a complete example; identify or explicitly exclude RIP_TextMetric, RIP_FontAttrib, RIP_SwitchDirectory, SyncTERM-only 1N/1O/1S and level-0 ESC from the executable 3.0 contract; distinguish an audio table from a single headerable state object. Article selection’s wire-layout reconciliation remains with issue #2.
 
@@ -133,7 +133,7 @@ run/check-links
 git diff --check
 ```
 
-Final native verification passes: **9,176 header/parser/entry checks**, **31,713 font checks** and **23,013 column checks** against the unchanged SHA-verified DLL. Repository link validation passes **4,529 links across 187 files**, and Markdown lint and `git diff --check` pass. Documentation review also removed stale Alpha 4 audio flags and blanket header-reset assumptions from related reference pages. All issue subquestions are resolved by the published header contract, q/r/level-2 ESC entries, explicit four-opcode exclusion and single audio-action classification. File the complete #5 PR declaring its dependency on PR #30 and linking an issue-only comparison from `996b1a3`; record delivery before advancing to #6.
+Final native verification passes: **9,176 header/parser/entry checks**, **31,713 font checks** and **23,013 column checks** against the unchanged SHA-verified DLL. Repository link validation passes **4,529 links across 187 files**, and Markdown lint and `git diff --check` pass. Documentation review also removed stale Alpha 4 audio flags and blanket header-reset assumptions from related reference pages. All issue subquestions are resolved by the published header contract, q/r/level-2 ESC entries, explicit four-opcode exclusion and single audio-action classification. Delivered as PR #31 (primary specification commit `ac4c168`). Review/merge remains pending; do not merge or close the issue manually. Continue serial research with issue #6 on its own branch.
 
 ---
 
