@@ -54,7 +54,7 @@ Issue #26 is delivered in [PR #60](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #27 is delivered in [PR #61](https://github.com/bbs-land/remote-imaging-protocol/pull/61), branch `issue-27-button-style-contract`, dependent on #60. Its [derivation](issue-27-button-style-contract.md) records **300,431 button checks**, **85,014 table checks** and **5,035 bitmap checks**, exact defaults/current-reset corruption, mixed-zero sizing, device effects versus world label insets, flag precedence, protected auto-clip mutation and unused flags2 128 on unkeyed normal/hot/fallback loads. Specification commit `001b39c`; issue-only comparison starts at `54e46e2`. Formatting, 5,216 links and diff checks pass; original text/assets unchanged; task temp paths removed. Review/merge is pending.
 
-Next: [#28](https://github.com/bbs-land/remote-imaging-protocol/issues/28), tone-variable defaults/order and MUSIC recipe conflicts. Post-#61 refresh confirms #3–#27 have complete PRs; remaining queue #28, #33, #38, #42, #46, #51, #53, #54, #58.
+Active: [#28](https://github.com/bbs-land/remote-imaging-protocol/issues/28), tone-variable defaults/order and MUSIC recipe conflicts. Branch `issue-28-tone-variable-contract` starts at `b0827a4`; [incremental derivation](issue-28-tone-variable-contract.md). Next: original registration/argument/audio-request captures. Post-#61 refresh confirms #3–#27 have complete PRs; remaining queue #28, #33, #38, #42, #46, #51, #53, #54, #58.
 
 ## Queue and delivery
 
