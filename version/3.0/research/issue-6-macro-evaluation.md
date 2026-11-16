@@ -4,7 +4,7 @@
 
 ## Status and scope
 
-Started 2026-11-16 for [issue #6](https://github.com/bbs-land/remote-imaging-protocol/issues/6), branch `issue-6-macro-evaluation`, starting from `9b1872a` (delivered PR #31, dependent on #30/#29). Queue refresh confirms #6 is the oldest RealDeuce issue without a complete resolution PR. Complete primary-source answers published and validation passed; no resolution PR yet. Earlier checkpoints below preserve the investigation history and are superseded by the final findings.
+Started 2026-11-16 for [issue #6](https://github.com/bbs-land/remote-imaging-protocol/issues/6), branch `issue-6-macro-evaluation`, starting from `9b1872a` (delivered PR #31, dependent on #30/#29). Queue refresh confirms #6 is the oldest RealDeuce issue without a complete resolution PR. Delivered in [PR #32](https://github.com/bbs-land/remote-imaging-protocol/pull/32), dependent on #31; complete primary-source answers published and validation passed. Specification commit: `1ccedf7`. Earlier checkpoints below preserve the investigation history and are superseded by the final findings.
 
 Required answers:
 
@@ -176,7 +176,7 @@ Published the complete contract in chapters 5.1/5.2 and the variable index, with
 
 Validation on 2026-11-16: `run/riptel-macro-probe <unchanged-dll>` captured 179 original registrations and passed **66,202 native checks**. `run/format`, `run/lint`, `run/check-links` (**0 bad of 4,579 links across 188 files**) and `git diff --check` pass. No GUI/Wine was used. The probe controls external services and captures the unsafe chain insertion rather than executing its invalid write.
 
-Next: commit/push the complete answer and file its resolution PR dependent on #31, linking an issue-only comparison from `9b1872a`; record delivery here and in the research backlog, then refresh GitHub before advancing to #7.
+Delivery: [PR #32](https://github.com/bbs-land/remote-imaging-protocol/pull/32), branch `issue-6-macro-evaluation`, dependent on #31. [Issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/9b1872a...issue-6-macro-evaluation); specification commit `1ccedf7`. GitHub refresh confirms #7 is the next oldest RealDeuce issue without a complete resolution PR. Do not merge or manually close #6; continue serially on #7.
 
 ---
 
