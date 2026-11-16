@@ -687,15 +687,19 @@ static void host_quote_checks(void) {
   transmitted[0] = 0;
   strcpy(text, "\\$SHIFT\\$");
   require(host_command(text) != 0xffff, "both quoted dollars pass host stages");
-  equal(transmitted, "$SHIFT$", "final host pass removes quotes as literal text");
+  equal(transmitted, "$SHIFT$",
+        "final host pass removes quotes as literal text");
   require(modifier_calls == 0, "fully quoted variable does not query modifier");
   pipeline_prepare();
   transmitted[0] = 0;
   key_state = 0x8000;
   strcpy(text, "\\$SHIFT$");
-  require(host_command(text) != 0xffff, "opening-only quote passes host stages");
-  equal(transmitted, "1", "first host pass evaluates opening-only quoted variable");
-  require(modifier_calls == 1, "opening-only quote is insufficient in two-pass host path");
+  require(host_command(text) != 0xffff,
+          "opening-only quote passes host stages");
+  equal(transmitted, "1",
+        "first host pass evaluates opening-only quoted variable");
+  require(modifier_calls == 1,
+          "opening-only quote is insufficient in two-pass host path");
 }
 static void parser_edge_checks(void) {
   static const struct {
@@ -755,6 +759,28 @@ static void parser_edge_checks(void) {
         image + 0x15602))(variables, wire, &consumed);
     require(parsed == (count == 40 ? 1 : -1),
             "original parser accepts 40 nonempty arguments and rejects 41");
+  }
+}
+static void port_size_query_checks(void) {
+  require(registered_callback("PORTW") == 0x2f863 &&
+              registered_callback("PORTH") == 0x2f642,
+          "original registration confirms port-size callback identities");
+  const char *cases[] = {"A$PORTW$B", "A$PORTH$B", "A$PORTW(CUR,PORT,DEVICE)$B",
+                         "A$PORTH(CUR,PORT,WORLD)$B"};
+  for (unsigned n = 0; n < 4; ++n) {
+    pipeline_prepare();
+    put16(ports + 8, 1);
+    port_entries[0x78] = 4;
+    put32(port_entries + 0x78 + 0xb, 640);
+    put32(port_entries + 0x78 + 0xf, 480);
+    char text[4096];
+    strcpy(text, cases[n]);
+    unsigned status = expand_codes(text, 0xff, 1);
+    require(status == 1 && !strcmp(text, cases[n]),
+            "ordinary macro expansion retains failed port-size expression");
+    require(
+        u16(variables + 0x436) == 1 && !errors,
+        "port-size parse-gate defect sets variable error without host report");
   }
 }
 int main(int argc, char **argv) {
@@ -857,6 +883,7 @@ int main(int argc, char **argv) {
   remaining_variable_checks();
   parser_edge_checks();
   host_quote_checks();
+  port_size_query_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
