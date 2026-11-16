@@ -56,7 +56,9 @@ Issue #27 is delivered in [PR #61](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #28 is delivered in [PR #62](https://github.com/bbs-land/remote-imaging-protocol/pull/62), branch `issue-28-tone-variable-contract`, dependent on #61. Its [derivation](issue-28-tone-variable-contract.md) records **1,576,902 macro checks**, original six-note MUSIC, BLIP 1000/25, required T pair, no added BEEP/BLIP gaps, invalid sweeps without fallback and bounded WORD cycles. Specification commit `a68e71b`; issue-only comparison starts at `b0827a4`. Formatting, 5,229 links and diff checks pass; earlier-version sources/artifacts unchanged; task temporary paths removed. Review/merge is pending.
 
-Active: [#33](https://github.com/bbs-land/remote-imaging-protocol/issues/33), filled-rectangle line patterns versus border rules. Branch `issue-33-filled-rectangle-borders` starts at `4819dcb`; [incremental derivation](issue-33-filled-rectangle-borders.md). 119,770 fill checks confirm original current-pen/current-ROP selection, custom-type GDI limitation and distinct border passes. Next: reconcile K/N, required checks and PR. Post-#62 refresh confirms #3–#28 have complete PRs; remaining queue #33, #38, #42, #46, #51, #53, #54, #58.
+Issue #33 is delivered in [PR #63](https://github.com/bbs-land/remote-imaging-protocol/pull/63), branch `issue-33-filled-rectangle-borders`, dependent on #62. Its [derivation](issue-33-filled-rectangle-borders.md) records **119,770 fill checks**, current-pen/current-write-mode K borders, original custom-type GDI mapping, width limits and combined/separate background-gap passes. Specification commit `982a59e`; issue-only comparison starts at `4819dcb`. Formatting, 5,249 links and diff checks pass; historical sources/assets unchanged; task temporary files removed. Review/merge is pending.
+
+Next: [#38](https://github.com/bbs-land/remote-imaging-protocol/issues/38), rounded-rectangle radius units, bounds, degeneration and interior. Post-#63 refresh leaves queue #38, #42, #46, #51, #53, #54, #58.
 
 ## Queue and delivery
 

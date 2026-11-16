@@ -36,3 +36,5 @@ git diff --check
 ```
 
 The native matrix passes **119,770 checks**, including all #12 brush/pattern cases and 4,000 new K executions. Historical text, earlier-version reference and original assets/artifacts are unchanged. Final required checks and PR link are recorded at delivery.
+
+Delivered in [PR #63](https://github.com/bbs-land/remote-imaging-protocol/pull/63), dependent on #62. Specification commit **982a59e**, issue-only comparison starts at **4819dcb**. Required checks pass: 119,770 native fill checks, formatting, 0 bad of 5,249 links and diff check. No task temporary build/request files remain. Refreshed creation-order queue selects #38 next; do not merge or manually close #33.
