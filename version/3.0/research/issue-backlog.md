@@ -22,7 +22,7 @@ Issue #10 is delivered in [PR #37](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #11 is delivered in [PR #39](https://github.com/bbs-land/remote-imaging-protocol/pull/39), branch `issue-11-pixel-pen-units`, dependent on #37. Its [derivation note](issue-11-pixel-pen-units.md) records **165,027 native checks**, both world-coordinate inputs, X's omitted origin, POINT's thickness square, the viewport producer's direct context coordinates and exact width/flag/byte behavior; specification commit `37553e5`. The issue-only comparison starts at `068f84c`. Review/merge is pending.
 
-Next active issue: [#12](https://github.com/bbs-land/remote-imaging-protocol/issues/12), canonical fill-mask bytes/radix examples and tiling phase. GitHub refreshed after #39 publication confirms it is oldest without a complete resolution PR. Start from delivered #11; recover the original preset table, custom-pattern brush construction and phase/coordinate handling. Preserve original text; correct inherited Markdown examples with qualified evidence. All new commits carry Codex co-authorship.
+Active: [issue #12](https://github.com/bbs-land/remote-imaging-protocol/issues/12), branch `issue-12-fill-masks` from `e0bc91f` (delivered #11 / PR #39). Read its [derivation note](issue-12-fill-masks.md). Original preset words at RVA 0x7afd8 settle all twelve masks, including 04 row five=0E/14; brush builder 0x11210 paints low-bit-to-right on an inverted monochrome 8×8 bitmap. Next: native brush/consumer evidence for exact phase and scaling, then canonical masks/radix corrections and inherited-copy errata. No phase rule or complete PR yet; all new commits carry Codex co-authorship.
 
 ## Queue and delivery
 
