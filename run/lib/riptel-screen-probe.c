@@ -517,34 +517,62 @@ static void manager_checks(void) {
           "screen stack cleanup closes and removes consumed virtual files");
 }
 static void palette_transaction_checks(void) {
-  prepare();
-  palettes[4] = 5;
-  put16(palette(17) + 0x300, 3);
-  unsigned char all_colors[sizeof colors], pixels[32];
-  memcpy(all_colors, colors, sizeof colors);
-  memcpy(pixels, screen_pixels, 32);
-  require(
-      family_manager(0x23bd3, 6, -1) == 1 &&
-          family_manager(0x23bd3, 4, -1) == 1,
-      "SAVEALL screen-then-whole-palette components use original serializers");
-  palettes[4] = 17;
-  memset(palette(17), 11, 768);
-  memset(palette(5), 22, 768);
-  memset(screen_pixels, 99, 32);
-  action(0x3075a, NULL);
-  unsigned old_status_calls = status_calls;
-  require(family_manager(0x23ca6, 6, -1) == 1 && palettes[4] == 17 &&
-              !memcmp(palette(17), all_colors + 5 * 0x302, 768),
-          "RESTOREALL screen phase initially writes saved RGB into live "
-          "palette 17");
-  require(family_manager(0x23ca6, 4, -1) == 1 && palettes[4] == 5 &&
-              !memcmp(colors, all_colors, sizeof colors) &&
-              !memcmp(screen_pixels, pixels, 32) && !status_visible &&
-              engine_state[0x30c] == 0 && status_calls == old_status_calls,
-          "later whole-palette phase restores saved index 5/all records, "
-          "including protected 17");
-  require(!errors && !allocations,
-          "coupled screen/palette components leave owned memory closed");
+  for (unsigned deleted = 0; deleted < 2; ++deleted) {
+    prepare();
+    palettes[4] = 5;
+    put16(palette(17) + 0x300, 3);
+    unsigned char *saved_port = port_records + 0x78,
+                  *extra_port = port_records + 2 * 0x78;
+    saved_port[0] = 1;
+    put16(saved_port + 1, 1);
+    memcpy(port_records + 0x3a, (int[]){0, 0, 8, 4}, 16);
+    memcpy(saved_port + 0x3a, (int[]){1, 1, 5, 3}, 16);
+    unsigned char all_colors[sizeof colors], pixels[32];
+    memcpy(all_colors, colors, sizeof colors);
+    memcpy(pixels, screen_pixels, 32);
+    require(family_manager(0x23bd3, 2, -1) == 1 &&
+                family_manager(0x23bd3, 6, -1) == 1 &&
+                family_manager(0x23bd3, 4, -1) == 1,
+            "SAVEALL port/screen/whole-palette components use original "
+            "serializers");
+    saved_port[0] = deleted ? 0 : 1;
+    saved_port[0x17] = deleted ? 0 : 1;
+    memcpy(saved_port + 0x3a, (int[]){4, 5, 6, 7}, 16);
+    memcpy(port_records + 0x3a, (int[]){1, 2, 3, 4}, 16);
+    extra_port[0] = 1;
+    extra_port[0x17] = 1;
+    put16(extra_port + 1, 2);
+    memcpy(extra_port + 0x3a, (int[]){6, 6, 7, 7}, 16);
+    put16(ports + 8, 35);
+    palettes[4] = 17;
+    memset(palette(17), 11, 768);
+    memset(palette(5), 22, 768);
+    memset(screen_pixels, 99, 32);
+    action(0x3075a, NULL);
+    unsigned old_status_calls = status_calls;
+    require(family_manager(0x23ca6, 2, -1) == 1 && u16(ports + 8) == 1 &&
+                saved_port[0] == 1 &&
+                !memcmp(saved_port + 0x3a, (int[]){1, 1, 5, 3}, 16) &&
+                !memcmp(port_records + 0x3a, (int[]){0, 0, 8, 4}, 16),
+            "PORT phase restores saved current port and saved viewports over "
+            "protected/redefined/deleted target");
+    require(extra_port[0] == 1 && extra_port[0x17] == 1 &&
+                !memcmp(extra_port + 0x3a, (int[]){6, 6, 7, 7}, 16),
+            "protected live port absent from snapshot survives initial cleanup "
+            "and undefined saved entry");
+    require(family_manager(0x23ca6, 6, -1) == 1 && palettes[4] == 17 &&
+                !memcmp(palette(17), all_colors + 5 * 0x302, 768),
+            "RESTOREALL screen phase initially writes saved RGB into live "
+            "palette 17");
+    require(family_manager(0x23ca6, 4, -1) == 1 && palettes[4] == 5 &&
+                !memcmp(colors, all_colors, sizeof colors) &&
+                !memcmp(screen_pixels, pixels, 32) && !status_visible &&
+                engine_state[0x30c] == 0 && status_calls == old_status_calls,
+            "later whole-palette phase restores saved index 5/all records, "
+            "including protected 17");
+    require(!errors && !allocations,
+            "coupled port/screen/palette components leave owned memory closed");
+  }
 }
 
 int main(int argc, char **argv) {
@@ -556,6 +584,9 @@ int main(int argc, char **argv) {
   hook(0x68440, (void (*)(void))formatted);
   hook(0x68c10, (void (*)(void))atol);
   hook(0x6b9a0, (void (*)(void))memmove);
+  hook(0x68d70, (void (*)(void))memset);
+  hook(0x343e4, noop);
+  hook(0x38e47, (void (*)(void))report);
   hook(0x65ca3, (void (*)(void))allocate);
   hook(0x65cbf, (void (*)(void))release);
   hook(0x41b8, (void (*)(void))report);
