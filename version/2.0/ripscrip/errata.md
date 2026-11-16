@@ -108,6 +108,14 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 
 ## 2.3 Shapes & Fills
 
+### Fill-mask row numerals
+
+**What the draft says:** preset 04 row five has picture/hex 0E but decimal 15 and MegaNum/UltraNum 0F; preset 05 row one has F0/240 but MegaNum 60; FF/255 rows have UltraNum 3@, with one preset-07 row labelled 32; preset 0B rows three/seven have 22/34/0Y but UltraNum 04/24. The 05 diagram caption also incorrectly says light backslash while the preset list says normal backslash.
+
+**What's correct:** retain the existing pictures and hexadecimal bytes. Use 0E/14/0E/0E for preset 04 row five; F0/240/6O/3m for preset 05 row one; FF/255/73/3& for every FF row; 22/34/0Y/0Y for preset 0B rows three/seven. These are arithmetic and caption corrections within the draft, independently corroborated by the unchanged RIPtel 3.1 preset table; they do not assert an earlier client's tiling phase. See the [source recovery and verification](../../3.0/research/issue-12-fill-masks.md).
+
+**How the reference page renders it:** [2.3's Fill Pattern Bitmaps](2.3-shapes-and-fills.md#fill-pattern-bitmaps) uses the corrected numerals and the normal-backslash caption. The original draft under `text/` remains untouched. Exact drawing-context phase is established for RIPtel 3.1 in the [3.0 reconstruction](../../3.0/ripscrip/2.3-shapes-and-fills.md#fill-pattern-origin-and-scaling).
+
 ### RIP_FILLED_POLY_BEZIER: command `x`, not `z`
 
 **What the draft says:** both the Format and Example lines read `!|z` (draft lines 5601 and 5604) - the same RIP_POLY_BEZIER copy-paste as the 2.2 entry above; the draft's Example is a bare, argument-less `!|z` stub.

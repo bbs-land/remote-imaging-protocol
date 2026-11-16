@@ -6,7 +6,7 @@
 
 Started 2026-11-16 for [issue #12](https://github.com/bbs-land/remote-imaging-protocol/issues/12), oldest RealDeuce issue without a complete resolution PR after #39 publication. Branch `issue-12-fill-masks` starts at `e0bc91f` (delivered #11). Required answers: canonical twelve eight-byte masks, the 04/row-five ambiguity and all listed radix errors, inherited Markdown correction, and exact 8×8 tiling origin/coordinate units with nonzero port/viewport and adjacent-object examples. Stay on #12 until phase is fully established; no resolution PR yet.
 
-Primary binary is unchanged RIPtel 3.1 / driver 3.0.7 DLL, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`, preferred base 0x10000000. All addresses are RVAs unless stated otherwise. Use native/static probes only; no GUI or desktop Wine. Original text/assets remain untouched.
+Primary installer is [RIPtel 3.1 riptel.msi](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTel%203.1/riptel.msi), SHA-256 `04915952dcb04013a164eae1b6f6c5f5335798053d4d0e69b3f4da24f812dd2c`, extracted without installation into `<artifact-root>/artifacts/riptel-3.1-pcmicro/`. Primary binary is its unchanged `extracted/ripscrip.dll`, RIPtel 3.1 / driver 3.0.7, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`, preferred base 0x10000000. All addresses are RVAs unless stated otherwise. Use native/static probes only; no GUI or desktop Wine. Original text/assets remain untouched.
 
 ## Preset-table recovery
 
@@ -33,9 +33,9 @@ The real table confirms **04 row five = 0x0e / decimal 14**, agreeing with the p
 
 Both handlers call original brush rebuild **0x11210**. Preset 1 creates a solid brush. Every other preset/custom mask creates an **8×8, one-plane, one-bit bitmap** (CreateBitmap at 0x1132f), fills it white, then iterates row words at style+0x0a: low bit 0 goes to pixel X=7, low bit 7 goes to X=0, row number increments Y from 0 to 7 (**0x113af–0x11439**). SetPixel paints those selected pixels black. Original **CreatePatternBrush** at **0x11473** receives that bitmap. This inversion implements pattern-one as foreground: a monochrome bitmap zero uses DC text color, bitmap one uses background color, per Microsoft's primary [CreatePatternBrush contract](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createpatternbrush). It is not a reason to invert the published row bytes.
 
-The DLL's 209 imports contain CreatePatternBrush and CreateSolidBrush but **no brush-origin setter/getter** or coordinate-origin setter; the only map-mode import is GetMapMode. The original DC/clip paths already traced in [issue #11](issue-11-pixel-pen-units.md) select a master screen HDC for onscreen ports, separate bitmap HDC for offscreen ports, and install clip regions without coordinate-origin changes. This suggests default device-context origin (0,0), not per-object or viewport rephasing. It remains necessary to execute brush creation and representative filled primitives with captured services and inspect any intermediate-surface composition that could change phase.
+The DLL's 209 imports contain CreatePatternBrush and CreateSolidBrush but **no brush-origin setter/getter** or coordinate-origin setter; the only map-mode import is GetMapMode. The original DC/clip paths already traced in [issue #11](issue-11-pixel-pen-units.md) select a master screen HDC for onscreen ports, separate bitmap HDC for offscreen ports, and install clip regions without coordinate-origin changes. This was the initial default-context-origin lead. The completed native consumer checks and static audit below establish the positive direct-brush paths and their scope.
 
-Microsoft's [Brush Origin documentation](https://learn.microsoft.com/en-us/windows/win32/gdi/brush-origin) explains default phase (0,0) at the window/client drawing context and continuity across objects unless the origin is reset. This explains a controlled GDI boundary; it does not alone prove every original RIPtel primitive follows it. The known legacy RIP_FILL patterned-brush defect is a separate exception (solid flood despite pattern) already documented in the fill-defects pages.
+Microsoft's [Brush Origin documentation](https://learn.microsoft.com/en-us/windows/win32/gdi/brush-origin) explains default phase (0,0) at the window/client drawing context and continuity across objects unless the origin is reset. This explains the controlled GDI boundary, combined below with positive original-consumer evidence. The known legacy RIP_FILL patterned-brush defect is a separate exception (solid flood despite pattern) already documented in the fill-defects pages.
 
 ## Native verification and fixture boundary
 
@@ -61,9 +61,17 @@ For a custom mask `80 00 00 00 00 00 00 00`, a nonzero port `(2,1)` and stored v
 
 The legacy RIP_FILL border-color branch's solid-fill defect remains an explicit exception. This issue establishes ordinary pattern-brush phase independently of filled-shape boundary rasterization, pie/chord leakage, palette realization or historical 1.x/2.x phase behavior.
 
-## Next action
+## Reference correction and validation
 
-Native masks, all-byte encodings, direct consumers and phase derivation are complete. Correct all inherited Markdown radix rows, publish an unambiguous eight-byte table and the context-origin formula/example in the 3.0 reference, preserve original text and qualify earlier-edition corrections as arithmetic. Run required formatting/lint/link checks. File a complete PR dependent on #39; issue-only comparison starts at e0bc91f.
+The 3.0 reference now publishes all twelve eight-byte masks, the foreground/background formula at final context coordinates, a nonzero port/viewport example, adjacent-object continuity, two world scales and the independent offscreen-origin/copy distinction. The 1.54 and 2.0 Markdown diagrams receive only arithmetic/caption corrections, with an inline editor's note and 2.0 errata respectively; their historical runtime phase is not inferred from the later DLL. A bounded extraction check of all **96 pictured rows in each of the three editions** verifies picture bits, hexadecimal, decimal, MegaNum and (where present) UltraNum against the original DLL's 96 table words. A separate extraction verifies the new canonical table against those same original words.
+
+The preserved text SHA-256 values before/after correction are identical: `version/1.54/text/RIPScrip-1.54.txt` = `1ff57d53fb81c06604bdb6d9eb35150c90cbe7d5acd7b5ead6a0758f3d957497`; `version/2.0/text/RIPScrip-2.0-alpha-4.txt` = `0da8a34644fa7c0ac7bf457ddfb6fe12288c1bff17c966f3d2b792af57c01982`. No assets change.
+
+`run/format` applied to all edited Markdown, `run/lint` passed, `run/check-links` passed **4,788 links across 195 files**, and `git diff --check` passed. The new C probe is formatted with clang-format 19 and builds with warnings as errors. Native verification passes 2,754 checks. All issue subquestions now have an exact answer within the stated primary-source scope.
+
+## Delivery next action
+
+Commit and push the specification corrections, then file the complete issue-12 PR dependent on #39 with `Closes #12` and an issue-only comparison from `e0bc91f`. Record the PR and specification commit here/backlog, then refresh GitHub creation order before starting #13. Do not wait for merge and do not manually close or merge issues/PRs.
 
 ---
 
