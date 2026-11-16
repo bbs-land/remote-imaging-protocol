@@ -42,7 +42,36 @@ static unsigned allocate_bitmap(void *target, unsigned size) {
   return 1;
 }
 static unsigned rasterize(void) { return 1; }
-static unsigned glyph_width(void) { return 160; }
+static unsigned capture_codes, width_count, raster_count;
+static unsigned width_codes[512], raster_codes[512];
+static unsigned glyph_width(void *engine, void *font, unsigned code,
+                            unsigned face, unsigned flags) {
+  (void)engine;
+  (void)font;
+  (void)face;
+  (void)flags;
+  if (capture_codes) {
+    require(width_count < 512, "bounded captured character metrics");
+    width_codes[width_count++] = code & 0xffff;
+  }
+  return 160;
+}
+static unsigned raster_code(void *engine, void *font, unsigned code,
+                            unsigned face, unsigned flags, void *bits,
+                            unsigned stride, unsigned height, int x, int y) {
+  (void)engine;
+  (void)font;
+  (void)face;
+  (void)flags;
+  (void)bits;
+  (void)stride;
+  (void)height;
+  (void)x;
+  (void)y;
+  require(raster_count < 512, "bounded captured character rasterization");
+  raster_codes[raster_count++] = code & 0xffff;
+  return 1;
+}
 
 static const char *renderer_message;
 static unsigned font_lookup(void *ctx, const char *name) {
@@ -150,12 +179,52 @@ static void decode(const char *wire, uint32_t *args) {
     pos += widths[i];
   }
 }
+static unsigned native_copies, copy_mask;
+static unsigned char copy_canvas[16], lookup_engine[0x900], lookup_font[0x8d],
+    lookup_meta[128];
+static unsigned char slot_sentinels[224];
+static void *glyph_slots[224];
+static unsigned __attribute__((stdcall))
+set_bitmap(unsigned bitmap, unsigned bytes, const unsigned char *bits) {
+  require(bitmap == 99 && bytes == 1 && bits, "captured owned glyph mask");
+  copy_mask = *bits;
+  return bytes;
+}
+static unsigned __attribute__((stdcall)) glyph_rect(int *r, int x, int y,
+                                                    int right, int bottom) {
+  memcpy(r, (int[]){x, y, right, bottom}, 16);
+  return 1;
+}
+static unsigned __attribute__((stdcall)) glyph_blt(unsigned dc, int x, int y,
+                                                   int w, int h,
+                                                   unsigned source, int sx,
+                                                   int sy, unsigned rop) {
+  require(dc == 1 && source == 2 && y == 0 && w == 8 && h == 1 && sx == 0 &&
+              sy == 0,
+          "original glyph copy retains controlled mask geometry");
+  require(rop == 0xb8074a && x >= 0 && x < 2,
+          "original glyph BitBlt always uses fixed masked replacement ROP");
+  for (unsigned n = 0; n < 8; ++n)
+    if (!(copy_mask & (0x80u >> n)))
+      copy_canvas[x + n] = 15;
+  ++native_copies;
+  return 1;
+}
+static void *lookup_realized(void *engine, void *descriptor) {
+  (void)descriptor;
+  require(engine == lookup_engine,
+          "bounded original glyph-cache lookup context");
+  return lookup_font;
+}
+
 int main(int argc, char **argv) {
   if (argc != 2) {
     fprintf(stderr, "Usage: probe DLL\n");
     return 2;
   }
   load(argv[1]);
+  unsigned char saved_presenter[5];
+  memcpy(saved_presenter, image + 0x40660, 5);
   uint32_t args[11];
   decode("0000BW1Q080000001a1a000000", args);
   const uint32_t expected[] = {0, 0, 736, 90, 8, 0, 0, 0, 100, 100, 0};
@@ -473,6 +542,102 @@ int main(int argc, char **argv) {
     ((renderer)(image + 0x40ed0))(captured);
     require(glyph_count == 2 && !memcmp(glyph_calls, upright, sizeof upright),
             "s and f have no effect on controlled rendering");
+  }
+  /* Complete original byte-to-engine interface, including high bytes. */
+  capture_codes = 1;
+  hook(0x523f0, (void (*)(void))raster_code);
+  const char *test_faces[] = {"Marin", "SYMBOL"};
+  for (unsigned face = 0; face < 2; ++face)
+    for (unsigned code = 1; code < 256; ++code) {
+      char input[] = {(char)code, (char)code, 0};
+      captured.value[10] = (uint32_t)(uintptr_t)test_faces[face];
+      captured.value[25] = (uint32_t)(uintptr_t)input;
+      glyph_count = raster_count = width_count = 0;
+      ((renderer)(image + 0x40ed0))(captured);
+      require(glyph_count == 2 && raster_count == 2 && width_count > 0,
+              "each byte produces separate glyph and metric calls");
+      for (unsigned n = 0; n < raster_count; ++n)
+        require(raster_codes[n] == code,
+                "original renderer passes zero-extended byte to glyph engine");
+      require(width_count == 6 && width_codes[0] == 'W',
+              "renderer first requests reference W metric");
+      for (unsigned n = 1; n < width_count; ++n)
+        require(width_codes[n] == code,
+                "original renderer passes same raw byte to text metrics");
+    }
+  /* Original glyph presentation after successful rasterization; APIs capture
+   * masks and interpret only the fixed ROP boundary, not Windows rasterization.
+   */
+  memcpy(image + 0x40660, saved_presenter, 5);
+  hook(0x13c69, noop);
+  hook(0xe6e9, noop);
+  pointer(image + 0x963bc, (void *)set_bitmap);
+  pointer(image + 0x96618, (void *)glyph_rect);
+  pointer(image + 0x963e4, (void *)glyph_blt);
+  put32(context + 0x62, 1);
+  put16(vector_state + 0x1d0a, 15);
+  put16(vector_state + 0x1d0c, 2);
+  put32(vector_state + 0x1d0e, 1);
+  put32(vector_state + 0x1cf2, 99);
+  put32(vector_state + 0x1ce8, 1);
+  put16(vector_state + 0x1cee, 8);
+  put16(vector_state + 0x1cf0, 1);
+  put32(vector_state + 0x1d12, 2);
+  for (unsigned mode = 0; mode < 5; ++mode) {
+    unsigned command[] = {mode};
+    ((void (*)(void *, unsigned, const void *, const char *))(image + 0x2102c))(
+        context, 1, command, NULL);
+    require(style[4] == mode,
+            "original write-mode command stores requested mode");
+    for (unsigned mask = 0; mask < 256; ++mask) {
+      unsigned char bits = mask;
+      memset(copy_canvas, 3, sizeof copy_canvas);
+      native_copies = 0;
+      struct glyph_call call = {{(uint32_t)(uintptr_t)context, 0, 0,
+                                 (uint32_t)(uintptr_t)&bits, 8, 1, 0, 0, 15}};
+      ((void (*)(struct glyph_call))(image + 0x40660))(call);
+      call.arg[1] = 1;
+      ((void (*)(struct glyph_call))(image + 0x40660))(call);
+      require(native_copies == 2,
+              "overlapping glyphs each cause a bitmap copy");
+      for (unsigned x = 0; x < 9; ++x) {
+        unsigned ink = (x < 8 && !(mask & (0x80u >> x))) ||
+                       (x > 0 && !(mask & (0x80u >> (x - 1))));
+        require(
+            copy_canvas[x] == (ink ? 15 : 3),
+            "overlapping glyph COPY coverage does not cancel under XOR mode");
+      }
+    }
+  }
+  /* Original cached and uncached slot arithmetic. Both are font-neutral. */
+  hook(0x52340, (void (*)(void))lookup_realized);
+  hook(0x523c0, noop);
+  pointer(lookup_font + 0x39, lookup_meta);
+  put16(lookup_meta + 0x3c, 224);
+  put16(lookup_meta + 0x3e, 32);
+  pointer(lookup_font + 0x4d, glyph_slots);
+  for (unsigned n = 0; n < 224; ++n)
+    glyph_slots[n] = slot_sentinels + n;
+  for (unsigned code = 0; code < 65536; ++code) {
+    void *p = ((void *(*)(void *, void *, unsigned, unsigned, unsigned))(
+        image + 0x55a30))(lookup_engine, lookup_font, code, 0, 0);
+    require(p == (code >= 32 && code < 256 ? slot_sentinels + code - 32 : NULL),
+            "original glyph cache maps raw code minus first character, no "
+            "codepage translation");
+  }
+  unsigned char offset_font[32] = {0}, offset_header[128] = {0};
+  unsigned offsets[224];
+  pointer(offset_font + 0x10, offset_header);
+  pointer(offset_header, offsets);
+  put32(offset_font + 2, 0x212);
+  for (unsigned n = 0; n < 224; ++n)
+    offsets[n] = 0x1000 + n * 37;
+  for (unsigned n = 0; n < 224; ++n) {
+    unsigned offset = ((unsigned (*)(void *, void *, void *, unsigned))(
+        image + 0x505e0))(lookup_engine, offset_font, NULL, n);
+    require(
+        offset == 0x212 + offsets[n],
+        "original outline file lookup uses direct relative glyph offset slot");
   }
   printf("PASS: %u checks against original decoder, radix selector, handler "
          "and text consumer\n",
