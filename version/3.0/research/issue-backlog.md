@@ -62,7 +62,9 @@ Issue #38 is delivered in [PR #64](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #42 is delivered in [PR #65](https://github.com/bbs-land/remote-imaging-protocol/pull/65), branch `issue-42-clipboard-capture-state`, dependent on #64. Its [derivation](issue-42-clipboard-capture-state.md) records **54,361 port checks**, assigned/first-unused clipboard selection, protected rejection, destructive same-source→screen0 behavior, nontransactional failures, actual 3-to-4 stretch and protected soft-reset survivor. Specification commit `3c8bd55`; issue-only comparison starts at `063cabf`. Formatting, 5,293 links and diff checks pass; original sources/assets unchanged; task temporary files removed. Review/merge is pending.
 
-Active: [#46](https://github.com/bbs-land/remote-imaging-protocol/issues/46), D text-variable delay units. Branch `issue-46-delay-variable-units` starts at `325a2c9`; [incremental derivation](issue-46-delay-variable-units.md). 3,459,218 macro checks confirm sixtieths→floored ms, D(1)=16ms/D(60)=1000ms targets, synchronous polling, range/prefix quirks and wrap defect. Next: reference correction/checks/complete PR before #51. Post-#65 refresh leaves queue #46, #51, #53, #54, #58.
+Issue #46 is delivered in [PR #66](https://github.com/bbs-land/remote-imaging-protocol/pull/66), branch `issue-46-delay-variable-units`, dependent on #65. Its [derivation](issue-46-delay-variable-units.md) records **3,459,218 macro checks**, sixtieth conversion to exact floored-millisecond targets, synchronous polling, prefix/range quirks and deadline-wrap defect. Specification commit `28cfba2`; issue-only comparison starts at `325a2c9`. Formatting, 5,307 links and diff checks pass; original sources/assets and earlier references unchanged; task temporary files removed. Review/merge is pending.
+
+Next: [#51](https://github.com/bbs-land/remote-imaging-protocol/issues/51), deferred-query numbered/floating dispatch order and live mutation. Post-#66 refresh leaves queue #51, #53, #54, #58.
 
 ## Queue and delivery
 
