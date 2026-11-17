@@ -720,6 +720,135 @@ static void state_prepare(void) {
     put32(mouse_system + 0x24 + 4 * n, 1000 + n);
   selected_cursor = 0;
 }
+/* Issue #54: original wire switch, protection, selection and screen creation.
+ */
+static unsigned protection_result(unsigned old, unsigned pair) {
+  if (pair & 2)
+    return 0;
+  return pair & 1 ? 1 : old;
+}
+static void switch_port_checks(void) {
+  state_prepare();
+  hook(0x45038, noop); /* unrelated keyboard/mouse pending-state cleanup */
+  pointer(image + 0x96618, (void *)set_rect);
+  put32(port_system + 0x3a, 640);
+  put32(port_system + 0x3e, 480);
+  unsigned char baseline[sizeof port_records];
+  for (unsigned n = 0; n < 36; ++n) {
+    unsigned char *p = port_records + n * 0x78;
+    p[0] = n ? 4 : 1;
+    p[0x17] = 0xa4;
+    put32(p + 0x6c, 100 + n);
+  }
+  memcpy(baseline, port_records, sizeof baseline);
+  for (unsigned source = 0; source < 36; ++source)
+    for (unsigned target = 0; target < 36; ++target)
+      for (unsigned kind = 0; kind < 4; ++kind) {
+        /* kind 0=defined screen, 1=defined offscreen, 2=absent,
+         * 3=absent with stale protection (construction must fail). */
+        if ((kind >= 2 && (!target || source == target)))
+          continue;
+        for (unsigned initial = 0; initial < 4; ++initial)
+          for (unsigned flags = 0; flags < 16; ++flags) {
+            memcpy(port_records, baseline, sizeof port_records);
+            unsigned char *src = port_records + source * 0x78;
+            unsigned char *dst = port_records + target * 0x78;
+            if (kind >= 2)
+              memset(dst, 0, 0x78);
+            else
+              dst[0] = kind ? 4 : 1;
+            if (source)
+              src[0x17] |= initial & 1;
+            if (target) {
+              if (source != target)
+                dst[0x17] |= (initial >> 1) & 1;
+              if (kind >= 2)
+                dst[0x17] = kind == 3;
+            }
+            unsigned old_src = src[0x17] & 1, old_dst = dst[0x17] & 1;
+            unsigned char prior[sizeof port_records];
+            memcpy(prior, port_records, sizeof prior);
+            put16(port_system + 8, source);
+            put32(ctx + 0x62, u32(src + 0x6c));
+            errors = 0;
+            wire_state(0x468eb, target, flags);
+            unsigned current = kind == 3 ? 0 : target;
+            unsigned wanted_src =
+                source ? protection_result(old_src, flags >> 2) : 0;
+            unsigned wanted_dst = kind == 2 ? 0 : old_dst;
+            if (source == target)
+              wanted_dst = wanted_src;
+            if (current)
+              wanted_dst = protection_result(wanted_dst, flags & 3);
+            if (source == target)
+              wanted_src = wanted_dst;
+            require(u16(port_system + 8) == current && errors == (kind == 3),
+                    "wire selects/creates target or falls back after "
+                    "construction failure");
+            require((src[0x17] & 1) == wanted_src &&
+                        (dst[0x17] & 1) == wanted_dst &&
+                        !(port_records[0x17] & 1),
+                    "source first, destination last, unprotect wins, port-zero "
+                    "immune");
+            unsigned device = current && kind == 1 ? u32(dst + 0x6c)
+                                                   : u32(port_records + 0x6c);
+            require(u32(ctx + 0x62) == device,
+                    "original selector and activation bind correct "
+                    "screen/offscreen DC");
+            for (unsigned n = 0; n < 36; ++n) {
+              if (n == source || n == target)
+                continue;
+              require(
+                  !memcmp(prior + n * 0x78, port_records + n * 0x78, 0x78),
+                  "unrelated ports unchanged by conflicting flags or failure");
+            }
+            if (kind == 2)
+              require(dst[0] == 1 && u16(dst + 1) == target &&
+                          u32(dst + 3) == 0 && u32(dst + 7) == 0 &&
+                          u32(dst + 0xb) == 640 && u32(dst + 0xf) == 480 &&
+                          u32(dst + 0x42) == 640 && u32(dst + 0x46) == 480 &&
+                          u32(dst + 0x6c) == u32(port_records + 0x6c),
+                      "ordinary missing destination becomes a full-screen "
+                      "screen port");
+            if (kind == 3)
+              require(!memcmp(dst, prior + target * 0x78, 0x78),
+                      "failed protected-undefined target retained; destination "
+                      "flags affect fallback only");
+          }
+      }
+  /* The two-character MegaNum field can carry 0..1295 at base 36;
+   * bits above the four documented controls are not validation errors. */
+  for (unsigned flags = 0; flags < 1296; ++flags) {
+    memcpy(port_records, baseline, sizeof port_records);
+    put16(port_system + 8, 1);
+    errors = 0;
+    wire_state(0x468eb, 7, flags);
+    require(
+        !errors && u16(port_system + 8) == 7 &&
+            (port_records[0x78 + 0x17] & 1) ==
+                protection_result(0, (flags >> 2) & 3) &&
+            (port_records[7 * 0x78 + 0x17] & 1) ==
+                protection_result(0, flags & 3),
+        "all base36 two-digit flags use only four low bits without rejection");
+  }
+  for (unsigned blocked = 0; blocked < 2; ++blocked)
+    for (unsigned target = 0; target <= 36; ++target)
+      for (unsigned flags = 0; flags < 16; ++flags) {
+        if (!blocked && target < 36)
+          continue;
+        memcpy(port_records, baseline, sizeof port_records);
+        put16(port_system + 8, 1);
+        errors = 0;
+        put16(state_options + 0x104, blocked);
+        wire_state(0x468eb, target, flags);
+        require(u16(port_system + 8) == 1 &&
+                    !memcmp(port_records, baseline, sizeof baseline) &&
+                    errors == !blocked,
+                "disabled graphics or out-of-range target stops before all "
+                "protection writes");
+      }
+  put16(state_options + 0x104, 0);
+}
 static void state_ownership_checks(void) {
   hook(0x11210, noop); /* GDI brush construction, traced separately in #12. */
   hook(0x45038, noop);
@@ -925,6 +1054,7 @@ int main(int argc, char **argv) {
   memcpy(image + 0x391fd, original_delete, 5);
   memcpy(image + 0x3dac0, original_env_switch, 5);
   state_ownership_checks();
+  switch_port_checks();
   hook(0x3dac0, noop);
   whole_reset_checks();
   backup_query_checks();
