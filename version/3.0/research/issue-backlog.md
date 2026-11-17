@@ -70,7 +70,7 @@ Issue #53 is delivered in [PR #68](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #54 is delivered in [PR #69](https://github.com/bbs-land/remote-imaging-protocol/pull/69), branch `issue-54-switch-port-precedence`, dependent on #68. Its [derivation](issue-54-switch-port-precedence.md) records **12,187,782 native table checks**, source-before/destination-after order, unprotect priority, ordinary undefined screen-port creation and actual fallback/protection retention on constructor failure. This opcode’s table/inventory match its verified two-field descriptor; no other family layout is claimed resolved. Specification commit `df829bd`; issue-only comparison starts at `9e9995f`. Formatting, 5,352 links and diff checks pass; original assets/text and earlier references unchanged; task temporary files removed. Review/merge is pending.
 
-Next: [#58](https://github.com/bbs-land/remote-imaging-protocol/issues/58), LOAD_BITMAP flag16 and unknown flag handling. Refreshed queue: #58.
+Active: [#58](https://github.com/bbs-land/remote-imaging-protocol/issues/58), LOAD_BITMAP flag16 and unknown bits. Branch `issue-58-load-bitmap-flags` starts at `f87d465`; see its [bitmap flag note](issue-58-load-bitmap-flags.md). Next trace every original flags consumer and prove combinations/unknown handling natively. Refresh the queue before completing the goal.
 
 ## Queue and delivery
 
