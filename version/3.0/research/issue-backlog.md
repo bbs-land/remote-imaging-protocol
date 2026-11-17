@@ -4,6 +4,10 @@
 
 ## Resume here
 
+**Latest scan: 2026-11-17 20:53 UTC.** One new uncovered RealDeuce issue: [#72, DEFINE_PORT flags/origins/replacement state](https://github.com/bbs-land/remote-imaging-protocol/issues/72), created at 20:47:44Z. There are now 35 open RealDeuce issues; the original 34 remain covered by PR #71 and their individual PRs. No issue/PR conversation comments, inline review comments or review submissions were added/edited since the previous comment watermark, 2026-11-17T02:11:57Z. No known issue body changed in that interval. Issue #72 is queued, not investigated or resolved; it needs its own complete resolution PR and is not a closing reference in #71.
+
+Its four requested checks are: DEFINE_PORT low/high flag acceptance and whether draft bits 4/8 act; nonzero offscreen near coordinates versus zero stored origin, including zero/wrapped extents; protected redefinition retaining or changing the current selection; and insufficient-budget/bitmap-allocation replacement failures for same/different current targets, including actual clipboard effects. The issue supplies bounded static RVA leads, which must be independently verified against the original DLL before publishing conclusions. Next research should start a dedicated `issue-72-define-port-contract` branch from the current integration history and record its own derivation. This scan made no specification changes.
+
 **Post-PR feedback review is complete.** Three later comments on #10/#13 were not covered by the original resolution pass; they now have source-backed answers on the existing PRs and in the latest stack. See the [comment ledger](#post-pr-comment-review) for exact links/commits and the refresh watermark. All 34 issues retain their original resolution PRs; review/merge remains pending.
 
 Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`; its [derivation note](issue-3-extended-font-style.md) contains the complete evidence record. Review/merge is pending.
