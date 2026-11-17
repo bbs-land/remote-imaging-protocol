@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**All34 queued RealDeuce issues have complete resolution PRs; none is awaiting investigation.** Review/merge is pending. The final refresh and per-issue records below are the resumption index.
+**Post-PR feedback review is active.** The comment refresh finds new unanswered follow-ups on #10 (COPY_BLIT arithmetic, PORT_WRITE clipping/inactive source) and #13 (small polygon/polyline counts). Address #10 first and #13 second on their existing PR branches, then propagate the fixes to the latest stack. The34 issues have original resolution PRs, but these follow-ups require additional evidence before claiming complete coverage.
 
 Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`; its [derivation note](issue-3-extended-font-style.md) contains the complete evidence record. Review/merge is pending.
 
