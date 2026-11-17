@@ -21,7 +21,7 @@ Note the internal headers say "RIPterm v2.0" - RIPscrip 3.0 is the renamed RIPsc
 
 ## 2. Version strings & handshake
 
-- Auto-detect reply to a host "are you RIP?" query: **`RIPSCRIP03000`** (RIPTEL.HLP FAQ: appears on the login line when MajorBBS/WorldGroup time out waiting; server waits only ~1-1.5 s).
+- Help’s printed auto-detect quote (incomplete; original executable response later [recovered as `RIPSCRIP030001`](issue-7-framing-identification.md)): **`RIPSCRIP03000`** (RIPTEL.HLP FAQ: appears on the login line when MajorBBS/WorldGroup time out waiting; server waits only ~1-1.5 s).
 - `$RIPVER$` text variable "RIPscrip version (e.g., **RIPSCRIP015300**)" - i.e. `RIPSCRIP0<major><minor*100>` zero-padded (1.54 -> 015300... sic, help's own example).
 - readme.txt: "RIPtel Visual Telnet Version 3.1 (Driver version 3.0.7)"; EXE: "RIPtel Visual Telnet v3.1, a RIPscrip-enabled Telnet Browser", DLL version check message ("The RIPscrip driver (RIPSCRIP.DLL) is not the correct version... need %ld.%ld.%ld").
 - Error string (RIPSCRIP.HLP): "Invalid RIPscrip revision code" - headers carry a revision code.
