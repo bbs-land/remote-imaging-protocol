@@ -20,7 +20,7 @@ static int render_geometry[4], returned_rect[4] = {2, 3, 6, 5};
 static unsigned wallpaper_calls, clipboard_calls, duplicate_calls, copy_calls;
 static unsigned sequence, draw_sequence, duplicate_sequence, wallpaper_sequence;
 static unsigned wallpaper_mode, wallpaper_current, duplicate_target;
-static unsigned fail_delete, retarget_clipboard;
+static unsigned fail_delete, fail_create, retarget_clipboard;
 static int wallpaper_source[4], wallpaper_bounds[4];
 static unsigned zero(void) { return 0; }
 static unsigned one(void) { return 1; }
@@ -86,7 +86,7 @@ static void prepare(void) {
   lookup_calls = display_calls = missing = errors = 0;
   wallpaper_calls = clipboard_calls = duplicate_calls = copy_calls = 0;
   sequence = draw_sequence = duplicate_sequence = wallpaper_sequence = 0;
-  render_result = fail_delete = retarget_clipboard = 0;
+  render_result = fail_delete = fail_create = retarget_clipboard = 0;
   last_error_message = NULL;
   lookup_name[0] = displayed_name[0] = 0;
 }
@@ -178,8 +178,9 @@ static unsigned duplicate_create(void *c, unsigned n, unsigned x, unsigned y,
           "duplicate uses initial rendered size, not wallpaper viewport");
   ++duplicate_calls;
   duplicate_target = n & 0xffff;
-  entries[duplicate_target * 0x78] = 4;
-  return 1;
+  if (!fail_create)
+    entries[duplicate_target * 0x78] = 4;
+  return !fail_create;
 }
 static unsigned duplicate_delete(void *c, unsigned n, unsigned force) {
   require(c == context && n == 7 && force == 0,
@@ -269,6 +270,12 @@ static void flag_checks(void) {
   invoke(0xc569, args, "SOURCE.BMP");
   require(display_calls == 1 && !duplicate_calls && !wallpaper_calls,
           "failed explicit duplicate deletion returns before wallpaper");
+  prepare();
+  fail_create = 1;
+  put16(ports + 8, 2);
+  invoke(0xc569, args, "SOURCE.BMP");
+  require(duplicate_calls == 1 && !copy_calls && wallpaper_calls == 1,
+          "failed explicit duplicate creation still reaches wallpaper");
   prepare();
   retarget_clipboard = 1;
   put16(ports + 8, 2);
