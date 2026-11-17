@@ -21,3 +21,9 @@ Original D requires exactly one argument, but it does **not** enforce the draft'
 A controlled timer start0xfffffff8 with D(1) makes deadline wrap to8; the next unsigned timer value0xfffffff9 already compares above8, so original delay returns immediately after that poll. This records the existing wrap defect rather than pretending its unsigned absolute comparison is rollover safe. Default native execution does not install any context-level asynchronous input gate or dispatch the wire3D handler: helper takes only duration, busy-polls its timer and returns on the same evaluation call stack.
 
 Next: change the D summary to sixtieths, publish1/60 target arithmetic, distinguish blocking helper from wire scheduling and mark validation/wrap quirks; update inventory/evidence, run required checks and file complete PR.
+
+## Reference correction and validation scope
+
+D summary now says sixtieths and gives exact integer clock targets for1/60/3900. The reference distinguishes timer targets from physical runtime, synchronous evaluation from the wire-delay mechanism, documented ordinary range from observed prefix/zero/oversize quirks and unsigned deadline wrap. Inventory agrees and retains corpus cadence evidence; earlier-version reference/text and wire-delay contract remain untouched.
+
+Reproduction: `run/riptel-macro-probe /path/to/original/ripscrip.dll` (FreeBSD15.1/clang19.1.7/native -m32); original DLL hash verified by wrapper. **3,459,218 checks pass**, with the fake-clock service bounding all polls and no real delay/audio/GUI. Scoped wrapper builds and PR payloads are removed on completion. Final required checks and PR link follow at delivery.
