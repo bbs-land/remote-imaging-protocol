@@ -33,3 +33,5 @@ Next: reconcile both query reference sections against this shipping omission, re
 Both query sections now state stored-but-unexecuted click modes1–4, no overlapping dispatch order and no same-click mutation policy. They separate historical A4 order and the contrary older A1 sentence from the actual client contract; “resident” covers all stored forms. Modes0/5/6 retain actual execution and hover numbering is now confirmed rather than hypothetical. No earlier-version reference/text or assets changed.
 
 Validation: native query probe **72,972 checks**, repository formatting/lint, **0 bad of5,325 links**, and diff check. Native wrapper and Python-scoped request payloads clean their own temporary files; no desktop GUI, Wine, audio or actual host transmission was used. Next file complete PR dependent on #66, then refresh and select #53.
+
+Delivered in [PR #67](https://github.com/bbs-land/remote-imaging-protocol/pull/67), dependent on #66. Specification commit **ed39f34**; issue-only comparison starts at **8338765**. Required checks pass; scoped temporary files removed. Refreshed queue selects #53, then #54 and #58. Do not merge or manually close #51.
