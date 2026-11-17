@@ -306,6 +306,106 @@ static void border_checks(void) {
   border_probe = 0;
 }
 
+static int round_ellipse[8][2];
+static unsigned round_result = 1;
+static unsigned __attribute__((stdcall))
+round_rect(unsigned dc, int x, int y, int x1, int y1, int ew, int eh) {
+  round_ellipse[rectangles][0] = ew;
+  round_ellipse[rectangles][1] = eh;
+  rectangle(dc, x, y, x1, y1);
+  return round_result;
+}
+static void round_fixture(unsigned ww, unsigned wh, unsigned dw, unsigned dh,
+                          unsigned border) {
+  prepare(1, 1);
+  put32(world + 0x24, ww);
+  put32(world + 0x28, wh);
+  put32(world + 0x2c, dw);
+  put32(world + 0x30, dh);
+  put16(style, 9);
+  unsigned fill[] = {0x80, 0, 0, 0, 0, 0, 0, 0, 1};
+  invoke(0x1c55f, fill);
+  unsigned ls[] = {0, 1, 0, 1};
+  invoke(0x1cd15, ls);
+  invoke(0xdcf1, &border);
+  text_color[active_dc] = 1;
+  back_color[active_dc] = 2;
+  rop_mode[active_dc] = 13;
+  background_mode[active_dc] = 2;
+}
+static void round_verify(unsigned filled, unsigned border, unsigned *args,
+                         unsigned ww, unsigned wh, unsigned dw, unsigned dh) {
+  unsigned x0 = args[0], x1 = args[2], y0 = args[1], y1 = args[3];
+  if (x0 > x1) {
+    unsigned t = x0;
+    x0 = x1;
+    x1 = t;
+  }
+  if (y0 > y1) {
+    unsigned t = y0;
+    y0 = y1;
+    y1 = t;
+  }
+  x0 = x0 * dw / ww;
+  x1 = x1 * dw / ww;
+  y0 = y0 * dh / wh;
+  y1 = y1 * dh / wh;
+  unsigned radius = args[4] * dw / ww;
+  require(!errors && rectangles == (filled && border ? 2u : 1u),
+          "original U/u forwards normalized, zero-sized and oversized geometry "
+          "without rejection");
+  for (unsigned n = 0; n < rectangles; ++n) {
+    require(!memcmp(drawn[n],
+                    (int[]){(int)x0 + 5, (int)y0 + 3, (int)x1 + 6, (int)y1 + 4},
+                    16),
+            "rounded bounds normalize each unsigned axis, scale then add one "
+            "to far and viewport origin");
+    require(round_ellipse[n][0] == (int)(radius * 2) &&
+                round_ellipse[n][1] == 2 * (int16_t)radius,
+            "corner ellipse uses X-scaled radius; Y sign-extends its low WORD; "
+            "no aspect correction or clamp");
+    require(captured_pen[n] == ((!filled || n) ? created_pen : 18) &&
+                captured_brush[n] == ((!filled || n) ? 15u : 6u),
+            "outline always uses pen; filled no-border pass still forwards "
+            "geometry with NULL pen");
+  }
+}
+static void round_checks(void) {
+  pointer(image + 0x96478, (void *)round_rect);
+  border_probe = 1;
+  for (unsigned filled = 0; filled < 2; ++filled)
+    for (unsigned radius = 0; radius < 65536; ++radius) {
+      round_fixture(640, 480, 640, 480, 0);
+      unsigned args[] = {0, 0, 8, 6, radius};
+      invoke(filled ? 0x1c0fe : 0x1f108, args);
+      round_verify(filled, 0, args, 640, 480, 640, 480);
+    }
+  const unsigned profiles[][4] = {{640, 350, 640, 480},
+                                  {1280, 960, 640, 480},
+                                  {640, 480, 320, 480},
+                                  {640, 480, 1280, 960}};
+  const unsigned radii[] = {0, 1, 3, 4, 8, 9, 20, 32767, 32768, 65535, 65536};
+  const unsigned corners[][4] = {
+      {20, 30, 80, 90}, {80, 30, 20, 90}, {20, 90, 80, 30}, {80, 90, 20, 30},
+      {20, 30, 20, 90}, {20, 30, 80, 30}, {20, 30, 20, 30}};
+  for (unsigned profile = 0; profile < 4; ++profile)
+    for (unsigned filled = 0; filled < 2; ++filled)
+      for (unsigned border = 0; border < 2; ++border)
+        for (unsigned c = 0; c < 7; ++c)
+          for (unsigned r = 0; r < 11; ++r)
+            for (unsigned failure = 0; failure < 2; ++failure) {
+              const unsigned *f = profiles[profile];
+              round_fixture(f[0], f[1], f[2], f[3], border);
+              round_result = !failure;
+              unsigned args[5];
+              memcpy(args, corners[c], 16);
+              args[4] = radii[r];
+              invoke(filled ? 0x1c0fe : 0x1f108, args);
+              round_verify(filled, border, args, f[0], f[1], f[2], f[3]);
+            }
+  border_probe = 0;
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -401,6 +501,7 @@ int main(int argc, char **argv) {
               "filled rectangle world conversion and stored viewport offset");
     }
   border_checks();
+  round_checks();
   printf("PASS: %u original fill-mask/brush/consumer checks\n", checks);
   return 0;
 }

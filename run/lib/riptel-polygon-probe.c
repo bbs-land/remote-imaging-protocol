@@ -320,6 +320,27 @@ int main(int argc, char **argv) {
               "unsafe consumer");
     }
   }
+  /* U/u radius is XY-wide, exactly like each corner coordinate. */
+  for (unsigned radix = 36; radix <= 64; radix += 28)
+    for (unsigned width = 2; width <= 5; ++width)
+      for (unsigned filled = 0; filled < 2; ++filled) {
+        unsigned maximum = 1;
+        for (unsigned k = 0; k < width; ++k)
+          maximum *= radix;
+        --maximum;
+        configured_start(filled ? 'u' : 'U', radix, width);
+        number(0, width, radix);
+        number(1, width, radix);
+        number(2, width, radix);
+        number(3, width, radix);
+        number(maximum, width, radix);
+        parse(radix, width);
+        require(calls == 1 && slot == 64 + filled && count == 5 &&
+                    captured[0] == 0 && captured[1] == 1 && captured[2] == 2 &&
+                    captured[3] == 3 && captured[4] == maximum,
+                "original U/u decoder reads radius in XY width, not a fixed "
+                "two-digit field");
+      }
   printf("PASS: %u polygon parser checks\n", checks);
   return 0;
 }
