@@ -93,6 +93,7 @@ static void points(unsigned n, unsigned width, unsigned radix) {
 static unsigned char graphics[32], style[0x61], world[128], ports[128],
     entries[0x78];
 static unsigned drawing_calls, expected_contours, expected_vertices;
+static unsigned small_case, small_opaque, small_style, dc_background = 2;
 static unsigned expected_counts[2048];
 static const char *error_message;
 static unsigned one(void) { return 1; }
@@ -112,12 +113,14 @@ static unsigned __attribute__((stdcall)) select_object(unsigned dc,
 static unsigned __attribute__((stdcall)) background_mode(unsigned dc,
                                                          unsigned mode) {
   (void)dc;
-  (void)mode;
-  return 2;
+  unsigned prior = dc_background;
+  dc_background = mode;
+  return prior;
 }
 static void verify_points(const int *p, unsigned n) {
   for (unsigned i = 0; i < n; ++i)
-    require(p[2 * i] == 6 && p[2 * i + 1] == 5,
+    require(p[2 * i] == (int)(6 + (small_case ? 3 * i : 0)) &&
+                p[2 * i + 1] == (int)(5 + (small_case ? 2 * i : 0)),
             "original conversion preserves every supplied point plus viewport "
             "offset");
 }
@@ -128,7 +131,7 @@ static unsigned __attribute__((stdcall)) draw(unsigned dc, const int *p,
           "vertex");
   ++drawing_calls;
   verify_points(p, n);
-  return 1;
+  return n >= 2; /* Documented GDI minimum; original handler ignores failure. */
 }
 static unsigned __attribute__((stdcall)) multi_draw(unsigned dc, const int *p,
                                                     const unsigned *counts,
@@ -168,12 +171,40 @@ static void consumer(unsigned rva) {
   put32(context + 0x62, 1);
   drawing_calls = 0;
   error_message = NULL;
+  if (small_case) {
+    style[0x21] = small_opaque ? 4 : 0;
+    style[0x20] = small_style;
+    put32(entries + 0x5c, 321);
+    put32(entries + 0x60, 123);
+  }
+  unsigned char old_context[sizeof context], old_style[sizeof style],
+      old_entries[sizeof entries];
+  memcpy(old_context, context, sizeof context);
+  memcpy(old_style, style, sizeof style);
+  memcpy(old_entries, entries, sizeof entries);
+  dc_background = 2;
   /* Original single-contour loops convert one extra pair beyond supplied N.
    * Readable sentinels expose that defect without an out-of-buffer read. */
   captured[count] = 123;
   captured[count + 1] = 456;
   ((void (*)(void *, unsigned, uint32_t *, const char *))(image + rva))(
       context, count, captured, NULL);
+  if (small_case)
+    require(!memcmp(old_context, context, sizeof context) &&
+                !memcmp(old_style, style, sizeof style) &&
+                !memcmp(old_entries, entries, sizeof entries) &&
+                dc_background == 2,
+            "small counts preserve drawing state/cursor and restore GDI "
+            "background mode");
+  if (small_case && expected_vertices == 0) {
+    require(error_message &&
+                !strcmp(error_message, "Insufficient parameters") &&
+                !drawing_calls,
+            "zero direct count parses then handler diagnoses without drawing");
+    require(u32(image + 0x8b610) == 0x5a5a5a5a,
+            "zero count returns before scratch coordinate writes");
+    return;
+  }
   require(!error_message && drawing_calls == 1,
           "well-formed parsed polygon reaches original drawing consumer");
   if (rva != 0x1e80a) {
@@ -181,6 +212,33 @@ static void consumer(unsigned rva) {
                 u32(image + 0x8b614 + 8 * expected_vertices) == 459,
             "original converts a stale extra pair but does not pass it to GDI");
   }
+}
+static void small_count_checks(void) {
+  const char commands[] = {'l', 'P', 'p'};
+  const unsigned handlers[] = {0x1ed28, 0x1eb03, 0x1bc78};
+  small_case = 1;
+  for (unsigned radix = 36; radix <= 64; radix += 28)
+    for (unsigned width = 2; width <= 5; ++width)
+      for (unsigned command = 0; command < 3; ++command)
+        for (unsigned n = 0; n <= 3; ++n)
+          for (small_opaque = 0; small_opaque < 2; ++small_opaque)
+            for (small_style = 0; small_style < 5; ++small_style) {
+              configured_start(commands[command], radix, width);
+              number(n, 2, radix);
+              for (unsigned i = 0; i < n; ++i) {
+                number(1 + 3 * i, width, radix);
+                number(2 + 2 * i, width, radix);
+              }
+              parse(radix, width);
+              require(calls == 1 && count == 1 + 2 * n && captured[0] == n,
+                      "all small direct counts parse without special sentinel "
+                      "interpretation");
+              expected_contours = 1;
+              expected_vertices = n;
+              memset(image + 0x8b610, 0x5a, 40);
+              consumer(handlers[command]);
+            }
+  small_case = 0;
 }
 static void multi_case(unsigned radix, unsigned width, unsigned contours) {
   start('<');
@@ -320,6 +378,7 @@ int main(int argc, char **argv) {
               "unsafe consumer");
     }
   }
+  small_count_checks();
   printf("PASS: %u polygon parser checks\n", checks);
   return 0;
 }
