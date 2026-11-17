@@ -31,3 +31,5 @@ The entry now defines source-before-selection-before-destination and unprotect p
 Next: required formatting/link/diff checks and PR delivery, then #58.
 
 Validation before PR: **12,187,782 native table checks**, formatting/lint, **0 bad of5,352 links**, diff check. Original text/assets and earlier references unchanged; scoped temporary native builds removed. No GUI/Wine/audio. Specification commit and PR link follow at delivery.
+
+Delivered in [PR #69](https://github.com/bbs-land/remote-imaging-protocol/pull/69), dependent on #68. Specification commit **df829bd**; issue-only comparison starts at **9e9995f**. Required checks pass, scoped temporary files removed, no GUI/Wine/audio. Refreshed queue selects #58 next; do not merge or manually close #54.

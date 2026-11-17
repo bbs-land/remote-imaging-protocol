@@ -42,7 +42,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## RIPscrip 3.x research
 
-- [ ] Resolve RealDeuce’s GitHub clarification backlog serially from primary evidence; active issue: #54, SWITCH_PORT precedence and undefined destination. Resume from the [research backlog](version/3.0/research/issue-backlog.md).
+- [ ] Resolve RealDeuce’s GitHub clarification backlog serially from primary evidence; next issue: #58, LOAD_BITMAP flag16 and unknown bits. Resume from the [research backlog](version/3.0/research/issue-backlog.md).
 
 - [ ] Inventory all known 3.0-era material beyond the white paper (RIPtel, WebRunner, TeleGrafix press releases, beta announcements, Usenet/FAQ posts)
 - [ ] Hunt for the "RIPscrip 3.0 protocol specification" and "RIP-2-C 3.0 developer tools" TeleGrafix listed as products (confirmed to have existed via RIPtel help text)

@@ -68,7 +68,9 @@ Issue #51 is delivered in [PR #67](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #53 is delivered in [PR #68](https://github.com/bbs-land/remote-imaging-protocol/pull/68), branch `issue-53-host-control-brackets`, dependent on #67. Its [derivation](issue-53-host-control-brackets.md) records **3,460,237 macro checks**, exact default-ASCII controls/literal malformed forms, ^@ omission, full requested key bytes, nonfatal incomplete-template diagnostics and bracket segmentation before conversion without ESC suppression. Specification commit `deba11a`; issue-only comparison starts at `bf85f10`. Formatting, 5,340 links and diff checks pass; original assets/text and earlier-version references unchanged; task temporary files removed. Review/merge is pending.
 
-Active: [#54](https://github.com/bbs-land/remote-imaging-protocol/issues/54), SWITCH_PORT flag precedence and undefined destination. Branch `issue-54-switch-port-precedence` starts at `9e9995f`; see its [switch note](issue-54-switch-port-precedence.md). Next trace original wire protection/fallback order and prove the flag matrix natively. Then #58.
+Issue #54 is delivered in [PR #69](https://github.com/bbs-land/remote-imaging-protocol/pull/69), branch `issue-54-switch-port-precedence`, dependent on #68. Its [derivation](issue-54-switch-port-precedence.md) records **12,187,782 native table checks**, source-before/destination-after order, unprotect priority, ordinary undefined screen-port creation and actual fallback/protection retention on constructor failure. This opcode’s table/inventory match its verified two-field descriptor; no other family layout is claimed resolved. Specification commit `df829bd`; issue-only comparison starts at `9e9995f`. Formatting, 5,352 links and diff checks pass; original assets/text and earlier references unchanged; task temporary files removed. Review/merge is pending.
+
+Next: [#58](https://github.com/bbs-land/remote-imaging-protocol/issues/58), LOAD_BITMAP flag16 and unknown flag handling. Refreshed queue: #58.
 
 ## Queue and delivery
 
