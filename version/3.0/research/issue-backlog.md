@@ -64,7 +64,7 @@ Issue #42 is delivered in [PR #65](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #46 is delivered in [PR #66](https://github.com/bbs-land/remote-imaging-protocol/pull/66), branch `issue-46-delay-variable-units`, dependent on #65. Its [derivation](issue-46-delay-variable-units.md) records **3,459,218 macro checks**, sixtieth conversion to exact floored-millisecond targets, synchronous polling, prefix/range quirks and deadline-wrap defect. Specification commit `28cfba2`; issue-only comparison starts at `325a2c9`. Formatting, 5,307 links and diff checks pass; original sources/assets and earlier references unchanged; task temporary files removed. Review/merge is pending.
 
-Next: [#51](https://github.com/bbs-land/remote-imaging-protocol/issues/51), deferred-query numbered/floating dispatch order and live mutation. Post-#66 refresh leaves queue #51, #53, #54, #58.
+Active: [#51](https://github.com/bbs-land/remote-imaging-protocol/issues/51), deferred-query numbered/floating dispatch order and live mutation. Branch `issue-51-deferred-query-order` starts at `8338765`; see its [incremental derivation](issue-51-deferred-query-order.md). Next: locate the original blank-space click loop, then prove ordering and live mutation natively. Refreshed queue after this issue: #53, #54, #58.
 
 ## Queue and delivery
 
