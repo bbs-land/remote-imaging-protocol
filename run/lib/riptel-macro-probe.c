@@ -1683,6 +1683,94 @@ static void tone_checks(void) {
          "added gaps; invalid sweeps reject; bounded WORD cycles\n");
 }
 
+static unsigned delay_chunks, delay_remainder_ms, delay_interval, delay_phase,
+    delay_calls, delay_wrap;
+static unsigned __attribute__((stdcall)) delay_clock(void) {
+  ++delay_calls;
+  require(delay_calls <= 3 * (delay_chunks + 1), "bounded fake-clock polling");
+  if (delay_wrap)
+    return 0xfffffff7u + delay_calls;
+  unsigned ms = delay_interval < delay_chunks ? 65000 : delay_remainder_ms;
+  unsigned base = 100 + delay_interval * 70000;
+  if (delay_phase == 0) {
+    delay_phase = 1;
+    return base;
+  }
+  if (delay_phase == 1 && ms) {
+    delay_phase = 2;
+    return base + ms - 1;
+  }
+  delay_phase = 0;
+  ++delay_interval;
+  return base + ms;
+}
+static void delay_prepare(unsigned duration) {
+  delay_chunks = duration > 3900 ? (duration - 1) / 3900 : 0;
+  delay_remainder_ms = (duration - delay_chunks * 3900) * 1000 / 60;
+  delay_interval = delay_phase = delay_calls = delay_wrap = 0;
+}
+static void delay_checks(void) {
+  require(registered_callback("D") == 0x2832d, "original D registration");
+  pointer(image + 0x966fc, (void *)delay_clock);
+  for (unsigned ticks = 0; ticks <= 65536; ++ticks) {
+    prepare();
+    snprintf(params, 21, "%u", ticks);
+    delay_prepare(ticks);
+    require(!invoke(0x2832d, 1), "D action returns no text");
+    require(!u16(variables + 0x436) && !errors &&
+                delay_interval == delay_chunks + 1 && !delay_phase &&
+                delay_calls ==
+                    3 * (delay_chunks + 1) - (delay_remainder_ms == 0),
+            "D accepts zero and 65536, converts ticks to exact floored "
+            "milliseconds and busy-polls each deadline");
+  }
+  const char *values[] = {"1A", "1.5", "60x", "00060", "+1",
+                          "-1", "",    "A",   " 1"};
+  const unsigned expected[] = {1, 1, 60, 60, 0, 0, 0, 0, 0};
+  for (unsigned n = 0; n < sizeof values / sizeof values[0]; ++n) {
+    prepare();
+    strcpy(params, values[n]);
+    delay_prepare(expected[n]);
+    require(!invoke(0x2832d, 1), "D prefix/rejection returns no text");
+    require(u16(variables + 0x436) == !expected[n] &&
+                (expected[n] ? delay_interval == 1 && delay_calls == 3
+                             : !delay_calls),
+            "D tests only first digit and uses numeric prefix, rejecting "
+            "sign/blank/letter starts");
+  }
+  for (unsigned argc = 0; argc <= 3; ++argc)
+    if (argc != 1) {
+      prepare();
+      strcpy(params, "60");
+      delay_prepare(60);
+      require(!invoke(0x2832d, argc) && u16(variables + 0x436) && !delay_calls,
+              "D requires exactly one argument");
+    }
+  const char *forms[] = {"$D(1)$", "$D(60)$", "$D(0)$", "$D(65536)$",
+                         "$D(1A)$"};
+  const unsigned durations[] = {1, 60, 0, 65536, 1};
+  for (unsigned n = 0; n < 5; ++n) {
+    pipeline_prepare();
+    delay_prepare(durations[n]);
+    char text[4096];
+    snprintf(text, sizeof text, "A%sB", forms[n]);
+    require(expand_codes(text, 0xff, 1) == 1 && !strcmp(text, "AB") &&
+                !u16(variables + 0x436) && delay_interval == delay_chunks + 1,
+            "ordinary expansion synchronously consumes valid D after deadline "
+            "polling");
+  }
+  prepare();
+  strcpy(params, "1");
+  delay_prepare(1);
+  delay_wrap = 1;
+  require(!invoke(0x2832d, 1) && !u16(variables + 0x436) && delay_calls == 2,
+          "D unsigned absolute deadline comparison can finish early when timer "
+          "addition wraps");
+  delay_wrap = 0;
+  printf("Original D: sixtieths; floor(1000*n/60) with 3900-tick chunks; "
+         "D(1)=16ms, D(60)=1000ms; synchronous busy wait\n");
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
@@ -1797,6 +1885,7 @@ int main(int argc, char **argv) {
   environment_query_checks();
   screen_dispatch_checks();
   tone_checks();
+  delay_checks();
   printf("PASS: %u macro/variable checks\n", checks);
   return 0;
 }
