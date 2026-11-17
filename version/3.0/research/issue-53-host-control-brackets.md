@@ -23,3 +23,9 @@ With template3=`THREE`, templateA(10)=`TEN`: `^[[A]`â†’ESC+`TEN`, raw ESC+`[A]`â
 Native `run/riptel-macro-probe DLL` first passes **3,460,183 checks**, including all127 non-NUL ASCII suffix bytes for both prefixes and the complete requested full-host matrix, with original storage/segmentation/control code. The existing #6 host-service controls remain: allocation/scratch, fixed user variables, error capture, no-op echo0x7705 and captured transmit0x6947. No new parser/control/template hook is added. The input buffer is mutable; template allocations are released after each matrix case. Native builds are scoped with EXIT cleanup; no GUI/audio/actual transmission.
 
 Next: assert the exact diagnostic text, replace the blanket bracket/no-escape and NUL/range claims, document malformed forms and byte examples, validate and file complete PR dependent on #67.
+
+## Reference correction and final validation
+
+The control entry now states the actual ASCII conversion domain, same-prefix literal exception, lowercase folding, literal malformed/trailing forms and the shipped ^@ omission. It lists all original special-key byte strings plus unlisted Z and backquote A, including their nonfatal incomplete-template diagnostic. The replacement literal-dollar/bracket section shows raw bracket survival, complete template recognition before ordinary expansion, lack of ESC suppression and stage-specific backslash/dollar behavior. The processing-order page links these exact rules. Earlier-version references, immutable text and original assets remain unchanged.
+
+Final native matrix adds every listed key code and asserts exact `Invalid MegaNum` diagnostic content. **3,460,237 macro checks pass**; no new parser/control hook. Whole-repository formatting/lint, link and diff results are recorded at PR delivery. All scoped native builds clean themselves on EXIT; no task-owned temporary path is retained.
