@@ -57,3 +57,9 @@ GitHub refreshed after publication confirms #11 is next: PIXEL versus POINT coor
 ---
 
 [Research backlog](issue-backlog.md) · [Drawing ports](../ripscrip/7.0-drawing-ports.md)
+
+## Post-PR comments: arithmetic and PORT_WRITE
+
+Review refresh found follow-ups after PR #37 opened: [COPY_BLIT arithmetic](https://github.com/bbs-land/remote-imaging-protocol/issues/10#issuecomment-6926090826) and [PORT_WRITE clipping/inactive source](https://github.com/bbs-land/remote-imaging-protocol/issues/10#issuecomment-6931396493). These were not answered by the original PR. The preserved `1g0000XCQO280000` literal decodes XC=1200, QO=960,28=80 in base36; chapter7 likewise incorrectly described28 as72. Fix those prose numbers without changing wire literals.
+
+Original PORT_WRITE descriptor slot120 points to0x4699a. Preliminary trace has no world conversion or viewport-disabled test, clamps right/bottom independently, and calls the export pipeline after filename handling. Read the complete writer/capture chain and execute it against owned pixels/file services before publishing exact output/no-op policy. Next verify requested8×4 cases and defined-but-inactive behavior with original geometry and actual BMP serialization where feasible; do not infer file preservation merely from capture-call arguments.
