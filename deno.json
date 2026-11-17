@@ -16,6 +16,7 @@
     "riptel-polygon-probe": "bash run/riptel-polygon-probe",
     "riptel-fill-probe": "bash run/riptel-fill-probe",
     "riptel-lines-probe": "bash run/riptel-lines-probe",
+    "riptel-port-write-probe": "bash run/riptel-port-write-probe",
     "riptel-port-probe": "bash run/riptel-port-probe",
     "riptel-bitmap-probe": "bash run/riptel-bitmap-probe",
     "riptel-framing-probe": "bash run/riptel-framing-probe",
