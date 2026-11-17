@@ -65,3 +65,7 @@ Original-era binaries and documents for reverse-engineering reference, with prov
 | `ripterm-2.3/` | Redundant unpack of `artifacts/ripterm-2.30/RIPT2300.zip` - all 251 files under `extracted/` are byte-identical to `artifacts/ripterm-2.30/extracted/`, and its top-level files match the zip entries exactly. No unique content; no in-repo page cites it. **Recommended for removal.** | Unpacked from `artifacts/ripterm-2.30/RIPT2300.zip` |
 
 When adding a new artifact, keep this provenance table up to date. RIPdraw has not yet been located in any archive.
+
+## Online GDI boundary references
+
+The [rounded-rectangle investigation](../version/3.0/research/issue-38-rounded-rectangle-geometry.md) directly executes RIPtel 3.1 but separately consults Microsoft's [RoundRect API](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-roundrect) and Wine's **published Windows-conformance vectors**, not its renderer as a RIP oracle. Online-only sources, no clone/download retained: wine-mirror/wine commit **433ffc868d5daae7fb4c4640028abe4295e0ab57**, [gdi32/tests/path.c](https://github.com/wine-mirror/wine/blob/433ffc868d5daae7fb4c4640028abe4295e0ab57/dlls/gdi32/tests/path.c) and [gdi32/tests/bitmap.c](https://github.com/wine-mirror/wine/blob/433ffc868d5daae7fb4c4640028abe4295e0ab57/dlls/gdi32/tests/bitmap.c). The issue note records hashes, exact cases and their limits; no new original-Windows raster run is claimed.
