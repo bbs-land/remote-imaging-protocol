@@ -66,3 +66,7 @@ Post-publication GitHub creation-order refresh confirms **#14** (arc start/end/s
 ---
 
 [Research backlog](issue-backlog.md) · [Polygon reference](../ripscrip/2.3-shapes-and-fills.md#rip_polygon)
+
+## Post-PR minimum-count comment
+
+The [later issue comment](https://github.com/bbs-land/remote-imaging-protocol/issues/13#issuecomment-6926736265) asks count00, one-vertex P/l, two-vertex P and whether no-ops alter state. It was posted after PR #41 and is not answered by the original maximum-count matrices. Derive through actual byte parsing, original handlers and GDI consumer contracts; distinguish driver dispatch from rasterization and keep readable N+1 sentinel slots. No small-count reference correction yet. Next trace handler early guards/state writes, run original0..3 count cases and verify Windows API minimum-count behavior from primary contracts.
