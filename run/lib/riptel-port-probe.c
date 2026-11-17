@@ -6,15 +6,18 @@
 #include <strings.h>
 static unsigned char ctx[512], ports[128], entries[36 * 0x78], world[128],
     palette[0x900], options[0x400], vars[0x700];
-static unsigned errors, allocated_w, allocated_h, blits, stretches;
+static unsigned errors, allocated_w, allocated_h, blits, stretches,
+    quiet_errors;
 static int captured[10];
 static char result[64];
+static unsigned char original_protection[5];
 static unsigned zero(void) { return 0; }
 static void report(void *c, unsigned level, const char *where,
                    const char *why) {
   (void)c;
   (void)level;
-  fprintf(stderr, "captured error: %s: %s\n", where, why);
+  if (!quiet_errors)
+    fprintf(stderr, "captured error: %s: %s\n", where, why);
   ++errors;
 }
 static unsigned area(unsigned w, unsigned h) {
@@ -221,10 +224,266 @@ static void size_queries(void) {
   }
 }
 
+struct clip_surface {
+  unsigned alive, w, h, color;
+};
+static struct clip_surface clip_surfaces[64];
+static unsigned clip_maps[64], clip_dc_alive[64], clip_next_dc,
+    clip_next_bitmap;
+static unsigned clip_failure, clip_allocations, clip_deletes, clip_copies,
+    clip_source;
+static unsigned __attribute__((stdcall)) clip_dc(unsigned unused) {
+  (void)unused;
+  ++clip_allocations;
+  if (clip_failure == 1)
+    return 0;
+  unsigned dc = ++clip_next_dc;
+  require(dc < 64, "owned clipboard DC capacity");
+  clip_dc_alive[dc] = 1;
+  clip_maps[dc] = 0;
+  return dc;
+}
+static unsigned __attribute__((stdcall)) clip_bitmap(unsigned unused,
+                                                     unsigned w, unsigned h) {
+  (void)unused;
+  allocated_w = w;
+  allocated_h = h;
+  if (clip_failure == 2)
+    return 0;
+  unsigned bitmap = ++clip_next_bitmap;
+  require(bitmap < 64, "owned clipboard bitmap capacity");
+  clip_surfaces[bitmap] = (struct clip_surface){1, w, h, 0};
+  return 100 + bitmap;
+}
+static unsigned __attribute__((stdcall)) clip_select(unsigned dc,
+                                                     unsigned object) {
+  require(dc < 64 && clip_dc_alive[dc], "select owned live DC");
+  if (clip_failure == 3 && object >= 100 && object < 164)
+    return 0;
+  unsigned old = clip_maps[dc];
+  clip_maps[dc] = object;
+  return old ? old : 9000;
+}
+static unsigned __attribute__((stdcall)) clip_delete(unsigned object) {
+  if (object >= 100 && object < 164) {
+    require(clip_surfaces[object - 100].alive,
+            "delete live original clipboard bitmap");
+    clip_surfaces[object - 100].alive = 0;
+    ++clip_deletes;
+  }
+  return 1;
+}
+static unsigned __attribute__((stdcall)) clip_delete_dc(unsigned dc) {
+  require(dc < 64 && clip_dc_alive[dc], "delete owned live DC");
+  clip_dc_alive[dc] = 0;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) clip_fill(unsigned dc, const int *r,
+                                                   unsigned brush) {
+  (void)r;
+  (void)brush;
+  require(dc < 64 && clip_maps[dc] >= 100 && clip_maps[dc] < 164,
+          "fill owned bitmap");
+  clip_surfaces[clip_maps[dc] - 100].color = 0;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) clip_copy(unsigned dst, int x, int y,
+                                                   int w, int h, unsigned src,
+                                                   int sx, int sy,
+                                                   unsigned rop) {
+  (void)x;
+  (void)y;
+  (void)w;
+  (void)h;
+  (void)sx;
+  (void)sy;
+  require(dst < 64 && src < 64 && clip_maps[dst] >= 100 &&
+              clip_maps[src] >= 100 && rop == 0xcc0020,
+          "COPY between owned clip surfaces");
+  clip_source = src;
+  ++clip_copies;
+  if (clip_failure == 5)
+    return 0;
+  clip_surfaces[clip_maps[dst] - 100].color =
+      clip_surfaces[clip_maps[src] - 100].color;
+  return 1;
+}
+static unsigned __attribute__((stdcall))
+clip_stretch(unsigned dst, int x, int y, int w, int h, unsigned src, int sx,
+             int sy, int sw, int sh, unsigned rop) {
+  ++stretches;
+  memcpy(captured, (int[]){x, y, w, h, sx, sy, sw, sh}, 8 * sizeof(int));
+  return clip_copy(dst, x, y, w, h, src, sx, sy, rop);
+}
+static void clip_prepare(unsigned source, int clipboard) {
+  prepare(16, 16, 16, 16);
+  memset(clip_surfaces, 0, sizeof clip_surfaces);
+  memset(clip_maps, 0, sizeof clip_maps);
+  memset(clip_dc_alive, 0, sizeof clip_dc_alive);
+  clip_next_dc = clip_next_bitmap = 8;
+  for (unsigned slot = 0; slot <= 7; slot += 7) {
+    viewport(slot, 16, 16);
+    unsigned char *p = entries + slot * 0x78;
+    p[0] = slot ? 4 : 1;
+    put32(p + 0x6c, slot + 1);
+    put32(p + 0x70, 9000);
+    put32(p + 0x74, 101 + slot);
+    clip_maps[slot + 1] = 101 + slot;
+    clip_dc_alive[slot + 1] = 1;
+    clip_surfaces[slot + 1] =
+        (struct clip_surface){1, 16, 16, slot ? 0x777777 : 0x111111};
+  }
+  put16(ports + 8, source);
+  put16(ports + 0xa, clipboard);
+  put32(ctx + 0x62, source + 1);
+  put32(ctx + 0x6a, 1);
+  clip_failure = clip_allocations = clip_deletes = clip_copies = clip_source =
+      0;
+}
+static void clipboard_checks(void) {
+  quiet_errors = 1;
+  memcpy(image + 0x33821, original_protection, 5);
+  hook(0x65cbf, noop);
+  hook(0x68d70, (void (*)(void))memset);
+  hook(0x69e60, (void (*)(void))memcpy);
+  pointer(image + 0x964a0, (void *)clip_dc);
+  pointer(image + 0x96460, (void *)clip_bitmap);
+  pointer(image + 0x963c0, (void *)clip_select);
+  pointer(image + 0x963d0, (void *)clip_delete);
+  pointer(image + 0x964ac, (void *)clip_delete_dc);
+  pointer(image + 0x9667c, (void *)clip_fill);
+  pointer(image + 0x963e4, (void *)clip_copy);
+  pointer(image + 0x96488, (void *)clip_stretch);
+  unsigned xy[] = {1, 1, 3, 3, 0};
+  for (unsigned source = 0; source <= 7; source += 7)
+    for (unsigned assigned = 0; assigned < 2; ++assigned)
+      for (unsigned protected = 0; protected < 2; ++protected) {
+        clip_prepare(source, assigned ? 7 : -1);
+        entries[7 * 0x78 + 0x17] = protected;
+        unsigned char old7[0x78];
+        memcpy(old7, entries + 7 * 0x78, 0x78);
+        invoke(0xc1cf, xy);
+        if (assigned && protected) {
+          require(
+              errors >= 1 && u16(ports + 0xa) == 7 &&
+                  u16(ports + 8) == source &&
+                  !memcmp(old7, entries + 7 * 0x78, 0x78) &&
+                  clip_surfaces[8].alive && !clip_allocations && !clip_copies,
+              "protected assigned clipboard rejects before deletion/allocation "
+              "and preserves pointer/current/record/pixels");
+        } else {
+          unsigned target = assigned ? 7 : 1;
+          unsigned final_source = assigned && source == 7 ? 0 : source;
+          require(!errors && u16(ports + 0xa) == target &&
+                      u16(ports + 8) == final_source &&
+                      entries[target * 0x78] == 4 && allocated_w == 4 &&
+                      allocated_h == 4 && stretches == 1 &&
+                      !memcmp(captured, (int[]){0, 0, 4, 4, 1, 1, 3, 3},
+                              8 * sizeof(int)) &&
+                      clip_copies == 1 && clip_source == final_source + 1,
+                  "clipboard absence chooses first unused; assigned target "
+                  "reused; same-source deletion changes source to zero");
+          unsigned bitmap_handle = u32(entries + target * 0x78 + 0x74);
+          require(clip_surfaces[bitmap_handle - 100].color ==
+                      (final_source ? 0x777777u : 0x111111u),
+                  "new clipboard contains pixels from the actual "
+                  "post-allocation source");
+          if (!assigned)
+            require(!memcmp(old7, entries + 7 * 0x78, 0x78) &&
+                        clip_surfaces[8].alive,
+                    "existing offscreen port is retained when first-unused "
+                    "allocation wins");
+        }
+      }
+  for (unsigned source = 0; source <= 7; source += 7)
+    for (unsigned assigned = 0; assigned < 2; ++assigned)
+      for (unsigned failure = 1; failure <= 4; ++failure) {
+        clip_prepare(source, assigned ? 7 : -1);
+        clip_failure = failure;
+        if (failure == 4)
+          put32(ports + 0x22, (uint32_t)-100000);
+        unsigned char before[sizeof entries];
+        memcpy(before, entries, sizeof before);
+        invoke(0xc1cf, xy);
+        unsigned target = assigned ? 7 : 1;
+        require(errors >= 1 && u16(ports + 0xa) == 65535 &&
+                    entries[target * 0x78] == 0 &&
+                    u16(ports + 8) == (assigned && source == 7 ? 0 : source) &&
+                    !clip_copies,
+                "allocation failure clears clipboard, leaves target undefined "
+                "and retains post-delete current selection");
+        require(clip_surfaces[1].alive &&
+                    (!assigned || !clip_surfaces[8].alive),
+                "old assigned clipboard pixels are destroyed before failed "
+                "allocation; screen survives");
+        for (unsigned slot = 0; slot < 36; ++slot)
+          if (slot != target)
+            require(!memcmp(before + slot * 0x78, entries + slot * 0x78, 0x78),
+                    "allocation failure retains every unrelated port record");
+      }
+  for (unsigned source = 0; source <= 7; source += 7) {
+    clip_prepare(source, -1);
+    for (unsigned slot = 1; slot < 36; ++slot)
+      if (slot != 7)
+        viewport(slot, 16, 16);
+    unsigned char before[sizeof entries];
+    memcpy(before, entries, sizeof before);
+    invoke(0xc1cf, xy);
+    require(errors == 1 && u16(ports + 0xa) == 65535 &&
+                u16(ports + 8) == source &&
+                !memcmp(before, entries, sizeof before) && !clip_allocations &&
+                !clip_deletes && !clip_copies && clip_surfaces[8].alive,
+            "no free slot fails without deleting existing offscreen ports or "
+            "changing current/pixels/pointer");
+    /* Existing assignment still wins when no free slot exists. */
+    put16(ports + 0xa, 7);
+    errors = 0;
+    invoke(0xc1cf, xy);
+    require(!errors && u16(ports + 0xa) == 7 && clip_copies == 1 &&
+                !clip_surfaces[8].alive,
+            "assigned clipboard is replaced without searching for a free slot");
+  }
+  for (unsigned protect = 0; protect < 2; ++protect) {
+    clip_prepare(0, 7);
+    entries[7 * 0x78 + 0x17] = protect;
+    unsigned char old[0x78];
+    memcpy(old, entries + 7 * 0x78, 0x78);
+    unsigned reset =
+        ((unsigned (*)(void *, int, unsigned))(image + 0x33112))(ctx, -2, 0) &
+        65535;
+    require(reset == 1 && !errors && u16(ports + 8) == 0 &&
+                u16(ports + 0xa) == (protect ? 7 : 65535) &&
+                clip_surfaces[8].alive == protect &&
+                (protect ? !memcmp(old, entries + 7 * 0x78, 0x78)
+                         : entries[7 * 0x78] == 0),
+            "soft-reset port deletion retains protected clipboard and clears "
+            "only deleted assignment");
+  }
+  for (unsigned copy_failure = 0; copy_failure < 2; ++copy_failure) {
+    clip_prepare(0, -1);
+    if (copy_failure)
+      clip_failure = 5;
+    else
+      memset(entries + 0x3a, 0, 16);
+    int rect[] = {1, 1, 4, 4};
+    unsigned status =
+        ((unsigned (*)(void *, void *))(image + 0x2866))(ctx, rect) & 65535;
+    require(status == 1 && u16(ports + 0xa) == 1 && entries[0x78] == 4 &&
+                u16(ports + 8) == 0,
+            "copy failure is ignored after successful allocation; clipboard "
+            "remains defined without rollback");
+    require(clip_copies == copy_failure &&
+                clip_surfaces[u32(entries + 0x78 + 0x74) - 100].color == 0,
+            "trim or GDI copy failure leaves allocated clipboard clear instead "
+            "of preserving old pixels");
+  }
+}
+
 int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
   load_image(argv[1]);
+  memcpy(original_protection, image + 0x33821, 5);
   unsigned hooks[] = {0x45038, 0x343e4, 0x342ad, 0x34319, 0x18cf6,
                       0x18bf7, 0x3988f, 0x398ee, 0x13c69};
   for (unsigned i = 0; i < sizeof hooks / sizeof hooks[0]; ++i)
@@ -328,6 +587,7 @@ int main(int argc, char **argv) {
                     8 * sizeof(int)),
             "source clipping shortens paired destination only without scaling");
   }
+  clipboard_checks();
   printf("PASS: %u port allocation/query/copy geometry checks\n", checks);
   return 0;
 }
