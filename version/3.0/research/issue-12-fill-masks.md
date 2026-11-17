@@ -27,7 +27,7 @@ Original physical dispatch slot **58** (`S`) uses handler **0x1c679**, arguments
 0B: 88 00 22 00 88 00 22 00
 ```
 
-The real table confirms **04 row five = 0x0e / decimal 14**, agreeing with the picture/hex and contradicting decimal 15 / radix 0F. Direct arithmetic confirms preset 05 row one F0=240=base36 **6O**; preset 0B row three/seven 22=34=base64 **0Y**. Byte FF=255 encodes base64 **3&**, not 3@ or 32. The original base64 lookup at **0x7dd30** maps `m`→48, `&`→63, `@`→0; invalid-character acceptance in the complete byte parser must not be inferred from this raw numeric lookup. These are canonical encoding corrections, not a request to treat @ as a valid digit. Both 2.0/3.0 Markdown tables contain all listed errors; the 1.54 table contains the 04 decimal/Mega and 05 Mega errors but has no Ultra column.
+The real table confirms **04 row five = 0x0e / decimal 14**, agreeing with the picture/hex and contradicting decimal 15 / radix 0F. Direct arithmetic confirms preset 05 row one F0=240=base 36 **6O**; preset 0B row three/seven 22=34=base 64 **0Y**. Byte FF=255 encodes base 64 **3&**, not 3@ or 32. The original base 64 lookup at **0x7dd30** maps `m`→48, `&`→63, `@`→0; invalid-character acceptance in the complete byte parser must not be inferred from this raw numeric lookup. These are canonical encoding corrections, not a request to treat @ as a valid digit. Both 2.0/3.0 Markdown tables contain all listed errors; the 1.54 table contains the 04 decimal/Mega and 05 Mega errors but has no Ultra column.
 
 ## Brush construction and initial phase leads
 
