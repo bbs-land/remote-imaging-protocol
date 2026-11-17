@@ -295,6 +295,26 @@ static void cursor_checks(void) {
   hook(0x65493, (void (*)(void))strncpy);
   hook(0x6bcb0, (void (*)(void))strncpy);
   hook(0x655e2, (void (*)(void))strcasecmp);
+  unsigned char original_metric[5];
+  memcpy(original_metric, image + 0x1410, 5);
+  /* The original CHR metric sums raw advances, scales the complete string,
+   * and returns an integer even when glyph rendering uses fractions. */
+  unsigned char metric_state[128] = {0}, metric_header[16] = {0};
+  signed char metric_widths[256] = {0};
+  prepare();
+  pointer(context + 0x52, metric_state);
+  put16(metric_state + 8, 1);
+  put16(metric_state + 0x1a, 5);
+  put16(metric_state + 0x1c, 4);
+  put16(metric_header + 1, 127);
+  pointer(metric_state + 0x34, metric_header);
+  pointer(metric_state + 0x3c, metric_widths);
+  metric_widths['A'] = metric_widths['B'] = 5;
+  typedef unsigned (*classic_metric)(void *, const char *, unsigned);
+  require((((classic_metric)(image + 0x1410))(context, "A", 0) & 65535) == 6 &&
+              (((classic_metric)(image + 0x1410))(context, "AB", 0) & 65535) ==
+                  12,
+          "original CHR widths 6.25 each become string extents 6 and 12");
   hook(0x1410, (void (*)(void))metric_classic);
   hook(0x3fcd0, (void (*)(void))metric_outline);
   hook(0x21a0, (void (*)(void))classic_text);
@@ -349,6 +369,11 @@ static void cursor_checks(void) {
                   "classic font zero incorrectly uses outline metric");
             }
   cursor_fixture(1, 1, 0, 1, 4);
+  ((text_handler)(image + 0x20169))(context, 0, NULL, "");
+  require(!error_message && !text_draws && !outline_width_calls &&
+              u32(cursor_port + 0x5c) == 300 && u32(cursor_port + 0x60) == 400,
+          "empty TEXT skips drawing and metric/cursor updates");
+  cursor_fixture(1, 1, 0, 1, 4);
   ((text_handler)(image + 0x20cbc))(context, 2, (uint32_t[]){100, 80}, "");
   require(error_message && !text_draws && u32(cursor_port + 0x5c) == 300 &&
               u32(cursor_port + 0x60) == 400,
@@ -358,6 +383,22 @@ static void cursor_checks(void) {
   ((text_handler)(image + 0x20169))(context, 0, NULL, "AB");
   require(!error_message && !text_draws && u32(cursor_port + 0x5c) == 300,
           "disabled TEXT viewport leaves cursor unchanged");
+  memcpy(image + 0x1410, original_metric, 5);
+  cursor_fixture(2, 0, 1, 0, 0);
+  pointer(context + 0x52, metric_state);
+  put32(viewport + 0x2c, 800);
+  put32(viewport + 0x30, 600);
+  ((text_handler)(image + 0x1cef0))(context, 2, (uint32_t[]){10, 20}, NULL);
+  ((text_handler)(image + 0x20169))(context, 0, NULL, "AB");
+  require(!error_message && text_draws == 1 && text_anchor_x == 11 &&
+              text_anchor_y == 19 && u32(cursor_port + 0x5c) == 23 &&
+              u32(cursor_port + 0x60) == 19,
+          "MOVE then TEXT with original fractional CHR metric stores integer "
+          "cursor including converted position and viewport origin");
+  ((text_handler)(image + 0x1cef0))(context, 2, (uint32_t[]){30, 40}, NULL);
+  require(u32(cursor_port + 0x5c) == 23 && u32(cursor_port + 0x60) == 32,
+          "later MOVE replaces text cursor without any text output");
+  hook(0x1410, (void (*)(void))metric_classic);
 }
 
 int main(int argc, char **argv) {

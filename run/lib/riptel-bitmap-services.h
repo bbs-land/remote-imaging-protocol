@@ -415,6 +415,19 @@ static void renderer_checks(void) {
               "32-bit original classifier selects nothing");
         }
       }
+  /* A nonempty image completely outside the physical surface still returns
+   * its requested rectangle. No visible-pixel rectangle is substituted. */
+  renderer_prepare(24);
+  memcpy(returned_rect, (int[]){40, 30, 44, 32}, 16);
+  unsigned outside_args[] = {40, 30, 44, 32, 0, 0, 1, 0, 0};
+  invoke(0xc569, outside_args, "SOURCE.BMP");
+  require(!errors && opens == 1 && clipboard_calls == 1 && !placeholder_calls,
+          "fully clipped ordinary bitmap still requests clipboard with "
+          "unclipped four-by-two rectangle");
+  for (unsigned x = 0; x < 4; ++x)
+    require(surfaces[1].rgb[x] == 0x123456,
+            "outside bitmap changes no pixels on controlled destination");
+  memcpy(returned_rect, (int[]){2, 3, 6, 5}, 16);
   /* Different sizes do not trigger a companion-mask lookup or dimension
    * check. Original geometry and internal mask scaling still execute. */
   unsigned widths[] = {2, 8};

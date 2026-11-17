@@ -14,7 +14,21 @@ static unsigned lookup_calls, display_calls, missing, errors, rop;
 static int transparent;
 static const char *last_error_message;
 static char lookup_name[256], displayed_name[256];
-static unsigned char color_entry[5], validator_entry[5], wallpaper_entry[5];
+static unsigned char color_entry[5], validator_entry[5], wallpaper_entry[5],
+    deletion_entry[5];
+static unsigned placeholder_calls, placeholder_current, placeholder_pointer;
+static void placeholder(void *ctx, int x, int y, int right, int bottom,
+                        const char *name) {
+  (void)x;
+  (void)y;
+  (void)right;
+  (void)bottom;
+  (void)name;
+  require(ctx == context, "placeholder uses active context");
+  ++placeholder_calls;
+  placeholder_current = u16(ports + 8);
+  placeholder_pointer = u16(ports + 0xa);
+}
 static unsigned render_dither, render_palette, render_stretch, render_result;
 static int render_geometry[4], returned_rect[4] = {2, 3, 6, 5};
 static unsigned wallpaper_calls, clipboard_calls, duplicate_calls, copy_calls;
@@ -83,7 +97,7 @@ static void prepare(void) {
   pointer(ports, entries);
   pointer(context + 0x1a, palette);
   pointer(context + 0x36, options);
-  lookup_calls = display_calls = missing = errors = 0;
+  lookup_calls = display_calls = missing = errors = placeholder_calls = 0;
   wallpaper_calls = clipboard_calls = duplicate_calls = copy_calls = 0;
   sequence = draw_sequence = duplicate_sequence = wallpaper_sequence = 0;
   render_result = fail_delete = fail_create = retarget_clipboard = 0;
@@ -293,6 +307,55 @@ static void flag_checks(void) {
   invoke(0xc569, args, "SOURCE.BMP");
   require(display_calls == 1 && !wallpaper_calls && !clipboard_calls,
           "renderer failure returns before duplication and wallpaper");
+  /* Execute the original protected-delete path, rather than just injecting
+   * its return value. The renderer boundary has already processed the image. */
+  memcpy(image + 0x33112, deletion_entry, 5);
+  prepare();
+  put16(ports + 8, 2);
+  put16(ports + 0xa, 7);
+  entries[7 * 0x78] = 4;
+  entries[7 * 0x78 + 0x17] = 1;
+  unsigned char old_entries[sizeof entries];
+  memcpy(old_entries, entries, sizeof entries);
+  args[4] = 7;
+  args[6] = 19;
+  invoke(0xc569, args, "SOURCE.BMP");
+  require(errors == 1 && display_calls == 1 && render_palette == 1 &&
+              !duplicate_calls && !copy_calls && !wallpaper_calls &&
+              u16(ports + 8) == 2 && u16(ports + 0xa) == 7 &&
+              !memcmp(old_entries, entries, sizeof entries),
+          "protected explicit duplicate rejects after draw/palette request, "
+          "without replacement, selection fallback or wallpaper");
+  hook(0x33112, (void (*)(void))duplicate_delete);
+  /* Failure never reaches clipboard deletion/creation. Include stale, screen,
+   * current, offscreen and absent assignments, with protection both ways. */
+  const unsigned pointers[] = {65535, 0, 2, 7};
+  for (unsigned clip = 0; clip < 2; ++clip)
+    for (unsigned kind = 0; kind < 3; ++kind)
+      for (unsigned protect = 0; protect < 2; ++protect)
+        for (unsigned failure = 0; failure < 2; ++failure)
+          for (unsigned pi = 0; pi < 4; ++pi) {
+            prepare();
+            put16(ports + 8, 2);
+            put16(ports + 0xa, pointers[pi]);
+            for (unsigned n = 0; n < 36; ++n) {
+              entries[n * 0x78] = kind == 0 ? 0 : kind == 1 ? 1 : 4;
+              entries[n * 0x78 + 0x17] = protect;
+            }
+            memcpy(old_entries, entries, sizeof entries);
+            unsigned icon_args[] = {2, 3, 6, 0, clip, 0, 0};
+            missing = failure == 0;
+            render_result = failure == 1;
+            invoke(0xcb38, icon_args, "SOURCE.BMP");
+            require(placeholder_calls == 1 && placeholder_current == 2 &&
+                        placeholder_pointer == pointers[pi] &&
+                        u16(ports + 8) == 2 &&
+                        u16(ports + 0xa) == pointers[pi] &&
+                        !memcmp(old_entries, entries, sizeof entries) &&
+                        !clipboard_calls && !duplicate_calls && !copy_calls,
+                    "LOAD_ICON lookup/renderer failure paints placeholder on "
+                    "current port without clearing any clipboard state");
+          }
   memcpy(image + 0x3ea2e, wallpaper_entry, 5);
 }
 static void header(unsigned depth, unsigned width, unsigned height) {
@@ -468,6 +531,7 @@ int main(int argc, char **argv) {
     return 2;
   load_image(argv[1]);
   memcpy(renderer_entry, image + 0x4a410, 5);
+  memcpy(deletion_entry, image + 0x33112, 5);
   memcpy(wallpaper_entry, image + 0x3ea2e, 5);
   memcpy(color_entry, image + 0x16140, 5);
   memcpy(validator_entry, image + 0x44385, 5);
@@ -489,7 +553,7 @@ int main(int argc, char **argv) {
   hook(0x34319, noop);
   hook(0x3988f, noop);
   hook(0x398ee, noop);
-  hook(0x383b0, noop);
+  hook(0x383b0, (void (*)(void))placeholder);
   hook(0x38e47, (void (*)(void))report);
   hook(0x4a410, (void (*)(void))display);
   hook(0x65431, (void (*)(void))strcpy);

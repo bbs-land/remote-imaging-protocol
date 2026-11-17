@@ -459,6 +459,23 @@ static void clipboard_checks(void) {
             "soft-reset port deletion retains protected clipboard and clears "
             "only deleted assignment");
   }
+  for (unsigned assigned = 0; assigned < 2; ++assigned) {
+    clip_prepare(0, assigned ? 7 : -1);
+    int outside[] = {40, 30, 44, 32};
+    unsigned status =
+        ((unsigned (*)(void *, void *))(image + 0x2866))(ctx, outside) & 65535;
+    unsigned target = assigned ? 7 : 1;
+    require(
+        status == 1 && u16(ports + 0xa) == target && u16(ports + 8) == 0 &&
+            entries[target * 0x78] == 4 && allocated_w == 5 &&
+            allocated_h == 3 && !clip_copies &&
+            clip_surfaces[u32(entries + target * 0x78 + 0x74) - 100].color == 0,
+        "fully outside capture allocates unclipped extent plus one, "
+        "then ignores source-trim failure and retains new clear bitmap");
+    if (assigned)
+      require(!clip_surfaces[8].alive,
+              "outside capture destroys old assigned clipboard before trim");
+  }
   for (unsigned copy_failure = 0; copy_failure < 2; ++copy_failure) {
     clip_prepare(0, -1);
     if (copy_failure)

@@ -575,6 +575,35 @@ static void remaining_variable_checks(void) {
   require(evaluate("$TEXTXY(CUR,DEVICE)$", &out) == 1,
           "TEXTXY explicit device domain");
   equal(out, "148:160", "TEXTXY device conversion truncates independently");
+  put32(port_entries + 0x5c, (unsigned)-297);
+  put32(port_entries + 0x60, (unsigned)-321);
+  require(evaluate("$TEXTXY(CUR,DEVICE)$", &out) == 1,
+          "negative TEXTXY device domain");
+  equal(out, "-148:-160", "TEXTXY signed conversion truncates toward zero");
+  put32(port_entries + 0x5c, 65535);
+  put32(port_entries + 0x60, 32768);
+  require(evaluate("$TEXTXY(CUR,WORLD)$", &out) == 1,
+          "TEXTXY signed low-word serialization");
+  equal(out, "-1:-32768", "TEXTXY wraps each integer to signed sixteen bits");
+  put32(view + 0x2c, 800);
+  put32(view + 0x30, 600);
+  put32(port_entries + 0x5c, 23);
+  put32(port_entries + 0x60, 19);
+  require(evaluate("$TEXTXY(CUR,WORLD)$", &out) == 1,
+          "TEXTXY reads nondefault MOVE/TEXT producer fixture");
+  equal(out, "23:19",
+        "TEXTXY WORLD returns stored device pair including origin");
+  require(evaluate("$TEXTXY(CUR,DEVICE)$", &out) == 1,
+          "TEXTXY converts the producer fixture again");
+  equal(out, "14:11", "TEXTXY DEVICE double-conversion does not remove origin");
+  put32(port_entries + 0x60, 32);
+  require(evaluate("$TEXTXY$", &out) == 1, "TEXTXY after later MOVE");
+  equal(out, "23:32",
+        "TEXTXY reads current cursor rather than previous output");
+  put32(view + 0x2c, 640);
+  put32(view + 0x30, 480);
+  put32(port_entries + 0x5c, 297);
+  put32(port_entries + 0x60, 321);
   require(evaluate("$TEXTXY(36)$", &out) == 0 && !out,
           "TEXTXY port selector upper bound");
   port_entries[0x17] = 2;
