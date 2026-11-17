@@ -45,3 +45,9 @@ The reference now includes allsix flags, rejects unknown high bits, defines plai
 A final explicit duplicate-creation failure control confirms that path still reaches wallpaper while skipping the duplicate copy. **378,267 bitmap checks pass**. Required repository checks and PR delivery follow. Scoped native builds/debug payloads were removed; no task temporary path needs retaining.
 
 Pre-PR validation: **378,267 native bitmap checks**, formatting/lint, **0 bad of5,368 links**, diff check. Original assets/text and earlier references unchanged; no GUI/Wine/audio; scoped temporary files removed. Next file the complete PR and refresh all open RealDeuce issues against resolution PRs.
+
+Delivered in [PR #70](https://github.com/bbs-land/remote-imaging-protocol/pull/70), dependent on #69. Specification commit **03ded50**; issue-only comparison starts at **f87d465**. Required checks pass: 378,267 native bitmap checks, formatting/lint, 0 bad of5,368 links and diff check. Scoped temporary paths and working-directory core-file check are empty. No GUI/Wine/audio.
+
+Final paginated GitHub refresh finds **34 open RealDeuce issues and zero without a complete resolution PR**. All34 resolution PRs are open/unmerged; no issue was manually closed. The serial research-and-PR goal is delivered. Review/merge remains the maintainer’s next step; resume from the backlog if new issues arrive or review requests changes.
+
+Completion-checkpoint validation also passes formatting/lint, diff check and **0 bad of5,369 links** after final resumption links were added. All15 new investigation/specification commits since the previous delivery carry the requested Codex co-author trailer; the completion commit does too.

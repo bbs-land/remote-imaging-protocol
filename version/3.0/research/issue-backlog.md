@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**All34 queued RealDeuce issues have complete resolution PRs; none is awaiting investigation.** Review/merge is pending. The final refresh and per-issue records below are the resumption index.
+
 Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`; its [derivation note](issue-3-extended-font-style.md) contains the complete evidence record. Review/merge is pending.
 
 Issue #4 is delivered in [PR #30](https://github.com/bbs-land/remote-imaging-protocol/pull/30), branch `issue-4-column-overflow`; see its [derivation note](issue-4-column-overflow.md). Review/merge is pending. It depends on #29 and provides an issue-specific comparison from `ca92e10`.
@@ -70,7 +72,9 @@ Issue #53 is delivered in [PR #68](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #54 is delivered in [PR #69](https://github.com/bbs-land/remote-imaging-protocol/pull/69), branch `issue-54-switch-port-precedence`, dependent on #68. Its [derivation](issue-54-switch-port-precedence.md) records **12,187,782 native table checks**, source-before/destination-after order, unprotect priority, ordinary undefined screen-port creation and actual fallback/protection retention on constructor failure. This opcode’s table/inventory match its verified two-field descriptor; no other family layout is claimed resolved. Specification commit `df829bd`; issue-only comparison starts at `9e9995f`. Formatting, 5,352 links and diff checks pass; original assets/text and earlier references unchanged; task temporary files removed. Review/merge is pending.
 
-Active: [#58](https://github.com/bbs-land/remote-imaging-protocol/issues/58), LOAD_BITMAP flag16 and unknown bits. Branch `issue-58-load-bitmap-flags` starts at `f87d465`; see its [bitmap flag note](issue-58-load-bitmap-flags.md). Next trace every original flags consumer and prove combinations/unknown handling natively. Refresh the queue before completing the goal.
+Issue #58 is delivered in [PR #70](https://github.com/bbs-land/remote-imaging-protocol/pull/70), branch `issue-58-load-bitmap-flags`, dependent on #69. Its [derivation](issue-58-load-bitmap-flags.md) records **378,267 native bitmap checks**, plain/staggered wallpaper flags16/32, initial-draw/duplicate ordering, current retargeting, high-bit rejection and original canonical scene/BMP bytes. Specification commit `03ded50`; issue-only comparison starts at `f87d465`. Formatting, 5,368 links and diff checks pass; original assets/text and earlier references unchanged; task temporary files/core check empty. Review/merge is pending.
+
+**Research goal delivered.** Final paginated GitHub refresh on2026-11-16 finds34 open issues by RealDeuce, all covered by the34 complete resolution PRs listed above; no uncovered issue remains. All resolution PRs are open/unmerged, with dependencies/issue-only comparisons recorded. Do not manually close issues or merge without a separate request. There is no active investigation. For new issues or review feedback, refresh GitHub, choose the oldest uncovered RealDeuce issue and start a new branch/note from the appropriate dependency. Preserve the source/fixture boundaries recorded for each issue.
 
 ## Queue and delivery
 
