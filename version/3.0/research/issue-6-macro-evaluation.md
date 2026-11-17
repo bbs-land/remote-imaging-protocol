@@ -178,10 +178,6 @@ Validation on 2026-11-16: `run/riptel-macro-probe <unchanged-dll>` captured 179 
 
 Delivery: [PR #32](https://github.com/bbs-land/remote-imaging-protocol/pull/32), branch `issue-6-macro-evaluation`, dependent on #31. [Issue-only comparison](https://github.com/RealDeuce/remote-imaging-protocol/compare/9b1872a...issue-6-macro-evaluation); specification commit `1ccedf7`. GitHub refresh confirms #7 is the next oldest RealDeuce issue without a complete resolution PR. Do not merge or manually close #6; continue serially on #7.
 
----
-
-[Research backlog](issue-backlog.md) · [Macro reference](../ripscrip/5.2-templates-and-conditionals.md)
-
 ## Integration review: exact TEXTXY cursor and fractional metrics
 
 Checked [the 2026-11-17 01:46:52 UTC comment](https://github.com/bbs-land/remote-imaging-protocol/issues/6#issuecomment-6935322623) during integration. Original callback 0x30ede–0x31051 reads current port cursor DWORDs+0x5c/+0x60. It does not consult the last rendered string, its start, justification anchor or glyph raster position. The earlier checkpoint's phrase “stores/returns world cursor values” was imprecise: **WORLD is a raw read of stored values**, whose actual producer units are established by the later [#24 cursor derivation](issue-24-drawing-state-ownership.md#text-cursor-stores). MOVE and outline paths store converted device positions including viewport origin; classic TEXT_XY has its separately documented mixed-unit defect.
@@ -195,3 +191,6 @@ Classic width helper 0x1410 does not retain fractional cursor advances:0x15b5–
 Concrete original-handler fixture: world 1280×960, device 800×600, viewport origin(5,7), classic font 1, the above A/B metrics and otherwise ordinary horizontal text. MOVE(10,20) stores `(trunc(10×800/1280)+5,trunc(20×600/960)+7)` = **(11,19)**. TEXT("AB") advances X by 12, yielding **(23,19)**. Original TEXTXY callback returns **`23:19`** for WORLD/default, **`14:11`** for DEVICE. A later MOVE(30,40), with no new text, changes stored cursor to **(23,32)** and bare TEXTXY returns **`23:32`**. Empty T or empty @ leaves the last stored pair unchanged (with the different error behavior above). Thus `m(10,20);T("AB")` has no font-independent literal answer; under unit world/device mapping and origin 0 it is `10 + integer_string_width(AB):20`. The fixture supplies every input needed for an exact literal result.
 
 Reproduction: existing `run/riptel-font-probe DLL` now executes original 0x1410 as well as MOVE/TEXT stores for that fixture and passes **196,170 checks**. Its glyph drawing/font realization remain controlled; no real Windows rasterization or actual shipped font width is inferred from fixture A/B. The macro probe separately runs the original parser/callback using those measured stored values and actual world/device sizes. It confirms literal result bytes; the two probe phases are not one end-to-end client process. The updated macro probe passes **3,460,252 checks**. Same original DLL/hash, Capstone 5.0.7, FreeBSD 15.1/clang 19.1.7, scoped temporary builds and no GUI.
+---
+
+[Research backlog](issue-backlog.md) · [Macro reference](../ripscrip/5.2-templates-and-conditionals.md)

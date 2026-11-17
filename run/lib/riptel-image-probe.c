@@ -438,6 +438,62 @@ static void presentation_checks(void) {
       }
 }
 
+/* The wire setter has no viewport gate; the macro setter and IMAGE do.
+ * Run actual deactivate/set/display/reactivate/display consumers together. */
+static char wire_image_scratch[1024];
+static void *wire_image_allocate(void *c) {
+  require(c == ctx, "owned wire IMAGE scratch context");
+  return wire_image_scratch;
+}
+static unsigned __attribute__((stdcall)) image_rect_empty(const int *r) {
+  return r[2] <= r[0] || r[3] <= r[1];
+}
+static void inactive_style_checks(void) {
+  hook(0x15396, (void (*)(void))wire_image_allocate);
+  hook(0x153fe, noop);
+  hook(0x4b0e4, noop);
+  pointer(image + 0x96690, (void *)image_rect_empty);
+  typedef void (*viewport_setter)(void *, int, int, int, int);
+  typedef void (*image_handler)(void *, unsigned, const void *, const char *);
+  for (unsigned type = 1; type <= 4; type += 3)
+    for (unsigned protect = 0; protect < 2; ++protect) {
+      prepare();
+      unsigned current = type == 1 ? 0 : 5;
+      defined_port(current, type, protect);
+      put16(ports + 8, current);
+      wire_style(0, 0, 100, 100, 15);
+      ((viewport_setter)(image + 0x33cc6))(ctx, 0, 0, 0, 0);
+      require((port(current)[0x17] & 2) != 0,
+              "original all-zero viewport setter deactivates current port");
+      wire_style(20, 40, 220, 240, 5);
+      rect_is(current, 10, 20, 111, 121, 5,
+              "wire IMAGE_STYLE replaces rectangle and flags while inactive");
+      require(port(current)[0x17] == (protect | 2) && u16(ports + 8) == current,
+              "wire style preserves viewport/protection flags and selection");
+      fills = file_opens = file_closes = file_deletes = decoder_steps =
+          table_allocations = scan_copies = 0;
+      lookup_calls = access_calls = placeholders = notices = redraws = 0;
+      ((image_handler)(image + 0xc2c6))(ctx, 1, (unsigned[]){0}, "TEST.JPG");
+      require(!errors && !lookup_calls && !file_opens && !decoder_steps &&
+                  !scan_copies && notices == 1,
+              "inactive wire IMAGE skips lookup/decoder/painting");
+      ((viewport_setter)(image + 0x33cc6))(ctx, 0, 0, 1278, 958);
+      rect_is(current, 10, 20, 111, 121, 5,
+              "reactivation retains image style written while inactive");
+      require(port(current)[0x17] == protect,
+              "original nonempty viewport setter clears only disabled bit");
+      source_width = 10;
+      source_height = 5;
+      ((image_handler)(image + 0xc2c6))(ctx, 1, (unsigned[]){0}, "TEST.JPG");
+      require(!errors && lookup_calls == 1 && file_opens == 1 &&
+                  decoder_steps == 1 && scan_copies && !fills && notices == 1 &&
+                  !file_deletes,
+              "reactivated wire IMAGE uses newly stored ASPECT/NOCLEAR style");
+      rect_is(current, 10, 20, 111, 121, 5,
+              "display preserves newly configured per-port image state");
+    }
+}
+
 static unsigned char reset_objects[6][1024], reset_style_records[36 * 0x61],
     reset_environment[512];
 static unsigned one(void) { return 1; }
@@ -664,6 +720,7 @@ int main(int argc, char **argv) {
   style_checks();
   jpeg_checks();
   presentation_checks();
+  inactive_style_checks();
   reset_checks();
   reception_checks();
   printf("PASS: %u image-style checks\n", checks);

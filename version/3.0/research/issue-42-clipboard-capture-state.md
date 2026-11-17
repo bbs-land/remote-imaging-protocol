@@ -79,3 +79,7 @@ Therefore both clipboard 0 and clipboard 1 retain the prior pointer and port def
 Native routing matrix covers clipboard 0/1, defined screen/offscreen/undefined record fixtures, protection 0/1, lookup/renderer failure and pointer absent/0/2/7:192 cases. It captures placeholder current/pointer and compares the complete port array afterward. Placeholder rendering and the viewport predicate are controlled services; the static placeholder trace establishes its actual DC routing and absence of clipboard mutations. No Windows placeholder-pixel oracle is claimed. This differs from GET_IMAGE allocation failure, which really clears its pointer after deleting an unprotected assigned target.
 
 Reproduction: `run/riptel-bitmap-probe DLL` now passes **378,486 checks**; `run/riptel-port-probe DLL` passes **54,375 checks**. Both verify the unchanged DLL and clean scoped temporary builds on exit.
+
+---
+
+[Research backlog](issue-backlog.md) · [GET_IMAGE](../ripscrip/4.0-icons-and-bitmaps.md#rip_get_image)
