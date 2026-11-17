@@ -12,6 +12,7 @@ static unsigned char context[512], variables[0x700], ports[128], view[128],
     port_entries[36 * 0x78];
 static char result[8192], params[16 * 21];
 static uint16_t character_types[256];
+static unsigned char original_toupper[5];
 struct registration {
   const char *name;
   unsigned callback, flags;
@@ -39,6 +40,7 @@ static unsigned registered_callback(const char *name) {
   return 0;
 }
 static unsigned random_value, key_state, errors, port_defined, modifier_calls;
+static const char *last_error_message;
 static unsigned definition(void *ctx, unsigned slot) {
   (void)ctx;
   (void)slot;
@@ -55,7 +57,7 @@ static void report(void *ctx, unsigned level, const char *where,
   (void)ctx;
   (void)level;
   (void)where;
-  (void)message;
+  last_error_message = message;
   ++errors;
 }
 static void formatted(char *dst, const char *fmt, ...) {
@@ -83,6 +85,7 @@ static void prepare(void) {
   memset(params, 0, sizeof params);
   result[0] = 0;
   errors = 0;
+  last_error_message = NULL;
 }
 static const char *invoke(unsigned rva, unsigned count) {
   put16(variables + 0x436, 0);
@@ -701,6 +704,101 @@ static void host_quote_checks(void) {
         "first host pass evaluates opening-only quoted variable");
   require(modifier_calls == 1,
           "opening-only quote is insufficient in two-pass host path");
+}
+/* Issue #53: original control byte conversion and complete-template
+ * recognition. */
+static void host_control_checks(void) {
+  static const struct {
+    const char *source, *expected;
+    unsigned status, reports;
+  } cases[] = {{"^[[A", "\033[A", 0, 1},
+               {"`[[A", "\033[A", 0, 1},
+               {"^[[Z", "\033[Z", 0, 1},
+               {"[", "[", 0, 0},
+               {"^", "^", 0, 0},
+               {"`", "`", 0, 0},
+               {"^?", "^?", 0, 0},
+               {"^m", "\r", 0, 0},
+               {"^@", "^@", 0, 0},
+               {"^^", "^", 0, 0},
+               {"``", "`", 0, 0},
+               {"`^", "\036", 0, 0},
+               {"^`", "^`", 0, 0},
+               {"^^M", "^M", 0, 0},
+               {"``M", "`M", 0, 0},
+               {"^[[A]", "\033TEN", 2, 0},
+               {"\033[A]", "\033TEN", 2, 0},
+               {"^[x[3]", "\033xTHREE", 2, 0},
+               {"[3]", "THREE", 1, 0},
+               {"\\[", "[", 0, 0},
+               {"\\[3]", "THREE", 2, 0},
+               {"[3", "[3", 0, 1},
+               {"x[A:]TAIL", "x", 2, 0},
+               {"^[[0m", "\033[0m", 0, 1},
+               {"^[[31m", "\033[31m", 0, 1},
+               {"^[[!", "\033[!", 0, 0},
+               {"^[[A]TAIL", "\033TEN", 2, 0},
+               {"$BRACKET$", "[3]", 0, 0},
+               {"[?]", "[?]", 0, 0}};
+  for (unsigned n = 0; n < sizeof cases / sizeof *cases; ++n) {
+    pipeline_prepare();
+    /* Preserve the original default CRT alphabet table and uppercasing routine.
+     */
+    pointer(image + 0x87908, image + 0x87912);
+    memcpy(image + 0x68b20, original_toupper, sizeof original_toupper);
+    template_value(3, "THREE");
+    template_value(10, "TEN");
+    fixture("BRACKET", "[3]");
+    transmitted[0] = 0;
+    transmissions = 0;
+    char text[4096];
+    strcpy(text, cases[n].source);
+    require(host_command(text) == cases[n].status,
+            "original host control/template result status");
+    equal(transmitted, cases[n].expected,
+          "exact original control/template bytes");
+    require(errors == cases[n].reports,
+            "incomplete mega template diagnostic is nonfatal");
+    if (cases[n].reports)
+      equal(last_error_message, "Invalid MegaNum",
+            "exact incomplete-template diagnostic");
+    if (!strcmp(cases[n].source, "x[A:]TAIL"))
+      equal((char *)(uintptr_t)u32(host_commands + 0x100e + 10 * 4), "TAIL",
+            "complete definition stores remaining text rather than "
+            "transmitting it");
+    else
+      equal((char *)(uintptr_t)u32(host_commands + 0x100e + 10 * 4), "TEN",
+            "literal/invoked template leaves stored value unchanged");
+    for (unsigned slot = 0; slot < 36; ++slot) {
+      void *p = (void *)(uintptr_t)u32(host_commands + 0x100e + slot * 4);
+      free(p);
+      put32(host_commands + 0x100e + slot * 4, 0);
+    }
+  }
+  for (unsigned prefix = 0; prefix < 2; ++prefix)
+    for (unsigned code = 1; code < 128; ++code) {
+      pipeline_prepare();
+      pointer(image + 0x87908, image + 0x87912);
+      memcpy(image + 0x68b20, original_toupper, sizeof original_toupper);
+      transmitted[0] = 0;
+      transmissions = 0;
+      char text[4096] = {prefix ? '`' : '^', (char)code, 0};
+      char expected[4] = {text[0], (char)code, 0};
+      if (code == (unsigned char)text[0]) {
+        expected[1] = 0;
+      } else if ((code >= 'A' && code <= 'Z') || (code >= 'a' && code <= 'z') ||
+                 (code >= '[' && code <= '_')) {
+        expected[0] =
+            (char)(code >= 'a' && code <= 'z' ? code - 'a' + 1 : code - '@');
+        expected[1] = 0;
+      }
+      require(host_command(text) == 0, "single pair has no complete template");
+      equal(transmitted, expected,
+            "all non-NUL ASCII suffixes and both prefixes");
+      require(!errors, "single ASCII control pairs do not syntax-error");
+    }
+  pointer(image + 0x87908, character_types);
+  hook(0x68b20, (void (*)(void))toupper);
 }
 static void parser_edge_checks(void) {
   static const struct {
@@ -1775,6 +1873,7 @@ int main(int argc, char **argv) {
   if (argc != 2)
     return 2;
   load_image(argv[1]);
+  memcpy(original_toupper, image + 0x68b20, sizeof original_toupper);
   hook(0x38e47, (void (*)(void))report);
   hook(0x65431, (void (*)(void))strcpy);
   hook(0x65442, (void (*)(void))strcat);
@@ -1879,6 +1978,7 @@ int main(int argc, char **argv) {
   remaining_variable_checks();
   parser_edge_checks();
   host_quote_checks();
+  host_control_checks();
   port_size_query_checks();
   date_time_checks();
   filedel_checks();
