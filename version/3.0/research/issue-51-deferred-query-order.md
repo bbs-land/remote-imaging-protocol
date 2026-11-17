@@ -27,3 +27,9 @@ Original definition tests additionally confirm case-insensitive `$oFf$` clears e
 The old A4 list (numbered PORT, numbered TW, floating PORT, floating TW) and A1 TW-before-viewport sentence are inherited documentation, not alternative observed RIPtel3.1 loops. Keep the A4 sequence explicitly as historical intent and identify the older contrary sentence as superseded within that record. Do not export either as tested shipping behavior, and do not invent mutation semantics. “Resident” means a stored query rather than immediate execution; original `queryDefineResident()`0x13e61 is common to **all modes1–6**, so it does not distinguish numbered from floating entries or create a second ordering class.
 
 Next: reconcile both query reference sections against this shipping omission, retain labeled historical intent, run required checks and file complete PR dependent on #66.
+
+## Reference correction and validation
+
+Both query sections now state stored-but-unexecuted click modes1–4, no overlapping dispatch order and no same-click mutation policy. They separate historical A4 order and the contrary older A1 sentence from the actual client contract; “resident” covers all stored forms. Modes0/5/6 retain actual execution and hover numbering is now confirmed rather than hypothetical. No earlier-version reference/text or assets changed.
+
+Validation: native query probe **72,972 checks**, repository formatting/lint, **0 bad of5,325 links**, and diff check. Native wrapper and Python-scoped request payloads clean their own temporary files; no desktop GUI, Wine, audio or actual host transmission was used. Next file complete PR dependent on #66, then refresh and select #53.
