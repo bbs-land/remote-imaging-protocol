@@ -120,3 +120,5 @@ Collected from the sections above - each needs a short discussion:
 5. Website deployment target and publishing strategy
 6. Rust workspace layout, crate naming, and scope sequence
 7. Encoding-variant extensions for corpus files (`.rip`/`.ans` = CP437 for now; `.utf8.rip`/`.utf8.ans` or similar for future UTF-8 variants?)
+
+- [ ] Prepare the authorized research integration PR with all34 issue PR heads reachable and explicit closing references; verify and file it without merging upstream.

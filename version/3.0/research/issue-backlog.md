@@ -76,6 +76,12 @@ Issue #58 is delivered in [PR #70](https://github.com/bbs-land/remote-imaging-pr
 
 **Research goal delivered.** Final paginated GitHub refresh on2026-11-16 finds34 open issues by RealDeuce, all covered by the34 complete resolution PRs listed above; no uncovered issue remains. All resolution PRs are open/unmerged, with dependencies/issue-only comparisons recorded. Do not manually close issues or merge without a separate request. There is no active investigation. For new issues or review feedback, refresh GitHub, choose the oldest uncovered RealDeuce issue and start a new branch/note from the appropriate dependency. Preserve the source/fixture boundaries recorded for each issue.
 
+## Integration PR
+
+The user authorized a separate integration PR after the post-PR follow-ups. Branch `integrate-rip-specification-research` starts at latest-stack commit **951c956**. Upstream `main` remains **2fb1772** at the integration refresh. The34 issue PRs all target main;32 tips are already ancestors of the latest stack. PR #37 tip **d30c2b9** and PR #41 tip **41246a1** are not ancestors because their later answers were cherry-picked into that stack.
+
+Next: merge those two actual branch histories into this integration branch while preserving the latest specification/probe contents; prove all34 PR tips reachable, run required checks and representative follow-up probes, and open a separate PR with an explicit closing reference for each of the34 issues. Preserve per-issue PRs as review records. Use **Create a merge commit** when the maintainer eventually merges the integration PR, so original head commits stay reachable. Creating this integration PR does not authorize merging upstream or manually closing anything.
+
 ## Post-PR comment review
 
 Refresh completed **2026-11-17 01:34:20 UTC** (2026-11-16 local). The repository has20 issue/discussion comments; three were created after their matching resolution PR opened. No inline PR review comments were present. Repeated issue-comment refresh at completion found no comments added/edited during this review. The earlier completion check only matched issues to PRs and missed these later requests; future checks must inspect both comment creation and update times.
