@@ -73,7 +73,7 @@ deno lint --ext=ts run/check-links
 deno check run/check-links      # type-check; no --ext needed
 ```
 
-The table probe also checks state ownership/defaults, independent selection, environment activation and backup defects; the font probe also checks MOVE/TEXT/TEXT_XY cursor branches with controlled metrics.
+The table probe also checks state ownership/defaults, independent selection, environment activation, backup defects and the original SWITCH_PORT source/destination protection order with undefined-target creation/fallback; the font probe also checks MOVE/TEXT/TEXT_XY cursor branches with controlled metrics.
 
 The C sources `lib/riptel-query-probe.c`, `lib/riptel-button-probe.c`, `lib/riptel-screen-probe.c`, `lib/riptel-chr-probe.c`, `lib/riptel-table-probe.c`, `lib/riptel-bezier-probe.c`, `lib/riptel-arc-probe.c`, `lib/riptel-polygon-probe.c`, `lib/riptel-fill-probe.c`, `lib/riptel-lines-probe.c`, `lib/riptel-port-probe.c`, `lib/riptel-font-probe.c`, `lib/riptel-column-probe.c`, `lib/riptel-header-probe.c`, `lib/riptel-framing-probe.c`, `lib/riptel-bitmap-probe.c`, `lib/riptel-macro-probe.c`, `lib/riptel-font-glyphs.c` and `lib/riptel-fastfont-probe.c` support the binary routine probes; they are compiled by their Bash entry points into a temporary directory and are not standalone scripts. The native probes share PE mapping/observation helpers in `lib/riptel-probe-image.h`. Their wrappers verify the driver hash first and leave the supplied DLL unchanged. The glyph/FastFont wrappers always allocate a private Xvfb display and Wine prefix before invoking any Wine utility. `lib/riptel-fastfont-fixtures.ts` verifies the original Marin hash and modifies only its task-local copy for distinguishing contour tests.
 

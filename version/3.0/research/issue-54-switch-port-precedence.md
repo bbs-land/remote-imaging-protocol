@@ -23,3 +23,11 @@ Exact requested results from current unprotected1, ordinary absent7: **2s704 pro
 Controls remain the existing table-probe owned fixtures and host/GDI controls. The added wire matrix replaces only unrelated pending-input cleanup **0x45038** with a no-op. The original SetRect import uses the existing captured rectangle service. Prior tests' palette/brush/UI and libc hooks are unchanged; query allocation fixtures are irrelevant here. No new protection/selector/constructor/binding hook is used. Adjacent0x34488/0x34489 RET lock routines remain original. Run this matrix before whole_reset_checks installs broad unrelated subsystem hooks. The exact C source is committed for reproduction; scoped native build removes itself on EXIT.
 
 Next: publish sequential flag semantics and corrected undefined-target behavior with explicit input/output examples, run required checks and file complete PR dependent on #68. Do not carry the older automatic-fallback claim into the implementor contract.
+
+## Reference correction scope
+
+The entry now defines source-before-selection-before-destination and unprotect priority, explicit same-port/failure outcomes, actual current/DC binding and ordinary undefined screen creation. Requested examples include successful creation and a separately labeled native failure fixture. To avoid instructing implementors to append three erroneous bytes to these examples, this opcode’s argument table and command inventory now match verified slot118’s two-field descriptor; no other switch-family layout is claimed resolved. Reproduce the descriptor with `run/riptel-inspect DLL --slot 118` (count2, types1/2). Immutable text/assets and earlier-version references remain untouched.
+
+Next: required formatting/link/diff checks and PR delivery, then #58.
+
+Validation before PR: **12,187,782 native table checks**, formatting/lint, **0 bad of5,352 links**, diff check. Original text/assets and earlier references unchanged; scoped temporary native builds removed. No GUI/Wine/audio. Specification commit and PR link follow at delivery.
