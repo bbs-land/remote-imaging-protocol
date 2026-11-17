@@ -68,7 +68,7 @@ Issue #51 is delivered in [PR #67](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #53 is delivered in [PR #68](https://github.com/bbs-land/remote-imaging-protocol/pull/68), branch `issue-53-host-control-brackets`, dependent on #67. Its [derivation](issue-53-host-control-brackets.md) records **3,460,237 macro checks**, exact default-ASCII controls/literal malformed forms, ^@ omission, full requested key bytes, nonfatal incomplete-template diagnostics and bracket segmentation before conversion without ESC suppression. Specification commit `deba11a`; issue-only comparison starts at `bf85f10`. Formatting, 5,340 links and diff checks pass; original assets/text and earlier-version references unchanged; task temporary files removed. Review/merge is pending.
 
-Next: [#54](https://github.com/bbs-land/remote-imaging-protocol/issues/54), SWITCH_PORT flag precedence and undefined destination. Refreshed queue: #54, #58.
+Active: [#54](https://github.com/bbs-land/remote-imaging-protocol/issues/54), SWITCH_PORT flag precedence and undefined destination. Branch `issue-54-switch-port-precedence` starts at `9e9995f`; see its [switch note](issue-54-switch-port-precedence.md). Next trace original wire protection/fallback order and prove the flag matrix natively. Then #58.
 
 ## Queue and delivery
 
