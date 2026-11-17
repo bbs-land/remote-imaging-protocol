@@ -66,7 +66,7 @@ Issue #46 is delivered in [PR #66](https://github.com/bbs-land/remote-imaging-pr
 
 Issue #51 is delivered in [PR #67](https://github.com/bbs-land/remote-imaging-protocol/pull/67), branch `issue-51-deferred-query-order`, dependent on #66. Its [derivation](issue-51-deferred-query-order.md) records **72,972 native checks**, original client forwarding and the shipping omission of mode1–4 click dispatch, no order/mutation policy, resident terminology and working immediate/hover positive controls. Specification commit `ed39f34`; issue-only comparison starts at `8338765`. Formatting, 5,325 links and diff checks pass; original sources/assets and earlier references unchanged; task temporary files removed. Review/merge is pending.
 
-Next: [#53](https://github.com/bbs-land/remote-imaging-protocol/issues/53), special-key/bracket/control notation. Refreshed queue: #53, #54, #58.
+Active: [#53](https://github.com/bbs-land/remote-imaging-protocol/issues/53), special-key/bracket/control notation. Branch `issue-53-host-control-brackets` starts at `bf85f10`; see the [notation note](issue-53-host-control-brackets.md). Next trace original host/template parsing and capture the full byte matrix; then #54 and #58.
 
 ## Queue and delivery
 

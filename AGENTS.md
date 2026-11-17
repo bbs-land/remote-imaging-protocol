@@ -69,3 +69,5 @@ When running parallel worker agents, limit the number of parallel agents to 3 un
 `WORKING.md` and `temp/` are in .gitignore and will not be committed or checked in, they will also be regularly deleted, so ensure the file exists before making asumptions when starting new work tasks.
 
 - Query dispatch research (#51) is delivered in PR #67: original driver event0x43f5 and client forwarding establish stored-but-unexecuted click modes1–4, hence no shipping order or live/snapshot policy. Shared resident-definition helper covers1–6; immediate/hover paths work. The [query note](version/3.0/research/issue-51-deferred-query-order.md) records72,972 native checks. Specification commit ed39f34 is complete; continue with #53.
+
+- Active #53 branch `issue-53-host-control-brackets` starts atbf85f10; read its [notation note](version/3.0/research/issue-53-host-control-brackets.md). Next trace original control conversion/template expansion and add a byte matrix to the existing macro probe; no reference correction yet.
