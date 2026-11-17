@@ -1,26 +1,65 @@
-# Issue #72: DEFINE_PORT flags, extents and replacement state
+# Issue #72: DEFINE_PORT protocol contract
 
 [Research backlog](issue-backlog.md) · [RIP_DEFINE_PORT](../ripscrip/7.0-drawing-ports.md#rip_define_port)
 
-## Scope and source
+## Scope and evidence policy
 
-Started 2026-11-17 for [issue #72](https://github.com/bbs-land/remote-imaging-protocol/issues/72). Branch `issue-72-define-port-contract` starts at **e800949**, the integration PR #71 checkpoint. The four required answers concern flag acceptance/actions, nonzero offscreen near coordinates and extent wrapping, protected redefinition selection, and actual replacement failure state including clipboard effects. Keep this separate from the earlier #10/#54 answers. No new resolution PR is filed yet.
+[Issue #72](https://github.com/bbs-land/remote-imaging-protocol/issues/72) was opened against integration PR #71 and asks about DEFINE_PORT flags, nonzero offscreen coordinates, protected redefinition and failed replacement state. Branch `issue-72-define-port-contract` starts at **e800949**. The maintainer clarified on 2026-11-17 that this work documents the **protocol**, not the behavior or defects of an obsolete implementation. Protocol documentation establishes the intended contract. Implementation observations do not silently replace explicit documented rules or fill unspecified failure states with client-specific recovery behavior.
 
-Primary source: original RIPtel 3.1 [riptel.msi](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTel%203.1/riptel.msi), SHA-256 `04915952dcb04013a164eae1b6f6c5f5335798053d4d0e69b3f4da24f812dd2c`; extracted `ripscrip.dll`, 592,896 bytes, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`. Preferred image base is 0x10000000; all addresses below are RVAs. Original artifacts remain unchanged. Use the existing native port probe with controlled OS services; no desktop GUI, Wine or actual bitmap files.
+Initial client-path tracing in checkpoint `0415b34` preceded that clarification. It is not the basis of the normative answer. Its exploratory probe changes are excluded from this PR, and no further implementation-defect investigation is part of this work. This derivation supersedes that checkpoint's next-action instructions.
 
-## Original instruction checkpoint
+## Primary protocol sources
 
-Independently disassembled the complete wire handler **0x466ec–0x46861**. It saves the old current index at 0x46721, validates the target range 1..35 and tests protection at 0x46754. A protected target branches straight to diagnostic/return at 0x46761–0x46766 and0x4684b–0x46861; it does not call the selector. Both corners are converted with 0x31084, then their low-word differences are stored at 0x467a0–0x467b5. A defined unprotected target is deleted through entry helper 0x3302c. The constructor receives only `flags & 1`; success tests bit 2 for selection. No range check on flags or action on bits 4/8 appears in this handler. These static facts still require native state matrices before publication.
+- [RIPscrip 2.00 ALPHA 4 specification](../../2.0/text/RIPScrip-2.0-alpha-4.txt), §3.4.3.1, lines 10358–10460. The preserved repository text record is 1,202,490 bytes, SHA-256 `0da8a34644fa7c0ac7bf457ddfb6fe12288c1bff17c966f3d2b792af57c01982`. This supplies the explicit DEFINE_PORT rules inherited by the 3.0 reconstruction.
+- The same specification's data-table discussion, lines 1985–2056, distinguishes protected configuration from drawing into protected ports. Protected configuration cannot be deleted or modified; drawing to its surface is a separate operation.
+- [RIPscrip 3.x technical white paper](../text/RIPScrip-3.x-technical-whitepaper.txt), drawing-port discussion around lines 996–1008 and data-table protection around lines 1175–1186. The text record is 89,253 bytes, SHA-256 `bf5fd27703bdc4ef311a3dc57a15dd31b0e5ceb37026ac7d015a0fcd3265ab34`. It confirms screen/offscreen ports, independent viewports and protected persistent definitions; it does not replace DEFINE_PORT's flag or resource-failure rules.
 
-Entry deletion **0x3302c–0x33111** releases offscreen resources, clears the record, restores its numeric slot ID, sets image rectangle to all-1 and leaves the entry undefined. Unlike outer portDelete 0x33112, it does not touch current selection or the clipboard pointer. Constructor 0x3326f can call this entry helper again when a saved nonzero slot ID remains; the undefined-record early return makes that harmless.
+Reproduce the relevant protocol reading with `sed -n '10358,10460p' version/2.0/text/RIPScrip-2.0-alpha-4.txt`. Neither original text nor distributed assets are edited. The existing #10 extent-boundary correction remains applicable to valid zero-origin offscreen requests and screen rectangles; its implementation evidence does not override the explicit offscreen near-coordinate rule.
 
-**Do not stop at the saved-index store on failure.** Handler 0x467ee–0x467f6 restores the old current word and calls **0x343e4**. This rebinder tests the selected entry's definition and, if undefined, calls the original constructor with screen kind 0 and full-display dimensions at 0x34407–0x34426. A successful fallback defines that selected slot as a screen port; only fallback-construction failure selects 0. The earlier port-probe phase hooks this rebinder to a no-op, so it cannot establish the final outcome here. Restore its original bytes and the real selector/protection functions for the new phase.
+## Documented flags
 
-Offscreen constructor 0x33502 onward checks its budget, creates DC/bitmap, then on success zeroes stored near origin at 0x3371f–0x33722 while retaining passed dimensions. Screen/offscreen initialization clear protection/disabled flags at 0x3334a/0x3375a. Need native zero/wrapped-width observations and success/failure captures, including old resources, complete unrelated records, selected DC and clipboard pointer.
+The command's flag table explicitly defines bits 1, 2, 4 and 8: offscreen storage, selection of the new port, an inactive initial viewport and initial protection, respectively. All combinations are defined by OR'ing those independent bits. Their success postconditions are:
 
-## Next action
+- Storage is offscreen if bit 1 is set, screen otherwise.
+- Select the new port if bit 2 is set; otherwise retain the previous current selection on successful definition.
+- The new viewport covers the port and is active unless bit 4 is set.
+- The new definition is protected if bit 8 is set, unprotected otherwise.
 
-Extend `run/riptel-port-probe` with a phase retaining original handler, entry deletion, constructor, selector, rebinder, protection and coordinate conversion. Cover all low flag combinations plus reachable higher values, screen/offscreen targets, same/different current selection, absent/assigned clipboard, nonzero/reversed/wrapped coordinates and budget/DC/bitmap failure injections. Record any harness failures separately. Only then correct the reference, run required checks and file a complete separate PR closing #72. Preserve the draft claims as historical context.
+For decimal flags 15, all four conditions apply together: offscreen, current, inactive viewport, protected. Initial configuration belongs to the definition operation; the new protection does not block another initial-state bit in that operation. There is no documented exclusion between the four flags.
+
+No additional bits are defined in this table. The reference reserves higher bits and requires senders to leave them zero. The four-character argument width gives an encoding capacity, not additional semantics. Receiver treatment of a nonzero reserved bit is not specified by these sources; accepting or rejecting such a value must not be presented as a recovered protocol guarantee. In particular, the documented actions of bits 4/8 are retained even if a historical client omitted them.
+
+## Offscreen origin and extents
+
+The coordinate paragraph tells senders to use x0=y0=0 for offscreen ports. The flag-1 description explicitly says those values are treated as zero even if supplied otherwise. These statements establish the following protocol reading:
+
+1. For a screen port, both corners describe screen placement and their difference describes its extent, after world/device conversion.
+2. For an offscreen port, substitute (0,0) for the near corner; the far corner gives the dimensions from that origin. Canonical senders supply zero near coordinates.
+3. Retain the already established extent-boundary convention: no extra inclusive pixel is added.
+
+With equal world/device dimensions, offscreen (2,1)–(6,4) therefore denotes **6×4 at (0,0)** under the documented ignored-near-coordinate rule. A sender wanting 4×3 sends (0,0)–(4,3). The suggested 4×3 interpretation in the issue follows a client-specific subtraction path, not the protocol's explicit flag-1 text. Merely zeroing the stored origin after subtracting the original near corner does not implement that documented rule.
+
+A portable request converts to ordered, positive dimensions supported by the implementation. The protocol sources do not assign special meanings to zero extents, reversed corners or fixed-width integer wraparound. The reference identifies those limits without adopting a particular historical arithmetic result as an allocation feature. The ordinary full-world example remains 640×480 at a 2:1 world/device ratio, with last pixel (639,479).
+
+## Protected redefinition and resource failures
+
+The protected-target paragraph explicitly states both rejection and selection of screen port 0. Combined with the data-table protection rule, it preserves the target's definition/protection/contents while changing current selection to 0. For current 2 and protected target 1, the documented result is therefore **current 0, target 1 unchanged**. Flag 2 does not convert a failed definition into a successful selection of that target.
+
+The same paragraph describes ordinary unprotected replacement as deletion followed by creation. It does not establish transactional replacement, rollback, or post-allocation-failure table/current/clipboard state. Consequently:
+
+| Case | Protocol guarantee |
+| --- | --- |
+| Protected existing target | Reject; retain protected target; select port 0 |
+| Successful unprotected replacement | New definition and requested initial-state flags apply |
+| Insufficient resources while creating/replacing a port | No guarantee that the previous target/pixels survive; final target/current/clipboard state is unspecified by these sources |
+
+This last row applies whether the target was current or another port was current. It does not prescribe a dangling index, implicit screen-port creation, a forced selection, restoration of old pixels or a particular clipboard side effect from an implementation's allocator/rebinder. Those details do not become protocol requirements through observation of a single client.
+
+Offscreen storage is distinct from clipboard capture/assignment. DEFINE_PORT flag 1 is not GET_IMAGE. A producer recovering from resource failure can explicitly select port 0, reconstruct the definitions it needs and establish a fresh clipboard capture. The reference describes this recovery guidance separately from the guarantees actually established by the source.
+
+## Delivery status
+
+The four issue topics now have a protocol-level disposition: retain all four documented flags; reserve unspecified higher bits; make the offscreen ignored-near-coordinate rule explicit; preserve the protected-target fallback; and explicitly bound the guarantees for resource failure and malformed extents. No replacement for undocumented allocation behavior is invented. Documentation checks pass: `run/format`, `run/lint`, `run/check-links` (0 bad of 5,441 links across 222 files) and `git diff --check`. Source-text hashes were recomputed from the preserved files. No probe/source files, original text or assets are changed relative to e800949. Issue #72 still has no comments at the delivery refresh. A separate PR remains to be filed.
 
 ---
 
