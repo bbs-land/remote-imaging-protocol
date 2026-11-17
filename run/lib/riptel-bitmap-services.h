@@ -467,3 +467,180 @@ static void renderer_checks(void) {
     require(surfaces[1].rgb[x] == (x % 2 ? icon[x] : 0x123456),
             "manual AND then OR oracle retains white-mask pixels");
 }
+
+/* Original wallpaper geometry with a bounded, clipped RAM BitBlt boundary. */
+static unsigned wallpaper_blits, wallpaper_rop2, wallpaper_active;
+static int wallpaper_clip[4] = {0, 0, 12, 10};
+static unsigned __attribute__((stdcall)) offset_rect(int *r, int x, int y) {
+  r[0] += x;
+  r[2] += x;
+  r[1] += y;
+  r[3] += y;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) wallpaper_set_rop(unsigned dc,
+                                                           unsigned mode) {
+  require(dc == 1 && mode == 13, "original wallpaper sets COPY drawing mode");
+  wallpaper_active = 1;
+  wallpaper_rop2 = mode;
+  return 13;
+}
+static unsigned __attribute__((stdcall)) wallpaper_blit(unsigned dc, int dx,
+                                                        int dy, int w, int h,
+                                                        unsigned source, int sx,
+                                                        int sy, unsigned op) {
+  require(dc == 1 && source == 1 && op == 0xcc0020 && w > 0 && h > 0 &&
+              ++wallpaper_blits < 1000,
+          "bounded wallpaper copies existing pixels with SRCCOPY");
+  struct bitmap_surface old = surfaces[1], *d = &surfaces[1];
+  for (int y = 0; y < h; ++y)
+    for (int x = 0; x < w; ++x) {
+      if (dx + x < 0 || dy + y < 0 || dx + x >= (int)d->w ||
+          dy + y >= (int)d->h || dx + x < wallpaper_clip[0] ||
+          dy + y < wallpaper_clip[1] || dx + x >= wallpaper_clip[2] ||
+          dy + y >= wallpaper_clip[3])
+        continue;
+      require(sx + x >= 0 && sy + y >= 0 && sx + x < (int)old.w &&
+                  sy + y < (int)old.h,
+              "wallpaper source lies in owned already drawn surface");
+      d->rgb[(dy + y) * d->w + dx + x] = old.rgb[(sy + y) * old.w + sx + x];
+    }
+  return 1;
+}
+static int positive_mod(int a, int b) { return (a % b + b) % b; }
+static void wallpaper_checks(void) {
+  pointer(image + 0x96610, (void *)offset_rect);
+  pointer(image + 0x96408, (void *)wallpaper_set_rop);
+  pointer(image + 0x963e4, (void *)wallpaper_blit);
+  for (unsigned stagger = 0; stagger < 2; ++stagger)
+    for (int w = 1; w <= 7; ++w)
+      for (int h = 1; h <= 5; ++h)
+        for (int left = 0; left <= 4; ++left)
+          for (int top = 0; top <= 3; ++top) {
+            prepare();
+            put32(context + 0x62, 1);
+            memset(surfaces, 0, sizeof surfaces);
+            surfaces[1].w = 12;
+            surfaces[1].h = 10;
+            for (int y = 0; y < h; ++y)
+              for (int x = 0; x < w; ++x)
+                surfaces[1].rgb[(top + y) * 12 + left + x] = 1 + y * w + x;
+            int source[] = {left, top, left + w, top + h},
+                bounds[] = {0, 0, 12, 10};
+            wallpaper_blits = wallpaper_rop2 = 0;
+            ((void (*)(void *, void *, void *, unsigned))(image + 0x3ea2e))(
+                context, source, bounds, stagger ? 32 : 0);
+            require(!errors && wallpaper_rop2 == 13,
+                    "original wallpaper accepts nondegenerate tile geometry");
+            for (int y = 0; y < 10; ++y)
+              for (int x = 0; x < 12; ++x) {
+                int row = (y - top - positive_mod(y - top, h)) / h;
+                int shift = stagger && positive_mod(row, 2) ? w / 2 : 0;
+                unsigned expected_pixel = 1 + positive_mod(y - top, h) * w +
+                                          positive_mod(x - left + shift, w);
+                if (surfaces[1].rgb[y * 12 + x] != expected_pixel) {
+                  fprintf(stderr,
+                          "wallpaper mismatch stagger%u w%d h%d left%d top%d "
+                          "x%d y%d got%u expected%u\n",
+                          stagger, w, h, left, top, x, y,
+                          surfaces[1].rgb[y * 12 + x], expected_pixel);
+                  require(0, "wallpaper phase grid");
+                }
+                require(1, "original wallpaper fills all pixels with anchored "
+                           "repeating tile");
+              }
+          }
+  for (unsigned clipped = 0; clipped < 2; ++clipped)
+    for (unsigned stagger = 0; stagger < 2; ++stagger) {
+      prepare();
+      put32(context + 0x62, 1);
+      surfaces[1].w = 16;
+      surfaces[1].h = 12;
+      for (unsigned n = 0; n < 192; ++n)
+        surfaces[1].rgb[n] = 999;
+      int left = clipped ? 11 : 5, top = 3, w = 3, h = 2;
+      for (int y = 0; y < h; ++y)
+        for (int x = 0; x < w; ++x)
+          surfaces[1].rgb[(top + y) * 16 + left + x] = 1 + y * w + x;
+      int source[] = {left, top, clipped ? 19 : left + w, top + h};
+      int bounds[] = {2, 1, 14, 11};
+      memcpy(wallpaper_clip, bounds, 16);
+      wallpaper_blits = wallpaper_rop2 = 0;
+      ((void (*)(void *, void *, void *, unsigned))(image + 0x3ea2e))(
+          context, source, bounds, stagger ? 32 : 0);
+      require(!errors, "nonzero viewport and clipped far tile bounds accepted");
+      for (int y = 0; y < 12; ++y)
+        for (int x = 0; x < 16; ++x) {
+          unsigned expected_pixel = 999;
+          if (x >= 2 && x < 14 && y >= 1 && y < 11) {
+            int row = (y - top - positive_mod(y - top, h)) / h;
+            int shift = stagger && positive_mod(row, 2) ? w / 2 : 0;
+            expected_pixel = 1 + positive_mod(y - top, h) * w +
+                             positive_mod(x - left + shift, w);
+          }
+          require(surfaces[1].rgb[y * 16 + x] == expected_pixel,
+                  "clipped tile repeats within viewport and preserves "
+                  "surrounding pixels");
+        }
+    }
+  memcpy(wallpaper_clip, (int[]){0, 0, 12, 10}, 16);
+  prepare();
+  put32(context + 0x62, 1);
+  int zero[] = {0, 0, 0, 2}, bounds[] = {0, 0, 12, 10};
+  wallpaper_blits = 0;
+  ((void (*)(void *, void *, void *, unsigned))(image + 0x3ea2e))(context, zero,
+                                                                  bounds, 0);
+  require(errors == 2 && !wallpaper_blits,
+          "zero-width tile rejects before a zero-step tiling loop");
+}
+
+static unsigned __attribute__((stdcall))
+wallpaper_or_copy(unsigned dc, int dx, int dy, int w, int h, unsigned source,
+                  int sx, int sy, unsigned op) {
+  if (wallpaper_active)
+    return wallpaper_blit(dc, dx, dy, w, h, source, sx, sy, op);
+  return copy_surface(dc, dx, dy, w, h, source, sx, sy, op);
+}
+static void rendered_wallpaper_checks(void) {
+  pointer(image + 0x963e4, (void *)wallpaper_or_copy);
+  unsigned ops[] = {0, 1, 2, 3, 4};
+  for (unsigned keyed = 0; keyed < 2; ++keyed)
+    for (unsigned mode = 0; mode < sizeof ops / sizeof *ops; ++mode)
+      for (unsigned sized = 0; sized < 2; ++sized) {
+        uint32_t initial_tile[4];
+        for (unsigned variation = 0; variation < 3; ++variation) {
+          renderer_prepare(24);
+          surfaces[1].w = 12;
+          surfaces[1].h = 10;
+          for (unsigned n = 0; n < 120; ++n)
+            surfaces[1].rgb[n] = 0x102030 + n;
+          entries[0] = 1;
+          memcpy(entries + 0x3a, (int[]){0, 0, 12, 10}, 16);
+          put16(palette + 0x82b, 256);
+          unsigned flags = (keyed ? 8 : 0) | (variation ? 16 : 0) |
+                           (variation == 2 ? 32 : 0);
+          unsigned args[] = {
+              2, 2, sized ? 6 : 0, sized ? 3 : 0, 0, ops[mode], flags, 0, 0};
+          wallpaper_active = wallpaper_blits = wallpaper_rop2 = 0;
+          invoke(0xc569, args, "SOURCE.BMP");
+          require(!errors && opens == 1 && !duplicate_calls &&
+                      wallpaper_rop2 == (variation ? 13u : 0u),
+                  "full original wire/reader/renderer/wallpaper succeeds on "
+                  "one file");
+          if (!variation) {
+            memcpy(initial_tile, surfaces[1].rgb + 2 * 12 + 2,
+                   sizeof initial_tile);
+          } else {
+            for (unsigned y = 0; y < 10; ++y)
+              for (unsigned x = 0; x < 12; ++x) {
+                int shift =
+                    variation == 2 && (positive_mod((int)y - 2, 2)) ? 2 : 0;
+                require(surfaces[1].rgb[y * 12 + x] ==
+                            initial_tile[positive_mod((int)x - 2 + shift, 4)],
+                        "wallpaper repeats final keyed/ROP pixels instead of "
+                        "re-reading or re-compositing");
+              }
+          }
+        }
+      }
+}

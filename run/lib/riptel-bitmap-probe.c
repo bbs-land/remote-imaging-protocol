@@ -12,8 +12,16 @@ static unsigned char context[512], ports[128], entries[36 * 0x78],
     palette[0x900], options[0x400], scratch_buffer[4096], dib[2048];
 static unsigned lookup_calls, display_calls, missing, errors, rop;
 static int transparent;
+static const char *last_error_message;
 static char lookup_name[256], displayed_name[256];
-static unsigned char color_entry[5], validator_entry[5];
+static unsigned char color_entry[5], validator_entry[5], wallpaper_entry[5];
+static unsigned render_dither, render_palette, render_stretch, render_result;
+static int render_geometry[4], returned_rect[4] = {2, 3, 6, 5};
+static unsigned wallpaper_calls, clipboard_calls, duplicate_calls, copy_calls;
+static unsigned sequence, draw_sequence, duplicate_sequence, wallpaper_sequence;
+static unsigned wallpaper_mode, wallpaper_current, duplicate_target;
+static unsigned fail_delete, retarget_clipboard;
+static int wallpaper_source[4], wallpaper_bounds[4];
 static unsigned zero(void) { return 0; }
 static unsigned one(void) { return 1; }
 static void *scratch(void *ctx) {
@@ -34,7 +42,7 @@ static void report(void *ctx, unsigned level, const char *where,
   (void)ctx;
   (void)level;
   (void)where;
-  (void)message;
+  last_error_message = message;
   ++errors;
 }
 static unsigned color(void *ctx, unsigned value, unsigned ignored) {
@@ -49,13 +57,12 @@ static unsigned display(void *ctx, unsigned dc, const char *name, int x0,
                         unsigned noisy) {
   (void)ctx;
   (void)dc;
-  (void)x0;
-  (void)y0;
-  (void)x1;
-  (void)y1;
-  (void)dither;
-  (void)pal_mode;
-  (void)stretch;
+  memcpy(render_geometry, (int[]){(short)x0, (short)y0, (short)x1, (short)y1},
+         16);
+  render_dither = dither;
+  render_palette = pal_mode;
+  render_stretch = stretch;
+  draw_sequence = ++sequence;
   (void)pal;
   (void)unknown;
   (void)noisy;
@@ -63,8 +70,8 @@ static unsigned display(void *ctx, unsigned dc, const char *name, int x0,
   rop = op;
   transparent = (short)key;
   snprintf(displayed_name, sizeof displayed_name, "%s", name);
-  memset(rect, 0, 16);
-  return 0;
+  memcpy(rect, returned_rect, 16);
+  return render_result;
 }
 static void prepare(void) {
   memset(context, 0, sizeof context);
@@ -77,6 +84,10 @@ static void prepare(void) {
   pointer(context + 0x1a, palette);
   pointer(context + 0x36, options);
   lookup_calls = display_calls = missing = errors = 0;
+  wallpaper_calls = clipboard_calls = duplicate_calls = copy_calls = 0;
+  sequence = draw_sequence = duplicate_sequence = wallpaper_sequence = 0;
+  render_result = fail_delete = retarget_clipboard = 0;
+  last_error_message = NULL;
   lookup_name[0] = displayed_name[0] = 0;
 }
 static void invoke(unsigned rva, unsigned *args, const char *name) {
@@ -137,6 +148,145 @@ static void load_checks(void) {
   invoke(0xc569, args, "MASK.BMM");
   require(lookup_calls == 1 && display_calls == 0,
           "missing explicit BMM does not cause a second paired image lookup");
+}
+/* Capture post-render requests, leaving the original flag/branch order intact.
+ */
+static void wallpaper_capture(void *c, const int *source, const int *bounds,
+                              unsigned mode) {
+  require(c == context, "wallpaper request context");
+  ++wallpaper_calls;
+  wallpaper_sequence = ++sequence;
+  wallpaper_mode = mode & 0xffff;
+  wallpaper_current = u16(ports + 8);
+  memcpy(wallpaper_source, source, 16);
+  memcpy(wallpaper_bounds, bounds, 16);
+}
+static unsigned clipboard_capture(void *c, const int *rect) {
+  require(c == context && !memcmp(rect, returned_rect, 16),
+          "clipboard receives rendered rectangle before wallpaper");
+  ++clipboard_calls;
+  duplicate_sequence = ++sequence;
+  if (retarget_clipboard)
+    put16(ports + 8, 0);
+  return 1;
+}
+static unsigned duplicate_create(void *c, unsigned n, unsigned x, unsigned y,
+                                 unsigned w, unsigned h, unsigned kind,
+                                 unsigned enabled) {
+  require(c == context && !x && !y && (short)w == 4 && (short)h == 2 &&
+              kind == 1 && enabled == 1,
+          "duplicate uses initial rendered size, not wallpaper viewport");
+  ++duplicate_calls;
+  duplicate_target = n & 0xffff;
+  entries[duplicate_target * 0x78] = 4;
+  return 1;
+}
+static unsigned duplicate_delete(void *c, unsigned n, unsigned force) {
+  require(c == context && n == 7 && force == 0,
+          "explicit duplicate deletion arguments");
+  return !fail_delete;
+}
+static unsigned duplicate_copy(void *c, void *source, const int *rect,
+                               void *dest, void *dest_rect, unsigned mode) {
+  (void)dest_rect;
+  require(c == context && source == entries + 2 * 0x78 &&
+              dest == entries + duplicate_target * 0x78 && mode == 0 &&
+              !memcmp(rect, returned_rect, 16),
+          "duplicate copies composited initial rectangle with COPY");
+  ++copy_calls;
+  duplicate_sequence = ++sequence;
+  return 1;
+}
+static unsigned __attribute__((stdcall)) set_rect(int *, int, int, int, int);
+static void flag_checks(void) {
+  pointer(image + 0x96618, (void *)set_rect);
+  hook(0x3ea2e, (void (*)(void))wallpaper_capture);
+  hook(0x2866, (void (*)(void))clipboard_capture);
+  hook(0x3326f, (void (*)(void))duplicate_create);
+  hook(0x33112, (void (*)(void))duplicate_delete);
+  hook(0x134d0, (void (*)(void))duplicate_copy);
+  const unsigned duplicates[] = {0, 2, 7, 35, 36};
+  const unsigned operations[] = {0xcc0020, 0x660046, 0xee0086, 0x8800c6,
+                                 0x330008};
+  for (unsigned flags = 0; flags < 64; ++flags)
+    for (unsigned mode = 0; mode < 5; ++mode)
+      for (unsigned sized = 0; sized < 2; ++sized)
+        for (unsigned di = 0; di < sizeof duplicates / sizeof *duplicates;
+             ++di) {
+          prepare();
+          put16(ports + 8, 2);
+          memcpy(entries + 2 * 0x78 + 0x3a, (int[]){1, 2, 9, 10}, 16);
+          unsigned args[] = {
+              2, 3, sized ? 6 : 0, sized ? 5 : 0, duplicates[di], mode, flags,
+              7, 0};
+          invoke(0xc569, args, "SOURCE.BMP");
+          require(!errors && lookup_calls == 1 && display_calls == 1 &&
+                      rop == operations[mode] &&
+                      transparent == (flags & 8 ? 7 : -1) &&
+                      render_dither == !!(flags & 4) &&
+                      render_palette == (flags & 2 ? 1u : 2u) &&
+                      render_stretch == sized,
+                  "all flags preserve independent initial "
+                  "ROP/key/palette/dither/size requests");
+          require(!memcmp(render_geometry,
+                          (int[]){3, 5, sized ? 7 : 0, sized ? 7 : 0}, 16),
+                  "flag sixteen does not alter initial converted destination "
+                  "geometry");
+          unsigned dup = flags & 1;
+          require(clipboard_calls == (dup && !duplicates[di]) &&
+                      duplicate_calls ==
+                          (dup && duplicates[di] != 0 && duplicates[di] != 2 &&
+                           duplicates[di] < 36) &&
+                      copy_calls == duplicate_calls,
+                  "duplication gates are independent of wallpaper and source "
+                  "equality");
+          require(
+              wallpaper_calls == !!(flags & 16),
+              "bit sixteen requests wallpaper, bit thirty-two alone does not");
+          if (wallpaper_calls)
+            require(wallpaper_mode == (flags & 32) && wallpaper_current == 2 &&
+                        !memcmp(wallpaper_source, returned_rect, 16) &&
+                        !memcmp(wallpaper_bounds, (int[]){1, 2, 9, 10}, 16) &&
+                        wallpaper_sequence > draw_sequence &&
+                        wallpaper_sequence > duplicate_sequence,
+                    "wallpaper takes final rendered source/current viewport "
+                    "after duplication");
+        }
+  for (unsigned flags = 64; flags < 4096; ++flags) {
+    prepare();
+    unsigned args[] = {0, 0, 0, 0, 0, 0, flags, 0, 0};
+    invoke(0xc569, args, "SOURCE.BMP");
+    require(errors == 1 && !lookup_calls && !display_calls &&
+                !wallpaper_calls && !clipboard_calls && !duplicate_calls,
+            "unknown high flag bits reject before "
+            "lookup/draw/duplication/wallpaper");
+  }
+  prepare();
+  fail_delete = 1;
+  put16(ports + 8, 2);
+  entries[7 * 0x78] = 4;
+  unsigned args[] = {0, 0, 6, 5, 7, 0, 17, 0, 0};
+  invoke(0xc569, args, "SOURCE.BMP");
+  require(display_calls == 1 && !duplicate_calls && !wallpaper_calls,
+          "failed explicit duplicate deletion returns before wallpaper");
+  prepare();
+  retarget_clipboard = 1;
+  put16(ports + 8, 2);
+  memcpy(entries + 0x3a, (int[]){0, 0, 12, 10}, 16);
+  args[4] = 0;
+  invoke(0xc569, args, "SOURCE.BMP");
+  require(clipboard_calls == 1 && wallpaper_calls == 1 &&
+              wallpaper_current == 0 &&
+              !memcmp(wallpaper_bounds, (int[]){0, 0, 12, 10}, 16),
+          "wallpaper re-reads current viewport if clipboard helper changes "
+          "current");
+  prepare();
+  render_result = 1;
+  args[6] = 16;
+  invoke(0xc569, args, "SOURCE.BMP");
+  require(display_calls == 1 && !wallpaper_calls && !clipboard_calls,
+          "renderer failure returns before duplication and wallpaper");
+  memcpy(image + 0x3ea2e, wallpaper_entry, 5);
 }
 static void header(unsigned depth, unsigned width, unsigned height) {
   memset(dib, 0, sizeof dib);
@@ -311,6 +461,7 @@ int main(int argc, char **argv) {
     return 2;
   load_image(argv[1]);
   memcpy(renderer_entry, image + 0x4a410, 5);
+  memcpy(wallpaper_entry, image + 0x3ea2e, 5);
   memcpy(color_entry, image + 0x16140, 5);
   memcpy(validator_entry, image + 0x44385, 5);
   hook(0x45038, noop);
@@ -340,10 +491,13 @@ int main(int argc, char **argv) {
   hook(0x69e40, (void (*)(void))strrchr);
   hook(0x655e2, (void (*)(void))strcasecmp);
   load_checks();
+  flag_checks();
   color_key_checks();
   classify_checks();
   mask_and_merge_checks();
   renderer_checks();
+  wallpaper_checks();
+  rendered_wallpaper_checks();
   printf("PASS: %u bitmap routing/renderer/mask/merge checks\n", checks);
   return 0;
 }
