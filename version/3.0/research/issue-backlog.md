@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**Consolidated baseline: [fork `stable`](https://github.com/RealDeuce/remote-imaging-protocol/tree/stable).** The user requested one branch containing all completed work. Use the [stable checkpoint](#stable-branch) and start future issue branches from the current `fork/stable`.
+
 **Issue #72 delivered in [PR #73](https://github.com/bbs-land/remote-imaging-protocol/pull/73).** Branch `issue-72-define-port-contract` starts at integration checkpoint e800949 and depends on #71. The [protocol derivation](issue-72-define-port-contract.md) records source sections/hashes and every disposition. Specification commit ad1c37f preserves the documented four flags, ignored offscreen near coordinates and protected-target selection of port 0, and identifies genuinely unspecified resource-failure state. No probe/source changes are included. Documentation checks pass; GitHub confirms exactly one closing issue reference, #72. No active investigation remains for this issue; review/merge is pending.
 
 **Delivery refresh: 2026-11-17 21:36 UTC.** There are 35 open RealDeuce issues, all covered by published resolution PRs: the original 34 by their individual PRs and integration #71, and #72 by separate PR #73. No new uncovered issue is present; #72 has no comments. The preceding repository-wide comment/review scan at 20:53 UTC found no feedback added or edited after the prior 02:11:57Z watermark. Review/merge remains pending; no issue was manually closed.
@@ -81,6 +83,19 @@ Issue #54 is delivered in [PR #69](https://github.com/bbs-land/remote-imaging-pr
 Issue #58 is delivered in [PR #70](https://github.com/bbs-land/remote-imaging-protocol/pull/70), branch `issue-58-load-bitmap-flags`, dependent on #69. Its [derivation](issue-58-load-bitmap-flags.md) records **378,267 native bitmap checks**, plain/staggered wallpaper flags 16/32, initial-draw/duplicate ordering, current retargeting, high-bit rejection and original canonical scene/BMP bytes. Specification commit `03ded50`; issue-only comparison starts at `f87d465`. Formatting, 5,368 links and diff checks pass; original assets/text and earlier references unchanged; task temporary files/core check empty. Review/merge is pending.
 
 **Research goal delivered.** Final paginated GitHub refresh on 2026-11-16 finds 34 open issues by RealDeuce, all covered by the 34 complete resolution PRs listed above; no uncovered issue remains. All resolution PRs are open/unmerged, with dependencies/issue-only comparisons recorded. Do not manually close issues or merge without a separate request. There is no active investigation. For new issues or review feedback, refresh GitHub, choose the oldest uncovered RealDeuce issue and start a new branch/note from the appropriate dependency. Preserve the source/fixture boundaries recorded for each issue.
+
+## Stable branch
+
+The user authorized a consolidated `stable` branch in [RealDeuce/remote-imaging-protocol](https://github.com/RealDeuce/remote-imaging-protocol/tree/stable) on 2026-11-17. It starts from fork `main` at **2fb1772** and preserves history through two ordinary merge commits:
+
+- **6614fd6** merges integration PR #71's actual head **e800949**.
+- **552cee5** merges DEFINE_PORT PR #73's actual head **d8323a1**.
+
+A fresh GitHub/ref audit verifies that all **36 current upstream PR head commits** and all **37 pre-existing fork branch heads** are ancestors of the resulting branch. This includes every original resolution branch and both later #37/#41 follow-up histories. Before the stable-workflow notes were added, its tree was byte-for-byte identical to d8323a1's tree (`git rev-parse HEAD^{tree}` matched the source tree), with no specification conflict or content change introduced by either merge.
+
+Validation passes `run/lint`, `run/check-links` (0 bad of 5,447 links across 222 files) and `git diff --check`. The only changes after the content-identical merges are these workflow notes and AGENTS.md.
+
+The local `stable` branch tracks `fork/stable`. Use its latest fetched tip as the starting point for future issue branches. All new merge/checkpoint commits carry the requested Codex co-author trailer. Consolidating the fork does not merge upstream PRs, close upstream issues, change either repository's `main`, or change its default branch. Those upstream review records remain open. The maintainer's protocol-first evidence policy continues to apply.
 
 ## Integration PR
 
