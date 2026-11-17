@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**Post-PR feedback review is active.** The comment refresh finds new unanswered follow-ups on #10 (COPY_BLIT arithmetic, PORT_WRITE clipping/inactive source) and #13 (small polygon/polyline counts). Address #10 first and #13 second on their existing PR branches, then propagate the fixes to the latest stack. The34 issues have original resolution PRs, but these follow-ups require additional evidence before claiming complete coverage.
+**Post-PR feedback review is complete.** Three later comments on #10/#13 were not covered by the original resolution pass; they now have source-backed answers on the existing PRs and in the latest stack. See the [comment ledger](#post-pr-comment-review) for exact links/commits and the refresh watermark. All34 issues retain their original resolution PRs; review/merge remains pending.
 
 Updated 2026-11-16. Issue #3 is delivered in [PR #29](https://github.com/bbs-land/remote-imaging-protocol/pull/29), from branch `issue-3-extended-font-style`; its [derivation note](issue-3-extended-font-style.md) contains the complete evidence record. Review/merge is pending.
 
@@ -75,6 +75,18 @@ Issue #54 is delivered in [PR #69](https://github.com/bbs-land/remote-imaging-pr
 Issue #58 is delivered in [PR #70](https://github.com/bbs-land/remote-imaging-protocol/pull/70), branch `issue-58-load-bitmap-flags`, dependent on #69. Its [derivation](issue-58-load-bitmap-flags.md) records **378,267 native bitmap checks**, plain/staggered wallpaper flags16/32, initial-draw/duplicate ordering, current retargeting, high-bit rejection and original canonical scene/BMP bytes. Specification commit `03ded50`; issue-only comparison starts at `f87d465`. Formatting, 5,368 links and diff checks pass; original assets/text and earlier references unchanged; task temporary files/core check empty. Review/merge is pending.
 
 **Research goal delivered.** Final paginated GitHub refresh on2026-11-16 finds34 open issues by RealDeuce, all covered by the34 complete resolution PRs listed above; no uncovered issue remains. All resolution PRs are open/unmerged, with dependencies/issue-only comparisons recorded. Do not manually close issues or merge without a separate request. There is no active investigation. For new issues or review feedback, refresh GitHub, choose the oldest uncovered RealDeuce issue and start a new branch/note from the appropriate dependency. Preserve the source/fixture boundaries recorded for each issue.
+
+## Post-PR comment review
+
+Refresh completed **2026-11-17 01:34:20 UTC** (2026-11-16 local). The repository has20 issue/discussion comments; three were created after their matching resolution PR opened. No inline PR review comments were present. Repeated issue-comment refresh at completion found no comments added/edited during this review. The earlier completion check only matched issues to PRs and missed these later requests; future checks must inspect both comment creation and update times.
+
+| Issue comment | Request | Resolution |
+| --- | --- | --- |
+| [#10,19:00:57 UTC](https://github.com/bbs-land/remote-imaging-protocol/issues/10#issuecomment-6926090826) | COPY_BLIT1200/80 arithmetic, alongside PORT_COPY28=80 | Existing [PR #37](https://github.com/bbs-land/remote-imaging-protocol/pull/37), implementation `fc85da0`, delivery `d30c2b9`; literals preserved |
+| [#10,22:33:06 UTC](https://github.com/bbs-land/remote-imaging-protocol/issues/10#issuecomment-6931396493) | PORT_WRITE independent corner clipping, pixels and inactive source | Same PR/commits; [export derivation](issue-10-port-geometry.md#post-pr-port_write-results);335,450 native checks with actual BMP serialization and RAM output |
+| [#13,19:25:33 UTC](https://github.com/bbs-land/remote-imaging-protocol/issues/13#issuecomment-6926736265) | Counts0/1/2 and no-op state | Existing [PR #41](https://github.com/bbs-land/remote-imaging-protocol/pull/41), implementation `8be06f2`, delivery `41246a1`; [lower-count derivation](issue-13-polygon-counts.md#post-pr-small-count-results);223,367 checks on that branch |
+
+Both PR descriptions now include the follow-up answers and validation. Commits are also carried on latest `issue-58-load-bitmap-flags`, retaining the intervening rounded-rectangle parser matrix: combined polygon checks223,415, export checks335,450. The original issue PRs remain focused; no new issue replies, merges or manual closures were made. Notes and AGENTS.md retain the evidence boundaries and the improved comment-check procedure. Earlier original sources/assets remain untouched; temporary builds/request payloads and both temporary review worktrees are removed. Final combined checks pass:335,450 PORT_WRITE checks,223,415 polygon parser checks, formatting/lint,0 bad of5,395 links and diff check. Every new commit retains the requested Codex co-author trailer.
 
 ## Queue and delivery
 
