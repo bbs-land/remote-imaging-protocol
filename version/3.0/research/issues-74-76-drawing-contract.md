@@ -105,7 +105,9 @@ RIPscrip 1.54 and all preserved original `text/`/asset files remain unchanged. T
 
 Validation also passes Deno type checking/lint, wrapper help, repository Markdown formatting/lint, `run/check-links` (0 bad of 5,516 links across 225 files) and `git diff --check`. Manual prose review found no joined word/number shorthand. GitHub refresh at **2026-11-18 04:55:37 UTC** found no comments on #74/#75/#76 and no newer issue; dependencies #71/e800949 and #73/d8323a1 are unchanged and open.
 
-Remaining delivery: combined PR closing #74/#75/#76, then normal ancestry-preserving merge into fork stable. Do not merge upstream or manually close issues. All new commits need the requested Codex co-author trailer; keep temporary API payloads in scoped temporary directories.
+Delivered in [PR #77](https://github.com/bbs-land/remote-imaging-protocol/pull/77), branch `issues-74-76-drawing-contract`, specification commit **43975c6**. GitHub reports the PR open, ready and mergeable, with exactly #74/#75/#76 as closing references. Delivery refresh at **2026-11-18 04:57:54 UTC** finds no comments on any of the three issues. The issue-only comparison starts at stable c9a66b2; the full upstream diff also carries the existing #71/#73 histories.
+
+No active investigation remains for this group. Consolidate the completed branch into fork stable with an ordinary merge, preserving its original commits. Upstream review/merge is pending; no issue was manually closed. The PR JSON payload was created in Python `TemporaryDirectory` and removed automatically; no task-owned temporary artifacts remain. All new commits carry `Co-authored-by: Codex <codex@openai.com>`.
 
 ---
 
