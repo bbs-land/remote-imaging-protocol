@@ -107,7 +107,7 @@ Validation also passes Deno type checking/lint, wrapper help, repository Markdow
 
 Delivered in [PR #77](https://github.com/bbs-land/remote-imaging-protocol/pull/77), branch `issues-74-76-drawing-contract`, specification commit **43975c6**. GitHub reports the PR open, ready and mergeable, with exactly #74/#75/#76 as closing references. Delivery refresh at **2026-11-18 04:57:54 UTC** finds no comments on any of the three issues. The issue-only comparison starts at stable c9a66b2; the full upstream diff also carries the existing #71/#73 histories.
 
-No active investigation remains for this group. Consolidate the completed branch into fork stable with an ordinary merge, preserving its original commits. Upstream review/merge is pending; no issue was manually closed. The PR JSON payload was created in Python `TemporaryDirectory` and removed automatically; no task-owned temporary artifacts remain. All new commits carry `Co-authored-by: Codex <codex@openai.com>`.
+No active investigation remains for this group. Fork stable now includes completed PR head af5468d through ordinary merge **cbbe168**, preserving all original commits. The merge tree matched the issue branch exactly before workflow notes; the fresh audit includes all 37 current upstream PR heads. Upstream review/merge is pending; no issue was manually closed. The PR JSON payload was created in Python `TemporaryDirectory` and removed automatically; no task-owned temporary artifacts remain. All new commits carry `Co-authored-by: Codex <codex@openai.com>`.
 
 ---
 

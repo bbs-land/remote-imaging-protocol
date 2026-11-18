@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**Group #74–#76 delivered in [PR #77](https://github.com/bbs-land/remote-imaging-protocol/pull/77).** Branch `issues-74-76-drawing-contract` starts at stable c9a66b2; specification commit 43975c6. The [group derivation](issues-74-76-drawing-contract.md) records protocol W/fill-before-COPY-border, related-case reconciliations, independent matrices, complete optional Q14 profile and historical-client boundaries. Validation passes 1,165 arithmetic/data checks, Deno checks, Markdown lint and link checks. GitHub confirms exactly #74/#75/#76 as closing references, no comments on these issues at 2026-11-18 04:57:54 UTC, and PR #77 open/ready/mergeable. No active group investigation remains; upstream review/merge is pending. Next workflow step: consolidate this completed branch into fork stable, then refresh issues/comments before new research.
+**Group #74–#76 delivered in [PR #77](https://github.com/bbs-land/remote-imaging-protocol/pull/77).** Branch `issues-74-76-drawing-contract` starts at stable c9a66b2; specification commit 43975c6. The [group derivation](issues-74-76-drawing-contract.md) records protocol W/fill-before-COPY-border, related-case reconciliations, independent matrices, complete optional Q14 profile and historical-client boundaries. Validation passes 1,165 arithmetic/data checks, Deno checks, Markdown lint and link checks. GitHub confirms exactly #74/#75/#76 as closing references, no comments on these issues at 2026-11-18 04:57:54 UTC, and PR #77 open/ready/mergeable. No active group investigation remains; upstream review/merge is pending. Fork stable includes the completed branch through merge cbbe168; refresh issues/comments before new research.
 
 **Consolidated baseline: [fork `stable`](https://github.com/RealDeuce/remote-imaging-protocol/tree/stable).** The user requested one branch containing all completed work. Use the [stable checkpoint](#stable-branch) and start future issue branches from the current `fork/stable`.
 
@@ -93,11 +93,13 @@ The user authorized a consolidated `stable` branch in [RealDeuce/remote-imaging-
 - **6614fd6** merges integration PR #71's actual head **e800949**.
 - **552cee5** merges DEFINE_PORT PR #73's actual head **d8323a1**.
 
-A fresh GitHub/ref audit verifies that all **36 current upstream PR head commits** and all **37 pre-existing fork branch heads** are ancestors of the resulting branch. This includes every original resolution branch and both later #37/#41 follow-up histories. Before the stable-workflow notes were added, its tree was byte-for-byte identical to d8323a1's tree (`git rev-parse HEAD^{tree}` matched the source tree), with no specification conflict or content change introduced by either merge.
+The initial GitHub/ref audit verified that all **36 then-current upstream PR head commits** and all **37 pre-existing fork branch heads** are ancestors of the resulting branch. This includes every original resolution branch and both later #37/#41 follow-up histories. Before the stable-workflow notes were added, its tree was byte-for-byte identical to d8323a1's tree (`git rev-parse HEAD^{tree}` matched the source tree), with no specification conflict or content change introduced by either merge.
 
 Validation passes `run/lint`, `run/check-links` (0 bad of 5,447 links across 222 files) and `git diff --check`. The only changes after the content-identical merges are these workflow notes and AGENTS.md.
 
 The local `stable` branch tracks `fork/stable`. Use its latest fetched tip as the starting point for future issue branches. All new merge/checkpoint commits carry the requested Codex co-author trailer. Consolidating the fork does not merge upstream PRs, close upstream issues, change either repository's `main`, or change its default branch. Those upstream review records remain open. The maintainer's protocol-first evidence policy continues to apply.
+
+The #74–#76 follow-up is consolidated through ordinary merge **cbbe168**, merging PR #77 head **af5468d** into stable. Its tree exactly matched the issue branch before these workflow notes. The 2026-11-18 04:58:59 UTC audit verifies all **37 current upstream PR heads** are ancestors, including #77 and the earlier #71/#73 histories; all four new investigation/specification/delivery/merge commits carry Codex co-author trailers. Current drawing-contract validation is 1,165 checks, with repository lint/link/diff checks passing. No client probes or persistent temporary artifacts were created.
 
 ## Integration PR
 
