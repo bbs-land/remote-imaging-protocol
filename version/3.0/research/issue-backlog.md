@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**Active group: #74–#76.** The user requested one coherent drawing-contract investigation plus similar cases. Branch `issues-74-76-drawing-contract` starts at stable c9a66b2. Read the [group derivation](issues-74-76-drawing-contract.md). Establish point/stroke/fill/border/gap/revisit operations from protocol sources, and separately document skewed-contour arithmetic. No resolution PR exists yet.
+**Active group: #74–#76.** The user requested one coherent drawing-contract investigation plus similar cases. Branch `issues-74-76-drawing-contract` starts at stable c9a66b2. Read the [group derivation](issues-74-76-drawing-contract.md). The specification and related-case audit are complete: protocol W/fill-before-COPY-border, independent matrices, optional complete Q14 profile and historical-client boundaries. Validation passes 1,165 arithmetic/data checks, Markdown lint and 0 bad of 5,516 links. Refresh 2026-11-18 04:55:37 UTC finds no comments on these three issues and no newer issue. Next: publish the combined PR and consolidate into fork stable. No resolution PR exists yet.
 
 **Consolidated baseline: [fork `stable`](https://github.com/RealDeuce/remote-imaging-protocol/tree/stable).** The user requested one branch containing all completed work. Use the [stable checkpoint](#stable-branch) and start future issue branches from the current `fork/stable`.
 
