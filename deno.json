@@ -25,6 +25,7 @@
     "riptel-font-probe": "bash run/riptel-font-probe",
     "riptel-font-glyphs": "bash run/riptel-font-glyphs",
     "riptel-fastfont-probe": "bash run/riptel-fastfont-probe",
-    "riptel-image-probe": "bash run/riptel-image-probe"
+    "riptel-image-probe": "bash run/riptel-image-probe",
+    "check-drawing-contract": "deno run --allow-read run/check-drawing-contract"
   }
 }

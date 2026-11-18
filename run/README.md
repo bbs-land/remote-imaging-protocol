@@ -15,6 +15,7 @@ run/format               # rewrite Markdown files to the repository style
 | Script | What it does | `deno task` equivalent |
 | --- | --- | --- |
 | [`check-links`](check-links) | Validates every `[text](path#anchor)` link across the doc trees - the target file must exist and the `#anchor` must match a heading slug. Skips fenced and inline code. Exits 1 on any broken link. | `deno task check-links` |
+| [`check-drawing-contract`](check-drawing-contract) | Validates published Boolean pixel/pass vectors, point footprints, gap/parity/revisit rules and the optional Q14 contour data; reads no original executable and runs no client/renderer. | `deno task check-drawing-contract` |
 | [`lint`](lint) | Reports Markdown files that do not match [`.prettierrc`](../.prettierrc). Reports only, never modifies. Exits 1 if any file is off-style. | `deno task lint` |
 | [`riptel-font-glyphs`](riptel-font-glyphs) | Renders four rotation oracles through the unmodified DLL and Marin font, using a private Xvfb display and Wine prefix; requires Wine and an i386 Windows cross-compiler. | `deno task riptel-font-glyphs` |
 | [`riptel-fastfont-probe`](riptel-fastfont-probe) | Captures original FastFont solid/hollow glyphs on synthetic copied Marin contours, using a private Xvfb display and Wine prefix; outputs probe.log. | `deno task riptel-fastfont-probe` |

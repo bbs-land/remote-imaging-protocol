@@ -11,6 +11,7 @@ Chapter numbers align with the [v1.54 techspecs](../../1.54/techspecs/README.md)
 - **2. Rendering semantics**
   - **[2.0 Canvas Tiers, Palette & RGB Rendering](2.0-canvas-palette-rgb.md)** - logical resolution and color tiers, the 256-entry palette and 6-bit DAC value scaling, direct-RGB mode rendering
   - **[2.1 Fill Defects in the Shipping Implementation](2.1-fill-defects.md)** - legacy patterned-flood and seed-stack limitations, evidence scope, and withdrawal of the unsupported manual pie/chord flood-leak attribution
+  - **[2.3 Drawing Composition](2.3-drawing-composition.md)** - Boolean pixel operations, source and gap selection, fill-before-COPY-border phases, repeated visits and independent nonblack-destination vectors
 - **3. File formats**
   - **[3.0 Icons (.BMP / .BMM / .BMH)](3.0-icon-formats.md)** - the BMP-family delta from 1.54 icons: full-BMP reality vs the spec's bare DIB, writer conventions, hot and mask roles
   - **[3.1 JPEG Images (.JPG)](3.1-jpeg-images.md)** - the baseline JFIF profile of shipped content, decoder envelope, scaling/aspect/palette rendering semantics
