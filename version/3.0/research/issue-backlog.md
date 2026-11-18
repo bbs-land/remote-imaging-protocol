@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#78 delivered; #79 is next.** [PR #80](https://github.com/bbs-land/remote-imaging-protocol/pull/80), branch `issue-78-border-normalization`, specification fadf46f, closes only #78. Its [derivation](issue-78-border-normalization.md) distinguishes documented current-base parsing from native fixed-MegaNum and records the exact zero/nonzero/protection contract. Markdown lint, 5,531 links and diff checks pass; no issue comments at 2026-11-18 15:51:30 UTC. Consolidate the completed branch into fork stable and begin #79 SWITCH_STYLE width/protection flags from that baseline.
+
 **Group #74–#76 delivered in [PR #77](https://github.com/bbs-land/remote-imaging-protocol/pull/77).** Branch `issues-74-76-drawing-contract` starts at stable c9a66b2; specification commit 43975c6. The [group derivation](issues-74-76-drawing-contract.md) records protocol W/fill-before-COPY-border, related-case reconciliations, independent matrices, complete optional Q14 profile and historical-client boundaries. Validation passes 1,165 arithmetic/data checks, Deno checks, Markdown lint and link checks. GitHub confirms exactly #74/#75/#76 as closing references, no comments on these issues at 2026-11-18 04:57:54 UTC, and PR #77 open/ready/mergeable. No active group investigation remains; upstream review/merge is pending. Fork stable includes the completed branch through merge cbbe168; refresh issues/comments before new research.
 
 **Consolidated baseline: [fork `stable`](https://github.com/RealDeuce/remote-imaging-protocol/tree/stable).** The user requested one branch containing all completed work. Use the [stable checkpoint](#stable-branch) and start future issue branches from the current `fork/stable`.
