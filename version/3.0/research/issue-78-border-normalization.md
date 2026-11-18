@@ -16,7 +16,7 @@ The unchanged RIPtel 3.1 / driver 3.0.7 artifact is `artifacts/riptel-3.1-pcmicr
 
 ## Dispatch and radix conflict
 
-Physical slot 48 is a 40-byte record at RVA **0x80fa0**, file offset **0x7f5a0**, in the original table at RVA 0x80820. Byte 0 is level `0`; the unaligned handler pointer at byte 1 is 0x1000dcf1; opcode at byte 15 is `N`; signed argument count at +0x10 is 1; width at +0x14 is 2. The width helper 0x39de0 reads that literal width.
+Physical slot 48 is a 40-byte record at RVA **0x80fa0**, file offset **0x7f5a0**, in the original table at RVA 0x80820. The unaligned handler pointer at byte 1 is 0x1000dcf1; opcode at byte 15 is `N`; signed argument count at +0x10 is 1; width at +0x14 is 2. The width helper 0x39de0 reads that literal width.
 
 The WORD at descriptor +0x26 is **1**, not the current-base flag combination 3. Radix selector 0x39d70, specifically 0x39da0–0x39dbd, returns MegaNum for bit 0 set with bit 1 clear. The prior line-style descriptor research establishes that return value 1 means MegaNum. Therefore the issue's inference that native N accepts `N&&` as an ordinary current-base UltraNum field is not supported by this dispatch path. There is no need to execute or debug that conflict: the explicit protocol current-base rule controls the public contract. The reference now labels UltraNum examples as protocol expectations and records the original parser's fixed-base choice separately. The nonzero handler result applies to a value already decoded; it does not establish the wire parser's radix.
 
@@ -36,6 +36,7 @@ Handler RVA 0xdcf1 maps to file offset **0xd0f1**. The existing [STYLE ownership
 Read-only reproduction, with `artifact_root` set to the persistent mirror:
 
 ```sh
+run/riptel-inspect "$artifact_root/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll" --slot 48
 objdump -d --start-address=0x1000dcf1 --stop-address=0x1000dd68 "$artifact_root/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll"
 objdump -d --start-address=0x10039d70 --stop-address=0x10039e01 "$artifact_root/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll"
 objdump -d --start-address=0x100393b1 --stop-address=0x10039435 "$artifact_root/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll"
