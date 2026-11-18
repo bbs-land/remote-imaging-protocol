@@ -63,6 +63,8 @@ The public 3.0 N entry, command index and composition delta now state the value 
 
 Validation passes repository Markdown lint, 0 bad of 5,531 links across 226 files, `git diff --check`, independent base-36/base-64 arithmetic and manual prose/table review. The 2026-11-18 15:49:37 UTC refresh confirms #78/#79 are open RealDeuce issues without comments. Delivered in [PR #80](https://github.com/bbs-land/remote-imaging-protocol/pull/80), specification commit **fadf46f**, branch `issue-78-border-normalization` from stable 72edbfc. GitHub confirms the PR is open/ready with exactly #78 as its closing reference. Delivery refresh 2026-11-18 15:51:30 UTC finds no issue comments. Consolidate the completed branch into fork stable, then start #79 from that baseline. No native fixture or new test script is needed for this read-only documentation change. Temporary API payloads must be scoped and removed.
 
+Stable continuation checkpoint: initial #80 head acc1cb1 was merged at **48767dc**. Metadata-label correction **ca75dd4** remains on PR #80 and is also included through completed #79/PR #81, merged at **f2a291c**. Both issues are delivered; no outstanding #78 research remains. API payload temporary directories were removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [SET_BORDER](../ripscrip/2.3-shapes-and-fills.md#rip_set_border)
