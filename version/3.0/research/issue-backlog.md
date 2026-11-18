@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**Active: #78, then queued #79.** The new issues concern SET_BORDER zero/nonzero normalization and SWITCH_STYLE field width/protection flags. Branch `issue-78-border-normalization` starts from fork stable 72edbfc. Read the [#78 derivation](issue-78-border-normalization.md). Refresh 2026-11-18 15:46:29 UTC finds no comments on either issue and no later issue comments after the previous delivery. Resolve each issue completely in creation order and file separate PRs.
+
 **Group #74–#76 delivered in [PR #77](https://github.com/bbs-land/remote-imaging-protocol/pull/77).** Branch `issues-74-76-drawing-contract` starts at stable c9a66b2; specification commit 43975c6. The [group derivation](issues-74-76-drawing-contract.md) records protocol W/fill-before-COPY-border, related-case reconciliations, independent matrices, complete optional Q14 profile and historical-client boundaries. Validation passes 1,165 arithmetic/data checks, Deno checks, Markdown lint and link checks. GitHub confirms exactly #74/#75/#76 as closing references, no comments on these issues at 2026-11-18 04:57:54 UTC, and PR #77 open/ready/mergeable. No active group investigation remains; upstream review/merge is pending. Fork stable includes the completed branch through merge cbbe168; refresh issues/comments before new research.
 
 **Consolidated baseline: [fork `stable`](https://github.com/RealDeuce/remote-imaging-protocol/tree/stable).** The user requested one branch containing all completed work. Use the [stable checkpoint](#stable-branch) and start future issue branches from the current `fork/stable`.
