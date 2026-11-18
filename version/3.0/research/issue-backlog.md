@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**Active group: #74–#76.** The user requested one coherent drawing-contract investigation plus similar cases. Branch `issues-74-76-drawing-contract` starts at stable c9a66b2. Read the [group derivation](issues-74-76-drawing-contract.md). Establish point/stroke/fill/border/gap/revisit operations from protocol sources, and separately document skewed-contour arithmetic. No resolution PR exists yet.
+
 **Consolidated baseline: [fork `stable`](https://github.com/RealDeuce/remote-imaging-protocol/tree/stable).** The user requested one branch containing all completed work. Use the [stable checkpoint](#stable-branch) and start future issue branches from the current `fork/stable`.
 
 **Issue #72 delivered in [PR #73](https://github.com/bbs-land/remote-imaging-protocol/pull/73).** Branch `issue-72-define-port-contract` starts at integration checkpoint e800949 and depends on #71. The [protocol derivation](issue-72-define-port-contract.md) records source sections/hashes and every disposition. Specification commit ad1c37f preserves the documented four flags, ignored offscreen near coordinates and protected-target selection of port 0, and identifies genuinely unspecified resource-failure state. No probe/source changes are included. Documentation checks pass; GitHub confirms exactly one closing issue reference, #72. No active investigation remains for this issue; review/merge is pending.
