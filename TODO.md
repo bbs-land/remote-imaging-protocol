@@ -8,6 +8,8 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
+- [ ] Resolve #96 outer angle-scanner boundaries/branch state, then #97 synthetic outline effects/decorations; see the [backlog](version/3.0/research/issue-backlog.md).
+
 - [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and further driver contracts (see `version/3.0/research/issue-backlog.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from implementations - as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08)
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the source) based on actual implementation behavior (SyncTERM `ripper.c`, icy_parser_core), cited and marked as reconstructed
