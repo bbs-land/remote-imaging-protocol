@@ -51,6 +51,8 @@ Anchor `(100,80)` examples separately expose design origin versus tile corner an
 
 ## Verification and next action
 
+This branch also merges corrected #92 head **63e6e15**, preserving the original #90 source history. Its initial-byte correction uses the original ctype table: alphabetic, not alphanumeric. The merge affects macro documentation/workflow only, independently of the placement policy below.
+
 Independent corner rotations/spans, exact engine/device advances, both signed spacing profiles, all sixteen table rows and explicit tile/midpoint examples pass. `run/lint`, `run/check-links` (0 bad of 5,715 links across 234 files) and `git diff --check` pass. Refresh 2026-11-19 19:17:48 UTC finds no #90/#91 comments, newer discussion/inline feedback or new reviews across 44 open PR histories. Publish one complete PR closing only #91 and consolidate its actual head into fork stable. Keep prior source/text/assets byte-exact; no original execution or temporary raster assets are required. Co-author trailers and scoped API temporary cleanup persist.
 
 ---
