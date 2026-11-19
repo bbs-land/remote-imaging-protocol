@@ -23,16 +23,18 @@ Only original instruction/data **reading** was performed. No original instructio
 | `0x4b701–0x4b744` | Skip whitespace via ctype mask 8; reject exhausted input |
 | `0x4b754–0x4b78b` | Optional connector reads compare four bytes with `AND ` or three with `OR ` |
 | `0x4b7df–0x4b842` | A leading bare `?` reads one case-folded MegaNum digit and obtains its template; no opening-dollar removal precedes this test |
-| `0x4b847–0x4b88e` | Optional opening dollar, then alphanumeric mask `0x103` on the first reference byte; raw directives/quote/backslash do not pass that initial predicate |
+| `0x4b847–0x4b88e` | Optional opening dollar, then **alphabetic** mask `0x103` on the first reference byte; raw directives/quote/backslash do not pass that initial predicate |
 | `0x4b8bb–0x4b91e` | Later backslash removes itself and copies the next non-NUL byte before delimiter checks; no argument-byte predicate is used |
 | `0x4b8ca–0x4b954` | Dollar ends an enclosed reference, errors if there was no opening dollar; bare whitespace/operators stop the token, enclosed ones are copied |
 | `0x4b955–0x4ba36` | Skip separator whitespace; reject premature `>>`; recognize the six existing comparison operators |
 | `0x4bd23–0x4bd48` | Format normalized body using original string at `0x83b34`: **`$&%s$`**; parse through `0x15602` |
 | `0x4bd6d–0x4bdaa` | Evaluate the parsed reference through `0x25b21`; unsuccessful evaluation returns false |
 
-The conditional lexical buffer contains a **reference body**, not an already validated name/argument list or an expanded value. Its case and non-delimiter bytes survive; the next parser imposes name rules, 40 nonempty arguments, 20 decoded bytes per argument and #84 payload/escape rules. A dollar-enclosed conditional reference can preserve spaces/quotes/operators which that provider may subsequently reject. A leading digit passes this scanner without establishing that it is a valid provider name. Prefix directives cannot be typed raw at the start, even after a dollar; synthetic `&` is introduced by the comparison service.
+The conditional lexical buffer contains a **reference body**, not an already validated name/argument list or an expanded value. Its case and non-delimiter bytes survive; the next parser imposes name rules, 40 nonempty arguments, 20 decoded bytes per argument and #84 payload/escape rules. A dollar-enclosed conditional reference can preserve spaces/quotes/operators which that provider may subsequently reject. A leading digit fails this scanner; later digits are copied, and the separate template-slot digit remains legal. Prefix directives cannot be typed raw at the start, even after a dollar; synthetic `&` is introduced by the comparison service.
 
 The contract explicitly distinguishes conditional syntax failure from provider-format/value rejection (false comparison), and successful empty data from lookup failure. **Portable validation choice:** require the synthesized provider input to be exactly one complete reference; reject embedded terminators/trailing material without evaluating an unintended prefix. This choice closes a boundary the source does not promise to validate completely. It is provider rejection/false, not a new recursive macro feature or fallback for a rejected known built-in. Existing caller permissions and user-variable prompt policy still apply.
+
+**Final source correction:** the report's “alphanumeric” lead and the first draft of this answer misnamed mask `0x103`. The original ctype pointer at RVA `0x87908` points to table `0x87912`. Original WORD flags are `A=0x81`, `a=0x82`, `0=0x84`, underscore `0x10`; the digit bit is `0x04`, absent from mask `0x103`. Thus the conditional initial test is alphabetic. The callable helper `0x68cd0` applies the same table mask. The published grammar now requires an ASCII letter and explicitly rejects initial digits. This correction is source-byte backed, not an execution result; update existing PR #92 and preserve its actual corrected head in descendants.
 
 ## Right scanner, exact termination and trim
 
@@ -60,7 +62,7 @@ A missing unquoted value immediately before `>>` or a legal closing group parent
 
 The source establishes the normal scanning order and explicit RHS capacity. It does not establish a complete safe locale/left-buffer/provider-result contract. This reconstruction makes the following choices explicit:
 
-- ASCII whitespace/alphanumeric and keyword folding; other non-NUL payload bytes are preserved, with provider validation still separate. No Unicode/code-page reinterpretation is introduced.
+- ASCII whitespace/alphabetic initial bytes and keyword folding; other non-NUL payload bytes are preserved, with provider validation still separate. No Unicode/code-page reinterpretation is introduced.
 - Maximum **255 decoded bytes** in an ordinary left body and right literal, plus storage NUL. The original callers pass adjacent 256-byte stack buffers at `ebp-0x26c` and `ebp-0x16c` (`0x4c45b–0x4c471`, `0x4c5a8–0x4c5c0`), but the left append path has no demonstrated matching bound. The portable rule checks before writes; it is not a claim about all native upstream length limits.
 - Capacity is checked before trimming; a two-byte escaped terminator needs two slots. Optional enclosing dollars/quotes do not count. No independent smaller source cap is introduced; prior command/expansion limits still apply. Maximum escaped left spelling is 509 body bytes, or 511 with dollars; 255 ordinary escaped RHS bytes can occupy 510 payload bytes plus quotes.
 - A provider result over 255 bytes is false/evaluation failure, not truncation or a required unsafe copy. Ordinary reference rejection also follows the existing false result; lexical/structural errors reject preprocessing nonfatally.
@@ -92,6 +94,14 @@ for rva, expected in ((0x83a88, b"AND "), (0x83a84, b"OR "),
                       (0x83b8c, b"not "), (0x83b34, b"$&%s$")):
     offset = rva - 0x1a00
     assert b[offset:offset + len(expected) + 1] == expected + bytes([0])
+
+from struct import unpack_from
+ctype_rva = unpack_from("<I", b, 0x87908 - 0x1a00)[0] - 0x10000000
+assert ctype_rva == 0x87912
+for code in range(128):
+    flags = unpack_from("<H", b, ctype_rva - 0x1a00 + 2 * code)[0]
+    assert bool(flags & 0x103) == (65 <= code <= 90 or 97 <= code <= 122)
+    assert bool(flags & 8) == (code in (9, 10, 11, 12, 13, 32))
 ```
 
 The [published byte tables and stage examples](../ripscrip/5.2-templates-and-conditionals.md#conditional-operand-byte-grammar) answer each subquestion, including left provider normalization, one/two/three-backslash distinctions, escaped spaces/quotes/parentheses/dollars/terminators, empty operands, keyword separators and safe decoded bounds. Reviewed each example as actual bytes; used explicit hex for ambiguous quote/backslash results. An initial draft's command-string escaping dropped some literal backslashes; manual byte review caught this before commit/publication and the tables were rewritten with explicit byte-preserving construction. Do not copy prose shorthand or host-language escaped strings as parser inputs.
