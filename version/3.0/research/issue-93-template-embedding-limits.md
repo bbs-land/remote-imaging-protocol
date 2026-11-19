@@ -45,9 +45,9 @@ Let `X[n]` mean n literal ASCII X bytes; byte lengths exclude storage NUL. Each 
 
 The arithmetic can be reproduced with ordinary byte concatenation/prefix slicing and the declared existing second-pass conversions; it does not need a callback or client harness. The published table covers 4095/4096/4097, immediate suffix loss, a retained callback, pass-two growth and later shrinkage, and control/quote boundary splitting. The explicit choices answer every subquestion without reopening adopted unsafe-chain or eight-angle-pass findings.
 
-## Verification and next action
+## Verification and delivery
 
-Original ALPHA 4 fingerprint and independent byte counts/prefixes, discarded-versus-retained suffixes, two-pass growth/shrinkage and both control boundary endings pass. `run/lint`, `run/check-links` (0 bad of 5,744 links across 235 files) and `git diff --check` pass. Refresh at 2026-11-19 19:29:09 UTC finds no #90/#91/#93 comments or newer discussion/inline feedback. Publish a complete PR closing only #93 and consolidate its actual head into fork stable. Then audit current issue coverage/comments and all PR-head ancestry. Preserve Codex trailers and scoped API payload cleanup; do not execute native code or mutate source artifacts.
+Original ALPHA 4 fingerprint and independent byte counts/prefixes, discarded-versus-retained suffixes, two-pass growth/shrinkage and both control boundary endings pass. `run/lint`, `run/check-links` (0 bad of 5,744 links across 235 files) and `git diff --check` pass. Refresh at 2026-11-19 19:29:09 UTC finds no #90/#91/#93 comments or newer discussion/inline feedback. Delivered in [PR #95](https://github.com/bbs-land/remote-imaging-protocol/pull/95), specification **023d9db**, branch `issue-93-template-embedding-limits`. GitHub confirms open/ready/mergeable and exactly #93 as closing reference. Consolidate its actual head into fork stable. Then audit current issue coverage/comments and all PR-head ancestry. Preserve Codex trailers and scoped API payload cleanup; do not execute native code or mutate source artifacts.
 
 ---
 
