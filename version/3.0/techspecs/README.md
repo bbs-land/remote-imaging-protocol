@@ -8,8 +8,13 @@ Original byte-level documentation of the binary formats shipped with **RIPtel Vi
 
 - **1. Parsing & wire protocol** - _no 3.x-specific pages; the v2.0 chapter applies (a 3.x corpus-conventions delta would slot in at `1.0` if evidence warrants one)_
 - **2. Rendering semantics** _(delta from v2.0)_
-  - **[2.0 Fill Defects (delta)](2.0-fill-defects-delta.md)** - the pie/chord fill leak and the never-applied patterned-flood brush were found by disassembling the 3.0 driver itself, so this is where they are directly evidenced; and the 3.x skewed-oval primitives are new commands built on the defective construction, so the generation widens the affected command set rather than merely inheriting it
+  - **[2.0 Fill Defects (delta)](2.0-fill-defects-delta.md)** - legacy flood-fill evidence and the withdrawal of the unsupported manual pie/chord flood-leak attribution
+  - **[2.1 Arc Consumer Contract](2.1-arc-consumer-contract.md)** - original integer endpoint rays, command-specific empty/full decisions and skewed contour closure, verified through native consumers
+  - **[2.2 Bézier Consumer Contract](2.2-bezier-consumer-contract.md)** - original integer interpolation, missing sample, device conversion order and independent 4094-point expansion budget
+  - **[2.3 Drawing Composition (delta)](2.3-drawing-composition.md)** - point/stroke/fill/border roles, reconstructed skewed-contour rules and historical backend boundaries
+  - **[2.4 Outline Advances and Cached Cursor Width](2.4-outline-advance-and-cache.md)** - explicit scalar/DPI/rounding policy, unsigned finite measurement, snapshot lifecycle and cursor vectors
 - **3. File formats** _(deltas from v2.0)_
+  - **[3.0 Bitmaps, Masks and Legacy Conversion (delta)](3.0-bitmap-mask-delta.md)** - explicit BMM stamping, accepted depth profile, RGB put-mode algebra, missing/dimension behavior, separate color-key selection and shipped 16/32-bit limitations, with a four-pixel oracle; fixed EGA legacy-conversion RGBQUAD table and packed output layout
   - **[3.2 FastFont Additions (.RFF / atf.cfg)](3.2-fastfont-additions.md)** - the three added families (BRUSH, EUREKA, OAKLAND), style-table observations, the regenerated atf.cfg
   - **[3.3 MicroANSI Delta (RIPscrip.maf)](3.3-microansi-maf-delta.md)** - new resolution set, cleaned directory, revised artwork vs the RIPterm 2.30 containers
 - **4. Storage & asset delivery** _(delta from v2.0)_
