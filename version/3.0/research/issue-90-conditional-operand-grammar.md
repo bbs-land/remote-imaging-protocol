@@ -96,9 +96,9 @@ for rva, expected in ((0x83a88, b"AND "), (0x83a84, b"OR "),
 
 The [published byte tables and stage examples](../ripscrip/5.2-templates-and-conditionals.md#conditional-operand-byte-grammar) answer each subquestion, including left provider normalization, one/two/three-backslash distinctions, escaped spaces/quotes/parentheses/dollars/terminators, empty operands, keyword separators and safe decoded bounds. Reviewed each example as actual bytes; used explicit hex for ambiguous quote/backslash results. An initial draft's command-string escaping dropped some literal backslashes; manual byte review caught this before commit/publication and the tables were rewritten with explicit byte-preserving construction. Do not copy prose shorthand or host-language escaped strings as parser inputs.
 
-## Next action
+## Delivery
 
-Original DLL fingerprint, keyword/provider strings, exact published backslash spellings and capacity arithmetic checks pass. `run/lint`, `run/check-links` (0 bad of 5,684 links across 233 files) and `git diff --check` pass. Refresh at 2026-11-19 19:10:05 UTC finds no #90/#91 comments or newer discussion/inline feedback. Publish a complete PR closing only #90 and consolidate its actual head into fork stable. Then start #91 from updated stable. Retain co-author trailers and scoped temporary API cleanup. No client execution is needed.
+Original DLL fingerprint, keyword/provider strings, exact published backslash spellings and capacity arithmetic checks pass. `run/lint`, `run/check-links` (0 bad of 5,684 links across 233 files) and `git diff --check` pass. Refresh at 2026-11-19 19:10:05 UTC finds no #90/#91 comments or newer discussion/inline feedback. Delivered in [PR #92](https://github.com/bbs-land/remote-imaging-protocol/pull/92), specification **a1beea8**, branch `issue-90-conditional-operand-grammar`. GitHub confirms open/ready/mergeable and exactly #90 as closing reference. Consolidate its actual head into fork stable. Then start #91 from updated stable. Retain co-author trailers and scoped temporary API cleanup. No client execution is needed.
 
 ---
 
