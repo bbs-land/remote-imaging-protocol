@@ -2,6 +2,10 @@
 
 Guidance for **automated (AI) agents** working in this repository. Conventions that apply to any author - human or AI - live in [CONTRIBUTING.md](CONTRIBUTING.md); read and follow it first. This file covers only what is specific to agent workflows.
 
+## Current checkpoint
+
+At 2026-11-19 19:31:43 UTC, #90/#91/#93 are delivered in [PR #92](https://github.com/bbs-land/remote-imaging-protocol/pull/92), [PR #94](https://github.com/bbs-land/remote-imaging-protocol/pull/94) and [PR #95](https://github.com/bbs-land/remote-imaging-protocol/pull/95). Fork stable contains their actual heads, including #92 correction 63e6e15 and final #95 merge a8471b5. All 46 current upstream PR heads are ancestors, all 47 open RealDeuce issues have resolution coverage, and no active investigation/new feedback remains. Start with the [latest backlog checkpoint](version/3.0/research/issue-backlog.md#resume-here), fetch fork stable and refresh GitHub before selecting future work. Historical progress entries below are superseded by this checkpoint.
+
 ## Ground rules
 
 - Follow [CONTRIBUTING.md](CONTRIBUTING.md) for all content, naming, and formatting conventions - especially the version naming (language vs client) rule, the verbatim `version/<v>/text/` record, and the Markdown style section.
@@ -150,3 +154,5 @@ Integration follow-up review found newer #6/#42 comments: keep comment counts/wa
 - #93 specification is ready: explicit [response/embedding byte-limit policy](version/3.0/ripscrip/5.2-templates-and-conditionals.md#response-and-embedding-byte-limit) caps current working text at entry/each replacement, before subsequent callbacks and pass-two decoding. Discarded suffixes never execute/reappear; retained callbacks keep normal behavior. Direct responses, stored definitions, assembled bodies and dangling outer backslash are explicitly covered. The [derivation](version/3.0/research/issue-93-template-embedding-limits.md) records inherited constraints versus choices and independent 4095/4096/4097/growth/shrinkage/control vectors. Checks pass (5,744 links); no callback/client/UI execution. Publish/consolidate #93, then refresh coverage.
 
 - #93 is delivered in [PR #95](https://github.com/bbs-land/remote-imaging-protocol/pull/95), specification 023d9db, exactly #93 closing. #90/#91/#93 are complete, with source/policy distinctions preserved and no original/client/UI/callback execution. Consolidate the actual #95 head, then refresh all coverage/comments/PR ancestry. Scoped API request files are removed automatically; retain Codex co-author trailers.
+
+- Final stable consolidation: #95 actual head 485806c through a8471b5, exact source tree before workflow notes. Audit 2026-11-19 19:31:43 UTC verifies all 46 upstream PR heads and 47 RealDeuce issues covered, with no new feedback/uncovered report. #92/#94/#95 remain open for upstream review; no upstream merge/manual closure. Original sources/assets remain byte-exact, no native/UI/callback execution, and temporary API payloads are removed automatically. Co-author trailers and protocol/source-policy distinctions remain required.
