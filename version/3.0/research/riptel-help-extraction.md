@@ -73,11 +73,11 @@ Additional processor names in RIPSCRIP.HLP not in the help tables (tvarProc*): T
 
 `$[directives][x,y:]NAME[(MODE[,CONV])][,width][@question][=default]$`
 
-Directive characters (any order, between first `$` and name; each once):
+Directive characters (any order, between first `$` and name; additional occurrences ignored):
 
 - `*` answer required (can't cancel)
 - `+` save variable to database permanently (RIPSCRIP.DB)
-- `%` (memory table; "Save to internal memory table (lost when RIP hangs up)")
+- `=` (memory table; "Save to internal memory table (lost when RIP hangs up)")
 - `#` don't echo keystrokes (show #'s - passwords)
 - `-` set the variable without prompting the user
 - `&` retrieve the variable's contents without prompting the user
@@ -87,9 +87,11 @@ Directive characters (any order, between first `$` and name; each once):
 - `,width` data-entry field width in columns.
 - `@question` custom prompt (no `$` allowed inside).
 - `=default` default response.
-- Empty response inserts `NULL`.
+- Cancellation inserts `NONE` (original help file offsets `0x476b4–0x477df`). The earlier “empty response inserts NULL” attribution was not verified in that passage; successful-empty `NULL` is now an explicit specification policy, separate from cancellation. See the [#87 correction and original fingerprints/bytes](issue-87-user-variable-directives.md).
 
 Limits: variable name max **20 chars** (alpha/digit/underscore, must start alpha, auto-uppercased); question/default max **100 chars**; variable content max **255 chars**. Examples from help: `$*+20,50:NAME(ToName),30@What's your name?=John Doe$`, `$*#20,10:PASSWORD,10@Please enter your password$`.
+
+**2026-11-19 correction:** the original memory-code byte is `=` at file offset `0x46825`; the following prose repeats `=` at `0x469a7` and `0x46b44`. This corrects this summary's former `%` transcription, not the original help file. The prose at `0x46d44` says additional occurrences are ignored. The short `-`/`&` descriptions above do not settle every prompt case; use the [normative matrix](../ripscrip/5.1-text-variables.md#prompt-and-effect-matrix).
 
 Host may delete variables (confirm prompt "The host wants to delete the variable %s. Proceed?"); data query = host sends a template like `$FULL_NAME$^m$ST_ADDR$^m$CITY$, $STATE$ $ZIP$^m` and the terminal returns the filled-in text ("Data Security Activated" message exists for protected variables).
 
