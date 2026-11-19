@@ -28,7 +28,7 @@ RIPtel 3.1 / RIPscrip driver 3.0.7 original DLL: `artifacts/riptel-3.1-pcmicro/e
 | MARIN.FF1 | 56,112 | `e143925fc3b45c132d568114fb542c3276f39e1138a96da8af7f0b7e31ac404a` |
 | SYMBOL.FF1 | 43,187 | `f96c48afb6ffe8fe8e7ccb2fb1592456affae6f5b3990674a60ea9221b112914` |
 
-The original 4,470-byte `atf.cfg` (SHA-256 `32117068ab604419dbde9d319ee5e948d329eaccaac21fba1e0800ff52f2d9be`) also contains exact 54-byte copies of all eight RFF headers at byte offsets 30,108,186,264,342,420,498,576 in family order BRUSH/COBB/DEFAULT/DIXON/EUREKA/MARIN/OAKLAND/SYMBOL. Its copied fields inherit the same meanings.
+The original 4,470-byte `atf.cfg` (SHA-256 `32117068ab604419dbde9d319ee5e948d329eaccaac21fba1e0800ff52f2d9be`) also contains exact 54-byte copies of all eight RFF headers at byte offsets 30, 108, 186, 264, 342, 420, 498, 576 in family order BRUSH/COBB/DEFAULT/DIXON/EUREKA/MARIN/OAKLAND/SYMBOL. Its copied fields inherit the same meanings.
 
 The five FF1 objects total 234,495 bytes. Selective retrieval used Git LFS 3.8.1:
 
@@ -135,7 +135,7 @@ For the recorded instance, horizontal width is 95−(−7)=102 device units; the
 
 Corrected the canonical 2.0 FF1 header, metrics block and RFF header to signed bbox coordinates; added one cross-format field map and the eight RFF tuples. The 3.0 family table, metric/spacing explanation and text-command cross-reference now use those labels. The earlier binary-triage header hypotheses are explicitly corrected too, so a secondary reference no longer contradicts the canonical table. Prior #3/#22 derivations and all font files remain unchanged; no client bug or rendering investigation was added.
 
-Validation passes the published read-only Python comparison for all thirteen fonts, pinned font/DLL fingerprints, manual field/numeric/prose/table review, repository Markdown lint, 0 bad of 5,571 links across 228 files and `git diff --check`. Original text/assets and RIPscrip 1.54 are unchanged. The 2026-11-19 01:52:22 UTC refresh confirms #82 is an open RealDeuce issue with no comments, no new repository discussion/inline comments and no newer issue.
+Validation passes the published read-only Python comparison for all thirteen fonts, pinned font/DLL fingerprints, manual field/numeric/prose/table review, repository Markdown lint, 0 bad of 5,573 links across 228 files and `git diff --check`. Original text/assets and RIPscrip 1.54 are unchanged. The 2026-11-19 01:52:22 UTC refresh confirms #82 is an open RealDeuce issue with no comments, no new repository discussion/inline comments and no newer issue.
 
 Next: publish one complete PR closing #82, then consolidate into fork stable. Record delivery identifiers here. Co-author every commit and remove temporary PR payloads automatically.
 
