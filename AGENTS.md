@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#96 is delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification 9591d0d, closing exactly #96. Consolidate its actual head into fork stable, then start queued #97 synthetic outline effects/decorations. Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here); retain adopted earlier contracts, source/policy labels, Codex trailers, temporary cleanup and no original/client/UI/callback execution.
+#96 is delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification 9591d0d, closing exactly #96. Fork stable merges actual #98 head 38c0809 through 48e3a57 with an identical source tree; start queued #97 synthetic outline effects/decorations from the updated stable. Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here); retain adopted earlier contracts, source/policy labels, Codex trailers, temporary cleanup and no original/client/UI/callback execution.
 
 ## Ground rules
 
@@ -162,3 +162,5 @@ Integration follow-up review found newer #6/#42 comments: keep comment counts/wa
 - #96 specification is ready: [outer angle scanner/branch contract](version/3.0/ripscrip/5.2-templates-and-conditionals.md#outer-angle-scanner-and-branch-state) states exact keywords, quote-blind immediately-preceding-backslash lookahead, single-pass escaped-introducer skipping, fallback/provider boundaries, ELSEIF gating and explicit safe 16-frame/strict-ELSE/header-consistency/inactive-template policies. The [derivation](version/3.0/research/issue-96-angle-worker-boundaries.md) separates native facts from choices. Existing operand false-on-provider-rejection and two-pass/clipping rules remain adopted. Checks pass (5,772 links); publish/consolidate #96, then #97. No original/client/UI/callback execution.
 
 - #96 is delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification 9591d0d, exactly #96 closing. Consolidate the actual head before #97. The source-derived normal outer rules and explicitly labeled portable completion choices preserve #6/#92/#95. Scoped API payloads were removed automatically; no original code/UI/provider execution.
+
+- Stable consolidates #98 actual head 38c0809 through 48e3a57, exact source tree before notes. Audit at 2026-11-19 23:52:53 UTC verifies all 47 current upstream PR heads are ancestors. #97 is next; preserve adopted rules/source boundaries, co-author trailers and temporary cleanup. No upstream merge/manual closure or original/client/UI execution.
