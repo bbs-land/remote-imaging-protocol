@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#96 is delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification 9591d0d, closing exactly #96. Fork stable merges actual #98 head 38c0809 through 48e3a57 with an identical source tree; start queued #97 synthetic outline effects/decorations from the updated stable. Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here); retain adopted earlier contracts, source/policy labels, Codex trailers, temporary cleanup and no original/client/UI/callback execution.
+#97 synthetic outline effects/decorations is active on `issue-97-outline-effects-boundary` from fork stable 1407b59, after #96/PR #98 consolidation. Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here) and effects derivation. Preserve earlier state/metrics/layout/hollow/W answers; the report permits an explicit renderer-defined ink boundary without native pixel reconstruction. Retain source/policy labels, Codex trailers, temporary cleanup and no original/client/UI/probe execution.
 
 ## Ground rules
 
@@ -164,3 +164,5 @@ Integration follow-up review found newer #6/#42 comments: keep comment counts/wa
 - #96 is delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification 9591d0d, exactly #96 closing. Consolidate the actual head before #97. The source-derived normal outer rules and explicitly labeled portable completion choices preserve #6/#92/#95. Scoped API payloads were removed automatically; no original code/UI/provider execution.
 
 - Stable consolidates #98 actual head 38c0809 through 48e3a57, exact source tree before notes. Audit at 2026-11-19 23:52:53 UTC verifies all 47 current upstream PR heads are ancestors. #97 is next; preserve adopted rules/source boundaries, co-author trailers and temporary cleanup. No upstream merge/manual closure or original/client/UI execution.
+
+- #97 is active on `issue-97-outline-effects-boundary` from stable 1407b59. Read the [effects note](version/3.0/research/issue-97-outline-effects-boundary.md). Address every requested freedom/composition/metric-boundary question; do not turn the hollow BOLD stamp into a universal solid-bold stroke or guess decoration metrics from probable RFF zones. No native/UI/probe work; keep separate complete PR/stable ancestry, trailers and cleanup.
