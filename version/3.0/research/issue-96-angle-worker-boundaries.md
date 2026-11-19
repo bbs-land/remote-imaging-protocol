@@ -69,7 +69,7 @@ These choices leave #92 operand bytes/reduction and #95 later clipping unchanged
 
 All examples in the reference explicitly name the stage. They are source-derived normal scanning or declared policy vectors, not observed native outputs. The exact backslash spellings were checked as byte counts, avoiding host-language quoting ambiguity.
 
-## Reproduction and next action
+## Reproduction and delivery
 
 Bounded disassembly:
 
@@ -95,7 +95,7 @@ for rva, expected in ((0x83e8c, b"IF "), (0x83d20, b"ELSEIF "),
     assert b[offset:offset + len(expected) + 1] == expected + bytes([0])
 ```
 
-Original DLL fingerprint/exact constants, all six staged outer-gate spellings and first-selected branch/provider-count cases are checked. Every frame/depth/structure rule is reviewed against the declared portable policy, without original code execution. `run/lint`, `run/check-links` (0 bad of 5,772 links across 236 files) and `git diff --check` pass. Refresh at 2026-11-19 23:49:37 UTC finds no #96/#97 comments or newer discussion/inline feedback. Publish one complete PR closing #96 and consolidate its actual head into fork stable. Then start #97. Keep co-author trailers and scoped API temporary cleanup.
+Original DLL fingerprint/exact constants, all six staged outer-gate spellings and first-selected branch/provider-count cases are checked. Every frame/depth/structure rule is reviewed against the declared portable policy, without original code execution. `run/lint`, `run/check-links` (0 bad of 5,772 links across 236 files) and `git diff --check` pass. Refresh at 2026-11-19 23:49:37 UTC finds no #96/#97 comments or newer discussion/inline feedback. Delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification **9591d0d**, branch `issue-96-angle-worker-boundaries`. GitHub confirms open/ready/mergeable and exactly #96 as closing reference. Consolidate its actual head into fork stable. Then start #97. Keep co-author trailers and scoped API temporary cleanup.
 
 ---
 

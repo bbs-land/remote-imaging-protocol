@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-At 2026-11-19 23:38:20 UTC, #96 outer angle-scanner/branch rules is active on `issue-96-angle-worker-boundaries` from fork stable d046bb4; #97 synthetic outline effects/decorations follows. Start with the [current backlog](version/3.0/research/issue-backlog.md#resume-here) and active derivation. Earlier #90/#91/#93 are delivered and consolidated. Preserve adopted contracts, distinguish source evidence from explicit portable choices, and do not execute client/UI/callbacks or investigate implementation bugs. Historical checkpoints below are superseded by this state.
+#96 is delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification 9591d0d, closing exactly #96. Consolidate its actual head into fork stable, then start queued #97 synthetic outline effects/decorations. Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here); retain adopted earlier contracts, source/policy labels, Codex trailers, temporary cleanup and no original/client/UI/callback execution.
 
 ## Ground rules
 
@@ -160,3 +160,5 @@ Integration follow-up review found newer #6/#42 comments: keep comment counts/wa
 - New queue: #96 is active on `issue-96-angle-worker-boundaries` from stable d046bb4; #97 follows separately. Read the [#96 note](version/3.0/research/issue-96-angle-worker-boundaries.md). Keep #6/#92/#95 stage/operand/clipping answers unchanged, using bounded read-only evidence for the outer scanner and explicit choices for unsafe/unspecified branch cases. Co-author and temporary cleanup requirements persist.
 
 - #96 specification is ready: [outer angle scanner/branch contract](version/3.0/ripscrip/5.2-templates-and-conditionals.md#outer-angle-scanner-and-branch-state) states exact keywords, quote-blind immediately-preceding-backslash lookahead, single-pass escaped-introducer skipping, fallback/provider boundaries, ELSEIF gating and explicit safe 16-frame/strict-ELSE/header-consistency/inactive-template policies. The [derivation](version/3.0/research/issue-96-angle-worker-boundaries.md) separates native facts from choices. Existing operand false-on-provider-rejection and two-pass/clipping rules remain adopted. Checks pass (5,772 links); publish/consolidate #96, then #97. No original/client/UI/callback execution.
+
+- #96 is delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98), specification 9591d0d, exactly #96 closing. Consolidate the actual head before #97. The source-derived normal outer rules and explicitly labeled portable completion choices preserve #6/#92/#95. Scoped API payloads were removed automatically; no original code/UI/provider execution.
