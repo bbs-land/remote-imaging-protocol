@@ -103,13 +103,13 @@ objdump -d --start-address=0x1004b18c --stop-address=0x1004b1b9 "$artifact_root/
 objdump -d --start-address=0x1004acd9 --stop-address=0x1004ad51 "$artifact_root/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll"
 ```
 
-## Validation and remaining delivery
+## Validation and delivery
 
 The 3.0 variable reference now gives the byte alphabet, quote/delimiter distinction, decoded-length rule and distinguishing examples; the processing-order page links the specific outer/local escape distinction. Existing #6 derivations, 2.x references, RIPscrip 1.54 and original text/assets remain unchanged. No new client/native tests or GUI were run. New grammar outcomes are proven by the original instruction paths and stage composition, not by executing the obsolete client or its callbacks.
 
 Validation passes repository Markdown lint, 0 bad of 5,592 links across 229 files, `git diff --check`, fingerprinted read-only predicate/state inspection, byte-class arithmetic and manual example/prose/table review. The 2026-11-19 02:14:25 UTC refresh finds no #84 comments or new repository discussion/inline feedback. No native execution was used for validation.
 
-Next: publish one complete PR closing #84, then consolidate into fork stable. Record delivery identifiers and continuation state here. Retain co-author trailers and remove scoped temporary PR files.
+Delivered in [PR #85](https://github.com/bbs-land/remote-imaging-protocol/pull/85), specification commit **858edfd**, branch `issue-84-dollar-argument-grammar` from stable f77f918. GitHub reports open/ready/mergeable with exactly #84 as closing reference. The 2026-11-19 02:17:43 UTC refresh finds no issue/repository discussion/inline comments, no PR reviews and no newer report. No active investigation remains; consolidate the completed branch into fork stable, preserving ancestry. The temporary API payload was removed by Python `TemporaryDirectory`. Record delivery identifiers and continuation state here. Retain co-author trailers and remove scoped temporary PR files.
 
 ---
 
