@@ -49,11 +49,11 @@ The published sixteen-row table covers all S/R pairs with four end/center vector
 
 Anchor `(100,80)` examples separately expose design origin versus tile corner and ordinary Y advance versus cached X width. A quarter-turned glyph's fixture bearing is `(-9,-22)`; upward positive end placement gives origin `(100,91)` and tile `(91,69)`, not a cache-based Y=103. Upward upright negative center gives `(100,61)`, not the floor-based Y=60. Changing unused alignment-zone values cannot move an origin under the explicitly chosen policy.
 
-## Verification and next action
+## Verification and delivery
 
-This branch also merges corrected #92 head **63e6e15**, preserving the original #90 source history. Its initial-byte correction uses the original ctype table: alphabetic, not alphanumeric. The merge affects macro documentation/workflow only, independently of the placement policy below.
+This branch also merges corrected #92 head **63e6e15**, preserving the original #90 source history. Its initial-byte correction uses the original ctype table: alphabetic, not alphanumeric. The merge affects macro documentation/workflow only, independently of the placement policy.
 
-Independent corner rotations/spans, exact engine/device advances, both signed spacing profiles, all sixteen table rows and explicit tile/midpoint examples pass. `run/lint`, `run/check-links` (0 bad of 5,715 links across 234 files) and `git diff --check` pass. Refresh 2026-11-19 19:17:48 UTC finds no #90/#91 comments, newer discussion/inline feedback or new reviews across 44 open PR histories. Publish one complete PR closing only #91 and consolidate its actual head into fork stable. Keep prior source/text/assets byte-exact; no original execution or temporary raster assets are required. Co-author trailers and scoped API temporary cleanup persist.
+Independent corner rotations/spans, exact engine/device advances, both signed spacing profiles, all sixteen table rows and explicit tile/midpoint examples pass. `run/lint`, `run/check-links` (0 bad of 5,715 links across 234 files) and `git diff --check` pass. Refresh 2026-11-19 19:17:48 UTC finds no #90/#91 comments, newer discussion/inline feedback or new reviews across 44 open PR histories. Delivered in [PR #94](https://github.com/bbs-land/remote-imaging-protocol/pull/94), specification **18809fb**, with corrected #92 head 63e6e15 preserved by merge **4e40e07**. GitHub confirms open/ready/mergeable and exactly #91 as closing reference. Combined checks pass with 5,719 links. Consolidate the actual branch head into fork stable; new #93 template-embedding timing follows. Keep prior source/text/assets byte-exact; no original execution or temporary raster assets are required. Co-author trailers and scoped API temporary cleanup persist.
 
 ---
 
