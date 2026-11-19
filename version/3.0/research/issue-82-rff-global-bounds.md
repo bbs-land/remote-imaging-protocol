@@ -131,13 +131,13 @@ The previously recorded [unmodified Marin oracle](issue-3-extended-font-style.md
 
 For the recorded instance, horizontal width is 95−(−7)=102 device units; the separately converted ordinary F advance is 50. Flag 0x400 selects that realized horizontal span (and, under other orientations, the span of the realized rotated bbox), not raw xmax alone, raw ymax, design height or maximum advance. The existing spacing formula and behavior stay intact. This arithmetic explains field identity and scale only; it claims no new exact hinting, integer-rounding or glyph-raster oracle.
 
-## Specification changes and remaining delivery
+## Specification changes and delivery
 
 Corrected the canonical 2.0 FF1 header, metrics block and RFF header to signed bbox coordinates; added one cross-format field map and the eight RFF tuples. The 3.0 family table, metric/spacing explanation and text-command cross-reference now use those labels. The earlier binary-triage header hypotheses are explicitly corrected too, so a secondary reference no longer contradicts the canonical table. Prior #3/#22 derivations and all font files remain unchanged; no client bug or rendering investigation was added.
 
 Validation passes the published read-only Python comparison for all thirteen fonts, pinned font/DLL fingerprints, manual field/numeric/prose/table review, repository Markdown lint, 0 bad of 5,573 links across 228 files and `git diff --check`. Original text/assets and RIPscrip 1.54 are unchanged. The 2026-11-19 01:52:22 UTC refresh confirms #82 is an open RealDeuce issue with no comments, no new repository discussion/inline comments and no newer issue.
 
-Next: publish one complete PR closing #82, then consolidate into fork stable. Record delivery identifiers here. Co-author every commit and remove temporary PR payloads automatically.
+Delivered in [PR #83](https://github.com/bbs-land/remote-imaging-protocol/pull/83), branch `issue-82-rff-global-bounds` from stable a529850, specification commit **a71226c**. GitHub reports open, ready and mergeable with exactly #82 as the closing reference. The 2026-11-19 01:55:01 UTC refresh finds no issue comments or new repository discussion/inline feedback. No active investigation remains. Consolidate the completed branch into fork stable, preserving original ancestry. The PR payload used Python `TemporaryDirectory` and was removed automatically. Co-author every commit and remove temporary PR payloads automatically.
 
 ---
 
