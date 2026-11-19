@@ -135,3 +135,5 @@ Integration follow-up review found newer #6/#42 comments: keep comment counts/wa
 - #90 is delivered in [PR #92](https://github.com/bbs-land/remote-imaging-protocol/pull/92), specification a1beea8, closing only #90. Consolidate its actual head into fork stable before #91. Keep the explicit source/policy boundary and earlier macro answers. The temporary API directory was removed automatically; no new native/client/UI execution.
 
 - Stable consolidates #92 actual head b92288f through merge 38e5220 with an identical source tree. The 2026-11-19 19:12:51 UTC audit verifies all 44 upstream PR heads are ancestors. Lint/link/diff checks pass; start #91 from updated fork stable. No upstream merge/manual closures; preserve Codex trailers and temporary cleanup.
+
+- #91 is active on `issue-91-outline-anchor-placement` from stable 756b285. Read its [placement note](version/3.0/research/issue-91-outline-anchor-placement.md). The report authorizes an explicit portable anchor/justification policy; do not infer native pixel/typographic-zone meaning from prior additive-offset fixtures. Preserve #3/#22/#24/#82/#88 and exclude buttons/flowed/classic/1.54 text.
