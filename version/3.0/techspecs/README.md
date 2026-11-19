@@ -12,6 +12,7 @@ Original byte-level documentation of the binary formats shipped with **RIPtel Vi
   - **[2.1 Arc Consumer Contract](2.1-arc-consumer-contract.md)** - original integer endpoint rays, command-specific empty/full decisions and skewed contour closure, verified through native consumers
   - **[2.2 Bézier Consumer Contract](2.2-bezier-consumer-contract.md)** - original integer interpolation, missing sample, device conversion order and independent 4094-point expansion budget
   - **[2.3 Drawing Composition (delta)](2.3-drawing-composition.md)** - point/stroke/fill/border roles, reconstructed skewed-contour rules and historical backend boundaries
+  - **[2.4 Outline Advances and Cached Cursor Width](2.4-outline-advance-and-cache.md)** - explicit scalar/DPI/rounding policy, unsigned finite measurement, snapshot lifecycle and cursor vectors
 - **3. File formats** _(deltas from v2.0)_
   - **[3.0 Bitmaps, Masks and Legacy Conversion (delta)](3.0-bitmap-mask-delta.md)** - explicit BMM stamping, accepted depth profile, RGB put-mode algebra, missing/dimension behavior, separate color-key selection and shipped 16/32-bit limitations, with a four-pixel oracle; fixed EGA legacy-conversion RGBQUAD table and packed output layout
   - **[3.2 FastFont Additions (.RFF / atf.cfg)](3.2-fastfont-additions.md)** - the three added families (BRUSH, EUREKA, OAKLAND), style-table observations, the regenerated atf.cfg
