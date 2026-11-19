@@ -89,11 +89,11 @@ Read the dispatch bytes with PE-aware `run/riptel-inspect`, or map these `.text`
 
 Rejected interpretations: `%`/`=` synonyms based solely on the old transcription; duplicate rejection based on “once”; `-` implicitly selecting memory; a storage flag suppressing prompts; treating `&` as always noninteractive; inserting/storing NULL for cancellation; replacing zero output with a NUL byte; and requiring native recovery branches or the controlled provider's behavior as protocol.
 
-## Verification and next action
+## Verification and delivery
 
 The original HLP fingerprint and isolated code bytes reproduce exactly. Original dispatch-table decoding matches all six OR handlers and `%`'s default. Manual review checks the matrix covers exactly all 16 existing/default/mode combinations, and every row names prompt, replacement and destination write. Prefix examples distinguish all forms requested, `+` precedence, repeat idempotence and mixed invalid `%`. Empty acceptance, cancellation and successful suppression are separate; examples specify whether the stored value is empty, unchanged or nonempty. Both host-command and text-variable references now point at the same authoritative matrix; the erroneous curated help attribution is corrected.
 
-Original help/DLL fingerprint and directive-dispatch checks, the independently audited sixteen-row matrix, `run/lint`, `run/check-links` (0 bad of 5,659 links across 232 files) and `git diff --check` pass. Refresh at 2026-11-19 13:38:17 UTC finds no #86/#87 comments and no newer repository discussion/inline/review feedback across the 42 open PRs. Publish a complete PR closing only #87 and merge its actual head into fork stable. Retain co-author trailers and cleanup of scoped temporary API payloads. No client/UI or unsafe paths need execution.
+Original help/DLL fingerprint and directive-dispatch checks, the independently audited sixteen-row matrix, `run/lint`, `run/check-links` (0 bad of 5,659 links across 232 files) and `git diff --check` pass. Refresh at 2026-11-19 13:38:17 UTC finds no #86/#87 comments and no newer repository discussion/inline/review feedback across the 42 open PRs. Delivered in [PR #89](https://github.com/bbs-land/remote-imaging-protocol/pull/89), specification **f80f413**, branch `issue-87-user-variable-directives`. GitHub confirms open/ready/mergeable and exactly #87 as closing reference. The issue refresh finds 44 open RealDeuce issues, newest #87; no newer report. Consolidate this actual branch head into fork stable. Retain co-author trailers and cleanup of scoped temporary API payloads. No client/UI or unsafe paths need execution.
 
 ---
 
