@@ -84,9 +84,9 @@ Independent integer/rational calculations check the published MARIN vectors: 90-
 
 Cursor vectors distinguish cold failure, last-good width after failed reinitialization/world/style changes, successful reinitialization at new DPI, classic-zero raw anchors and accepted no-ink calls. The ordinary axis table enumerates every string rotation and all four character rotations. All issue subquestions are answered; no unsafe reproduction is needed to establish the proposed protocol policy. Repository Markdown/link/diff checks and delivery status follow below.
 
-## Next action
+## Delivery
 
-Specification and derivation are complete. Original MARIN fingerprint/input checks and independent arithmetic vectors pass; `run/lint`, `run/check-links` (0 bad of 5,628 links across 231 files) and `git diff --check` pass. Refresh 2026-11-19 13:28:05 UTC finds no comments on #86/#87 and no newer repository discussion/inline feedback. Publish a complete PR closing only #86, consolidate its actual head into fork stable with ancestry preserved, then start #87. Retain co-author trailers and scoped temporary cleanup.
+Specification and derivation are complete. Original MARIN fingerprint/input checks and independent arithmetic vectors pass; `run/lint`, `run/check-links` (0 bad of 5,628 links across 231 files) and `git diff --check` pass. Refresh 2026-11-19 13:28:05 UTC finds no comments on #86/#87 and no newer repository discussion/inline feedback. Delivered in [PR #88](https://github.com/bbs-land/remote-imaging-protocol/pull/88), specification commit **e3093b0**, branch `issue-86-outline-advance-policy`. GitHub confirms open/ready/mergeable and exactly #86 as closing reference. Consolidate the actual branch head into fork stable, then start #87. API payload temporary directories were removed automatically; no other task temporary artifacts were created. Retain co-author trailers and scoped temporary cleanup.
 
 ---
 
