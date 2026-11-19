@@ -249,7 +249,7 @@ Items 2, 4 and part of 7 would likely fall out of a single pass: dump the DLL's 
 
 ## What is not in dispute
 
-RIPlib's analysis of the shipping fill code is correct, it caught defects this repository had not documented, and in one place it corrected the record here - `§DEAD.7` establishes that `RIP_FILL` outlived its removal from the language, disproving an inference drawn here from the driver's silence. The pie/chord fill leak (`§BUG.6`), the never-applied patterned-flood brush (`§DEAD.7`), and RIPlib's replacements for both have been folded into this repository's own techspecs rather than treated as conflicts: see [2.0 fill defects](../2.0/techspecs/2.1-fill-defects.md) and the [3.0 delta](../3.0/techspecs/2.0-fill-defects-delta.md). The same goes for `§BUG.3`, `§BUG.4`, `§BUG.5` and `§BUG.9` - implementation defects no amount of corpus analysis would have surfaced.
+The legacy RIP_FILL discussion adopts RIPlib's separate `§DEAD.7` account; see the [fill record](../2.0/techspecs/2.1-fill-defects.md). The former blanket endorsement also included `§BUG.6`, but [primary-source native traces](../3.0/research/issue-14-arc-sweeps.md) now contradict its manual pie/chord flood construction: original I/i/_ call GDI Pie/Chord and skewed filled variants submit Polygon contours. That attribution is withdrawn here. This is a targeted 2026-11-16 correction against riplib main @ `024032a`, rather than a revalidation of every unrelated defect claim.
 
 ---
 
