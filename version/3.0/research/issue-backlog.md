@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#108 ready.** Branch `issue-108-text-window-query-grammar` starts at stable 568d806 after merging #110 actual head 368fe26. The [derivation](issue-108-text-window-query-grammar.md) records the explicit documentation reconciliation, bounded argument/metadata evidence, inclusive legacy versus exclusive graphical far edges and independently verified ordinary/extended tables. Checks pass (5,936 links); refresh feedback, publish separately, consolidate actual head and audit all coverage. Preserve separate FastFont research and prior contracts.
+**#108 delivered.** [PR #111](https://github.com/bbs-land/remote-imaging-protocol/pull/111), branch `issue-108-text-window-query-grammar` from stable 568d806, specification 160a8ca, closes exactly #108. Its [derivation](issue-108-text-window-query-grammar.md) separates normative documentary reconciliation from bounded native evidence/limits and verifies all thirteen ordinary/extended result rows. Checks pass (5,938 links). Refresh started 2026-11-20T22:15:23Z finds 54 open PRs covering all 55 open RealDeuce issues, unchanged bodies and no new discussion/inline/review feedback. Consolidate the actual head and verify all PR ancestry; preserve separate FastFont research and prior contracts.
 
 **#106 delivered; #108 next.** [PR #110](https://github.com/bbs-land/remote-imaging-protocol/pull/110), specification bfb84a5, closes exactly #106. Branch `issue-106-text-window-selection` starts at stable 7c606f0; read the [derivation](issue-106-text-window-selection.md). Checks pass (5,915 links); refresh 2026-11-20T22:01:51Z finds unchanged #106/#108 bodies and no comments. Consolidate its actual head, then #108 geometry-query grammar. Preserve separate FastFont research and earlier contracts.
 
