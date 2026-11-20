@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#105 is active on `issue-105-outer-soft-reset` from stable ba97c88 after merging #107 actual head 16164ae with an identical tree. Read the [outer-reset derivation](version/3.0/research/issue-105-outer-soft-reset.md). Resolve all family indices/protection, clear source/order, TW/default/input/audio and unaffected-backup boundaries; do not extrapolate the old image/port fixture. #106 follows separately. Preserve earlier adopted contracts, separate FastFont research, Codex trailers and temporary cleanup; protocol-first, bounded read-only evidence only, no original/client/UI/probe execution or bug investigation.
+#105 specification is ready on `issue-105-outer-soft-reset` from stable ba97c88. Read its [derivation](version/3.0/research/issue-105-outer-soft-reset.md): only PAL retains current index; clear is literal RGB black before palette reset; protected old-current TW ANSI effects, adopted image/ENV boundaries, lock/audio/backup lifetime are explicit. Portable black-canvas and protected-STYLE decisions are labeled separately from source limits. Sixteen source-call/argument/brush/lock checks, eight manual matrix rows, lint/5,898 links/diff pass. Publish/consolidate #105, then #106. Preserve separate FastFont research, adopted earlier contracts, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
