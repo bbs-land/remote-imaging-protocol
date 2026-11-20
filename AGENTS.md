@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#100 specification is ready on `issue-100-ordinary-text-window-state` from stable b8c70aa; read its [derivation](version/3.0/research/issue-100-ordinary-text-window-state.md). Ordinary changed definitions reset cursor/saved cursor, ANSI colors, rendition, margins and per-window modes but preserve tabs, character-set selectors and incomplete ANSI parsing. Definition preserves pixels; deactivate/repeat-identical preserves state. Corrected font-2 endpoint and documented source-backed normalization/clamping. Checks pass (5,823 links); refresh 2026-11-20T14:29:51Z found no new feedback. Publish/consolidate #100, then #101. Preserve #16/#51 and 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution.
+#100 is delivered in [PR #102](https://github.com/bbs-land/remote-imaging-protocol/pull/102), specification 862c986, open/ready and closing exactly #100. Read its [derivation](version/3.0/research/issue-100-ordinary-text-window-state.md) for the exact ordinary redefinition boundary and font-2 correction. Checks pass; no feedback at refresh 2026-11-20T14:29:51Z. Consolidate its actual head into stable before #101 extended fitting/erase/cursor controls. Preserve #16/#51 and 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution.
 
 ## Ground rules
 

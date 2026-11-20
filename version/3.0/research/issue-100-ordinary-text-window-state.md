@@ -46,7 +46,7 @@ No new interoperability policy is needed for the inherited byte protocol. Option
 
 ## Validation and next action
 
-`run/lint`, `run/check-links` (0 bad of 5,823 links across 238 files), `git diff --check`, artifact hashes and manual state/placement review pass. Refresh started 2026-11-20T14:29:51Z: #100/#101 bodies unchanged, no issue or repository discussion/inline feedback since the previous watermark. Separate PR publication and fork stable consolidation follow. No task-owned temporary files, client/UI/native probes, source assets or original text were created or changed.
+`run/lint`, `run/check-links` (0 bad of 5,823 links across 238 files), `git diff --check`, artifact hashes and manual state/placement review pass. Refresh started 2026-11-20T14:29:51Z: #100/#101 bodies unchanged, no issue or repository discussion/inline feedback since the previous watermark. [PR #102](https://github.com/bbs-land/remote-imaging-protocol/pull/102) is open and ready with exactly #100 as closing reference. Specification commit `862c986`; fork stable consolidation follows. No task-owned temporary files, client/UI/native probes, source assets or original text were created or changed.
 
 ---
 
