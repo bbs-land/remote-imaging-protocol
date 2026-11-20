@@ -81,7 +81,7 @@ A section-aware byte review reads five signed little-endian words at each transi
 
 ## Status and remaining work
 
-Specification complete. Markdown lint, 5,853 links across 239 files, diff checks, original transition/MAF data review and eight corrected fitting vectors pass. Refresh started 2026-11-20T14:40:48Z finds unchanged #100/#101 bodies, no new discussion/inline/review feedback, all 49 open PR heads ancestral and only #101 still uncovered. Separate PR publication and actual-head stable consolidation remain. Explicit choices are unsupported-flag rejection, wide arithmetic, unavailable/nonpositive metric failure, near-edge one-cell expansion and wide macro clamping; erase color reconciliation follows documentary attributes and explicit index 0. No temporary artifacts created, original files changed or original/client/UI/probe instructions executed.
+Specification complete. Markdown lint, 5,853 links across 239 files, diff checks, original transition/MAF data review and eight corrected fitting vectors pass. Refresh started 2026-11-20T14:40:48Z finds unchanged #100/#101 bodies, no new discussion/inline/review feedback, all 49 open PR heads ancestral and only #101 still uncovered. [PR #103](https://github.com/bbs-land/remote-imaging-protocol/pull/103) is open/ready and closes exactly #101; specification commit 2c22866. Actual-head stable consolidation follows. Explicit choices are unsupported-flag rejection, wide arithmetic, unavailable/nonpositive metric failure, near-edge one-cell expansion and wide macro clamping; erase color reconciliation follows documentary attributes and explicit index 0. No temporary artifacts created, original files changed or original/client/UI/probe instructions executed.
 
 ---
 
