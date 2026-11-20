@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#104 is active on `issue-104-terminal-character-sets` from fork stable ff2043e; #105 outer reset and #106 window selection follow serially. Read the [#104 derivation](version/3.0/research/issue-104-terminal-character-sets.md) and [backlog](version/3.0/research/issue-backlog.md#resume-here). Refresh started 2026-11-20T21:40:24Z finds these three new reports and no new issue/inline comments. Separate FastFont research branch `research-fastfont-fields` at 5966e1b is preserved and excluded from issue work. Establish protocol rules and label explicit completions; bounded read-only evidence only, no original/client/UI/probe execution or obsolete-client bug investigation. Keep separate PRs, stable ancestry, Codex trailers and scoped temporary cleanup.
+#104 specification is ready on `issue-104-terminal-character-sets` from stable ff2043e. Read its [derivation](version/3.0/research/issue-104-terminal-character-sets.md): shared designation recording, VT-only mapping, source-backed ineffective SI/SO, exact CP437 table, distinct CSI/ESC save and charset reset boundaries. Syntax-before-glyph translation is explicitly a portable policy. Original data/callback/hash checks, seven manual vectors, lint/5,870 links/diff pass. Publish/consolidate #104, then #105 and #106. Preserve the separate FastFont research branch, source/policy distinctions, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
