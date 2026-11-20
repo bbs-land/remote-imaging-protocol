@@ -49,7 +49,7 @@ objdump -d --start-address=0x1000e17e --stop-address=0x1000e2b0 DLL
 objdump -d --start-address=0x10037b4b --stop-address=0x10037c4a DLL
 ```
 
-Four original selector/default call targets pass byte checks; the complete field table and six-step transition were manually reviewed against documentary source and explicit policy. No native clone/cursor/parser result is claimed. Markdown lint, 5,915 links across 242 files and diff checks pass. Refresh 2026-11-20T22:01:51Z finds unchanged #106/#108 bodies and no comments. Separate PR publication and actual-head stable consolidation remain, then #108 query grammar. No temporary artifacts, original text/assets changes or original/client/UI/probe execution.
+Four original selector/default call targets pass byte checks; the complete field table and six-step transition were manually reviewed against documentary source and explicit policy. No native clone/cursor/parser result is claimed. Markdown lint, 5,915 links across 242 files and diff checks pass. Refresh 2026-11-20T22:01:51Z finds unchanged #106/#108 bodies and no comments. [PR #110](https://github.com/bbs-land/remote-imaging-protocol/pull/110), specification bfb84a5, is open/ready and closes exactly #106. Actual-head stable consolidation follows, then #108 query grammar. No temporary artifacts, original text/assets changes or original/client/UI/probe execution.
 
 ---
 

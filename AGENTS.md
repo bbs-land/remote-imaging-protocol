@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#106 specification is ready on `issue-106-text-window-selection` from stable 7c606f0. Read its [derivation](version/3.0/research/issue-106-text-window-selection.md): documentary wire first-use clone versus CUR fresh default, explicit complete/unprotected clone policy, existing/protected selection, connection-wide partial ANSI input and pixel/history preservation. Native fallback is not claimed to clone. Four call-target checks, field/vector review, lint/5,915 links/diff pass; no #106/#108 body changes/comments at 2026-11-20T22:01:51Z. Publish/consolidate, then #108 geometry queries. Preserve source/policy boundaries, prior contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#106 is delivered in [PR #110](https://github.com/bbs-land/remote-imaging-protocol/pull/110), specification bfb84a5, open/ready and closing exactly #106. Read its [derivation](version/3.0/research/issue-106-text-window-selection.md) for documentary wire-clone/CUR-default distinction and explicit copy/ownership completion. Checks pass (5,915 links); no #106/#108 feedback at 2026-11-20T22:01:51Z. Consolidate actual head into stable, then #108 geometry-query grammar. Preserve earlier contracts, separate FastFont research, 1.54, source/policy distinctions, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
