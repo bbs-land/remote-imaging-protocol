@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#106 is active on `issue-106-text-window-selection` from stable 7c606f0 after #109 actual head 773da35 was merged with an identical tree. Read its [derivation](version/3.0/research/issue-106-text-window-selection.md). Resolve first-use copy/protection, existing selection, partial ANSI ownership and pixel/history boundaries; distinguish native fallback from explicit documentary copy semantics. Newly arrived #108 geometry queries follows serially. Preserve earlier contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#106 specification is ready on `issue-106-text-window-selection` from stable 7c606f0. Read its [derivation](version/3.0/research/issue-106-text-window-selection.md): documentary wire first-use clone versus CUR fresh default, explicit complete/unprotected clone policy, existing/protected selection, connection-wide partial ANSI input and pixel/history preservation. Native fallback is not claimed to clone. Four call-target checks, field/vector review, lint/5,915 links/diff pass; no #106/#108 body changes/comments at 2026-11-20T22:01:51Z. Publish/consolidate, then #108 geometry queries. Preserve source/policy boundaries, prior contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
