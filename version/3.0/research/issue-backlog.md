@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#105 active.** Branch `issue-105-outer-soft-reset` starts at stable ba97c88 after #107 actual head 16164ae was merged with an identical tree. Read the [derivation](issue-105-outer-soft-reset.md). #106 selection follows. Resolve outer reset serially with primary/read-only evidence and separate source/policy boundaries.
+**#105 delivered; #106 next.** [PR #109](https://github.com/bbs-land/remote-imaging-protocol/pull/109), specification d821419, closes exactly #105. Branch `issue-105-outer-soft-reset` starts at stable ba97c88; read its [derivation](issue-105-outer-soft-reset.md). Checks pass (5,898 links); refresh 2026-11-20T21:55:41Z finds no issue body changes/comments. Consolidate its actual head, then #106 selection. Preserve source/policy boundaries, earlier contracts and separate FastFont research.
 
 **#104 delivered; #105 then #106 remain.** [PR #107](https://github.com/bbs-land/remote-imaging-protocol/pull/107), specification 563ee59, closes exactly #104. Branch `issue-104-terminal-character-sets` starts at stable ff2043e; its [derivation](issue-104-terminal-character-sets.md) distinguishes source facts and glyph-stage policy. Checks pass (5,870 links); refresh 2026-11-20T21:46:08Z finds no issue comments or body changes. Consolidate its actual head, then resolve #105 outer reset and #106 selection serially. Preserve separate FastFont research and protocol-only scope.
 

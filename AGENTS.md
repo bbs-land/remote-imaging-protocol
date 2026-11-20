@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#105 specification is ready on `issue-105-outer-soft-reset` from stable ba97c88. Read its [derivation](version/3.0/research/issue-105-outer-soft-reset.md): only PAL retains current index; clear is literal RGB black before palette reset; protected old-current TW ANSI effects, adopted image/ENV boundaries, lock/audio/backup lifetime are explicit. Portable black-canvas and protected-STYLE decisions are labeled separately from source limits. Sixteen source-call/argument/brush/lock checks, eight manual matrix rows, lint/5,898 links/diff pass. Publish/consolidate #105, then #106. Preserve separate FastFont research, adopted earlier contracts, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#105 is delivered in [PR #109](https://github.com/bbs-land/remote-imaging-protocol/pull/109), specification d821419, open/ready and closing exactly #105. Read its [derivation](version/3.0/research/issue-105-outer-soft-reset.md), especially portable black-canvas/protected-STYLE choices and limits of prior native fixtures. Checks pass (5,898 links); no #104–#106 body changes/comments at 2026-11-20T21:55:41Z. Consolidate its actual head into stable before #106 selection. Preserve earlier adopted contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

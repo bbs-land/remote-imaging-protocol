@@ -90,7 +90,7 @@ objdump -d --start-address=0x10016b51 --stop-address=0x10016ba5 DLL
 objdump -d --start-address=0x10033d82 --stop-address=0x10033df3 DLL
 ```
 
-Checks pass: sixteen original direct-call targets, SOFT arguments, raw-black brush and input-lock-marker bytes, eight manually reviewed matrix rows, Markdown lint, 5,898 links across 241 files and diff checks. Separate PR publication and actual-head stable consolidation remain. No temporary payloads/artifacts or original/client/UI/probe execution.
+Checks pass: sixteen original direct-call targets, SOFT arguments, raw-black brush and input-lock-marker bytes, eight manually reviewed matrix rows, Markdown lint, 5,898 links across 241 files and diff checks. [PR #109](https://github.com/bbs-land/remote-imaging-protocol/pull/109) is open/ready and closes exactly #105; specification d821419. Actual-head stable consolidation follows. Refresh 2026-11-20T21:55:41Z found unchanged #104–#106 bodies and no comments. No temporary payloads/artifacts or original/client/UI/probe execution.
 
 ---
 
