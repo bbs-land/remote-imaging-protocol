@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#104 specification is ready on `issue-104-terminal-character-sets` from stable ff2043e. Read its [derivation](version/3.0/research/issue-104-terminal-character-sets.md): shared designation recording, VT-only mapping, source-backed ineffective SI/SO, exact CP437 table, distinct CSI/ESC save and charset reset boundaries. Syntax-before-glyph translation is explicitly a portable policy. Original data/callback/hash checks, seven manual vectors, lint/5,870 links/diff pass. Publish/consolidate #104, then #105 and #106. Preserve the separate FastFont research branch, source/policy distinctions, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#104 is delivered in [PR #107](https://github.com/bbs-land/remote-imaging-protocol/pull/107), specification 563ee59, open/ready and closing exactly #104. Read its [derivation](version/3.0/research/issue-104-terminal-character-sets.md). Original data/callback/hash checks, manual vectors and Markdown checks pass. Consolidate its actual head into stable, then resolve #105 outer reset and #106 selection serially. Latest issue refresh 2026-11-20T21:46:08Z found unchanged bodies and no comments. Preserve source/policy distinctions, 1.54, separate FastFont research, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

@@ -61,7 +61,7 @@ objdump -d --start-address=0x10037404 --stop-address=0x100374c0 DLL
 objdump -d --start-address=0x100164c6 --stop-address=0x100164ed DLL
 ```
 
-Independent checks pass for the 128 original mapping bytes, one-byte invocation helper, six designation callback identities and driver hash; all seven literal vectors were manually reviewed as the published profile. The syntax-before-glyph vector is policy arithmetic/data evaluation, never a claimed native observation. Markdown lint, 5,870 links across 240 files and diff checks pass. Separate PR publication and actual-head stable consolidation remain.
+Independent checks pass for the 128 original mapping bytes, one-byte invocation helper, six designation callback identities and driver hash; all seven literal vectors were manually reviewed as the published profile. The syntax-before-glyph vector is policy arithmetic/data evaluation, never a claimed native observation. Markdown lint, 5,870 links across 240 files and diff checks pass. [PR #107](https://github.com/bbs-land/remote-imaging-protocol/pull/107) is open/ready and closes exactly #104; specification commit 563ee59. Actual-head stable consolidation follows. Refresh 2026-11-20T21:46:08Z confirms unchanged #104–#106 bodies and zero comments.
 
 ---
 
