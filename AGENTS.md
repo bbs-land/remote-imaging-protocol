@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#105 is delivered in [PR #109](https://github.com/bbs-land/remote-imaging-protocol/pull/109), specification d821419, open/ready and closing exactly #105. Read its [derivation](version/3.0/research/issue-105-outer-soft-reset.md), especially portable black-canvas/protected-STYLE choices and limits of prior native fixtures. Checks pass (5,898 links); no #104–#106 body changes/comments at 2026-11-20T21:55:41Z. Consolidate its actual head into stable before #106 selection. Preserve earlier adopted contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#106 is active on `issue-106-text-window-selection` from stable 7c606f0 after #109 actual head 773da35 was merged with an identical tree. Read its [derivation](version/3.0/research/issue-106-text-window-selection.md). Resolve first-use copy/protection, existing selection, partial ANSI ownership and pixel/history boundaries; distinguish native fallback from explicit documentary copy semantics. Newly arrived #108 geometry queries follows serially. Preserve earlier contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

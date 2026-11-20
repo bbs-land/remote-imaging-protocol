@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#106 active; #108 follows.** Branch `issue-106-text-window-selection` starts at stable 7c606f0 after merging #109 actual head 773da35 with an identical tree. Read the [selection derivation](issue-106-text-window-selection.md). #108 arrived at 2026-11-20T21:47:46Z and requests geometry-query grammar; keep a separate PR after #106.
+
 **#105 delivered; #106 next.** [PR #109](https://github.com/bbs-land/remote-imaging-protocol/pull/109), specification d821419, closes exactly #105. Branch `issue-105-outer-soft-reset` starts at stable ba97c88; read its [derivation](issue-105-outer-soft-reset.md). Checks pass (5,898 links); refresh 2026-11-20T21:55:41Z finds no issue body changes/comments. Consolidate its actual head, then #106 selection. Preserve source/policy boundaries, earlier contracts and separate FastFont research.
 
 **#104 delivered; #105 then #106 remain.** [PR #107](https://github.com/bbs-land/remote-imaging-protocol/pull/107), specification 563ee59, closes exactly #104. Branch `issue-104-terminal-character-sets` starts at stable ff2043e; its [derivation](issue-104-terminal-character-sets.md) distinguishes source facts and glyph-stage policy. Checks pass (5,870 links); refresh 2026-11-20T21:46:08Z finds no issue comments or body changes. Consolidate its actual head, then resolve #105 outer reset and #106 selection serially. Preserve separate FastFont research and protocol-only scope.
