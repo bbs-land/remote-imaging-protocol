@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#101 is active on `issue-101-extended-text-window-contract` from stable 93fd0c3. Stable merges #102 actual head dfbca09 with an identical source tree. Read the [#101 derivation](version/3.0/research/issue-101-extended-text-window-contract.md) and [backlog](version/3.0/research/issue-backlog.md#resume-here). Trace automatic fitting/metrics/geometry, erase sources/gates and cursor macros; distinguish six documented flags from undocumented native extensions. Preserve #16/#51 and 1.54, Codex trailers and temporary cleanup; read-only evidence only, no original/client/UI/probe execution.
+#101 specification is ready on `issue-101-extended-text-window-contract` from stable 93fd0c3; read its [derivation](version/3.0/research/issue-101-extended-text-window-contract.md). It specifies automatic font-4 directional fitting with loaded MAF metrics, exclusive WORLD bounds, repeated-definition resets, erase color/gate reconciliation, zero-based TWGOTO and omitted COFF. Unsupported-flag/wide-arithmetic/undersized-anchor choices are explicit; documentary protocol controls over discrepant native paint/edge paths. The branch includes corrected #102 actual head b23a943. Checks pass (5,853 links); refresh 2026-11-20T14:40:48Z finds all 49 PR heads ancestral, only #101 uncovered and no feedback. Publish/consolidate separately, preserving #16/#51 and 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution.
 
 ## Ground rules
 
