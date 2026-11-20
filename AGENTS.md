@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-At 2026-11-20 00:06:41 UTC, #96/#97 are delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98) and [PR #99](https://github.com/bbs-land/remote-imaging-protocol/pull/99), and fork stable contains their actual heads through merges 48e3a57/7ae218c. All 48 current upstream PR heads are ancestors, all 49 open RealDeuce issues have resolution coverage, and no active investigation/new feedback remains. Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here), fetch fork stable and refresh before future work. Start the next comment scan from 2026-11-20T00:01:45Z for overlap, then retain query-start lower bounds rather than end timestamps. Preserve source/policy and renderer-freedom boundaries, Codex trailers, temporary cleanup and no original/client/UI/probe execution.
+#100 is delivered in [PR #102](https://github.com/bbs-land/remote-imaging-protocol/pull/102), specification 862c986, open/ready and closing exactly #100. Read its [derivation](version/3.0/research/issue-100-ordinary-text-window-state.md) for the exact ordinary redefinition boundary and font-2 correction. Checks pass; no feedback at refresh 2026-11-20T14:29:51Z. Consolidate its actual head into stable before #101 extended fitting/erase/cursor controls. Preserve #16/#51 and 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution.
 
 ## Ground rules
 
