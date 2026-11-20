@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#106 is delivered in [PR #110](https://github.com/bbs-land/remote-imaging-protocol/pull/110), specification bfb84a5, open/ready and closing exactly #106. Read its [derivation](version/3.0/research/issue-106-text-window-selection.md) for documentary wire-clone/CUR-default distinction and explicit copy/ownership completion. Checks pass (5,915 links); no #106/#108 feedback at 2026-11-20T22:01:51Z. Consolidate actual head into stable, then #108 geometry-query grammar. Preserve earlier contracts, separate FastFont research, 1.54, source/policy distinctions, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#108 is delivered in [PR #111](https://github.com/bbs-land/remote-imaging-protocol/pull/111), specification 160a8ca, closing exactly #108. Read its [derivation](version/3.0/research/issue-108-text-window-query-grammar.md): the coherent query/default grammar is explicitly reconciled from conflicting primary descriptions; native acceptance/default limits are not protocol requirements. Checks pass (5,938 links). The 2026-11-20T22:15:23Z refresh finds 54 open resolution PRs covering all 55 open RealDeuce issues, unchanged report bodies and no new discussion/inline/review feedback. Consolidate the actual #111 head, then verify all heads and finish the stable checkpoint. Preserve prior contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
