@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#106 is delivered in [PR #110](https://github.com/bbs-land/remote-imaging-protocol/pull/110), specification bfb84a5, open/ready and closing exactly #106. Read its [derivation](version/3.0/research/issue-106-text-window-selection.md) for documentary wire-clone/CUR-default distinction and explicit copy/ownership completion. Checks pass (5,915 links); no #106/#108 feedback at 2026-11-20T22:01:51Z. Consolidate actual head into stable, then #108 geometry-query grammar. Preserve earlier contracts, separate FastFont research, 1.54, source/policy distinctions, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#108 is active on `issue-108-text-window-query-grammar` from stable 568d806 after #110 actual head 368fe26 was merged with an identical tree. Read its [derivation](version/3.0/research/issue-108-text-window-query-grammar.md). Reconcile six query grammars/defaults/results with ordinary and extended examples, retaining adopted sentinels/far edges and read-only ownership. Treat original malformed/inverted acceptance paths as source limits, not protocol requirements. Preserve earlier contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
