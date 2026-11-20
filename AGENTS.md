@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#104 is delivered in [PR #107](https://github.com/bbs-land/remote-imaging-protocol/pull/107), specification 563ee59, open/ready and closing exactly #104. Read its [derivation](version/3.0/research/issue-104-terminal-character-sets.md). Original data/callback/hash checks, manual vectors and Markdown checks pass. Consolidate its actual head into stable, then resolve #105 outer reset and #106 selection serially. Latest issue refresh 2026-11-20T21:46:08Z found unchanged bodies and no comments. Preserve source/policy distinctions, 1.54, separate FastFont research, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#105 is active on `issue-105-outer-soft-reset` from stable ba97c88 after merging #107 actual head 16164ae with an identical tree. Read the [outer-reset derivation](version/3.0/research/issue-105-outer-soft-reset.md). Resolve all family indices/protection, clear source/order, TW/default/input/audio and unaffected-backup boundaries; do not extrapolate the old image/port fixture. #106 follows separately. Preserve earlier adopted contracts, separate FastFont research, Codex trailers and temporary cleanup; protocol-first, bounded read-only evidence only, no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
