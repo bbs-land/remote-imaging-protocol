@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#100 is delivered in [PR #102](https://github.com/bbs-land/remote-imaging-protocol/pull/102), specification 862c986, open/ready and closing exactly #100. Read its [derivation](version/3.0/research/issue-100-ordinary-text-window-state.md) for the exact ordinary redefinition boundary and font-2 correction. Checks pass; no feedback at refresh 2026-11-20T14:29:51Z. Consolidate its actual head into stable before #101 extended fitting/erase/cursor controls. Preserve #16/#51 and 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution.
+#100/#101 are delivered in [PR #102](https://github.com/bbs-land/remote-imaging-protocol/pull/102) and [PR #103](https://github.com/bbs-land/remote-imaging-protocol/pull/103), each open/ready and closing exactly its own issue. Specification commits 862c986/2c22866; #103 includes corrected #102 actual head b23a943. Read the [ordinary](version/3.0/research/issue-100-ordinary-text-window-state.md) and [extended/control](version/3.0/research/issue-101-extended-text-window-contract.md) derivations. Checks pass (5,853 links); no feedback at refresh 2026-11-20T14:40:48Z. Consolidate the actual #103 head into stable and complete the final audit. Preserve source/policy distinctions, #16/#51 and 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution.
 
 ## Ground rules
 
