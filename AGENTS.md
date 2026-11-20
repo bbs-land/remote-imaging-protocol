@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-At the refresh started 2026-11-20T14:43:01Z, #100/#101 are complete in [PR #102](https://github.com/bbs-land/remote-imaging-protocol/pull/102) and [PR #103](https://github.com/bbs-land/remote-imaging-protocol/pull/103). Fork stable merges #102 initial head dfbca09 through 93fd0c3, then #103 actual head ed0f290 through cb38c28, including corrected #102 actual head b23a943. Both merges exactly matched their source trees before workflow notes. All 50 current open upstream PR heads are ancestors, all 51 open RealDeuce issues have closing-reference coverage, and no new body/comment/review feedback or uncovered report remains. Read the [backlog](version/3.0/research/issue-backlog.md#resume-here) and refresh before future work, overlapping comments from 2026-11-20T14:43:01Z. Preserve source facts versus explicit completion choices, #16/#51 and 1.54, Codex trailers and scoped temporary cleanup. Markdown/data/arithmetic checks pass; no original/client/UI/probe execution.
+#104 is delivered in [PR #107](https://github.com/bbs-land/remote-imaging-protocol/pull/107), specification 563ee59, open/ready and closing exactly #104. Read its [derivation](version/3.0/research/issue-104-terminal-character-sets.md). Original data/callback/hash checks, manual vectors and Markdown checks pass. Consolidate its actual head into stable, then resolve #105 outer reset and #106 selection serially. Latest issue refresh 2026-11-20T21:46:08Z found unchanged bodies and no comments. Preserve source/policy distinctions, 1.54, separate FastFont research, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
