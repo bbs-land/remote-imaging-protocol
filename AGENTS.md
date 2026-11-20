@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#100 is active on `issue-100-ordinary-text-window-state` from fork stable b8c70aa; #101 follows separately. Read the [#100 derivation](version/3.0/research/issue-100-ordinary-text-window-state.md) and [backlog](version/3.0/research/issue-backlog.md#resume-here). Refresh found exactly these two uncovered reports and no new discussion/inline comments since 2026-11-20T00:01:45Z. Derive protocol rules first, use bounded read-only source evidence only, and preserve #16/#51 and 1.54 contracts. Keep separate PRs, stable ancestry, Codex trailers and scoped temporary cleanup. No original/client/UI/probe execution.
+#100 specification is ready on `issue-100-ordinary-text-window-state` from stable b8c70aa; read its [derivation](version/3.0/research/issue-100-ordinary-text-window-state.md). Ordinary changed definitions reset cursor/saved cursor, ANSI colors, rendition, margins and per-window modes but preserve tabs, character-set selectors and incomplete ANSI parsing. Definition preserves pixels; deactivate/repeat-identical preserves state. Corrected font-2 endpoint and documented source-backed normalization/clamping. Checks pass (5,823 links); refresh 2026-11-20T14:29:51Z found no new feedback. Publish/consolidate #100, then #101. Preserve #16/#51 and 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution.
 
 ## Ground rules
 
