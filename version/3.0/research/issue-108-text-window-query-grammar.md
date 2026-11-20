@@ -39,7 +39,7 @@ TW metadata: ordinary origin bytes +0x22/+0x23, column/row count +0x24/+0x25; ex
 
 Graphical position paths read the corresponding stored edge without increment. TWW/TWH subtract right−left or bottom−top for TEXT/BOUND. CELL uses the selected font's actual TW-system width words at +0x4c or height words at +0x56, consistent with the existing MAF producer/consumer derivation in [#101](issue-101-extended-text-window-contract.md). WORLD helper `0x310f2–0x3112e` applies current context ENV values: multiply the queried device value by WORLD extent and divide by device extent, using integer division toward zero. Length is converted once, after device-edge subtraction, not by subtracting separately rounded WORLD positions. `%d` format string RVA `0x7e74c` gives decimal output. The callbacks inspect the requested record without calling the current-window selector; they do not select/create/activate a noncurrent target or move its cursor. Existing inactive/undefined sentinels remain −1 for positions and 0 for dimensions, from the explicit primary protocol text; malformed-call recovery is not a new sentinel.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 Read only the original artifact, using for example:
 
@@ -50,7 +50,9 @@ objdump -d --start-address=0x1002efde --stop-address=0x1002eff4 ../rip-tools/art
 objdump -d --start-address=0x100310f2 --stop-address=0x1003112e ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Publish the common table and both literal ordinary/extended examples, verify original source fingerprints/field arithmetic/default/domain matrix, run repository Markdown/link checks and review normal prose spacing. Refresh feedback, publish separately, consolidate actual head and audit all coverage. No original/client/UI/probe execution or task temporary files.
+The common table and six entry summaries now publish all accepted TYPE/DOMAIN combinations, defaults, errors and sentinels, plus read-only target ownership and current-ENV conversion. Both literal definitions and all thirteen paired result rows are independently calculated from ordinary reference placement or extended bounding/fitting formulas and original loaded metrics. The ordinary example is 11×10 cells at device display/bound `[100,210) × [360,600)`; extended is 20×5 with bound `[50,350) × [100,300)` and display `[100,300) × [140,260)`. A fractional length case checks that converting a span once can differ from subtracting rounded positions. Three source fingerprints, six capability pushes, both inclusive-far decrement opcodes, seven literal keyword strings and the original MAF metric header are byte-verified. Intermediate validation fixtures had an incorrect expected literal length (19 instead of 20) and omitted Markdown backticks in table comparisons; correcting those checks requires no change to either published command or its arithmetic.
+
+Manual review checks the exhaustive grammar against all six entry summaries and invalid axis/type cases, and reviews ordinary prose spacing separately from literal numeric data. Repository lint, link and diff checks pass (5,936 links before delivery metadata). No original/client/UI/probe execution or task temporary files. Next: refresh feedback, publish separately, consolidate the actual head and audit final coverage.
 
 ---
 

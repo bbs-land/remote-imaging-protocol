@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#108 is active on `issue-108-text-window-query-grammar` from stable 568d806 after #110 actual head 368fe26 was merged with an identical tree. Read its [derivation](version/3.0/research/issue-108-text-window-query-grammar.md). Reconcile six query grammars/defaults/results with ordinary and extended examples, retaining adopted sentinels/far edges and read-only ownership. Treat original malformed/inverted acceptance paths as source limits, not protocol requirements. Preserve earlier contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#108 specification is ready on `issue-108-text-window-query-grammar` from stable 568d806. Read the [derivation](version/3.0/research/issue-108-text-window-query-grammar.md) and [shared table/examples](version/3.0/ripscrip/5.1-text-variables.md#text-window-geometry-query-grammar). Explicit TEXT position queries default to WORLD; omitted TYPE retains ordinary inclusive cell corners / extended −1. Only matching TWW/TWH TEXT count domains are accepted. This is a clearly labeled reconciliation of conflicting primary descriptions; native defaults/inverted acceptance paths are source limits, not protocol grammar. Original bytes/metrics and all thirteen paired result rows are checked; lint/link/diff checks pass. Publish/consolidate separately, then refresh coverage/feedback. Preserve earlier contracts, separate FastFont research, 1.54, Codex trailers and temporary cleanup; no client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
