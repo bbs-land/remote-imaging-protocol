@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#97 synthetic outline effects/decorations is active on `issue-97-outline-effects-boundary` from fork stable 1407b59, after #96/PR #98 consolidation. Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here) and effects derivation. Preserve earlier state/metrics/layout/hollow/W answers; the report permits an explicit renderer-defined ink boundary without native pixel reconstruction. Retain source/policy labels, Codex trailers, temporary cleanup and no original/client/UI/probe execution.
+#96/#97 are delivered in [PR #98](https://github.com/bbs-land/remote-imaging-protocol/pull/98) and [PR #99](https://github.com/bbs-land/remote-imaging-protocol/pull/99). Read the [current backlog](version/3.0/research/issue-backlog.md#resume-here). Consolidate the actual #99 head into fork stable, then refresh complete issue/comment/PR ancestry coverage. Preserve source/policy labels and renderer-freedom boundaries; no original/client/UI/probe execution. Codex trailers and temporary cleanup remain required.
 
 ## Ground rules
 
@@ -168,3 +168,5 @@ Integration follow-up review found newer #6/#42 comments: keep comment counts/wa
 - #97 is active on `issue-97-outline-effects-boundary` from stable 1407b59. Read the [effects note](version/3.0/research/issue-97-outline-effects-boundary.md). Address every requested freedom/composition/metric-boundary question; do not turn the hollow BOLD stamp into a universal solid-bold stroke or guess decoration metrics from probable RFF zones. No native/UI/probe work; keep separate complete PR/stable ancestry, trailers and cleanup.
 
 - #97 specification is ready: [portable effect/decorations boundary](version/3.0/techspecs/3.2-fastfont-additions.md#portable-synthetic-effects-and-decorations) explicitly leaves solid strength/shear/transform order and band placement/spans/coverage renderer-defined while requiring unchanged metric B/layout/cursor, current-text geometry, Draw Color/W, vector-attribute independence and adopted glyph shadow behavior. Decoration grouping/shadow membership has explicit freedom; hollow BOLD remains separate. The [derivation](version/3.0/research/issue-97-outline-effects-boundary.md) and exact shear/signed-spacing/XOR examples distinguish choices from recovered facts. Checks pass (5,806 links), no original/UI/probe execution; publish/consolidate #97.
+
+- #97 is delivered in [PR #99](https://github.com/bbs-land/remote-imaging-protocol/pull/99), specification f17a924, exactly #97 closing. #96/#97 are complete with the requested source/policy and renderer boundaries. Consolidate its actual head into fork stable, then refresh all coverage/comments/reviews/ancestry. Scoped API payloads are removed automatically; no original/client/UI/probe execution.

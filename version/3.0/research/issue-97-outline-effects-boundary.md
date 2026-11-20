@@ -48,9 +48,9 @@ Use a simple rectangle with design corners `(0,-200)`, `(200,-200)`, `(200,0)`, 
 
 These cases isolate style ink from metric/state behavior, R from S, unequal-DPI transform order, negative spacing and coverage grouping. No exact image generation or renderer test is required to express the conformance boundary.
 
-## Verification and next action
+## Verification and delivery
 
-Independent exact-rational shear/corner bounds, positive/negative layout, local-band spans, illustrative bold ink span and logical grouping arithmetic pass; the original ALPHA 4 fingerprint matches. `run/lint`, `run/check-links` (0 bad of 5,806 links across 237 files) and `git diff --check` pass. Refresh 2026-11-20 00:01:45 UTC finds no #96/#97 comments or newer discussion/inline feedback; all 47 open PR review histories have no newer feedback. Publish a separate complete PR closing #97 and consolidate its actual head into fork stable. Original sources/assets and adopted earlier contracts remain unchanged except explicit cross-reference/metric-ink clarification. Retain Codex trailers and scoped API temporary cleanup.
+Independent exact-rational shear/corner bounds, positive/negative layout, local-band spans, illustrative bold ink span and logical grouping arithmetic pass; the original ALPHA 4 fingerprint matches. `run/lint`, `run/check-links` (0 bad of 5,806 links across 237 files) and `git diff --check` pass. Refresh 2026-11-20 00:01:45 UTC finds no #96/#97 comments or newer discussion/inline feedback; all 47 open PR review histories have no newer feedback. Delivered in [PR #99](https://github.com/bbs-land/remote-imaging-protocol/pull/99), specification **f17a924**, branch `issue-97-outline-effects-boundary`. GitHub confirms open/ready/mergeable and exactly #97 as closing reference. Consolidate its actual head into fork stable. Original sources/assets and adopted earlier contracts remain unchanged except explicit cross-reference/metric-ink clarification. Retain Codex trailers and scoped API temporary cleanup.
 
 ---
 
