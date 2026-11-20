@@ -15,7 +15,7 @@ Original byte-level documentation of the binary formats shipped with **RIPtel Vi
   - **[2.4 Outline Advances and Cached Cursor Width](2.4-outline-advance-and-cache.md)** - explicit scalar/DPI/rounding policy, unsigned finite measurement, ordinary anchor/justification, snapshot lifecycle and cursor vectors
 - **3. File formats** _(deltas from v2.0)_
   - **[3.0 Bitmaps, Masks and Legacy Conversion (delta)](3.0-bitmap-mask-delta.md)** - explicit BMM stamping, accepted depth profile, RGB put-mode algebra, missing/dimension behavior, separate color-key selection and shipped 16/32-bit limitations, with a four-pixel oracle; fixed EGA legacy-conversion RGBQUAD table and packed output layout
-  - **[3.2 FastFont Additions (.RFF / atf.cfg)](3.2-fastfont-additions.md)** - the three added families (BRUSH, EUREKA, OAKLAND), style-table observations, the regenerated atf.cfg
+  - **[3.2 FastFont Additions (.RFF / atf.cfg)](3.2-fastfont-additions.md)** - the three added families (BRUSH, EUREKA, OAKLAND), style-table observations, the regenerated atf.cfg, and explicit synthetic-effect/decorations renderer freedom
   - **[3.3 MicroANSI Delta (RIPscrip.maf)](3.3-microansi-maf-delta.md)** - new resolution set, cleaned directory, revised artwork vs the RIPterm 2.30 containers
 - **4. Storage & asset delivery** _(delta from v2.0)_
   - **[4.0 Connection Directory Model (delta)](4.0-connection-directory-model-delta.md)** - the connection-directory-first model as carried into RIPtel's bookmark settings; verification against the help strings found real differences (the per-bookmark "host directory" rename, a third lookup tier via the icon search path, the install-tree confinement rule), so this is a delta page rather than a bare pointer
