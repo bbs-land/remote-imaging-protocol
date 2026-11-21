@@ -32,7 +32,7 @@ objdump -d --start-address=0x1000ae64 --stop-address=0x1000ae7a ../rip-tools/art
 
 The reference publishes the complete matching/gate/event/lifetime profile and literal style plus seven instance commands. Original DLL fingerprint, four call targets and hotkey store bytes pass verification. Literal decoding confirms the 36-byte style, all seven hotkeys/default bits, positive field bounds and host identity strings. Ten matching/priority/zero/high-byte cases pass independent calculations; repeat, consumption, disable/lock, pointer cancellation and deletion/reset/FIELDID scope were manually reviewed as the explicit policy. Each physical key translation yields one candidate rather than double-counting raw and character notifications. Repository lint/link/diff checks pass (6,039 links before delivery metadata). No original event/provider/renderer execution.
 
-Refresh at 2026-11-21T18:25:48Z confirms unchanged #118–#120 bodies, zero comments and no discussion/inline/review feedback. Publish #118 separately, consolidate its actual head, then #119/#120. Keep co-author trailers and scoped cleanup.
+Refresh at 2026-11-21T18:25:48Z confirms unchanged #118–#120 bodies, zero comments and no discussion/inline/review feedback. [PR #121](https://github.com/bbs-land/remote-imaging-protocol/pull/121) publishes specification 6969f39 and closes exactly #118. Consolidate its actual head, then #119/#120. Keep co-author trailers and scoped cleanup.
 
 ---
 
