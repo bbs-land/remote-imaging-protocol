@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#120 specification is ready on `issue-120-selective-field-deletion` from stable 833aa55. The [derivation](version/3.0/research/issue-120-selective-field-deletion.md) records primary evidence versus explicit C/P/O selection, absolute WORLD geometry and painting/failure completion. Source bytes, six-field literals, 32 selection/type cases and 256 paint combinations pass; no original/client/UI/probe execution or bug investigation. Publish separately and consolidate its actual head, then audit all coverage/feedback. Preserve prior gesture/geometry/pattern contracts, separate FastFont research, co-author trailers and temporary cleanup.
+#118/#119/#120 are delivered in [PR #121](https://github.com/bbs-land/remote-imaging-protocol/pull/121), [PR #122](https://github.com/bbs-land/remote-imaging-protocol/pull/122) and [PR #123](https://github.com/bbs-land/remote-imaging-protocol/pull/123), each closing exactly its own report. Specification commits 6969f39 / 5d4437b / 3550162 cover keyboard activation, per-type image sizing/source eligibility and selective deletion/painting. Read their linked [backlog](version/3.0/research/issue-backlog.md) derivations for exact source versus portable-policy boundaries. #121/#122 actual heads are consolidated; consolidate #123 actual head, then audit all coverage/feedback/ancestry. Preserve prior contracts, separate FastFont research, co-author trailers and temporary cleanup. No original/client/UI/probe execution or bug investigation; no upstream merge/manual closure.
 
 ## Ground rules
 

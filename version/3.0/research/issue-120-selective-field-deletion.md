@@ -41,6 +41,10 @@ Published the C/P/O partition, union/exclusion table, paint precedence/ordering 
 
 The 2026-11-21T18:46:56Z refresh finds #118/#119/#120 unchanged with zero comments. #120 body SHA-256 is `b7503f78919393af1a79b3f9f4c76cf63ed378fde43bd2762506fa7dad108487`. Publish separately, consolidate its actual source head, then audit all coverage/feedback/ancestry. Keep co-author trailers, FastFont separation and scoped temporary cleanup.
 
+## Delivery
+
+[PR #123](https://github.com/bbs-land/remote-imaging-protocol/pull/123) is open/ready, closing exactly #120, with specification commit 3550162. It continues the stack through #122 and links an issue-only comparison from stable 833aa55. Consolidate the actual source head with an ordinary merge and exact-tree check, then refresh all feedback/coverage/ancestry. The scoped API payload directory was removed automatically; no original/client/UI/probe execution or bug investigation.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Selective deletion](../ripscrip/4.2-mouse-fields-and-pointer.md#rip_kill_enclosed_mouse_fields)
