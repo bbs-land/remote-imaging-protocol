@@ -24,7 +24,7 @@ For clipboard reads, accept a defined, readable source with positive viewport ev
 
 Destination clipping, effects and label placement use the whole logical face, not the source physical intersection; #116 half-open hit/empty/destination rules apply afterward. Failed image eligibility creates no field/painting/host action. New icon dimensions that scale to nonpositive device size likewise fail before effects. The hot redraw completion preserves face/hit/effect/label geometry even when normal/hot dimensions differ.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 ```sh
 objdump -d --start-address=0x1002acbe --stop-address=0x1002ad40 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
@@ -32,7 +32,7 @@ objdump -d --start-address=0x10049340 --stop-address=0x100493b7 ../rip-tools/art
 objdump -d --start-address=0x1002a635 --stop-address=0x1002a659 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Publish literal style/image examples and cropped/non-square/inactive/partial source, WORLD and hot-size vectors. Verify source fingerprints/instructions/calls and field/geometry arithmetic, run repository checks, refresh feedback, publish separately and consolidate actual head, then #120. Keep source/policy boundaries, trailers and scoped temporary cleanup.
+The reference now scopes fixed/mixed style dimensions to PLAIN, publishes the per-type table and image eligibility/reference/hot policies, and excludes image inputs from the plain-only zero/reversal guard. Verification passes for both original fingerprints, six call targets and four viewport/frame instruction sequences. Both 36-byte styles and all three image command prefixes decode correctly; crop/padding, anchor conversion, WORLD and different hot-image dimensions are independently calculated. Inactive/empty/partial/wholly unavailable source, geometry snapshots and destination/effect/label stages were reviewed manually with the source/policy boundaries intact. Lint, link and diff checks pass (6,051 links before delivery metadata). Refresh 2026-11-21T18:33:34Z confirms unchanged #119/#120 and zero comments. Publish separately, consolidate actual head, then #120. No original/client/UI/probe execution; retain trailers and cleanup.
 
 ---
 

@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#119 is active on `issue-119-image-button-sizing` from stable 915ca0f after #121 actual head 073317e was consolidated with an identical tree. Read the [derivation](version/3.0/research/issue-119-image-button-sizing.md). Resolve plain-only style sizing, clipboard viewport/device eligibility and icon/reference/hot-image geometry with source/policy distinctions, retaining prior contracts. #120 follows. Keep FastFont separate, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#119 image-sizing specification is ready on `issue-119-image-button-sizing` from stable 915ca0f; #120 follows. Read its [derivation](version/3.0/research/issue-119-image-button-sizing.md): PLAIN-only fixed sizes, DEVICE clipboard viewport extents and creation-WORLD icon scaling are separated from explicit source padding/eligibility and stable-hot geometry completion. Source/literal/crop/WORLD checks and Markdown checks pass (6,051 links); reports unchanged/no comments at 2026-11-21T18:33:34Z. Publish/consolidate actual head, then #120. Preserve prior contracts/FastFont, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
