@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#124 is delivered in [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126), specification 9703e54, open/ready and closing exactly #124. Read the [derivation](version/3.0/research/issue-124-graphical-expansion.md) for consumer gates, explicit byte/prompt completion and validation. Consolidate the actual source head before #125 cursor mapping. Reports unchanged with zero comments at 2026-11-21T22:20:35Z. Preserve adopted host/geometry/cancellation rules, FastFont separation, Codex trailers and scoped cleanup; no original/client/UI/provider/probe execution or bug investigation.
+#125 is active on `issue-125-cursor-number-mapping` from stable 90819ee after #126 actual head c760134 was normal-merged with an identical tree. Read the [derivation](version/3.0/research/issue-125-cursor-number-mapping.md). Reconcile wire/MCURSOR numbers, accepted 7, storage/presentation and contradictory corpus prose, preserving ownership/protection/reset/input separation and 1.54. Explicit portable equivalents/completion are allowed; no original/client/UI/probe execution or bug investigation. Retain trailers, FastFont separation and temporary cleanup.
 
 ## Ground rules
 
