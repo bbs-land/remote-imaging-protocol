@@ -10,7 +10,7 @@ Started 2026-11-21 on `issue-113-mouse-gesture-identity` from stable 9a7dd05 aft
 
 Original RIPtel 3.1 / RIPscrip driver 3.0.7 `artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll` in the [catalogued mirror](../../../reference/rip-tools.md), 592,896 bytes, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`. Preferred base `0x10000000`; addresses below are RVAs. LLVM objdump 19.1.7 and Python read original bytes only. PE file biases: `.text` minus `0xc00`, `.rdata` minus `0x1000`, `.data` minus `0x1a00`.
 
-The immutable [ALPHA 4 record](../../2.0/text/RIPScrip-2.0-alpha-4.txt), SHA-256 `0da8a34644fa7c0ac7bf457ddfb6fe12288c1bff17c966f3d2b792af57c01982`, §3.4.2.10 onward (mouse commands), §§3.4.2.3/4 (button style/creation) and [RIPtel help extraction](riptel-help-extraction.md) establish click actions, held depression feedback, 128 shared fields, latest-first click scanning and FIELDID's identity purpose. They do not fully define mutation/callback lifetime. Original normal-event paths refine the intended physical interaction; explicit completion below handles missing safe ownership rules. No original code, input event, GUI, native probe, renderer or host callback is executed. Do not investigate obsolete-client mutation failures or use their recovery paths as protocol requirements.
+The immutable [ALPHA 4 record](../../2.0/text/RIPScrip-2.0-alpha-4.txt), SHA-256 `0da8a34644fa7c0ac7bf457ddfb6fe12288c1bff17c966f3d2b792af57c01982`, §§3.4.2.11/12/15 (mouse deletion/definition), §§3.4.2.2/3 (button creation/style) and [RIPtel help extraction](riptel-help-extraction.md) establish click actions, held depression feedback, 128 shared fields, latest-first click scanning and FIELDID's identity purpose. They do not fully define mutation/callback lifetime. Original normal-event paths refine the intended physical interaction; explicit completion below handles missing safe ownership rules. No original code, input event, GUI, native probe, renderer or host callback is executed. Do not investigate obsolete-client mutation failures or use their recovery paths as protocol requirements.
 
 ## Normal pointer event and host commitment evidence
 
@@ -46,7 +46,7 @@ Adopt the following explicit completion, labeled as such in the reference:
 - Hover movement snapshots field tokens, processes exits before entries, newest first in each pass; skip deleted tokens and defer newly created fields to the next movement event. Deletion/reset/restore does not synthesize callbacks into removed fields. Surviving hover membership remains after unrelated deletion. Held capture and hover remain independent.
 - FIELDID is a numeric snapshot scoped to synchronous entry/exit or committed click expansion, inherited by synchronous local playback/variable expansion. Nested field callbacks push their own ID and restore the outer snapshot on return. Deletion/reset/restore inside a running callback cancels future input work but does not invalidate that callback's ID; later queued work inherits no context. Backups save definitions, not an active gesture or callback stack. Outside a field callback the recognized-variable evaluation fails normally. This completion is deliberately stronger than the original live-index implementation; no native mutation or nesting equivalence is claimed.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 Read original instructions, for example:
 
@@ -58,7 +58,11 @@ objdump -d --start-address=0x1002c87c --stop-address=0x1002c94b ../rip-tools/art
 objdump -d --start-address=0x10004035 --stop-address=0x100041b8 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Publish commitment/mutation and ID/lifetime tables with exact examples, verify source hashes/call/opcode and grammar/state calculations, run repository checks and manually review prose spacing. Refresh #113 and all feedback before separate publication, then consolidate the actual PR head. No original/client/UI/probe execution; co-author and temporary-cleanup requirements persist.
+The reference now publishes the shared host-commitment rule, explicit capture/mutation/restore and callback-lifetime completion, source-derived hover passes and exact identity grammar. Cross-links connect mouse fields, buttons, host identities and FIELDID; the old mouse-page “mode numbering hypothesis” is corrected against the already established #51 source result. Earlier #51 deferred-click omission, 1.54 and immutable data remain unchanged.
+
+Validation passes for both source fingerprints, fourteen decisive instruction sequences, fifteen call targets, FIELDID registration and the original ASCII ctype digit flags (only bytes 0x30..0x39 have digit bit 4). Twenty independent prefix vectors cover lower/upper bounds, zero, leading zeroes and the five-digit cap, signs, whitespace, missing colon/digits, wrong-base/high bytes, empty remainder and one-prefix-only stripping. Constructor review confirms `1U` copies its full incoming text before identity parsing, then proceeds to label/host splitting; identity metadata is not a field-instance handle. All nine gesture vectors, the four context/lifetime categories and nested 7→8→7/deletion example were reviewed manually as the declared protocol policy, not native observations. Prose spacing is reviewed separately from literal code. Repository lint, link and diff checks pass (5,991 links before delivery metadata).
+
+The 2026-11-21T16:12:33Z refresh finds unchanged #113 (`60397dc9d6255a15135081bc03ed107b81e3c8122a030b709996a2c95198e867`), zero comments and no newer report. Publish separately, consolidate its actual head and audit all coverage/feedback. No original/client/UI/probe execution; co-author and temporary-cleanup requirements persist.
 
 ---
 

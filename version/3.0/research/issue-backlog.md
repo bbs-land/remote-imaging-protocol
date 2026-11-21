@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#113 ready.** `issue-113-mouse-gesture-identity` starts from stable 9a7dd05. The [derivation](issue-113-mouse-gesture-identity.md) separates exact normal-event/ID/temporary-context facts from explicit mutation/capture/restore and nested callback lifetime completion. Both source fingerprints, instruction/call/registration/ctype bytes and twenty prefix vectors pass; nine gesture vectors and callback examples are manually reviewed. Repository checks pass (5,991 links). Refresh 2026-11-21T16:12:33Z finds unchanged #113, zero comments and no newer report. Publish separately, consolidate actual head and refresh all feedback/coverage; preserve #51 and separate FastFont research.
+
 **#113 active.** Branch `issue-113-mouse-gesture-identity` starts from stable 9a7dd05 after #114 actual head ff10494 was merged (8b3c171, then workflow cleanup 9a7dd05), with identical trees. Read the [gesture/identity derivation](issue-113-mouse-gesture-identity.md). Separate original normal-event evidence from mutation/lifetime policy; preserve #51 and all adopted geometry/rendering contracts. Publish/consolidate separately, then refresh complete coverage and feedback.
 
 **#112 delivered; #113 next.** [PR #114](https://github.com/bbs-land/remote-imaging-protocol/pull/114), specification cde485d, is open/ready and closes exactly #112. Branch `issue-112-undefined-button-style` starts at stable fc9588f; read the [derivation](issue-112-undefined-button-style.md). Checks pass (5,963 links); refresh started 2026-11-21T16:00:08Z finds unchanged #112, no discussion/inline/review feedback and all 54 prior PR heads ancestral. Consolidate its actual source head, then #113 gesture/identity boundaries. Preserve separate FastFont research and prior contracts.

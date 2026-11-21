@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#113 is active on `issue-113-mouse-gesture-identity` from stable 9a7dd05 after #114 actual head ff10494 was consolidated with an identical tree. Read its [derivation](version/3.0/research/issue-113-mouse-gesture-identity.md). Specify ordinary gesture commitment/drag behavior, capture across mutation, exact ID grammar and FIELDID lifetime, clearly labeling portable completion choices. Preserve #51's separate deferred-query answer, earlier rendering/hit geometry/protection contracts, 1.54 and separate FastFont research. No original/client/UI/probe execution or bug investigation; Codex trailers and temporary cleanup remain required.
+#113 specification is ready on `issue-113-mouse-gesture-identity` from stable 9a7dd05. Read the [derivation](version/3.0/research/issue-113-mouse-gesture-identity.md): source-derived normal host commitment, 0..32767 decimal ID grammar and temporary FIELDID context are separated from explicit stable-instance capture, mutation/restore and callback snapshot/nesting completion. Both source hashes, fourteen instruction sequences, fifteen calls/registration, ctype digits and twenty prefix vectors pass; nine gesture vectors/lifetime examples are manually reviewed. Lint/link/diff checks pass (5,991 links); refresh 2026-11-21T16:12:33Z finds unchanged #113, zero comments and no newer issue. Publish/consolidate the actual head, then audit all coverage/feedback. Preserve #51, earlier contracts, 1.54, separate FastFont research, Codex trailers and cleanup. No original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
