@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#116 is active on `issue-116-button-payload-hit-geometry` from stable ebd81bc. Read its [derivation](version/3.0/research/issue-116-button-payload-hit-geometry.md). Resolve exact per-type payload splitting/empty fields, definition versus deferred host validation, and hit endpoints/degenerate/reversed/inactive/clipped PORT0 geometry. Keep source facts and explicit completion separate, correct earlier examples if necessary, and preserve adopted host stages and #112/#113/1.54 contracts. No original/client/UI/probe execution or bug investigation. Retain separate FastFont research, Codex trailers and temporary cleanup.
+#116 specification is ready on `issue-116-button-payload-hit-geometry` from stable ebd81bc. Read its [derivation](version/3.0/research/issue-116-button-payload-hit-geometry.md): common positional slots/source bounds and WORLD reordering are source-derived; deferred-only host validation, half-open hit/clip and effective-destination/empty guards are clearly labeled completion. The #112 label literal and its validation note are corrected without changing state ownership. Fingerprint/instruction/call, nineteen payload, geometry and retained-prefix checks pass, plus lint/link/diff checks (6,025 links). Refresh started 2026-11-21T17:28:50Z finds unchanged reports, no new feedback/uncovered issue and all 56 current PR heads ancestral. Publish/consolidate separately, then final audit. Preserve #112/#113/host stages/1.54, separate FastFont research, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

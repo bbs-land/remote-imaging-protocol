@@ -48,7 +48,7 @@ Complete the effective-destination rule explicitly: reject new mouse geometry if
 
 The stored global hit rectangle and creation eligibility are snapshots. Later viewport movement/deactivation does not silently relocate/reclip/delete existing fields or retarget a held gesture; explicit field deletion/reset/restore and global input controls retain their own rules. This completion uses stable field ownership from #113 and does not add a new PORT/TW deferred-query loop. Nonmouse geometry has no mouse/hover entry. Preflight failure does not consume the 128-region limit or change earlier overlap order.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 Read original instructions, for example:
 
@@ -58,7 +58,11 @@ objdump -d --start-address=0x1000aacb --stop-address=0x1000ab36 ../rip-tools/art
 objdump -d --start-address=0x1000e749 --stop-address=0x1000e78a ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Publish complete per-type slot/default examples, creation/activation rules and geometry matrix; correct the earlier literal and derivation. Verify original fingerprints/critical instructions/call targets and independent split/geometry/stage vectors, run repository lint/link/diff checks and manually review prose spacing. Refresh #116/feedback and current coverage before publishing separately; consolidate the actual head into fork stable. No original/client/UI/probe execution or bug investigation. Co-author trailers and scoped temporary cleanup remain required.
+The reference publishes common per-type slot positions and omission/null examples, exact delimiter/leading-space/length handling, a creation-versus-activation table, and the explicit half-open geometry/effective-destination policy with edge/state examples. The old blanket host-validation sentence and the incorrect `<><><>` blank description are replaced. The #112 label literal is corrected and its derivation now records why the original numeric-prefix check did not validate the payload. #112 state ownership and #113 gesture/identity semantics remain adopted; the new endpoint predicate supplies the formerly unspecified geometry.
+
+Independent checks pass for both source fingerprints, eleven critical instruction sequences, thirteen call targets, original literal delimiter and ASCII whitespace flags, nineteen split/null/leading-space examples and the corrected label payload. Geometry arithmetic checks cover far-minus-near dimensions, all near/far edge cases, reordered corners, fixed sizing, conversion collapse, bevel expansion, clipping and merely touching intersections. Two retained-prefix vectors fill the 4096-byte response with X before delay/invalid-RAND suffixes; the suffix bytes are absent from the retained string. Creation/activation and viewport-state rules, unchanged-face clipping, no-phantom-field behavior and subsequent viewport snapshots were manually reviewed as the declared policy. These are calculations/source reads, not original event/renderer/provider executions. Normal prose spacing was reviewed separately from literal identifiers and data.
+
+Repository lint, link and diff checks pass (6,025 links before delivery metadata). Refresh started 2026-11-21T17:28:50Z finds unchanged #116 (`44afd9cefe566eb4efd6f8d32b1db87b1b97526a323b9087418d2f60b975d6fe`), zero comments, no older issue-body updates or discussion/inline/review feedback, no other uncovered report, and all 56 current PR heads ancestral. Publish separately, consolidate actual head and audit final coverage. No original/client/UI/probe execution or bug investigation; co-author trailers and scoped temporary cleanup remain required.
 
 ---
 
