@@ -61,6 +61,10 @@ Section-aware byte checks pass for both original source fingerprints, eleven dec
 
 Refresh started 2026-11-21T16:00:08Z finds unchanged #112 body (`7301c3b722acf3ba4e760f6cec87362deaf3e2983944a1a7553639e27b26020f`), no discussion/inline/review feedback, and all 54 previous PR heads ancestral. New #113 mouse gesture/identity boundaries arrived during this work; queue it after #112 publication/consolidation. Next: publish this complete answer separately and merge its actual head into fork stable. Preserve earlier contracts and separate FastFont research. No task temporary files or original/client/UI/probe execution.
 
+## Follow-up payload correction
+
+[Issue #116](https://github.com/bbs-land/remote-imaging-protocol/issues/116) / [payload derivation](issue-116-button-payload-hit-geometry.md) corrects the label command to `!|1U0A0A2I140000<>Style B`. The earlier check decoded the numeric prefix but incorrectly assumed plain text in the first payload slot was a label. All types retain icon/label/host positions, so the leading `<>` is required here. The two style definitions, current/in-use/protection sequence and style-B ownership are unchanged; this corrects only the label example and its validation claim.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Button styles](../ripscrip/4.3-buttons.md#initial-and-reset-style)
