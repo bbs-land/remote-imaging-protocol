@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#120 is active on `issue-120-selective-field-deletion` from stable 833aa55 after #122 actual head 4a7f8d6 was merged with an identical tree. Read its [derivation](version/3.0/research/issue-120-selective-field-deletion.md). Resolve selection predicates/union/type filters, selector coordinate/empty/disabled context and optional paint/unused-bit/failure ordering with explicit source/policy boundaries. Preserve half-open geometry, stable-instance lifetime, pattern contracts and separate FastFont research. No original/client/UI/probe execution or bug investigation; keep trailers and cleanup.
+#120 specification is ready on `issue-120-selective-field-deletion` from stable 833aa55. The [derivation](version/3.0/research/issue-120-selective-field-deletion.md) records primary evidence versus explicit C/P/O selection, absolute WORLD geometry and painting/failure completion. Source bytes, six-field literals, 32 selection/type cases and 256 paint combinations pass; no original/client/UI/probe execution or bug investigation. Publish separately and consolidate its actual head, then audit all coverage/feedback. Preserve prior gesture/geometry/pattern contracts, separate FastFont research, co-author trailers and temporary cleanup.
 
 ## Ground rules
 

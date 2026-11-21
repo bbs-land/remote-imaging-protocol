@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#120 active.** `issue-120-selective-field-deletion` starts at stable 833aa55 after #122 actual head 4a7f8d6 was merged with an identical tree. Read the [selection/painting derivation](issue-120-selective-field-deletion.md). Preserve prior source/policy and gesture/geometry contracts; complete this separate PR/stable merge, then audit all coverage and feedback.
+**#120 ready.** `issue-120-selective-field-deletion` starts at stable 833aa55 after #122 actual head 4a7f8d6 was merged with an identical tree. The [derivation](issue-120-selective-field-deletion.md) distinguishes source evidence from explicit region/paint completion. Source/literal/32 selection/256 paint checks pass; reports unchanged with no comments at 2026-11-21T18:46:56Z. Publish separately, consolidate actual head, then audit all coverage/feedback/ancestry. Preserve prior contracts and separate FastFont research.
 
 **#119 delivered; #120 next.** [PR #122](https://github.com/bbs-land/remote-imaging-protocol/pull/122), specification 5d4437b, closes exactly #119. Branch `issue-119-image-button-sizing` starts at stable 915ca0f. Read the [derivation](issue-119-image-button-sizing.md); per-type sizing and explicit source/hot completion preserve earlier answers. Checks pass (6,051 links); reports unchanged/no comments at 2026-11-21T18:33:34Z. Consolidate actual head, then #120. Preserve separate FastFont research.
 

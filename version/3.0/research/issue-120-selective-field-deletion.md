@@ -14,7 +14,7 @@ Wire handler `0xc474–0xc53d` orders WORLD axes through `0x3112e` at `0xc4bf/0x
 
 Helper `0x12d63` returns immediately for no region bits and processes fields newest first. Per-field helper `0x12e27` copies field +0x10..+0x1c (interaction rectangle), increments far edges at `0x12e57/0x12e5a`, filters simple/button type using record flag bit 4 and exclusions 8/16, then calls old rectangle predicates `0x25337/0x253f5`. Flag 4 uses the complement of the containment test, not a proven half-open disjoint test. Those predicates use old point/margin/corner conventions and do not establish a coherent complete half-open C/P/O classification, especially for a field covering the selector. Do not reproduce/investigate their discrepancies; complete the documentary contained/intersecting/outside classes explicitly.
 
-Per-field paint at `0x12ed1 -> 0x12de2` precedes delete `0x12edd -> 0x27eee`, and the paint return is not a deletion permission. The paint helper tests 32 before 64 and requests stock brush 4 for 32, versus a current brush handle for 64. This is not proof of the draft's 64-priority/palette-index-0 meaning. Outer helper has additional 128 whole/interior/complement paths (including `0x12ef1`); it also gates on live count/type combinations. None of that supplies the requested safe match-independent once-only whole-selector paint policy. The explicit documentary precedence/interior rule takes priority; no native painting parity is claimed.
+Per-field paint at `0x12ed1 -> 0x12de2` precedes delete `0x12edd -> 0x27eee`, and the paint return is not a deletion permission. Original `0x12de6` tests 32 before 64, and whole-region mode uses distinct contained/outside paint paths. Neither overrides the primary 64-wins/selector-interior wording in the portable policy. The paint helper tests 32 before 64 and requests stock brush 4 for 32, versus a current brush handle for 64. This is not proof of the draft's 64-priority/palette-index-0 meaning. Outer helper has additional 128 whole/interior/complement paths (including `0x12ef1`); it also gates on live count/type combinations. None of that supplies the requested safe match-independent once-only whole-selector paint policy. The explicit documentary precedence/interior rule takes priority; no native painting parity is claimed.
 
 ## Explicit portable classification and ordering
 
@@ -30,14 +30,16 @@ With no region bits do nothing, even with paint bits/128. With region bits, no 3
 
 Painting is a physical-screen cleanup operation, clipped only to the canvas, independent of current port/viewport/PORT0 activation. Use COPY, no border; preserve selected families, graphics cursor, STYLE fields and W. For 32 use current palette **index 0**, not guaranteed RGB black and not STYLE background. For 64 use adopted Fill Style/Fill Color and pen background: mask one=fill, zero=background, opaque COPY. Pattern phase is physical-screen (0,0), eight device pixels with no WORLD magnification/restart at each region, consistent with the [existing fill-pattern contract](../ripscrip/2.3-shapes-and-fills.md#fill-pattern-origin-and-scaling). Fixed COPY and once-only mode avoid accidental repeated XOR semantics. The background, palette, clip and failure rules are explicitly chosen protocol completion; do not call the raw legacy DC brush path an exact oracle.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 ```sh
 objdump -d --start-address=0x1000c474 --stop-address=0x1000c53d ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 objdump -d --start-address=0x10012d63 --stop-address=0x10012ef1 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Publish exact predicate/type/paint tables and six-field literal/coordinate examples for flags 0..7, exclusions, touching/covering and all paint combinations. Verify fingerprints/call/critical bytes, independent selection/coordinate/palette/pattern arithmetic and repository checks; refresh feedback and publish separately, consolidate actual head, then final coverage/ancestry audit. Keep prior contracts, co-author trailers, FastFont separation and scoped temporary cleanup.
+Published the C/P/O partition, union/exclusion table, paint precedence/ordering and six-field literals in the reference. Read-only checks pass: both source hashes, eleven call targets, nine critical instruction sequences, the 36-character STYLE and all six numeric field prefixes/coordinate decodes, all 32 region/type table cases and 256 region/type/paint/128 combinations, nine flag encodings, reversed/absolute/collapsed coordinate arithmetic and absolute MSB-left pattern bits. The initial checking fixture used an LSB expression for the pattern; correcting it to the adopted MSB-left order validates the already-correct published example. This was a checking-fixture correction, not an observed client discrepancy. Palette/COPY behavior, once-only/failure ordering and capture lifetime were manually reviewed as explicit policy, without native raster or client execution. Repository lint/link/diff checks pass (6,065 links before delivery metadata).
+
+The 2026-11-21T18:46:56Z refresh finds #118/#119/#120 unchanged with zero comments. #120 body SHA-256 is `b7503f78919393af1a79b3f9f4c76cf63ed378fde43bd2762506fa7dad108487`. Publish separately, consolidate its actual source head, then audit all coverage/feedback/ancestry. Keep co-author trailers, FastFont separation and scoped temporary cleanup.
 
 ---
 
