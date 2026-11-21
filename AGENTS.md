@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#112 is delivered in [PR #114](https://github.com/bbs-land/remote-imaging-protocol/pull/114), specification cde485d, closing exactly #112. Its [derivation](version/3.0/research/issue-112-undefined-button-style.md) records accepted `1B` marking in-use, reset selection retention, numeric/CUR query gates and the explicit first-use completion for stale-protected undefined slots. Checks pass (5,963 links). Consolidate the actual source head, then start #113 mouse gesture/identity boundaries from updated fork stable. Preserve earlier answers, separate FastFont research, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#113 is active on `issue-113-mouse-gesture-identity` from stable 9a7dd05 after #114 actual head ff10494 was consolidated with an identical tree. Read its [derivation](version/3.0/research/issue-113-mouse-gesture-identity.md). Specify ordinary gesture commitment/drag behavior, capture across mutation, exact ID grammar and FIELDID lifetime, clearly labeling portable completion choices. Preserve #51's separate deferred-query answer, earlier rendering/hit geometry/protection contracts, 1.54 and separate FastFont research. No original/client/UI/probe execution or bug investigation; Codex trailers and temporary cleanup remain required.
 
 ## Ground rules
 
