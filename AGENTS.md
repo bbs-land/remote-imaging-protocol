@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#124 is delivered in [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126), specification 9703e54, open/ready and closing exactly #124. Read the [derivation](version/3.0/research/issue-124-graphical-expansion.md) for consumer gates, explicit byte/prompt completion and validation. Consolidate the actual source head before #125 cursor mapping. Reports unchanged with zero comments at 2026-11-21T22:20:35Z. Preserve adopted host/geometry/cancellation rules, FastFont separation, Codex trailers and scoped cleanup; no original/client/UI/provider/probe execution or bug investigation.
+#124/#125 are delivered in [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126) and [PR #127](https://github.com/bbs-land/remote-imaging-protocol/pull/127), each open/ready and closing exactly its own report. Specification commits 9703e54 / ec6be4d cover graphical expansion permissions/bounds/prompt lifetime and the shared cursor mapping including prohibited cursor 7. Read the [backlog](version/3.0/research/issue-backlog.md) derivations for primary evidence versus explicit completion. #126 actual head c760134 is consolidated through 90819ee with an identical tree; consolidate #127 actual head, then audit all coverage/feedback/ancestry. Reports unchanged with zero comments at 2026-11-21T22:27:34Z. Preserve prior contracts, separate FastFont research, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
