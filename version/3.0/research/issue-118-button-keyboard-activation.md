@@ -22,7 +22,7 @@ A matching translated key-down/character event commits once immediately; each de
 
 Before committing a keyboard action, snapshot stable instance/ID/unexpanded action, cancel any outstanding pointer capture (same or other instance) and remove its temporary feedback without changing physical mouse coordinates/buttons. A later release cannot click or transfer that canceled gesture. The keyboard feedback is momentary, with no fixed delay; cleanup touches only a still-surviving instance. Expand the snapshot using the already adopted activation-time pipeline/reset-before-host/FIELDID stack. Deletion, replacement, SOFT or restore during callbacks never dereferences an obsolete field; the running callback retains its numeric ID until return. X/Y/XY/M continue to reflect actual pointer state; no field center or synthetic click is supplied. These are explicitly stronger portable lifetime rules than the source's live indices.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 ```sh
 objdump -d --start-address=0x1000556f --stop-address=0x100055f9 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
@@ -30,7 +30,9 @@ objdump -d --start-address=0x10005009 --stop-address=0x10005123 ../rip-tools/art
 objdump -d --start-address=0x1000ae64 --stop-address=0x1000ae7a ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Publish literal 1B/1U vectors for older A/newer a, zero, explicit CR, two defaults and wildcard, plus high-byte/noncharacter and deletion/reset/pointer-hold cases. Verify original fingerprints/critical instructions/calls, literal field decoding and expected priority/state outcomes; run Markdown/link/diff checks. Refresh feedback, publish separately and consolidate actual head, then #119/#120. Maintain co-author trailers and temporary cleanup.
+The reference publishes the complete matching/gate/event/lifetime profile and literal style plus seven instance commands. Original DLL fingerprint, four call targets and hotkey store bytes pass verification. Literal decoding confirms the 36-byte style, all seven hotkeys/default bits, positive field bounds and host identity strings. Ten matching/priority/zero/high-byte cases pass independent calculations; repeat, consumption, disable/lock, pointer cancellation and deletion/reset/FIELDID scope were manually reviewed as the explicit policy. Each physical key translation yields one candidate rather than double-counting raw and character notifications. Repository lint/link/diff checks pass (6,039 links before delivery metadata). No original event/provider/renderer execution.
+
+Refresh at 2026-11-21T18:25:48Z confirms unchanged #118–#120 bodies, zero comments and no discussion/inline/review feedback. Publish #118 separately, consolidate its actual head, then #119/#120. Keep co-author trailers and scoped cleanup.
 
 ---
 

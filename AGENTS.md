@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#118 is active on `issue-118-button-keyboard-activation` from stable 1b8ab99; #119 image sizing and #120 selective deletion follow separately. Read its [derivation](version/3.0/research/issue-118-button-keyboard-activation.md). Resolve matching/precedence/consumption/event/repeat/lifetime/input gates with explicit source/policy boundaries, preserving prior pointer/payload/host rules and separate FastFont research. No original/client/UI/probe execution or bug investigation. Maintain notes, Codex trailers and scoped temporary cleanup.
+#118 keyboard specification is ready on `issue-118-button-keyboard-activation` from stable 1b8ab99; #119/#120 follow serially. The [derivation](version/3.0/research/issue-118-button-keyboard-activation.md) separates source input-fold/reverse-scan facts from the explicit portable matching/priority/event/gate/lifetime profile. Literal style/seven instances and ten priority cases plus source/call checks and Markdown checks pass (6,039 links); 2026-11-21T18:25:48Z refresh finds unchanged reports and no new feedback. Publish/consolidate, then continue from fetched stable. Preserve prior contracts/FastFont, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
