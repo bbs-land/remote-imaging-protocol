@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#112 specification is ready on `issue-112-undefined-button-style` from stable fc9588f. Read the [derivation](version/3.0/research/issue-112-undefined-button-style.md): successful `1B` explicitly marks the current slot in use; specific/table reset retains selection; first-use defaulting clears stale protection only for an undefined slot. The inconsistent-state completion is labeled and numeric/CUR ISPROT gates are distinct. Original byte/call/default checks, literal field decoding and state/query tables pass, plus lint/link/diff checks (5,961 links). Refresh 2026-11-21T16:00:08Z finds no new feedback and all 54 prior PR heads ancestral; newly arrived #113 is queued after #112 publication/consolidation. Preserve earlier answers, separate FastFont research, Codex trailers and cleanup. No original/client/UI/probe execution or bug investigation.
+#112 is delivered in [PR #114](https://github.com/bbs-land/remote-imaging-protocol/pull/114), specification cde485d, closing exactly #112. Its [derivation](version/3.0/research/issue-112-undefined-button-style.md) records accepted `1B` marking in-use, reset selection retention, numeric/CUR query gates and the explicit first-use completion for stale-protected undefined slots. Checks pass (5,963 links). Consolidate the actual source head, then start #113 mouse gesture/identity boundaries from updated fork stable. Preserve earlier answers, separate FastFont research, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
