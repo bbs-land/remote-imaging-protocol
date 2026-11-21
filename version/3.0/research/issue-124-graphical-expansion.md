@@ -48,6 +48,10 @@ Before validation, corrected draft-only examples from two backslashes to the int
 
 Repository checks pass: Markdown lint, 6,088 links across 250 files and diff whitespace. Refresh started 2026-11-21T22:20:35Z finds unchanged #124/#125 and zero comments.
 
+## Delivery
+
+[PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126), specification 9703e54, is open/ready and closes exactly #124. It continues the prior stack through #123 with an issue-only comparison from stable eb346cb. Consolidate its actual source head by an ordinary merge with an exact-tree check before #125. The scoped temporary API directory was removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Templates](../ripscrip/5.2-templates-and-conditionals.md) · [Buttons](../ripscrip/4.3-buttons.md)
