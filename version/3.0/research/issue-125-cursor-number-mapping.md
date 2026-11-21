@@ -50,6 +50,10 @@ objdump -d --start-address=0x10034750 --stop-address=0x100347d6 ../rip-tools/art
 objdump -d --start-address=0x1000dc96 --stop-address=0x1000dcf1 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
+## Delivery
+
+[PR #127](https://github.com/bbs-land/remote-imaging-protocol/pull/127), specification ec6be4d, is open/ready and closes exactly #125. It continues #126 with an issue-only comparison from stable 90819ee. Consolidate its actual source head by an ordinary merge with an exact-tree check, then refresh all coverage/feedback/ancestry. The scoped API payload directory was removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Wire cursor](../ripscrip/4.2-mouse-fields-and-pointer.md#rip_set_mouse_cursor) · [MCURSOR](../ripscrip/5.1-text-variables.md#mcursor)

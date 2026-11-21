@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#125 specification is ready on `issue-125-cursor-number-mapping` from stable 90819ee, which consolidates #126 actual head c760134 with an identical tree. The [derivation](version/3.0/research/issue-125-cursor-number-mapping.md) traces both cursor arrays and original color/monochrome resources: 7 is visible not-allowed, with a shared 0..7 logical mapping and explicit range/fallback completion. Hash/call/resource/range checks and lint/link/diff pass (6,106 links); reports unchanged with zero comments at 2026-11-21T22:27:34Z. Publish/consolidate #125, then audit all coverage/feedback/ancestry. Preserve prior ownership/protection/reset/input contracts, separate FastFont branch, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#124/#125 are delivered in [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126) and [PR #127](https://github.com/bbs-land/remote-imaging-protocol/pull/127), each open/ready and closing exactly its own report. Specification commits 9703e54 / ec6be4d cover graphical expansion permissions/bounds/prompt lifetime and the shared cursor mapping including prohibited cursor 7. Read the [backlog](version/3.0/research/issue-backlog.md) derivations for primary evidence versus explicit completion. #126 actual head c760134 is consolidated through 90819ee with an identical tree; consolidate #127 actual head, then audit all coverage/feedback/ancestry. Reports unchanged with zero comments at 2026-11-21T22:27:34Z. Preserve prior contracts, separate FastFont research, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
