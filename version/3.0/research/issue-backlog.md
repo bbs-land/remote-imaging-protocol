@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#119 ready; #120 next.** `issue-119-image-button-sizing` starts at stable 915ca0f after #121 actual head 073317e. The [derivation](issue-119-image-button-sizing.md) and per-type table distinguish primary/plain-only sizing and original natural-image facts from source/hot completion. Checks pass (6,051 links); #119/#120 unchanged/no comments at 2026-11-21T18:33:34Z. Publish/consolidate separately, then #120; preserve earlier contracts and separate FastFont research.
+**#119 delivered; #120 next.** [PR #122](https://github.com/bbs-land/remote-imaging-protocol/pull/122), specification 5d4437b, closes exactly #119. Branch `issue-119-image-button-sizing` starts at stable 915ca0f. Read the [derivation](issue-119-image-button-sizing.md); per-type sizing and explicit source/hot completion preserve earlier answers. Checks pass (6,051 links); reports unchanged/no comments at 2026-11-21T18:33:34Z. Consolidate actual head, then #120. Preserve separate FastFont research.
 
 **#118 delivered; #119/#120 next.** [PR #121](https://github.com/bbs-land/remote-imaging-protocol/pull/121), specification 6969f39, closes exactly #118. Branch `issue-118-button-keyboard-activation` starts at stable 1b8ab99. The [derivation](issue-118-button-keyboard-activation.md) records source/policy distinctions and literal/priority/lifetime validation. Checks pass; reports unchanged/no feedback at 2026-11-21T18:25:48Z. Consolidate actual head, then #119/#120 serially. Preserve earlier contracts and separate FastFont research.
 
