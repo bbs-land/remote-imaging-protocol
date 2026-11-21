@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#119 is delivered in [PR #122](https://github.com/bbs-land/remote-imaging-protocol/pull/122), specification 5d4437b, closing exactly #119. Read its [derivation](version/3.0/research/issue-119-image-button-sizing.md); per-type facts and source/hot completion are distinct. Source/literal/geometry and Markdown checks pass (6,051 links). Consolidate actual source head, then #120 selective deletion from fetched stable. Preserve prior contracts/FastFont, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#120 is active on `issue-120-selective-field-deletion` from stable 833aa55 after #122 actual head 4a7f8d6 was merged with an identical tree. Read its [derivation](version/3.0/research/issue-120-selective-field-deletion.md). Resolve selection predicates/union/type filters, selector coordinate/empty/disabled context and optional paint/unused-bit/failure ordering with explicit source/policy boundaries. Preserve half-open geometry, stable-instance lifetime, pattern contracts and separate FastFont research. No original/client/UI/probe execution or bug investigation; keep trailers and cleanup.
 
 ## Ground rules
 

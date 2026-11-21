@@ -34,6 +34,10 @@ objdump -d --start-address=0x1002a635 --stop-address=0x1002a659 ../rip-tools/art
 
 The reference now scopes fixed/mixed style dimensions to PLAIN, publishes the per-type table and image eligibility/reference/hot policies, and excludes image inputs from the plain-only zero/reversal guard. Verification passes for both original fingerprints, six call targets and four viewport/frame instruction sequences. Both 36-byte styles and all three image command prefixes decode correctly; crop/padding, anchor conversion, WORLD and different hot-image dimensions are independently calculated. Inactive/empty/partial/wholly unavailable source, geometry snapshots and destination/effect/label stages were reviewed manually with the source/policy boundaries intact. Lint, link and diff checks pass (6,051 links before delivery metadata). Refresh 2026-11-21T18:33:34Z confirms unchanged #119/#120 and zero comments. Publish separately, consolidate actual head, then #120. No original/client/UI/probe execution; retain trailers and cleanup.
 
+## Delivery
+
+[PR #122](https://github.com/bbs-land/remote-imaging-protocol/pull/122), specification 5d4437b, closes exactly #119. Actual head 4a7f8d6 was consolidated through stable merge 833aa55 with an identical tree. #120 follows separately; no original/client/UI/probe execution.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Buttons](../ripscrip/4.3-buttons.md#rip_button)
