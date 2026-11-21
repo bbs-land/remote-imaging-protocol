@@ -8,6 +8,8 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
+- [ ] Resolve #112 undefined button-style state, then #113 mouse gesture/identity boundaries, with separate derivation notes/PRs and stable consolidation.
+
 - [ ] Resolve #112 undefined current button-style writes/protection with a derivation, separate PR and fork stable consolidation.
 
 - [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and further driver contracts (see `version/3.0/research/issue-backlog.md`)

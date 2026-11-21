@@ -46,7 +46,7 @@ ISPROT's CUR branch at `0x2dbc5–0x2dbe7` directly dispatches protection (`0x46
 
 Original `1U` handler `0xa952` reads the actual current record (e.g. `0xaa1c–0xaa4c`, current index multiplied by 0x1c) and captures its style into the created field as already traced by #27. In the requested accepted-definition/reselection sequence this is style B, not defaults. First selecting a truly undefined stale-protected slot instead installs defaults, so subsequent `1U` uses defaults. Existing renderer/auto-clip and protection rules remain adopted; exact pixels are not part of this answer.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 Read original instructions, for example:
 
@@ -57,7 +57,9 @@ objdump -d --start-address=0x1002dbc5 --stop-address=0x1002dbe8 ../rip-tools/art
 objdump -d --start-address=0x1002dddf --stop-address=0x1002de0d ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Use section-aware file offsets for byte checks. Add the complete transition table, literal accepted reset/redefinition sequence and protected-slot example using the already published metadata bytes. Verify source hashes/decisive opcodes and state arithmetic, run Markdown/link/diff checks, refresh report/feedback, publish one PR and consolidate its actual head. Initial 2026-11-21T15:53:50Z scan finds this single uncovered report and zero issue comments. Refresh feedback overlapping 2026-11-20T22:17:25Z. Keep co-author trailers and scoped temporary cleanup; no original/client/UI/probe execution.
+Section-aware byte checks pass for both original source fingerprints, eleven decisive instruction sequences (including the `1B` in-use store and first-use protection clear), eight call targets and all fixed default bytes. A bounded Python byte-array projection of the already published 28-byte metadata copy confirms current=0, in-use[7]=0 and protection[7]=1; no original reset operation or invalid memory access is performed. Both 36-byte style definitions and the 12-byte button argument prefix independently decode to the published values. All four query-state rows and the accepted/reset/redefinition/reselection sequence are checked; the resulting query is `5:1:0:0`, or `5:0:-1:0` before successful redefinition. The complete transition table and normal prose spacing were reviewed manually. Repository lint/link/diff checks pass (5,961 links before delivery metadata).
+
+Refresh started 2026-11-21T16:00:08Z finds unchanged #112 body (`7301c3b722acf3ba4e760f6cec87362deaf3e2983944a1a7553639e27b26020f`), no discussion/inline/review feedback, and all 54 previous PR heads ancestral. New #113 mouse gesture/identity boundaries arrived during this work; queue it after #112 publication/consolidation. Next: publish this complete answer separately and merge its actual head into fork stable. Preserve earlier contracts and separate FastFont research. No task temporary files or original/client/UI/probe execution.
 
 ---
 

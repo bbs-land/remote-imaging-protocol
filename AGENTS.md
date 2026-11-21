@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#112 is active on `issue-112-undefined-button-style` from stable fc9588f. Read the [derivation](version/3.0/research/issue-112-undefined-button-style.md): track current index, stored style, in-use and protection independently across reset, explicit 1B, selection and creation. Preserve #27/#16 answers and model the already documented metadata overwrite safely; no original/client/UI/probe execution or defect investigation. Refresh feedback overlapping 2026-11-20T22:17:25Z. Preserve separate FastFont research, prior contracts, Codex trailers and temporary cleanup; publish one complete PR and normal-merge its actual head into fork stable.
+#112 specification is ready on `issue-112-undefined-button-style` from stable fc9588f. Read the [derivation](version/3.0/research/issue-112-undefined-button-style.md): successful `1B` explicitly marks the current slot in use; specific/table reset retains selection; first-use defaulting clears stale protection only for an undefined slot. The inconsistent-state completion is labeled and numeric/CUR ISPROT gates are distinct. Original byte/call/default checks, literal field decoding and state/query tables pass, plus lint/link/diff checks (5,961 links). Refresh 2026-11-21T16:00:08Z finds no new feedback and all 54 prior PR heads ancestral; newly arrived #113 is queued after #112 publication/consolidation. Preserve earlier answers, separate FastFont research, Codex trailers and cleanup. No original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
