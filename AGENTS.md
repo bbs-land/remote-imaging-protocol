@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#118 is delivered in [PR #121](https://github.com/bbs-land/remote-imaging-protocol/pull/121), specification 6969f39, closing exactly #118. Read the [derivation](version/3.0/research/issue-118-button-keyboard-activation.md); portable keyboard choices remain distinguished from source evidence. Source/literal/matching checks and Markdown checks pass. Consolidate the actual source head, then #119 image sizing and #120 selective deletion from fetched fork stable. Preserve earlier contracts/FastFont, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#119 is delivered in [PR #122](https://github.com/bbs-land/remote-imaging-protocol/pull/122), specification 5d4437b, closing exactly #119. Read its [derivation](version/3.0/research/issue-119-image-button-sizing.md); per-type facts and source/hot completion are distinct. Source/literal/geometry and Markdown checks pass (6,051 links). Consolidate actual source head, then #120 selective deletion from fetched stable. Preserve prior contracts/FastFont, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
