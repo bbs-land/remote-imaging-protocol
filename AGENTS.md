@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#125 is active on `issue-125-cursor-number-mapping` from stable 90819ee after #126 actual head c760134 was normal-merged with an identical tree. Read the [derivation](version/3.0/research/issue-125-cursor-number-mapping.md). Reconcile wire/MCURSOR numbers, accepted 7, storage/presentation and contradictory corpus prose, preserving ownership/protection/reset/input separation and 1.54. Explicit portable equivalents/completion are allowed; no original/client/UI/probe execution or bug investigation. Retain trailers, FastFont separation and temporary cleanup.
+#125 specification is ready on `issue-125-cursor-number-mapping` from stable 90819ee, which consolidates #126 actual head c760134 with an identical tree. The [derivation](version/3.0/research/issue-125-cursor-number-mapping.md) traces both cursor arrays and original color/monochrome resources: 7 is visible not-allowed, with a shared 0..7 logical mapping and explicit range/fallback completion. Hash/call/resource/range checks and lint/link/diff pass (6,106 links); reports unchanged with zero comments at 2026-11-21T22:27:34Z. Publish/consolidate #125, then audit all coverage/feedback/ancestry. Preserve prior ownership/protection/reset/input contracts, separate FastFont branch, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

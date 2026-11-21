@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#125 active.** `issue-125-cursor-number-mapping` starts at stable 90819ee after #126 actual head c760134 was normal-merged with an identical tree. Read the [cursor derivation](issue-125-cursor-number-mapping.md); complete this separate PR/stable merge, then audit all coverage/feedback. Preserve #24 ownership/protection/reset and separate FastFont research.
+**#125 ready.** `issue-125-cursor-number-mapping` starts at stable 90819ee after #126 actual head c760134 was normal-merged with an identical tree. The [derivation](issue-125-cursor-number-mapping.md) establishes shared logical numbering and 7's original slashed-circle resources, distinct from explicit range/fallback completion. Source/resource/range and repository checks pass (6,106 links); reports unchanged with zero comments at 2026-11-21T22:27:34Z. Publish/consolidate separately, then audit all coverage/feedback/ancestry. Preserve prior contracts and separate FastFont research.
 
 **#124 delivered; #125 next.** [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126), specification 9703e54, closes exactly #124 and is open/ready. Branch `issue-124-graphical-expansion` starts at stable eb346cb. The [derivation](issue-124-graphical-expansion.md) records source/portable-policy distinctions and complete validation. Checks pass (6,088 links); reports unchanged with zero comments at 2026-11-21T22:20:35Z. Consolidate actual head before #125; preserve earlier contracts and separate FastFont research.
 

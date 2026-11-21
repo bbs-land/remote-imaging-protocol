@@ -36,11 +36,13 @@ The other resources visually agree with the documentary 0..6 table: clock/watch,
 
 Original `menu.fn` (643 bytes, SHA-256 `5bf8861c5b9d7c39798c51a499ca58387e6fcb04dccbe789680f9c77d95ba37d`) contains MCURSOR(6)/MCURSOR(0), so its pair is hourglass/arrow. `fxshwimg.fn` (1,752 bytes, SHA-256 `e5abc6e9b3f32ee5bbeed8ec7c3d50ef7b3f0f375c3ef9a3c7de8a52699858be`) contains wire 1c06/1c00 with the same meaning. Remove the unsupported “4 busy / 6 hand” summary rather than inventing separate wire/variable numbering. These are source bytes, not rendered runs.
 
-## Explicit completion and remaining work
+## Explicit completion and validation
 
 Adopt **0..7** for both forms, with 7=unavailable/prohibited visible cursor, not hidden/default/no-change. Store its distinct logical value even when an unsupported native backend falls back to arrow. Preserve environment ownership/protection/reset, arrow default and no-argument MCURSOR(0), input/capture/keyboard independence. Reject out-of-range wire and variable values before mutation as nonfatal errors; this resolves the old wire outer-guard ambiguity explicitly. Exact legacy pixels/hotspots, distinct watch versus hourglass artwork and a particular OS API are not requirements; use logical equivalents and retain the stored number.
 
-Publish canonical table, syntax/corpus corrections and exact wire/variable/protection/fallback/input vectors; independently verify hashes/call/critical bytes, both resource arrays/links/masks and range/storage arithmetic, then run repository checks, refresh feedback and publish/consolidate separately. No original/client/UI/probe execution or bug investigation.
+Published the canonical eight-value table, both accepted-range rules, MCURSOR syntax/index and corpus corrections, plus exact wire/variable/protection/fallback/input examples. Read-only checks pass both artifact hashes, eighteen direct call targets, nine critical instruction sequences, both eight-slot mappings (fourteen custom IDs plus two stock slots), all fourteen resource-group links and DIB plane/header layouts, four logical-7 resource hashes/RVAs/file offsets/hotspots and 64 range/protection/backend arithmetic combinations. The two original script fingerprints and invocation bytes were independently read. Shape identification was reviewed from decoded source pixels, separately from logical setter/protection calculations; no native display parity is claimed.
+
+Repository lint/link/diff checks pass (6,106 links across 251 files before delivery metadata). Refresh started 2026-11-21T22:27:34Z confirms unchanged #124/#125 and zero comments. Publish/consolidate separately, then audit all coverage/feedback/ancestry. The task-owned contact sheet/directory were removed immediately; no original/client/UI/probe execution or bug investigation.
 
 ```sh
 objdump -d --start-address=0x100344bc --stop-address=0x100346d1 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
