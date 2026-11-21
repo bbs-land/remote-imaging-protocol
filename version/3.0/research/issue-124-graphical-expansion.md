@@ -34,7 +34,7 @@ Creation freezes style/font/creation WORLD/destination identity after pure prefl
 
 Prompts suspend the current continuation without holding renderer locks. Successful input, documented `NONE` cancellation and transparent no-output continue once under #87; hard abort is separate. Tokens/destination generations survive suspension, with no stale restoration or new replacement field. Pending creation is not input-eligible until successful rendering. Later creation failure admits no new field but does not undo completed providers/pixels/clipboard/style effects. Redraw failure retains existing definitions/state and prior action commitment. Pointer releases during a held redraw retain their physical ordering and eligibility; keyboard actions already committed remain once-only. No render prompt itself creates a new FIELDID action scope. These are explicit asynchronous lifetime/failure policies, not claims of native modal parity.
 
-## Reproduction and remaining work
+## Reproduction and validation
 
 ```sh
 objdump -d --start-address=0x10025a7b --stop-address=0x10025bb2 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
@@ -42,7 +42,11 @@ objdump -d --start-address=0x1002af77 --stop-address=0x1002b0a9 ../rip-tools/art
 objdump -d --start-address=0x1004b0e4 --stop-address=0x1004b2e6 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
-Publish complete permission/byte/lifetime tables and literal vectors, independently check source fingerprints/call bytes, all 179 registrations, class gating and bounded prefix examples. Review every report subquestion, run repository checks, refresh feedback and publish/consolidate separately before #125. No original/client/UI/provider/probe execution or bug investigation.
+Published the complete four-consumer permission/bound table, all 84 eligible original names, rejection/special-token matrix, per-stage prefix/NUL/escaping rules, creation/redraw/prompt lifecycle and independent literal/capture-failure vectors. Read-only verification passes both hashes, thirteen exact call targets, twenty-one critical instruction sequences, all 179 static registrations (64/95/20 by class), 537 registration/caller gate cases and equality of the two published name sets. Byte arithmetic verifies the 255-byte raw label, ten-byte retained CUR suffix, single backslash, insertion skipping, 255/1022 boundaries and NUL/value-versus-source handling. Manual review covers ordinary versus transparent cancellation, hard abort, held/keyboard action commitment, late font/file/capture effects, TEXTDATA bypass and stale destination/instance protection.
+
+Before validation, corrected draft-only examples from two backslashes to the intended single outer quote, counted `$CUR(BUT)$` as ten bytes, and used a permitted 255-byte BIG user value rather than an impossible 300-byte stored value. The valid 255-byte raw label expands to 504 bytes before the chosen 255-byte clip. No protocol behavior was inferred from those checking errors. Refresh feedback and publish/consolidate separately before #125. No original/client/UI/provider/probe execution or bug investigation.
+
+Repository checks pass: Markdown lint, 6,088 links across 250 files and diff whitespace. Refresh started 2026-11-21T22:20:35Z finds unchanged #124/#125 and zero comments.
 
 ---
 
