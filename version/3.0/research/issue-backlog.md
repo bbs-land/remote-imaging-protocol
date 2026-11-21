@@ -4,9 +4,7 @@
 
 ## Resume here
 
-**#125 delivered; consolidation/audit pending.** [PR #127](https://github.com/bbs-land/remote-imaging-protocol/pull/127), specification ec6be4d, closes exactly #125 and is open/ready. Branch `issue-125-cursor-number-mapping` starts at stable 90819ee, which consolidates #126 actual head c760134 with an identical tree. The [derivation](issue-125-cursor-number-mapping.md) records source resource identity versus explicit range/fallback completion and complete validation. Checks pass (6,106 links); reports unchanged with zero comments at 2026-11-21T22:27:34Z. Consolidate actual head, then audit all coverage/feedback/ancestry.
-
-**#124 delivered; #125 next.** [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126), specification 9703e54, closes exactly #124 and is open/ready. Branch `issue-124-graphical-expansion` starts at stable eb346cb. The [derivation](issue-124-graphical-expansion.md) records source/portable-policy distinctions and complete validation. Checks pass (6,088 links); reports unchanged with zero comments at 2026-11-21T22:20:35Z. Consolidate actual head before #125; preserve earlier contracts and separate FastFont research.
+**#124/#125 complete; no active investigation.** [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126) and [PR #127](https://github.com/bbs-land/remote-imaging-protocol/pull/127) are open/ready and each closes exactly its own report. Specification commits **9703e54 / ec6be4d** document graphical expansion permissions/bounds/prompt continuations and shared cursor numbering including visible prohibited cursor 7. Read the [graphical expansion](issue-124-graphical-expansion.md) and [cursor mapping](issue-125-cursor-number-mapping.md) derivations for original source/resource facts versus explicit portable completion. Actual heads **c760134 / 635d3f0** are normal-merged into fork stable through **90819ee / 29a0290**, each with an identical source tree. Audit started **2026-11-21T22:29:35Z** verifies all **62 open PR heads** ancestral and all **63 open RealDeuce issues** covered, unchanged reports and no newer discussion/inline/review feedback or uncovered report. Refresh GitHub/fork stable before new work, overlapping feedback from that query-start timestamp. Preserve prior contracts, separate FastFont research, co-author trailers and scoped cleanup. No original/client/UI/probe execution or obsolete-client bug investigation; upstream PRs/issues remain open.
 
 **#118/#119/#120 complete; no active investigation.** [PR #121](https://github.com/bbs-land/remote-imaging-protocol/pull/121), [PR #122](https://github.com/bbs-land/remote-imaging-protocol/pull/122) and [PR #123](https://github.com/bbs-land/remote-imaging-protocol/pull/123) are open/ready and each closes exactly its own report. Specification commits **6969f39 / 5d4437b / 3550162** document keyboard activation, per-type image sizing/source eligibility and selective deletion/painting. Read the [keyboard](issue-118-button-keyboard-activation.md), [image sizing](issue-119-image-button-sizing.md) and [selective deletion](issue-120-selective-field-deletion.md) derivations for primary evidence versus explicit portable completion. Actual heads **073317e / 4a7f8d6 / 8852ffa** are normal-merged into fork stable through **915ca0f / 833aa55 / 8a2c409**, each with an identical source tree before workflow notes. Audit started **2026-11-21T18:49:57Z** verifies all **60 open PR heads** ancestral and all **61 open RealDeuce issues** covered, unchanged issue bodies and no discussion/inline/review feedback or uncovered report. Refresh GitHub/fork stable before new work, overlapping feedback from that query-start timestamp. Preserve prior contracts, separate FastFont research, co-author trailers and scoped cleanup. No original/client/UI/probe execution or obsolete-client bug investigation; upstream PRs/issues remain open.
 
@@ -144,7 +142,18 @@ Issue #58 is delivered in [PR #70](https://github.com/bbs-land/remote-imaging-pr
 
 ## Stable branch
 
-Latest consolidation (2026-11-21):
+Latest #124/#125 consolidation (2026-11-21):
+
+| Report / resolution PR | Actual source head | Stable normal merge |
+| --- | --- | --- |
+| #124 / [#126](https://github.com/bbs-land/remote-imaging-protocol/pull/126) | `c76013469772e7f5e4ea5fca0255e761f9952ffe` | `90819ee82fbb445650bd7e0bfbc22a259b308840` |
+| #125 / [#127](https://github.com/bbs-land/remote-imaging-protocol/pull/127) | `635d3f095360cf66e545a54ffed57ddd798bbc6a` | `29a0290927b5282c07d7fb0ada9f79e3c11d98df` |
+
+Both merge trees exactly match the actual source heads. The audit started **2026-11-21T22:29:35Z**, overlapping from 18:49:57Z: all GraphQL issue/PR/closing-reference/review connections have no further pages; REST discussion/inline comments were paginated. All **62 PR heads** are ancestors and all **63 open RealDeuce issues** have closing-reference coverage. Only the two new issue records were updated in the interval; their bodies are unchanged and have zero comments. No newer review/comment feedback or uncovered report remains. Resume feedback scans from this query-start timestamp, not the audit end.
+
+Source/call/registration, prefix and cursor-resource checks are recorded in the two derivations. Full Markdown lint, link and diff checks pass (6,112 links across 251 files before final workflow metadata). All new commits carry Codex trailers; only ten Markdown files changed from baseline eb346cb. Original text/assets are untouched; FastFont branch 5966e1b remains unchanged and separate. Task-owned API request and decoded cursor-image temporary directories are absent. No original/client/UI/probe execution, obsolete-client defect investigation, upstream merge or manual closure.
+
+Earlier #118/#119/#120 consolidation (2026-11-21):
 
 | Report / resolution PR | Actual source head | Stable normal merge |
 | --- | --- | --- |
