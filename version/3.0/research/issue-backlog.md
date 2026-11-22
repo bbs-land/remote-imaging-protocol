@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#142 active.** `issue-142-env-backup-selection-scope` starts at stable 73dfe86. Read the [ENV derivation](issue-142-env-backup-selection-scope.md); reconcile the inherited foreign-selection list and RENV activation wording with accepted #24/7.1/7.2 ownership, retaining existing configuration/activation/baud rules. Last check 08:09:49Z, next due about 08:19:49Z; user explicitly confirmed research-and-PR processing.
+**#142 ready.** `issue-142-env-backup-selection-scope` starts at stable 73dfe86. Read the [ENV derivation](issue-142-env-backup-selection-scope.md). Corrected ENV-only capture/activation prose, current-index example and save-area/index summaries preserve the five live foreign selectors and existing settings/activation rules. Six source hashes, editorial ownership/selection and full lint/link/diff checks pass (6,283 links). Publish separately, consolidate actual head and audit feedback/coverage/ancestry. Next ten-minute check due about 08:19:49Z; user explicitly confirmed research-and-PR processing.
 
 **#140 complete; in-session monitoring continues.** [PR #141](https://github.com/bbs-land/remote-imaging-protocol/pull/141), specification **cba3d4b**, is open/ready and closes exactly #140. Actual source head **fc574bab8fb3cf5948a231615eaab28c724d0354** is normal-merged through fork stable **4c1d5b800bfea9acd96a88898f3754a56c690c80**, with an identical source tree before workflow notes. The [scope derivation](issue-140-port-backup-entry-scope.md) records baseline hashes, ALPHA 4's Format/Syntax and empty-file wording, accepted full-family reconciliation and the empty assigned-pointer example. No new PCB/screen capture semantics or client investigation.
 

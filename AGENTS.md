@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#142 is active on `issue-142-env-backup-selection-scope` from stable 73dfe86. Read the [ENV backup derivation](version/3.0/research/issue-142-env-backup-selection-scope.md). Reconcile SENV/RENV with accepted ENV-only table/index ownership and live STYLE/BUT/PORT/TW/PAL selectors; retain existing activation/WORLD/math/color/cursor/baud rules. No new transaction, source/client investigation or 1.54 change. User explicitly confirmed research-and-PR processing. Last ten-minute check 08:09:49Z detected #142; next due about 08:19:49Z. Preserve serial delivery/stable ancestry, prior contracts, FastFont separation, Codex trailers and temporary cleanup; monitoring requires the active session, no persistent scheduler.
+#142 specification is ready on `issue-142-env-backup-selection-scope` from stable 73dfe86. Read the [ENV backup derivation](version/3.0/research/issue-142-env-backup-selection-scope.md). SENV/RENV and save-area/index now agree on stored ENV table/index ownership while the five foreign selectors retain live values; existing WORLD/math/color/cursor/baud and activation rules remain controlling. Six source hashes, editorial ownership/selection checks and full lint/link/diff checks pass (6,283 links). Publish separately, consolidate actual head and audit feedback/coverage/ancestry, then return to monitoring. User explicitly confirmed research-and-PR processing. Last check 08:09:49Z detected #142; next due about 08:19:49Z. No persistent scheduler; preserve prior contracts, FastFont separation, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
