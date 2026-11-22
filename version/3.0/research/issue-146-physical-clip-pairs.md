@@ -38,9 +38,11 @@ The completed central reference defines the logical/physical boundary, preserved
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; link validation reports **0 bad of 6,331 across 261 files**. Prose spacing passes a focused scan. Before publication, #146 retains its initial body hash, update time and zero comments.
 
-## Next action
+## Delivery and next action
 
-Verify exact rational boundary/no-refit and sampler-independence vectors, qualify affected summaries, complete format/lint/link/diff, refresh the report and publish separately. Normal-merge the actual source head into fork stable with an identical tree before workflow notes, audit feedback/coverage/ancestry, then continue ten-minute monitoring.
+[PR #147](https://github.com/bbs-land/remote-imaging-protocol/pull/147) is open/ready, specification **88a8b60d52b07edbcf01f484f52bb301c71b6add**, with exactly #146 as its closing reference and no closing pagination overflow. The report retains the initial body hash/update time and zero comments. Scoped `TemporaryDirectory(prefix='rip-146-pr-')` request files were removed automatically. No upstream merge or manual closure.
+
+Normal-merge the actual completed branch head into fork stable with identical source tree before workflow notes, audit coverage/feedback/ancestry, then return to active-session ten-minute checks. Preserve FastFont separation, co-author trailers and protocol-only scope; no persistent scheduler.
 
 ---
 
