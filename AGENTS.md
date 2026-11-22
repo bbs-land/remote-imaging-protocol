@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#130 is active on `issue-130-text-metric-state` from stable 21728db; #131 grouped-button/template lifetime follows separately. Read the [derivation](version/3.0/research/issue-130-text-metric-state.md). Complete real-font metric formulas/cache/failure and retained TEXTDATA timing/reset scope while preserving #5/#86/#124 expansion, signed replies and 1.54. Initial refresh started 2026-11-22T02:20:24Z: exactly #130/#131 uncovered among 66 issues/63 PRs, zero comments and no newer feedback. Keep protocol-first source/policy boundaries, separate FastFont research, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#130 specification is ready on `issue-130-text-metric-state` from stable 21728db; #131 follows separately. The [derivation](version/3.0/research/issue-130-text-metric-state.md) records real MARIN/TRIP metrics and source boundaries versus explicit height/cache/failure/TEXTDATA lifetime. Four hashes, eight calls, six critical sequences, four ratios and metric/NUL/state vectors pass, with lint/link/diff (6,146 links). Reports unchanged with zero comments at 2026-11-22T02:28:52Z. Publish/consolidate actual head before #131. Preserve previous cursor/expansion/signed replies, FastFont separation, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
