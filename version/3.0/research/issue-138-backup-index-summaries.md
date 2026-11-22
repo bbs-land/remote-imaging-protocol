@@ -19,9 +19,11 @@ Read these unchanged files at starting stable 3313754 (reproduce with `git show 
 
 The [#26 derivation](issue-26-screen-backups.md) already records original SAVE/RESTORE/SAVEALL/RESTOREALL registrations, exact wrapper/serializer addresses and prior native results. Full entries and 7.2 now agree: screen snapshots have port-zero pixels and current-palette RGB, not viewport/style/status/other-table state; restore binds RGB to the live selected palette. Both aggregate wrappers use **TW, PORT, MOUSE, SCREEN, PAL, BUT, STYLE, ENV**, with independent failure/consumption and no rollback. All twenty zero-argument SAVE0..9/RESTORE0..9 aliases are registered, including RESTORE0. Parameterized forms are preferred for new content, not replacements that remove these names. Original evidence need not be reproduced to fix stale summaries.
 
-## Next action
+## Editorial result and validation
 
-Align the introduction, save/restore section and four summary rows with full entries; update the neighboring SMF/RMF summaries to point to the now-completed logical snapshot/handler/publication contract. Preserve historical evidence labels without treating a legacy SyncTERM omission as a language limit. Verify both eight-family sequences/recipes against detailed bullets, all alias ranges and cross-links; run repository formatting/lint/link/diff checks. Publish a separate complete PR, normal-merge its actual head into fork stable, audit feedback/coverage/ancestry and resume monitoring.
+Aligned the introductory alias wording, screen-only SAVE/RESTORE rows and both aggregate recipes/order with the accepted full entries. Added direct screen/alias/derivation cross-references and labeled the inherited SyncTERM RESTORE0 omission note as historical implementation evidence. The neighboring SMF/RMF rows now summarize the adopted persistent owner-map/handler/current-publication contract, expressly linked as portable completion rather than a native multi-slot layout claim. No capture or execution semantics were introduced.
+
+Checks pass all four starting-file hashes against `git show 3313754:<path>`, both eight-step recipes against the detailed 5.1 bullet sequences, the common TW/PORT/MOUSE/SCREEN/PAL/BUT/STYLE/ENV order, both alias ranges, corrected row evidence and removal of stale summary phrases. Full repository lint, 0 bad of 6,232 links across 257 files and diff checks pass. The 04:58:44Z refresh finds the original report body unchanged, zero comments. No new tests or original/client/probe execution. Publish a complete separate PR, consolidate its actual head and audit feedback/coverage/ancestry before returning to the ten-minute watch.
 
 ---
 

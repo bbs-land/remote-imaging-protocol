@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#138 is active on `issue-138-backup-index-summaries` from stable 3313754. Read the [index reconciliation note](version/3.0/research/issue-138-backup-index-summaries.md). This is editorial alignment with accepted #26/#136 contracts, not new capture semantics or client investigation. Correct screen-only summaries, aggregate order and alias availability; scope historical implementation notes. Latest ten-minute issue check 04:55:56Z detected #138; next due about 05:05:56Z. Continue serial PR/stable delivery, monitor only while session active, and preserve source boundaries, FastFont separation, Codex trailers and temporary cleanup.
+#138 editorial specification is ready on `issue-138-backup-index-summaries` from stable 3313754. Read the [index derivation](version/3.0/research/issue-138-backup-index-summaries.md). The index now matches accepted screen/aggregate capture, order, alias availability and mouse snapshot summaries, with historical implementation notes scoped explicitly. Four baseline hashes, recipe/alias/stale-text checks, full lint/link/diff checks pass (6,232 links). Publish separately, consolidate actual head and audit feedback/coverage/ancestry, then return to ten-minute in-session monitoring. Last new-issue check 04:55:56Z detected #138; next due about 05:05:56Z. Preserve source/policy distinctions, prior contracts, FastFont separation, Codex trailers and temporary cleanup; no new semantics, original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
