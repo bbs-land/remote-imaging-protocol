@@ -29,6 +29,12 @@ SENV now names the complete stored ENV table and current ENV index, retains all 
 
 Checks pass all six starting-file fingerprints against `git show 73dfe86:<path>`, removal of unqualified foreign-capture bullets, retention of WORLD/Base Math/width/color/pointer/stored-baud categories, the three-row selected-index example, and both index summaries. The example's ENV 5 return and unchanged live foreign tuple (6,7,8,9,10) are checked separately; it does not assert new byte-perfect ENV activation behavior. Full repository lint, 0 bad of 6,283 links across 259 files and diff checks pass before delivery metadata. The 08:14:04Z refresh finds the original body unchanged, zero comments. No new tests or original/client/UI/probe/bug investigation. Delivered in [PR #143](https://github.com/bbs-land/remote-imaging-protocol/pull/143), specification 28ea930, open/ready with exactly #142 as closing reference. Consolidate actual head, audit feedback/coverage/ancestry and continue ten-minute checks.
 
+## Consolidation and monitoring checkpoint
+
+[PR #143](https://github.com/bbs-land/remote-imaging-protocol/pull/143) actual head **e83faca** is normal-merged through fork stable **35d4233**, with an identical source tree. Audit started 2026-11-22T08:18:13Z verifies all 70 current PR heads ancestral, all 71 open RealDeuce issues covered, unchanged #142 and no newer report/comment/review feedback. All four new commits through that merge carry Codex co-authorship. Only Markdown changed; original text/assets/1.54 and separate FastFont branch remain untouched. No original/client/UI/probe execution, bug investigation or task temporary directory. See the [backlog checkpoint](issue-backlog.md#resume-here).
+
+No active investigation remains. Ten-minute in-session checks continue; latest all-author check 08:09:49Z, next due about 08:19:49Z. User explicitly confirmed the established research-and-PR workflow for new issues. No persistent scheduler is installed.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)
