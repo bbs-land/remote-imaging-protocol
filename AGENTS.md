@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#128 is complete in [PR #129](https://github.com/bbs-land/remote-imaging-protocol/pull/129), specification a534785, open/ready and closing exactly #128. Actual head b80b12f is normal-merged into fork stable through a916dc5 with an identical source tree. Read the [derivation](version/3.0/research/issue-128-auto-stamp-redraw.md): the primary same-destination ignore guard controls; explicit F/H/C/crop geometry preserves label layout, full redraw runs providers and undo-only cleanup does not. A legacy helper fallback does not authorize destination rebinding. Audit started **2026-11-22T01:16:39Z** verifies all **63 open PR heads** ancestral and all **64 open RealDeuce issues** covered, unchanged #128 and no newer discussion/inline/review feedback or uncovered report. No active investigation remains. Refresh GitHub/fork stable before new work, overlapping feedback from that query-start time. Preserve prior contracts, separate FastFont research, Codex trailers and scoped cleanup; no original/client/UI/probe execution, obsolete-client bug investigation, upstream merge or manual closure.
+#130 is delivered in [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), specification 3d7161d, open/ready and closing exactly #130. Read the [derivation](version/3.0/research/issue-130-text-metric-state.md) for recovered font/handler evidence versus explicit real-font/cache/TEXTDATA completion. Consolidate actual source head before #131. Reports unchanged with zero comments at 2026-11-22T02:28:52Z; preserve earlier contracts, FastFont separation, trailers and cleanup. No original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
