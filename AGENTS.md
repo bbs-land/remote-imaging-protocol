@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#131 is active on `issue-131-grouped-button-lifetime` from stable 9d666f8 after #133 actual head 0788745 was normal-merged with an identical tree. #132 hover handler lifetime arrived and is queued afterward. Read the [derivation](version/3.0/research/issue-131-grouped-button-lifetime.md). Complete persistent selection versus pressed artwork, opaque creation versus activation-associated templates and required-radio/continuation policy. Preserve previous gesture/host/renderer contracts, FastFont separation, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#131 specification is ready on `issue-131-grouped-button-lifetime` from stable 9d666f8. Read the [derivation](version/3.0/research/issue-131-grouped-button-lifetime.md): source-backed group behavior is separated from explicit release/key commitment, per-owner/per-slot publication and selection-based required-radio completion. Source fingerprints/calls, literal commands and independent state/assembly checks pass. Publish/consolidate separately before queued #132 hover handler lifetime. Preserve prior contracts, FastFont separation, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

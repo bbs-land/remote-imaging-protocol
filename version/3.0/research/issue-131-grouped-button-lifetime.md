@@ -31,9 +31,11 @@ A committed continuation owns source/FIELDID and redraw token snapshots once. De
 
 Required-radio checks are per referenced slot N while live radio group N exists: require a selected live member, independent of body nonemptiness. A selected field with empty/undefined associated text satisfies selection and may embed empty; an ordinary nonempty slot cannot substitute for a missing radio selection. Last-member deletion removes the requirement. Missing-selection failure is nonfatal with best-effort notification/highlight, not a synthesized activation, automatic retry or connection termination. Input disable/HKEYOFF affect eligibility, not existing state or the requirement. These are explicit logical criteria; no native highlight pixels/timing are required.
 
-## Remaining work and reproduction
+## Validation and delivery
 
-Publish complete event/feedback, owner/publisher and required-selection tables with literal radio/checkbox commands and state/provider vectors. Correct eager preselected-host statements, verify source hashes/call/critical bytes/literals and independent state/slot arithmetic, run repository checks, refresh feedback, publish/consolidate separately before #132.
+The reference now specifies event/feedback timing, owner/publisher rebuilds, required selection and suspended mutation with literal radio/checkbox commands and state/provider vectors. Corrected inherited eager creation and blank-radio wording. Read-only verification passes both source fingerprints and eleven decisive direct-call targets. Independent checks decode both 36-byte style records and all four numeric button prefixes, reproduce eight selection/publication transitions and the 3000+1096 capped assembly. Provider/gesture/required-selection vectors were reviewed against the adopted stage rules; these are protocol vectors, not original execution. The latest report refresh retains the original body and zero comments. Publish/consolidate separately before #132 after repository checks.
+
+Reproduction uses Python hashlib/struct on the unchanged files and base-36 decoding of the literal styles/prefixes; no original routines execute. Decisive source disassembly commands:
 
 ```sh
 objdump -d --start-address=0x10048838 --stop-address=0x100489cd ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
