@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#144 is complete in [PR #145](https://github.com/bbs-land/remote-imaging-protocol/pull/145), specification e3aec0a. Actual source head 1e9d95d is normal-merged through fork stable e223de5 with an identical source tree before workflow notes. Read the [pair derivation](version/3.0/research/issue-144-remembered-port-copy-pairs.md). Audit started 2026-11-22T08:45:44Z: all 71 open PR heads ancestral, all 72 open RealDeuce issues covered, #144 unchanged/zero comments, no new report update or discussion/inline/review feedback. Full lint/link/diff and independent source/geometry/state checks pass. No active investigation; return to active-session ten-minute checks and the user-confirmed serial research-and-PR workflow. Last all-author issue check 08:41:03Z; next due about 08:51:03Z. Preserve FastFont separation, Codex trailers, temporary cleanup and protocol-only scope; no persistent scheduler.
+#146 is active on `issue-146-physical-clip-pair-boundary` from stable f14e410. Read the [physical-clipping derivation](version/3.0/research/issue-146-physical-clip-pairs.md). Define remembered geometry at the final logical compositor stage, independently of physical sample coverage; distinguish successful zero-coverage transfer from empty logical/no-op and render failure. Preserve #144 ownership/selectors/producers/lifecycle and #10 mapping. No new original-client/probe/bug investigation/execution. Last issue check 09:32:44Z detected #146; next due about 09:42:44Z. User confirmed serial research-and-PR processing; retain stable ancestry, FastFont separation, Codex trailers and temporary cleanup. No persistent scheduler.
 
 ## Ground rules
 
