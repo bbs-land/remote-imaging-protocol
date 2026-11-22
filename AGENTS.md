@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#136 is active on `issue-136-grouped-mouse-backups` from fork stable 49a6945. The in-session ten-minute monitor detected it at 04:05:21Z; latest empty check 04:25:42Z, next due about 04:35:42Z. Read the [grouped mouse-backup derivation](version/3.0/research/issue-136-grouped-mouse-backups.md). Complete saved group selection/maps and live template publication on restore, preserving #131/#132 and SOFT template preservation. No persistent scheduler is installed. Continue serial research/PR/stable workflow and ten-minute checks while this session is active. Retain Codex trailers, FastFont separation and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#136 specification is ready on `issue-136-grouped-mouse-backups` from stable 49a6945. Read the [grouped mouse-backup derivation](version/3.0/research/issue-136-grouped-mouse-backups.md). Successful snapshots own persistent selection/maps/handlers but exclude global slot publication; restore preserves live ordinary writes and purely rebuilds surviving same-kind/number group publications. Source facts versus multi-slot/continuation completion are separate. Source/literal/independent state and link/diff checks pass; finish full lint, refresh, publish separately and consolidate the actual head. Latest empty monitor check 04:25:42Z, next due 04:35:42Z; continue ten-minute checks only while the session remains active, no persistent scheduler. Preserve prior contracts, FastFont separation, Codex trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
