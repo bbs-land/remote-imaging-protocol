@@ -25,6 +25,12 @@ Aligned the introductory alias wording, screen-only SAVE/RESTORE rows and both a
 
 Checks pass all four starting-file hashes against `git show 3313754:<path>`, both eight-step recipes against the detailed 5.1 bullet sequences, the common TW/PORT/MOUSE/SCREEN/PAL/BUT/STYLE/ENV order, both alias ranges, corrected row evidence and removal of stale summary phrases. Full repository lint, 0 bad of 6,232 links across 257 files and diff checks pass. The 04:58:44Z refresh finds the original report body unchanged, zero comments. No new tests or original/client/probe execution. Delivered in [PR #139](https://github.com/bbs-land/remote-imaging-protocol/pull/139), specification 352c293, open/ready with exactly #138 as closing reference. Consolidate its actual head and audit feedback/coverage/ancestry before returning to the ten-minute watch.
 
+## Consolidation and monitoring checkpoint
+
+[PR #139](https://github.com/bbs-land/remote-imaging-protocol/pull/139) actual head **bbccbcb** is normal-merged through fork stable **3fb29f0**, with an identical source tree. Audit started 2026-11-22T05:01:52Z verifies all 68 current PR heads ancestral, all 69 open RealDeuce issues covered, unchanged #138 and no newer report/comment/review feedback. All four commits through the merge carry Codex co-authorship. Only Markdown changed; no native/client execution, new tests, semantic changes or remaining temporary payloads. See the [backlog checkpoint](issue-backlog.md#resume-here).
+
+No active investigation remains. In-session ten-minute checks continue, next due about 05:05:56Z. New RealDeuce reports follow the established serial workflow by default; empty checks stay quiet. No persistent scheduler is installed.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)
