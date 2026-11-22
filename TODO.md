@@ -8,6 +8,8 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
+- [ ] Consolidate #144 / PR #145 actual head into fork stable and audit coverage/feedback/ancestry before returning to monitoring.
+
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 
 - [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and further driver contracts (see `version/3.0/research/issue-backlog.md`)
