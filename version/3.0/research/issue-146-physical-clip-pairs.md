@@ -38,11 +38,13 @@ The completed central reference defines the logical/physical boundary, preserved
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; link validation reports **0 bad of 6,331 across 261 files**. Prose spacing passes a focused scan. Before publication, #146 retains its initial body hash, update time and zero comments.
 
-## Delivery and next action
+## Delivery and stable consolidation
 
-[PR #147](https://github.com/bbs-land/remote-imaging-protocol/pull/147) is open/ready, specification **88a8b60d52b07edbcf01f484f52bb301c71b6add**, with exactly #146 as its closing reference and no closing pagination overflow. The report retains the initial body hash/update time and zero comments. Scoped `TemporaryDirectory(prefix='rip-146-pr-')` request files were removed automatically. No upstream merge or manual closure.
+[PR #147](https://github.com/bbs-land/remote-imaging-protocol/pull/147) is open/ready, specification **88a8b60d52b07edbcf01f484f52bb301c71b6add**, with exactly #146 as closing reference. Actual source head **55ba94bdcc2e7b852bc62ffa409cd69aa65d4a3c** is normal-merged into fork stable through **6520c4246a31ff43e1a082d8bfde2d44ca5bc109**, with an identical source tree before workflow notes. Scoped `TemporaryDirectory(prefix='rip-146-pr-')` request payloads were removed automatically.
 
-Normal-merge the actual completed branch head into fork stable with identical source tree before workflow notes, audit coverage/feedback/ancestry, then return to active-session ten-minute checks. Preserve FastFont separation, co-author trailers and protocol-only scope; no persistent scheduler.
+Audit started **2026-11-22T09:39:56Z**, overlapping 08:45:44Z: all 72 open PR heads are ancestors and all 73 open RealDeuce issues covered; #146 body/update time/zero comments are unchanged; no other report update, discussion/inline comment or review feedback. Issue/PR/closing/review pagination and REST since-comment pages were checked. All five new commits through the merge carry Codex trailers; final checkpoint retains attribution. Only eight allowed Markdown paths changed, FastFont 5966e1b is unchanged/nonancestral, original text/assets/1.54 untouched and no task temporary directory remains. No upstream merge/manual closure or original execution.
+
+Full content lint/link/diff checks pass (0 bad of 6,331 links across 261 files); final workflow formatting/link/diff checks are repeated. No active investigation remains. Continue active-session ten-minute monitoring and the user-confirmed serial research-and-PR/stable workflow; no persistent scheduler.
 
 ---
 
