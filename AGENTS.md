@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#146 is active on `issue-146-physical-clip-pair-boundary` from stable f14e410. Read the [physical-clipping derivation](version/3.0/research/issue-146-physical-clip-pairs.md). Define remembered geometry at the final logical compositor stage, independently of physical sample coverage; distinguish successful zero-coverage transfer from empty logical/no-op and render failure. Preserve #144 ownership/selectors/producers/lifecycle and #10 mapping. No new original-client/probe/bug investigation/execution. Last issue check 09:32:44Z detected #146; next due about 09:42:44Z. User confirmed serial research-and-PR processing; retain stable ancestry, FastFont separation, Codex trailers and temporary cleanup. No persistent scheduler.
+#146 is active on `issue-146-physical-clip-pair-boundary` from stable f14e410. Read the [physical-clipping derivation](version/3.0/research/issue-146-physical-clip-pairs.md). The complete local draft fixes the final logical compositor boundary, independent physical sample coverage and success/no-op/failure publication. Seven baseline hashes, exact rational/coverage/no-refit/status vectors and 352 boundary cases pass. Finish repository validation, publish and consolidate/audit. Preserve #144 ownership/selectors/producers/lifecycle and #10 mapping. No new original-client/probe/bug investigation/execution. Last issue check 09:32:44Z detected #146; next due about 09:42:44Z. User confirmed serial research-and-PR processing; retain stable ancestry, FastFont separation, Codex trailers and temporary cleanup. No persistent scheduler.
 
 ## Ground rules
 

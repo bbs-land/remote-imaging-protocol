@@ -30,6 +30,14 @@ Requested logical source [0,4), physical [0,2), destination [0,3) stores Rs=[0,4
 
 Reject physical coverage-derived or rounded pairs: unequal mapping can create fractional edges, different samplers can cover different edge cells, and scattered/zero coverage need not be one integer pair. P is geometry, not initialized-pixel/damage coverage. PCB reverses it under current limits; it cannot promise restoration of data never physically captured. This narrows #144's uncopied-region rationale to logical viewport exclusions while preserving all its other rules and raster freedom. No extra wire, buffer, metadata family or source investigation is needed.
 
+## Independent validation
+
+Inline Python checks at 2026-11-22T09:37:21Z verify all seven starting-file hashes from `git show f14e410:<path>`. Exact `fractions.Fraction` arithmetic gives the source physical edge's destination 3/2 and destination physical edge's source 4/3. A hypothetical center-position versus leading-edge sampler covers one versus two destination cells for the same 4→3 logical request and physical source [0,2); neither convention is selected as the protocol filter. The original mapping's first center corresponds to source 2/3, whereas an incorrect 4→1 physical refit would use 2. Equal-size clipping, both source-outside and destination-outside zero-write cases, and a logical-validity/completion publication matrix pass. The rational edge identity also passes 352 source-width/destination-width/boundary combinations, applicable to either axis. No original/native instructions, UI, provider or raster service ran.
+
+The completed central reference defines the logical/physical boundary, preserved post-viewport mapping, no coverage-based rounding, and explicit publication status table. Independent vectors cover scaled/equal source limits, destination clipping, successful source/destination zero coverage, logical no-op and actual failure. PCB and GET_IMAGE summaries are qualified, and #144's historical derivation links this boundary clarification without changing its other accepted answers.
+
+Full `run/lint`, `run/check-links` and `git diff --check` pass; link validation reports **0 bad of 6,331 across 261 files**. Prose spacing passes a focused scan. Before publication, #146 retains its initial body hash, update time and zero comments.
+
 ## Next action
 
 Verify exact rational boundary/no-refit and sampler-independence vectors, qualify affected summaries, complete format/lint/link/diff, refresh the report and publish separately. Normal-merge the actual source head into fork stable with an identical tree before workflow notes, audit feedback/coverage/ancestry, then continue ten-minute monitoring.

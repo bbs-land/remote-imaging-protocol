@@ -49,6 +49,10 @@ The reason for destination publication after each named successful transfer is a
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0 bad of 6,313 across 260 files**. A focused prose-spacing scan found no missing word/number spaces. Before publication, #144 retained the original body hash, update time and zero comments.
 
+## Physical-clipping follow-up
+
+[#146](https://github.com/bbs-land/remote-imaging-protocol/issues/146) identifies the boundary left ambiguous by “final/actually transferred” above. Its [separate derivation](issue-146-physical-clip-pairs.md) completes S*/D* as final **logical viewport-trimmed** rectangles before physical storage/sample clipping. Successful logically nonempty zero-coverage stages publish that logical pair; logical no-ops and actual failure do not. This retains the ownership/selector/producer/lifecycle choices and existing raster mapping/filter freedom. Earlier statements about avoiding uncopied regions refer to regions excluded by logical viewport trimming; P is not a physical coverage/damage record.
+
 ## Delivery and next action
 
 [PR #145](https://github.com/bbs-land/remote-imaging-protocol/pull/145) is open/ready with specification **e3aec0a914e5d3d9d4aac337b7a70abb4f4dd8a5** and exactly #144 as its closing reference; GraphQL verifies no closing-reference pagination overflow. The issue body/update time and zero comments are unchanged. Scoped `TemporaryDirectory(prefix='rip-144-pr-')` request payloads were removed automatically. No upstream merge or manual closure.
