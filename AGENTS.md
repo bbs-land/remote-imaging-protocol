@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#130 specification is ready on `issue-130-text-metric-state` from stable 21728db; #131 follows separately. The [derivation](version/3.0/research/issue-130-text-metric-state.md) records real MARIN/TRIP metrics and source boundaries versus explicit height/cache/failure/TEXTDATA lifetime. Four hashes, eight calls, six critical sequences, four ratios and metric/NUL/state vectors pass, with lint/link/diff (6,146 links). Reports unchanged with zero comments at 2026-11-22T02:28:52Z. Publish/consolidate actual head before #131. Preserve previous cursor/expansion/signed replies, FastFont separation, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#130 is delivered in [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), specification 3d7161d, open/ready and closing exactly #130. Read the [derivation](version/3.0/research/issue-130-text-metric-state.md) for recovered font/handler evidence versus explicit real-font/cache/TEXTDATA completion. Consolidate actual source head before #131. Reports unchanged with zero comments at 2026-11-22T02:28:52Z; preserve earlier contracts, FastFont separation, trailers and cleanup. No original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

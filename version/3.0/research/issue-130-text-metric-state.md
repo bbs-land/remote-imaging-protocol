@@ -50,6 +50,10 @@ objdump -d --start-address=0x100015b5 --stop-address=0x10001625 ../rip-tools/art
 
 Repository lint, 6,146 links across 253 files and diff checks pass. Refresh started 2026-11-22T02:28:52Z confirms unchanged #130/#131 with zero comments.
 
+## Delivery
+
+[PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), specification 3d7161d, is open/ready and closes exactly #130. It continues #129 with an issue-only comparison from stable 21728db. Consolidate the actual source head by an ordinary merge and exact-tree check before #131. Scoped API request files were removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [TEXT_METRIC](../ripscrip/3.0-text-output-and-fonts.md#rip_text_metric)
