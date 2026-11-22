@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#138 ready.** `issue-138-backup-index-summaries` starts at stable 3313754 after #137 actual head 7f074ac was consolidated. Read the [index derivation](issue-138-backup-index-summaries.md); summaries now match accepted full entries without introducing new behavior. Source-hash/recipe/alias/stale-text and full lint/link/diff checks pass (6,232 links). Publish separately, consolidate actual head and audit feedback/coverage/ancestry. Next ten-minute issue check due about 05:05:56Z; no persistent scheduler.
+**#138 delivered; consolidation/audit pending.** [PR #139](https://github.com/bbs-land/remote-imaging-protocol/pull/139), specification 352c293, is open/ready and closes exactly #138. Source-hash/recipe/alias/row/stale-text and full lint/link/diff checks pass (6,232 links). Read the [index derivation](issue-138-backup-index-summaries.md); consolidate actual head, audit feedback/coverage/ancestry, then resume in-session monitoring. Next ten-minute check due about 05:05:56Z; no persistent scheduler.
 
 **#136 complete; in-session monitoring continues.** [PR #137](https://github.com/bbs-land/remote-imaging-protocol/pull/137), specification **75b2699**, is open/ready and closes exactly #136. Actual source head **7f074ac5fd569938a2368d2948a0a78931bf58f0** is normal-merged through fork stable **508eb715e310eb456565ab8297627a4c43451247**, with an identical source tree before workflow notes. The [mouse-backup derivation](issue-136-grouped-mouse-backups.md) distinguishes unchanged serializer/reader evidence from explicit capture/publication completion of #131/#132. Full lint/link/diff and source/literal/independent-state checks pass; final link validation reports **0 bad of 6,221 links across 256 files**.
 
