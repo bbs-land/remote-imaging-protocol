@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#131 delivered; #132 next.** [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134), specification 9a64f5b, is open/ready and closes exactly #131. Consolidate the actual source head into fork stable, then start #132. Source/literal/state and formatting/link/diff checks pass (6,166 links); read the [grouped-button derivation](issue-131-grouped-button-lifetime.md).
+
 **#131 ready; #132 queued.** `issue-131-grouped-button-lifetime` starts at stable 9d666f8. Read the [grouped-button derivation](issue-131-grouped-button-lifetime.md); source/call, literal command and independent state/assembly checks pass. Publish/consolidate separately before #132. Source facts versus explicit ownership/selection completion remain clearly identified; preserve earlier contracts and opaque creation.
 
 **#130 delivered; #131 next.** [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), specification 3d7161d, is open/ready and closes exactly #130. Branch `issue-130-text-metric-state` starts at stable 21728db. The [derivation](issue-130-text-metric-state.md) records source/formula/state boundaries and checks (6,146 links). Consolidate actual head before #131; preserve earlier answers and separate FastFont research.

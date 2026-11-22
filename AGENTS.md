@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#131 specification is ready on `issue-131-grouped-button-lifetime` from stable 9d666f8. Read the [derivation](version/3.0/research/issue-131-grouped-button-lifetime.md): source-backed group behavior is separated from explicit release/key commitment, per-owner/per-slot publication and selection-based required-radio completion. Source fingerprints/calls, literal commands and independent state/assembly checks pass. Publish/consolidate separately before queued #132 hover handler lifetime. Preserve prior contracts, FastFont separation, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#131 is delivered in [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134), specification 9a64f5b, open/ready with exactly #131 as closing reference. Consolidate its actual head into fork stable before queued #132 hover handler lifetime. The [derivation](version/3.0/research/issue-131-grouped-button-lifetime.md) records recovered group facts versus explicit ownership/selection policy. Source/literal/state and repository checks pass (6,166 links). Preserve earlier contracts, FastFont separation, co-author trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

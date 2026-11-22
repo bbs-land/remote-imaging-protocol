@@ -35,6 +35,8 @@ Required-radio checks are per referenced slot N while live radio group N exists:
 
 The reference now specifies event/feedback timing, owner/publisher rebuilds, required selection and suspended mutation with literal radio/checkbox commands and state/provider vectors. Corrected inherited eager creation and blank-radio wording. Read-only verification passes both source fingerprints and eleven decisive direct-call targets. Independent checks decode both 36-byte style records and all four numeric button prefixes, reproduce eight selection/publication transitions and the 3000+1096 capped assembly. Provider/gesture/required-selection vectors were reviewed against the adopted stage rules; these are protocol vectors, not original execution. The latest report refresh retains the original body and zero comments. Publish/consolidate separately before #132 after repository checks.
 
+Delivered in [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134), specification 9a64f5b, verified open/ready with exactly #131 as closing reference. Formatting/link/diff checks pass (6,166 links). Normal-merge the actual branch head into fork stable before #132; keep upstream review open.
+
 Reproduction uses Python hashlib/struct on the unchanged files and base-36 decoding of the literal styles/prefixes; no original routines execute. Decisive source disassembly commands:
 
 ```sh
