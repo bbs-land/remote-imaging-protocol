@@ -49,9 +49,11 @@ The reason for destination publication after each named successful transfer is a
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0 bad of 6,313 across 260 files**. A focused prose-spacing scan found no missing word/number spaces. Before publication, #144 retained the original body hash, update time and zero comments.
 
-## Next action
+## Delivery and next action
 
-Refresh issue/comments, finish repository format/lint/link/diff validation, publish a separate complete #144 PR and normal-merge its actual head into fork stable with an identical source tree before workflow notes. Audit feedback/coverage/ancestry, retain co-author trailers and cleanup, then resume active-session ten-minute monitoring.
+[PR #145](https://github.com/bbs-land/remote-imaging-protocol/pull/145) is open/ready with specification **e3aec0a914e5d3d9d4aac337b7a70abb4f4dd8a5** and exactly #144 as its closing reference; GraphQL verifies no closing-reference pagination overflow. The issue body/update time and zero comments are unchanged. Scoped `TemporaryDirectory(prefix='rip-144-pr-')` request payloads were removed automatically. No upstream merge or manual closure.
+
+Normal-merge the actual completed source branch head into fork stable with an identical source tree before workflow notes, audit all coverage/feedback/ancestry and preserve the separate FastFont branch/co-author trailers. Then resume active-session ten-minute monitoring; no persistent scheduler is installed.
 
 ---
 

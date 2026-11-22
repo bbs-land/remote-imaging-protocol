@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #144 remembered PORT_COPY/PCB ownership, producers and lifecycle with derivation/vectors, a separate PR and stable consolidation.
+- [ ] Consolidate #144 / PR #145 actual head into fork stable and audit coverage/feedback/ancestry before returning to monitoring.
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 
