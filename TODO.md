@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #142 ENV backup foreign-selection wording with notes, a separate PR and stable consolidation.
+- [ ] Consolidate #142 / PR #143 and complete the feedback/coverage/ancestry audit.
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 
