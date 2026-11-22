@@ -35,6 +35,12 @@ objdump -d --start-address=0x10021ec2 --stop-address=0x10021f8f ../rip-tools/art
 objdump -d --start-address=0x1002288f --stop-address=0x10022968 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
+## Consolidation and monitoring checkpoint
+
+[PR #137](https://github.com/bbs-land/remote-imaging-protocol/pull/137) actual head **7f074ac** is normal-merged into fork stable through **508eb71**, with an identical source tree. Audit started 2026-11-22T04:37:41Z verifies all 67 current PR heads ancestral, all 68 open RealDeuce issues covered, unchanged #136 and no new report/comment/review feedback. All five new commits through that merge carry Codex co-authorship. Only Markdown changed; original assets/text/1.54 and separate FastFont branch remain untouched. No original/client/UI/probe/provider execution or task temporary files. See the [backlog checkpoint](issue-backlog.md#resume-here).
+
+No active issue investigation remains. In-session ten-minute checks continue, latest all-author check 04:35:34Z; next due about 04:45:34Z. Empty checks stay quiet and new RealDeuce reports use the established serial workflow by default. No persistent scheduler is installed.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)

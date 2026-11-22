@@ -1,7 +1,5 @@
 # TODO
 
-- [ ] Consolidate #136 / PR #137, audit feedback/coverage/ancestry, then continue in-session ten-minute new-issue checks and the established serial research/PR workflow.
-
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
 Likely next up: the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; the machine-readable command/variable tables.
@@ -9,6 +7,8 @@ Likely next up: the open **Discuss** questions in the rollup at the bottom; Vite
 The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,3.0}/{ripscrip,techspecs}/` now carry the numbered two-layer hierarchy with the creator/implementer audience split, and the shared glossary lives at `version/glossary.md`. The structure and its principles are documented in [version/README.md](version/README.md).
 
 ## Specifications (Markdown reference editions)
+
+- [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 
 - [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and further driver contracts (see `version/3.0/research/issue-backlog.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from implementations - as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08)
