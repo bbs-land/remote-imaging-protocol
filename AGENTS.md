@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#131 is delivered in [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134), specification 9a64f5b, open/ready with exactly #131 as closing reference. Consolidate its actual head into fork stable before queued #132 hover handler lifetime. The [derivation](version/3.0/research/issue-131-grouped-button-lifetime.md) records recovered group facts versus explicit ownership/selection policy. Source/literal/state and repository checks pass (6,166 links). Preserve earlier contracts, FastFont separation, co-author trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#130/#131/#132 are delivered in [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134) and [PR #135](https://github.com/bbs-land/remote-imaging-protocol/pull/135), each open/ready with exactly its own closing reference. #135 completion d135de6 passes source/state/definition and full lint/link/diff checks (6,188 links). Consolidate its actual head into fork stable, then complete the full report-body/comment/review/coverage/ancestry audit. Read the [hover derivation](version/3.0/research/issue-132-hover-handler-lifetime.md); preserve source/policy distinctions and existing SOFT template preservation. Co-author trailers, FastFont separation and temporary cleanup persist; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
