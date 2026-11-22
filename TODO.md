@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Resolve #136 grouped mouse-backup capture and restore publication with a derivation, separate PR and stable consolidation; continue in-session ten-minute new-issue checks.
+
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
 Likely next up: the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; the machine-readable command/variable tables.

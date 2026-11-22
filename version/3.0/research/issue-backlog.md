@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#136 active.** `issue-136-grouped-mouse-backups` starts at stable 49a6945. Read the [mouse-backup derivation](issue-136-grouped-mouse-backups.md). Resolve successful capture/ownership, selected versus pressed state, saved raw owner maps versus global slots, pure publication rebuild and old continuation invalidation. Preserve #131/#132, saved handlers, SOFT template preservation and existing backup-manager behavior. The in-session ten-minute monitor detected this new report; no persistent scheduler was installed.
+
 **#130/#131/#132 complete; no active investigation.** [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134) and [PR #135](https://github.com/bbs-land/remote-imaging-protocol/pull/135) are open/ready, each closing exactly its own issue. Read the [TEXT_METRIC/TEXTDATA](issue-130-text-metric-state.md), [grouped-button](issue-131-grouped-button-lifetime.md) and [hover lifetime](issue-132-hover-handler-lifetime.md) derivations for recovered facts versus explicit portable completion. Source hashes/calls/critical bytes, font/state/publisher/definition/callback vectors and repository checks pass.
 
 | Issue / PR | Specification/completion | Actual source head | Fork stable normal merge |
