@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#132 is active on `issue-132-hover-handler-lifetime` from stable 6a903af after #134 actual head beea018 was normal-merged with an identical tree. Read the [hover lifetime derivation](version/3.0/research/issue-132-hover-handler-lifetime.md). Resolve handler-independent membership, per-callback source selection, reset/deletion/focus/restore lifetime and definition edges/bounds without reopening #51/#113. Preserve prior answers, FastFont separation, co-author trailers and temporary cleanup; no original/client/UI/probe execution or bug investigation.
+#132 specification is ready on `issue-132-hover-handler-lifetime`, starting at stable 6a903af and normal-merging corrected stable 8a33e47 / #134 head 6797f9b. Read the [hover derivation](version/3.0/research/issue-132-hover-handler-lifetime.md): handler-independent membership and per-callback handler selection/reset/backup facts are separated from explicit safe continuation, local focus/disable and source-bound choices. Source/corpus/call/byte and independent state/definition checks pass. Publish/consolidate separately and finish the full feedback/coverage/ancestry audit. Preserve prior answers including SOFT template preservation, FastFont separation, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 

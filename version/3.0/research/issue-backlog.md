@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#132 active.** `issue-132-hover-handler-lifetime` starts at stable 6a903af. [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134), specification 9a64f5b, closes exactly #131; actual head beea018 is normal-merged with an identical source tree. Read the [hover lifecycle derivation](issue-132-hover-handler-lifetime.md); complete separately, then audit all report bodies/feedback/current PR ancestry. Preserve source-versus-policy distinctions and earlier answers.
+**#132 ready.** `issue-132-hover-handler-lifetime` starts at stable 6a903af and normal-merges corrected stable 8a33e47 / #134 actual head 6797f9b, whose merge tree matched the source branch. Read the [hover lifecycle derivation](issue-132-hover-handler-lifetime.md): definition/membership/callback/reset/backup facts and explicit continuation/local boundary/storage completion are separate. Source/state/definition checks pass; publish/consolidate separately, then audit all feedback, report coverage and current PR ancestry. #131 retains adopted SOFT template preservation.
 
 **#130 delivered; #131 next.** [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), specification 3d7161d, is open/ready and closes exactly #130. Branch `issue-130-text-metric-state` starts at stable 21728db. The [derivation](issue-130-text-metric-state.md) records source/formula/state boundaries and checks (6,146 links). Consolidate actual head before #131; preserve earlier answers and separate FastFont research.
 

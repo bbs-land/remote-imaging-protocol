@@ -27,9 +27,13 @@ Track membership independently per stable field instance, starting outside, rega
 
 Local focus loss/pointer-delivery disable cancels capture and clears memberships without synthetic exits, retains definitions/handlers and invalidates pending uncommitted traversal callbacks. Reenable/refocus does not synthesize movement: next delivered movement may enter even at the same point. Full reset clears fields/membership/handlers; field-only deletion preserves handlers and surviving membership. Mouse-family restore replaces handlers with saved definitions but gives restored fields fresh tokens/outside state; plain replacement of field definitions without restoring a mouse-family backup retains current handlers. Save alone changes nothing live. HEADER follows the specific operations it actually requests, including full reset, field-only deletion or input disable; pure selection/refresh/cursor changes do not implicitly clear handlers.
 
-## Remaining work and reproduction
+## Validation and delivery
 
-Publish definition edges/bounds, callback commitment/membership and lifetime tables with callback-count/state vectors. Validate source fingerprints/calls/critical bytes and independent vectors, run repository checks, refresh feedback, publish a separate PR and consolidate its actual head, then complete full feedback/coverage/ancestry audit.
+The reference now publishes definition/sentinel/bound rules, independent membership/per-callback commitment, the full reset/deletion/focus/restore table and sixteen callback-count/state vectors. Read-only checks pass the DLL/corpus fingerprints, TELKILL deletion/removal ordering, 21 direct-call targets, five decisive instruction sequences and section-mapped sentinel bytes. Independent transition/count checks cover nine scenarios (absent/entry-only/exit-only/both handlers, live removal/replacement, exit-before-entry replacement and duplicate-ID replacement deferral); twelve definition cases verify sentinel/empty/length behavior separately. Suspension, boundaries and backup vectors were reviewed against the adopted stage/token rules. No original routines/providers execute.
+
+Refresh 2026-11-22T02:48:27Z finds unchanged #130/#131/#132 bodies and zero comments. This branch also normal-merges stable 8a33e47, which incorporates corrected #134 actual head 6797f9b with an identical source tree; the existing SOFT template-preservation policy controls over native numbered-slot cleanup. Original source facts and explicit lifetime/storage choices remain separate. Run repository checks, publish/consolidate a separate PR, then finish the full feedback/coverage/ancestry audit.
+
+Reproduce the source checks using Python hashlib/struct on the unchanged files, mapping the OFF sentinel through PE section headers and decoding E8 relative call targets; no client/probe execution. Disassembly:
 
 ```sh
 objdump -d --start-address=0x10004035 --stop-address=0x100041b8 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
