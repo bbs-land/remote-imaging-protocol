@@ -63,6 +63,10 @@ objdump -d --start-address=0x1002adac --stop-address=0x1002b0a9 ../rip-tools/art
 objdump -d --start-address=0x1002c338 --stop-address=0x1002c3c7 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
+## Delivery
+
+[PR #129](https://github.com/bbs-land/remote-imaging-protocol/pull/129), specification a534785, is open/ready and closes exactly #128. It continues #127 and links an issue-only comparison from stable a857052. The PR explicitly calls out the primary same-target ignore rule and the report's differing PORT6 premise. Consolidate the actual source head by an ordinary merge with an exact-tree check, then audit coverage/feedback/ancestry. The scoped API payload directory was removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Buttons](../ripscrip/4.3-buttons.md) · [Graphical continuations](../ripscrip/5.2-templates-and-conditionals.md#creation-redraw-and-prompt-continuations)
