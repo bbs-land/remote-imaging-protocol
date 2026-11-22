@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#132 specification is ready on `issue-132-hover-handler-lifetime`, starting at stable 6a903af and normal-merging corrected stable 8a33e47 / #134 head 6797f9b. Read the [hover derivation](version/3.0/research/issue-132-hover-handler-lifetime.md): handler-independent membership and per-callback handler selection/reset/backup facts are separated from explicit safe continuation, local focus/disable and source-bound choices. Source/corpus/call/byte and independent state/definition checks pass. Publish/consolidate separately and finish the full feedback/coverage/ancestry audit. Preserve prior answers including SOFT template preservation, FastFont separation, trailers and cleanup; no original/client/UI/probe execution or bug investigation.
+#130/#131/#132 are delivered in [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134) and [PR #135](https://github.com/bbs-land/remote-imaging-protocol/pull/135), each open/ready with exactly its own closing reference. #135 completion d135de6 passes source/state/definition and full lint/link/diff checks (6,188 links). Consolidate its actual head into fork stable, then complete the full report-body/comment/review/coverage/ancestry audit. Read the [hover derivation](version/3.0/research/issue-132-hover-handler-lifetime.md); preserve source/policy distinctions and existing SOFT template preservation. Co-author trailers, FastFont separation and temporary cleanup persist; no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
