@@ -28,6 +28,12 @@ The SCB/RCB entries and index now name the full PORT family; RCB's Format is cor
 
 Checks pass all five starting-file fingerprints against `git show 95493d2:<path>`, corrected Format versus syntax, full-family/empty-pointer/lifetime statements and both index rows with source evidence. Reviewed the empty-pointer example against the existing capture list, separate current selection and manager/restore exceptions. No new tests or original-client investigation/execution. Full lint/link/diff checks pass (6,256 links before final delivery metadata). Refresh at 07:42:23Z finds the original body unchanged, zero comments. Delivered in [PR #141](https://github.com/bbs-land/remote-imaging-protocol/pull/141), specification cba3d4b, open/ready with exactly #140 as closing reference. Consolidate actual head, audit feedback/coverage/ancestry and continue ten-minute checks.
 
+## Consolidation and monitoring checkpoint
+
+[PR #141](https://github.com/bbs-land/remote-imaging-protocol/pull/141) actual head **fc574ba** is normal-merged through fork stable **4c1d5b8**, with an identical source tree. Audit started 2026-11-22T07:46:55Z verifies all 69 current PR heads ancestral, all 70 open RealDeuce issues covered, unchanged #140 and no newer report/comment/review feedback. All four new commits through that merge carry Codex co-authorship. Only Markdown changed; original text/assets/1.54 and separate FastFont branch remain untouched. No original/client/UI/probe execution, bug investigation or task temporary directory. See the [backlog checkpoint](issue-backlog.md#resume-here).
+
+No active issue investigation remains. Ten-minute in-session checks continue; latest all-author check 07:39:11Z, next due about 07:49:11Z. User explicitly confirmed the established research-and-PR workflow for new issues. No persistent scheduler is installed.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)
