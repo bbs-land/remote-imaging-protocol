@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Resolve #136 grouped mouse-backup capture and restore publication with a derivation, separate PR and stable consolidation; continue in-session ten-minute new-issue checks.
+- [ ] Consolidate #136 / PR #137, audit feedback/coverage/ancestry, then continue in-session ten-minute new-issue checks and the established serial research/PR workflow.
 
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
