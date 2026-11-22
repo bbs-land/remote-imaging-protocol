@@ -39,6 +39,14 @@ Validate the whole argument list structurally before any live/backup write. Keep
 
 Reject MTW aliasing, conditional ordinary-`w` redefinition, source cloning and outer SOFT equivalence: each retains/resets different fields. Reject pre-resolving CUR or applying a valid prefix before a late syntax error. Fresh zero state is an explicitly chosen reset recipe, not a newly observed native initializer result. Separate entry-local versus shared query ownership preserves protected survivors without introducing a global query deletion side effect.
 
+## Independent state validation
+
+An inline Python logical model checked all ten baseline SHA-256 values against `git show 4c8672d:<path>`, then verified the published deletion-versus-fresh-zero, protected-current TBL/ALL, sequential CUR, late-invalid-selector and first-attempt/zero-replacement failure examples. An exhaustive current/target/status matrix checked **3,781 valid numeric cases** (all 36 indices, writable/protected/undefined states excluding impossible protected/undefined slot 0 and undefined current targets), preserving unrelated records, backups, floating query, parser/ESC snapshot, entry pixels, graphics selections, global lock and emulation. Five default-font grid/margin bounds were checked against the nominal table. These are pure policy/state arithmetic checks, not native execution or a terminal raster/parser oracle.
+
+The reference centralizes the live recipe and target/selector/failure tables under RESET, with crosslinks from the terminal lifecycle/charset table, outer SOFT, TW table and variable index. It explicitly distinguishes requested cursor defaults from pixel shape realization, dynamic CUR from prevalidation, protected current retention from outer SOFT's zero selection, and fixed-entry queries from the separate floating TW query. Forced zero reset bypasses ordinary `w`'s identical-definition path while preserving connection-owned parser and larger ESC-7/8 snapshot.
+
+Full `run/lint`, `run/check-links` and `git diff --check` pass, with **0 bad of 6,349 links across 262 files**. A focused prose-spacing scan passes. Before publication, #148 retains its original body/update time and zero comments. The 17:46:28Z all-author issue check found no newer report; next due about 17:56:28Z.
+
 ## Next action
 
 Publish full state/selector/query/order/failure tables and independent ordinary/extended/inactive/protected and sequential-CUR examples. Verify source hashes and independent state transitions, format/lint/link/diff, refresh/publish separately, normal-merge actual PR head into stable with an identical source tree before workflow notes, audit feedback/coverage/ancestry and return to ten-minute monitoring.
