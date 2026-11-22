@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#136 delivered; consolidation/audit pending.** [PR #137](https://github.com/bbs-land/remote-imaging-protocol/pull/137), specification 75b2699, is open/ready and closes exactly #136. `issue-136-grouped-mouse-backups` starts at stable 49a6945. Read the [mouse-backup derivation](issue-136-grouped-mouse-backups.md). Source/literal/state and full lint/link/diff checks pass (6,215 links). Consolidate actual head, audit feedback/coverage/current PR ancestry, then resume in-session ten-minute new-issue checks; latest check 04:35:34Z found no report newer than #136, next due about 04:45:34Z. No persistent scheduler is installed.
+
 **#130/#131/#132 complete; no active investigation.** [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134) and [PR #135](https://github.com/bbs-land/remote-imaging-protocol/pull/135) are open/ready, each closing exactly its own issue. Read the [TEXT_METRIC/TEXTDATA](issue-130-text-metric-state.md), [grouped-button](issue-131-grouped-button-lifetime.md) and [hover lifetime](issue-132-hover-handler-lifetime.md) derivations for recovered facts versus explicit portable completion. Source hashes/calls/critical bytes, font/state/publisher/definition/callback vectors and repository checks pass.
 
 | Issue / PR | Specification/completion | Actual source head | Fork stable normal merge |

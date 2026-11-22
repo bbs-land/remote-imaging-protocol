@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Consolidate #136 / PR #137, audit feedback/coverage/ancestry, then continue in-session ten-minute new-issue checks and the established serial research/PR workflow.
+
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
 Likely next up: the open **Discuss** questions in the rollup at the bottom; VitePress site scaffold; the machine-readable command/variable tables.
