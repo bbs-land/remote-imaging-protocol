@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#150 is active on `issue-150-ansi-esc-snapshot` from stable 393c5eb. Read the [ESC snapshot derivation](version/3.0/research/issue-150-ansi-esc-snapshot.md). Complete payload/current-target/lifetime/ownership/failure with explicit portable boundaries from accepted #104/#106/#148 and whole-TW contracts. Preserve the exact live-position overwrite of snapshot CSI-saved slots; do not claim old CSI-saved state survives independently. No new original-client/probe/bug investigation/execution, pointer copying or new VT-102 requirement. Last issue check 19:57:59Z detected #150; next due about 20:07:59Z. Preserve serial stable ancestry, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
+#150 specification is complete locally on `issue-150-ansi-esc-snapshot` from stable 393c5eb. Read the [ESC snapshot derivation](version/3.0/research/issue-150-ansi-esc-snapshot.md). Exact prior evidence gives the live-to-CSI saved-slot overwrite; explicit logical payload/ownership, current-target/protection, empty/lifetime and failure rules complete the profile without pointer cloning or a new VT-102 requirement. Ten baseline hashes, independent ownership/state vectors, 708 target cases, lifetime cases and full lint/link/diff pass (6,367 links); report unchanged/zero comments. Publish separately, consolidate actual head with identical tree and audit before resuming monitoring. No original investigation/execution. Latest issue check 20:08:54Z found no newer report; next due about 20:18:54Z. Preserve serial ancestry, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
 
 ## Ground rules
 
