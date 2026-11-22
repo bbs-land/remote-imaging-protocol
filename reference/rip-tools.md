@@ -2,6 +2,10 @@
 
 External reference material used for reverse-engineering RIPscrip behavior, formats, and rendering details lives **outside this repository**, under **`~/src/rip-tools/`** - always use this directory so paths are consistent across sessions and machines. `~/` means the user's home (profile) directory; on Windows that is not literally `~/` (use the profile directory, e.g. `%USERPROFILE%`) unless you are in an environment like MSYS2 bash (aka Git Bash) that resolves it. This page catalogues what is there and where each piece came from.
 
+## Local workspace mapping
+
+For the serial issue investigation begun 2026-11-16, the user authorized `/usr/home/admin/RIP/rip-tools/` as a persistent mirror of the catalogue root `~/src/rip-tools/`. Relative paths below retain their meaning under that root. The [research backlog](../version/3.0/research/issue-backlog.md) records active work.
+
 ## Reference repositories
 
 Peer repositories cloned for reference:
@@ -46,6 +50,7 @@ Original-era binaries and documents for reverse-engineering reference, with prov
 | `artifacts/ripterm-1.52/RIPTERM.ZIP` | RIPterm v1.52 (DOS) - `RIPTERM.EXE`, `RIPTERM.FNT`, `.ICN` icons, docs | https://archive.org/details/RIPTERM_ZIP |
 | `artifacts/ripterm-2.30/RIPT2300.zip` | RIPterm v2.30 shareware distribution (complete, 1,960,399 bytes): `INSTALL.BAT`, PKZIP self-extracting `SHAREWAR.EXE` (DOS installer), `FILE_ID.DIZ`, `LICENSE.DOC`, `README.DOC` | [VOGONS "Looking for RIPTerm" thread attachment](https://www.vogons.org/viewtopic.php?t=67912) (recovered 2026-08-08); mirrored at [files.bbs.land](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTerm%202.30/RIPT2300.zip) |
 | `artifacts/ripterm-2.30/rtrm2300.exe` | RIPterm v2.30 shareware installer - **truncated/damaged** (1,048,309 of ~2,000,000 bytes; install aborts partway; kept for provenance only) | Wayback: `web.archive.org/web/20000819065943/http://www.telegrafix.com/products/ripterm/rtrm2300.exe` |
+| `artifacts/riptel-3.1-pcmicro/` | PCMicro-patched MSI linked by this repository; installer and flat extracted file set. `ripscrip.dll`: 592,896 bytes, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`. See the [recovery manifest](../version/3.0/research/issue-3-extended-font-style.md#artifact-recovery-2026-11-16). | [files.bbs.land MSI](https://files.bbs.land/rip/RIPTerm%20Installers/RIPTel%203.1/riptel.msi), retrieved 2026-11-16 |
 | `artifacts/riptel-3.10/rtel3100.exe` | RIPtel Visual Telnet v3.10 installer (Win16 NE) - the RIPscrip-3 client | Wayback: `web.archive.org/web/20010411110821/http://www.telegrafix.com/products/riptel/rtel3100.exe` |
 | `artifacts/ripaint-1.52/RIPAINT.ZIP` | RIPaint v1.52 (DOS) - includes sample `.RIP` scripts | https://archive.org/details/RIPAINT_ZIP |
 | `artifacts/docs/RIP2C-Library-Manual.pdf` | TeleGrafix RIP 2 C Library manual (SDK-era 2.x documentation) | https://archive.org/details/rip-2-c-library-manual |
@@ -60,3 +65,7 @@ Original-era binaries and documents for reverse-engineering reference, with prov
 | `ripterm-2.3/` | Redundant unpack of `artifacts/ripterm-2.30/RIPT2300.zip` - all 251 files under `extracted/` are byte-identical to `artifacts/ripterm-2.30/extracted/`, and its top-level files match the zip entries exactly. No unique content; no in-repo page cites it. **Recommended for removal.** | Unpacked from `artifacts/ripterm-2.30/RIPT2300.zip` |
 
 When adding a new artifact, keep this provenance table up to date. RIPdraw has not yet been located in any archive.
+
+## Online GDI boundary references
+
+The [rounded-rectangle investigation](../version/3.0/research/issue-38-rounded-rectangle-geometry.md) directly executes RIPtel 3.1 but separately consults Microsoft's [RoundRect API](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-roundrect) and Wine's **published Windows-conformance vectors**, not its renderer as a RIP oracle. Online-only sources, no clone/download retained: wine-mirror/wine commit **433ffc868d5daae7fb4c4640028abe4295e0ab57**, [gdi32/tests/path.c](https://github.com/wine-mirror/wine/blob/433ffc868d5daae7fb4c4640028abe4295e0ab57/dlls/gdi32/tests/path.c) and [gdi32/tests/bitmap.c](https://github.com/wine-mirror/wine/blob/433ffc868d5daae7fb4c4640028abe4295e0ab57/dlls/gdi32/tests/bitmap.c). The issue note records hashes, exact cases and their limits; no new original-Windows raster run is claimed.
