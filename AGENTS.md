@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#128 is active on `issue-128-auto-stamp-redraw` from stable a857052. Read the [derivation](version/3.0/research/issue-128-auto-stamp-redraw.md). Resolve converted CLIPBOARD face/source/label redraw extents and provider skip paths, plus intentional offscreen capture destination handoff versus external stale-generation cancellation. Preserve #27/#119/#124, opaque host slot, one-pass permissions/bounds, no automatic activation and 1.54. Initial refresh started 2026-11-22T01:03:45Z: exactly #128 uncovered among 64 issues/62 PRs, zero comments and no newer discussion/inline/review feedback. No original/client/UI/probe execution or obsolete-client bug investigation; keep trailers, FastFont separation and temporary cleanup.
+#128 specification is ready on `issue-128-auto-stamp-redraw` from stable a857052. Read the [derivation](version/3.0/research/issue-128-auto-stamp-redraw.md): primary flag-64 same-destination ignore guard controls over legacy self-replacement/fallback. Explicit F/H/C geometry and source crop preserve original face/hit/label layout; actual selected/unselected redraws run common providers, while undo-only cleanup does not. A stale helper fallback does not authorize label rebinding. Hash/call/byte/mask/geometry/provider checks and lint/link/diff pass (6,126 links); report unchanged with zero comments at 2026-11-22T01:13:50Z. Publish separately, consolidate actual head and audit all feedback/coverage/ancestry. Preserve earlier contracts, FastFont separation, Codex trailers and temporary cleanup; no original/client/UI/probe execution or obsolete-client bug investigation.
 
 ## Ground rules
 

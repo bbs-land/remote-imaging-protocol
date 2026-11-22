@@ -99,3 +99,7 @@ git diff --check
 Button **300,431**, table **85,014** and bitmap **5,035** checks pass. Repository formatting/link checks pass (5,216 links before final note links); final publication checkpoint records the final total. No original artifact/text/assets changed. All task-scoped native build directories are removed by wrapper EXIT; no Wine, desktop GUI, real bitmap/snapshot files or retained /tmp debug outputs were used.
 
 Delivered as [PR #61](https://github.com/bbs-land/remote-imaging-protocol/pull/61), dependent on #60. Specification commit **001b39c**; issue-only comparison starts at **54e46e2**. Final required checks: formatting pass, **0 bad of 5,216 links**, diff check pass, 300,431/85,014/5,035 native button/table/bitmap checks. No task temporary paths remain. Next issue is #28 after refreshed creation-order queue; do not merge or manually close #27.
+
+## Documentary auto-stamp follow-up
+
+[#128's reconciliation](issue-128-auto-stamp-redraw.md) adds the primary draft's same-effective-destination ignore guard and explicit separate inner-face/baked-footprint/crop policy. The earlier controlled capture/flag fixtures establish their stated source boundaries; they do not authorize a destructive same-target helper fallback or prove an extra logical allocation pixel. Successful field/style flag mutation for allowed captures remains adopted. No prior native tests were rerun.
