@@ -54,6 +54,10 @@ Repository lint, 6,146 links across 253 files and diff checks pass. Refresh star
 
 [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), specification 3d7161d, is open/ready and closes exactly #130. It continues #129 with an issue-only comparison from stable 21728db. Consolidate the actual source head by an ordinary merge and exact-tree check before #131. Scoped API request files were removed automatically.
 
+## Final consolidation checkpoint
+
+[PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133) actual head **0788745** is normal-merged into fork stable through **9d666f8**, with an identical source tree before workflow notes. The full audit started 2026-11-22T02:52:54Z verifies all 66 current PR heads ancestral, all 67 open RealDeuce issues covered and no newer report/comment/review feedback. See the [backlog merge ledger](issue-backlog.md#resume-here). No active investigation remains; source/policy boundaries, co-author and cleanup requirements persist.
+
 ---
 
 [Research backlog](issue-backlog.md) · [TEXT_METRIC](../ripscrip/3.0-text-output-and-fonts.md#rip_text_metric)

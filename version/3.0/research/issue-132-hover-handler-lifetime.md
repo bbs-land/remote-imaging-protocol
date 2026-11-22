@@ -41,6 +41,10 @@ objdump -d --start-address=0x10013e61 --stop-address=0x10013efd ../rip-tools/art
 objdump -d --start-address=0x100230a8 --stop-address=0x100234d2 ../rip-tools/artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll
 ```
 
+## Final consolidation checkpoint
+
+[PR #135](https://github.com/bbs-land/remote-imaging-protocol/pull/135) actual head **04ef07e** is normal-merged into fork stable through **c1cd652**, with an identical source tree before workflow notes. The full audit started 2026-11-22T02:52:54Z verifies all 66 current PR heads ancestral, all 67 open RealDeuce issues covered and no newer report/comment/review feedback. See the [backlog merge ledger](issue-backlog.md#resume-here). No active investigation remains; source/policy boundaries, co-author and cleanup requirements persist.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)

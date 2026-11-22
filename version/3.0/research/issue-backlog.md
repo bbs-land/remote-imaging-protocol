@@ -4,7 +4,17 @@
 
 ## Resume here
 
-**#132 delivered; final audit pending.** [PR #135](https://github.com/bbs-land/remote-imaging-protocol/pull/135), completion d135de6, is open/ready and closes exactly #132. Read the [hover lifecycle derivation](issue-132-hover-handler-lifetime.md). Source/corpus/call/byte, independent transition/definition, repository-wide lint/link/diff checks pass (6,188 links). Consolidate actual head into fork stable, then audit all report bodies, feedback, coverage and current PR ancestry. Corrected #134 actual head 6797f9b is already normal-merged through stable 8a33e47 with an identical tree; #131 preserves the adopted SOFT template lifetime.
+**#130/#131/#132 complete; no active investigation.** [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), [PR #134](https://github.com/bbs-land/remote-imaging-protocol/pull/134) and [PR #135](https://github.com/bbs-land/remote-imaging-protocol/pull/135) are open/ready, each closing exactly its own issue. Read the [TEXT_METRIC/TEXTDATA](issue-130-text-metric-state.md), [grouped-button](issue-131-grouped-button-lifetime.md) and [hover lifetime](issue-132-hover-handler-lifetime.md) derivations for recovered facts versus explicit portable completion. Source hashes/calls/critical bytes, font/state/publisher/definition/callback vectors and repository checks pass.
+
+| Issue / PR | Specification/completion | Actual source head | Fork stable normal merge |
+| --- | --- | --- | --- |
+| #130 / #133 | 3d7161d | 078874549dd1df52cc1481fad6d22fb8d082fb74 | 9d666f8468036e5517f2f1395790b52bf6810c28 |
+| #131 / #134 | 9a64f5b; SOFT clarification 6797f9b | 6797f9beabb90cd317c5414755b50a00f01a415d | 8a33e47abeac60f6c11fad2196c5c39264b93079 |
+| #132 / #135 | Draft ad96ee6; completion d135de6 | 04ef07e25e8d0551cb997dda4b7f6d917bbdda9b | c1cd6528a10829b1c109b1f739a89331cf770739 |
+
+Every merge matched its source tree before workflow notes. #131 initially merged beea018 through 6a903af; the later source cross-check made the adopted SOFT template-preservation rule explicit, and its corrected actual head is in the ledger. #132 normal-merges that correction before publication. Audit started **2026-11-22T02:52:54Z**, overlapping **2026-11-22T01:16:39Z**, verifies all **66 current open upstream PR heads** ancestral, all **67 open RealDeuce issues** covered, unchanged #130/#131/#132 bodies, no other newer report update and no discussion/inline/review feedback. Pagination was checked for issues, PRs, closing references and review histories; discussion/inline comments were retrieved with paginated since queries. Refresh from the query-start overlap before future work.
+
+All **19 new commits** through the content merge carry Codex trailers; the final workflow checkpoint retains the trailer. Full lint and diff checks pass; final workflow formatting and link validation pass with **0 bad of 6,208 links across 255 files**. Only Markdown reference/research/workflow files changed; original text/assets and 1.54 are untouched. FastFont branch 5966e1b is unchanged and outside stable. No original/client/UI/probe/provider execution or obsolete-client bug investigation, no task-owned temporary directory and no upstream merge/manual issue/PR closure. Scoped API request files were removed automatically.
 
 **#130 delivered; #131 next.** [PR #133](https://github.com/bbs-land/remote-imaging-protocol/pull/133), specification 3d7161d, is open/ready and closes exactly #130. Branch `issue-130-text-metric-state` starts at stable 21728db. The [derivation](issue-130-text-metric-state.md) records source/formula/state boundaries and checks (6,146 links). Consolidate actual head before #131; preserve earlier answers and separate FastFont research.
 
