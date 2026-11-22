@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #140 SCB/RCB full PORT-family entry/index scope with notes, a separate PR and stable consolidation.
+- [ ] Consolidate #140 / PR #141 and complete the feedback/coverage/ancestry audit.
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 

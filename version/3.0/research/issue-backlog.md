@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#140 ready.** `issue-140-port-backup-entry-scope` starts at stable 95493d2. Read the [scope derivation](issue-140-port-backup-entry-scope.md). Entries/index/Format now align with full PORT capture and empty assigned-pointer state, with documentary source wording qualified and no new PCB/screen semantics. Five source hashes, editorial syntax/scope and full lint/link/diff checks pass (6,256 links). Publish separately, consolidate actual head and audit feedback/coverage/ancestry. Next ten-minute check due about 07:49:11Z; user explicitly confirmed research-and-PR processing.
+**#140 delivered; consolidation/audit pending.** [PR #141](https://github.com/bbs-land/remote-imaging-protocol/pull/141), specification cba3d4b, is open/ready and closes exactly #140. Read the [scope derivation](issue-140-port-backup-entry-scope.md). Five baseline hashes, editorial scope/syntax and full lint/link/diff checks pass (6,256 links). Consolidate actual head, audit feedback/coverage/ancestry, then return to the in-session ten-minute watch; next due about 07:49:11Z. User explicitly confirmed research-and-PR processing for new reports.
 
 **#138 complete; in-session monitoring continues.** [PR #139](https://github.com/bbs-land/remote-imaging-protocol/pull/139), specification **352c293**, is open/ready and closes exactly #138. Actual source head **bbccbcb42c7e5dea96f5d52fd606a8bffc37b99b** is normal-merged through fork stable **3fb29f01e3e8dfa20c5a061c8dc5010f2d4dcf3f**, with an identical source tree before workflow notes. The [index derivation](issue-138-backup-index-summaries.md) records baseline hashes and editorial reconciliation with accepted #26/#136 full entries. No new semantics or native investigation.
 
