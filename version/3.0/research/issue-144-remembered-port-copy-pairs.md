@@ -53,7 +53,9 @@ Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0
 
 [PR #145](https://github.com/bbs-land/remote-imaging-protocol/pull/145) is open/ready with specification **e3aec0a914e5d3d9d4aac337b7a70abb4f4dd8a5** and exactly #144 as its closing reference; GraphQL verifies no closing-reference pagination overflow. The issue body/update time and zero comments are unchanged. Scoped `TemporaryDirectory(prefix='rip-144-pr-')` request payloads were removed automatically. No upstream merge or manual closure.
 
-Normal-merge the actual completed source branch head into fork stable with an identical source tree before workflow notes, audit all coverage/feedback/ancestry and preserve the separate FastFont branch/co-author trailers. Then resume active-session ten-minute monitoring; no persistent scheduler is installed.
+Actual completed source head **1e9d95d4fa80c59dca9002b50f36ae689b3d2ac3** is normal-merged through fork stable **e223de5e37b0b06544b7ebe44f34f3ae0bdb3f59**. The merge's tree exactly matched that source before workflow notes; both branches are pushed. Audit started **2026-11-22T08:45:44Z**, overlapping 08:18:13Z: all 71 open PR heads ancestral, all 72 open RealDeuce issues covered, unchanged #144 with zero comments, no other report update and no discussion/inline/review feedback. All issue/PR/closing/review collections and REST since-comment pagination were checked.
+
+All four new commits through the content merge carry Codex trailers; final workflow attribution is retained. Eleven allowed Markdown paths changed, range diff is clean, FastFont 5966e1b is unchanged/nonancestral and no task-owned temporary directory remains. Full lint/link/diff and source/independent arithmetic-state checks pass; link count before the final workflow checkpoint is 0 bad of 6,317 across 260 files. Original text/assets/1.54 are untouched; no upstream merge/manual closure or original execution. No active investigation remains. Resume active-session ten-minute checks with the user-confirmed serial research-and-PR workflow; no persistent scheduler.
 
 ---
 
