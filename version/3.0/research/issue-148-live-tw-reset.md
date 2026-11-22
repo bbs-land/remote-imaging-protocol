@@ -47,9 +47,11 @@ The reference centralizes the live recipe and target/selector/failure tables und
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass, with **0 bad of 6,349 links across 262 files**. A focused prose-spacing scan passes. Before publication, #148 retains its original body/update time and zero comments. The 17:46:28Z all-author issue check found no newer report; next due about 17:56:28Z.
 
-## Next action
+## Delivery and next action
 
-Publish full state/selector/query/order/failure tables and independent ordinary/extended/inactive/protected and sequential-CUR examples. Verify source hashes and independent state transitions, format/lint/link/diff, refresh/publish separately, normal-merge actual PR head into stable with an identical source tree before workflow notes, audit feedback/coverage/ancestry and return to ten-minute monitoring.
+[PR #149](https://github.com/bbs-land/remote-imaging-protocol/pull/149) is open/ready, specification **79e92a8846a696efac0a12fb80341615c4d8094a**, with exactly #148 as closing reference and no pagination overflow. The report retains its initial body/update time and zero comments. Scoped `TemporaryDirectory(prefix='rip-148-pr-')` request files were removed automatically. No upstream merge/manual closure or original execution.
+
+Normal-merge the actual completed source head into fork stable with an identical source tree before workflow notes, audit all coverage/feedback/ancestry, preserve FastFont separation and Codex trailers, then resume active-session ten-minute monitoring. No persistent scheduler.
 
 ---
 
