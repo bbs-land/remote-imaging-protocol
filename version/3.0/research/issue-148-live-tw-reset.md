@@ -47,11 +47,13 @@ The reference centralizes the live recipe and target/selector/failure tables und
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass, with **0 bad of 6,349 links across 262 files**. A focused prose-spacing scan passes. Before publication, #148 retains its original body/update time and zero comments. The 17:46:28Z all-author issue check found no newer report; next due about 17:56:28Z.
 
-## Delivery and next action
+## Delivery and stable consolidation
 
-[PR #149](https://github.com/bbs-land/remote-imaging-protocol/pull/149) is open/ready, specification **79e92a8846a696efac0a12fb80341615c4d8094a**, with exactly #148 as closing reference and no pagination overflow. The report retains its initial body/update time and zero comments. Scoped `TemporaryDirectory(prefix='rip-148-pr-')` request files were removed automatically. No upstream merge/manual closure or original execution.
+[PR #149](https://github.com/bbs-land/remote-imaging-protocol/pull/149) is open/ready, specification **79e92a8846a696efac0a12fb80341615c4d8094a**, with exactly #148 as closing reference. Actual source head **174853b8aad354448f88335cdfb900e2469f3a8b** is normal-merged through fork stable **32fe068f30a9197b4794d7dc5e77a2852a7f839d**, with an identical source tree before workflow notes. Scoped `TemporaryDirectory(prefix='rip-148-pr-')` request files were removed automatically.
 
-Normal-merge the actual completed source head into fork stable with an identical source tree before workflow notes, audit all coverage/feedback/ancestry, preserve FastFont separation and Codex trailers, then resume active-session ten-minute monitoring. No persistent scheduler.
+Audit started **2026-11-22T17:49:36Z**, overlapping 15:04:45Z, verifies all 73 open PR heads ancestral, all 74 open RealDeuce issues covered, unchanged #148 body/update time and zero comments, no other report update and no discussion/inline/review feedback. Issue/PR/closing/review pagination and REST since-comment pages were checked. All four new commits through the merge carry Codex trailers; final checkpoint retains attribution. Nine allowed Markdown paths changed; FastFont 5966e1b is unchanged/nonancestral and original text/assets/1.54 untouched. No task-owned temporary directory, upstream merge, manual closure or original execution.
+
+Full content lint/link/diff and independent source/state checks pass; link validation before the final workflow checkpoint reports 0 bad of 6,353 across 262 files. No active investigation remains. Resume active-session ten-minute monitoring and the user-confirmed research-and-PR/stable workflow; no persistent scheduler.
 
 ---
 
