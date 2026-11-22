@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#140 is active on `issue-140-port-backup-entry-scope` from stable 95493d2. Read the [SCB/RCB scope derivation](version/3.0/research/issue-140-port-backup-entry-scope.md). Reconcile inherited clipboard-only entries/index/Format with the accepted full PORT family, including saved empty pointer without deleting usable definitions/offscreen snapshot; no new PCB/screen semantics or original-client investigation. The user explicitly confirmed research-and-PR processing for new reports. Last ten-minute check 07:39:11Z detected #140; next due about 07:49:11Z. Preserve serial delivery/stable ancestry, prior contracts, FastFont separation, Codex trailers and temporary cleanup; monitoring requires the active session, no persistent scheduler.
+#140 specification is ready on `issue-140-port-backup-entry-scope` from stable 95493d2. Read the [SCB/RCB scope derivation](version/3.0/research/issue-140-port-backup-entry-scope.md). Individual entries/index now use accepted full PORT capture, preserve empty assigned pointer without deleting usable snapshot, correct RCB Format and qualify the older narrow wording. Five starting-file hashes, editorial scope/syntax checks and full lint/link/diff checks pass (6,256 links). Publish separately, consolidate actual head and audit feedback/coverage/ancestry, then return to monitoring. User explicitly confirmed research-and-PR processing. Last ten-minute check 07:39:11Z detected #140; next due about 07:49:11Z. No persistent scheduler; preserve prior contracts, FastFont separation, Codex trailers and temporary cleanup, with no original/client/UI/probe execution or bug investigation.
 
 ## Ground rules
 
