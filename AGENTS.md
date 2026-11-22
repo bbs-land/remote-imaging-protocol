@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#144 is active on `issue-144-remembered-port-copy-pairs` from stable 95ef683. Read the [remembered-pair derivation](version/3.0/research/issue-144-remembered-port-copy-pairs.md). Complete explicit portable PCB selector/units/producer/publication/lifecycle rules from primary docs and accepted #10/#42/#128/#140 inputs; no new original-client/probe/bug investigation or execution. Preserve protected-content copying and auto-stamp logical C versus GET_IMAGE extent differences. User confirmed research-and-PR processing. Last issue check 08:20:01Z detected #144; next due about 08:30:01Z. Keep in-session monitoring and serial delivery/stable ancestry, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
+#144 specification is complete locally on `issue-144-remembered-port-copy-pairs` from stable 95ef683. Read the [pair derivation](version/3.0/research/issue-144-remembered-port-copy-pairs.md): optional final-clipped DEVICE viewport-relative pairs, explicit PCB selectors/COPY/republication, named producer timing, protection/failure/overlap and lifecycle/whole-PORT ownership are labeled portable completion. Eight baseline hashes and independent geometry/overlap/state checks pass; no new original-client/probe/bug investigation or execution. Finish repository validation, refresh/publish/consolidate separately and audit before returning to monitoring. Last all-author issue check 08:41:03Z found no newer report; next due about 08:51:03Z. User explicitly confirmed research-and-PR processing; preserve serial stable ancestry, FastFont separation, Codex trailers and temporary cleanup. No persistent scheduler.
 
 ## Ground rules
 
