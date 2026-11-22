@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #150 ANSI ESC 7/ESC 8 snapshot payload/target/lifetime/ownership with a separate PR and stable consolidation/audit.
+- [ ] Consolidate #150 / PR #151 actual head into fork stable and audit coverage/feedback/ancestry.
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 

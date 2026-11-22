@@ -47,9 +47,11 @@ The payload/comparison/lifetime tables explicitly separate native evidence from 
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; link validation reports **0 bad of 6,367 across 263 files**. A focused word/number-spacing scan passes. Before publication, #150 retains its original body/update time and zero comments. Latest all-author issue check 20:08:54Z found no newer report; next due about 20:18:54Z.
 
-## Next action
+## Delivery and next action
 
-Publish compact payload/comparison/lifetime tables and exact current-0→5, CSI-overwrite, changed geometry/font, source deletion/redefinition, protection/inactivity, repeated/uninitialized and failure examples. Verify source hashes and independent ownership/state/lifetime vectors, format/lint/link/diff, refresh/publish a separate PR, normal-merge its actual head into stable with an identical tree, audit and return to the ten-minute watch.
+[PR #151](https://github.com/bbs-land/remote-imaging-protocol/pull/151) is open/ready, specification **1dfb4413578e1227976f4a9499db9d5c6bc8cf9e**, with exactly #150 as closing reference and no closing pagination overflow. The report retains its initial body/update time and zero comments. Scoped `TemporaryDirectory(prefix='rip-150-pr-')` request files were removed automatically. No upstream merge/manual closure or original execution.
+
+Normal-merge the actual completed source head into fork stable with an identical tree before workflow notes, audit feedback/coverage/ancestry, preserve separate FastFont work and Codex trailers, then continue active-session ten-minute monitoring. No persistent scheduler.
 
 ---
 
