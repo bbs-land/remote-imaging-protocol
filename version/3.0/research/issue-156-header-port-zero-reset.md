@@ -52,9 +52,13 @@ The existing fingerprinted inspector rereads source ranges: RVA **0x16ec1**, len
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass (**0 bad of 6,423 links across 266 files**); exact literals remain outside tables and prose spacing review passes. Pre-publication #156 body is unchanged with zero comments. Publish separately, merge the actual source head into fork stable with identical-tree proof, audit feedback/coverage/ancestry and resume ten-minute monitoring. No original-software bug investigation is required.
 
-## Delivery checkpoint
+## Delivery and continuation
 
-[PR #157](https://github.com/bbs-land/remote-imaging-protocol/pull/157) is OPEN/non-draft and closes exactly #156. Specification **eb6149cb84e23e92608dd18028a9d903582c0e27**. This metadata checkpoint becomes the complete source head: push, normal-merge its actual commit to fork stable with identical-tree proof, audit all issue coverage/comments/reviews/ancestry and resume the ten-minute watch. No upstream merge/manual closure; temporary API payload directory was removed automatically.
+[PR #157](https://github.com/bbs-land/remote-imaging-protocol/pull/157) is OPEN/non-draft and closes exactly #156. Specification **eb6149cb84e23e92608dd18028a9d903582c0e27**, actual source **dafe5d54a065b31a4d01726ec1e1e0f9ab7c0ffa**, normal fork stable merge **b0dc03e2365752f3f8bf7e9abf644ee3bc3d8dbc**. The merge tree exactly matches the source tree before final workflow notes. No upstream merge/manual closure occurs.
+
+Audit **2026-11-23T01:41:00Z**, overlapping 01:16:14Z (one minute before prior query-start), verifies **78 open RealDeuce issues covered by 77 open PRs**, all actual PR heads ancestral. #156 remains at its initial body hash/update time with zero comments; no other report update or discussion/inline/review feedback. Pagination is checked for issues, PRs, closing references, reviews and REST since-comment pages. Four new commits through merge carry Codex trailers; final checkpoint retains attribution. Nine allowed Markdown paths changed; original text/assets/1.54 and FastFont 5966e1b remain unchanged, FastFont is nonancestral, and the temporary API directory was removed automatically. Full repository lint/link/diff pass; 6,423 links before final metadata.
+
+No active investigation remains. Continue explicitly authorized active-session ten-minute checks and serial research/PR/stable delivery. Last issue check 01:33:57Z, next about 01:43:57Z; future feedback queries overlap at least one minute before 01:41:00Z. No persistent scheduler or obsolete-client bug work.
 
 ---
 
