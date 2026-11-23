@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#174 palette publication is active on `issue-174-palette-publication` from stable **6a7e99c86f8a109ce6792840f4cf2e94391c0be0**. Follow the [derivation](version/3.0/research/issue-174-palette-publication.md) for the primary writes, query, GDI distinctions and portable range rule. #173 / PR #180 is consolidated. Continue with #175 and #179 after delivery. Audit feedback from at least one minute before **17:01:56Z**.
+Issue #174 is delivered in [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181). Consolidate its actual source head into fork stable. The [palette publication derivation](version/3.0/research/issue-174-palette-publication.md) records the result. Continue with #175, #179 in order. Overlap the **17:01:56Z** feedback watermark by at least one minute.
 
 The host crontab checks GitHub every ten minutes independently of this session. The local watcher under `/usr/home/admin/RIP/.rip-issue-watch/` records its last check and queues newly filed issue numbers to this thread. Its first scheduled poll succeeded at **2026-11-23T16:30:00Z**. The **16:40:00Z** tick detected #175 and queued it successfully. The CLI can queue messages, but automatic resumption is unavailable on this host. `codex queue --resume` reports no daemon, and `codex app-server daemon start` reports that the CLI lacks a complete local package. Resume this thread to process queued reports. During active work, continue checking for feedback since at least one minute before the last audit.
 

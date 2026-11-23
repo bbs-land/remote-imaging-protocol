@@ -21,3 +21,7 @@ Started 2026-11-23 on `issue-174-palette-publication` from stable **6a7e99c86f8a
 ## Validation
 
 Verified two DLL descriptors, 11 relative call targets, eight storage/publication/query instruction sequences and the five original data/format literals. Independently checked the published ordinary, near-black and white vectors, 256 component round trips and all 65,792 decoded in-domain start/count pairs. The last-entry fixture checks preserved state on rejection, a single successful write and a zero count. No original rendering or out-of-range handler execution.
+
+## Delivery
+
+[PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181) targets upstream main from the RealDeuce issue branch. Specification commit **b045892ec0c8a758657e634db590fdea697f7fde**. Lint, diff checks and 6,594 Markdown links passed.

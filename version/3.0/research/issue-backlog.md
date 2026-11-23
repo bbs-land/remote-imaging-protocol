@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#174 active.** The [palette publication derivation](issue-174-palette-publication.md) records the primary table and GDI traces on `issue-174-palette-publication` from stable **6a7e99c86f8a109ce6792840f4cf2e94391c0be0**. Complete the portable indexed rule and independent vectors. #175 and #179 are next.
+**#174 delivered.** [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181) reconciles six-bit RGB storage, portable publication, PALENTRY, and the original Windows behavior. See the [derivation](issue-174-palette-publication.md). Consolidate its actual head.
 
 **#173 delivered.** [PR #180](https://github.com/bbs-land/remote-imaging-protocol/pull/180) documents prewrapped text placement and justification. The actual source **02c2d1028e8e8369ea48172bba0b547603e619b4** was normal-merged through **6af89200ac8a0148374db3db2dea813707f807d9** with an identical tree. Read the [derivation](issue-173-prewrapped-region-text.md). The **17:01:56Z** audit verified all 87 open upstream PR heads as ancestors. The outstanding queue is #174, #175, #179.
 
