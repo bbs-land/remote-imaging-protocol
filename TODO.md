@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #174 palette precision, #175 RIP_DEFINE and #179 TXT playback in order. See the [current queue](version/3.0/research/issue-backlog.md).
+- [ ] Resolve #175 RIP_DEFINE and #179 TXT playback in order. See the [current queue](version/3.0/research/issue-backlog.md).
 
 - [ ] Restore automatic resumption of this Codex thread for the host's ten-minute GitHub watch. Polling and durable queuing are installed. See the current checkpoint in [AGENTS.md](AGENTS.md).
 

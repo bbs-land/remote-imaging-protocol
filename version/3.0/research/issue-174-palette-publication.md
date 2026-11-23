@@ -25,3 +25,5 @@ Verified two DLL descriptors, 11 relative call targets, eight storage/publicatio
 ## Delivery
 
 [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181) targets upstream main from the RealDeuce issue branch. Specification commit **b045892ec0c8a758657e634db590fdea697f7fde**. Lint, diff checks and 6,594 Markdown links passed.
+
+Fork stable normal-merged the actual source **a87a555dc2348d5026d408f4186eac1213df3898** through **e672856a728defc3fc82c31f183529a608f9db27**, with an identical tree. The audit at **17:07:02Z**, overlapping **17:00:56Z**, verified 88 open PR heads as ancestors and 91 open RealDeuce issues. The unresolved queue is #175, #179. No new review, issue discussion or inline feedback appeared during that audit.
