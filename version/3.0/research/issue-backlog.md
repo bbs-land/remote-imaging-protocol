@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#201 active.** Branch `issue-201-selective-mkill`. The [derivation](issue-201-selective-mkill.md) records the source and next action.
+
 **#200 delivered.** [PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203) documents the fixed black CLS fill. The actual source **c5b5168c440a7e90707bca53d6fc517912a94edf** was normal-merged through **fe7be8b0bb3d68607a6eb0e5a10f78e735c2eda4** with an identical tree. Read the [derivation](issue-200-cls-black.md). The **23:09:16Z** audit checked 99 open upstream PR heads, all ancestral. Continue in order with #201.
 
 **#199 delivered.** [PR #202](https://github.com/bbs-land/remote-imaging-protocol/pull/202) documents status-bar visibility and geometry. The actual source **d2d195fa5ecb6d443e6590f712821501f542529d** was normal-merged through **fcddec80a9b02378f1e9c395e3abd82956f0073c** with an identical tree. Read the [derivation](issue-199-status-bar.md). The **23:05:47Z** audit checked 98 open upstream PR heads, all ancestral. Continue in order with #200, #201.
