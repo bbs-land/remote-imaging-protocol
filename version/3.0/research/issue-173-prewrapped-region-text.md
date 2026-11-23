@@ -23,3 +23,9 @@ Started 2026-11-23 on `issue-173-prewrapped-region-text` from stable **bff289191
 ## Validation
 
 Verified the original DLL hash, 24 relative call targets, three descriptors, the justify gate and the space and metric sample literals. Independent placement checks cover 960 fit boundaries, five spacing cases (including negative spare width and a one-word overrun), and the published literal two-column sequence with an offset viewport, article 0 end and a font change. These checks use controlled advances and reference ordinates. They make no claim about exact native glyph pixels.
+
+## Delivery
+
+[PR #180](https://github.com/bbs-land/remote-imaging-protocol/pull/180) targets upstream main. Specification commit **e68ce19449eb87cc2ec57c8b71165a2c8577c445**. Changed-file lint, diff and 6,579 links passed. Consolidate the actual head and check fork stable.
+
+At **17:00:00Z** cron queued a new RealDeuce report, [#179](https://github.com/bbs-land/remote-imaging-protocol/issues/179). It was created and updated **16:59:59Z**, zero comments, body SHA-256 `ab5efc99014d08b2282b3d45e0ab5b1d38d9eb38fbc5ea688fd5c962788d61fe`. It follows #174 and #175.

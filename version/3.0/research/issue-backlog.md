@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#173 active.** The [prewrapped region text derivation](issue-173-prewrapped-region-text.md) records the static source on `issue-173-prewrapped-region-text` from stable **bff289191f7230a8adc92dfb3ff14ec00e587c68**. Finish the reference and independent fixtures before publishing. #174 and #175 are next.
+**#173 delivered.** [PR #180](https://github.com/bbs-land/remote-imaging-protocol/pull/180) specifies prewrapped text justification, metrics, absolute placement and article-zero behavior. See the [derivation](issue-173-prewrapped-region-text.md). Consolidate its actual head. #174, #175 and #179 are queued.
 
 **#172 delivered.** [PR #178](https://github.com/bbs-land/remote-imaging-protocol/pull/178) specifies the live rate shared by the wire command and BAUDEMUL, preserved by SOFT and ENV switching, and captured separately by SENV/RENV. See the [derivation](issue-172-local-playback-baud.md). Actual head **b1012d4259a1cb1caad5464107361ed72a2d3130** is normal-merged through **831fdb9d8eb20f80f55a6ca9708fcb883614d1ea** with an identical tree. The **16:52:44Z** audit confirmed all 86 open PR heads are ancestors and only #173 through #175 remain uncovered. Finish them in order.
 
