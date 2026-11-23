@@ -39,3 +39,5 @@ The specification and both playback summaries now describe the shared route. Val
 ## Delivery
 
 [PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183) targets upstream main from the RealDeuce issue branch. Specification commit **e10d9bdd8df677b147dcc35ff449e5b2da25fbf8**. Lint, diff checks and 6,625 Markdown links passed.
+
+Fork stable normal-merged the actual source **54e8d10f86c12b715cbd88ccd1c3472a1fa293fd** through **75cd7bc21eacd7034f59151cf7ca24643e8901cc**, with an identical tree. The audit at **17:19:47Z**, overlapping **17:15:08Z**, verified 90 open PR heads as ancestors and 91 open RealDeuce issues. All open RealDeuce issues have a resolution PR. No new review, issue discussion or inline feedback appeared during that audit.
