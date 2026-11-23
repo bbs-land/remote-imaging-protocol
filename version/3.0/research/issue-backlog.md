@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#175 active.** The [RIP_DEFINE derivation](issue-175-rip-define.md) records the original command, dialog and store paths. Branch `issue-175-rip-define` starts at fork stable `8197107`. Apply the wire and editor policy to the specification, verify and file a PR. #179 follows.
+**#175 delivered.** [PR #182](https://github.com/bbs-land/remote-imaging-protocol/pull/182) documents definition grammar, value selection, confirmation and cancellation. See the [derivation](issue-175-rip-define.md). Consolidate its actual head.
 
 **#174 delivered.** [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181) documents drawing palette storage and publication. The actual source **a87a555dc2348d5026d408f4186eac1213df3898** was normal-merged through **e672856a728defc3fc82c31f183529a608f9db27** with an identical tree. Read the [derivation](issue-174-palette-publication.md). The **17:07:02Z** audit verified all 88 open upstream PR heads as ancestors. The outstanding queue is #175, #179.
 

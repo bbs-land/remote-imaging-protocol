@@ -50,3 +50,7 @@ The source hash, descriptor 91, 12 call targets and both caption literals match 
 ## Resume
 
 The static trace covers the reported parsing, prompt and storage behavior. The wire entry and variable summaries now use the recovered behavior and the portable cancellation rule. Check literal examples and the documentation. Open one PR closing #175 and consolidate its actual head into fork stable before starting #179.
+
+## Delivery
+
+[PR #182](https://github.com/bbs-land/remote-imaging-protocol/pull/182) targets upstream main from the RealDeuce issue branch. Specification commit **af5bb9831b72d82c42c850cca9aa307a4675e2b1**. Lint, diff checks and 6,606 Markdown links passed.

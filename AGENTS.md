@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#175 is active on `issue-175-rip-define`. Read the [RIP_DEFINE derivation](version/3.0/research/issue-175-rip-define.md) for the grammar, editor and storage trace. Apply the portable result, validate and deliver #175 before starting #179.
+Issue #175 is delivered in [PR #182](https://github.com/bbs-land/remote-imaging-protocol/pull/182). Consolidate its actual source head into fork stable. The [RIP_DEFINE grammar and editor policy derivation](version/3.0/research/issue-175-rip-define.md) records the result. Continue with #179 in order. Overlap the **17:07:02Z** feedback watermark by at least one minute.
 
 Issue #174 is delivered in [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181). Fork stable includes its actual source **a87a555dc2348d5026d408f4186eac1213df3898** through merge **e672856a728defc3fc82c31f183529a608f9db27**. The [drawing palette storage and publication derivation](version/3.0/research/issue-174-palette-publication.md) records the source, examples and audit. Work through the remaining queue in order (#175, #179). Query feedback from at least one minute before **17:07:02Z**.
 
