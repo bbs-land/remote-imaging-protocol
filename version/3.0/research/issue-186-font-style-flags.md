@@ -39,6 +39,10 @@ The report's three literals were checked byte-for-byte in the local RIPaint 2 sa
 
 The CONCRPAP wire WORLD size is 1280×960 and the text point `R4OO` is (976,888). At 640×480 with zero viewport origin it projects to (488,444). At either scale the left/top alignment follows the flag table. The [drawing-state derivation](issue-24-drawing-state-ownership.md) separately governs post-draw cursors. No original client or graphics routine was run for this documentation pass.
 
+## Verification
+
+The DLL hash, descriptor 74, 10 instruction signatures and nine exact call targets match. The three RIPaint 2 samples match the recorded hashes and wire fields. An independent alignment model verifies 24,576 combinations of flag values, representative font values and both directions, plus rejection for invalid parameter ranges and protected state. The literal plaque and text anchor project to the listed coordinates. The prior valid style remains selected after both conflicting examples. Repository formatting and link checks passed.
+
 ## Resume
 
-Apply the 3.0 flag table, omitted-group rules and rejection result to the reference. Verify the corpus, individual bits and invalid-after-valid styles, then deliver #186 before #187.
+The reference now describes the 3.0 flag table, omitted-group rules and rejection result. Deliver #186 and consolidate its actual source before starting #187.
