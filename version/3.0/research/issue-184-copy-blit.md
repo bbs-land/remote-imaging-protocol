@@ -53,3 +53,5 @@ The `1g` entry and index now give the width and clipping contract. Validate lite
 ## Delivery
 
 [PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185) targets upstream main from the RealDeuce issue branch. Specification commit **cbbaf345b4efe08d7ebae6874792d0682f7a7aa7**. Lint, diff checks and 6,645 Markdown links passed.
+
+Fork stable normal-merged the actual source **45c51c9f2c971d2cf1bf9118b3c5e6cd3617d7c4** through **c486b826e9a0c3d3e6cfa13902fcaf6abf51400a**, with an identical tree. The audit at **19:31:18Z**, overlapping **19:24:33Z**, verified 91 open PR heads as ancestors and 92 open RealDeuce issues. All open RealDeuce issues have a resolution PR. No new review, issue discussion or inline feedback appeared during that audit.

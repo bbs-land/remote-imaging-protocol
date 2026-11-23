@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-Issue #184 is delivered in [PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185). Consolidate its actual source head into fork stable. The [COPY_BLIT coordinates and exposed-source fill derivation](version/3.0/research/issue-184-copy-blit.md) records the result. Overlap the **19:25:33Z** feedback watermark by at least one minute.
+Issue #184 is delivered in [PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185). Fork stable includes its actual source **45c51c9f2c971d2cf1bf9118b3c5e6cd3617d7c4** through merge **c486b826e9a0c3d3e6cfa13902fcaf6abf51400a**. The [COPY_BLIT coordinates and exposed-source fill derivation](version/3.0/research/issue-184-copy-blit.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **19:31:18Z**.
 
 Issue #179 is delivered in [PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183). Fork stable includes its actual source **54e8d10f86c12b715cbd88ccd1c3472a1fa293fd** through merge **75cd7bc21eacd7034f59151cf7ca24643e8901cc**. The [TXT playback in an active article derivation](version/3.0/research/issue-179-txt-playback.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **17:19:47Z**.
 
