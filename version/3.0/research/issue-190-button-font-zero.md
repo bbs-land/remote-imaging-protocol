@@ -29,7 +29,11 @@ llvm-objdump19 -d --no-show-raw-insn --start-address=0x10042044 --stop-address=0
 
 For the direct FastFont call, `0x2b96e–0x2b98c` maps underline/highlight bits to renderer arg 23: none 0, underline 1, highlight 2, both 3. The key byte is arg 22, underline/highlight color arg 24. `0x42044–0x42076` takes a nonzero hotkey and `0x40e70` matches case-insensitively, latching the first match. `0x420b1` and `0x4213f` retain the logical run and use `0x40d70` for underline. The upright helper at `0x40d9b` draws at baseline +3 DEVICE, from the matched glyph origin to that origin plus its **unspaced** device advance. Highlight recolors only the matched glyph. It does not alter its size or spacing. Prefix, selected byte and suffix come from the one measured run. Outline underline uses the baseline offset even when the older CHR descender test would lower its own mark.
 
-For the original `ACC.RIP` world/device 1024×768 and size 2, Q=22, P=109, both effective DPI values 72. The face rectangle is `[32,300)×[176,204)`, and each of the 17 bytes has 500 font-unit advance. The stated portable policy gives 15 unspaced pixels, one gap, total 272, X=30, top Y=182, baseline Y=198. The nominal run is slightly wider than the face and remains centered. The inherited bitmap calculation gives 408. In a matched N vector the 11-byte prefix advances 176, the glyph is at X=206 and its 15-pixel underline spans `[206,221)` at Y=201. These are protocol arithmetic, independent of ink bounds and the report's downstream capture.
+For the original `ACC.RIP` world/device 1024×768 and size 2, Q=22, P=109, both effective DPI values 72. The face rectangle is `[32,300)×[176,204)`, and each of the 17 bytes has 500 font-unit advance. The stated portable policy gives 15 unspaced pixels, one gap, total 272, X=30, top Y=182, baseline Y=198. The nominal run is slightly wider than the face and remains centered. The inherited bitmap calculation gives 408. Hotkey N first matches the lowercase n in Phone. The eight-byte prefix advances 128, the glyph is at X=158 and its 15-pixel underline spans `[158,173)` at Y=201. These are protocol arithmetic, independent of ink bounds and the report's downstream capture.
+
+## Verification
+
+Verified 18 original call targets, branch and renderer arguments, DLL and RFF fingerprints, the ASCII descender table, and the ACC.RIP sample hash and wire fields. Independent arithmetic reproduced the centered label, descent-adjusted height, and first match, absent match and same-letter hotkey vectors. Formatting, links and diff checks passed.
 
 ## Resume
 
