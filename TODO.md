@@ -8,8 +8,6 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Consolidate #166 / PR #167 actual full source head into stable with identical-tree proof, audit coverage/feedback/ancestry and resume the ten-minute watch.
-
 - [ ] Consolidate #164 / PR #165 actual source head into stable, audit feedback/coverage/ancestry and continue the authorized ten-minute watch.
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.

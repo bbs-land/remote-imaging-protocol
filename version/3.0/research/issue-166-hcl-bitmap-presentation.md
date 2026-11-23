@@ -72,7 +72,7 @@ The abstract model checks normalized/inclusive stored geometry for four source-c
 
 A chosen nearest-neighbor illustration checks full-target RRBB cropped to BB versus an incorrect refitted RB; this is an illustrative renderer profile, not a mandated filter. A separate chosen 2×2 ordered profile checks crop-equivalent image-local phase; it does not claim the old driver's dither algorithm. Original 1.54/text/assets remain unchanged, and exact pre-bitmap filename/scene/audio content is preserved.
 
-The 3.0 playback entry, JPEG boundary cross-link and IMGSTYLE clarification now state the completed contract. Validate formatting/links/diff and refresh #166 before publishing one complete PR, then normal-merge its actual head to stable with identical-tree proof and audit feedback/coverage/ancestry. Last issue check 03:48:19Z, next about 03:58:19Z. No new original/client/UI/provider execution, no bug investigation and no task temporary files.
+The 3.0 playback entry, JPEG boundary cross-link and IMGSTYLE clarification now state the completed contract. Formatting/link/diff checks, #166 refresh, PR publication, actual-head stable merge and audit are completed below. Last issue check 03:48:19Z, next about 03:58:19Z. No new original/client/UI/provider execution, no bug investigation and no task temporary files.
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass after formatting; the link check reports 0 bad of 6,509 across 271 files. Final review checks prose spacing, complete wire literals outside tables, retained filename/scene/audio/JPEG contracts and explicit source-versus-completion boundaries. Publication and stable handoff follow.
 
@@ -80,4 +80,14 @@ Pre-publication checks pass: full `run/lint`, subsequent changed-file lint, `run
 
 ## PR delivery
 
-[PR #167](https://github.com/bbs-land/remote-imaging-protocol/pull/167), specification **85abf203bfde92da5ceb191775e1dec318fa55b6**, is OPEN/non-draft and closes exactly #166. Actual source branch is `issue-166-hcl-bitmap-presentation` from stable 328f819. Merge its full source head including this delivery metadata with an identical-tree proof, then audit coverage/feedback/ancestry. The task-owned `rip-166-pr-` request directory was automatically removed. No upstream merge or manual issue closure.
+[PR #167](https://github.com/bbs-land/remote-imaging-protocol/pull/167), specification **85abf203bfde92da5ceb191775e1dec318fa55b6**, is OPEN/non-draft and closes exactly #166. Actual source branch is `issue-166-hcl-bitmap-presentation` from stable 328f819. Its full source head, including this delivery metadata, is consolidated and audited below. The task-owned `rip-166-pr-` request directory was automatically removed. No upstream merge or manual issue closure.
+
+## Stable consolidation and final audit
+
+[PR #167](https://github.com/bbs-land/remote-imaging-protocol/pull/167), specification **85abf203bfde92da5ceb191775e1dec318fa55b6**, is OPEN/non-draft and closes exactly #166. Actual full source head **e93ccd39e505a641549eecd987a316ce3df089ea**, including delivery metadata, is normal-merged through fork stable **c5c17de5e251cafcf5d0ef0a456bfa26ad496b66**. The merge tree exactly matches that source tree before the final workflow checkpoint.
+
+Audit started **2026-11-23T04:00:06Z**, overlapping **2026-11-23T03:37:17Z**: **83 open RealDeuce issues covered, all 82 open PR heads ancestral**, unchanged #166 original body/update/zero comments and no other report update, discussion/inline comment or review feedback. GraphQL issue/PR/closing/review pagination and REST comment pagination are checked. No upstream merge or manual issue/PR closure.
+
+Four commits through merge carry Codex trailers; the final workflow checkpoint retains attribution. Seven allowed Markdown paths changed; source text/assets/1.54 and prior JPEG/wire-BMP/filename contracts are unchanged, FastFont 5966e1b remains unchanged/nonancestral and no task-owned temporary directory remains. Full lint/link/diff and source/independent checks pass. The models establish protocol arithmetic/state and examples; they do not claim original raster/dither/host parity. No original/client/UI/decoder/provider execution or bug investigation.
+
+No active investigation remains. Resume authorized ten-minute active-session checks: last 03:57:35Z, next about 04:07:35Z. Future feedback overlaps at least one minute before this audit. No persistent scheduler.
