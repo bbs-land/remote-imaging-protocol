@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#201 is active on `issue-201-selective-mkill`. Read the [selective MKILL arity and selectors derivation](version/3.0/research/issue-201-selective-mkill.md) for the trace and next action.
+Issue #201 is delivered in [PR #204](https://github.com/bbs-land/remote-imaging-protocol/pull/204). The [selective mkill derivation](version/3.0/research/issue-201-selective-mkill.md) records source and verification. Consolidate the actual PR head.
 
 Issue #200 is delivered in [PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203). Fork stable includes the actual source **c5b5168c440a7e90707bca53d6fc517912a94edf** through merge **fe7be8b0bb3d68607a6eb0e5a10f78e735c2eda4**. The [fixed black CLS fill derivation](version/3.0/research/issue-200-cls-black.md) records the source, examples and audit. Continue in order with #201. Query feedback from at least one minute before **23:09:16Z**.
 

@@ -47,3 +47,7 @@ Publish [MKILL](../ripscrip/5.1-text-variables.md#mkill), merge the actual PR he
 ---
 
 [Research backlog](issue-backlog.md) · [MKILL](../ripscrip/5.1-text-variables.md#mkill)
+
+## Delivery
+
+[PR #204](https://github.com/bbs-land/remote-imaging-protocol/pull/204) is open for upstream review. Specification commit **d0311ca228598ecc766d25ce1c79544b33a4c40f**.
