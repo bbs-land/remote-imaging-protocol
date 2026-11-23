@@ -52,6 +52,10 @@ The existing fingerprinted inspector rereads source ranges: RVA **0x16ec1**, len
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass (**0 bad of 6,423 links across 266 files**); exact literals remain outside tables and prose spacing review passes. Pre-publication #156 body is unchanged with zero comments. Publish separately, merge the actual source head into fork stable with identical-tree proof, audit feedback/coverage/ancestry and resume ten-minute monitoring. No original-software bug investigation is required.
 
+## Delivery checkpoint
+
+[PR #157](https://github.com/bbs-land/remote-imaging-protocol/pull/157) is OPEN/non-draft and closes exactly #156. Specification **eb6149cb84e23e92608dd18028a9d903582c0e27**. This metadata checkpoint becomes the complete source head: push, normal-merge its actual commit to fork stable with identical-tree proof, audit all issue coverage/comments/reviews/ancestry and resume the ten-minute watch. No upstream merge/manual closure; temporary API payload directory was removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)

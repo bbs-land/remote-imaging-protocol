@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#156 specification is ready on `issue-156-header-port-zero-reset` from stable 1635d61. Read the [PORT-0 initializer note](version/3.0/research/issue-156-header-port-zero-reset.md). Bits 1/8 share full-V/cursor/image/pair initialization, retain prior activation/query and pixels; bit 8 skips it for logical current 0. Nine hashes, two literal headers, 16 state cases, three requested vectors, stage order and original call/store bytes pass. Complete repository checks and report refresh, publish/consolidate/audit separately, then resume ten-minute watch. Preserve source/portable boundaries, originals, attribution, FastFont separation and temporary cleanup; no original execution/bug investigation.
+#156 is delivered in [PR #157](https://github.com/bbs-land/remote-imaging-protocol/pull/157), specification eb6149c, OPEN/non-draft and closing exactly #156. Read the [PORT-0 note](version/3.0/research/issue-156-header-port-zero-reset.md): same invoked initializer fields, retained activation/query/pixels, bit-8 nonzero-current gate, explicit pair absence, nine hashes/two headers/sixteen cases/source bytes and full lint/link/diff (6,423 links). Push this delivery checkpoint, normal-merge actual source head to fork stable with identical-tree proof, audit feedback/coverage/ancestry and resume ten-minute monitoring. No original execution/bug investigation, upstream merge or manual closure. Preserve source/portable limits, original text/assets, FastFont separation, co-author trailers and temporary cleanup.
 
 ## Ground rules
 
