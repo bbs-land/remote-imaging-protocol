@@ -73,9 +73,13 @@ The fingerprinted inspector independently rereads RVA **0x16665**, length **1215
 
 Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 bad of 6,450 links across 267 files**. Exact header/HCL literals remain outside GFM tables and targeted normal word/number spacing passes. #158 body/zero comments are unchanged at pre-publication refresh. The 2026-11-23T02:05:02Z issue check detected #159 (pick-list parsing/HCL), queued next; next poll about 02:15:02Z. Publish #158 separately, merge actual PR source head into fork stable with identical tree, audit all feedback/coverage/ancestry and continue the ten-minute watch.
 
-## Delivery checkpoint
+## Delivery and continuation
 
-[PR #160](https://github.com/bbs-land/remote-imaging-protocol/pull/160) is OPEN/non-draft and closes exactly #158. Specification **7c1a960058336ea79d80506472e77dfad4996a7e**. Push this complete delivery checkpoint, normal-merge its actual source head into fork stable with identical-tree proof, audit feedback/coverage/ancestry and then start queued #159 from updated stable. No upstream merge/manual closure; temporary API payload directory was removed automatically.
+[PR #160](https://github.com/bbs-land/remote-imaging-protocol/pull/160) is OPEN/non-draft and closes exactly #158. Specification **7c1a960058336ea79d80506472e77dfad4996a7e**; actual source **4e87d32598f4eb39ce153ad72e2ef8437871a063**; normal stable merge **1bd119a3a7997ad3e2bfb1a32168db94867ed9e2**. The merge tree exactly matches the actual source-head tree before these workflow notes. No upstream merge/manual closure occurs.
+
+Audit **2026-11-23T02:07:03Z**, overlapping 01:40:00Z, verifies all **78 open PR heads** ancestral, **79 of 80 open RealDeuce issues** covered. **#159 pick-list/HCL is the only uncovered report**, queued next, unchanged initial body hash `ff0e85755e3c696a1bab861e0019fe18ac361659bec20aa2cfe33165b89bfb6e`, update 02:02:26Z, zero comments. #158 body/zero comments unchanged, no other issue update or discussion/inline/review feedback. Pagination checked for issues/PRs/closing references/reviews/REST comments. Four commits through merge carry Codex trailers; eleven allowed Markdown paths changed, originals and FastFont 5966e1b unchanged/nonancestral, no task temporary directory remains. Full lint/link/diff pass; 6,450 links before final metadata.
+
+Start #159 separately from updated fork stable. Continue the active-session ten-minute issue watch (last 02:05:02Z, next about 02:15:02Z); future feedback overlaps at least one minute before 02:07:03Z. No persistent scheduler, original instruction/UI/probe execution or obsolete-client bug investigation.
 
 ---
 

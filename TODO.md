@@ -1,7 +1,6 @@
 # TODO
 
-- [ ] Resolve #158 shared HARD reset field/lifetime profile, publish separately and consolidate/audit stable.
-- [ ] After #158, resolve queued #159 pick-list parsing/HCL behavior separately.
+- [ ] Resolve queued #159 pick-list parsing/HCL behavior separately.
 
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
