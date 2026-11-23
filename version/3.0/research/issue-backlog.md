@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#190 active.** Branch `issue-190-button-font-zero`. The [derivation](issue-190-button-font-zero.md) records the source and next action.
+**#190 delivered.** [PR #194](https://github.com/bbs-land/remote-imaging-protocol/pull/194). Read the [derivation](issue-190-button-font-zero.md).
 
 **#187 delivered.** [PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189) documents classic graphics font zero. The actual source **5b4f83a94b5a79e6f88fd05f71cb9254c42fd259** was normal-merged through **306e8209b8e50b7b302dd06981cf49baeafdc83e** with an identical tree. Read the [derivation](issue-187-classic-font-zero.md). The **20:22:47Z** audit verified all 93 open upstream PR heads as ancestors. The verified queue is empty.
 

@@ -38,3 +38,7 @@ Verified 18 original call targets, branch and renderer arguments, DLL and RFF fi
 ## Resume
 
 Apply the button-specific scope, placement, width and hotkey rules to `4.3`. Validate the reproduction and decoration vector, deliver #190 and consolidate before #191.
+
+## Delivery
+
+[PR #194](https://github.com/bbs-land/remote-imaging-protocol/pull/194) is open for upstream review. Specification commit **938f6e13daafe683b314ee66247166a40d863cc1**.
