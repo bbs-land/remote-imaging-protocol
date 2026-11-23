@@ -1,0 +1,49 @@
+# Issue #187 - Classic graphics font zero
+
+[Backlog](issue-backlog.md) · [Classic font zero](../ripscrip/3.0-text-output-and-fonts.md#classic-font-zero-in-text-and-text_xy) · [Issue #187](https://github.com/bbs-land/remote-imaging-protocol/issues/187)
+
+RealDeuce filed this report **2026-11-23T20:06:34Z**, body SHA-256 `88af6e581308ef41d4a682e7ddc6cad6af021ea98ac5540b99ebd7a3b3bb7ba5`. Work starts on `issue-187-classic-font-zero` from fork stable **c8798c6f789d65deb9cae9302f4297cb390d2fce**, after #186. The **20:15:42Z** audit found only #187 uncovered. The Pommenville signature evidence and classic bit assignments are in the [alignment derivation](issue-186-font-style-flags.md). This issue covers ordinary `T`/`@` graphics rendering for classic font 0. The accepted TEXT_METRIC, cursor update, ANSI cell and 1.54 contracts have their own scope.
+
+## Fingerprints and recipe
+
+- The original PC Micro RIPtel 3.1 `artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll` in the [artifact catalogue](../../../reference/rip-tools.md) is 592,896 bytes, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`.
+- `default.rff` in the same extracted directory is 31,596 bytes and SHA-256 `c734c387ae1902335de818249025c6fcf6d28322eb13dfc82737f2503827706c`, also byte-identical to the runtime's FONTS copy. Its style record at file offset `0xee` is case-insensitive face `DEFAULT Ex` with Expanded flag `0x08`, horizontal percentage 140 and hollow flag 0. Use its supplied outline geometry and advance array. The metrics base is `0x212`. At base+`0x0c`/`0x0e`/`0x10` the values are 1000 units per em, first byte 32, and 224 slots. The signed bounds at base+`0x16` are `(-2,-750,500,250)` in x/y-down design coordinates. The advance table follows the offset stored at base+`0x26`, value `0x4c`. The [RFF layout](../../2.0/techspecs/3.2-fastfont-fonts.md#metrics-block-at-base) gives exact field widths.
+- The [ALPHA 4 font section](../../2.0/ripscrip/3.0-text-output-and-fonts.md#fonts) describes the inherited bitmap graphics default. The [terminal font section](../ripscrip/1.4-terminal-ansi-view.md#font-sizes) still owns the ANSI cell banks.
+
+Read original PE bytes by mapping an RVA through its section's raw pointer plus RVA minus section virtual address. LLVM 19.1.7 uses preferred address `0x10000000 + RVA`. With `DLL` set to the artifact, use the following draw-adapter and initialization ranges.
+
+```sh
+sha256 -q "$DLL"
+llvm-objdump19 -d --no-show-raw-insn --start-address=0x100021a0 --stop-address=0x10002334 "$DLL"
+llvm-objdump19 -d --no-show-raw-insn --start-address=0x10001000 --stop-address=0x1000103d "$DLL"
+llvm-objdump19 -d --no-show-raw-insn --start-address=0x100060ba --stop-address=0x10006163 "$DLL"
+llvm-objdump19 -d --no-show-raw-insn --start-address=0x10041097 --stop-address=0x100411d8 "$DLL"
+```
+
+## Original draw request
+
+- The classic `T` call at `0x202bb` and classic `@` call at `0x20e85` share `0x21a0`. The font-zero branch at `0x21c5` enters the outline draw adapter. `0x22fe` supplies literal `DEFAULT EX` from RVA `0x79170` and `0x2324` calls the same 26-argument `0x40ed0` renderer used for extended fonts. Its face and effect arguments are normal and undecorated. It does not read the current extended font's settings.
+- The size byte table `0x76000` at `0x22ec` maps wire size 1–10 to **11, 22, 33, 44, 56, 68, 78, 90, 101, 112** whole points. The renderer converts to tenths of a point at `0x41097`. These are separate from the 1–10 CHR ratios.
+- The spacing lookup at `0x22d3 → 0x1000` takes index size−1. The selector is a word at `context+0x22 → +0x46`. The ten-byte rows begin at `0x76010`. For selector 4 or above it uses the final row at `0x76038`. `0x60ba–0x6163` selects the row at instance initialization from the main rendering client dimensions: up to 640×350, width at most 640 and height 351–480, width 641–800 and height at most 600, width 801–1024 and height at most 768, and all remaining positive dimensions, respectively. The first two rows match. The lookup supplies the spacing percentage to renderer arg 20. The helper `0x3fd90` computes the adjustment on the individual glyph advance with signed truncation. This differs from the face record's own horizontal scale.
+- The adapter supplies active WORLD X/Y to `0x3fb30` at `0x228a`. At `0x410fb–0x4112f` the engine obtains current client dimensions and computes independent `trunc(72 * device / WORLD)` DPI. Resolution row selection and font DPI are different operations. The relationship uses the main device frame, independent of a port's clipping rectangle.
+- At `0x229b–0x22b5` horizontal supplies internal string/character rotation (`0`, `0`), vertical supplies (`3`, `1`), both a geometric 90° counterclockwise in their respective enum conventions. The result is advance upward and quarter-turned glyphs, with the baseline to the right. `0x21e8–0x2220` maps classic horizontal left/right/center to renderer arg 21 values 0/1/2. Jump table `0x24d0` remaps classic bottom/middle/top/baseline to arg 18 values 3/1/2/0. Arg 19 baseline displacement is zero. The renderer's `0x415c7` takes character rotation first, then the inner table takes string rotation. Upright `0x415fa–0x41672` applies the reference-line shift to Y and the along-run shift to X. Vertical `0x41a03–0x41aa3` applies the reference-line shift to X and along-run shift to Y. These shifts depend on realized metrics including `+0xc8/+0xcc`. The portable calculation below states stable reference lines in design coordinates, without assuming native hint rounding.
+- The draw input and stored cursor are distinct. The shipped positioned caller adds the stored viewport origin to its supplied words at `0x20d2e–0x20d40`. The adapter then converts its candidate via `0x224d → 0x310b8`. `T` takes the existing port cursor at `0x202b2–0x202b5` and also presents the conversion flag. The published contract uses the normal viewport-relative positioned anchor and consumes the stored `T` cursor directly. It does not prescribe those historical mixed-unit steps. Reported `@` fixture has origin zero, so its anchor is (488,444) either way. The separate cursor-store rules from [#24](issue-24-drawing-state-ownership.md#text-cursor-stores) are unaffected.
+- Classic bit 7 still enables lower-right background-color shadow. The zero adapter supplies mode 4 or 0 and a nominal distance 1. The original FastFont engine can scale that distance internally. The classic protocol's one-DEVICE-pixel shadow remains the portable rule. Missing face realization returns before ink in the engine's lookup/failure paths. Use the selected outline face with the existing byte mapping and composition contract.
+
+## Portable placement and exact width
+
+Use the established [ordinary per-byte advance equations](../techspecs/2.4-outline-advance-and-cache.md#ordinary-scalar-advance), with this face's 140% scale and table-selected spacing. Render in upright device coordinates for direction 0, or quarter-turn the glyphs and advance upward for direction 1. The along-run start/end/middle rule uses the actual logical sum, including the last gap. For the cross-run reference use the font's design baseline `y=0`, top `y=-750`, bottom `y=250` or middle `y=-250`. Apply the corresponding perpendicular-axis DPI (Y for horizontal, X for vertical), nominal point size and truncation toward zero. Subtract that signed scaled reference on the cross-run axis (down for horizontal, right for vertical). This predictable reference-line geometry is a portable completion. Hinting, bearings and raster differences can still affect ink bounds. It does not assign new alignment-zone semantics to all RFF faces.
+
+With the reported 640×480 canvas, WORLD 1280×960 and `Y00000209`, Q=22, P=107, Dx=Dy=36. Each of the 18 signature bytes, including the space, has advance 500 design units. Each yields 308 units of 1/1440 inch, 7 DEVICE pixels and zero extra gap. The logical run advance is 126 pixels to X=614. Portable top is 8 pixels above the baseline, giving baseline origin (488,452). There is no claim about an original ink rectangle. A contrasting 800×600 canvas, equal WORLD, size 5 gives Q=56, P=104, and 40 pixels per byte of `AB`. At the same canvas with WORLD height doubled, vertical default anchors are right/top and advance is 19 per byte along Y. The precise vectors are in the specification.
+
+## Verification
+
+Verified the original DLL and RFF fingerprints, three command descriptors, seven call targets, classic argument setup and alignment jump tables. Read all ten size values and 50 spacing bytes, and matched the published rows including the duplicate row. Checked 12 mode boundaries and compared integer and independently expressed rational advances in 56,000 cases. Reproduced the three documented vectors and checked TEXT_XY cursor rules and TEXT_METRIC formulas against the starting revision. The RFF file and original sample were read as bytes. Formatting and link checks passed.
+
+## Resume
+
+The specification now describes font-zero rendering scope, sizing, placement and examples. Deliver #187 and consolidate its actual PR head into fork stable.
+
+## Delivery
+
+[PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189) targets upstream main from `issue-187-classic-font-zero`. Specification commit **ee54529cda77f65cab558ab4a8e1bb57ea5757a7**. Formatting, diff checks and 6,698 Markdown links passed.
