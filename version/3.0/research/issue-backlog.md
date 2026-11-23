@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#179 active.** The [TXT playback derivation](issue-179-txt-playback.md) records the shared parser gate, text path and article result from `issue-179-txt-playback` at stable `367e11a`. Update the linked specification, verify the example and deliver the PR.
+
 **#175 delivered.** [PR #182](https://github.com/bbs-land/remote-imaging-protocol/pull/182) documents RIP_DEFINE grammar and editor policy. The actual source **8d62e50fc1ff26019f9b1b7e0d01c33d3c71a898** was normal-merged through **cff5a0ae4191ad4cd8a1e21a4ec44e91c1773968** with an identical tree. Read the [derivation](issue-175-rip-define.md). The **17:16:08Z** audit verified all 89 open upstream PR heads as ancestors. The outstanding queue is #179.
 
 **#174 delivered.** [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181) documents drawing palette storage and publication. The actual source **a87a555dc2348d5026d408f4186eac1213df3898** was normal-merged through **e672856a728defc3fc82c31f183529a608f9db27** with an identical tree. Read the [derivation](issue-174-palette-publication.md). The **17:07:02Z** audit verified all 88 open upstream PR heads as ancestors. The outstanding queue is #175, #179.
