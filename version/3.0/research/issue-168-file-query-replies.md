@@ -79,7 +79,7 @@ Adopt source-derived ordinary filename and reply bytes, including the bounded AS
 
 **Explicit time completion:** if an otherwise obtained modification timestamp cannot be converted/represented in modes 03/04, use that mode's metadata-unavailable record; mode 02 does not convert timestamps. This supplies a safe boundary rather than investigating a vintage null-localtime path. Ordinary fstat failure zero placeholders and open-failure silence are direct source facts. Initial file-length failure remains its signed L=-1 result if formatting proceeds and no successful alias conversion replaced it; do not flatten this into lookup-miss 0.
 
-Independent validation remains: extract every literal/critical branch/call, construct the 9×2/70-byte BMP and 22-byte legacy calculation, compare all per-mode outcomes and CR/CRLF/no-NUL bytes, test safe ASCII preparation/alias strings without executing original code, review the docs and refresh #168 before PR publication/stable delivery.
+Completed independent validation below: extract every literal/critical branch/call, construct the 9×2/70-byte BMP and 22-byte legacy calculation, compare all per-mode outcomes and CR/CRLF/no-NUL bytes, test safe ASCII preparation/alias strings without executing original code, review the docs and refresh #168 before PR publication/stable delivery.
 
 ## Independent validation
 
@@ -97,10 +97,20 @@ Source date/size/name/line-ending facts and explicit bitmap-domain/time-conversi
 
 ## Publication checkpoint
 
-Content and independent checks complete. Refresh #168 and final prose/links, publish one complete PR closing exactly #168, then normal-merge its actual full source head into fork stable with identical-tree proof and audit feedback/coverage/ancestry. Last all-author poll **06:30:21Z** found none newer; next about **06:40:21Z**.
+Content/independent checks, final report refresh, PR publication and actual-head stable consolidation are complete below. Last all-author poll **06:30:21Z** found none newer; next about **06:40:21Z**.
 
 Final pre-publication review confirms normal prose spacing, exact full wire literals outside GFM tables, all reply separators/endings and unchanged neighboring commands. The reserved numeric field is consumed/ignored; alias timestamps remain those of the opened translated resource. #168 retains original body/update/zero comments. Full lint plus changed-file checks, 6,523 links and diff checks pass; source-byte and independent arithmetic/string/transport checks pass. No task-owned temporary paths were created.
 
 ## PR delivery
 
-[PR #169](https://github.com/bbs-land/remote-imaging-protocol/pull/169), specification **4e8678ceb796d871a8d1f0d216dc61093009935c**, is OPEN/non-draft and closes exactly #168. Source branch `issue-168-file-query-replies` starts at stable 9716850. Normal-merge the actual complete head including this delivery checkpoint into fork stable with identical-tree proof, then audit all coverage/feedback/ancestry. The scoped `rip-168-pr-` request directory was automatically removed. No upstream merge or manual closure.
+[PR #169](https://github.com/bbs-land/remote-imaging-protocol/pull/169), specification **4e8678ceb796d871a8d1f0d216dc61093009935c**, is OPEN/non-draft and closes exactly #168. Source branch `issue-168-file-query-replies` starts at stable 9716850. The actual complete head, including this delivery checkpoint, is consolidated and audited below. The scoped `rip-168-pr-` request directory was automatically removed. No upstream merge or manual closure.
+
+## Stable consolidation and final audit
+
+[PR #169](https://github.com/bbs-land/remote-imaging-protocol/pull/169), specification **4e8678ceb796d871a8d1f0d216dc61093009935c**, is OPEN/non-draft and closes exactly #168. Actual full source head **e9f962eb66419b5a8b812f159b5728e70d8efe5a**, including delivery metadata, is normal-merged through fork stable **2900e843f911b05183620c110e43f381d90abc38**. Its merge tree exactly matches the actual source tree before the final workflow checkpoint.
+
+Audit started **2026-11-23T06:40:27Z**, overlapping **2026-11-23T06:08:31Z**: **84 open RealDeuce issues covered and all 83 open PR heads ancestral**, unchanged #168 original body/update/zero comments and no other report update, discussion/inline comment or review feedback. GraphQL issue/PR/closing/review pagination and REST comment pagination checked. Review updates use updatedAt as well as submission time. No upstream merge or manual issue/PR closure.
+
+Four commits through merge carry Codex trailers; the final workflow checkpoint retains attribution. Eight allowed Markdown paths changed, originals/text/assets/1.54 and adjacent query-chapter commands are unchanged, FastFont 5966e1b remains unchanged/nonancestral and no task-owned temporary directory remains. Full lint/link/diff and source/independent checks pass; content link count is 0 bad of 6,523 across 272 files. Abstract vectors establish protocol string/arithmetic/transport expectations, not native execution or platform metadata parity. No original/client/UI/provider execution or obsolete bug investigation.
+
+No active investigation remains. Latest all-author poll **06:40:42Z** found no newer issue; next about **06:50:42Z**. Continue the explicitly authorized active-session ten-minute research/PR/stable watch, overlapping future feedback queries at least one minute before this audit. No persistent scheduler.
