@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#187 delivered.** [PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189) documents classic graphics font zero. See the [derivation](issue-187-classic-font-zero.md).
+
 **#186 delivered.** [PR #188](https://github.com/bbs-land/remote-imaging-protocol/pull/188) documents classic font alignment and shadow. The actual source **89f357e5233895425d9a8541a9d3110dd7ae8609** was normal-merged through **19980d6600fecde1b002f04a9a31aa0374f316cf** with an identical tree. Read the [derivation](issue-186-font-style-flags.md). The **20:15:42Z** audit verified all 92 open upstream PR heads as ancestors. Continue in order with #187.
 
 **#184 delivered.** [PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185) documents COPY_BLIT coordinates and exposed-source fill. The actual source **45c51c9f2c971d2cf1bf9118b3c5e6cd3617d7c4** was normal-merged through **c486b826e9a0c3d3e6cfa13902fcaf6abf51400a** with an identical tree. Read the [derivation](issue-184-copy-blit.md). The **19:31:18Z** audit verified all 91 open upstream PR heads as ancestors. The queue is empty.

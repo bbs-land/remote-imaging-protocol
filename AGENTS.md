@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+Issue #187 is delivered in [PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189). Consolidate its actual source. The [derivation](version/3.0/research/issue-187-classic-font-zero.md) records the source and verification.
+
 Issue #186 is delivered in [PR #188](https://github.com/bbs-land/remote-imaging-protocol/pull/188). Fork stable includes its actual source **89f357e5233895425d9a8541a9d3110dd7ae8609** through merge **19980d6600fecde1b002f04a9a31aa0374f316cf**. The [classic font alignment and shadow derivation](version/3.0/research/issue-186-font-style-flags.md) records the source, examples and audit. Continue in order with #187. Query feedback from at least one minute before **20:15:42Z**.
 
 Issue #184 is delivered in [PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185). Fork stable includes its actual source **45c51c9f2c971d2cf1bf9118b3c5e6cd3617d7c4** through merge **c486b826e9a0c3d3e6cfa13902fcaf6abf51400a**. The [COPY_BLIT coordinates and exposed-source fill derivation](version/3.0/research/issue-184-copy-blit.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **19:31:18Z**.
