@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Resolve queued #161 playback filename substitutions/bounds separately.
+- [ ] Resolve active #161 playback filename substitutions/bounds, publish separately and consolidate/audit stable.
 
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
