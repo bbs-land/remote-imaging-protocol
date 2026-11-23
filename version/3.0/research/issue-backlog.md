@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#199 active.** Branch `issue-199-status-bar`. The [derivation](issue-199-status-bar.md) records the source and next action.
+**#199 delivered.** [PR #202](https://github.com/bbs-land/remote-imaging-protocol/pull/202). Read the [derivation](issue-199-status-bar.md).
 
 **#197 delivered.** [PR #198](https://github.com/bbs-land/remote-imaging-protocol/pull/198) documents Tab navigation and OPTION(LIST). The actual source **741394e664db11df7fd10e87f9f78e1fca108a37** was normal-merged through **78af40f04da66012587b2f10f66899d95471350e** with an identical tree. Read the [derivation](issue-197-tab-navigation.md). The **22:47:26Z** audit checked 97 open upstream PR heads, all ancestral. The verified queue is empty.
 

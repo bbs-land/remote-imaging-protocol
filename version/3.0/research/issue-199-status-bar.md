@@ -68,3 +68,7 @@ Publish the [status-bar contract](../ripscrip/5.1-text-variables.md#statbar) and
 ---
 
 [Research backlog](issue-backlog.md) · [Status bar](../ripscrip/5.1-text-variables.md#statbar)
+
+## Delivery
+
+[PR #202](https://github.com/bbs-land/remote-imaging-protocol/pull/202) is open for upstream review. Specification commit **dfbd9ba5c0f4dbd0baab7faccd4187abd7a73b9a**.
