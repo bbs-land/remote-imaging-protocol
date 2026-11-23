@@ -48,3 +48,7 @@ Publish the [CLS reference](../ripscrip/5.1-text-variables.md#cls), merge the ac
 ## Delivery
 
 [PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203) is open for upstream review. Specification commit **a170972c62867522d715af7e25484df72c95cc53**.
+
+Fork stable normal-merged the actual head **c5b5168c440a7e90707bca53d6fc517912a94edf** through **fe7be8b0bb3d68607a6eb0e5a10f78e735c2eda4**, with an identical tree. At **23:09:16Z**, overlapping **23:04:47Z**, the audit checked 101 open RealDeuce issues and 99 open PR heads, all ancestral. No new review, discussion or inline feedback appeared. Continue in order with #201.
+
+the selective MKILL report
