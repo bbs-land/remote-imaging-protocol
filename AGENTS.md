@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+#190 is active on `issue-190-button-font-zero`. Read the [classic font zero in button labels derivation](version/3.0/research/issue-190-button-font-zero.md) for the trace and next action.
+
 Issue #187 is delivered in [PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189). Fork stable includes its actual source **5b4f83a94b5a79e6f88fd05f71cb9254c42fd259** through merge **306e8209b8e50b7b302dd06981cf49baeafdc83e**. The [classic graphics font zero derivation](version/3.0/research/issue-187-classic-font-zero.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **20:22:47Z**.
 
 Issue #186 is delivered in [PR #188](https://github.com/bbs-land/remote-imaging-protocol/pull/188). Fork stable includes its actual source **89f357e5233895425d9a8541a9d3110dd7ae8609** through merge **19980d6600fecde1b002f04a9a31aa0374f316cf**. The [classic font alignment and shadow derivation](version/3.0/research/issue-186-font-style-flags.md) records the source, examples and audit. Continue in order with #187. Query feedback from at least one minute before **20:15:42Z**.
