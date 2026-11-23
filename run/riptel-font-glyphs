@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# Render four original Marin F glyphs on a private Xvfb display and Wine prefix.
+# Requires Xvfb, Wine/wineserver and an i686-w64-mingw32 C compiler.
+# All GUI activity is isolated; no inherited display or Wine prefix is used.
+set -euo pipefail
+root="$(cd "$(dirname "$0")/.." && pwd)"
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  echo "Usage: run/riptel-font-glyphs DLL EXTRACTED_FONT_DIRECTORY OUTPUT_DIRECTORY"
+  echo "MINGW_CC may select the Windows i386 compiler. Output: glyph-{0,1,2,3}.pbm and probe.log."
+  exit 0
+fi
+if [[ $# != 3 ]]; then echo "Supply DLL, font directory and output directory; see --help" >&2; exit 2; fi
+deno run --allow-read "$root/run/riptel-inspect" "$1" --verify
+dll_path="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+font_path="$(cd "$2" && pwd)"
+mkdir -p "$3"
+output_path="$(cd "$3" && pwd)"
+probe_dir="$(mktemp -d "${TMPDIR:-/tmp}/riptel-font-glyphs.XXXXXX")"
+xvfb_pid=""
+cleanup() {
+  local result=$?
+  if [[ "$result" != 0 ]]; then
+    for log in winepath xvfb; do
+      if [[ -f "$probe_dir/$log.log" ]]; then cp "$probe_dir/$log.log" "$output_path/$log.log"; fi
+    done
+  fi
+  if [[ -n "$xvfb_pid" ]]; then
+    WINEPREFIX="$probe_dir/prefix" wineserver -k >/dev/null 2>&1 || true
+    kill "$xvfb_pid" >/dev/null 2>&1 || true
+    wait "$xvfb_pid" >/dev/null 2>&1 || true
+  fi
+  rm -rf "$probe_dir"
+}
+trap cleanup EXIT
+mkdir -p "$probe_dir/runtime/FONTS"
+for font_file in "$font_path"/*; do
+  case "$font_file" in
+    *.[rR][fF][fF]|*.[cC][fF][gG]) cp "$font_file" "$probe_dir/runtime/FONTS/" ;;
+  esac
+done
+if [[ ! -f "$probe_dir/runtime/FONTS/atf.cfg" || ! -f "$probe_dir/runtime/FONTS/marin.rff" ]]; then
+  echo "The flat extracted font directory must include atf.cfg and marin.rff" >&2; exit 2
+fi
+"${MINGW_CC:-i686-w64-mingw32-gcc}" -Wall -Wextra -Werror -O0 "$root/run/lib/riptel-font-glyphs.c" -o "$probe_dir/probe.exe"
+Xvfb -displayfd 3 -screen 0 800x600x24 -nolisten tcp 3>"$probe_dir/display" >"$probe_dir/xvfb.log" 2>&1 &
+xvfb_pid=$!
+for ((attempt=0; attempt<100; ++attempt)); do
+  if [[ -s "$probe_dir/display" ]]; then break; fi
+  if ! kill -0 "$xvfb_pid" 2>/dev/null; then cat "$probe_dir/xvfb.log" >&2; exit 1; fi
+  sleep 0.1
+done
+read -r display_number < "$probe_dir/display"
+if [[ ! "$display_number" =~ ^[0-9]+$ ]]; then echo "No isolated display allocated" >&2; exit 1; fi
+export DISPLAY=":$display_number"
+export WINEPREFIX="$probe_dir/prefix"
+export WINEDEBUG=-all
+# winepath also runs only after the isolated display has been established.
+dll_windows="$(wine winepath.exe -w "$dll_path" 2>"$probe_dir/winepath.log")"
+runtime_windows="$(wine winepath.exe -w "$probe_dir/runtime" 2>>"$probe_dir/winepath.log")"
+cd "$output_path"
+if ! wine "$probe_dir/probe.exe" "$dll_windows" "$runtime_windows" >probe.log 2>&1; then
+  tail -30 probe.log >&2
+  exit 1
+fi
+sed -n '/^loaded /,$p' probe.log
