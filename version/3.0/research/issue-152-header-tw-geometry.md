@@ -47,11 +47,13 @@ These are independent arithmetic/abstract-state and wire-decoding checks, not ex
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0 bad of 6,387 across 264 files**. Focused prose-spacing review passes. Before publication #152 retains the initial body/update time and zero comments. The 00:48:04Z all-author issue check found no newer report; next due about 00:58:04Z. #153 remains queued and uncovered.
 
-## Delivery and next action
+## Delivery and stable consolidation
 
-[PR #154](https://github.com/bbs-land/remote-imaging-protocol/pull/154) is open/ready, specification **c4fa5949a7bbad59408ab301a4ddf0b7e2fc62b9**, with exactly #152 as closing reference and no closing pagination overflow. The report retains its initial body/update time and zero comments. Scoped `TemporaryDirectory(prefix='rip-152-pr-')` request files were removed automatically. No upstream merge/manual closure or original execution.
+[PR #154](https://github.com/bbs-land/remote-imaging-protocol/pull/154) is open/ready, specification **c4fa5949a7bbad59408ab301a4ddf0b7e2fc62b9**, closing exactly #152. Actual source head **48171adcdc5b8c2ff24a244480266b1b0a3c6bb4** is normal-merged through fork stable **a92b67558f7573a48b1a123a48e72650ade794f5**, with an identical source tree before workflow notes. Scoped `TemporaryDirectory(prefix='rip-152-pr-')` payloads were removed automatically.
 
-Normal-merge actual completed source head into fork stable with an identical tree, audit while explicitly keeping #153 queued/uncovered, and then start #153 from updated stable. Preserve FastFont separation, Codex trailers and cleanup; continue ten-minute checks during serial work.
+Audit started **2026-11-23T00:54:37Z**, overlapping **2026-11-22T23:16:37Z**: all 75 open PR heads are ancestors; 76 of 77 RealDeuce issues covered; #153 is the only uncovered report and is queued next. #152/#153 bodies/update times and zero comments are unchanged; no other report update or discussion/inline/review feedback. Issue/PR/closing/review pagination and REST since-comment pages were checked. All four new commits through the merge carry Codex trailers; final checkpoint retains attribution. Seven allowed Markdown paths changed, FastFont 5966e1b is unchanged/nonancestral, original text/assets/1.54 untouched and no task temporary directory remains. No upstream merge/manual closure or original execution.
+
+Full content lint/link/diff and independent source/state checks pass; links before final workflow checkpoint report 0 bad of 6,390 across 264 files. No work remains for #152. Start #153 from updated stable in a separate branch/PR, preserving protocol-before-implementation scope and ten-minute checks during serial work.
 
 ---
 
