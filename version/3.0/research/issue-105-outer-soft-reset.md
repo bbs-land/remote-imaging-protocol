@@ -24,7 +24,7 @@ Wire `*` handler `0x1f2f9` flushes pending drawing bookkeeping, skips when graph
 | 0x16277 | Native old-current STYLE border word +0x22 = 1; portable protection disposition below |
 | 0x16287 / 0x16290 | Clear mouse/button instances via 0x27f8f; clear refresh expression via 0x3e41a |
 | 0x16298–0x162eb | Old-current PORT image rectangle all -1 and image flags zero, the adopted #21 exception |
-| 0x162f0 | Reset outline/font engine state through 0x3c1cf; metric lifetime remains the separately adopted policy |
+| 0x162f0 | Reset column/overflow layout through 0x3c1cf with argument 0; retain page/source counters under #4. Outline metric lifetime remains the separate adopted policy |
 | 0x16309 / 0x16315 / 0x1632b | Select PORT 0; delete unprotected nonzero ports through 0x33112(-2,0); rebuild physical PORT 0 |
 | 0x1633b / 0x1634d | Literal-color solid brush, fill physical screen rectangle; clear details below |
 | 0x1636f / 0x1637e | 0x440f0(-2) resets unprotected PAL records; 0x3e2e7 uploads current palette, with no PAL selection change |
