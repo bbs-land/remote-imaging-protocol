@@ -6,7 +6,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 #197 is active on `issue-197-tab-navigation`. Read the [Tab navigation and OPTION(LIST) derivation](version/3.0/research/issue-197-tab-navigation.md) for the trace and next action.
 
-Issue #193 is delivered in [PR #196](https://github.com/bbs-land/remote-imaging-protocol/pull/196). Fork stable includes the actual source **d4629fa8ed68e377a4549383e6eed5c8e743897c** through merge **ceb61a4f09eab6e07692a3e6c962f8438435acf6**. The [the DEFAULT EX placement example derivation](version/3.0/research/issue-193-font-zero-example.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **21:18:29Z**.
+Issue #193 is delivered in [PR #196](https://github.com/bbs-land/remote-imaging-protocol/pull/196). Fork stable includes the actual source **d4629fa8ed68e377a4549383e6eed5c8e743897c** through merge **ceb61a4f09eab6e07692a3e6c962f8438435acf6**. The [DEFAULT EX placement example derivation](version/3.0/research/issue-193-font-zero-example.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **21:18:29Z**.
 
 Issue #191 is delivered in [PR #195](https://github.com/bbs-land/remote-imaging-protocol/pull/195). Fork stable includes the actual source **080c1edbf04c4bc5aee82065494ad35c920ef001** through merge **9183f25104edd3d3289f37d5a293d9131bfd2ea6**. The [classic font zero in article columns derivation](version/3.0/research/issue-191-column-font-zero.md) records the source, examples and audit. Continue in order with #193. Query feedback from at least one minute before **21:15:23Z**.
 
