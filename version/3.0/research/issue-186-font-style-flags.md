@@ -46,3 +46,7 @@ The DLL hash, descriptor 74, 10 instruction signatures and nine exact call targe
 ## Resume
 
 The reference now describes the 3.0 flag table, omitted-group rules and rejection result. Deliver #186 and consolidate its actual source before starting #187.
+
+## Delivery
+
+[PR #188](https://github.com/bbs-land/remote-imaging-protocol/pull/188) targets upstream main from `issue-186-font-style-flags`. Specification commit **5739c2d7059f90f93049fded21f4739592f1a564**. Formatting, diff checks and 6,663 Markdown links passed.
