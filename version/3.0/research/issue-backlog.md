@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#197 active.** Branch `issue-197-tab-navigation`. The [derivation](issue-197-tab-navigation.md) records the source and next action.
+**#197 delivered.** [PR #198](https://github.com/bbs-land/remote-imaging-protocol/pull/198). Read the [derivation](issue-197-tab-navigation.md).
 
 **#193 delivered.** [PR #196](https://github.com/bbs-land/remote-imaging-protocol/pull/196) documents the DEFAULT EX placement example. The actual source **d4629fa8ed68e377a4549383e6eed5c8e743897c** was normal-merged through **ceb61a4f09eab6e07692a3e6c962f8438435acf6** with an identical tree. Read the [derivation](issue-193-font-zero-example.md). The **21:18:29Z** audit checked 96 open upstream PR heads, all ancestral. The verified queue is empty.
 

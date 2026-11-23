@@ -68,3 +68,7 @@ Publish the [traversal and focus contract](../ripscrip/4.2-mouse-fields-and-poin
 ---
 
 [Research backlog](issue-backlog.md) · [Tab navigation](../ripscrip/4.2-mouse-fields-and-pointer.md#tab-navigation) · [OPTION](../ripscrip/5.1-text-variables.md#option)
+
+## Delivery
+
+[PR #198](https://github.com/bbs-land/remote-imaging-protocol/pull/198) is open for upstream review. Specification commit **b7580dd28987363a8536a095db1993fb10893898**.

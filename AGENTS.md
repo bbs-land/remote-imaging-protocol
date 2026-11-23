@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#197 is active on `issue-197-tab-navigation`. Read the [Tab navigation and OPTION(LIST) derivation](version/3.0/research/issue-197-tab-navigation.md) for the trace and next action.
+Issue #197 is delivered in [PR #198](https://github.com/bbs-land/remote-imaging-protocol/pull/198). The [tab navigation derivation](version/3.0/research/issue-197-tab-navigation.md) records source and verification. Consolidate the actual PR head.
 
 Issue #193 is delivered in [PR #196](https://github.com/bbs-land/remote-imaging-protocol/pull/196). Fork stable includes the actual source **d4629fa8ed68e377a4549383e6eed5c8e743897c** through merge **ceb61a4f09eab6e07692a3e6c962f8438435acf6**. The [DEFAULT EX placement example derivation](version/3.0/research/issue-193-font-zero-example.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **21:18:29Z**.
 
