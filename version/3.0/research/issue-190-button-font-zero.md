@@ -42,3 +42,7 @@ Apply the button-specific scope, placement, width and hotkey rules to `4.3`. Val
 ## Delivery
 
 [PR #194](https://github.com/bbs-land/remote-imaging-protocol/pull/194) is open for upstream review. Specification commit **938f6e13daafe683b314ee66247166a40d863cc1**.
+
+Fork stable normal-merged the actual head **6ae37a1826893dc214bcb8da63bd5cc26c08266b** through **c7ca0607af659ad9592b2e8b744dca4918a54b99**, with an identical tree. At **21:10:44Z**, overlapping **21:04:00Z**, the audit checked 97 open RealDeuce issues and 94 open PR heads, all ancestral. No new review, discussion or inline feedback appeared. Continue in order with #191, #193.
+
+The next two reports are #191 (article columns) and #193 (conflicting vertical flags in a font-zero example).
