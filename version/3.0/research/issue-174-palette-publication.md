@@ -18,6 +18,6 @@ Started 2026-11-23 on `issue-174-palette-publication` from stable **6a7e99c86f8a
 - Explicit portable policy: keep `q=floor(c/4)` per component, return q with prefix `6;`, and publish `255` for q=63 or `4q` otherwise. Both valid write forms and later publication use this same result for all 256 logical entries. Near-black substitution, flags and physical slot availability belong to the original GDI boundary. A renderer retaining indexed pixels resolves the new active RGB mapping when it presents them. RGB already stored as pixels retains its own color.
 - For a decoded `D` with valid start and exactly the stated colors, require `num≤256−start`, validate all inputs, and reject the whole command before any store or publication if it fails. A valid zero count is a no-op. No cross-slot behavior, prefix commit, wrap or truncation.
 
-## Next action
+## Validation
 
-Add the shared palette publication rule and exact PALENTRY examples in 2.0, 5.1 and the palette lifecycle, then verify the primary bytes and independent write/publication/selection/range examples. File and consolidate one PR for #174.
+Verified two DLL descriptors, 11 relative call targets, eight storage/publication/query instruction sequences and the five original data/format literals. Independently checked the published ordinary, near-black and white vectors, 256 component round trips and all 65,792 decoded in-domain start/count pairs. The last-entry fixture checks preserved state on rejection, a single successful write and a zero count. No original rendering or out-of-range handler execution.
