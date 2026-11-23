@@ -8,8 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Consolidate #170 / PR #176 into stable and verify the actual head; see [derivation](version/3.0/research/issue-170-local-scene-boundaries.md).
-- [ ] Then resolve #171 FILEEXISTS contract separately from updated stable; report fingerprint is queued in the #170 derivation.
+- [ ] Resolve #171 FILEEXISTS from updated stable. The report fingerprint is recorded in the [local scene derivation](version/3.0/research/issue-170-local-scene-boundaries.md).
 
 - [ ] Then resolve #172 local playback baud, #173 prewrapped text placement, #174 palette precision and #175 RIP_DEFINE in order. Their original report fingerprints are recorded in the #170 derivation.
 
