@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #200, #201 in order. See the [current queue](version/3.0/research/issue-backlog.md).
+- [ ] Resolve #200 the physical CLS fill and #201 in order. See the [current queue](version/3.0/research/issue-backlog.md).
 
 - [ ] Restore automatic resumption of this Codex thread for the host's ten-minute GitHub watch. Polling and durable queuing are installed. See the current checkpoint in [AGENTS.md](AGENTS.md).
 
