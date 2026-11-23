@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Consolidate #153 / PR #155 actual source head into stable, audit coverage/feedback/ancestry and resume the active ten-minute watch.
+- [ ] Resolve #164 RIP_SCROLL coordinates/clipping/fill from primary evidence, open a complete PR and consolidate its actual head into stable; see [derivation](version/3.0/research/issue-164-scroll-contract.md).
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 
