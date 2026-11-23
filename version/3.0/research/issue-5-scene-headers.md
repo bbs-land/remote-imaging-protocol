@@ -141,7 +141,7 @@ The [table lifecycle investigation](issue-16-table-lifecycle.md#header-correctio
 
 ## Later port/TW leaf completion
 
-[#152](issue-152-header-tw-geometry.md) separately completes the TW geometry fields, target-relative cursor home and header indexed erase reconciliation. [#153](issue-153-header-port-clipping.md) independently fingerprints/reads the port helpers and completes the visible full-port RGB-black fill, active/protection gate distinction and temporary clipping scope. The earlier “clipping application” helper name alone is not a no-paint protocol contract. Those notes distinguish static facts from portable completion and do not execute original software or investigate its defects.
+[#152](issue-152-header-tw-geometry.md) separately completes the TW geometry fields, target-relative cursor home and header indexed erase reconciliation. [#153](issue-153-header-port-clipping.md) independently fingerprints/reads the port helpers and completes the visible full-port RGB-black fill, active/protection gate distinction and temporary clipping scope. The earlier “clipping application” helper name alone is not a no-paint protocol contract. Those notes distinguish static facts from portable completion and do not execute original software or investigate its defects. [#156](issue-156-header-port-zero-reset.md) separately completes type-2 bits 1/8: the shared PORT-0 initializer changes viewport/cursor/image/pair metadata while retaining activation/query and pixels; this supersedes “screen geometry” as a complete effect label.
 
 ---
 
