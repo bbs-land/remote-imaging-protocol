@@ -50,3 +50,5 @@ The reference now describes the 3.0 flag table, omitted-group rules and rejectio
 ## Delivery
 
 [PR #188](https://github.com/bbs-land/remote-imaging-protocol/pull/188) targets upstream main from `issue-186-font-style-flags`. Specification commit **5739c2d7059f90f93049fded21f4739592f1a564**. Formatting, diff checks and 6,663 Markdown links passed.
+
+Fork stable contains the actual PR head **89f357e5233895425d9a8541a9d3110dd7ae8609** through normal merge **19980d6600fecde1b002f04a9a31aa0374f316cf**, with an identical source tree. The **20:15:42Z** audit, overlapping **20:10:43Z**, checked 94 open RealDeuce issues and 92 open upstream PR heads, all ancestral. No new review, issue discussion or inline feedback appeared. Continue in order with #187.
