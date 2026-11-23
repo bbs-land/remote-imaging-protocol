@@ -44,3 +44,7 @@ Publish the [CLS reference](../ripscrip/5.1-text-variables.md#cls), merge the ac
 ---
 
 [Research backlog](issue-backlog.md) · [CLS](../ripscrip/5.1-text-variables.md#cls)
+
+## Delivery
+
+[PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203) is open for upstream review. Specification commit **a170972c62867522d715af7e25484df72c95cc53**.

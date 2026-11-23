@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#200 is active on `issue-200-cls-black`. Read the [the physical CLS fill derivation](version/3.0/research/issue-200-cls-black.md) for the trace and next action.
+Issue #200 is delivered in [PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203). The [cls black derivation](version/3.0/research/issue-200-cls-black.md) records source and verification. Consolidate the actual PR head.
 
 Issue #199 is delivered in [PR #202](https://github.com/bbs-land/remote-imaging-protocol/pull/202). Fork stable includes the actual source **d2d195fa5ecb6d443e6590f712821501f542529d** through merge **fcddec80a9b02378f1e9c395e3abd82956f0073c**. The [status-bar visibility and geometry derivation](version/3.0/research/issue-199-status-bar.md) records the source, examples and audit. Continue in order with #200, #201. Query feedback from at least one minute before **23:05:47Z**.
 
