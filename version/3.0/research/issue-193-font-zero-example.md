@@ -19,3 +19,7 @@ The original DLL and DEFAULT.RFF hashes match. Rejected the old 73 value and ind
 ## Resume
 
 Correct the wire field and decimal value together, verify all three examples and publish a focused PR for #193.
+
+## Delivery
+
+[PR #196](https://github.com/bbs-land/remote-imaging-protocol/pull/196) is open for upstream review. Specification commit **ee1ddd853ccb41e4a9efb4c5765b407f556f998f**.
