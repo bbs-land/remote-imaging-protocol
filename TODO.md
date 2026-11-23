@@ -11,9 +11,9 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 - [ ] Resolve #170 local scene source/reply boundaries, open a complete PR and consolidate its actual head into stable; see [derivation](version/3.0/research/issue-170-local-scene-boundaries.md).
 - [ ] Then resolve #171 FILEEXISTS contract separately from updated stable; report fingerprint is queued in the #170 derivation.
 
-- [ ] Consolidate #164 / PR #165 actual source head into stable, audit feedback/coverage/ancestry and continue the authorized ten-minute watch.
+- [ ] Then resolve #172 local playback baud, #173 prewrapped text placement and #174 palette precision in order. Their original report fingerprints are recorded in the #170 derivation.
 
-- [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
+- [ ] Restore automatic resumption of this Codex thread for the host's ten-minute GitHub watch. Polling and durable queuing are installed. See the current checkpoint in [AGENTS.md](AGENTS.md).
 
 - [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and further driver contracts (see `version/3.0/research/issue-backlog.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from implementations - as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08)
