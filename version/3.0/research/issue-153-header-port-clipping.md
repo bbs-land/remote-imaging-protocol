@@ -68,9 +68,13 @@ Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 b
 
 Issue #153 remains unchanged with zero comments at the pre-publication refresh; the 2026-11-23T01:13:34Z all-author check found no newer report. Next issue check is due about 01:23:34Z.
 
-## Delivery and next action
+## Delivery and continuation
 
-[PR #155](https://github.com/bbs-land/remote-imaging-protocol/pull/155) is OPEN, non-draft, with exactly #153 as closing reference. Specification commit **7c69c286223769adee780add24d84a478bdf7cf8** is on `issue-153-header-port-clipping`. No upstream merge/manual closure occurs. This delivery checkpoint will be the complete PR source head: push it, normal-merge that actual head into fork stable with identical-tree proof, refresh all coverage/feedback/ancestry and return to the standing ten-minute issue watch.
+[PR #155](https://github.com/bbs-land/remote-imaging-protocol/pull/155) is OPEN/non-draft and closes exactly #153. Specification commit **7c69c286223769adee780add24d84a478bdf7cf8**, actual source head **a863f45b80fd1fd01fcfe9f38f7ab70c8d0bb555**, normal stable merge **9a9f7c5eb8c13957b6a7e74af37041c047e3c4d6**. The merge tree exactly equals the source-head tree before these workflow notes. No upstream merge/manual closure occurs.
+
+Audit started **2026-11-23T01:17:14Z**, with feedback since 00:53:37Z (one minute before the prior query-start): **77 open RealDeuce issues covered by 76 open PRs**, all actual PR heads ancestral; #153 body/zero comments unchanged; no issue update, discussion/inline comment or review. Issue/PR/closing-reference/review pagination and REST pages were checked. Four new commits through merge carry Codex trailers; nine changed paths are allowed Markdown, original text/assets/1.54 are unchanged, FastFont 5966e1b remains unchanged and nonancestral, and no task-owned temporary directory survives. Repository full lint/link/diff checks pass, with 6,408 links before final workflow metadata.
+
+No active research remains. Continue the explicitly authorized active-session ten-minute issue watch (last 01:13:34Z; next about 01:23:34Z), handling new reports serially with separate complete PRs and stable consolidation. Future feedback queries overlap at least one minute before 01:17:14Z. No persistent scheduler is installed.
 
 ---
 
