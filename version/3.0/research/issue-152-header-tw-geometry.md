@@ -47,9 +47,11 @@ These are independent arithmetic/abstract-state and wire-decoding checks, not ex
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0 bad of 6,387 across 264 files**. Focused prose-spacing review passes. Before publication #152 retains the initial body/update time and zero comments. The 00:48:04Z all-author issue check found no newer report; next due about 00:58:04Z. #153 remains queued and uncovered.
 
-## Next action
+## Delivery and next action
 
-Publish exact field/gate/color tables and encoded header vectors, verify nominal-grid arithmetic and independent target-state/eligibility cases, format/lint/link/diff, refresh #152 and publish/consolidate its separate PR. Audit while retaining #153 as the next uncovered report, then process #153 from updated stable. Continue ten-minute monitoring, co-author attribution and task temporary cleanup.
+[PR #154](https://github.com/bbs-land/remote-imaging-protocol/pull/154) is open/ready, specification **c4fa5949a7bbad59408ab301a4ddf0b7e2fc62b9**, with exactly #152 as closing reference and no closing pagination overflow. The report retains its initial body/update time and zero comments. Scoped `TemporaryDirectory(prefix='rip-152-pr-')` request files were removed automatically. No upstream merge/manual closure or original execution.
+
+Normal-merge actual completed source head into fork stable with an identical tree, audit while explicitly keeping #153 queued/uncovered, and then start #153 from updated stable. Preserve FastFont separation, Codex trailers and cleanup; continue ten-minute checks during serial work.
 
 ---
 

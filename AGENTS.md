@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#152 is complete locally on `issue-152-header-tw-geometry` from stable e6b7834; #153 follows separately. Read the [HEADER TW derivation](version/3.0/research/issue-152-header-tw-geometry.md): retain target font/kind and CSI/query/ANSI state, maximize nominal geometry, home the target rather than an unrelated selected cursor, adopt current graphics PAL index 0 for header erase and distinguish geometry/erase/caret eligibility. Ten hashes, four literal headers, 160 geometry cases, five metric products and color/gate/rectangle checks pass; full lint/link/diff pass (6,387 links). Report unchanged/zero comments. Publish/consolidate actual head with identical tree and audit before #153. No original investigation/execution. Latest issue check 00:48:04Z; next due about 00:58:04Z. Preserve serial ancestry, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
+#152 is delivered in [PR #154](https://github.com/bbs-land/remote-imaging-protocol/pull/154), specification c4fa594, open/ready and closing exactly #152. Read the [HEADER TW note](version/3.0/research/issue-152-header-tw-geometry.md). Ten hashes, literal-header/state/metric/color/gate checks and full lint/link/diff pass (6,387 links). Consolidate actual completed source head with identical tree and audit, explicitly retaining #153 as queued/uncovered, then start #153 from updated stable. No original investigation/execution or native cross-window bug reproduction. Latest issue check 00:48:04Z; next due about 00:58:04Z. Preserve serial ancestry, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
 
 ## Ground rules
 
