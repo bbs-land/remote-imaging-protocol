@@ -139,6 +139,10 @@ Final native verification passes: **9,176 header/parser/entry checks**, **31,713
 
 The [table lifecycle investigation](issue-16-table-lifecycle.md#header-correction-and-failed-hypotheses) supersedes this note's earlier palette “defaults” interpretation. Helper 0x3e2e7 uploads existing colors; actual RGB defaults are initialized by 0x440f0, which also clears nonzero definition flags. This issue's original header probe intercepted upload and used an always-true INUSE service, so its call count did not establish RGB mutation or a valid current-definition guard. Direct native leaf execution confirms header 64's current-only upload and header 128's read two bytes before the array. The header reference and probe label are corrected; the earlier controlled observation remains evidence for dispatch only.
 
+## Later port/TW leaf completion
+
+[#152](issue-152-header-tw-geometry.md) separately completes the TW geometry fields, target-relative cursor home and header indexed erase reconciliation. [#153](issue-153-header-port-clipping.md) independently fingerprints/reads the port helpers and completes the visible full-port RGB-black fill, active/protection gate distinction and temporary clipping scope. The earlier “clipping application” helper name alone is not a no-paint protocol contract. Those notes distinguish static facts from portable completion and do not execute original software or investigate its defects.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Header reference](../ripscrip/1.1-protocol-and-command-hierarchy.md#scene-header-segments)

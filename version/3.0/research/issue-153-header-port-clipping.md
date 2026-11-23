@@ -56,9 +56,21 @@ Flags 2048/4096 retain the existing full-port-bounds geometry rule but only for 
 
 The requested literal `!|h01000001204000` is revision 1/global flags 0/one type-2 segment/flags 16384/current selector with slot field 0 unused for selection. Use the same bytes with a current screen port B=(10,20;18,24), V=(12,21;15,23), and a current 8×4 bitmap B=(0,0;8,4), V=(2,1;5,3). With nonblack PAL entry 0, every cell of B∩physical backing becomes black even outside V; metadata remains unchanged. Screen clear affects only its screen B, bitmap clear leaves the screen alone. These are portable logical color/extent vectors, not original-client executions.
 
+## Validation checkpoint
+
+The reference now supplies distinct gate/result tables, full-B versus V/physical-storage scope, fixed RGB black versus indexed TW erase, screen/bitmap effects, absence of another clipping-state field, preserved cursor/query/image/pair/selection state and three literal current headers (fill, bounds, activation plus bounds). Cross-links reconcile live RESET(VIEW), drawing ports, drawing-frame clipping and the earlier #5 helper label.
+
+Independent inline Python checks pass: all twelve baseline hashes; three UltraNum literal headers (16384, 4096 and 5120); 32 screen/bitmap leaf gate/state cases; both 32-cell paired vectors with 26 cells outside V; nonblack PAL entry 0 and a later palette change; later COPY-point clipping; the 8-cell physical intersection; all-form overlapping screen union and independent protected bitmap fill with inactive port 0 skipped; inactive HEADER versus live activation; and metadata/pair/image retention. These are abstract protocol checks, not original execution or a Windows renderer test.
+
+The fingerprinted inspector independently rereads exact ranges. SHA-256 of bytes at RVA 0x3400d, length 262: `61987b5e2d288b43dc0dd344a1834ef1baf35f6832ad9511fac2a0ce3ba371d7`; RVA 0x34113, length 286: `2a33c24d43d3c950ae26520e01ca4b6bcc148dc2e5d8c30cd04ae4c8557c646f`; RVA 0x34489, length 1: `ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e`. Assertions verify both stock-brush `push 4` bytes at 0x341cc/0x34203 and the C3 no-op byte. No original instructions or UI execute, and no persistent test/dump/temporary file is created.
+
+Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 bad of 6,408 links across 265 files**. Exact wire literals remain outside GFM tables and targeted prose spacing review passes.
+
+Issue #153 remains unchanged with zero comments at the pre-publication refresh; the 2026-11-23T01:13:34Z all-author check found no newer report. Next issue check is due about 01:23:34Z.
+
 ## Next action
 
-Publish complete field/gate/color/clipping and paired screen/bitmap vectors, explicitly label the portable completion versus static facts, verify wire/geometry/eligibility/state invariants and source bytes, format/lint/link/diff and refresh #153. Publish separately, normal-merge actual source head with identical tree, audit all feedback/coverage/ancestry and resume ten-minute monitoring.
+Publish the validated reference separately, normal-merge actual source head with identical tree, audit all feedback/coverage/ancestry and resume ten-minute monitoring.
 
 ---
 

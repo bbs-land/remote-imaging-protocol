@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#153 is active on `issue-153-header-port-clipping` from stable 04d1637 after #152 / PR #154 consolidation. Read the [port HEADER note](version/3.0/research/issue-153-header-port-clipping.md). Bounded read-only source inspection verifies black-fill full-rectangle requests and different activation/protection gates; complete portable screen/bitmap coverage and no extra clip-state semantics without original execution or bug investigation. Preserve #21 image state, #144/#146 pair state and existing full-bounds geometry intent. Last issue check 2026-11-23T00:58:21Z found no newer report; next due about 01:08:21Z. Preserve serial PR/stable ancestry, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
+#153 specification is ready on `issue-153-header-port-clipping` from stable 04d1637. Read the [port HEADER note](version/3.0/research/issue-153-header-port-clipping.md): full-B fixed RGB-black fill, defined/active gates, protection distinction, screen/bitmap portable scope, no extra clip state, and separate bounds-reset/live activation rules. Twelve reference hashes, three literals, 32 gate/state cases, paired geometry/color/later-clipping vectors and fingerprinted source ranges pass. Complete repository checks, publish separately, consolidate actual source head with an identical tree, audit feedback/coverage/ancestry and resume ten-minute monitoring. Last issue check 2026-11-23T01:13:34Z found none newer; next about 01:23:34Z. No original execution/bug investigation. Preserve #21/#144/#146, Codex trailers, FastFont separation and temporary cleanup; no persistent scheduler.
 
 ## Ground rules
 
