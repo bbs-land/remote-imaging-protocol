@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#161 is active on `issue-161-playback-filename-contract` from stable 1d46fed after #159 / PR #162. Read the [playback filename note](version/3.0/research/issue-161-playback-filenames.md): nine hashes, shared parser/callback/substitution/media ledger, captured field ID versus held-left/Shift/Control, escaped-dollar decoded 20-byte bound, extension defaults and WAV macro's lack of OFF sentinel. Complete literal recovery, labeled snapshot/empty/backend choices and vectors, validate, publish/consolidate/audit separately. Next issue check about 02:26:25Z. No original/client/UI/audio/file execution or bug investigation; preserve originals, attribution, FastFont separation and temporary cleanup.
+#161 specification is ready on `issue-161-playback-filename-contract` from stable 1d46fed. Read the [filename note](version/3.0/research/issue-161-playback-filenames.md): complete common parse/substitution/ownership/20-byte/recovery/extension/WAV-stop boundary, safe snapshot/empty-name choices and no extra HCL pass. Nine hashes, 192 state/prefix cases, byte/escape/bound/extension/reply vectors and exact original ranges/calls/bytes pass. Complete repository checks and issue refresh, publish/consolidate/audit separately and resume ten-minute watch. Last issue check 02:26:59Z, next about 02:36:59Z; no newer report. No original/client/UI/audio/file-provider execution or bug investigation. Preserve originals, attribution, FastFont separation and temporary cleanup.
 
 ## Ground rules
 
