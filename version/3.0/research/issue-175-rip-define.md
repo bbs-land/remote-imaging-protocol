@@ -21,7 +21,7 @@ Translate an RVA within a PE section to `PointerToRawData + RVA - VirtualAddress
 ## Wire and value selection
 
 - The parser at `0x39e90` dispatches descriptor 91 (level 1, `D`) to `0xbd39`. The descriptor specifies numeric widths 3 and 2 followed by text. The handler checks the RIP enable gate, rejects missing text and calls `0x3f1c9` with a writable copy. It frees the copy after dispatch. Only the first numeric value reaches definition processing.
-- `0x3f1d9` splits the first colon, and `0x3f1f2` splits the first comma in its head. A comma demands an immediate ASCII decimal digit. `0x3f238` calls the decimal conversion at `0x68cc0` and `0x3f244` retains the low word. `0x3f38b–0x3f3ab` requires a nonempty name and raw definition. `0x15fdc` gives the identifier syntax `[A-Za-z][A-Za-z0-9_]{0,18}` when combined with that check. `0x3f3b1–0x3f3c4` makes widths outside 1–60 use 60.
+- `0x3f1d9` splits the first colon, and `0x3f1f2` splits the first comma in its head. A comma demands an immediate ASCII decimal digit. `0x3f23f` calls the decimal conversion at `0x68cc0` and `0x3f244` retains the low word. `0x3f38b–0x3f3ab` requires a nonempty name and raw definition. `0x15fdc` gives the identifier syntax `[A-Za-z][A-Za-z0-9_]{0,18}` when combined with that check. `0x3f3b1–0x3f3c4` makes widths outside 1–60 use 60.
 - `0x3f5c2` splits a leading question at its next question mark. With no second question mark, there is no supplied default. Without a leading question mark, the body supplies a literal default. An empty raw body fails before this split. No macro expansion occurs in this path.
 - At `0x3f444` the parsed default is terminated at index width − 1 before the call to `0xe99c` from `0x3f44c`. At `0x3f4a5–0x3f4bc`, an empty clipped default falls back to the existing record value, copying at most 60 bytes into a zeroed 61-byte buffer. That fallback is not clipped to width − 1 again before a silent write. The interactive readback is subject to its own width bound. These are `1D` limits, independent of generic macro storage limits.
 - `0x3f385` initializes the confirmation word to zero. `0x3f458–0x3f46f` assigns zero for a found record with bit 0 of the word at `+0x7a` set, and one when it is clear. `0x3f4bf–0x3f4cb` skips the editor only with flag `004` and a zero confirmation word. Thus a new name can be written silently and a protected name can still prompt. `0x3f576` selects the persistent writer with flag `001`. Flag `002` only reaches the editor's acceptance check.
@@ -43,6 +43,10 @@ The initialization branch at `0x189c4–0x189e3` calls the USER32 import `CheckD
 
 `0x3f557–0x3f55d` clears the result when the editor returns a status other than 1 and continues to storage. That observed result differs from the portable cancellation rule. A canceled edit leaves both records and their confirmation metadata as they were. An accepted empty value is a real value. Use this distinction in clients with any equivalent editor, including an editor with a cancellation affordance when nonempty input is required. No Windows dialog was run and no database layout or platform-specific handling of the initialization argument was inferred.
 
+## Verification
+
+The source hash, descriptor 91, 12 call targets and both caption literals match the trace. An independent model passed 16 grammar cases and eight editor and store cases covering silent creation, width fallback, mandatory confirmation, character limits, acceptance and cancellation. The repository formatting and link checks passed.
+
 ## Resume
 
-The static trace covers the reported parsing, prompt and storage behavior. Apply it to the wire entry and the variable summaries, then check literal examples and the documentation. Open one PR closing #175 and consolidate its actual head into fork stable before starting #179.
+The static trace covers the reported parsing, prompt and storage behavior. The wire entry and variable summaries now use the recovered behavior and the portable cancellation rule. Check literal examples and the documentation. Open one PR closing #175 and consolidate its actual head into fork stable before starting #179.
