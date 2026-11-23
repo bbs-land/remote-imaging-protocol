@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#171 FILEEXISTS is active on `issue-171-fileexists` from fork stable **b5b860850fd077fcdcafec62017b2647f317ad83**. The [derivation](version/3.0/research/issue-171-fileexists.md) records callback and lookup evidence. Complete the reference and independent examples before opening the PR. #170 / PR #176 is consolidated. Continue in order with #172, #173, #174 and #175. Query feedback from at least one minute before the **16:37:59Z** audit.
+Issue #171 is delivered in [PR #177](https://github.com/bbs-land/remote-imaging-protocol/pull/177). Consolidate its actual head into fork stable. Then start #172, with #173 through #175 queued next. The [FILEEXISTS derivation](version/3.0/research/issue-171-fileexists.md) records the source and validation. Use the 16:37:59Z audit watermark with a one-minute overlap for feedback.
 
 The host crontab checks GitHub every ten minutes independently of this session. The local watcher under `/usr/home/admin/RIP/.rip-issue-watch/` records its last check and queues newly filed issue numbers to this thread. Its first scheduled poll succeeded at **2026-11-23T16:30:00Z**. The **16:40:00Z** tick detected #175 and queued it successfully. The CLI can queue messages, but automatic resumption is unavailable on this host. `codex queue --resume` reports no daemon, and `codex app-server daemon start` reports that the CLI lacks a complete local package. Resume this thread to process queued reports. During active work, continue checking for feedback since at least one minute before the last audit.
 

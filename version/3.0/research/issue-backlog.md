@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#171 active.** The [FILEEXISTS derivation](issue-171-fileexists.md) records the original data callback from stable **b5b860850fd077fcdcafec62017b2647f317ad83**. Complete the variable reference, examples and PR separately. #172 through #175 remain queued in order.
+**#171 delivered.** [PR #177](https://github.com/bbs-land/remote-imaging-protocol/pull/177) specifies data expansion, name validation/preparation, sequential legacy aliases and first-hit lookup. See the [FILEEXISTS derivation](issue-171-fileexists.md) for source and exact examples. Consolidate its actual head and validate fork stable. #172 through #175 remain queued in order.
 
 **#170 delivered. #171, #172, #173, #174 and #175 are queued in order.** [PR #176](https://github.com/bbs-land/remote-imaging-protocol/pull/176) is open and closes exactly #170. Specification commit **a44b81624c9b9bc13548e5ceb1cf27c2eab0ac3b** resolves line/EOF and nested-scene framing, wire names, local replies and caller resumption. The [derivation](issue-170-local-scene-boundaries.md) includes complete evidence and the ordered queue. Fork stable normal merge **fc9638c192d7711d60b10eeeadb253ad14c5c18b** has the exact tree of actual source **126d65552b7db7f1aecff7b7fbc6af32b6aa8446**. The **16:37:59Z** audit confirmed all 84 open PR heads are ancestors, and only the five queued issues among the 90 open RealDeuce issues lack a resolution PR. Review, discussion and inline feedback were empty from **07:30:44Z**. Start #171 from updated stable. The first persistent cron poll succeeded at **2026-11-23T16:30:00Z**. The CLI can queue reports but lacks automatic wake support on this host.
 

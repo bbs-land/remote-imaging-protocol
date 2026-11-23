@@ -20,3 +20,7 @@ Read the catalogued original RIPtel 3.1 `ripscrip.dll`, 592,896 bytes, SHA-256 `
 ## Validation
 
 Checked the original DLL fingerprint, 12 relative call targets, three registration/argument/error byte sequences and 11 literals. Six published substitution vectors pass in both consumer models. Seven supplementary checks cover the chained MSK/ICN distinction, reversed marker order, an unacceptable high final byte and a high byte before a usable suffix, and the three lookup tiers. The models do not execute the original client. The persistent watcher also detected #175 and queued it at **2026-11-23T16:40:00Z**. The CLI reported that it could not wake this thread.
+
+## Delivery
+
+[PR #177](https://github.com/bbs-land/remote-imaging-protocol/pull/177) targets upstream main from the issue branch on the RealDeuce fork. The specification commit is **cf141f8f45d24162185e90644b06747e9ac7cf86**. Changed-file lint and diff checks passed, and all 6,562 Markdown links validated. Consolidate this PR after checking its actual head.
