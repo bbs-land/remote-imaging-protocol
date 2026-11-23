@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#159 is active on `issue-159-pick-list-contract` from stable 430f052 after #158 / PR #160. Read the [pick-list note](version/3.0/research/issue-159-pick-list-contract.md): eight hashes, static parser/pass/response/position ledger, exact prompt, 64 entries/1023-byte response and safe display/numeric limits. Rewrite 3.0 chapter to remove SyncTERM recursion/auto-answer and white-paper prefix-send claims, label portable overlong/zero-entry/position choices and preserve #6/#53/#93 pipelines. No original execution/dialog/UI/bug investigation. Last check 02:05:02Z, next about 02:15:02Z. Publish/consolidate/audit separately; preserve originals, attribution, FastFont separation and temporary cleanup.
+#159 specification is ready on `issue-159-pick-list-contract` from stable 430f052. Read the [pick-list note](version/3.0/research/issue-159-pick-list-contract.md): exact stock prompt/response spans, two ordinary passes/no recursion/early send, 64 entries/1023-byte response/4096-byte working limit, and explicit safe label/zero-entry/numeric-position boundaries. Eight hashes, parsing/pass/control/playback/escaping/malformed/limit/position vectors, source ranges/calls/bytes and unchanged issue refresh pass. Complete full repository checks, publish/consolidate/audit separately, then start queued #161 playback filename substitutions/bounds. Latest check 02:16:25Z, next about 02:26:25Z. No original code/dialog/bug investigation; preserve originals, attribution, FastFont separation and temporary cleanup.
 
 ## Ground rules
 
