@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Then resolve #153 HEADER port clipping fill and bounds-reset gates in a separate PR.
+- [ ] Resolve active #153 HEADER port clipping fill/bounds gates, publish separately and consolidate/audit stable.
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
 
