@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Resolve queued #159 pick-list parsing/HCL behavior separately.
+- [ ] Resolve active #159 pick-list parsing/HCL behavior, publish separately and consolidate/audit stable.
 
 Planned work for this repository, grouped by area. Working conventions live in [CONTRIBUTING.md](CONTRIBUTING.md). **Completed items are removed** - this file stays active-only. **Discuss:** items need a decision before the tasks under them can be finalized.
 
