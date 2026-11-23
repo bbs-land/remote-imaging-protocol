@@ -100,3 +100,7 @@ Source date/size/name/line-ending facts and explicit bitmap-domain/time-conversi
 Content and independent checks complete. Refresh #168 and final prose/links, publish one complete PR closing exactly #168, then normal-merge its actual full source head into fork stable with identical-tree proof and audit feedback/coverage/ancestry. Last all-author poll **06:30:21Z** found none newer; next about **06:40:21Z**.
 
 Final pre-publication review confirms normal prose spacing, exact full wire literals outside GFM tables, all reply separators/endings and unchanged neighboring commands. The reserved numeric field is consumed/ignored; alias timestamps remain those of the opened translated resource. #168 retains original body/update/zero comments. Full lint plus changed-file checks, 6,523 links and diff checks pass; source-byte and independent arithmetic/string/transport checks pass. No task-owned temporary paths were created.
+
+## PR delivery
+
+[PR #169](https://github.com/bbs-land/remote-imaging-protocol/pull/169), specification **4e8678ceb796d871a8d1f0d216dc61093009935c**, is OPEN/non-draft and closes exactly #168. Source branch `issue-168-file-query-replies` starts at stable 9716850. Normal-merge the actual complete head including this delivery checkpoint into fork stable with identical-tree proof, then audit all coverage/feedback/ancestry. The scoped `rip-168-pr-` request directory was automatically removed. No upstream merge or manual closure.
