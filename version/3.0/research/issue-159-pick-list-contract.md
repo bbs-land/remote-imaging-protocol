@@ -57,9 +57,13 @@ Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 b
 
 Pre-publication #159 body/update/zero comments remain unchanged. Latest issue check **2026-11-23T02:16:25Z** detected **#161 playback filename substitutions/bounds**, queued next; next about **02:26:25Z**. Publish and consolidate #159, audit feedback/coverage/ancestry, then start #161 from updated stable. Preserve co-author attribution, originals, FastFont separation and temporary cleanup.
 
-## Delivery checkpoint
+## Delivery and continuation
 
-[PR #162](https://github.com/bbs-land/remote-imaging-protocol/pull/162) is OPEN/non-draft and closes exactly #159. Specification **30ccf5860df4cd12c575a2b3c0740db6c6596fd2**. Push this complete delivery checkpoint, normal-merge its actual source head to fork stable with identical-tree proof, audit all feedback/coverage/ancestry and then start queued #161. No upstream merge/manual closure; temporary API payload directory removed automatically.
+[PR #162](https://github.com/bbs-land/remote-imaging-protocol/pull/162) is OPEN/non-draft and closes exactly #159. Specification **30ccf5860df4cd12c575a2b3c0740db6c6596fd2**, actual source **1549601d9c24a6f3023ffd9e7a28d9bfa08f5b8e**, normal stable merge **f7757a0e5f24dc5adfb63b9aa392a8cb1e3dd456**. The merge tree exactly matches the source-head tree before these workflow notes. No upstream merge/manual closure.
+
+Audit **2026-11-23T02:20:39Z**, broadly overlapping since 01:40:00Z, verifies all **79 open PR heads ancestral**, **80 of 81 open RealDeuce issues covered**. **#161 shared HCL playback filename substitutions/bounds is the only uncovered report**, queued next, unchanged initial body SHA-256 `05d72d4ce7dd36a6e831364f9387d8c4afaa75c6e6051dbc7422e415ddf8c2ce`, update 02:14:16Z, zero comments. #158/#159 bodies/zero comments also unchanged; no other issue update or discussion/inline/review feedback. Pagination checked for issues/PRs/closing references/reviews/REST comments. Four commits through merge have Codex trailers, seven allowed Markdown paths changed, originals/FastFont 5966e1b unchanged and FastFont nonancestral, no task temporary directory remains. Full repository lint/link/diff pass; 6,462 links before final metadata.
+
+Start #161 separately from updated fork stable. Continue active-session ten-minute monitoring (last check 02:16:25Z, next about 02:26:25Z); future feedback queries overlap at least one minute before 02:20:39Z. No persistent scheduler, original code/dialog execution or obsolete-client bug investigation.
 
 ---
 
