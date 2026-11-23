@@ -4,7 +4,7 @@
 
 ## Scope and checkpoint
 
-Started 2026-11-23T01:34Z on `issue-156-header-port-zero-reset` from fork stable **1635d61636220f3e46c3457790a9a7403fe73783**, which already includes #153 / PR #155 actual head a863f45 with identical-tree consolidation. [#156](https://github.com/bbs-land/remote-imaging-protocol/issues/156) was created/updated **2026-11-23T01:28:06Z**, zero comments, body SHA-256 `6815d86d0b407883b884ead4dd9610a17c5ec5d697246e8e00e592c9ffb61b78`. Resolve type-2 bits 1/8 PORT-0 field effects and their gates, keeping separate global SOFT, bounds-only and black-fill rules. No original instructions/probe/UI execution or obsolete-software bug investigation. Continue ten-minute issue monitoring; last check 01:33Z, next approximately 01:44Z (actual session cache holds exact times).
+Started 2026-11-23T01:34Z on `issue-156-header-port-zero-reset` from fork stable **1635d61636220f3e46c3457790a9a7403fe73783**, which already includes #153 / PR #155 actual head a863f45 with identical-tree consolidation. [#156](https://github.com/bbs-land/remote-imaging-protocol/issues/156) was created/updated **2026-11-23T01:28:06Z**, zero comments, body SHA-256 `6815d86d0b407883b884ead4dd9610a17c5ec5d697246e8e00e592c9ffb61b78`. Resolve type-2 bits 1/8 PORT-0 field effects and their gates, keeping separate global SOFT, bounds-only and black-fill rules. No original instructions/probe/UI execution or obsolete-software bug investigation. Continue ten-minute issue monitoring; last check **01:33:57Z**, next about **01:43:57Z**.
 
 ## Starting reference hashes
 
@@ -42,7 +42,15 @@ The initializer does not touch fixed PORT query storage **+0x64**, backing/full 
 
 For either actually invoked stage: PORT 0 remains the existing defined unprotected full-screen port; V becomes B, activation is retained, graphics cursor becomes (0,0), image rectangle becomes raw all-minus-one viewport fallback with flags 0, fixed/floating queries are retained and pair becomes absent. No painting, TW cursor/ANSI reset, other-table reset, backup deletion, global snapshot reset or old-current image-style exception is imported from SOFT. Both invocations have the same PORT-0 field effect; bit 1 selects 0/deletes unprotected nonzero definitions, bit 8 retains logical current/deletes other unprotected nonzero definitions and invokes only if that current remains nonzero. Skipping bit-8 initializer retains every PORT-0 field, including its pair.
 
-Draft complete field table and the three requested literal vectors, correct the overly broad “no global reset means no image reset” sentence, add explicit pair lifetime row and related reset/image cross-links. Validate original hashes/call bytes, wire values and independent state/order/nonpaint cases, then format/lint/link/diff, refresh report, publish separate PR, normal-merge actual head to stable with identical tree, audit feedback/coverage and resume monitoring. Preserve original text/assets, FastFont separation, Codex trailers and temporary cleanup.
+## Specification and validation checkpoint
+
+The reference now has a complete PORT-0 initializer table and the three literal vectors: bit 1 with current 5, bit 8 with current 5, and bit 8 starting with current 0. It distinguishes full V from retained activation, graphics cursor from TW/ANSI cursor, raw image fallback from copied V, retained query from the separate query-clear bit, absent pair from a viewport-only edit, and unchanged screen pixels from later explicit black fill. Global-reset/image wording, image lifecycle, pair lifetime, SOFT and #5 notes are reconciled.
+
+Independent inline Python verification passes **nine starting hashes**, **two exact UltraNum header decodes**, **16 current/activation/protection/stage state cases**, the three requested vectors, initializer idempotence and combined stage order (including bit-2 selection to nonzero versus 0 before bit 8). Pixels, floating query, unrelated tables/backup/global state and surviving definitions retain their values. These are abstract protocol checks, not native execution or raster measurements.
+
+The existing fingerprinted inspector rereads source ranges: RVA **0x16ec1**, length **521**, SHA-256 `083ce5074dcabc57693a6d846ee635566ac1e723f027952c36a199ed8f2f258f`; RVA **0x33d82**, length **158**, SHA-256 `0176680fdaa8309cfe8a9910bb9ba192f3fbac07f702edb2a8e4fb57d9b00e1e`. Independent byte assertions decode both relative calls to 0x33d82 and verify cursor/image/private-word stores and four viewport MOVSD bytes. No original instructions execute, no private native validity layout is imposed and no test/dump/temporary file persists.
+
+Full `run/lint`, `run/check-links` and `git diff --check` pass (**0 bad of 6,423 links across 266 files**); exact literals remain outside tables and prose spacing review passes. Pre-publication #156 body is unchanged with zero comments. Publish separately, merge the actual source head into fork stable with identical-tree proof, audit feedback/coverage/ancestry and resume ten-minute monitoring. No original-software bug investigation is required.
 
 ---
 

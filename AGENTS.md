@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#156 is active on `issue-156-header-port-zero-reset` from stable 1635d61. Read the [PORT-0 HEADER note](version/3.0/research/issue-156-header-port-zero-reset.md): both stage calls reach the same initializer, reset full viewport/cursor/image/pair metadata but **retain viewport activation and queries**, with no paint. Bit 8 invokes only with nonzero current after earlier stages; pair absence is explicit portable lifecycle completion. Correct the broad no-global-image-reset wording, validate, publish/consolidate/audit separately, then resume watch. No original execution/bug investigation; maintain attribution, FastFont separation and temporary cleanup.
+#156 specification is ready on `issue-156-header-port-zero-reset` from stable 1635d61. Read the [PORT-0 initializer note](version/3.0/research/issue-156-header-port-zero-reset.md). Bits 1/8 share full-V/cursor/image/pair initialization, retain prior activation/query and pixels; bit 8 skips it for logical current 0. Nine hashes, two literal headers, 16 state cases, three requested vectors, stage order and original call/store bytes pass. Complete repository checks and report refresh, publish/consolidate/audit separately, then resume ten-minute watch. Preserve source/portable boundaries, originals, attribution, FastFont separation and temporary cleanup; no original execution/bug investigation.
 
 ## Ground rules
 
