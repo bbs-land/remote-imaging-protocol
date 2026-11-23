@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#172 delivered.** [PR #178](https://github.com/bbs-land/remote-imaging-protocol/pull/178) specifies the live rate shared by the wire command and BAUDEMUL, preserved by SOFT and ENV switching, and captured separately by SENV/RENV. See the [derivation](issue-172-local-playback-baud.md). Consolidate its actual head and validate fork stable. #173 through #175 remain queued.
+**#172 delivered.** [PR #178](https://github.com/bbs-land/remote-imaging-protocol/pull/178) specifies the live rate shared by the wire command and BAUDEMUL, preserved by SOFT and ENV switching, and captured separately by SENV/RENV. See the [derivation](issue-172-local-playback-baud.md). Actual head **b1012d4259a1cb1caad5464107361ed72a2d3130** is normal-merged through **831fdb9d8eb20f80f55a6ca9708fcb883614d1ea** with an identical tree. The **16:52:44Z** audit confirmed all 86 open PR heads are ancestors and only #173 through #175 remain uncovered. Finish them in order.
 
 **#171 delivered.** [PR #177](https://github.com/bbs-land/remote-imaging-protocol/pull/177) specifies data expansion, name validation/preparation, sequential legacy aliases and first-hit lookup. See the [FILEEXISTS derivation](issue-171-fileexists.md) for source and exact examples. Its actual head **ae12ce589bfd62264bd9e786b2fbf950873f8048** was normal-merged through **83f4046e6937df0fa11a213b43f143ecb424eef0** with an identical tree. The **16:43:44Z** audit verified all 85 open PR heads are ancestors, with only #172 through #175 uncovered among the 90 open RealDeuce reports. No subsequent report or feedback arrived in the overlap window. Start #172.
 
