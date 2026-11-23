@@ -68,9 +68,9 @@ Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 b
 
 Issue #153 remains unchanged with zero comments at the pre-publication refresh; the 2026-11-23T01:13:34Z all-author check found no newer report. Next issue check is due about 01:23:34Z.
 
-## Next action
+## Delivery and next action
 
-Publish the validated reference separately, normal-merge actual source head with identical tree, audit all feedback/coverage/ancestry and resume ten-minute monitoring.
+[PR #155](https://github.com/bbs-land/remote-imaging-protocol/pull/155) is OPEN, non-draft, with exactly #153 as closing reference. Specification commit **7c69c286223769adee780add24d84a478bdf7cf8** is on `issue-153-header-port-clipping`. No upstream merge/manual closure occurs. This delivery checkpoint will be the complete PR source head: push it, normal-merge that actual head into fork stable with identical-tree proof, refresh all coverage/feedback/ancestry and return to the standing ten-minute issue watch.
 
 ---
 
