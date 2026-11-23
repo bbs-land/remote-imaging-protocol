@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#191 is active on `issue-191-column-font-zero`. Read the [classic font zero in article columns derivation](version/3.0/research/issue-191-column-font-zero.md) for the trace and next action.
+Issue #191 is delivered in [PR #195](https://github.com/bbs-land/remote-imaging-protocol/pull/195). The [column font zero derivation](version/3.0/research/issue-191-column-font-zero.md) records source and verification. Consolidate the actual PR head.
 
 Issue #190 is delivered in [PR #194](https://github.com/bbs-land/remote-imaging-protocol/pull/194). Fork stable includes the actual source **6ae37a1826893dc214bcb8da63bd5cc26c08266b** through merge **c7ca0607af659ad9592b2e8b744dca4918a54b99**. The [classic font zero in button labels derivation](version/3.0/research/issue-190-button-font-zero.md) records the source, examples and audit. Continue in order with #191, #193. Query feedback from at least one minute before **21:10:44Z**.
 

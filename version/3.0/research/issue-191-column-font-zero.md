@@ -37,3 +37,7 @@ Verified both artifact hashes, 17 original call targets, six instruction signatu
 ## Resume
 
 The specification now describes column metrics and boundary examples. Verify and deliver the focused PR before #193.
+
+## Delivery
+
+[PR #195](https://github.com/bbs-land/remote-imaging-protocol/pull/195) is open for upstream review. Specification commit **991c8fa2a2e1ff43c0f246d00132902889fc4b4f**.
