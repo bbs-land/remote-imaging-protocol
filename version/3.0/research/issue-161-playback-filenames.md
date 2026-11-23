@@ -68,9 +68,13 @@ Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 b
 
 Latest all-author issue check **2026-11-23T02:26:59Z** found no newer report; next about **02:36:59Z**. Publish separately, normal-merge actual source head with identical-tree proof, audit feedback/coverage/ancestry and resume ten-minute monitoring. Keep protocol/source limits, Codex trailers, original text/assets, FastFont separation and temporary cleanup.
 
-## Delivery checkpoint
+## Delivery and continuation
 
-[PR #163](https://github.com/bbs-land/remote-imaging-protocol/pull/163) is OPEN/non-draft and closes exactly #161. Specification **395eb9d26c9b6f3924b47d2f10dcb3d4f5fd1991**. Push this complete delivery checkpoint, normal-merge its actual source head into fork stable with identical-tree proof, audit feedback/coverage/ancestry and resume the standing ten-minute watch. No upstream merge/manual closure; temporary API payload directory removed automatically.
+[PR #163](https://github.com/bbs-land/remote-imaging-protocol/pull/163) is OPEN/non-draft and closes exactly #161. Specification **395eb9d26c9b6f3924b47d2f10dcb3d4f5fd1991**, actual source **f6da51039a5decbe348203229d12690083069219**, normal stable merge **2f9eba298c9a011ce5fa53b9e61d2ad2a9aa201c**. The merge tree exactly equals the actual source-head tree before these workflow notes. No upstream merge/manual closure.
+
+Audit **2026-11-23T02:36:42Z**, overlapping 02:19:39Z, verifies **81 open RealDeuce issues covered by 80 open PRs**, all actual PR heads ancestral, #161 body/update/zero comments unchanged, no other report update/discussion/inline/review feedback. Issue/PR/closing-reference/review pagination and REST since-comment pages checked. Four new commits through merge have Codex trailers; eight allowed Markdown paths changed, original text/assets/1.54 untouched, FastFont 5966e1b unchanged/nonancestral and no task-owned temporary directory. Full repository lint/link/diff pass; 6,476 links before final metadata.
+
+No active investigation remains. Continue explicitly authorized active-session ten-minute issue monitoring and serial research/PR/stable delivery. Latest all-author check **02:36:56Z** found no newer report; next about **02:46:56Z**. Future feedback queries overlap at least one minute before 02:36:42Z. No persistent scheduler, original instructions/client/UI/audio/file-provider execution or obsolete-software bug investigation.
 
 ---
 
