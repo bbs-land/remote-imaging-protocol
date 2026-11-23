@@ -80,3 +80,7 @@ The first Markdown validation caught and corrected one bad 1.54 link and a raw w
 Content complete; finish lint/link/diff and report refresh, then publish a PR closing exactly #164, record its actual full source head, normal-merge to fork stable with identical-tree proof and audit feedback/coverage/ancestry before continuing the watch. Last ten-minute all-author check **03:17:55Z** found no newer issue; next about **03:27:55Z**.
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0 bad of 6,493 across 270 files**. Full diff review and exact prefix/suffix assertions preserve the unrelated commands and complete Masks/transparency section. Prose spacing and all eight full wire literals were reviewed after formatting. #164 remains unchanged at 03:01:22Z with zero comments before publication. No original instructions or UI/provider ran; no task temporary files were created.
+
+## PR delivery
+
+[PR #165](https://github.com/bbs-land/remote-imaging-protocol/pull/165) is OPEN/non-draft, closing exactly #164. Specification **570c581c41bfa9191c409ee86fd278a01be32741** was pushed on `issue-164-scroll-contract` from stable d7b49fc. Original issue body/update/zero comments remain unchanged. Merge the actual full PR source head, including this delivery checkpoint, into fork stable with identical-tree proof; then audit all coverage/feedback/ancestry. The task-owned `rip-164-pr-` temporary request directory was automatically removed.
