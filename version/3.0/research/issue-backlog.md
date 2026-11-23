@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#184 active.** The [COPY_BLIT derivation](issue-184-copy-blit.md) records the current-XY, inclusive source, mode and port evidence. Branch `issue-184-copy-blit` starts at fork stable `1b1b194`. Apply the portable result and validate the examples before opening the PR.
+**#184 delivered.** [PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185) specifies dynamic XY fields, full-port paired clipping and exposed-source fill. See the [derivation](issue-184-copy-blit.md). Consolidate its actual head.
 
 **#179 delivered.** [PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183) documents TXT playback in an active article. The actual source **54e8d10f86c12b715cbd88ccd1c3472a1fa293fd** was normal-merged through **75cd7bc21eacd7034f59151cf7ca24643e8901cc** with an identical tree. Read the [derivation](issue-179-txt-playback.md). The **17:19:47Z** audit verified all 90 open upstream PR heads as ancestors. The queue is empty.
 

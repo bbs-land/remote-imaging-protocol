@@ -49,3 +49,7 @@ Five baseline hashes, the original DLL hash and size, descriptor 96, nine instru
 ## Resume
 
 The `1g` entry and index now give the width and clipping contract. Validate literal and pixel examples, then file a PR closing #184. Consolidate its actual source and refresh the ordered queue.
+
+## Delivery
+
+[PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185) targets upstream main from the RealDeuce issue branch. Specification commit **cbbaf345b4efe08d7ebae6874792d0682f7a7aa7**. Lint, diff checks and 6,645 Markdown links passed.

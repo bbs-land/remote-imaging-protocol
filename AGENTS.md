@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#184 is active on `issue-184-copy-blit`. The [COPY_BLIT derivation](version/3.0/research/issue-184-copy-blit.md) records the wire, mode and coordinate trace. Apply the paired clipping and pixel-state rules, verify the examples and deliver the PR.
+Issue #184 is delivered in [PR #185](https://github.com/bbs-land/remote-imaging-protocol/pull/185). Consolidate its actual source head into fork stable. The [COPY_BLIT coordinates and exposed-source fill derivation](version/3.0/research/issue-184-copy-blit.md) records the result. Overlap the **19:25:33Z** feedback watermark by at least one minute.
 
 Issue #179 is delivered in [PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183). Fork stable includes its actual source **54e8d10f86c12b715cbd88ccd1c3472a1fa293fd** through merge **75cd7bc21eacd7034f59151cf7ca24643e8901cc**. The [TXT playback in an active article derivation](version/3.0/research/issue-179-txt-playback.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **17:19:47Z**.
 
