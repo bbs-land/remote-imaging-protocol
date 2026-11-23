@@ -8,9 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #171 FILEEXISTS from updated stable. See the [active FILEEXISTS derivation](version/3.0/research/issue-171-fileexists.md).
-
-- [ ] Then resolve #172 local playback baud, #173 prewrapped text placement, #174 palette precision and #175 RIP_DEFINE in order. Their original report fingerprints are recorded in the #170 derivation.
+- [ ] Resolve #172 local playback baud, #173 prewrapped text placement, #174 palette precision and #175 RIP_DEFINE in order. Their original report fingerprints are recorded in the #170 derivation.
 
 - [ ] Restore automatic resumption of this Codex thread for the host's ten-minute GitHub watch. Polling and durable queuing are installed. See the current checkpoint in [AGENTS.md](AGENTS.md).
 

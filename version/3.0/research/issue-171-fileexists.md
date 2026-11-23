@@ -23,4 +23,4 @@ Checked the original DLL fingerprint, 12 relative call targets, three registrati
 
 ## Delivery
 
-[PR #177](https://github.com/bbs-land/remote-imaging-protocol/pull/177) targets upstream main from the issue branch on the RealDeuce fork. The specification commit is **cf141f8f45d24162185e90644b06747e9ac7cf86**. Changed-file lint and diff checks passed, and all 6,562 Markdown links validated. Consolidate this PR after checking its actual head.
+[PR #177](https://github.com/bbs-land/remote-imaging-protocol/pull/177) targets upstream main from the issue branch on the RealDeuce fork. The specification commit is **cf141f8f45d24162185e90644b06747e9ac7cf86**. Changed-file lint and diff checks passed, and all 6,562 Markdown links validated. The actual source head **ae12ce589bfd62264bd9e786b2fbf950873f8048** was normal-merged as **83f4046e6937df0fa11a213b43f143ecb424eef0** with an identical tree. The audit at **2026-11-23T16:43:44Z** checked ancestry of 85 open upstream PRs, with only #172 through #175 still uncovered among 90 open reports. No additional reports, reviews, issue discussion or inline PR feedback appeared from **16:36:59Z**.
