@@ -61,7 +61,7 @@ Primary API context: [BitBlt](https://learn.microsoft.com/en-us/windows/win32/ap
 
 ## Specification checkpoint
 
-The current 3.0 command entry and index now publish dynamic destination width, surface-origin WORLD decoding, normalization/inclusive unit extents, converted same-line timing, coupled clipping/E fill, all modes, true-corner fallback, existing pattern phase, ANSI/blink-plane ownership and retained-state/failure boundaries. Exact unaligned/reversed/overlap/edge/no-copy/three-digit/pattern/two-plane vectors separate original evidence from explicit completion. The independent checks below pass; publication remains.
+The current 3.0 command entry and index now publish dynamic destination width, surface-origin WORLD decoding, normalization/inclusive unit extents, converted same-line timing, coupled clipping/E fill, all modes, true-corner fallback, existing pattern phase, ANSI/blink-plane ownership and retained-state/failure boundaries. Exact unaligned/reversed/overlap/edge/no-copy/three-digit/pattern/two-plane vectors separate original evidence from explicit completion. The independent checks and publication below are complete.
 
 ## Independent validation
 
@@ -77,10 +77,20 @@ The first Markdown validation caught and corrected one bad 1.54 link and a raw w
 
 ## Publication status
 
-Content complete; finish lint/link/diff and report refresh, then publish a PR closing exactly #164, record its actual full source head, normal-merge to fork stable with identical-tree proof and audit feedback/coverage/ancestry before continuing the watch. Last ten-minute all-author check **03:17:55Z** found no newer issue; next about **03:27:55Z**.
+Content validation, report refresh, PR publication and actual-head stable merge are complete as recorded below. Last ten-minute all-author check **03:17:55Z** found no newer issue; next about **03:27:55Z**.
 
 Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0 bad of 6,493 across 270 files**. Full diff review and exact prefix/suffix assertions preserve the unrelated commands and complete Masks/transparency section. Prose spacing and all eight full wire literals were reviewed after formatting. #164 remains unchanged at 03:01:22Z with zero comments before publication. No original instructions or UI/provider ran; no task temporary files were created.
 
 ## PR delivery
 
-[PR #165](https://github.com/bbs-land/remote-imaging-protocol/pull/165) is OPEN/non-draft, closing exactly #164. Specification **570c581c41bfa9191c409ee86fd278a01be32741** was pushed on `issue-164-scroll-contract` from stable d7b49fc. Original issue body/update/zero comments remain unchanged. Merge the actual full PR source head, including this delivery checkpoint, into fork stable with identical-tree proof; then audit all coverage/feedback/ancestry. The task-owned `rip-164-pr-` temporary request directory was automatically removed.
+[PR #165](https://github.com/bbs-land/remote-imaging-protocol/pull/165) is OPEN/non-draft, closing exactly #164. Specification **570c581c41bfa9191c409ee86fd278a01be32741** was pushed on `issue-164-scroll-contract` from stable d7b49fc. Original issue body/update/zero comments remain unchanged. The actual full source head, including this delivery checkpoint, is now consolidated with identical-tree proof and audited below. The task-owned `rip-164-pr-` temporary request directory was automatically removed.
+
+## Delivery, stable consolidation and audit
+
+[PR #165](https://github.com/bbs-land/remote-imaging-protocol/pull/165), specification **570c581c41bfa9191c409ee86fd278a01be32741**, is OPEN/non-draft and closes exactly #164. Actual full source head **b4ec4a1bd28eab4d448f625670cdb10b8fee87fa** (including delivery metadata) is normal-merged through fork stable **6e07518dfe81fa672d5c90366dbdf4b306b48a37**. The merge tree exactly equals the actual source tree before the final workflow checkpoint; no squash or upstream merge/manual closure occurred.
+
+Audit started **2026-11-23T03:23:17Z**, overlapping **2026-11-23T02:35:42Z**. All **82 open RealDeuce issues have resolution coverage** and all **81 open PR heads are ancestors**. #164 retains its original body hash/update/zero comments; no other issue update, discussion comment, inline comment or review feedback. Issue/PR/closing-reference/review pagination was checked, and REST comments used full pagination.
+
+Four new commits through merge carry Codex trailers, with the final workflow checkpoint retaining attribution. Six allowed Markdown paths changed; originals/text/assets/1.54 and the unrelated mask section are unchanged, FastFont 5966e1b stays unchanged/nonancestral and no task-owned temporary directory remains. Full lint, link and diff checks pass; content link count is 0 bad of 6,493 across 270 files. The independent models are protocol arithmetic/state checks, not vintage raster/native parity.
+
+No active research remains. Continue the user-authorized active-session ten-minute issue watch: last 03:17:55Z, next about 03:27:55Z; future feedback queries overlap at least one minute before this audit. No persistent scheduler.
