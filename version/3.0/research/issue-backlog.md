@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#187 active.** Branch `issue-187-classic-font-zero`. The [derivation](issue-187-classic-font-zero.md) records the original evidence, verification and next action.
+**#187 delivered.** [PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189) documents classic graphics font zero. See the [derivation](issue-187-classic-font-zero.md).
 
 **#186 delivered.** [PR #188](https://github.com/bbs-land/remote-imaging-protocol/pull/188) documents classic font alignment and shadow. The actual source **89f357e5233895425d9a8541a9d3110dd7ae8609** was normal-merged through **19980d6600fecde1b002f04a9a31aa0374f316cf** with an identical tree. Read the [derivation](issue-186-font-style-flags.md). The **20:15:42Z** audit verified all 92 open upstream PR heads as ancestors. Continue in order with #187.
 

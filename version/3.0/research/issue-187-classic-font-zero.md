@@ -43,3 +43,7 @@ Verified the original DLL and RFF fingerprints, three command descriptors, seven
 ## Resume
 
 The specification now describes font-zero rendering scope, sizing, placement and examples. Deliver #187 and consolidate its actual PR head into fork stable.
+
+## Delivery
+
+[PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189) targets upstream main from `issue-187-classic-font-zero`. Specification commit **ee54529cda77f65cab558ab4a8e1bb57ea5757a7**. Formatting, diff checks and 6,698 Markdown links passed.
