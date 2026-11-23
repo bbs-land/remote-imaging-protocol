@@ -72,3 +72,5 @@ Publish the [traversal and focus contract](../ripscrip/4.2-mouse-fields-and-poin
 ## Delivery
 
 [PR #198](https://github.com/bbs-land/remote-imaging-protocol/pull/198) is open for upstream review. Specification commit **b7580dd28987363a8536a095db1993fb10893898**.
+
+Fork stable normal-merged the actual head **741394e664db11df7fd10e87f9f78e1fca108a37** through **78af40f04da66012587b2f10f66899d95471350e**, with an identical tree. At **22:47:26Z**, overlapping **22:39:08Z**, the audit checked 98 open RealDeuce issues and 97 open PR heads, all ancestral. No new review, discussion or inline feedback appeared. The verified queue is empty.
