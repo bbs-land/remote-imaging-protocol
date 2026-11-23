@@ -8,6 +8,8 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
+- [ ] Resolve #168 FILE_QUERY reply bytes, filename preparation, errors and bitmap alias sizes; publish a complete PR and consolidate its actual head into stable. See [derivation](version/3.0/research/issue-168-file-query-replies.md).
+
 - [ ] Consolidate #164 / PR #165 actual source head into stable, audit feedback/coverage/ancestry and continue the authorized ten-minute watch.
 
 - [ ] While this session remains active, check new issues every ten minutes and continue the established serial research/PR/stable workflow. No persistent scheduler is installed.
