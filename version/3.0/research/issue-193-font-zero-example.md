@@ -12,6 +12,10 @@ For left/middle, use 1+64 = 65, MegaNum `1T`. The accepted command is `Y0000051T
 
 Reproduce by decoding the four two-digit MegaNums, rejecting more than one flag from either mask `0x07` or `0x78`, then applying font 0 defaults and the selected reference. Use the decoded flags to drive the placement calculation. Check the other two published vectors in the same pass. No original client or renderer is needed.
 
+## Verification
+
+The original DLL and DEFAULT.RFF hashes match. Rejected the old 73 value and independently decoded and applied the flags in all three actual published wire examples. All three expected logical advances and origins match. Verified the one-line specification diff, formatting and link checks.
+
 ## Resume
 
 Correct the wire field and decimal value together, verify all three examples and publish a focused PR for #193.
