@@ -133,6 +133,8 @@ Operational details from the TeleGrafix docs:
 - The _text window_, by contrast, displays the full 8-bit IBM PC character set: the 3.x whitepaper describes a text window as "much like a normal MS-DOS screen" ([3.x whitepaper, "Text Windows"](../../3.0/text/RIPScrip-3.x-technical-whitepaper.txt)), and the display glyphs come from RIPterm's own bitmap fonts (`RIPTERM.FNT`/`.MAF` MicroANSI containers), not the video BIOS.
 - The code page is **CP437**, the standard IBM PC/DOS character set - as was typical for DOS-based BBS terminals and host software, the TeleGrafix docs assume it without naming it; RIPterm supplies the glyphs from its own bitmap fonts (`RIPTERM.FNT`/`.MAF` MicroANSI containers) rather than the video BIOS. The 2.x manuals explicitly defer internationalization: "Translation tables are used for international character set support … Currently, RIPterm does not support Translation Tables" (`RIPTERM.DOC` §4.5, 2.30). In VT-102 mode the separate G0/G1 US/UK/line-drawing sets from the sequence table above apply (1.54 `RIPTERM.DOC` Appendix B; `WHATSNEW.DOC` 1.51).
 
+For RIPtel 3.1 specifically, the [3.0 byte character-set contract](../../3.0/ripscrip/1.4-terminal-ansi-view.md#byte-character-sets-in-riptel-31) distinguishes designation recording in both modes from VT-102-only mapping, ineffective SI/SO invocation, the exact CP437 substitutions and reset/save boundaries. The historical 1.54 sequence inventory and manual-screen-clear observation above do not establish those 3.1 details. That scoped reconstruction includes an explicit syntax-before-glyph mapping choice; it does not change RIPterm 1.54.
+
 ## Per-version summary
 
 | Capability | RIPterm 1.54 | RIPterm 2.x (2.30 final) | RIPtel 3.1 |
