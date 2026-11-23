@@ -4,7 +4,9 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-Issue #200 is delivered in [PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203). Fork stable includes the actual source **c5b5168c440a7e90707bca53d6fc517912a94edf** through merge **fe7be8b0bb3d68607a6eb0e5a10f78e735c2eda4**. The [the fixed black CLS fill derivation](version/3.0/research/issue-200-cls-black.md) records the source, examples and audit. Continue in order with #201. Query feedback from at least one minute before **23:09:16Z**.
+Issue #201 is delivered in [PR #204](https://github.com/bbs-land/remote-imaging-protocol/pull/204). The [selective mkill derivation](version/3.0/research/issue-201-selective-mkill.md) records source and verification. Consolidate the actual PR head.
+
+Issue #200 is delivered in [PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203). Fork stable includes the actual source **c5b5168c440a7e90707bca53d6fc517912a94edf** through merge **fe7be8b0bb3d68607a6eb0e5a10f78e735c2eda4**. The [fixed black CLS fill derivation](version/3.0/research/issue-200-cls-black.md) records the source, examples and audit. Continue in order with #201. Query feedback from at least one minute before **23:09:16Z**.
 
 Issue #199 is delivered in [PR #202](https://github.com/bbs-land/remote-imaging-protocol/pull/202). Fork stable includes the actual source **d2d195fa5ecb6d443e6590f712821501f542529d** through merge **fcddec80a9b02378f1e9c395e3abd82956f0073c**. The [status-bar visibility and geometry derivation](version/3.0/research/issue-199-status-bar.md) records the source, examples and audit. Continue in order with #200, #201. Query feedback from at least one minute before **23:05:47Z**.
 
