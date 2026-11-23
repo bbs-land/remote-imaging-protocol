@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+Issue #179 is delivered in [PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183). Consolidate its actual source head into fork stable. The [TXT playback in an active article derivation](version/3.0/research/issue-179-txt-playback.md) records the result. Overlap the **17:16:08Z** feedback watermark by at least one minute.
+
 Issue #175 is delivered in [PR #182](https://github.com/bbs-land/remote-imaging-protocol/pull/182). Fork stable includes its actual source **8d62e50fc1ff26019f9b1b7e0d01c33d3c71a898** through merge **cff5a0ae4191ad4cd8a1e21a4ec44e91c1773968**. The [RIP_DEFINE grammar and editor policy derivation](version/3.0/research/issue-175-rip-define.md) records the source, examples and audit. Work through the remaining queue in order (#179). Query feedback from at least one minute before **17:16:08Z**.
 
 Issue #174 is delivered in [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181). Fork stable includes its actual source **a87a555dc2348d5026d408f4186eac1213df3898** through merge **e672856a728defc3fc82c31f183529a608f9db27**. The [drawing palette storage and publication derivation](version/3.0/research/issue-174-palette-publication.md) records the source, examples and audit. Work through the remaining queue in order (#175, #179). Query feedback from at least one minute before **17:07:02Z**.
