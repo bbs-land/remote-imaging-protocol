@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#161 specification is ready on `issue-161-playback-filename-contract` from stable 1d46fed. Read the [filename note](version/3.0/research/issue-161-playback-filenames.md): complete common parse/substitution/ownership/20-byte/recovery/extension/WAV-stop boundary, safe snapshot/empty-name choices and no extra HCL pass. Nine hashes, 192 state/prefix cases, byte/escape/bound/extension/reply vectors and exact original ranges/calls/bytes pass. Complete repository checks and issue refresh, publish/consolidate/audit separately and resume ten-minute watch. Last issue check 02:26:59Z, next about 02:36:59Z; no newer report. No original/client/UI/audio/file-provider execution or bug investigation. Preserve originals, attribution, FastFont separation and temporary cleanup.
+#161 is delivered in [PR #163](https://github.com/bbs-land/remote-imaging-protocol/pull/163), specification 395eb9d, OPEN/non-draft and closing exactly #161. Read the [filename note](version/3.0/research/issue-161-playback-filenames.md) for complete parse/substitution/recovery/extension/ownership rules, source/portable limits and validation (6,476 links). Push this delivery checkpoint, normal-merge actual source head to fork stable with identical-tree proof, audit all feedback/coverage/ancestry and resume ten-minute watch. Latest check 02:26:59Z, next about 02:36:59Z, no newer report. No original/client/UI/audio/file-provider execution, bug investigation, upstream merge or manual closure. Preserve originals, attribution, FastFont separation and temporary cleanup.
 
 ## Ground rules
 

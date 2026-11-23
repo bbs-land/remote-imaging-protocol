@@ -68,6 +68,10 @@ Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 b
 
 Latest all-author issue check **2026-11-23T02:26:59Z** found no newer report; next about **02:36:59Z**. Publish separately, normal-merge actual source head with identical-tree proof, audit feedback/coverage/ancestry and resume ten-minute monitoring. Keep protocol/source limits, Codex trailers, original text/assets, FastFont separation and temporary cleanup.
 
+## Delivery checkpoint
+
+[PR #163](https://github.com/bbs-land/remote-imaging-protocol/pull/163) is OPEN/non-draft and closes exactly #161. Specification **395eb9d26c9b6f3924b47d2f10dcb3d4f5fd1991**. Push this complete delivery checkpoint, normal-merge its actual source head into fork stable with identical-tree proof, audit feedback/coverage/ancestry and resume the standing ten-minute watch. No upstream merge/manual closure; temporary API payload directory removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)
