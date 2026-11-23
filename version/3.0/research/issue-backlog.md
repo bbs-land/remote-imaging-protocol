@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#174 active.** The [palette publication derivation](issue-174-palette-publication.md) records the primary table and GDI traces on `issue-174-palette-publication` from stable **6a7e99c86f8a109ce6792840f4cf2e94391c0be0**. Complete the portable indexed rule and independent vectors. #175 and #179 are next.
+
 **#173 delivered.** [PR #180](https://github.com/bbs-land/remote-imaging-protocol/pull/180) documents prewrapped text placement and justification. The actual source **02c2d1028e8e8369ea48172bba0b547603e619b4** was normal-merged through **6af89200ac8a0148374db3db2dea813707f807d9** with an identical tree. Read the [derivation](issue-173-prewrapped-region-text.md). The **17:01:56Z** audit verified all 87 open upstream PR heads as ancestors. The outstanding queue is #174, #175, #179.
 
 **#172 delivered.** [PR #178](https://github.com/bbs-land/remote-imaging-protocol/pull/178) specifies the live rate shared by the wire command and BAUDEMUL, preserved by SOFT and ENV switching, and captured separately by SENV/RENV. See the [derivation](issue-172-local-playback-baud.md). Actual head **b1012d4259a1cb1caad5464107361ed72a2d3130** is normal-merged through **831fdb9d8eb20f80f55a6ca9708fcb883614d1ea** with an identical tree. The **16:52:44Z** audit confirmed all 86 open PR heads are ancestors and only #173 through #175 remain uncovered. Finish them in order.
