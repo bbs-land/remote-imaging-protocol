@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#199 delivered.** [PR #202](https://github.com/bbs-land/remote-imaging-protocol/pull/202). Read the [derivation](issue-199-status-bar.md).
+
 **#197 delivered.** [PR #198](https://github.com/bbs-land/remote-imaging-protocol/pull/198) documents Tab navigation and OPTION(LIST). The actual source **741394e664db11df7fd10e87f9f78e1fca108a37** was normal-merged through **78af40f04da66012587b2f10f66899d95471350e** with an identical tree. Read the [derivation](issue-197-tab-navigation.md). The **22:47:26Z** audit checked 97 open upstream PR heads, all ancestral. The verified queue is empty.
 
 **#193 delivered.** [PR #196](https://github.com/bbs-land/remote-imaging-protocol/pull/196) documents the DEFAULT EX placement example. The actual source **d4629fa8ed68e377a4549383e6eed5c8e743897c** was normal-merged through **ceb61a4f09eab6e07692a3e6c962f8438435acf6** with an identical tree. Read the [derivation](issue-193-font-zero-example.md). The **21:18:29Z** audit checked 96 open upstream PR heads, all ancestral. The verified queue is empty.
