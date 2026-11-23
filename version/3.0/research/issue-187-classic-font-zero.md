@@ -1,6 +1,6 @@
 # Issue #187 - Classic graphics font zero
 
-[Backlog](issue-backlog.md) · [RIP_FONT_STYLE](../ripscrip/3.0-text-output-and-fonts.md#rip_font_style) · [Issue #187](https://github.com/bbs-land/remote-imaging-protocol/issues/187)
+[Backlog](issue-backlog.md) · [Classic font zero](../ripscrip/3.0-text-output-and-fonts.md#classic-font-zero-in-text-and-text_xy) · [Issue #187](https://github.com/bbs-land/remote-imaging-protocol/issues/187)
 
 RealDeuce filed this report **2026-11-23T20:06:34Z**, body SHA-256 `88af6e581308ef41d4a682e7ddc6cad6af021ea98ac5540b99ebd7a3b3bb7ba5`. Work starts on `issue-187-classic-font-zero` from fork stable **c8798c6f789d65deb9cae9302f4297cb390d2fce**, after #186. The **20:15:42Z** audit found only #187 uncovered. The Pommenville signature evidence and classic bit assignments are in the [alignment derivation](issue-186-font-style-flags.md). This issue covers ordinary `T`/`@` graphics rendering for classic font 0. The accepted TEXT_METRIC, cursor update, ANSI cell and 1.54 contracts have their own scope.
 
@@ -36,6 +36,10 @@ Use the established [ordinary per-byte advance equations](../techspecs/2.4-outli
 
 With the reported 640×480 canvas, WORLD 1280×960 and `Y00000209`, Q=22, P=107, Dx=Dy=36. Each of the 18 signature bytes, including the space, has advance 500 design units. Each yields 308 units of 1/1440 inch, 7 DEVICE pixels and zero extra gap. The logical run advance is 126 pixels to X=614. Portable top is 8 pixels above the baseline, giving baseline origin (488,452). There is no claim about an original ink rectangle. A contrasting 800×600 canvas, equal WORLD, size 5 gives Q=56, P=104, and 40 pixels per byte of `AB`. At the same canvas with WORLD height doubled, vertical default anchors are right/top and advance is 19 per byte along Y. The precise vectors are in the specification.
 
+## Verification
+
+Verified the original DLL and RFF fingerprints, three command descriptors, seven call targets, classic argument setup and alignment jump tables. Read all ten size values and 50 spacing bytes, and matched the published rows including the duplicate row. Checked 12 mode boundaries and compared integer and independently expressed rational advances in 56,000 cases. Reproduced the three documented vectors and checked TEXT_XY cursor rules and TEXT_METRIC formulas against the starting revision. The RFF file and original sample were read as bytes. Formatting and link checks passed.
+
 ## Resume
 
-Publish the font-zero rendering scope, sizing table, placement and boundary examples. Validate the adapter constants, font bytes, arithmetic and independent drift from the inherited bitmap formula. Then deliver and consolidate #187.
+The specification now describes font-zero rendering scope, sizing, placement and examples. Deliver #187 and consolidate its actual PR head into fork stable.
