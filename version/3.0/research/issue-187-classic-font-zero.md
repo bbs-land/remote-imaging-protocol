@@ -47,3 +47,5 @@ The specification now describes font-zero rendering scope, sizing, placement and
 ## Delivery
 
 [PR #189](https://github.com/bbs-land/remote-imaging-protocol/pull/189) targets upstream main from `issue-187-classic-font-zero`. Specification commit **ee54529cda77f65cab558ab4a8e1bb57ea5757a7**. Formatting, diff checks and 6,698 Markdown links passed.
+
+Fork stable contains the actual PR head **5b4f83a94b5a79e6f88fd05f71cb9254c42fd259** through normal merge **306e8209b8e50b7b302dd06981cf49baeafdc83e**, with an identical source tree. The **20:22:47Z** audit, overlapping **20:14:42Z**, checked 94 open RealDeuce issues and 93 open upstream PR heads, all ancestral. No new review, issue discussion or inline feedback appeared. The verified queue is empty.
