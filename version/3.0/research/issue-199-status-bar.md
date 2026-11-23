@@ -72,3 +72,7 @@ Publish the [status-bar contract](../ripscrip/5.1-text-variables.md#statbar) and
 ## Delivery
 
 [PR #202](https://github.com/bbs-land/remote-imaging-protocol/pull/202) is open for upstream review. Specification commit **dfbd9ba5c0f4dbd0baab7faccd4187abd7a73b9a**.
+
+Fork stable normal-merged the actual head **d2d195fa5ecb6d443e6590f712821501f542529d** through **fcddec80a9b02378f1e9c395e3abd82956f0073c**, with an identical tree. At **23:05:47Z**, overlapping **22:59:09Z**, the audit checked 101 open RealDeuce issues and 98 open PR heads, all ancestral. No new review, discussion or inline feedback appeared. Continue in order with #200, #201.
+
+the CLS fill and selective MKILL reports in order
