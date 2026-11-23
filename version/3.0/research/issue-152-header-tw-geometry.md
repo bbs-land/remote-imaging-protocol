@@ -39,6 +39,14 @@ The key vector uses active extended TW 0, font 4 at 1024×768 with current MAF c
 
 A second vector has distinct ANSI background 4, STYLE background 9 and PAL entry 0=(10,200,40): HEADER erase uses (10,200,40) over the target bounding box, including margins outside centered display content, despite protection or an inactive/offscreen graphics port. No fixed query/parser/ESC snapshot/other-table change is introduced by these three leaf operations.
 
+## Independent geometry/state validation
+
+Inline Python checks verify all ten baseline hashes from `git show e6b7834:<path>`. Four literal headers independently decode to revision 1, globals 0, one type-3 segment, slot 0 and flags **4 / 2048 / 2560 / 8192**. Examples are outside GFM tables so formatting cannot split a literal command pipe. The noncurrent extended-font-4 vector gives exactly 40×25 cells and 800×600 rectangles, homes only TW 0 and retains its CSI/query/ANSI/visibility state plus all of current TW 5. A **160-case** matrix checks five fonts, ordinary/extended kind, defined/active/protected gates and current/noncurrent targets; five metric products are 960×731, 1001×731, 960×750, 1001×750 and 800×600. Erase/caret eligibility checks distinguish protection from activation. Logical color/point checks distinguish palette 0, ANSI B, STYLE background and fixed black; include centered-display margins, exclusive far boundaries and physical clipping of a negative near edge.
+
+These are independent arithmetic/abstract-state and wire-decoding checks, not execution of the original parser, client, probe, renderer or UI. The protocol correction is deliberately target-relative; no additional wrong-current software behavior was investigated. New reference crosslinks connect HEADER, ordinary TW lifecycle/erase sources and MTW without changing live RESET(TW) or the queued type-2 work.
+
+Full `run/lint`, `run/check-links` and `git diff --check` pass; links report **0 bad of 6,387 across 264 files**. Focused prose-spacing review passes. Before publication #152 retains the initial body/update time and zero comments. The 00:48:04Z all-author issue check found no newer report; next due about 00:58:04Z. #153 remains queued and uncovered.
+
 ## Next action
 
 Publish exact field/gate/color tables and encoded header vectors, verify nominal-grid arithmetic and independent target-state/eligibility cases, format/lint/link/diff, refresh #152 and publish/consolidate its separate PR. Audit while retaining #153 as the next uncovered report, then process #153 from updated stable. Continue ten-minute monitoring, co-author attribution and task temporary cleanup.

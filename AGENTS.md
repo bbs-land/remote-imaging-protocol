@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#152 is active on `issue-152-header-tw-geometry` from stable e6b7834; #153 follows separately. Read the [HEADER TW derivation](version/3.0/research/issue-152-header-tw-geometry.md). Complete retained-font/kind geometry, target-local cursor correction, field/gate/erase-color tables and vectors from primary/accepted contracts and report-supplied static observations. No new original-client/probe/bug investigation/execution. Preserve live RESET(TW), outer SOFT and ESC snapshot rules. Last issue check 2026-11-23T00:37:44Z detected #152/#153; next due about 00:47:44Z. Keep serial PR/stable delivery, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
+#152 is complete locally on `issue-152-header-tw-geometry` from stable e6b7834; #153 follows separately. Read the [HEADER TW derivation](version/3.0/research/issue-152-header-tw-geometry.md): retain target font/kind and CSI/query/ANSI state, maximize nominal geometry, home the target rather than an unrelated selected cursor, adopt current graphics PAL index 0 for header erase and distinguish geometry/erase/caret eligibility. Ten hashes, four literal headers, 160 geometry cases, five metric products and color/gate/rectangle checks pass; full lint/link/diff pass (6,387 links). Report unchanged/zero comments. Publish/consolidate actual head with identical tree and audit before #153. No original investigation/execution. Latest issue check 00:48:04Z; next due about 00:58:04Z. Preserve serial ancestry, FastFont separation, Codex trailers and temporary cleanup; no persistent scheduler.
 
 ## Ground rules
 
