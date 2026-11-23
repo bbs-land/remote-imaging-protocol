@@ -53,9 +53,13 @@ Independent inline Python checks pass **eight baseline hashes**, all four reques
 
 The fingerprinted inspector rereads RVA **0x376a**, length **1882**, SHA-256 `ab01797903232cfd819b21f58e1921ae2b33ce77c9c563be450b59386e8bbbaa`; RVA **0x4acd9**, length **120**, SHA-256 `9333fdf7d63007f393a29b60a15548fa8d359cbb8fbab376067b66fec86f1931`; RVA **0x4b2fd**, length **151**, SHA-256 `810b853f6d120afe8e1c3aa09b34a26c97dfc418952f784b3e9676a0d363035c`. Eight relative call identities, six exact mask/buffer/count/question/narrowing byte sequences and the stock prompt C string pass independent assertions. No original code or UI executes, no temporary/test/dump file persists.
 
-Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 bad of 6,462 links across 268 files**. Targeted normal prose spacing and exact literal/source-span review pass. Explicit 59/60/61 display and 1022/1023/1024 response byte cuts include dangling quote boundaries. The original byte ranges independently reread are RVA 0x376a, length 1882, SHA-256 `ab01797903232cfd819b21f58e1921ae2b33ce77c9c563be450b59386e8bbbaa`; RVA 0x4acd9, length 120, SHA-256 `9333fdf7d63007f393a29b60a15548fa8d359cbb8fbab376067b66fec86f1931`; RVA 0x4b2fd, length 151, SHA-256 `810b853f6d120afe8e1c3aa09b34a26c97dfc418952f784b3e9676a0d363035c`. Eight direct-call targets, six decisive mask/buffer/count/question/narrowing sequences and the exact stock prompt bytes pass independent assertions.
+Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 bad of 6,462 links across 268 files**. Normal prose spacing and literal/source-span review pass. Explicit 59/60/61 display and 1022/1023/1024 response byte cuts include dangling quote boundaries.
 
-Pre-publication #159 body/update/zero comments remain unchanged. Latest issue check **2026-11-23T02:16:25Z** detected **#161 playback filename substitutions/bounds**, queued next; next about **02:26:25Z**. Complete full repository lint/link/diff, publish #159 separately, consolidate actual source head with identical tree, audit all feedback/coverage/ancestry and then start #161 from updated stable. Preserve co-author attribution, originals, FastFont separation and temporary cleanup.
+Pre-publication #159 body/update/zero comments remain unchanged. Latest issue check **2026-11-23T02:16:25Z** detected **#161 playback filename substitutions/bounds**, queued next; next about **02:26:25Z**. Publish and consolidate #159, audit feedback/coverage/ancestry, then start #161 from updated stable. Preserve co-author attribution, originals, FastFont separation and temporary cleanup.
+
+## Delivery checkpoint
+
+[PR #162](https://github.com/bbs-land/remote-imaging-protocol/pull/162) is OPEN/non-draft and closes exactly #159. Specification **30ccf5860df4cd12c575a2b3c0740db6c6596fd2**. Push this complete delivery checkpoint, normal-merge its actual source head to fork stable with identical-tree proof, audit all feedback/coverage/ancestry and then start queued #161. No upstream merge/manual closure; temporary API payload directory removed automatically.
 
 ---
 

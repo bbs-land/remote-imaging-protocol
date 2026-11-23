@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#159 specification is ready on `issue-159-pick-list-contract` from stable 430f052. Read the [pick-list note](version/3.0/research/issue-159-pick-list-contract.md): exact stock prompt/response spans, two ordinary passes/no recursion/early send, 64 entries/1023-byte response/4096-byte working limit, and explicit safe label/zero-entry/numeric-position boundaries. Eight hashes, parsing/pass/control/playback/escaping/malformed/limit/position vectors, source ranges/calls/bytes and unchanged issue refresh pass. Complete full repository checks, publish/consolidate/audit separately, then start queued #161 playback filename substitutions/bounds. Latest check 02:16:25Z, next about 02:26:25Z. No original code/dialog/bug investigation; preserve originals, attribution, FastFont separation and temporary cleanup.
+#159 is delivered in [PR #162](https://github.com/bbs-land/remote-imaging-protocol/pull/162), specification 30ccf58, OPEN/non-draft and closing exactly #159. Read the [pick-list note](version/3.0/research/issue-159-pick-list-contract.md) for exact parser/pass rules, explicit safe display/empty/position choices and validation (6,462 links). Push this delivery checkpoint, normal-merge actual source head to fork stable with identical-tree proof, audit all coverage/feedback/ancestry and then start queued #161 playback filename substitutions/bounds. Last issue check 02:16:25Z, next about 02:26:25Z. No original execution/dialog/bug investigation or upstream merge/manual closure. Preserve originals, attribution, FastFont separation and temporary cleanup.
 
 ## Ground rules
 
