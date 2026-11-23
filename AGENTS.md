@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#158 specification is ready on `issue-158-hard-reset-profile` from stable 266a269. Read the [HARD note](version/3.0/research/issue-158-hard-reset-profile.md): complete shared inventory and fresh-state choices; HEADER revision/unlock versus live continuation; templates cleared, session/persistent variables and pending connection ANSI retained; full column/overflow reset, PAL/#150 snapshot preserved. Thirteen hashes, 720 state/font cases, literal header, HCL/store/parser/physical vectors, ten direct calls and exact source/IAT bytes pass. Repository checks/report refresh pass (6,450 links); publish/consolidate/audit separately, then start queued #159 pick-list parsing/HCL from updated stable. Last check 02:05:02Z, next about 02:15:02Z. No original execution/bug investigation; preserve attribution, originals, FastFont separation and temporary cleanup.
+#158 is delivered in [PR #160](https://github.com/bbs-land/remote-imaging-protocol/pull/160), specification 7c1a960, OPEN/non-draft and closing exactly #158. Read the [HARD note](version/3.0/research/issue-158-hard-reset-profile.md) for the shared profile, explicit fresh-state/source limits, wrapper distinctions and validation (6,450 links). Push this delivery checkpoint, normal-merge actual source head into fork stable with identical-tree proof, audit all feedback/coverage/ancestry, then start queued #159 pick-list/HCL from updated stable. Latest issue check 02:05:02Z, next about 02:15:02Z. No original execution/bug investigation, upstream merge or manual closure. Preserve attribution, original text/assets, FastFont separation and temporary cleanup.
 
 ## Ground rules
 

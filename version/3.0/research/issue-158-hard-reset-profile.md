@@ -73,6 +73,10 @@ The fingerprinted inspector independently rereads RVA **0x16665**, length **1215
 
 Full repository `run/lint`, `run/check-links` and `git diff --check` pass: **0 bad of 6,450 links across 267 files**. Exact header/HCL literals remain outside GFM tables and targeted normal word/number spacing passes. #158 body/zero comments are unchanged at pre-publication refresh. The 2026-11-23T02:05:02Z issue check detected #159 (pick-list parsing/HCL), queued next; next poll about 02:15:02Z. Publish #158 separately, merge actual PR source head into fork stable with identical tree, audit all feedback/coverage/ancestry and continue the ten-minute watch.
 
+## Delivery checkpoint
+
+[PR #160](https://github.com/bbs-land/remote-imaging-protocol/pull/160) is OPEN/non-draft and closes exactly #158. Specification **7c1a960058336ea79d80506472e77dfad4996a7e**. Push this complete delivery checkpoint, normal-merge its actual source head into fork stable with identical-tree proof, audit feedback/coverage/ancestry and then start queued #159 from updated stable. No upstream merge/manual closure; temporary API payload directory was removed automatically.
+
 ---
 
 [Research backlog](issue-backlog.md) · [Agent workflow](../../../AGENTS.md)
