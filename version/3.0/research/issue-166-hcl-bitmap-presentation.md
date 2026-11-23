@@ -77,3 +77,7 @@ The 3.0 playback entry, JPEG boundary cross-link and IMGSTYLE clarification now 
 Full `run/lint`, `run/check-links` and `git diff --check` pass after formatting; the link check reports 0 bad of 6,509 across 271 files. Final review checks prose spacing, complete wire literals outside tables, retained filename/scene/audio/JPEG contracts and explicit source-versus-completion boundaries. Publication and stable handoff follow.
 
 Pre-publication checks pass: full `run/lint`, subsequent changed-file lint, `run/check-links` (**0 bad of 6,512 across 271 files**), diff check and the independent source/arithmetic vectors above. #166 body/update/zero comments remain unchanged. The all-author check at **03:57:35Z** found no newer issue; next about **04:07:35Z**. No task temporary files or original/client/UI/provider execution.
+
+## PR delivery
+
+[PR #167](https://github.com/bbs-land/remote-imaging-protocol/pull/167), specification **85abf203bfde92da5ceb191775e1dec318fa55b6**, is OPEN/non-draft and closes exactly #166. Actual source branch is `issue-166-hcl-bitmap-presentation` from stable 328f819. Merge its full source head including this delivery metadata with an identical-tree proof, then audit coverage/feedback/ancestry. The task-owned `rip-166-pr-` request directory was automatically removed. No upstream merge or manual issue closure.

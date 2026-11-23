@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #166 HCL bitmap presentation geometry/flags/palette/dithering, publish a complete PR and consolidate its actual head into stable; see [derivation](version/3.0/research/issue-166-hcl-bitmap-presentation.md).
+- [ ] Consolidate #166 / PR #167 actual full source head into stable with identical-tree proof, audit coverage/feedback/ancestry and resume the ten-minute watch.
 
 - [ ] Consolidate #164 / PR #165 actual source head into stable, audit feedback/coverage/ancestry and continue the authorized ten-minute watch.
 
