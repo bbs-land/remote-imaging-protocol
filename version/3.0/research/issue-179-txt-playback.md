@@ -35,3 +35,7 @@ The DLL fingerprint, five opcode descriptors, 15 relative call targets and eight
 ## Resume
 
 The specification and both playback summaries now describe the shared route. Validate the byte example and submit a PR closing #179. Consolidate its actual head and refresh the queue.
+
+## Delivery
+
+[PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183) targets upstream main from the RealDeuce issue branch. Specification commit **e10d9bdd8df677b147dcc35ff449e5b2da25fbf8**. Lint, diff checks and 6,625 Markdown links passed.

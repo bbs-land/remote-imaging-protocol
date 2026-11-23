@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#179 active.** The [TXT playback derivation](issue-179-txt-playback.md) records the shared parser gate, text path and article result from `issue-179-txt-playback` at stable `367e11a`. Update the linked specification, verify the example and deliver the PR.
+**#179 delivered.** [PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183) specifies that local file playback applies RIP framing before routing ordinary text to the article. See the [derivation](issue-179-txt-playback.md). Consolidate its actual head.
 
 **#175 delivered.** [PR #182](https://github.com/bbs-land/remote-imaging-protocol/pull/182) documents RIP_DEFINE grammar and editor policy. The actual source **8d62e50fc1ff26019f9b1b7e0d01c33d3c71a898** was normal-merged through **cff5a0ae4191ad4cd8a1e21a4ec44e91c1773968** with an identical tree. Read the [derivation](issue-175-rip-define.md). The **17:16:08Z** audit verified all 89 open upstream PR heads as ancestors. The outstanding queue is #179.
 

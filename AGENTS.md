@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#179 is active on `issue-179-txt-playback`. The [TXT playback derivation](version/3.0/research/issue-179-txt-playback.md) traces both callers through the shared RIP and column route. Apply and verify the distinguishing color example before filing the PR.
+Issue #179 is delivered in [PR #183](https://github.com/bbs-land/remote-imaging-protocol/pull/183). Consolidate its actual source head into fork stable. The [TXT playback in an active article derivation](version/3.0/research/issue-179-txt-playback.md) records the result. Overlap the **17:16:08Z** feedback watermark by at least one minute.
 
 Issue #175 is delivered in [PR #182](https://github.com/bbs-land/remote-imaging-protocol/pull/182). Fork stable includes its actual source **8d62e50fc1ff26019f9b1b7e0d01c33d3c71a898** through merge **cff5a0ae4191ad4cd8a1e21a4ec44e91c1773968**. The [RIP_DEFINE grammar and editor policy derivation](version/3.0/research/issue-175-rip-define.md) records the source, examples and audit. Work through the remaining queue in order (#179). Query feedback from at least one minute before **17:16:08Z**.
 
