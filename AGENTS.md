@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+#199 is active on `issue-199-status-bar`. Read the [status-bar visibility and geometry derivation](version/3.0/research/issue-199-status-bar.md) for the trace and next action.
+
 Issue #197 is delivered in [PR #198](https://github.com/bbs-land/remote-imaging-protocol/pull/198). Fork stable includes the actual source **741394e664db11df7fd10e87f9f78e1fca108a37** through merge **78af40f04da66012587b2f10f66899d95471350e**. The [Tab navigation and OPTION(LIST) derivation](version/3.0/research/issue-197-tab-navigation.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **22:47:26Z**.
 
 Issue #193 is delivered in [PR #196](https://github.com/bbs-land/remote-imaging-protocol/pull/196). Fork stable includes the actual source **d4629fa8ed68e377a4549383e6eed5c8e743897c** through merge **ceb61a4f09eab6e07692a3e6c962f8438435acf6**. The [DEFAULT EX placement example derivation](version/3.0/research/issue-193-font-zero-example.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **21:18:29Z**.
