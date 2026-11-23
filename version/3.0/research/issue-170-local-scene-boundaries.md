@@ -41,8 +41,9 @@ Issue and discussion refresh at **2026-11-23T16:25Z** verified unchanged bodies 
 | [#172 local playback baud and scene resets](https://github.com/bbs-land/remote-imaging-protocol/issues/172) | 2026-11-23T07:51:15Z | `a7e69f75e562872b47fb260af48708a5ed21678dca42f09f88b7c6582a5d9817` |
 | [#173 prewrapped line placement and justification](https://github.com/bbs-land/remote-imaging-protocol/issues/173) | 2026-11-23T08:05:59Z | `89cb0562df0c8a5d2f7ea26aba89ead0a2c64b98401aa8b7d3c73f26549a88ee` |
 | [#174 palette publication and PALENTRY precision](https://github.com/bbs-land/remote-imaging-protocol/issues/174) | 2026-11-23T16:18:49Z | `f8ccd9ddef74bfffb151a75ff566069fe74d252e5dc744a295ece422bafec144` |
+| [#175 RIP_DEFINE grammar and editor policy](https://github.com/bbs-land/remote-imaging-protocol/issues/175) | 2026-11-23T16:32:59Z | `b6e9ef09d4112b741178e56a552fd6d860282e9932ff687402e7744ac9197213` |
 
-Each had zero comments. Issue discussion and PR inline comment queries returned no items since **07:30:44Z**. The previous full audit watermark still applies to reviews and PR ancestry.
+Each had zero comments. #175 arrived after the initial refresh. Issue discussion and PR inline comment queries returned no items since **07:30:44Z**. The previous full audit watermark still applies to reviews and PR ancestry.
 
 ## Bounded source continuation
 
@@ -66,3 +67,7 @@ Each had zero comments. Issue discussion and PR inline comment queries returned 
 ## Validation checkpoint
 
 Rechecked the seven baseline hashes and original DLL fingerprint. Read 15 original relative call targets, three opcode descriptors, two jump table entries, four data literals and the retrieval check directly from the PE image. Independently evaluated twelve drawing/reply examples using explicit delimiter and command subsets, including all four line endings, pending EOF, compatible pipe resumption, parent suffix and missing scene. Checked the literal FILE_QUERY and ANSI status vectors against prior query evidence and the original DSR response constant. No native client execution was required.
+
+## Delivery
+
+[PR #176](https://github.com/bbs-land/remote-imaging-protocol/pull/176) opened from the RealDeuce `issue-170-local-scene-boundaries` branch targeting upstream `main`. The specification commit is **a44b81624c9b9bc13548e5ceb1cf27c2eab0ac3b**. GitHub reports OPEN, ready for review and exactly #170 as its closing issue. Full lint and diff checks passed, and the link checker reported 0 broken links among 6,547. The #170 report still matches its original hash and has no comments. Consolidate the actual source head, including this delivery note, into fork stable before opening a #171 branch.

@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#170 is active on `issue-170-local-scene-boundaries` from stable **9396d5577175e470c7b3dd6bd6613b3fe7c80221**. Issues **#171, #172, #173 and #174** follow in order. The [local scene derivation](version/3.0/research/issue-170-local-scene-boundaries.md) records the report fingerprints, source progress and next reads. #168 / PR #169 is fully delivered in fork stable. Finish the local file framing, replies, naming and nested playback contract for #170 before moving to #171.
+Issue #170 is delivered in [PR #176](https://github.com/bbs-land/remote-imaging-protocol/pull/176). Consolidate its actual head into fork stable and verify the result. Then start #171 FILEEXISTS, followed by #172, #173, #174 and #175 in order. See the [local scene derivation](version/3.0/research/issue-170-local-scene-boundaries.md) for report fingerprints, source evidence and validation.
 
 The host crontab checks GitHub every ten minutes independently of this session. The local watcher under `/usr/home/admin/RIP/.rip-issue-watch/` records its last check and queues newly filed issue numbers to this thread. Its first scheduled poll succeeded at **2026-11-23T16:30:00Z**. The CLI can queue messages, but automatic resumption is unavailable on this host. `codex queue --resume` reports no daemon, and `codex app-server daemon start` reports that the CLI lacks a complete local package. Resume this thread to process queued reports. During active work, continue checking for feedback since at least one minute before the last audit.
 
