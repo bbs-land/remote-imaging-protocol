@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#172 local playback baud is active on `issue-172-local-playback-baud` from fork stable **f786d3d2f46391af1f858999b1cbe3d036d15fa4**. The [derivation](version/3.0/research/issue-172-local-playback-baud.md) records the live rate, original setters, reset, backup and pacing. Complete the reference and examples, then deliver its PR and stable merge. #171 / PR #177 is consolidated. #173 through #175 remain queued. Query feedback from at least one minute before the **16:43:44Z** audit.
+Issue #172 is delivered in [PR #178](https://github.com/bbs-land/remote-imaging-protocol/pull/178). Consolidate the actual source head into fork stable. Then start #173, followed by #174 and #175. The [local playback baud derivation](version/3.0/research/issue-172-local-playback-baud.md) records the fixed ownership, reset, backup and syntax boundaries. Use the 16:43:44Z audit watermark with a one-minute overlap for feedback.
 
 The host crontab checks GitHub every ten minutes independently of this session. The local watcher under `/usr/home/admin/RIP/.rip-issue-watch/` records its last check and queues newly filed issue numbers to this thread. Its first scheduled poll succeeded at **2026-11-23T16:30:00Z**. The **16:40:00Z** tick detected #175 and queued it successfully. The CLI can queue messages, but automatic resumption is unavailable on this host. `codex queue --resume` reports no daemon, and `codex app-server daemon start` reports that the CLI lacks a complete local package. Resume this thread to process queued reports. During active work, continue checking for feedback since at least one minute before the last audit.
 

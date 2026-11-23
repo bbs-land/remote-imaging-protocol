@@ -25,3 +25,7 @@ Started on `issue-172-local-playback-baud` from fork stable **f786d3d2f46391af1f
 ## Validation
 
 Confirmed the DLL fingerprint, 22 original call targets, both physical descriptors, six instruction sequences and two data literals. Compared all 28 group thresholds and their corresponding group values with the original instructions, including both outcomes of the final comparison. Independent examples cover the reset preserving a 2,400 rate and its existing byte grouping, ENV switching, the separately restored rate, two-digit wire decoding and four nominal pacing samples. No original playback was executed. The persistent cron check at **2026-11-23T16:50:00Z** found no later report.
+
+## Delivery
+
+[PR #178](https://github.com/bbs-land/remote-imaging-protocol/pull/178) targets upstream main from the issue branch on the RealDeuce fork. Specification commit **420f4d3f345789ae531f6877a375f148c7f847e3**. Repository lint and diff checks passed, and all 6,576 Markdown links validated. Consolidate the actual PR head.
