@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-24 23:12:00 UTC.** [PR #274](https://github.com/bbs-land/remote-imaging-protocol/pull/274) covers #273. Its actual head `6d652cb5ce3e38f713cf0888a7d415081b6fdc4c` is on fork stable through `643ca5be60e8669cb45218c5cc172ed27c34cf41`. The [full-port erase derivation](issue-273-full-port-erase.md) covers the original slot and 15 call targets, plus portable screen, bitmap and clipping cases. The audit found all 136 open RealDeuce reports covered and all 135 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
+
 **2026-11-24 23:05:12 UTC.** [PR #272](https://github.com/bbs-land/remote-imaging-protocol/pull/272) covers #270. Its actual head `f2d4dabbbd832dcebcff73dcc000507d3ec20685` is on fork stable through `e7534a26c8e893a1390153f151171f62ff7d4f6f`. The [coordinate and fixed-field derivation](issue-270-coordinate-and-fixed-field-edges.md) covers nine descriptors, 33 receive cases and 27 width effects. The audit found all 135 open RealDeuce reports covered and all 134 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **2026-11-24 23:01:51 UTC.** [PR #271](https://github.com/bbs-land/remote-imaging-protocol/pull/271) covers #269. Its actual head `94560904e4990258bb14ca3135a12bdb4bd20624` is on fork stable through `6f7371368fca146da5b1db9a0267d0bc059795ed`. The [PLAY_AUDIO derivation](issue-269-play-audio-repeat.md) records the two fields, 18 checked receive cases and five handler policy cases. The audit found all 133 open PR heads consolidated. #270 is the sole uncovered RealDeuce report. No new discussion comments, inline comments, or reviews.
