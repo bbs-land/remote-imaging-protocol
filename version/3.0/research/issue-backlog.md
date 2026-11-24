@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#209 active.** Branch `issue-209-backspace-modes`. The [derivation](issue-209-backspace-modes.md) records the source and next action.
+
 **#208 delivered.** [PR #219](https://github.com/bbs-land/remote-imaging-protocol/pull/219) documents legacy image suffix wording. Actual source **91b2cd76b6212c5dff61dbfabe253983574aa33c** was normal-merged through **98df34f1a0e49253553d9be23278a23a279f91a5** with an identical tree. Read the [derivation](issue-208-legacy-suffix-wording.md). The **02:07:00Z** audit found 104 open PR heads, all ancestral. Continue in order with #209, #210, #211, #212, #213, #214, #215.
 
 **#207 delivered.** [PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218) documents backup query aggregates. Actual source **73dccc9588d0e566acb5802b397143966455f2cf** was normal-merged through **293cc3a0507734f72596db212bae3cd25a6bfe47** with an identical tree. Read the [derivation](issue-207-backup-aggregates.md). The **02:04:06Z** audit found 103 open PR heads, all ancestral. Continue in order with #208, #209, #210, #211, #212, #213, #214, #215.

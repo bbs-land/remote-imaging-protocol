@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+#209 is active on `issue-209-backspace-modes`. Read the [backspace mode and transmit policy derivation](version/3.0/research/issue-209-backspace-modes.md) for the trace and next action.
+
 Issue #208 is delivered in [PR #219](https://github.com/bbs-land/remote-imaging-protocol/pull/219). Fork stable includes the actual source **91b2cd76b6212c5dff61dbfabe253983574aa33c** through merge **98df34f1a0e49253553d9be23278a23a279f91a5**. The [legacy image suffix wording derivation](version/3.0/research/issue-208-legacy-suffix-wording.md) records the source, examples and audit. Continue in order with #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:07:00Z**.
 
 Issue #207 is delivered in [PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218). Fork stable includes the actual source **73dccc9588d0e566acb5802b397143966455f2cf** through merge **293cc3a0507734f72596db212bae3cd25a6bfe47**. The [backup query aggregates derivation](version/3.0/research/issue-207-backup-aggregates.md) records the source, examples and audit. Continue in order with #208, #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:04:06Z**.
