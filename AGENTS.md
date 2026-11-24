@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+Issue #205 is delivered in [PR #216](https://github.com/bbs-land/remote-imaging-protocol/pull/216). The [block-mode requests and completion derivation](version/3.0/research/issue-205-block-mode.md) records source and verification. Consolidate the actual PR head.
+
 Issue #201 is delivered in [PR #204](https://github.com/bbs-land/remote-imaging-protocol/pull/204). Fork stable includes the actual source **4c55a9adfa87e90d91cdd5dcfb301e9fec683c0d** through merge **a1b5f789c316a996d7baad3116d776ca7c4bca91**. The [selective MKILL arity and selectors derivation](version/3.0/research/issue-201-selective-mkill.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **23:12:56Z**.
 
 Issue #200 is delivered in [PR #203](https://github.com/bbs-land/remote-imaging-protocol/pull/203). Fork stable includes the actual source **c5b5168c440a7e90707bca53d6fc517912a94edf** through merge **fe7be8b0bb3d68607a6eb0e5a10f78e735c2eda4**. The [fixed black CLS fill derivation](version/3.0/research/issue-200-cls-black.md) records the source, examples and audit. Continue in order with #201. Query feedback from at least one minute before **23:09:16Z**.
