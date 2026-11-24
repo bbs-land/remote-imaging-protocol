@@ -39,3 +39,5 @@ Publish the aggregate contract and update the backup-page cross-reference.
 ## Delivery
 
 [PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218) is open for upstream review. Specification commit 39fca3a492b314d8ca1e764c603d0a05132cfc2a.
+
+The actual PR head 73dccc9588d0e566acb5802b397143966455f2cf was normal-merged with an identical tree in 293cc3a0507734f72596db212bae3cd25a6bfe47. At 02:04:06Z, all 103 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #208, #209, #210, #211, #212, #213, #214, #215.
