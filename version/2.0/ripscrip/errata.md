@@ -70,6 +70,32 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 
 **How the reference page renders it:** [2.0's Scope and color effects section](2.0-color-modes-and-palettes.md#scope-and-color-effects) already states the 2.x scope correctly ("all line drawing operations... any fill-based operations... level-0 drawing primitives... fonts"); this entry is comparative history for context, not a body-fact gap.
 
+### RGB component example: 04140C and blue 12
+
+**What the draft says:** the packed hexadecimal example is 04140D and the table's blue hex is 0Dh, while the combined binary string and the table's blue binary/decimal are 00001100 / 12 (draft lines 3539–3550).
+
+**What's correct:** 00001100 = 0Ch = 12; the complete binary string is 04140C. The corrected example consistently uses 04140C / blue 12. This is an arithmetic correction, not a change to the RGB layout or a claim about differing clients. See the [source and derivation](../../3.0/research/issue-9-rgb-examples.md#derivation).
+
+**How the reference page renders it:** [Palette Mapping and Direct RGB Mode](2.0-color-modes-and-palettes.md#palette-mapping-and-direct-rgb-mode) corrects the packed hexadecimal value and blue hexadecimal cell; the original binary and decimal values remain.
+
+### C palette-index expression requires grouped shifts
+
+**What the draft says:** after the correct formula `32 + BLUE + GREEN*4 + RED*32`, it gives `32 + BLUE + GREEN<<2 + RED<<5` as its C equivalent (draft lines 3640–3644).
+
+**What's correct:** use `32 + BLUE + (GREEN << 2) + (RED << 5)`. C addition binds more tightly than shifting, and shifts associate left to right; the original expression means `((32 + BLUE + GREEN) << (2 + RED)) << 5`. BLUE=1/GREEN=2/RED=3 should give 137, whereas the old C grouping gives 35840 with sufficiently wide integers. The [derivation](../../3.0/research/issue-9-rgb-examples.md#derivation) cites the primary C grammar. Neither the palette entries nor the arithmetic formula changes.
+
+**How the reference page renders it:** [Default RGB Values of Color Lookup Table](2.0-color-modes-and-palettes.md#default-rgb-values-of-color-lookup-table) groups both shifts, labels the block as C, and includes the 137 worked result.
+
+## 2.1 Lines
+
+### Open polyline vertex and segment counts
+
+**What the draft says:** `npoints` is both the number of coordinate pairs and the number of sides of an open polyline.
+
+**What's correct:** N vertices give N-1 consecutive segments because the last vertex is not connected back to the first. The draft's own five-segment/six-vertex example already demonstrates this. The same inherited wording is corrected in the 1.54 and 3.0 Markdown editions; original text records remain unchanged. See the [derivation](../../3.0/research/issue-11-pixel-pen-units.md).
+
+**How the reference page renders it:** [RIP_POLYLINE](2.1-lines.md#rip_polyline) counts coordinate pairs as vertices and states N-1 segments.
+
 ## 2.2 Curves
 
 ### RIP_POLY_BEZIER_LINE: command `t`, not `z`
@@ -81,6 +107,14 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 **How the reference page renders it:** [2.2's RIP_POLY_BEZIER_LINE entry](2.2-curves.md#rip_poly_bezier_line) already prints `t` throughout its Command table, Format and Example - no body fix needed.
 
 ## 2.3 Shapes & Fills
+
+### Fill-mask row numerals
+
+**What the draft says:** preset 04 row five has picture/hex 0E but decimal 15 and MegaNum/UltraNum 0F; preset 05 row one has F0/240 but MegaNum 60; FF/255 rows have UltraNum 3@, with one preset-07 row labelled 32; preset 0B rows three/seven have 22/34/0Y but UltraNum 04/24. The 05 diagram caption also incorrectly says light backslash while the preset list says normal backslash.
+
+**What's correct:** retain the existing pictures and hexadecimal bytes. Use 0E/14/0E/0E for preset 04 row five; F0/240/6O/3m for preset 05 row one; FF/255/73/3& for every FF row; 22/34/0Y/0Y for preset 0B rows three/seven. These are arithmetic and caption corrections within the draft, independently corroborated by the unchanged RIPtel 3.1 preset table; they do not assert an earlier client's tiling phase. See the [source recovery and verification](../../3.0/research/issue-12-fill-masks.md).
+
+**How the reference page renders it:** [2.3's Fill Pattern Bitmaps](2.3-shapes-and-fills.md#fill-pattern-bitmaps) uses the corrected numerals and the normal-backslash caption. The original draft under `text/` remains untouched. Exact drawing-context phase is established for RIPtel 3.1 in the [3.0 reconstruction](../../3.0/ripscrip/2.3-shapes-and-fills.md#fill-pattern-origin-and-scaling).
 
 ### RIP_FILLED_POLY_BEZIER: command `x`, not `z`
 
@@ -147,6 +181,14 @@ The draft's own behavior confirms the reading: the two sibling commands announce
 **How the reference page renders it:** [5.5](5.5-file-transfer-and-queries.md#rip_file_query) documents the commands that exist and points at `$FILEDEL$` for deletion; the [9.0 command index](9.0-command-reference.md) records the announced-but-unspecified command so a reader searching for it finds the answer rather than silence. Hosts targeting any 2.x client should use `$FILEDEL$`.
 
 ## 7.0 Drawing Ports
+
+### Viewport diagram screen coordinate
+
+**What the draft says:** the point at viewport (50,50), port (90,90) is labeled screen (125,125), while the port origin is screen (25,25) and the viewport origin is port (40,40).
+
+**What's correct:** (25+40+50,25+40+50) = **(115,115)**. This is a coordinate-addition correction independent of any client's bitmap sizing convention. The [port-geometry derivation](../../3.0/research/issue-10-port-geometry.md) separately establishes the later RIPtel 3.1 extent/copy contract and the size-query defect; those later-client findings are not generalized to 2.x runtime behavior.
+
+**How the reference page renders it:** the [Ports and Viewports diagram](7.0-drawing-ports.md#ports-and-viewports) labels the point (115,115).
 
 ### RIP_DELETE_PORT: command `2p`, not `2s`
 
