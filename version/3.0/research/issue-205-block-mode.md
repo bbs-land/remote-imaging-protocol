@@ -82,3 +82,5 @@ Verify the matrix and literal request bytes, publish the PR, then consolidate it
 ## Delivery
 
 [PR #216](https://github.com/bbs-land/remote-imaging-protocol/pull/216) is open for upstream review. Specification commit c1e2b71b199917244512ab7ea67596729678f6ae.
+
+The actual PR head 2ce278f9c4a440b27b095a46d7848a5400927260 was normal-merged with an identical tree in ccef989bb06884cac94ab390b99a2b40bacb5701. At 01:59:32Z, all 101 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #206, #207, #208, #209, #210, #211, #212, #213, #214, #215.
