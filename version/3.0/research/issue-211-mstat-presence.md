@@ -14,6 +14,10 @@ The portable rule follows explicit current frontend presence when available, inc
 
 The read-only verification checked the call bytes, the metric operand, the import, both result literals, and the error-flag write. No input device or original terminal was launched.
 
+## Verification
+
+Verified original instructions, import and bytes for both values. Cross-checked the metric on Microsoft Learn. Checked example coverage, Markdown, links and whitespace.
+
 ## Resume
 
 Publish the portable policy with examples and distinguish the local-playback held bit in both directions.
