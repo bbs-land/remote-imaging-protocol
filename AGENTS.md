@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+Issue #208 is delivered in [PR #219](https://github.com/bbs-land/remote-imaging-protocol/pull/219). The [legacy image suffix wording derivation](version/3.0/research/issue-208-legacy-suffix-wording.md) records source and verification. Consolidate the actual PR head.
+
 Issue #207 is delivered in [PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218). Fork stable includes the actual source **73dccc9588d0e566acb5802b397143966455f2cf** through merge **293cc3a0507734f72596db212bae3cd25a6bfe47**. The [backup query aggregates derivation](version/3.0/research/issue-207-backup-aggregates.md) records the source, examples and audit. Continue in order with #208, #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:04:06Z**.
 
 Issue #206 is delivered in [PR #217](https://github.com/bbs-land/remote-imaging-protocol/pull/217). Fork stable includes the actual source **2adaafe3bfc8e864efab95590bb72d78c7eb5726** through merge **78341fd88a4be477b1437bc44188f1e2bf0c5748**. The [ISPALETTE return policy derivation](version/3.0/research/issue-206-ispalette.md) records the source, examples and audit. Continue in order with #207, #208, #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:01:14Z**.
