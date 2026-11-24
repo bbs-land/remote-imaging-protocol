@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#213 active.** Branch `issue-213-affine-ellipses`. The [derivation](issue-213-affine-ellipses.md) records the source and next action.
+**#213 delivered.** [PR #224](https://github.com/bbs-land/remote-imaging-protocol/pull/224). Read the [derivation](issue-213-affine-ellipses.md).
 
 **#212 delivered.** [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223) documents PolyMarker projection and composition. Actual source **829579e54c3b7fdacc92083f0cbab82234532158** was normal-merged through **02cb4a844b815f1b98e39baa2fea03b2e34a09ef** with an identical tree. Read the [derivation](issue-212-polymarker.md). The **02:22:11Z** audit found 108 open PR heads, all ancestral. Continue in order with #213, #214, #215.
 

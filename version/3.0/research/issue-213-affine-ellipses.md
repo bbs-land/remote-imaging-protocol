@@ -33,3 +33,7 @@ Verified all five dispatch records and shared-generator calls. A separate read-o
 ## Resume
 
 Verify all five descriptors, the integer hit and contour selection rules, the consumers' line and polygon decisions and the filled contribution policy. Reproduce the existing reference vectors without opening the legacy client. Publish the curve and index entries with implementer examples.
+
+## Delivery
+
+[PR #224](https://github.com/bbs-land/remote-imaging-protocol/pull/224) is open for upstream review. Specification commit 7f0a24cfaa084ef02a370f95a3db25656342785b.
