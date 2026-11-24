@@ -33,3 +33,5 @@ Trace the geometry, setup, width/height measurements, point-size correction and 
 ## Delivery
 
 [PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225) is open for upstream review. Specification commit 2cc89b7010179b83914eb19233ec2fe34a1f6386.
+
+The actual PR head e115d1efb5dd7fd3c6f99f0ba787c42bfb689f81 was normal-merged with an identical tree in c8386710b046ddb9d922e479480d85b16a15de2e. At 02:32:38Z, all 110 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #215.
