@@ -37,3 +37,5 @@ Verify all five descriptors, the integer hit and contour selection rules, the co
 ## Delivery
 
 [PR #224](https://github.com/bbs-land/remote-imaging-protocol/pull/224) is open for upstream review. Specification commit 7f0a24cfaa084ef02a370f95a3db25656342785b.
+
+The actual PR head 09559f3976f0783104d9413c070fa157a5674ba9 was normal-merged with an identical tree in 790255d09338051fa533931a87c5aa1216b80177. At 02:27:06Z, all 109 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #214, #215.
