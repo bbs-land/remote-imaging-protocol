@@ -35,3 +35,7 @@ Verified the original DLL fingerprint, five numbered-loop and four live-loop com
 ## Resume
 
 Publish the aggregate contract and update the backup-page cross-reference.
+
+## Delivery
+
+[PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218) is open for upstream review. Specification commit 39fca3a492b314d8ca1e764c603d0a05132cfc2a.

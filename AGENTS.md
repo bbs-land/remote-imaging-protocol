@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#207 is active on `issue-207-backup-aggregates`. Read the [backup query aggregates derivation](version/3.0/research/issue-207-backup-aggregates.md) for the trace and next action.
+Issue #207 is delivered in [PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218). The [backup query aggregates derivation](version/3.0/research/issue-207-backup-aggregates.md) records source and verification. Consolidate the actual PR head.
 
 Issue #206 is delivered in [PR #217](https://github.com/bbs-land/remote-imaging-protocol/pull/217). Fork stable includes the actual source **2adaafe3bfc8e864efab95590bb72d78c7eb5726** through merge **78341fd88a4be477b1437bc44188f1e2bf0c5748**. The [ISPALETTE return policy derivation](version/3.0/research/issue-206-ispalette.md) records the source, examples and audit. Continue in order with #207, #208, #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:01:14Z**.
 
