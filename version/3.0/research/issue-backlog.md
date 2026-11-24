@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#211 active.** Branch `issue-211-mstat-presence`. The [derivation](issue-211-mstat-presence.md) records the source and next action.
+**#211 delivered.** [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222). Read the [derivation](issue-211-mstat-presence.md).
 
 **#210 delivered.** [PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221) documents character-set and language providers. Actual source **dd269ffe18ca4a80981ad4af9931263abd98b6e3** was normal-merged through **1383244a225e53ea0b81aa3ccb663c3cb77b65c3** with an identical tree. Read the [derivation](issue-210-charset-metadata.md). The **02:16:11Z** audit found 106 open PR heads, all ancestral. Continue in order with #211, #212, #213, #214, #215.
 

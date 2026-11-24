@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#211 is active on `issue-211-mstat-presence`. Read the [portable MSTAT pointer presence derivation](version/3.0/research/issue-211-mstat-presence.md) for the trace and next action.
+Issue #211 is delivered in [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222). The [portable MSTAT pointer presence derivation](version/3.0/research/issue-211-mstat-presence.md) records source and verification. Consolidate the actual PR head.
 
 Issue #210 is delivered in [PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221). Fork stable includes the actual source **dd269ffe18ca4a80981ad4af9931263abd98b6e3** through merge **1383244a225e53ea0b81aa3ccb663c3cb77b65c3**. The [character-set and language providers derivation](version/3.0/research/issue-210-charset-metadata.md) records the source, examples and audit. Continue in order with #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:16:11Z**.
 

@@ -21,3 +21,7 @@ Verified original instructions, import and bytes for both values. Cross-checked 
 ## Resume
 
 Publish the portable policy with examples and distinguish the local-playback held bit in both directions.
+
+## Delivery
+
+[PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222) is open for upstream review. Specification commit ea9a02d5dd1f5a48de94cc690a63bd3fd46d3954.
