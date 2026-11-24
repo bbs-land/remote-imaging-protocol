@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Resolve #227 on simple mouse field post-action reset. See the [derivation](version/3.0/research/issue-227-mouse-post-action-reset.md).
+- [ ] Publish the completed #227 simple mouse field reset specification and consolidate its PR head into fork stable. See the [derivation](version/3.0/research/issue-227-mouse-post-action-reset.md).
 
 - [ ] Restore automatic resumption of this Codex thread for the host's ten-minute GitHub watch. Polling and durable queuing are installed. See the current checkpoint in [AGENTS.md](AGENTS.md).
 

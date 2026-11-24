@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#227 active.** Branch `issue-227-mouse-post-action-reset` starts at fork stable `abae22a`. [Source derivation](issue-227-mouse-post-action-reset.md). No PR yet. The specification and vectors are ready. Next, publish a PR closing #227, verify its references and feedback, then consolidate its actual head into fork stable.
+**#227 awaiting PR publication.** Specification commit `8f802c6` and its [source derivation](issue-227-mouse-post-action-reset.md) are on the [fork branch](https://github.com/RealDeuce/remote-imaging-protocol/tree/issue-227-mouse-post-action-reset), based on fork stable `abae22a`. At 2026-11-24 13:54:51 UTC the issue was open with zero comments and no PR from that branch. SSH push succeeded, but GitHub returned HTTP 401 to the watcher's PR creation request. Resume with an authenticated PR against upstream main closing #227, refresh closing references and review feedback, then merge the actual PR head into fork stable. Retain the prior full-audit watermark of 02:36:53 UTC until that refresh completes.
 
 **#215 delivered.** [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226) documents WRITE_ICON export flags and temporary assets. Actual source **5beb65baa8b4fceb41fa16969602504dba4ee056** was normal-merged through **13439551837a9fa140a19b5ad03ba9b73a56b8c2** with an identical tree. Read the [derivation](issue-215-write-icon-export.md). The **02:36:53Z** audit found 111 open PR heads, all ancestral. The verified queue is empty.
 
