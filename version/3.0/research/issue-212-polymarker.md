@@ -38,3 +38,5 @@ Extract the descriptor data, verify rotation and per-flag drawing routes, define
 ## Delivery
 
 [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223) is open for upstream review. Specification commit e5ac4206ec67998bb48bc7c00c35975f3c274f20.
+
+The actual PR head 829579e54c3b7fdacc92083f0cbab82234532158 was normal-merged with an identical tree in 02cb4a844b815f1b98e39baa2fea03b2e34a09ef. At 02:22:11Z, all 108 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #213, #214, #215.

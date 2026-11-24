@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#212 delivered.** [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223). Read the [derivation](issue-212-polymarker.md).
+**#212 delivered.** [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223) documents PolyMarker projection and composition. Actual source **829579e54c3b7fdacc92083f0cbab82234532158** was normal-merged through **02cb4a844b815f1b98e39baa2fea03b2e34a09ef** with an identical tree. Read the [derivation](issue-212-polymarker.md). The **02:22:11Z** audit found 108 open PR heads, all ancestral. Continue in order with #213, #214, #215.
 
 **#211 delivered.** [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222) documents portable MSTAT pointer presence. Actual source **f51d425b44603d0f0579e6e489d73dd14930409a** was normal-merged through **449196a6bd6fb25b54d7631b349665c13256f3a3** with an identical tree. Read the [derivation](issue-211-mstat-presence.md). The **02:17:40Z** audit found 107 open PR heads, all ancestral. Continue in order with #212, #213, #214, #215.
 
