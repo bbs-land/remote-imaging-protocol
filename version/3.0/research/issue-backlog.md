@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#212 active.** Branch `issue-212-polymarker`. The [derivation](issue-212-polymarker.md) records the source and next action.
+**#212 delivered.** [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223). Read the [derivation](issue-212-polymarker.md).
 
 **#211 delivered.** [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222) documents portable MSTAT pointer presence. Actual source **f51d425b44603d0f0579e6e489d73dd14930409a** was normal-merged through **449196a6bd6fb25b54d7631b349665c13256f3a3** with an identical tree. Read the [derivation](issue-211-mstat-presence.md). The **02:17:40Z** audit found 107 open PR heads, all ancestral. Continue in order with #212, #213, #214, #215.
 

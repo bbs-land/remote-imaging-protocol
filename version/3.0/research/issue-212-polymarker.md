@@ -34,3 +34,7 @@ Verified dispatch width, bounds, all 462 original contour vertices, shared Q14 a
 ## Resume
 
 Extract the descriptor data, verify rotation and per-flag drawing routes, define portable composition and check independent vectors before delivery.
+
+## Delivery
+
+[PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223) is open for upstream review. Specification commit e5ac4206ec67998bb48bc7c00c35975f3c274f20.

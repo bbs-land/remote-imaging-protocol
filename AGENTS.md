@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#212 is active on `issue-212-polymarker`. Read the [PolyMarker projection and composition derivation](version/3.0/research/issue-212-polymarker.md) for the trace and next action.
+Issue #212 is delivered in [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223). The [PolyMarker projection and composition derivation](version/3.0/research/issue-212-polymarker.md) records source and verification. Consolidate the actual PR head.
 
 Issue #211 is delivered in [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222). Fork stable includes the actual source **f51d425b44603d0f0579e6e489d73dd14930409a** through merge **449196a6bd6fb25b54d7631b349665c13256f3a3**. The [portable MSTAT pointer presence derivation](version/3.0/research/issue-211-mstat-presence.md) records the source, examples and audit. Continue in order with #212, #213, #214, #215. Query feedback from at least one minute before **02:17:40Z**.
 
