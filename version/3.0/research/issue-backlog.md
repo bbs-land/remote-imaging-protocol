@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-24 22:21:48 UTC.** [PR #265](https://github.com/bbs-land/remote-imaging-protocol/pull/265) covers #263. Its actual head `228efb4b796d50a1044b8b5a3dfacc66cd0f0c3b` is on fork stable through `b06c20c1e056e6f6432f958672bff8b5ecf6a2a7`. The [resource and query derivation](issue-263-resource-query-text-boundaries.md) covers the five original descriptors and 22 checked argument boundaries. The audit found 130 open PR heads consolidated. #264 is the sole uncovered RealDeuce report. No new discussion comments, inline comments, or reviews.
+
 **2026-11-24 22:01:31 UTC.** [PR #262](https://github.com/bbs-land/remote-imaging-protocol/pull/262) covers #261. Its actual head `f5f340f86472aa619bc682e3a1dd5f6034e73159` is on fork stable through `72648bc8a09eb8edfbb313b8f1355c675dd43253`. The [article and column receive derivation](issue-261-column-article-reserves.md) covers five command descriptors and 15 checked cases. The audit found all 130 open RealDeuce reports covered and all 129 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **2026-11-24 21:35:33 UTC.** [PR #260](https://github.com/bbs-land/remote-imaging-protocol/pull/260) covers #258. Its actual head `d99af67c2f4e050f1dc19326fc75325075090a37` is on fork stable through `90c23d75cc76ffb8d7b1f1e02da75bcf56053002`. The [mouse field and cursor derivation](issue-258-mouse-field-suffix.md) covers the split numeric suffix, CR and Escape defaults, and cursor reserve. The audit found all 129 open RealDeuce reports covered and all 128 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
