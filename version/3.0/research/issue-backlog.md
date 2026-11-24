@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#205 active.** Branch `issue-205-block-mode`. The [derivation](issue-205-block-mode.md) records the source and next action.
+**#205 delivered.** [PR #216](https://github.com/bbs-land/remote-imaging-protocol/pull/216). Read the [derivation](issue-205-block-mode.md).
 
 **#201 delivered.** [PR #204](https://github.com/bbs-land/remote-imaging-protocol/pull/204) documents selective MKILL arity and selectors. The actual source **4c55a9adfa87e90d91cdd5dcfb301e9fec683c0d** was normal-merged through **a1b5f789c316a996d7baad3116d776ca7c4bca91** with an identical tree. Read the [derivation](issue-201-selective-mkill.md). The **23:12:56Z** audit checked 100 open upstream PR heads, all ancestral. The verified queue is empty.
 

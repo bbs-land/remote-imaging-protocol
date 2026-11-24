@@ -78,3 +78,7 @@ Verify the matrix and literal request bytes, publish the PR, then consolidate it
 ---
 
 [Research backlog](issue-backlog.md) · [RIP_ENTER_BLOCK_MODE](../ripscrip/5.5-file-transfer-and-queries.md#rip_enter_block_mode)
+
+## Delivery
+
+[PR #216](https://github.com/bbs-land/remote-imaging-protocol/pull/216) is open for upstream review. Specification commit c1e2b71b199917244512ab7ea67596729678f6ae.

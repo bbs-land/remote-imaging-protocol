@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#205 is active on `issue-205-block-mode`. Read the [block-mode requests and completion derivation](version/3.0/research/issue-205-block-mode.md) for the trace and next action.
+Issue #205 is delivered in [PR #216](https://github.com/bbs-land/remote-imaging-protocol/pull/216). The [block-mode requests and completion derivation](version/3.0/research/issue-205-block-mode.md) records source and verification. Consolidate the actual PR head.
 
 Issue #201 is delivered in [PR #204](https://github.com/bbs-land/remote-imaging-protocol/pull/204). Fork stable includes the actual source **4c55a9adfa87e90d91cdd5dcfb301e9fec683c0d** through merge **a1b5f789c316a996d7baad3116d776ca7c4bca91**. The [selective MKILL arity and selectors derivation](version/3.0/research/issue-201-selective-mkill.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **23:12:56Z**.
 
