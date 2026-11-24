@@ -25,3 +25,5 @@ Publish the portable policy with examples and distinguish the local-playback hel
 ## Delivery
 
 [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222) is open for upstream review. Specification commit ea9a02d5dd1f5a48de94cc690a63bd3fd46d3954.
+
+The actual PR head f51d425b44603d0f0579e6e489d73dd14930409a was normal-merged with an identical tree in 449196a6bd6fb25b54d7631b349665c13256f3a3. At 02:17:40Z, all 107 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #212, #213, #214, #215.
