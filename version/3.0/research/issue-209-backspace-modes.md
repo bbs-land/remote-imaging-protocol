@@ -33,3 +33,5 @@ Trace the configured defaults, frontend hook bindings, the DLL cell writer and k
 ## Delivery
 
 [PR #220](https://github.com/bbs-land/remote-imaging-protocol/pull/220) is open for upstream review. Specification commit b00d38fda2a8d0701bf5ce8203a9fb3836a26c41.
+
+The actual PR head b85d5d8694e31bd72241e9e31de8114cdedb316a was normal-merged with an identical tree in 5dba85225c1ed61d33296f4d848cd6b106be22d2. At 02:12:13Z, all 105 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #210, #211, #212, #213, #214, #215.
