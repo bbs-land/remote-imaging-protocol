@@ -29,3 +29,7 @@ Read both shipping PE files without running the client. Verified callback select
 ## Resume
 
 Trace the configured defaults, frontend hook bindings, the DLL cell writer and keyboard branch, and the boundary for reset, reconnect and playback. Then update the reference and command index and deliver the individual PR.
+
+## Delivery
+
+[PR #220](https://github.com/bbs-land/remote-imaging-protocol/pull/220) is open for upstream review. Specification commit b00d38fda2a8d0701bf5ce8203a9fb3836a26c41.
