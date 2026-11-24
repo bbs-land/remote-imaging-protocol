@@ -30,3 +30,7 @@ Verified the original DLL SHA-256, registrar arguments and call target, the argu
 ## Resume
 
 Verify and publish the portable rule and reconcile the index.
+
+## Delivery
+
+[PR #217](https://github.com/bbs-land/remote-imaging-protocol/pull/217) is open for upstream review. Specification commit e86b3c34f7cc70fb9f14ea370505cccdbd34bb82.
