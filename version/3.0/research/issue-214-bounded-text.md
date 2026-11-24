@@ -29,3 +29,7 @@ Verified the dispatch entry, four loaded fields, original expansion, seven rende
 ## Resume
 
 Trace the geometry, setup, width/height measurements, point-size correction and final draw against the existing outline contracts. Then document the portable fit and state boundary with independent metrics and update the command and corpus summaries.
+
+## Delivery
+
+[PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225) is open for upstream review. Specification commit 2cc89b7010179b83914eb19233ec2fe34a1f6386.

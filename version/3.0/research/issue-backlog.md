@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#214 active.** Branch `issue-214-bounded-text`. The [derivation](issue-214-bounded-text.md) records the source and next action.
+**#214 delivered.** [PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225). Read the [derivation](issue-214-bounded-text.md).
 
 **#213 delivered.** [PR #224](https://github.com/bbs-land/remote-imaging-protocol/pull/224) documents affine ellipse wire and contour rules. Actual source **09559f3976f0783104d9413c070fa157a5674ba9** was normal-merged through **790255d09338051fa533931a87c5aa1216b80177** with an identical tree. Read the [derivation](issue-213-affine-ellipses.md). The **02:27:06Z** audit found 109 open PR heads, all ancestral. Continue in order with #214, #215.
 
