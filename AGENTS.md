@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+#215 is active on `issue-215-write-icon-export`. Read the [WRITE_ICON export flags and temporary assets derivation](version/3.0/research/issue-215-write-icon-export.md) for the trace and next action.
+
 Issue #214 is delivered in [PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225). Fork stable includes the actual source **e115d1efb5dd7fd3c6f99f0ba787c42bfb689f81** through merge **c8386710b046ddb9d922e479480d85b16a15de2e**. The [bounded single-string outline fitting derivation](version/3.0/research/issue-214-bounded-text.md) records the source, examples and audit. Continue in order with #215. Query feedback from at least one minute before **02:32:38Z**.
 
 Issue #213 is delivered in [PR #224](https://github.com/bbs-land/remote-imaging-protocol/pull/224). Fork stable includes the actual source **09559f3976f0783104d9413c070fa157a5674ba9** through merge **790255d09338051fa533931a87c5aa1216b80177**. The [affine ellipse wire and contour rules derivation](version/3.0/research/issue-213-affine-ellipses.md) records the source, examples and audit. Continue in order with #214, #215. Query feedback from at least one minute before **02:27:06Z**.
