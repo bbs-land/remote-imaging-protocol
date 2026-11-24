@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-#210 is active on `issue-210-charset-metadata`. Read the [character-set and language providers derivation](version/3.0/research/issue-210-charset-metadata.md) for the trace and next action.
+Issue #210 is delivered in [PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221). The [character-set and language providers derivation](version/3.0/research/issue-210-charset-metadata.md) records source and verification. Consolidate the actual PR head.
 
 Issue #209 is delivered in [PR #220](https://github.com/bbs-land/remote-imaging-protocol/pull/220). Fork stable includes the actual source **b85d5d8694e31bd72241e9e31de8114cdedb316a** through merge **5dba85225c1ed61d33296f4d848cd6b106be22d2**. The [backspace mode and transmit policy derivation](version/3.0/research/issue-209-backspace-modes.md) records the source, examples and audit. Continue in order with #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:12:13Z**.
 

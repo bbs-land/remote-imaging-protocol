@@ -31,3 +31,7 @@ Cross-checked original selectors and output literals, record layout and initiali
 ## Resume
 
 Finish the selector, protection, initialization, preservation and ANSI-output traces. Update the built-in chapter, index, ENV state description and terminal cross-reference, then verify and deliver the PR.
+
+## Delivery
+
+[PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221) is open for upstream review. Specification commit f6df88bae2eb00a584c8f8ce2fec22ac47e08473.

@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#210 active.** Branch `issue-210-charset-metadata`. The [derivation](issue-210-charset-metadata.md) records the source and next action.
+**#210 delivered.** [PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221). Read the [derivation](issue-210-charset-metadata.md).
 
 **#209 delivered.** [PR #220](https://github.com/bbs-land/remote-imaging-protocol/pull/220) documents backspace mode and transmit policy. Actual source **b85d5d8694e31bd72241e9e31de8114cdedb316a** was normal-merged through **5dba85225c1ed61d33296f4d848cd6b106be22d2** with an identical tree. Read the [derivation](issue-209-backspace-modes.md). The **02:12:13Z** audit found 105 open PR heads, all ancestral. Continue in order with #210, #211, #212, #213, #214, #215.
 
