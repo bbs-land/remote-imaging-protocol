@@ -12,6 +12,10 @@ Use the [completed trace and prior native matrix](issue-19-legacy-icon-conversio
 
 The RIPtel 3.1 client's post-transfer call at EXE RVA `0x206cf` invokes the exported converter for legacy files selected for conversion. That export always asks for a `.BMP` output name. Keep the two events separately named in the reference and link the transfer command to the converter paragraph. The [package provenance](issue-19-legacy-icon-conversion.md#rejected-readings--harness-corrections) also establishes that some recovered LORD assets shipped as legacy ICNs alongside BMPs. This reconciliation relies on existing original-source and native evidence.
 
+## Verification
+
+Reviewed both original handler traces and the previously recorded 5,035-check bitmap probe, covering all three aliases in both cases and present and missing normalized assets. Checked Markdown, links, and diff whitespace.
+
 ## Resume
 
 Reconcile the load-command entries and the file-role summary, update inbound section links, and check the resulting documentation and delivery ancestry.
