@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-24 21:31:32 UTC.** [PR #259](https://github.com/bbs-land/remote-imaging-protocol/pull/259) covers #257. Its actual head `792cb52dd8b3fc55aa62cb220bdf60ba3ae76d95` is on fork stable through `9de2dba4498820f50fc732ef95998e155cb62fe3`. The [button wire-width derivation](issue-257-button-wire-widths.md) covers all three descriptors, 10 wire cases, and ordered protection. The audit found 127 open PR heads consolidated. #258 is the sole uncovered RealDeuce report. No new discussion comments, inline comments, or reviews.
+
 **2026-11-24 21:21:10 UTC.** [PR #256](https://github.com/bbs-land/remote-imaging-protocol/pull/256) covers #255. Its actual head `5a48519c2687bb3f2d93967062b90610248b2182` is on fork stable through `7577594e9ce81e9bb00e7ab07117e65333a38510`. The [outline-font and metric derivation](issue-255-font-text-boundaries.md) records numeric widths and how a period shifts each text boundary. Twenty argument-boundary cases checked. The audit found all 127 open RealDeuce reports covered and all 126 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **2026-11-24 21:10:47 UTC.** [PR #254](https://github.com/bbs-land/remote-imaging-protocol/pull/254) covers #253. Its actual head `57a37a66bbc3db45b73c671fc475d1c4c970758f` is on fork stable through `c99e3ff145adf55fa4ddd919b4dca4c3e2f6cd96`. The [text-window wire-width derivation](issue-253-text-window-wire-widths.md) verifies three original slots and eleven argument cases. The audit found all 126 open RealDeuce reports covered and all 125 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
