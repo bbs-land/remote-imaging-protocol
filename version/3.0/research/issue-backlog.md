@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-24 22:28:38 UTC.** [PR #268](https://github.com/bbs-land/remote-imaging-protocol/pull/268) covers #266. Its actual head `8974b6e4a2d34c88b74fc3f6d5014205ff57b98b` is on fork stable through `205a3871170ac0b29d25e0db2059fe39a01a3138`. The [palette color-count derivation](issue-266-palette-color-count.md) covers two original descriptors and 24 checked receive and validation cases. The audit found all 133 open RealDeuce reports covered and all 132 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
+
 **2026-11-24 22:25:34 UTC.** [PR #267](https://github.com/bbs-land/remote-imaging-protocol/pull/267) covers #264. Its actual head `a36b8c33547b707f16a8d8ee6035917a536ff3ce` is on fork stable through `15fb79294d760bd2f798ea2552d9e5831ddfd2af`. The [table switch derivation](issue-264-table-switch-flags.md) records four descriptors, 15 original protection/selection calls and 80 receive cases. The audit found all 131 open PR heads consolidated. #266 is the sole uncovered RealDeuce report. No new discussion comments, inline comments, or reviews.
 
 **2026-11-24 22:21:48 UTC.** [PR #265](https://github.com/bbs-land/remote-imaging-protocol/pull/265) covers #263. Its actual head `228efb4b796d50a1044b8b5a3dfacc66cd0f0c3b` is on fork stable through `b06c20c1e056e6f6432f958672bff8b5ecf6a2a7`. The [resource and query derivation](issue-263-resource-query-text-boundaries.md) covers the five original descriptors and 22 checked argument boundaries. The audit found 130 open PR heads consolidated. #264 is the sole uncovered RealDeuce report. No new discussion comments, inline comments, or reviews.
