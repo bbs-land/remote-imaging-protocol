@@ -35,3 +35,5 @@ Read the export and temporary-registration call graphs. Specify the filename, pi
 ## Delivery
 
 [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226) is open for upstream review. Specification commit 89fcc96ae8c277a8a8f6de15513e304730e3dd96.
+
+The actual PR head 5beb65baa8b4fceb41fa16969602504dba4ee056 was normal-merged with an identical tree in 13439551837a9fa140a19b5ad03ba9b73a56b8c2. At 02:36:53Z, all 111 open PR heads were ancestors and no new comments or reviews were present. The verified queue is empty.

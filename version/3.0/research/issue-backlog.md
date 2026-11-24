@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#215 delivered.** [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226). Read the [derivation](issue-215-write-icon-export.md).
+**#215 delivered.** [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226) documents WRITE_ICON export flags and temporary assets. Actual source **5beb65baa8b4fceb41fa16969602504dba4ee056** was normal-merged through **13439551837a9fa140a19b5ad03ba9b73a56b8c2** with an identical tree. Read the [derivation](issue-215-write-icon-export.md). The **02:36:53Z** audit found 111 open PR heads, all ancestral. The verified queue is empty.
 
 **#214 delivered.** [PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225) documents bounded single-string outline fitting. Actual source **e115d1efb5dd7fd3c6f99f0ba787c42bfb689f81** was normal-merged through **c8386710b046ddb9d922e479480d85b16a15de2e** with an identical tree. Read the [derivation](issue-214-bounded-text.md). The **02:32:38Z** audit found 110 open PR heads, all ancestral. Continue in order with #215.
 
