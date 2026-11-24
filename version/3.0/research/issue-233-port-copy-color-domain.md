@@ -27,7 +27,7 @@ Use the same binary modes as [PUT_IMAGE](../ripscrip/4.0-icons-and-bitmaps.md#bo
 
 For mode 4, interpret a drawing index in the destination's logical index width before complementing it. This follows the destination-domain choice for indexed binary modes and the native order of conversion before the GDI operation. It does not require the host palette's quantization. The previous destination pixel has no part in unary inversion. In particular, `0x06` from a 4-bit source becomes `0xF9` in an 8-bit destination, including when it replaces a direct RGB pixel. Its inverse in the 4-bit source domain would have been `0x09`. A direct RGB sample instead complements all three RGB bytes and produces literal RGB. Geometry, clipping and remembered-pair publication retain their existing rules.
 
-The [vectors](../ripscrip/7.0-drawing-ports.md#port-copy-color-examples) cover index pairs, both mixed directions, both RGB operands, fit over a constant indexed color, and source inversion across logical widths. The constant fit avoids choosing a sampler. All-zero rectangles select each fixture port's full viewport.
+The [vectors](../ripscrip/7.0-drawing-ports.md#port_copy-color-examples) cover index pairs, both mixed directions, both RGB operands, fit over a constant indexed color, and source inversion across logical widths. The constant fit avoids choosing a sampler. All-zero rectangles select each fixture port's full viewport.
 
 ```sh
 sha256sum "$dll"
