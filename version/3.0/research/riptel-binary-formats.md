@@ -22,10 +22,10 @@ Source tree: `/home/tracker1/src/rip-tools/artifacts/RIPtel/` All offsets little
 | 0x16 | u16 | 0x0036 (54) - **offset of first style record** |
 | 0x18 | u8,u8 | 02 04 - constant |
 | 0x1A | u16 | 0x4498 - constant format signature/version |
-| 0x1C | u16 | per-font metric (max advance width?): DEFAULT/DIXON/MARIN/OAKLAND 250, COBB 274, BRUSH 305, SYMBOL 328, EUREKA 358 |
-| 0x1E | u16 | per-font metric (ascender / bbox ymax): 500-1184 range |
-| 0x20 | s16 | negative per-font metric (descender / bbox ymin): -750..-1110 |
-| 0x22 | s16 | small negative per-font metric (bbox xmin?): -32..-159 |
+| 0x1C | s16 | global bbox ymax: DEFAULT/DIXON/MARIN/OAKLAND 250, COBB 274, BRUSH 305, SYMBOL 328, EUREKA 358 |
+| 0x1E | s16 | global bbox xmax: DEFAULT 500 through OAKLAND 1249 |
+| 0x20 | s16 | global bbox ymin: -750..-1110 |
+| 0x22 | s16 | global bbox xmin: DEFAULT -2 through BRUSH -159 |
 | 0x24 | u16 | 0x00E0 (224) - **glyph count** = chars 0x20-0xFF |
 | 0x26 | u16 | 0x0020 (32) - **first character code** |
 | 0x28 | u16 | 1 - constant |
@@ -33,6 +33,8 @@ Source tree: `/home/tracker1/src/rip-tools/artifacts/RIPtel/` All offsets little
 | 0x2C | u16 | 0x03E8 (1000) - **units per em** (PostScript-style em square) |
 | 0x2E | u16×3 | 01 00, 00 00, 01 00 - constants |
 | 0x34 | u16 | 0x5426 = ASCII "&T" - sentinel ending the fixed header |
+
+**Global metric-label correction (#82):** these four signed words are reordered copies of metrics xmin/ymin/xmax/ymax, confirmed against all framed glyph bboxes and the original rectangle-transform consumer. The earlier width/ascender/descender hypotheses are withdrawn. See the [canonical field map](../../2.0/techspecs/3.2-fastfont-fonts.md#global-bounding-box-and-header-copies) and [derivation](issue-82-rff-global-bounds.md).
 
 **Style-variant table @0x36:** 10 records × 46 bytes. Record layout:
 
