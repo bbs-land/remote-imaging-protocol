@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#227 active.** Branch `issue-227-mouse-post-action-reset` starts at fork stable `abae22a`. [Source derivation](issue-227-mouse-post-action-reset.md). No PR yet. Next, finish the suspension and mutation rules, check the vectors and publish the resolution.
+**#227 active.** Branch `issue-227-mouse-post-action-reset` starts at fork stable `abae22a`. [Source derivation](issue-227-mouse-post-action-reset.md). No PR yet. The specification and vectors are ready. Next, publish a PR closing #227, verify its references and feedback, then consolidate its actual head into fork stable.
 
 **#215 delivered.** [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226) documents WRITE_ICON export flags and temporary assets. Actual source **5beb65baa8b4fceb41fa16969602504dba4ee056** was normal-merged through **13439551837a9fa140a19b5ad03ba9b73a56b8c2** with an identical tree. Read the [derivation](issue-215-write-icon-export.md). The **02:36:53Z** audit found 111 open PR heads, all ancestral. The verified queue is empty.
 
