@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-24 21:10:47 UTC.** [PR #254](https://github.com/bbs-land/remote-imaging-protocol/pull/254) covers #253. Its actual head `57a37a66bbc3db45b73c671fc475d1c4c970758f` is on fork stable through `c99e3ff145adf55fa4ddd919b4dca4c3e2f6cd96`. The [text-window wire-width derivation](issue-253-text-window-wire-widths.md) verifies three original slots and eleven argument cases. The audit found all 126 open RealDeuce reports covered and all 125 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
+
 **2026-11-24 20:07:55 UTC.** [PR #252](https://github.com/bbs-land/remote-imaging-protocol/pull/252) covers #250. Its actual head `70492116cf2793dd230a7ea218f8c7642d8e5ca6` is on fork stable through `504f87f2894fbc303102dbdde8ad9177307c90ec`. The [numeric receive alphabet derivation](issue-250-meganum-receive-alphabet.md) records original slots and digit validation, with 38 report cases checked against the static model. The audit found 125 open RealDeuce reports covered and 124 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **#249 delivered.** [PR #251](https://github.com/bbs-land/remote-imaging-protocol/pull/251) documents the separate LOAD_ICON numeric digits and the flag and reserved fields of PORT_WRITE. The [derivation](issue-249-bitmap-prefixes-port-write.md) records the original descriptor, missing-resource marker and writer registration paths. Seven filename boundaries were checked in both bases. Fork stable normal-merged actual PR head **70dbfac47aff42060f4a45a5fdbdafa31fd2cf7f** through **105382e000995c25280ac83114712127feedb32d** with an identical tree. At **2026-11-24 20:01:36 UTC** all 123 open PR heads were ancestral. Continue with #250.
