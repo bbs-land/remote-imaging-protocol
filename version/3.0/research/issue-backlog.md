@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#208 active.** Branch `issue-208-legacy-suffix-wording`. The [derivation](issue-208-legacy-suffix-wording.md) records the source and next action.
+**#208 delivered.** [PR #219](https://github.com/bbs-land/remote-imaging-protocol/pull/219). Read the [derivation](issue-208-legacy-suffix-wording.md).
 
 **#207 delivered.** [PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218) documents backup query aggregates. Actual source **73dccc9588d0e566acb5802b397143966455f2cf** was normal-merged through **293cc3a0507734f72596db212bae3cd25a6bfe47** with an identical tree. Read the [derivation](issue-207-backup-aggregates.md). The **02:04:06Z** audit found 103 open PR heads, all ancestral. Continue in order with #208, #209, #210, #211, #212, #213, #214, #215.
 

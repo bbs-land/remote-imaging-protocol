@@ -19,3 +19,7 @@ Reviewed both original handler traces and the previously recorded 5,035-check bi
 ## Resume
 
 Reconcile the load-command entries and the file-role summary, update inbound section links, and check the resulting documentation and delivery ancestry.
+
+## Delivery
+
+[PR #219](https://github.com/bbs-land/remote-imaging-protocol/pull/219) is open for upstream review. Specification commit c61104c1782af0391160ce2dbea7384f4060b764.
