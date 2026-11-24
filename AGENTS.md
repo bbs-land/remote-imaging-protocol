@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+#213 is active on `issue-213-affine-ellipses`. Read the [affine ellipse wire and contour rules derivation](version/3.0/research/issue-213-affine-ellipses.md) for the trace and next action.
+
 Issue #212 is delivered in [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223). Fork stable includes the actual source **829579e54c3b7fdacc92083f0cbab82234532158** through merge **02cb4a844b815f1b98e39baa2fea03b2e34a09ef**. The [PolyMarker projection and composition derivation](version/3.0/research/issue-212-polymarker.md) records the source, examples and audit. Continue in order with #213, #214, #215. Query feedback from at least one minute before **02:22:11Z**.
 
 Issue #211 is delivered in [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222). Fork stable includes the actual source **f51d425b44603d0f0579e6e489d73dd14930409a** through merge **449196a6bd6fb25b54d7631b349665c13256f3a3**. The [portable MSTAT pointer presence derivation](version/3.0/research/issue-211-mstat-presence.md) records the source, examples and audit. Continue in order with #212, #213, #214, #215. Query feedback from at least one minute before **02:17:40Z**.
