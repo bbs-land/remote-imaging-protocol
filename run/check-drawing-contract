@@ -1,0 +1,248 @@
+#!/usr/bin/env -S deno run --allow-read
+/** Verify published drawing algebra and optional Q14 contour vectors.
+ * Read-only, no renderer/client execution. Exit 1 on inconsistent data/docs.
+ */
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+
+type PixelCase = {
+  name: string;
+  contributions: ["current" | "copy", number][];
+  expected: number[];
+};
+type PixelData = {
+  schema: string;
+  bits: number;
+  destination: number;
+  cases: PixelCase[];
+};
+type Profile = {
+  schema: string;
+  scale: number;
+  sine: number[];
+  cosine: number[];
+  sine_sha256: string;
+  cosine_sha256: string;
+  vectors: { input: number[]; expected: number[] }[];
+  conversion_vectors: {
+    world: number[];
+    device: number[];
+    origin: number[];
+    center: number[];
+    radii: number[];
+    rotation: number;
+    parameter: number;
+    expected: number[];
+  }[];
+};
+const root = fileURLToPath(new URL("../", import.meta.url));
+const args = process.argv.slice(2);
+if (args.includes("--help") || args.includes("-h")) {
+  console.log(
+    "Usage: run/check-drawing-contract [drawing-operations.json skewed-ellipse-q14.json]",
+  );
+  console.log(
+    "Validate independent pixel vectors, their published table, and Q14 data/coordinates; no client execution.",
+  );
+  process.exit(0);
+}
+assert(
+  args.length === 0 || args.length === 2,
+  "supply both fixture paths or neither",
+);
+const files = args.length ? args.map((s) => resolve(s)) : [
+  resolve(root, "version/2.0/techspecs/data/drawing-operations.json"),
+  resolve(root, "version/3.0/techspecs/data/skewed-ellipse-q14.json"),
+];
+const pixels: PixelData = JSON.parse(readFileSync(files[0], "utf8"));
+const profile: Profile = JSON.parse(readFileSync(files[1], "utf8"));
+let checks = 0;
+function equal(actual: unknown, expected: unknown, why: string) {
+  assert.deepEqual(actual, expected, why);
+  ++checks;
+}
+// Per-bit truth tables indexed by (source_bit*2 + destination_bit),
+// independent of a renderer's bitwise operator implementation.
+const truths = [[0, 0, 1, 1], [0, 1, 1, 0], [0, 1, 1, 1], [0, 0, 0, 1], [
+  1,
+  0,
+  1,
+  0,
+]];
+function operation(mode: number, source: number, destination: number): number {
+  let out = 0;
+  for (let bit = 0; bit < pixels.bits; ++bit) {
+    out +=
+      truths[mode][((source >> bit) & 1) * 2 + ((destination >> bit) & 1)] *
+      2 ** bit;
+  }
+  return out;
+}
+equal(pixels.schema, "rip-drawing-operations-v1", "pixel schema");
+equal(pixels.bits, 8, "published logical color width");
+equal(pixels.cases.length, 10, "published contribution cases");
+const doc = readFileSync(
+  resolve(root, "version/2.0/techspecs/2.3-drawing-composition.md"),
+  "utf8",
+);
+const rows = doc.split("\n").filter((s) => s.startsWith("|")).map((s) =>
+  s.split("|").slice(1, -1).map((cell) => cell.trim())
+);
+for (const test of pixels.cases) {
+  equal(test.expected.length, 5, test.name + " mode count");
+  for (let mode = 0; mode < 5; ++mode) {
+    let destination = pixels.destination;
+    for (const [kind, source] of test.contributions) {
+      assert(kind === "current" || kind === "copy");
+      assert(Number.isInteger(source) && source >= 0 && source <= 255);
+      destination = operation(kind === "copy" ? 0 : mode, source, destination);
+    }
+    equal(destination, test.expected[mode], test.name + " mode " + mode);
+  }
+  const row = rows.find((r) => r[0] === test.name);
+  assert(row, "missing published row: " + test.name);
+  equal(
+    row.slice(1).map((s) => Number(s)),
+    test.expected,
+    test.name + " document",
+  );
+}
+for (const surface of ["screen", "offscreen"]) {
+  for (let mode = 0; mode < 5; ++mode) {
+    for (const thickness of [1, 3]) {
+      const destination = Array(49).fill(pixels.destination);
+      const radius = Math.floor(thickness / 2);
+      for (let y = 3 - radius; y <= 3 + radius; ++y) {
+        for (let x = 3 - radius; x <= 3 + radius; ++x) {
+          destination[y * 7 + x] = operation(
+            mode,
+            0x3c,
+            destination[y * 7 + x],
+          );
+        }
+      }
+      for (let y = 0; y < 7; ++y) {
+        for (let x = 0; x < 7; ++x) {
+          const inside = Math.abs(x - 3) <= radius && Math.abs(y - 3) <= radius;
+          equal(
+            destination[y * 7 + x],
+            inside ? pixels.cases[0].expected[mode] : 0xa5,
+            surface + " point footprint mode " + mode,
+          );
+        }
+      }
+    }
+    for (const border of [false, true]) {
+      for (const opaque of [false, true]) {
+        const fill = operation(mode, 0x3c, 0xa5);
+        equal(
+          border ? operation(0, 0x0f, fill) : fill,
+          border ? 0x0f : pixels.cases[0].expected[mode],
+          "solid border/N matrix",
+        );
+        equal(
+          border && opaque ? operation(0, 0x66, fill) : fill,
+          border && opaque ? 0x66 : pixels.cases[0].expected[mode],
+          "pattern gap/N matrix",
+        );
+      }
+    }
+  }
+}
+for (const winding of [0, 1, 2, 3]) {
+  equal(
+    winding % 2 ? operation(1, 0x3c, 0xa5) : 0xa5,
+    [0xa5, 0x99, 0xa5, 0x99][winding],
+    "even-odd region is filled once",
+  );
+}
+equal(0x3c ^ 0xff, 0xc3, "bitmap NOT source");
+equal(operation(4, 0x3c, 0xa5), 0x5a, "drawing NOT destination");
+
+equal(profile.schema, "rip-skewed-q14-v1", "Q14 schema");
+equal(profile.scale, 16384, "Q14 scale");
+for (
+  const [table, hash] of [[profile.sine, profile.sine_sha256], [
+    profile.cosine,
+    profile.cosine_sha256,
+  ]] as const
+) {
+  equal(table.length, 360, "complete coefficient table");
+  const bytes = Buffer.alloc(1440);
+  table.forEach((value, i) => {
+    assert(Number.isInteger(value) && Math.abs(value) <= 16384);
+    bytes.writeInt32LE(value, i * 4);
+  });
+  equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    hash,
+    "original table bytes",
+  );
+}
+equal(
+  [
+    profile.sine[30],
+    profile.sine[330],
+    profile.cosine[60],
+    profile.cosine[300],
+  ],
+  [8191, -8192, 8192, 8192],
+  "independent sine/cosine rounding constants",
+);
+function floorQ(value: bigint): bigint {
+  const q = BigInt(profile.scale);
+  return value >= 0n ? value / q : -((-value + q - 1n) / q);
+}
+function point(input: number[]): number[] {
+  assert(input.length === 6 && input.every(Number.isSafeInteger));
+  const [cx, cy, rx, ry, rotation, parameter] = input;
+  const r = ((rotation % 360) + 360) % 360;
+  const t = ((parameter % 360) + 360) % 360;
+  const u = floorQ(BigInt(rx) * BigInt(profile.cosine[t]));
+  const v = floorQ(BigInt(ry) * BigInt(profile.sine[t]));
+  const c = BigInt(profile.cosine[r]), s = BigInt(profile.sine[r]);
+  return [
+    Number(BigInt(cx) + floorQ(u * c - v * s)),
+    Number(BigInt(cy) - floorQ(u * s + v * c)),
+  ];
+}
+const numericRows = readFileSync(
+  resolve(root, "version/3.0/techspecs/2.1-arc-consumer-contract.md"),
+  "utf8",
+).split("\n").filter((s) => s.startsWith("|")).map((s) =>
+  s.split("|").slice(1, -1).map((cell) => cell.trim())
+);
+const pair = (values: number[]) => "(" + values.join(",") + ")";
+for (const vector of profile.vectors) {
+  equal(point(vector.input), vector.expected, "Q14 point " + vector.input);
+  const input = vector.input;
+  const row = numericRows.find((r) =>
+    r[0] === pair(input.slice(0, 2)) && r[1] === pair(input.slice(2, 4)) &&
+    r[2] === String(input[4]) && r[3] === String(input[5])
+  );
+  assert(row, "missing published numeric row: " + input);
+  equal(row[4], pair(vector.expected), "Q14 published point " + input);
+}
+for (const v of profile.conversion_vectors) {
+  const convert = (n: number, axis: number) =>
+    Number(BigInt(n) * BigInt(v.device[axis]) / BigInt(v.world[axis]));
+  equal(
+    point([
+      convert(v.center[0], 0) + v.origin[0],
+      convert(v.center[1], 1) + v.origin[1],
+      convert(v.radii[0], 0),
+      convert(v.radii[1], 1),
+      v.rotation,
+      v.parameter,
+    ]),
+    v.expected,
+    "convert before device rotation and apply origin once",
+  );
+}
+console.log(
+  `PASS: ${checks} drawing-contract checks; abstract logical pixels and Q14 data, no client/rasterizer execution`,
+);
