@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#215 delivered.** [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226). Read the [derivation](issue-215-write-icon-export.md).
+
 **#214 delivered.** [PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225) documents bounded single-string outline fitting. Actual source **e115d1efb5dd7fd3c6f99f0ba787c42bfb689f81** was normal-merged through **c8386710b046ddb9d922e479480d85b16a15de2e** with an identical tree. Read the [derivation](issue-214-bounded-text.md). The **02:32:38Z** audit found 110 open PR heads, all ancestral. Continue in order with #215.
 
 **#213 delivered.** [PR #224](https://github.com/bbs-land/remote-imaging-protocol/pull/224) documents affine ellipse wire and contour rules. Actual source **09559f3976f0783104d9413c070fa157a5674ba9** was normal-merged through **790255d09338051fa533931a87c5aa1216b80177** with an identical tree. Read the [derivation](issue-213-affine-ellipses.md). The **02:27:06Z** audit found 109 open PR heads, all ancestral. Continue in order with #214, #215.
