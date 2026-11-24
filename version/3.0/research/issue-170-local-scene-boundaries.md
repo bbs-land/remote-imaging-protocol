@@ -24,7 +24,7 @@ Reproduce with `git show 9396d5577175e470c7b3dd6bd6613b3fe7c80221:<path>`:
 
 Catalogued original `artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll`, **592,896 bytes**, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`, image base **0x10000000**. LLVM objdump **19.1.7** and `run/riptel-inspect` read only. Addresses are **RVAs**; objdump uses image-base-plus-RVA. No new probes/temp dump files or original execution.
 
-Descriptor table physical **slot 104** points to **0xd64d**, two numeric types **[2,6]**, flags 15, followed by filename. The documented eight reserved zero characters remain the supported wire form; do not reopen #2's general combined-field issue without need.
+Descriptor table physical **slot 104** points to **0xd64d**, two numeric types **[2,6]**, flags 15, followed by filename. Eight zero digits remain a full-width spelling. The [receive-field derivation](issue-263-resource-query-text-boundaries.md) gives the boundary for each field and the one-period spellings.
 
 Complete wire handler **0xd64d–0xd70a** copies the literal filename, gates options+0x104, validates nonempty raw input, calls HCL expansion **0x4b0e4(context,scratch,0xfff,0x83,1)** at **0xd6b8**, then **0x324a(context,expanded,1)** at **0xd6c4**. A return 2 reaches **RIP_Suspend 0x6c01**. HCL scene callback **0x25971** instead uses the accepted #161 owned-name/substitution path then **0x324a(context,name,0)**.
 
