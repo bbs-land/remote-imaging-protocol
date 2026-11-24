@@ -35,3 +35,5 @@ Finish the selector, protection, initialization, preservation and ANSI-output tr
 ## Delivery
 
 [PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221) is open for upstream review. Specification commit f6df88bae2eb00a584c8f8ce2fec22ac47e08473.
+
+The actual PR head dd269ffe18ca4a80981ad4af9931263abd98b6e3 was normal-merged with an identical tree in 1383244a225e53ea0b81aa3ccb663c3cb77b65c3. At 02:16:11Z, all 106 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #211, #212, #213, #214, #215.
