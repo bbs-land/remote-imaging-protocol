@@ -31,3 +31,7 @@ Verified dispatch and flag producer, alias and registry literals, all three pixe
 ## Resume
 
 Read the export and temporary-registration call graphs. Specify the filename, pixel-source, resampling and cleanup contract for supported bare-name requests, with positive geometry vectors.
+
+## Delivery
+
+[PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226) is open for upstream review. Specification commit 89fcc96ae8c277a8a8f6de15513e304730e3dd96.

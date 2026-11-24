@@ -4,7 +4,7 @@
 
 ## Resume here
 
-**#215 active.** Branch `issue-215-write-icon-export`. The [derivation](issue-215-write-icon-export.md) records the source and next action.
+**#215 delivered.** [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226). Read the [derivation](issue-215-write-icon-export.md).
 
 **#214 delivered.** [PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225) documents bounded single-string outline fitting. Actual source **e115d1efb5dd7fd3c6f99f0ba787c42bfb689f81** was normal-merged through **c8386710b046ddb9d922e479480d85b16a15de2e** with an identical tree. Read the [derivation](issue-214-bounded-text.md). The **02:32:38Z** audit found 110 open PR heads, all ancestral. Continue in order with #215.
 
