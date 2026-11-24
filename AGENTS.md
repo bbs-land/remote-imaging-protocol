@@ -4,7 +4,7 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
-Issue #206 is delivered in [PR #217](https://github.com/bbs-land/remote-imaging-protocol/pull/217). The [ISPALETTE return policy derivation](version/3.0/research/issue-206-ispalette.md) records source and verification. Consolidate the actual PR head.
+Issue #206 is delivered in [PR #217](https://github.com/bbs-land/remote-imaging-protocol/pull/217). Fork stable includes the actual source **2adaafe3bfc8e864efab95590bb72d78c7eb5726** through merge **78341fd88a4be477b1437bc44188f1e2bf0c5748**. The [ISPALETTE return policy derivation](version/3.0/research/issue-206-ispalette.md) records the source, examples and audit. Continue in order with #207, #208, #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:01:14Z**.
 
 Issue #205 is delivered in [PR #216](https://github.com/bbs-land/remote-imaging-protocol/pull/216). Fork stable includes the actual source **2ce278f9c4a440b27b095a46d7848a5400927260** through merge **ccef989bb06884cac94ab390b99a2b40bacb5701**. The [block-mode requests and completion derivation](version/3.0/research/issue-205-block-mode.md) records the source, examples and audit. Continue in order with #206, #207, #208, #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **01:59:32Z**.
 

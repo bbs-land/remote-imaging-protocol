@@ -34,3 +34,5 @@ Verify and publish the portable rule and reconcile the index.
 ## Delivery
 
 [PR #217](https://github.com/bbs-land/remote-imaging-protocol/pull/217) is open for upstream review. Specification commit e86b3c34f7cc70fb9f14ea370505cccdbd34bb82.
+
+The actual PR head 2adaafe3bfc8e864efab95590bb72d78c7eb5726 was normal-merged with an identical tree in 78341fd88a4be477b1437bc44188f1e2bf0c5748. At 02:01:14Z, all 102 open PR heads were ancestors and no new comments or reviews were present. Continue in order with #207, #208, #209, #210, #211, #212, #213, #214, #215.
