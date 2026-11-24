@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#212 delivered.** [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223). Read the [derivation](issue-212-polymarker.md).
+
 **#211 delivered.** [PR #222](https://github.com/bbs-land/remote-imaging-protocol/pull/222) documents portable MSTAT pointer presence. Actual source **f51d425b44603d0f0579e6e489d73dd14930409a** was normal-merged through **449196a6bd6fb25b54d7631b349665c13256f3a3** with an identical tree. Read the [derivation](issue-211-mstat-presence.md). The **02:17:40Z** audit found 107 open PR heads, all ancestral. Continue in order with #212, #213, #214, #215.
 
 **#210 delivered.** [PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221) documents character-set and language providers. Actual source **dd269ffe18ca4a80981ad4af9931263abd98b6e3** was normal-merged through **1383244a225e53ea0b81aa3ccb663c3cb77b65c3** with an identical tree. Read the [derivation](issue-210-charset-metadata.md). The **02:16:11Z** audit found 106 open PR heads, all ancestral. Continue in order with #211, #212, #213, #214, #215.
