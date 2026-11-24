@@ -12,13 +12,15 @@ Source: `/home/tracker1/src/rip-tools/artifacts/RIPtel/ICONS/` - 116 script file
 | SyncTERM-descriptor-only | 3                |
 | COMPLETELY NEW           | 11               |
 
+**Bézier preview clarification:** the z/x examples below are truncated previews, not complete commands. Original parsing confirms the shared z/t/x grammar is `num:2 count:2 [type:1 record]...`, with no separate base-point header; literal types 0/3/4 have one pair and 1/2/5/6 have three pairs. See the [complete annotated z/t decodes](../ripscrip/2.2-curves.md#annotated-original-z-example) and [primary-source verification](issue-15-bezier-contracts.md).
+
 ## 1. Full opcode census
 
 Levels: no digit = level 0; `1x` = level 1; `2x` = level 2. No level-3+ commands appear in the corpus. Coordinates are MegaNums (2-char base-36) after the ubiquitous `J10` prologue.
 
 | Lvl | Cmd | Name (spec/reconstructed) | Class | Count | Files | Example args (trunc 60) |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 | `"` | RIP_BOUNDED_TEXT (hypothesized name) | COMPLETELY NEW | 1 | 1: BOUNDS.RIP | `2020A03000This is just another` |
+| 0 | `"` | RIP_BOUNDED_TEXT | COMPLETELY NEW | 1 | 1: BOUNDS.RIP | `2020A03000This is just another` |
 | 0 | `#` | RIP_NO_MORE | known-1.54 | 287 | 95: NEWS.RIP, BLUEBACK.FN, BUTTONS.RIP, CURVES.RIP, DEMO-01.COL… |  |
 | 0 | `&` | RIP_SKEWED_OVAL | COMPLETELY NEW | 3 | 2: SHAPES.RIP, NEWCMDS.RIP | `20151G0M1M`; `W44W281810`; `VY4Q281810` |
 | 0 | `*` | RIP_RESET_WINDOWS | known-1.54 | 31 | 31: BOUNDS.RIP, BUTTONS.RIP, CURVES.RIP, DRAGON.RIP, EAGLE.RIP… |  |
@@ -133,11 +135,11 @@ NEWCMDS.RIP is a Rosetta stone: its comments name six new level-0 drawing primit
 - Examples: `B03F90601G0M`; `B05P90601G0M`; `HYKG006O2818`
 - Named explicitly in NEWCMDS.RIP (note: not 'skewed'). Args (6x 2#): x, y, start_ang, end_ang, x_rad, y_rad - angle pair comes BEFORE radii here, and no rotation field. Ex `_B03F90601G0M`.
 
-### `0|"` - RIP_BOUNDED_TEXT (hypothesized name)
+### `0|"` - RIP_BOUNDED_TEXT
 
 - Occurrences: 1 in 1 file(s): BOUNDS.RIP
 - Examples: `2020A03000This is just another`
-- BOUNDS.RIP comment: 'Show the bounded text command', drawn immediately after a same-coordinate `R2020A030` rectangle labeled 'Show our bounding box'. Args: x0 y0 x1 y1 (2# each) + 2-digit flags + text; text wraps/clips inside the box. Ex `"2020A03000This is just another...`.
+- BOUNDS.RIP comment: 'Show the bounded text command', drawn immediately after a same-coordinate `R2020A030` rectangle labeled 'Show our bounding box'. The [original handler](../ripscrip/3.0-text-output-and-fonts.md#rip_bounded_text) consumes four XY fields, two reserved digits and one string, then fits temporary outline size and spacing. Ex `"2020A03000This is just another...`.
 
 ### `0|;` - RIP_MARKER (hypothesized name)
 
@@ -171,7 +173,7 @@ NEWCMDS.RIP is a Rosetta stone: its comments name six new level-0 drawing primit
 
 ### Notes on descriptor-only / spec-name confirmations
 
-- `0|y`: RIP_EXTENDED_FONT_STYLE - heavily used (430x). Confirms 2.00a4 name; args much richer than SyncTERM's 4-word descriptor: 26 chars + font name, e.g. `y0000BW1Q080000001a1a000000Marin`. FONTS.RIP line 114 carries the authoritative field map comment `!|!sfFFFFZZOOSSCCBBCCWWRRRRRR` = s(1) f(1) FFFF(4 flags) ZZ(2 size) OO(2 orientation) SS CC BB CC WW (2 each) RRRRRR(6 reserved); the rotation demo varies the SS field (`00`->`E4`/`gC`) with per-line labels '0 x 0', '180 x 90', '180 x 270' etc. covering all 16 char-x-text rotation combos. Fields include size/scale (`1a1a` ~ x/y scale), style flags (bold/dropshadow per TELLISTS.MNU inline comment 'Marin, centered, bold w/ dropshadow'), rotation (16 orientations per FONTSTOR.TXT). Scalable outline fonts seen: Marin, Dixon, Symbol, Cobb (+ family suffixes ' TH' thin, ' CN' condensed, ' WD' wide, ' EX' expanded, ' HO' hollow, ' HT', ' HC', ' HW', ' HE'). Font name can be a variable: `...000000$&FONT_NAME$`.
+- `0|y`: RIP_EXTENDED_FONT_STYLE - heavily used (430x). Confirms 2.00a4 name; args much richer than SyncTERM's 4-word descriptor: 26 chars + font name, e.g. `y0000BW1Q080000001a1a000000Marin`. FONTS.RIP line 114 carries the authoritative field map comment `!|!sfFFFFZZOOSSCCBBCCWWRRRRRR` = s(1) f(1) FFFF(4 flags) ZZ(2 size) OO(2 orientation) SS CC BB CC WW (2 each) RRRRRR(6 reserved); the rotation demo varies the SS field (`00`->`E4`/`gC`) with per-line labels '0 x 0', '180 x 90', '180 x 270' etc. covering all 16 char-x-text rotation combos. Fields include size/scale (`1a1a` ~ x/y scale), style flags (bold/dropshadow per TELLISTS.MNU inline comment 'Marin, centered, bold w/ dropshadow'), rotation (16 orientations per FONTSTOR.TXT). Scalable outline fonts seen: Marin, Dixon, Symbol, Cobb (+ family suffixes ' TH' thin, ' CN' condensed, ' WD' wide, ' EX' expanded, ' HO' hollow, ' HT', ' HC', ' HW', ' HE'). Font name can be a variable: `...000000$&FONT_NAME$`. **Superseded field interpretation (2026-11-16):** the [DLL derivation](issue-3-extended-font-style.md) establishes that OO is shadow distance, the second CC is spacing percentage and WW is ignored; `1a1a` is not an X/Y scale pair. Both rotation fields use tenths of a degree, and numeric fields always use base 64. Consult the [corrected entry](../ripscrip/3.0-text-output-and-fonts.md#rip_extended_font_style) for the implementor contract.
 - `0|D`: RIP_SET_DRAWING_PALETTE - single use in BLUEFADE.FN: `D0W0W8000000040008000...` sets a long run of 256-color palette entries for the faded background.
 - `0|<ESC>`: not observed in corpus (level-0 ESC).
 
