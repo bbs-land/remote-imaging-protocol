@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-24 23:22:19 UTC.** [PR #276](https://github.com/bbs-land/remote-imaging-protocol/pull/276) covers #275. Its actual head `bd4cbc53c4579cfaf2c9a85cf15204cf1a86b991` is on fork stable through `65968b292f71b323f70a097c6f32b33cb714a369`. The [master-palette derivation](issue-275-master-palette-publication.md) covers all 64 master colors, 11 wire cases, and the stored and published states. The audit found all 137 open RealDeuce reports covered and all 136 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
+
 **2026-11-24 23:12:00 UTC.** [PR #274](https://github.com/bbs-land/remote-imaging-protocol/pull/274) covers #273. Its actual head `6d652cb5ce3e38f713cf0888a7d415081b6fdc4c` is on fork stable through `643ca5be60e8669cb45218c5cc172ed27c34cf41`. The [full-port erase derivation](issue-273-full-port-erase.md) covers the original slot and 15 call targets, plus portable screen, bitmap and clipping cases. The audit found all 136 open RealDeuce reports covered and all 135 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **2026-11-24 23:05:12 UTC.** [PR #272](https://github.com/bbs-land/remote-imaging-protocol/pull/272) covers #270. Its actual head `f2d4dabbbd832dcebcff73dcc000507d3ec20685` is on fork stable through `e7534a26c8e893a1390153f151171f62ff7d4f6f`. The [coordinate and fixed-field derivation](issue-270-coordinate-and-fixed-field-edges.md) covers nine descriptors, 33 receive cases and 27 width effects. The audit found all 135 open RealDeuce reports covered and all 134 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
