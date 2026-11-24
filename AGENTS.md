@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+Issue #210 is delivered in [PR #221](https://github.com/bbs-land/remote-imaging-protocol/pull/221). The [character-set and language providers derivation](version/3.0/research/issue-210-charset-metadata.md) records source and verification. Consolidate the actual PR head.
+
 Issue #209 is delivered in [PR #220](https://github.com/bbs-land/remote-imaging-protocol/pull/220). Fork stable includes the actual source **b85d5d8694e31bd72241e9e31de8114cdedb316a** through merge **5dba85225c1ed61d33296f4d848cd6b106be22d2**. The [backspace mode and transmit policy derivation](version/3.0/research/issue-209-backspace-modes.md) records the source, examples and audit. Continue in order with #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:12:13Z**.
 
 Issue #208 is delivered in [PR #219](https://github.com/bbs-land/remote-imaging-protocol/pull/219). Fork stable includes the actual source **91b2cd76b6212c5dff61dbfabe253983574aa33c** through merge **98df34f1a0e49253553d9be23278a23a279f91a5**. The [legacy image suffix wording derivation](version/3.0/research/issue-208-legacy-suffix-wording.md) records the source, examples and audit. Continue in order with #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **02:07:00Z**.
