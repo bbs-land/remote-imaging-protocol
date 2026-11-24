@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#208 active.** Branch `issue-208-legacy-suffix-wording`. The [derivation](issue-208-legacy-suffix-wording.md) records the source and next action.
+
 **#207 delivered.** [PR #218](https://github.com/bbs-land/remote-imaging-protocol/pull/218) documents backup query aggregates. Actual source **73dccc9588d0e566acb5802b397143966455f2cf** was normal-merged through **293cc3a0507734f72596db212bae3cd25a6bfe47** with an identical tree. Read the [derivation](issue-207-backup-aggregates.md). The **02:04:06Z** audit found 103 open PR heads, all ancestral. Continue in order with #208, #209, #210, #211, #212, #213, #214, #215.
 
 **#206 delivered.** [PR #217](https://github.com/bbs-land/remote-imaging-protocol/pull/217) documents ISPALETTE return policy. Actual source **2adaafe3bfc8e864efab95590bb72d78c7eb5726** was normal-merged through **78341fd88a4be477b1437bc44188f1e2bf0c5748** with an identical tree. Read the [derivation](issue-206-ispalette.md). The **02:01:14Z** audit found 102 open PR heads, all ancestral. Continue in order with #207, #208, #209, #210, #211, #212, #213, #214, #215.
