@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+#206 is active on `issue-206-ispalette`. Read the [ISPALETTE return policy derivation](version/3.0/research/issue-206-ispalette.md) for the trace and next action.
+
 Issue #205 is delivered in [PR #216](https://github.com/bbs-land/remote-imaging-protocol/pull/216). Fork stable includes the actual source **2ce278f9c4a440b27b095a46d7848a5400927260** through merge **ccef989bb06884cac94ab390b99a2b40bacb5701**. The [block-mode requests and completion derivation](version/3.0/research/issue-205-block-mode.md) records the source, examples and audit. Continue in order with #206, #207, #208, #209, #210, #211, #212, #213, #214, #215. Query feedback from at least one minute before **01:59:32Z**.
 
 Issue #201 is delivered in [PR #204](https://github.com/bbs-land/remote-imaging-protocol/pull/204). Fork stable includes the actual source **4c55a9adfa87e90d91cdd5dcfb301e9fec683c0d** through merge **a1b5f789c316a996d7baad3116d776ca7c4bca91**. The [selective MKILL arity and selectors derivation](version/3.0/research/issue-201-selective-mkill.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **23:12:56Z**.
