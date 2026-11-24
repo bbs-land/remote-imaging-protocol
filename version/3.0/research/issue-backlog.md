@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-24 21:21:10 UTC.** [PR #256](https://github.com/bbs-land/remote-imaging-protocol/pull/256) covers #255. Its actual head `5a48519c2687bb3f2d93967062b90610248b2182` is on fork stable through `7577594e9ce81e9bb00e7ab07117e65333a38510`. The [outline-font and metric derivation](issue-255-font-text-boundaries.md) records numeric widths and how a period shifts each text boundary. Twenty argument-boundary cases checked. The audit found all 127 open RealDeuce reports covered and all 126 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
+
 **2026-11-24 21:10:47 UTC.** [PR #254](https://github.com/bbs-land/remote-imaging-protocol/pull/254) covers #253. Its actual head `57a37a66bbc3db45b73c671fc475d1c4c970758f` is on fork stable through `c99e3ff145adf55fa4ddd919b4dca4c3e2f6cd96`. The [text-window wire-width derivation](issue-253-text-window-wire-widths.md) verifies three original slots and eleven argument cases. The audit found all 126 open RealDeuce reports covered and all 125 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **2026-11-24 20:07:55 UTC.** [PR #252](https://github.com/bbs-land/remote-imaging-protocol/pull/252) covers #250. Its actual head `70492116cf2793dd230a7ea218f8c7642d8e5ca6` is on fork stable through `504f87f2894fbc303102dbdde8ad9177307c90ec`. The [numeric receive alphabet derivation](issue-250-meganum-receive-alphabet.md) records original slots and digit validation, with 38 report cases checked against the static model. The audit found 125 open RealDeuce reports covered and 124 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
