@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+Issue #229 is delivered in [PR #230](https://github.com/bbs-land/remote-imaging-protocol/pull/230). Fork stable includes the actual source **40dc5e852d41e2b7ce92eb1115a69a83a263af82** through merge **ddd6517bb3e95c8b6d8f021fc43ef7d6e7e48b20**. The [PUT_IMAGE viewport and reserved digit derivation](version/3.0/research/issue-229-put-image-viewport.md) records the original source/destination gates, the corrected operand trace and the portable receive policy. The **2026-11-24 14:28:52 UTC** audit found 114 open RealDeuce issues covered and all 113 open PR heads on stable. Query feedback from at least one minute before that audit.
+
 Issue #227 is delivered in [PR #228](https://github.com/bbs-land/remote-imaging-protocol/pull/228). Fork stable includes the actual source **2949e485498f31247b25c2b63764f3d93493f96a** through merge **1b59fa1963701c895e791f071c557e347fc21ce1**. The [simple mouse reset derivation](version/3.0/research/issue-227-mouse-post-action-reset.md) records the original result gate, portable ownership rules and a wire example. The **2026-11-24 14:03:28 UTC** audit found 113 open RealDeuce issues covered and all 112 open PR heads on stable. Query feedback from at least one minute before that audit.
 
 Issue #215 is delivered in [PR #226](https://github.com/bbs-land/remote-imaging-protocol/pull/226). Fork stable includes the actual source **5beb65baa8b4fceb41fa16969602504dba4ee056** through merge **13439551837a9fa140a19b5ad03ba9b73a56b8c2**. The [WRITE_ICON export flags and temporary assets derivation](version/3.0/research/issue-215-write-icon-export.md) records the source, examples and audit. The verified queue is empty. Query feedback from at least one minute before **02:36:53Z**.
@@ -54,7 +56,7 @@ Issue #175 is delivered in [PR #182](https://github.com/bbs-land/remote-imaging-
 
 Issue #174 is delivered in [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181). Fork stable includes its actual source **a87a555dc2348d5026d408f4186eac1213df3898** through merge **e672856a728defc3fc82c31f183529a608f9db27**. The [drawing palette storage and publication derivation](version/3.0/research/issue-174-palette-publication.md) records the source, examples and audit. Work through the remaining queue in order (#175, #179). Query feedback from at least one minute before **17:07:02Z**.
 
-The ten-minute GitHub watch runs in the active Codex conversation. The maintainer asked to return to this workflow on 2026-11-24, and the host cron entry was removed. Sleep until the next in-thread check, refresh GitHub and continue the serial research and PR workflow when a RealDeuce report appears. The last check began at **14:03:28 UTC** and the next is due about **14:13:28 UTC**.
+The ten-minute GitHub watch runs in the active Codex conversation. The maintainer asked to return to this workflow on 2026-11-24, and the host cron entry was removed. Sleep until the next in-thread check, refresh GitHub and continue the serial research and PR workflow when a RealDeuce report appears. The 10-minute poll at **14:23:47 UTC** detected #229. The next poll is due about **14:33:47 UTC**.
 
 ## Ground rules
 
