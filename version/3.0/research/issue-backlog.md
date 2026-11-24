@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**#214 delivered.** [PR #225](https://github.com/bbs-land/remote-imaging-protocol/pull/225). Read the [derivation](issue-214-bounded-text.md).
+
 **#213 delivered.** [PR #224](https://github.com/bbs-land/remote-imaging-protocol/pull/224) documents affine ellipse wire and contour rules. Actual source **09559f3976f0783104d9413c070fa157a5674ba9** was normal-merged through **790255d09338051fa533931a87c5aa1216b80177** with an identical tree. Read the [derivation](issue-213-affine-ellipses.md). The **02:27:06Z** audit found 109 open PR heads, all ancestral. Continue in order with #214, #215.
 
 **#212 delivered.** [PR #223](https://github.com/bbs-land/remote-imaging-protocol/pull/223) documents PolyMarker projection and composition. Actual source **829579e54c3b7fdacc92083f0cbab82234532158** was normal-merged through **02cb4a844b815f1b98e39baa2fea03b2e34a09ef** with an identical tree. Read the [derivation](issue-212-polymarker.md). The **02:22:11Z** audit found 108 open PR heads, all ancestral. Continue in order with #213, #214, #215.

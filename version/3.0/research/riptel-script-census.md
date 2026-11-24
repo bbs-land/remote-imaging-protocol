@@ -20,7 +20,7 @@ Levels: no digit = level 0; `1x` = level 1; `2x` = level 2. No level-3+ commands
 
 | Lvl | Cmd | Name (spec/reconstructed) | Class | Count | Files | Example args (trunc 60) |
 | --- | --- | --- | --- | --- | --- | --- |
-| 0 | `"` | RIP_BOUNDED_TEXT (hypothesized name) | COMPLETELY NEW | 1 | 1: BOUNDS.RIP | `2020A03000This is just another` |
+| 0 | `"` | RIP_BOUNDED_TEXT | COMPLETELY NEW | 1 | 1: BOUNDS.RIP | `2020A03000This is just another` |
 | 0 | `#` | RIP_NO_MORE | known-1.54 | 287 | 95: NEWS.RIP, BLUEBACK.FN, BUTTONS.RIP, CURVES.RIP, DEMO-01.COL… |  |
 | 0 | `&` | RIP_SKEWED_OVAL | COMPLETELY NEW | 3 | 2: SHAPES.RIP, NEWCMDS.RIP | `20151G0M1M`; `W44W281810`; `VY4Q281810` |
 | 0 | `*` | RIP_RESET_WINDOWS | known-1.54 | 31 | 31: BOUNDS.RIP, BUTTONS.RIP, CURVES.RIP, DRAGON.RIP, EAGLE.RIP… |  |
@@ -135,11 +135,11 @@ NEWCMDS.RIP is a Rosetta stone: its comments name six new level-0 drawing primit
 - Examples: `B03F90601G0M`; `B05P90601G0M`; `HYKG006O2818`
 - Named explicitly in NEWCMDS.RIP (note: not 'skewed'). Args (6x 2#): x, y, start_ang, end_ang, x_rad, y_rad - angle pair comes BEFORE radii here, and no rotation field. Ex `_B03F90601G0M`.
 
-### `0|"` - RIP_BOUNDED_TEXT (hypothesized name)
+### `0|"` - RIP_BOUNDED_TEXT
 
 - Occurrences: 1 in 1 file(s): BOUNDS.RIP
 - Examples: `2020A03000This is just another`
-- BOUNDS.RIP comment: 'Show the bounded text command', drawn immediately after a same-coordinate `R2020A030` rectangle labeled 'Show our bounding box'. Args: x0 y0 x1 y1 (2# each) + 2-digit flags + text; text wraps/clips inside the box. Ex `"2020A03000This is just another...`.
+- BOUNDS.RIP comment: 'Show the bounded text command', drawn immediately after a same-coordinate `R2020A030` rectangle labeled 'Show our bounding box'. The [original handler](../ripscrip/3.0-text-output-and-fonts.md#rip_bounded_text) consumes four XY fields, two reserved digits and one string, then fits temporary outline size and spacing. Ex `"2020A03000This is just another...`.
 
 ### `0|;` - RIP_MARKER (hypothesized name)
 
