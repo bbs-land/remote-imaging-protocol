@@ -1,5 +1,7 @@
 # Issue #153: HEADER port black fill and bounds-reset gates
 
+The later rectangle-source derivation supersedes this note's provisional full-port rule for HEADER 2048/4096. Those flags now maximize the viewport to the full RIP screen canvas. [Issue #301 derivation](issue-301-viewport-maximize-rectangle.md).
+
 [Research backlog](issue-backlog.md) · [HEADER port flags](../ripscrip/1.1-protocol-and-command-hierarchy.md#drawing-port-flags)
 
 ## Scope and checkpoint
