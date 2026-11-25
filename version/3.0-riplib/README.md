@@ -56,7 +56,7 @@ The `-riplib` suffix follows the vendor-tree convention in [CONTRIBUTING.md](../
 
 ## Where RIPlib is right
 
-RIPlib's separate `§DEAD.7` account of the surviving legacy RIP_FILL path was adopted in the [fill record](../2.0/techspecs/2.1-fill-defects.md). Its `§BUG.6` manual pie/chord flood-leak attribution, however, was withdrawn here after [original RIPtel native traces](../3.0/research/issue-14-arc-sweeps.md) showed direct GDI Pie/Chord and Polygon consumers. The earlier blanket endorsement of both claims was too broad; the primary artifact determines each disposition separately.
+RIPlib's later crosswalk identifies the same inactive RIP_FILL descriptor as the [original RIPtel 3.1 source trace](../3.0/research/issue-279-rip-fill-framing.md). Original [curve-handler traces](../3.0/research/issue-14-arc-sweeps.md) show direct GDI Pie, Chord and Polygon consumers for the relevant commands.
 
 That case is also the template for how the two evidence bases should settle things: **positive evidence from the binary beats an absent name in the help inventory, and wire observation from the corpus beats an absent function in a disassembly.** Most items on the pages below fall to one or the other.
 
