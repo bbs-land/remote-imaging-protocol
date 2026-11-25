@@ -16,6 +16,7 @@ TeleGrafix never published a RIPscrip 3.x language reference, so this edition is
 | `WP` | Stated in the official [3.0 Technical White Paper](../text/RIPScrip-3.x-technical-whitepaper.txt) |
 | `HLP` | Recovered from the RIPtel 3.1 help files / RIPSCRIP.DLL string table |
 | `corpus (FILE)` | Observed in the RIPtel 3.1 demo scripts (116 authentic TeleGrafix RIPscrip 3.0 files) |
+| `DLL` | Directly verified in a fingerprinted original driver; the linked research note supplies its hash, instruction locations and reproduction method |
 | `SyncTERM (ripper.c:N)` | Behavior of SyncTERM's open-source RIP 3.0 implementation |
 | _(hypothesis)_ | Editorial inference - plausible but unconfirmed |
 
@@ -33,7 +34,7 @@ Underlying research (full data, byte layouts, opcode census): [script census](..
   - **[2.0 Color Modes & Palettes](2.0-color-modes-and-palettes.md)** - the color system as shipped in RIPtel
   - **[2.1 Lines](2.1-lines.md)** - pixel, line, polyline; line patterns and thickness
   - **[2.2 Curves](2.2-curves.md)** - circle, oval, arc, oval arc, bezier, plus the 3.x skewed-oval family from the script census
-  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants; fill patterns; RIP_FILL, marked **[deprecated](../techspecs/2.0-fill-defects-delta.md)** - missing from the RIPSCRIP.HLP inventory and the RIPtel corpus, yet still a live codepath in RIPSCRIP.DLL 3.0.7, with SyncTERM's legacy behavior noted as a compatibility divergence
+  - **[2.3 Shapes & Fills](2.3-shapes-and-fills.md)** - rectangle, bar, polygon and filled variants, fill patterns, and [RIP_FILL as a recognized no-op](2.3-shapes-and-fills.md#rip_fill)
 - **3. Text**
   - **[3.0 Text Output & Fonts](3.0-text-output-and-fonts.md)** - graphics text, outline fonts (eight RFF families)
   - **[3.1 Column Text System](3.1-column-text-system.md)** _(new in this generation)_ - the column-based text layout system discovered in the RIPtel corpus
@@ -62,5 +63,5 @@ Underlying research (full data, byte layouts, opcode census): [script census](..
 - **9. Reference** _(pinned at 9 across all versions)_
   - **[9.0 Command Reference](9.0-command-reference.md)** - the reconstructed ~90-command inventory with evidence tags, including known-but-unimplemented descriptors
   - **[9.1 Text Variable Reference](9.1-text-variable-reference.md)** - every variable with format, category and availability
-  - **[9.2 Version Identification Reference](9.2-versions.md)** - all known 3.0 identification strings (`RIPSCRIP03000` from the HLP quote, `RIPSCRIP030001` from SyncTERM) with provenance, plus the `$RIPVER$` documentation oddity
+  - **[9.2 Version Identification Reference](9.2-versions.md)** - the original driver’s exact `RIPSCRIP030001` replies, terminators, shared `$RIPVER$` value and the allowed generic implementation profile; historical help quotes are distinguished
   - **[9.3 Host Command & Control Character Reference](9.3-host-command-reference.md)** - consolidated terminal→host reference: control characters, host-bound responses, host-side ANSI control
