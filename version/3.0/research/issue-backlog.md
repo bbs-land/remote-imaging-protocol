@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 04:48:39 UTC.** [PR #284](https://github.com/bbs-land/remote-imaging-protocol/pull/284) covers #283. Its actual head `0767e9ef69232ad3f2253c1e705e891e7011fe6f` is on fork stable through `09df54d330b2a7c3c817e58b8ccde22fab5c41eb`. The [STYLE and ENV reset derivation](issue-283-style-env-live-reset.md) verifies the original callbacks, table stores and reported active ENV split. The portable rules apply selected ENV defaults immediately and validate the entire selector list before changes. The audit found all 141 open RealDeuce reports covered and all 140 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
+
 **2026-11-25 01:15:17 UTC.** [PR #282](https://github.com/bbs-land/remote-imaging-protocol/pull/282) covers #281. Its actual head `62771a283c871812793e6ac59e456754ad387306` is on fork stable through `cedb7e1a40c084d11237e821f42709386dedd2b6`. The [RIP_HEADER shorthand derivation](issue-281-header-numeric-shorthand.md) checks the original selector and numeric paths and the staged report captures. The audit found all 140 open RealDeuce reports covered and all 139 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **2026-11-25 00:04:48 UTC.** [PR #280](https://github.com/bbs-land/remote-imaging-protocol/pull/280) covers #279. Its actual head `fe660edcf1e6e43a792c80c66a8679c9393212ee` is on fork stable through `434aef714f25207465eb35482489b0c8152244aa`. The [RIP_FILL framing derivation](issue-279-rip-fill-framing.md) verifies the original descriptor and RET, import inventory and nine delimiter cases. The audit found all 139 open RealDeuce reports covered and all 138 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
