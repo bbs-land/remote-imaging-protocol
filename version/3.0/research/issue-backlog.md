@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 16:39:58 UTC.** [PR #300](https://github.com/bbs-land/remote-imaging-protocol/pull/300) covers #297. Its actual head `eda1cefcafa652df379b126504379342a36cb070` is on fork stable through `4c4ae276b07dbef2aaa5756abe90de1a10536dc8`. The [derivation](issue-297-wire-registration.md) records the 9R registration framing, proprietary callback and silent portable handling. The audit found 148 of 150 open RealDeuce issues covered and all 147 open PR heads on stable. Continue with #298, #299.
+
 **2026-11-25 07:44:09 UTC.** [PR #296](https://github.com/bbs-land/remote-imaging-protocol/pull/296) covers #292. Its actual head `385d9bcf17806d72bd8760fd388539084ed0e066` is on fork stable through `4dc79277a521acd92df258c836e4d067456f8327`. The [live MOUSE INUSE derivation](issue-292-mouse-live-inuse.md) verifies original numbered aggregate dispatch and defines the portable shared-pool predicates. The audit found all 147 open reports covered and all 146 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
 
 **2026-11-25 07:39:18 UTC.** [PR #295](https://github.com/bbs-land/remote-imaging-protocol/pull/295) covers #291. Its actual head `91cd02d7a70ed79f2606e316c24d5f48b1edb2ee` is on fork stable through `aa50f871939dc06faa0d2285b6172ae7d5c5ac61`. The [9D derivation](issue-291-wire-resource-retrieval.md) records the descriptor, resolver outcomes and standalone EXE import/dynamic-lookup check. The audit found 146 of 147 reports covered and all 145 open PR heads consolidated. #292 is next. No new discussion comments, inline comments, or reviews.
