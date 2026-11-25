@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 23:39:44 UTC.** [PR #316](https://github.com/bbs-land/remote-imaging-protocol/pull/316) covers #315. Its actual head `eec8431f06ad3611dad3d2137649b74af2a21ded` is on fork stable through `201cdc196f88f698e9330681e6a62956c44f28af`. The [derivation](issue-315-host-argument-rejection.md) records the original parser and callback rejection paths, two-pass literal response and adjacent assignments The audit found all 157 open RealDeuce issues covered and all 156 open PR heads on stable.
+
 **2026-11-25 23:19:17 UTC.** [PR #314](https://github.com/bbs-land/remote-imaging-protocol/pull/314) covers #313. Its actual head `1ffdfb6faff2c623adfe35c9896bfa68ae3598e4` is on fork stable through `83748224d5e850f0c0f936cf27a86cf996d64e53`. The [derivation](issue-313-viewport-projection-range.md) records the original RECT publication path and portable wide projection with atomic signed-range rejection The audit found all 156 open RealDeuce issues covered and all 155 open PR heads on stable.
 
 **2026-11-25 22:09:50 UTC.** [PR #312](https://github.com/bbs-land/remote-imaging-protocol/pull/312) covers #311. Its actual head `00b21bae2ca5d153bac9807ee6487945f7ec1000` is on fork stable through `a9f42abc32583218bb5e6e73378719e33648dbfd`. The [derivation](issue-311-prompt-dialog-placement.md) records the original decimal coordinate path, sentinel alias and dialog fit, plus the portable per-axis projection and clamp The audit found all 155 open RealDeuce issues covered and all 154 open PR heads on stable.
