@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 07:29:44 UTC.** [PR #294](https://github.com/bbs-land/remote-imaging-protocol/pull/294) covers #290. Its actual head `b8990a9eb4b8f87a8418a496046cf3ce125c10f6` is on fork stable through `95377172052483abc9a561297459bb07a1815ef9`. The [wire delay derivation](issue-290-wire-delay.md) verifies the original 3D thunk and timer, the two base-36 examples and buffering order. The audit found 145 of 147 reports covered and all 144 open PR heads consolidated. #291 and #292 remain open without PRs. No new discussion comments, inline comments, or reviews.
+
 **2026-11-25 07:25:21 UTC.** [PR #293](https://github.com/bbs-land/remote-imaging-protocol/pull/293) covers #289. Its actual head `79ca5a35c0c7d0aacc648c1de348aed000eb31e8` is on fork stable through `deb6f3aa1742ed013c460e1cf33cb4186e272b19`. The [ANSI mode 2 derivation](issue-289-ansi-keyboard-action-mode.md) records the original arity and bit checks and portable keyboard routing. The audit found 144 of 147 reports covered and all 143 open PR heads consolidated. #290, #291 and #292 remain open without PRs. No new discussion comments, inline comments, or reviews.
 
 **2026-11-25 06:30:54 UTC.** [PR #288](https://github.com/bbs-land/remote-imaging-protocol/pull/288) covers #286. Its actual head `5d2811d8eee0067a568cd926e9d9d8992c6fd21d` is on fork stable through `fac950cc034276f3f56a226936dfd7bb18676859`. The [input reset derivation](issue-286-reset-input-lock.md) verifies the original pointer, secondary word and shared lock results. The portable profile provides independent mouse and keyboard scene gates. The audit found all 143 RealDeuce reports covered and all 142 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
