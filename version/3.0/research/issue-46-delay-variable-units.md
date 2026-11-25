@@ -29,3 +29,5 @@ D summary now says sixtieths and gives exact integer clock targets for 1/60/3900
 Reproduction: `run/riptel-macro-probe /path/to/original/ripscrip.dll` (FreeBSD 15.1/clang 19.1.7/native -m32); original DLL hash verified by wrapper. **3,459,218 checks pass**, with the fake-clock service bounding all polls and no real delay/audio/GUI. Scoped wrapper builds and PR payloads are removed on completion. Final required checks and PR link follow at delivery.
 
 Delivered in [PR #66](https://github.com/bbs-land/remote-imaging-protocol/pull/66), dependent on #65. Specification commit **28cfba2**, issue-only comparison starts at **325a2c9**. Required checks pass: 3,459,218 native macro checks, formatting, 0 bad of 5,307 links and diff check. Task temporary build/request files are removed; no real waits/audio/GUI. Refreshed queue selects #51 next; do not merge or manually close #46.
+
+[Issue #290](issue-290-wire-delay.md) subsequently verified that wire 3D also calls the same timer helper through its own thunk. It records the shared synchronous timer and the portable stream-buffering rule.
