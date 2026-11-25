@@ -8,7 +8,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 
 ## Specifications (Markdown reference editions)
 
-- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and the seven known-but-unimplemented command descriptors (see `version/3.0/ripscrip/9.0-command-reference.md`)
+- [ ] Extend the 3.x reconstruction as new evidence is analyzed: the RIP 2 C Library manual PDF (**image-only scans - needs OCR before it can be interrogated**, noted 2026-08-08), extraction of the RIPtel 3.10 / RIPterm 2.30 installers, and further driver contracts (see `version/3.0/research/issue-backlog.md`)
 - [ ] Annotate the conversions with errata and clarifications discovered from implementations - as clearly-marked editor's notes, never silent edits (first pass done 2026-08-08)
 - [ ] Back-fill the unfinished 2.x §2.9 (`[BEGIN REWORD]` placeholder in the source) based on actual implementation behavior (SyncTERM `ripper.c`, icy_parser_core), cited and marked as reconstructed
 - [ ] Grow `version/glossary.md` as new terms surface, and keep the canonical terms used consistently across pages
@@ -37,8 +37,7 @@ The **documentation restructure is complete** (2026-08-09) - `version/{1.54,2.0,
 **Upkeep:**
 
 - [ ] **Pull `git -C ~/src/rip-tools/riplib pull --ff-only origin main` at the start of any session touching these trees**, re-check `docs/spec/06-v31-extensions.md`, `06a-v32-extensions.md`, `07-variables.md`, `10-appendices.md` (§A.1, §A.8), `11-dll-deviations.md` and `CHANGELOG.md`, and update the deltas + the recorded commit in each tree's README (procedure: [reference/rip-tools.md](reference/rip-tools.md#riplib-is-a-moving-target---pull-main-regularly))
-- [ ] Confirm the fill defects adopted from RIPlib's disassembly (`§BUG.6` pie/chord leak, `§DEAD.7` patterned flood brush) also hold in a **2.x-era** `RIPTERM.EXE` - currently generalized backward from the 3.0 driver on engine-lineage grounds, and flagged as such in [`version/2.0/techspecs/2.1-fill-defects.md`](version/2.0/techspecs/2.1-fill-defects.md)
-- [ ] Re-check the other RIP_FILL claims that rest on 3.x help/corpus **silence**. `§DEAD.7` showed the 3.0 driver still implements flood fill, correcting a "not implemented at all" inference on [3.0's RIP_FILL entry](version/3.0/ripscrip/2.3-shapes-and-fills.md#rip_fill) and in [errata.md](version/2.0/ripscrip/errata.md#rip_fill-declared-removed-but-still-implemented) (which also notes the stray-`!|F` behavior was undetermined - it is now determined). Other claims derived the same way may need the same treatment
+- [x] Reconcile RIPtel 3.1's `F` command against the original descriptor, handler and framing captures. [Source and provenance](version/3.0/research/issue-279-rip-fill-framing.md).
 
 ## RIPscrip 3.x research
 

@@ -70,6 +70,32 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 
 **How the reference page renders it:** [2.0's Scope and color effects section](2.0-color-modes-and-palettes.md#scope-and-color-effects) already states the 2.x scope correctly ("all line drawing operations... any fill-based operations... level-0 drawing primitives... fonts"); this entry is comparative history for context, not a body-fact gap.
 
+### RGB component example: 04140C and blue 12
+
+**What the draft says:** the packed hexadecimal example is 04140D and the table's blue hex is 0Dh, while the combined binary string and the table's blue binary/decimal are 00001100 / 12 (draft lines 3539–3550).
+
+**What's correct:** 00001100 = 0Ch = 12; the complete binary string is 04140C. The corrected example consistently uses 04140C / blue 12. This is an arithmetic correction, not a change to the RGB layout or a claim about differing clients. See the [source and derivation](../../3.0/research/issue-9-rgb-examples.md#derivation).
+
+**How the reference page renders it:** [Palette Mapping and Direct RGB Mode](2.0-color-modes-and-palettes.md#palette-mapping-and-direct-rgb-mode) corrects the packed hexadecimal value and blue hexadecimal cell; the original binary and decimal values remain.
+
+### C palette-index expression requires grouped shifts
+
+**What the draft says:** after the correct formula `32 + BLUE + GREEN*4 + RED*32`, it gives `32 + BLUE + GREEN<<2 + RED<<5` as its C equivalent (draft lines 3640–3644).
+
+**What's correct:** use `32 + BLUE + (GREEN << 2) + (RED << 5)`. C addition binds more tightly than shifting, and shifts associate left to right; the original expression means `((32 + BLUE + GREEN) << (2 + RED)) << 5`. BLUE=1/GREEN=2/RED=3 should give 137, whereas the old C grouping gives 35840 with sufficiently wide integers. The [derivation](../../3.0/research/issue-9-rgb-examples.md#derivation) cites the primary C grammar. Neither the palette entries nor the arithmetic formula changes.
+
+**How the reference page renders it:** [Default RGB Values of Color Lookup Table](2.0-color-modes-and-palettes.md#default-rgb-values-of-color-lookup-table) groups both shifts, labels the block as C, and includes the 137 worked result.
+
+## 2.1 Lines
+
+### Open polyline vertex and segment counts
+
+**What the draft says:** `npoints` is both the number of coordinate pairs and the number of sides of an open polyline.
+
+**What's correct:** N vertices give N-1 consecutive segments because the last vertex is not connected back to the first. The draft's own five-segment/six-vertex example already demonstrates this. The same inherited wording is corrected in the 1.54 and 3.0 Markdown editions; original text records remain unchanged. See the [derivation](../../3.0/research/issue-11-pixel-pen-units.md).
+
+**How the reference page renders it:** [RIP_POLYLINE](2.1-lines.md#rip_polyline) counts coordinate pairs as vertices and states N-1 segments.
+
 ## 2.2 Curves
 
 ### RIP_POLY_BEZIER_LINE: command `t`, not `z`
@@ -81,6 +107,14 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 **How the reference page renders it:** [2.2's RIP_POLY_BEZIER_LINE entry](2.2-curves.md#rip_poly_bezier_line) already prints `t` throughout its Command table, Format and Example - no body fix needed.
 
 ## 2.3 Shapes & Fills
+
+### Fill-mask row numerals
+
+**What the draft says:** preset 04 row five has picture/hex 0E but decimal 15 and MegaNum/UltraNum 0F; preset 05 row one has F0/240 but MegaNum 60; FF/255 rows have UltraNum 3@, with one preset-07 row labelled 32; preset 0B rows three/seven have 22/34/0Y but UltraNum 04/24. The 05 diagram caption also incorrectly says light backslash while the preset list says normal backslash.
+
+**What's correct:** retain the existing pictures and hexadecimal bytes. Use 0E/14/0E/0E for preset 04 row five; F0/240/6O/3m for preset 05 row one; FF/255/73/3& for every FF row; 22/34/0Y/0Y for preset 0B rows three/seven. These are arithmetic and caption corrections within the draft, independently corroborated by the unchanged RIPtel 3.1 preset table; they do not assert an earlier client's tiling phase. See the [source recovery and verification](../../3.0/research/issue-12-fill-masks.md).
+
+**How the reference page renders it:** [2.3's Fill Pattern Bitmaps](2.3-shapes-and-fills.md#fill-pattern-bitmaps) uses the corrected numerals and the normal-backslash caption. The original draft under `text/` remains untouched. Exact drawing-context phase is established for RIPtel 3.1 in the [3.0 reconstruction](../../3.0/ripscrip/2.3-shapes-and-fills.md#fill-pattern-origin-and-scaling).
 
 ### RIP_FILLED_POLY_BEZIER: command `x`, not `z`
 
@@ -94,9 +128,9 @@ Same collision as the [1.2 entry above](#rip_set_base_math-and-rip_extended_text
 
 **What the draft says:** RIP_FILL (flood fill) "has been removed from the RIPscrip language. Due to the numerous issues trying to make it work reliably at all resolutions, it was decided that this command could not be implemented without compromising the integrity of the scene... having a reliable fill operation cannot be achieved under multiple resolutions and platforms" - the draft's own stated rationale for removal, carrying change bar `v2.A2`.
 
-**What's correct, and its evidence:** flood fill was heavily used in the 1.5x era - 3,787 `!|F` commands across 78 of the 118 scripts in the RIPtermJS 1.5x corpus - so artists did not avoid it, but it was never dependable. The underlying BGI fill queues its seeds on a fixed-capacity stack (492 entries as RIPterm builds it) and silently drops seeds once that fills; SyncTERM reproduces the behavior deliberately, in a function it names `broken_flood_fill` (`sbbs:src/syncterm/ripper.c`, seed-stack notes at `BFF_MAX_SEEDS`), and still executes the 1.54 flood fill for legacy scenes at `case 'F'`, line 13593. This is one of three independent defects in TeleGrafix's fill code, documented with the corrections in [2.1 Fill Defects](../techspecs/2.1-fill-defects.md). Do not read the zero `!|F` counts across the 2.x (73 files) and 3.x (35 files) shipped corpora as evidence of unreliability by themselves - the command was formally removed from the 2.x language, so zero uses is the expected outcome regardless of how the 1.5x-era clients behaved. What a 2.x client does on receiving a stray `!|F` from an old script is not documented in the draft or the shipped manuals and has not been determined from a 2.x binary - but the **3.0** driver still carries a live flood-fill command (`RIPSCRIP.DLL` 3.0.7 disassembly, RIPlib `§DEAD.7`), so removal from the language did not mean removal from the code, and the same is plausible for 2.x.
+**What's correct, and its evidence:** flood fill was heavily used in the 1.5x era - 3,787 `!|F` commands across 78 of the 118 scripts in the RIPtermJS 1.5x corpus - so artists did not avoid it, but it was never dependable. The underlying BGI fill queues its seeds on a fixed-capacity stack (492 entries as RIPterm builds it) and silently drops seeds once that fills; SyncTERM reproduces the behavior deliberately, in a function it names `broken_flood_fill` (`sbbs:src/syncterm/ripper.c`, seed-stack notes at `BFF_MAX_SEEDS`), and still executes the 1.54 flood fill for legacy scenes at `case 'F'`, line 13593. The [fill record](../techspecs/2.1-fill-defects.md) documents the affected legacy implementation. Do not read the zero `!|F` counts across the 2.x (73 files) and 3.x (35 files) shipped corpora as evidence of unreliability by themselves - the command was formally removed from the 2.x language, so zero uses is the expected outcome regardless of how the 1.5x-era clients behaved. The 2.x binary's receive behavior remains unverified. The [fingerprinted 3.0 driver](../../3.0/research/issue-279-rip-fill-framing.md) recognizes `F` and dispatches a no-op.
 
-**How the reference page renders it:** [2.3's RIP_FILL entry](2.3-shapes-and-fills.md#rip_fill) documents the command as **deprecated, not absent** - it carries the 1.54 argument list and semantics (never restated for 2.x), quotes the draft's removal rationale, and points at the fill defects and the filled-object replacements. The page previously presented it as removed outright; that followed the draft rather than the shipped engine, which is the opposite of this edition's convention.
+**How the reference page renders it:** [2.3's RIP_FILL entry](2.3-shapes-and-fills.md#rip_fill) labels the historical syntax **deprecated**. It carries the 1.54 argument list and semantics (never restated for 2.x), quotes the draft's removal rationale, and points at the fill defects and the filled-object replacements. The inherited syntax is retained as a historical reference.
 
 ## 3.0 Text Output & Fonts
 
@@ -147,6 +181,14 @@ The draft's own behavior confirms the reading: the two sibling commands announce
 **How the reference page renders it:** [5.5](5.5-file-transfer-and-queries.md#rip_file_query) documents the commands that exist and points at `$FILEDEL$` for deletion; the [9.0 command index](9.0-command-reference.md) records the announced-but-unspecified command so a reader searching for it finds the answer rather than silence. Hosts targeting any 2.x client should use `$FILEDEL$`.
 
 ## 7.0 Drawing Ports
+
+### Viewport diagram screen coordinate
+
+**What the draft says:** the point at viewport (50,50), port (90,90) is labeled screen (125,125), while the port origin is screen (25,25) and the viewport origin is port (40,40).
+
+**What's correct:** (25+40+50,25+40+50) = **(115,115)**. This is a coordinate-addition correction independent of any client's bitmap sizing convention. The [port-geometry derivation](../../3.0/research/issue-10-port-geometry.md) separately establishes the later RIPtel 3.1 extent/copy contract and the size-query defect; those later-client findings are not generalized to 2.x runtime behavior.
+
+**How the reference page renders it:** the [Ports and Viewports diagram](7.0-drawing-ports.md#ports-and-viewports) labels the point (115,115).
 
 ### RIP_DELETE_PORT: command `2p`, not `2s`
 
