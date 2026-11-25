@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 19:49:55 UTC.** [PR #310](https://github.com/bbs-land/remote-imaging-protocol/pull/310) covers #309. Its actual head `5c8f4aa1a3825bbfb5bbf1dc6e20abe27d703d34` is on fork stable through `20d6c1263f87f2d4871f906d40262917b6c36f74`. The [derivation](issue-309-user-variable-case-conversion.md) records the original ASCII case loops and adjacent-letter test and defines portable high-byte preservation and boundaries The audit found all 154 open RealDeuce issues covered and all 153 open PR heads on stable.
+
 **2026-11-25 19:29:59 UTC.** [PR #308](https://github.com/bbs-land/remote-imaging-protocol/pull/308) covers #307. Its actual head `1cb4404b8a51c2b5b4d1e29e218ce992eaec0a5a` is on fork stable through `89d5069e0f7f14cfcd5b85b7a5a5706f4e8dda28`. The [derivation](issue-307-drawing-mixed-color-operands.md) records the original drawing mix and shared screen DC, and specifies mixed operand promotion and current scene inversion The audit found all 153 open RealDeuce issues covered and all 152 open PR heads on stable.
 
 **2026-11-25 16:56:09 UTC.** [PR #306](https://github.com/bbs-land/remote-imaging-protocol/pull/306) covers #302. Its actual head `3f03030e96b222e4484a824fa35902e5da1c94a6` is on fork stable through `68a82551b8b55466aa6bc36a6e5d65454f9fdc15`. The [derivation](issue-302-ansi-local-echo.md) records the connection-wide echo setting, Telnet event ordering, and separate key and paste display paths The audit found all 152 open RealDeuce issues covered and all 151 open PR heads on stable.
