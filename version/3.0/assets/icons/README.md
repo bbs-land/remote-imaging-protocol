@@ -14,7 +14,7 @@ Two files are referenced by scripts but were never shipped: `SHADOWDO.FN` (calle
 
 | File | Demo |
 | --- | --- |
-| `BOUNDS.RIP` | Bounded-text demo: draws its bounding box ("Show our bounding box"), then the corpus's sole use of the new `"` RIP_BOUNDED_TEXT command wrapping text inside it. |
+| `BOUNDS.RIP` | Bounded-text demo: draws its bounding box ("Show our bounding box"), then the corpus's sole use of the new `"` [RIP_BOUNDED_TEXT](../../ripscrip/3.0-text-output-and-fonts.md#rip_bounded_text) command fitting a single outline string to it. |
 | `BUTTONS.RIP` | Button and mouse-field showcase: bitmap-skinned buttons and radio/checkbox controls (RADIONEW/CHECKBOX BMPs), `<<IF $RETURN$...>>` conditional navigation. |
 | `CURVES.RIP` | Bezier and poly-Bezier curve demo. |
 | `DRAGON.RIP` | Animated dragon story: DBACK.FN backdrop (STRIP6/TORCH/GODRAG3 art), DRAGON.TXT prose flowed into `1e` text columns, DL.FN/DR.FN page-turn blits. |
