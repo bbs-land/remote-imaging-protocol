@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 07:44:09 UTC.** [PR #296](https://github.com/bbs-land/remote-imaging-protocol/pull/296) covers #292. Its actual head `385d9bcf17806d72bd8760fd388539084ed0e066` is on fork stable through `4dc79277a521acd92df258c836e4d067456f8327`. The [live MOUSE INUSE derivation](issue-292-mouse-live-inuse.md) verifies original numbered aggregate dispatch and defines the portable shared-pool predicates. The audit found all 147 open reports covered and all 146 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
+
 **2026-11-25 07:39:18 UTC.** [PR #295](https://github.com/bbs-land/remote-imaging-protocol/pull/295) covers #291. Its actual head `91cd02d7a70ed79f2606e316c24d5f48b1edb2ee` is on fork stable through `aa50f871939dc06faa0d2285b6172ae7d5c5ac61`. The [9D derivation](issue-291-wire-resource-retrieval.md) records the descriptor, resolver outcomes and standalone EXE import/dynamic-lookup check. The audit found 146 of 147 reports covered and all 145 open PR heads consolidated. #292 is next. No new discussion comments, inline comments, or reviews.
 
 **2026-11-25 07:29:44 UTC.** [PR #294](https://github.com/bbs-land/remote-imaging-protocol/pull/294) covers #290. Its actual head `b8990a9eb4b8f87a8418a496046cf3ce125c10f6` is on fork stable through `95377172052483abc9a561297459bb07a1815ef9`. The [wire delay derivation](issue-290-wire-delay.md) verifies the original 3D thunk and timer, the two base-36 examples and buffering order. The audit found 145 of 147 reports covered and all 144 open PR heads consolidated. #291 and #292 remain open without PRs. No new discussion comments, inline comments, or reviews.
