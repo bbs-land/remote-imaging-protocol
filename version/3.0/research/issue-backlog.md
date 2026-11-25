@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 16:51:11 UTC.** [PR #305](https://github.com/bbs-land/remote-imaging-protocol/pull/305) covers #301. Its actual head `886d4dfce37ecd45ffb509dd8547d31a04e6447c` is on fork stable through `acafaea31e3fe7ed8226de9490548009602fc0b2`. The [derivation](issue-301-viewport-maximize-rectangle.md) records the shared MVP and HEADER viewport helper, client-canvas rectangle source and distinct physical backing extent The audit found 151 of 152 open RealDeuce issues covered and all 150 open PR heads on stable. Continue with #302.
+
 **2026-11-25 16:48:01 UTC.** [PR #304](https://github.com/bbs-land/remote-imaging-protocol/pull/304) covers #299. Its actual head `2b0df6ebd40c79ed33190a3861378754b738272e` is on fork stable through `75678ae6a74dd08606c5c26327c80798a04cbb25`. The [derivation](issue-299-compat-env-selectors.md) records the current and numbered eligibility checks, protected ENV updates and immediate selection-local format application The audit found 150 of 152 open RealDeuce issues covered and all 149 open PR heads on stable. Continue with #301, #302.
 
 **2026-11-25 16:45:43 UTC.** [PR #303](https://github.com/bbs-land/remote-imaging-protocol/pull/303) covers #298. Its actual head `65761439629f5970e9373bffb73e7ed1c8bfaaa4` is on fork stable through `9afdf373bb5da7a2f92212b77e05ac5d0be32a14`. The [derivation](issue-298-ansi-insert-mode.md) records the ordinary mode callbacks, original one-row edit and portable deferred-wrap order The audit found 149 of 152 open RealDeuce issues covered and all 148 open PR heads on stable. Continue with #299, #301, #302.
