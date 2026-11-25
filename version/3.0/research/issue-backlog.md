@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 16:45:43 UTC.** [PR #303](https://github.com/bbs-land/remote-imaging-protocol/pull/303) covers #298. Its actual head `65761439629f5970e9373bffb73e7ed1c8bfaaa4` is on fork stable through `9afdf373bb5da7a2f92212b77e05ac5d0be32a14`. The [derivation](issue-298-ansi-insert-mode.md) records the ordinary mode callbacks, original one-row edit and portable deferred-wrap order The audit found 149 of 152 open RealDeuce issues covered and all 148 open PR heads on stable. Continue with #299, #301, #302.
+
 **2026-11-25 16:39:58 UTC.** [PR #300](https://github.com/bbs-land/remote-imaging-protocol/pull/300) covers #297. Its actual head `eda1cefcafa652df379b126504379342a36cb070` is on fork stable through `4c4ae276b07dbef2aaa5756abe90de1a10536dc8`. The [derivation](issue-297-wire-registration.md) records the 9R registration framing, proprietary callback and silent portable handling. The audit found 148 of 150 open RealDeuce issues covered and all 147 open PR heads on stable. Continue with #298, #299.
 
 **2026-11-25 07:44:09 UTC.** [PR #296](https://github.com/bbs-land/remote-imaging-protocol/pull/296) covers #292. Its actual head `385d9bcf17806d72bd8760fd388539084ed0e066` is on fork stable through `4dc79277a521acd92df258c836e4d067456f8327`. The [live MOUSE INUSE derivation](issue-292-mouse-live-inuse.md) verifies original numbered aggregate dispatch and defines the portable shared-pool predicates. The audit found all 147 open reports covered and all 146 open PR heads consolidated. No new discussion comments, inline comments, or reviews.
