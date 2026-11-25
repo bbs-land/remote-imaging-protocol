@@ -249,7 +249,7 @@ Items 2, 4 and part of 7 would likely fall out of a single pass: dump the DLL's 
 
 ## What is not in dispute
 
-The legacy RIP_FILL discussion adopts RIPlib's separate `§DEAD.7` account; see the [fill record](../2.0/techspecs/2.1-fill-defects.md). The former blanket endorsement also included `§BUG.6`, but [primary-source native traces](../3.0/research/issue-14-arc-sweeps.md) now contradict its manual pie/chord flood construction: original I/i/_ call GDI Pie/Chord and skewed filled variants submit Polygon contours. That attribution is withdrawn here. This is a targeted 2026-11-16 correction against riplib main @ `024032a`, rather than a revalidation of every unrelated defect claim.
+RIPlib's later crosswalk identifies RIP_FILL as an accepted no-op. The fingerprinted RIPtel 3.1 descriptor and single-return handler confirm that result for the PC Micro driver. [Source reconciliation](../3.0/research/issue-279-rip-fill-framing.md). The former blanket endorsement also included `§BUG.6`, but [primary-source native traces](../3.0/research/issue-14-arc-sweeps.md) now contradict its manual pie/chord flood construction: original I/i/_ call GDI Pie/Chord and skewed filled variants submit Polygon contours. That attribution is withdrawn here. This is a targeted 2026-11-16 correction against riplib main @ `024032a`, rather than a revalidation of every unrelated defect claim.
 
 ---
 
