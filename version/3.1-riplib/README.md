@@ -14,6 +14,7 @@ _Additions and differences only._ This is deliberately **not** a spec clone in t
 | **Wire identification** | `RIPSCRIP031001` - via `$RIPVER$` and the `ESC[!` auto-sense response |
 | **Upstream source** | `~/src/rip-tools/riplib/docs/spec/06-v31-extensions.md`, cross-referenced through segments 01, 02, 04, 05, 07, 08, 10 and 11 |
 | **Reconciled against** | riplib `main` @ `3e05ecb` (2026-06-30). **RIPlib is a moving target** - see [reference/rip-tools.md](../../reference/rip-tools.md#riplib-is-a-moving-target---pull-main-regularly) for the refresh procedure before editing these pages |
+| **Targeted fill review** | 2026-11-16, riplib main @ `024032a`: the original-driver manual pie/chord flood attribution is withdrawn after primary native traces. This targeted correction does not revalidate unrelated extension claims. |
 | **Licensing** | RIPlib's specification segments carry `(c) 2026 SimVU (Brad Hawthorne)` alongside the TeleGrafix copyright on the inherited material. The pages here are original summaries and comparisons, [CC0](../../LICENSE) like the rest of this repository - see [rights.md](../../reference/rights.md) |
 
 ### Why the directory is named `3.1-riplib`
