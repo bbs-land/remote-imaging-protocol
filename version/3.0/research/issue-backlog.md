@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-25 16:56:09 UTC.** [PR #306](https://github.com/bbs-land/remote-imaging-protocol/pull/306) covers #302. Its actual head `3f03030e96b222e4484a824fa35902e5da1c94a6` is on fork stable through `68a82551b8b55466aa6bc36a6e5d65454f9fdc15`. The [derivation](issue-302-ansi-local-echo.md) records the connection-wide echo setting, Telnet event ordering, and separate key and paste display paths The audit found all 152 open RealDeuce issues covered and all 151 open PR heads on stable.
+
 **2026-11-25 16:51:11 UTC.** [PR #305](https://github.com/bbs-land/remote-imaging-protocol/pull/305) covers #301. Its actual head `886d4dfce37ecd45ffb509dd8547d31a04e6447c` is on fork stable through `acafaea31e3fe7ed8226de9490548009602fc0b2`. The [derivation](issue-301-viewport-maximize-rectangle.md) records the shared MVP and HEADER viewport helper, client-canvas rectangle source and distinct physical backing extent The audit found 151 of 152 open RealDeuce issues covered and all 150 open PR heads on stable. Continue with #302.
 
 **2026-11-25 16:48:01 UTC.** [PR #304](https://github.com/bbs-land/remote-imaging-protocol/pull/304) covers #299. Its actual head `2b0df6ebd40c79ed33190a3861378754b738272e` is on fork stable through `75678ae6a74dd08606c5c26327c80798a04cbb25`. The [derivation](issue-299-compat-env-selectors.md) records the current and numbered eligibility checks, protected ENV updates and immediate selection-local format application The audit found 150 of 152 open RealDeuce issues covered and all 149 open PR heads on stable. Continue with #301, #302.
