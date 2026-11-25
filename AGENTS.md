@@ -4,6 +4,8 @@ Guidance for **automated (AI) agents** working in this repository. Conventions t
 
 ## Current checkpoint
 
+Issue #279 is delivered in [PR #280](https://github.com/bbs-land/remote-imaging-protocol/pull/280). Fork stable includes the actual source **fe660edcf1e6e43a792c80c66a8679c9393212ee** through merge **434aef714f25207465eb35482489b0c8152244aa**. The [RIP_FILL framing derivation](version/3.0/research/issue-279-rip-fill-framing.md) verifies the no-op handler, fixed delimiter state and corrected RIPlib attribution. The **2026-11-25 00:04:48 UTC** audit found all 139 open RealDeuce issues covered and all 138 open PR heads on stable. Query feedback from at least one minute before the audit.
+
 Issue #277 is delivered in [PR #278](https://github.com/bbs-land/remote-imaging-protocol/pull/278). Fork stable includes the actual source **da0c729cf66a6c61d6d3399bcda9ee5dd33f8da4** through merge **0413ddc5cc6f673afae513e1d7ccdae2f33622eb**. The [bookmark variable derivation](version/3.0/research/issue-277-bookmark-variable-policy.md) records the original live-record setup and explicit portable credential policy. The **2026-11-24 23:43:15 UTC** audit found all 138 open RealDeuce issues covered and all 137 open PR heads on stable. Query feedback from at least one minute before the audit.
 
 Issue #275 is delivered in [PR #276](https://github.com/bbs-land/remote-imaging-protocol/pull/276). Fork stable includes the actual source **bd4cbc53c4579cfaf2c9a85cf15204cf1a86b991** through merge **65968b292f71b323f70a097c6f32b33cb714a369**. The [master-palette derivation](version/3.0/research/issue-275-master-palette-publication.md) records the original conversion, logical index range and Q prefix storage before publication. The **2026-11-24 23:22:19 UTC** audit found all 137 open RealDeuce issues covered and all 136 open PR heads on stable. Query feedback from at least one minute before the audit.
@@ -104,7 +106,7 @@ Issue #175 is delivered in [PR #182](https://github.com/bbs-land/remote-imaging-
 
 Issue #174 is delivered in [PR #181](https://github.com/bbs-land/remote-imaging-protocol/pull/181). Fork stable includes its actual source **a87a555dc2348d5026d408f4186eac1213df3898** through merge **e672856a728defc3fc82c31f183529a608f9db27**. The [drawing palette storage and publication derivation](version/3.0/research/issue-174-palette-publication.md) records the source, examples and audit. Work through the remaining queue in order (#175, #179). Query feedback from at least one minute before **17:07:02Z**.
 
-The ten-minute GitHub watch runs in the active Codex conversation. The maintainer asked to return to this workflow on 2026-11-24, and the host cron entry was removed. Sleep until the next in-thread check, refresh GitHub and continue the serial research and PR workflow when a RealDeuce report appears. The 10-minute poll at **23:39:03 UTC** detected #277. The next poll is due about **23:49:03 UTC**.
+The ten-minute GitHub watch runs in the active Codex conversation. The maintainer asked to return to this workflow on 2026-11-24, and the host cron entry was removed. Sleep until the next in-thread check, refresh GitHub and continue the serial research and PR workflow when a RealDeuce report appears. The 10-minute poll at **23:59:09 UTC** detected #279. The next poll is due about **00:09:09 UTC**.
 
 ## Ground rules
 
