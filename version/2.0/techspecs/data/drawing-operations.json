@@ -1,0 +1,173 @@
+{
+  "schema": "rip-drawing-operations-v1",
+  "bits": 8,
+  "destination": 165,
+  "cases": [
+    {
+      "name": "Point or fill foreground",
+      "contributions": [
+        [
+          "current",
+          60
+        ]
+      ],
+      "expected": [
+        60,
+        153,
+        189,
+        36,
+        90
+      ]
+    },
+    {
+      "name": "Fill-pattern zero bit",
+      "contributions": [
+        [
+          "current",
+          102
+        ]
+      ],
+      "expected": [
+        102,
+        195,
+        231,
+        36,
+        90
+      ]
+    },
+    {
+      "name": "Standalone stroke on bit",
+      "contributions": [
+        [
+          "current",
+          15
+        ]
+      ],
+      "expected": [
+        15,
+        170,
+        175,
+        5,
+        90
+      ]
+    },
+    {
+      "name": "Transparent standalone gap",
+      "contributions": [],
+      "expected": [
+        165,
+        165,
+        165,
+        165,
+        165
+      ]
+    },
+    {
+      "name": "Fill then solid border",
+      "contributions": [
+        [
+          "current",
+          60
+        ],
+        [
+          "copy",
+          15
+        ]
+      ],
+      "expected": [
+        15,
+        15,
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "name": "Fill then transparent border gap",
+      "contributions": [
+        [
+          "current",
+          60
+        ]
+      ],
+      "expected": [
+        60,
+        153,
+        189,
+        36,
+        90
+      ]
+    },
+    {
+      "name": "Fill then opaque border gap",
+      "contributions": [
+        [
+          "current",
+          60
+        ],
+        [
+          "copy",
+          102
+        ]
+      ],
+      "expected": [
+        102,
+        102,
+        102,
+        102,
+        102
+      ]
+    },
+    {
+      "name": "Two standalone stroke visits",
+      "contributions": [
+        [
+          "current",
+          15
+        ],
+        [
+          "current",
+          15
+        ]
+      ],
+      "expected": [
+        15,
+        165,
+        175,
+        5,
+        165
+      ]
+    },
+    {
+      "name": "Two separate foreground fills",
+      "contributions": [
+        [
+          "current",
+          60
+        ],
+        [
+          "current",
+          60
+        ]
+      ],
+      "expected": [
+        60,
+        165,
+        189,
+        36,
+        165
+      ]
+    },
+    {
+      "name": "Hole or disabled radial outline",
+      "contributions": [],
+      "expected": [
+        165,
+        165,
+        165,
+        165,
+        165
+      ]
+    }
+  ]
+}
