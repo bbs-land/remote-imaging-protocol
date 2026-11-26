@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 04:18:50 UTC.** [PR #322](https://github.com/bbs-land/remote-imaging-protocol/pull/322) covers #321. Its actual head `c109dfa642a1b73311c454c6adc617093b191cde` is on fork stable through `e0a6c4a6113e6030e5ec2e40719b80bc55af46cb`. The [derivation](issue-321-world-frame-encoding-guide.md) records the verified field capacities and both world-frame boundary examples. The audit found all 160 open RealDeuce issues covered and all 159 open PR heads on stable.
+
 **2026-11-26 00:13:29 UTC.** [PR #320](https://github.com/bbs-land/remote-imaging-protocol/pull/320) covers #318. Its actual head `2bbe1baf35d86aba2b98f2126015526866e2a4ee` is on fork stable through `7d10b6cd77e37e67d093e698d66c74e50f25ab9d`. The [derivation](issue-318-rejected-dollar-span-quoting.md) records the full-span and one-byte scanner advances and the exact FILEDEL and caret outcomes. The audit found all 159 open RealDeuce issues covered and all 158 open PR heads on stable.
 
 **2026-11-26 00:09:04 UTC.** [PR #319](https://github.com/bbs-land/remote-imaging-protocol/pull/319) covers #317. Its actual head `eb60a7eeae3f0e37154003e7dfd483963661a659` is on fork stable through `ce7074eab9e57a7b18ef0b3530e9c9493226da08`. The [derivation](issue-317-initial-mouse-query-point.md) records the original synchronous pointer capture and the portable DEVICE origin fallback with exact reply bytes The audit found 158 of 159 open RealDeuce issues covered and all 157 open PR heads on stable. Continue with #318.
