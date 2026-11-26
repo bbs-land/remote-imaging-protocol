@@ -25,7 +25,7 @@ LLVM objdump 19.1.7 ran `objdump -d --no-show-raw-insn` with `--start-address` a
 
 ## Worked traces
 
-Take a connection on which the client starts with the saved default font index 0. The startup TW uses the 80×43 grid. A printable ASCII `A` in normal character-set state arrives at the painter as code `0x41`, so its source cell is column 1, row 4 of the selected mode's bitmap. The original file offset for its raster is `fontOffset + 50 + 64 × bytesPerGlyph`.
+Take a connection on which the client starts with the saved default font index 0. Font 0 has a nominal grid of 80×43. The original startup TW defines 80×42 cells using that font. The [default-window derivation](issue-353-default-text-window-rows.md) traces the separate row table and scroll margin. A printable ASCII `A` in normal character-set state arrives at the painter as code `0x41`, so its source cell is column 1, row 4 of the selected mode's bitmap. The original file offset for its raster is `fontOffset + 50 + 64 × bytesPerGlyph`.
 
 | Startup client area | Record and key | Mode | Cell | Font offset | Bytes per glyph | `A` offset | Bitmap source pixel |
 | --- | --- | --- | --- | --- | --- | --- | --- |
