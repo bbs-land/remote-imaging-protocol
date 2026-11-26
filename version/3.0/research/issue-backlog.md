@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 04:40:57 UTC.** [PR #325](https://github.com/bbs-land/remote-imaging-protocol/pull/325) covers #323. Its actual head `da96fcf75d058a13443f83cc153081fddeb73331` is on fork stable through `1af0b25f136aaf26aa30e064d08842bc405aec80`. The [derivation](issue-323-classic-button-stroke-metrics.md) records the original CHR metrics, WORLD projection, and Triplex baseline and underline examples. The audit found 161 of 162 open RealDeuce issues covered and all 160 open PR heads on stable. Continue with #324.
+
 **2026-11-26 04:18:50 UTC.** [PR #322](https://github.com/bbs-land/remote-imaging-protocol/pull/322) covers #321. Its actual head `c109dfa642a1b73311c454c6adc617093b191cde` is on fork stable through `e0a6c4a6113e6030e5ec2e40719b80bc55af46cb`. The [derivation](issue-321-world-frame-encoding-guide.md) records the verified field capacities and both world-frame boundary examples. The audit found all 160 open RealDeuce issues covered and all 159 open PR heads on stable.
 
 **2026-11-26 00:13:29 UTC.** [PR #320](https://github.com/bbs-land/remote-imaging-protocol/pull/320) covers #318. Its actual head `2bbe1baf35d86aba2b98f2126015526866e2a4ee` is on fork stable through `7d10b6cd77e37e67d093e698d66c74e50f25ab9d`. The [derivation](issue-318-rejected-dollar-span-quoting.md) records the full-span and one-byte scanner advances and the exact FILEDEL and caret outcomes. The audit found all 159 open RealDeuce issues covered and all 158 open PR heads on stable.
