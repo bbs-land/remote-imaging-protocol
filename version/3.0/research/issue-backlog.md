@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 00:09:04 UTC.** [PR #319](https://github.com/bbs-land/remote-imaging-protocol/pull/319) covers #317. Its actual head `eb60a7eeae3f0e37154003e7dfd483963661a659` is on fork stable through `ce7074eab9e57a7b18ef0b3530e9c9493226da08`. The [derivation](issue-317-initial-mouse-query-point.md) records the original synchronous pointer capture and the portable DEVICE origin fallback with exact reply bytes The audit found 158 of 159 open RealDeuce issues covered and all 157 open PR heads on stable. Continue with #318.
+
 **2026-11-25 23:39:44 UTC.** [PR #316](https://github.com/bbs-land/remote-imaging-protocol/pull/316) covers #315. Its actual head `eec8431f06ad3611dad3d2137649b74af2a21ded` is on fork stable through `201cdc196f88f698e9330681e6a62956c44f28af`. The [derivation](issue-315-host-argument-rejection.md) records the original parser and callback rejection paths, two-pass literal response and adjacent assignments The audit found all 157 open RealDeuce issues covered and all 156 open PR heads on stable.
 
 **2026-11-25 23:19:17 UTC.** [PR #314](https://github.com/bbs-land/remote-imaging-protocol/pull/314) covers #313. Its actual head `1ffdfb6faff2c623adfe35c9896bfa68ae3598e4` is on fork stable through `83748224d5e850f0c0f936cf27a86cf996d64e53`. The [derivation](issue-313-viewport-projection-range.md) records the original RECT publication path and portable wide projection with atomic signed-range rejection The audit found all 156 open RealDeuce issues covered and all 155 open PR heads on stable.
