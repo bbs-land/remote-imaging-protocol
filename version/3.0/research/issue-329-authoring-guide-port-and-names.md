@@ -1,0 +1,9 @@
+# Issue #329 — Authoring examples for port switches and filenames
+
+[Issue #329](https://github.com/bbs-land/remote-imaging-protocol/issues/329) · [Authoring guide](../ripscrip/6.0-writing-rip-files.md#authoring-robustness-notes-from-the-corpus) · [Research backlog](issue-backlog.md)
+
+RealDeuce filed #329 on 2026-11-26 at 04:58:47 UTC. The 05:06 UTC check found it with no comments. Branch `issue-329-authoring-guide-port-and-names` starts at fork stable `defe4e8d5a3af7453d1bba3aac8fffc10affd32e`.
+
+The original `2s` descriptor at slot 118 has one port digit and two flag digits. In `!|2s002`, `0` selects port zero and `02` requests destination unprotection. The argument fields are full width. The original `1c` descriptor has a two-digit cursor and a four-digit reserve. `!|1c06` ends with its cursor field, and a command delimiter supplies reserve zero. The corpus examples remain useful alongside the exact field lengths. [Port descriptor derivation](issue-244-port-reserved-fields.md#reserved-collection-and-switch) · [PR #247](https://github.com/bbs-land/remote-imaging-protocol/pull/247) · [Cursor suffix derivation](issue-258-mouse-field-suffix.md).
+
+The `1F` path at `0xbe90–0xbec9` splits the prepared name by DOS components and reconstructs a separate lookup key from name and extension. The helpers `0x65660` and `0x65766` are given null drive and directory outputs and inputs. The lookup at `0xbf2c–0xbf9e` uses the ordinary local resource search with retrieval disabled. The supplied prefix adds no search location. Mode 04 retains its existing prepared-name reply behavior. This supports bare names as authoring guidance, with the receiver details in the command entry. The linked asset-delivery chapter now gives the same guidance. [Original FILE_QUERY ledger](issue-168-file-query-replies.md#complete-source-ledger) · [Name preparation and lookup](../ripscrip/5.5-file-transfer-and-queries.md#name-preparation-and-lookup).
