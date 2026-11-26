@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 05:07:50 UTC.** [PR #331](https://github.com/bbs-land/remote-imaging-protocol/pull/331) covers #329. Its actual head `a3515050735eef10fca4f8ecb3e660d1996b8033` is on fork stable through `529e9d5129f4c7017884ba7cafc4bb4f74f717d6`. The [derivation](issue-329-authoring-guide-port-and-names.md) records the two command descriptors and command-specific FILE_QUERY name preparation. The audit found 164 of 165 open RealDeuce issues covered and all 163 open PR heads on stable. Continue with #330.
+
 **2026-11-26 04:57:40 UTC.** [PR #328](https://github.com/bbs-land/remote-imaging-protocol/pull/328) covers #327. Its actual head `e0149d81a5043832a829ad4ecb04e6f42597dacd` is on fork stable through `8e4cc03c66934e48eb964fab9f98db81dff05514`. The [derivation](issue-327-command-index-erase-reset-cursor.md) records the palette index 0 erase, SOFT selection and protection rules, and eight pointer styles. The audit found all 163 open RealDeuce issues covered and all 162 open PR heads on stable.
 
 **2026-11-26 04:42:53 UTC.** [PR #326](https://github.com/bbs-land/remote-imaging-protocol/pull/326) covers #324. Its actual head `c6093f8852830c9cfad50e5628faf2688c17d794` is on fork stable through `2bfd6e79935eea159258fbd8dc569884f1aaef5d`. The [derivation](issue-324-palette-reset-selection.md) records the distinct palette reset and selection paths and the exact slot 5 reply. The audit found all 162 open RealDeuce issues covered and all 161 open PR heads on stable.
