@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 05:43:19 UTC.** [PR #346](https://github.com/bbs-land/remote-imaging-protocol/pull/346) covers #344. Its actual head `967be78073f31f1122f7605a795fa95f06d2d65a` is on fork stable through `d52c12fca698106913a679561536ea75c194902b`. The [derivation](issue-344-wire-bitmap-geometry.md) records rectangle normalization, both zero decisions, and the empty-extent and load-error stage outcomes. The audit found all 172 open RealDeuce issues covered and all 171 open PR heads on stable.
+
 **2026-11-26 05:37:47 UTC.** [PR #345](https://github.com/bbs-land/remote-imaging-protocol/pull/345) covers #343. Its actual head `a506dfeacb0daf69ba6b7063cb1f7e29ee76fe5d` is on fork stable through `873939cce476b420f408f424b404ee053e9d613e`. The [derivation](issue-343-variable-consumer-index.md) records the six directives, retrieval prompt conditions, and playback consumer restriction. The audit found 171 of 172 open RealDeuce issues covered and all 170 open PR heads on stable. Continue with #344.
 
 **2026-11-26 05:29:37 UTC.** [PR #342](https://github.com/bbs-land/remote-imaging-protocol/pull/342) covers #340. Its actual head `a9b24efda6a59ff54c55a91a23603e06d6f47382` is on fork stable through `8886e3474457856c456d09aa48892de42abb81db`. The [derivation](issue-340-minimal-scene-font-annotation.md) records the four verified font fields and corrects both copies of the minimal scene. The audit found all 170 open RealDeuce issues covered and all 169 open PR heads on stable.
