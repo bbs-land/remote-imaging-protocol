@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 15:15:12 UTC.** [PR #351](https://github.com/bbs-land/remote-imaging-protocol/pull/351) covers #349. Its actual head `08302979d9c78609a806bca5734dd61a47c228a2` is on fork stable through `5b7a41e6f695352d4199eab84f244cbb66e35c4d`. The [derivation](issue-349-microansi-font-selection.md) records the client-area bank ranges, text-window mode selection, default preference and seven byte-verified glyph traces. The audit found 174 of 175 open RealDeuce issues covered and all 173 open PR heads on stable. Continue with #350.
+
 **2026-11-26 14:42:08 UTC.** [PR #348](https://github.com/bbs-land/remote-imaging-protocol/pull/348) covers #347. Its actual head `49eccf447db9825b7593f84fe2b280aa2e3cdfc4` is on fork stable through `3995260d4bd127e6b9d4a613588a6249cb9d9a36`. The [derivation](issue-347-microansi-overview-counts.md) records thirty exact subrecord lengths, the implicit blank glyph, and the three added resolutions. The audit found all 173 open RealDeuce issues covered and all 172 open PR heads on stable.
 
 **2026-11-26 05:43:19 UTC.** [PR #346](https://github.com/bbs-land/remote-imaging-protocol/pull/346) covers #344. Its actual head `967be78073f31f1122f7605a795fa95f06d2d65a` is on fork stable through `d52c12fca698106913a679561536ea75c194902b`. The [derivation](issue-344-wire-bitmap-geometry.md) records rectangle normalization, both zero decisions, and the empty-extent and load-error stage outcomes. The audit found all 172 open RealDeuce issues covered and all 171 open PR heads on stable.
