@@ -6,6 +6,8 @@ RealDeuce filed #315 on 2026-11-25 at 23:33:42 UTC. The 23:36 UTC check found it
 
 The accepted #116 contract defers host validation until a stored button action is reached. #84 provides the argument-byte predicate. Original pipeline observations for FILEDEL show a complete parser-rejected span remaining literal. This issue follows the two-pass sender and contrasts parser rejection with RAND's callback rejection. [Button validation](issue-116-button-payload-hit-geometry.md#validation-versus-deferred-execution) · [Argument grammar](issue-84-dollar-argument-grammar.md#outer-ordinary-scanner-and-host-passes) · [Original FILEDEL pipeline](issue-20-filedel-scope.md#parser-and-helper-are-different-layers).
 
+This note traces explicit rejection of complete spans. For candidates exhausted before an unquoted closing parenthesis, the parser reports a one-byte advance and ordinary scanning can reach the remaining bytes. [Incomplete candidate derivation](issue-318-rejected-dollar-span-quoting.md).
+
 ## Original scanner and send path
 
 Static inspection used PC Micro RIPtel 3.1's `artifacts/riptel-3.1-pcmicro/extracted/ripscrip.dll`, SHA-256 `83d71b358492b15bcfd3773c30a52784881a3a49a5b6e9029d986b3cba1fd5e8`. Driver addresses are RVAs at image base `0x10000000`. [Artifact catalogue](../../../reference/rip-tools.md).
