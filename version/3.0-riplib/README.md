@@ -26,6 +26,7 @@ Both sources are legitimate and mostly complementary - the same client, examined
 | **Purpose** | A comparison and negotiation record, not a specification. Nothing here supersedes either project's own documentation |
 | **Neutrality** | Each item states both readings and the evidence behind them. Where the evidence here is strong enough to call, it says so and shows why; where it is not, it stays open |
 | **Reconciled against** | riplib `main` @ `3e05ecb` (2026-06-30), `docs/spec/` segments 01, 02, 04, 05, 07, 10 and 11 - especially **`11-dll-deviations.md`**, RIPlib's own register of DLL bugs, errata and deliberate deviations, which is the natural counterpart to these pages |
+| **Targeted fill review** | 2026-11-16, riplib main @ `024032a`: `§BUG.6` attribution checked against original RIPtel consumers and withdrawn here. Other baseline comparisons retain their separately recorded review scope. |
 | **Refresh** | RIPlib is a moving target - see [reference/rip-tools.md](../../reference/rip-tools.md#riplib-is-a-moving-target---pull-main-regularly) before editing |
 | **Licensing** | Original comparison material, [CC0](../../LICENSE); see [rights.md](../../reference/rights.md) |
 
@@ -55,7 +56,7 @@ The `-riplib` suffix follows the vendor-tree convention in [CONTRIBUTING.md](../
 
 ## Where RIPlib is right
 
-This tree is a conflict register, so it reads as a list of disagreements. It is worth recording the opposite finding just as plainly: **RIPlib's analysis of the shipping fill code is correct, it caught defects this repository had not documented, and in one place it corrected the record here.** The pie/chord flood-fill leak (`§BUG.6`) and the never-applied patterned-flood brush (`§DEAD.7`) are real defects in the TeleGrafix implementation, and RIPlib's replacements for both are the right fix. `§DEAD.7` also settles a question this repository had answered from negative evidence: the DLL still carries a live flood-fill command, so `RIP_FILL` outlived its removal from the language - an inference here that the 3.0 driver dropped it entirely has been corrected. All of it has been folded into this repository's own techspecs rather than left in this tree - see [2.0 fill defects](../2.0/techspecs/2.1-fill-defects.md) and the [3.0 delta](../3.0/techspecs/2.0-fill-defects-delta.md).
+RIPlib's later crosswalk identifies the same inactive RIP_FILL descriptor as the [original RIPtel 3.1 source trace](../3.0/research/issue-279-rip-fill-framing.md). Original [curve-handler traces](../3.0/research/issue-14-arc-sweeps.md) show direct GDI Pie, Chord and Polygon consumers for the relevant commands.
 
 That case is also the template for how the two evidence bases should settle things: **positive evidence from the binary beats an absent name in the help inventory, and wire observation from the corpus beats an absent function in a disassembly.** Most items on the pages below fall to one or the other.
 
