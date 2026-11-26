@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 05:29:37 UTC.** [PR #342](https://github.com/bbs-land/remote-imaging-protocol/pull/342) covers #340. Its actual head `a9b24efda6a59ff54c55a91a23603e06d6f47382` is on fork stable through `8886e3474457856c456d09aa48892de42abb81db`. The [derivation](issue-340-minimal-scene-font-annotation.md) records the four verified font fields and corrects both copies of the minimal scene. The audit found all 170 open RealDeuce issues covered and all 169 open PR heads on stable.
+
 **2026-11-26 05:27:53 UTC.** [PR #341](https://github.com/bbs-land/remote-imaging-protocol/pull/341) covers #339. Its actual head `ae87a9ac323998be9558f1aad4b15a9cee8a20cc` is on fork stable through `2bde1d07134ccc07096a7c06ed59763d2a7bac92`. The [derivation](issue-339-filled-polygon-continuation-example.md) records the exact continued wire bytes and four complete coordinate pairs. The audit found 169 of 170 open RealDeuce issues covered and all 168 open PR heads on stable. Continue with #340.
 
 **2026-11-26 05:22:32 UTC.** [PR #338](https://github.com/bbs-land/remote-imaging-protocol/pull/338) covers #336. Its actual head `f3ac9726b3f0f1f5bac20535852059b99242c9a6` is on fork stable through `cac1035812761a664e4db59861cc0273f671cd4d`. The [derivation](issue-336-address-and-editor-examples.md) records the four address terminators, TONAME conversion, and working masked TESTCODE prompt. The audit found all 168 open RealDeuce issues covered and all 167 open PR heads on stable.
