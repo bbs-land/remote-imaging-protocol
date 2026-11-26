@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 05:37:47 UTC.** [PR #345](https://github.com/bbs-land/remote-imaging-protocol/pull/345) covers #343. Its actual head `a506dfeacb0daf69ba6b7063cb1f7e29ee76fe5d` is on fork stable through `873939cce476b420f408f424b404ee053e9d613e`. The [derivation](issue-343-variable-consumer-index.md) records the six directives, retrieval prompt conditions, and playback consumer restriction. The audit found 171 of 172 open RealDeuce issues covered and all 170 open PR heads on stable. Continue with #344.
+
 **2026-11-26 05:29:37 UTC.** [PR #342](https://github.com/bbs-land/remote-imaging-protocol/pull/342) covers #340. Its actual head `a9b24efda6a59ff54c55a91a23603e06d6f47382` is on fork stable through `8886e3474457856c456d09aa48892de42abb81db`. The [derivation](issue-340-minimal-scene-font-annotation.md) records the four verified font fields and corrects both copies of the minimal scene. The audit found all 170 open RealDeuce issues covered and all 169 open PR heads on stable.
 
 **2026-11-26 05:27:53 UTC.** [PR #341](https://github.com/bbs-land/remote-imaging-protocol/pull/341) covers #339. Its actual head `ae87a9ac323998be9558f1aad4b15a9cee8a20cc` is on fork stable through `2bde1d07134ccc07096a7c06ed59763d2a7bac92`. The [derivation](issue-339-filled-polygon-continuation-example.md) records the exact continued wire bytes and four complete coordinate pairs. The audit found 169 of 170 open RealDeuce issues covered and all 168 open PR heads on stable. Continue with #340.
