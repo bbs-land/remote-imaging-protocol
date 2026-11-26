@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 05:22:32 UTC.** [PR #338](https://github.com/bbs-land/remote-imaging-protocol/pull/338) covers #336. Its actual head `f3ac9726b3f0f1f5bac20535852059b99242c9a6` is on fork stable through `cac1035812761a664e4db59861cc0273f671cd4d`. The [derivation](issue-336-address-and-editor-examples.md) records the four address terminators, TONAME conversion, and working masked TESTCODE prompt. The audit found all 168 open RealDeuce issues covered and all 167 open PR heads on stable.
+
 **2026-11-26 05:20:15 UTC.** [PR #337](https://github.com/bbs-land/remote-imaging-protocol/pull/337) covers #334. Its actual head `6ac2772b25887ea590f1e39bdf7ae60c3cedb18c` is on fork stable through `f2a4d343241c229a2ac65c596ee429a659f47d2f`. The [derivation](issue-334-host-response-index.md) records the query triggers, literal caret pair, and concrete TERMINFO and IFS examples. The audit found 167 of 168 open RealDeuce issues covered and all 166 open PR heads on stable. Continue with #336.
 
 **2026-11-26 05:18:14 UTC.** [PR #335](https://github.com/bbs-land/remote-imaging-protocol/pull/335) covers #333. Its actual head `33057bf05e809999f795324754736fb0b71523a3` is on fork stable through `fc9b37339b3ae49b2af20f103057c1981881c93c`. The [derivation](issue-333-template-example-bytes.md) records both scanner passes, the empty slot, and the exact 76 response bytes. The audit found 166 of 167 open RealDeuce issues covered and all 165 open PR heads on stable. Continue with #334.
