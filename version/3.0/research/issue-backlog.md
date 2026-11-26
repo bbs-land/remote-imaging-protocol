@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 04:42:53 UTC.** [PR #326](https://github.com/bbs-land/remote-imaging-protocol/pull/326) covers #324. Its actual head `c6093f8852830c9cfad50e5628faf2688c17d794` is on fork stable through `2bfd6e79935eea159258fbd8dc569884f1aaef5d`. The [derivation](issue-324-palette-reset-selection.md) records the distinct palette reset and selection paths and the exact slot 5 reply. The audit found all 162 open RealDeuce issues covered and all 161 open PR heads on stable.
+
 **2026-11-26 04:40:57 UTC.** [PR #325](https://github.com/bbs-land/remote-imaging-protocol/pull/325) covers #323. Its actual head `da96fcf75d058a13443f83cc153081fddeb73331` is on fork stable through `1af0b25f136aaf26aa30e064d08842bc405aec80`. The [derivation](issue-323-classic-button-stroke-metrics.md) records the original CHR metrics, WORLD projection, and Triplex baseline and underline examples. The audit found 161 of 162 open RealDeuce issues covered and all 160 open PR heads on stable. Continue with #324.
 
 **2026-11-26 04:18:50 UTC.** [PR #322](https://github.com/bbs-land/remote-imaging-protocol/pull/322) covers #321. Its actual head `c109dfa642a1b73311c454c6adc617093b191cde` is on fork stable through `e0a6c4a6113e6030e5ec2e40719b80bc55af46cb`. The [derivation](issue-321-world-frame-encoding-guide.md) records the verified field capacities and both world-frame boundary examples. The audit found all 160 open RealDeuce issues covered and all 159 open PR heads on stable.
