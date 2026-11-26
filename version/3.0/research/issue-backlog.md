@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 05:09:55 UTC.** [PR #332](https://github.com/bbs-land/remote-imaging-protocol/pull/332) covers #330. Its actual head `8d95528e1597187e6d49fb2b5897d4edd86905a8` is on fork stable through `89b5cde8b7774de11ff4c5a692d2078dcc4746ba`. The [derivation](issue-330-authoring-guide-framing.md) records the playback routing, LF continuation distinction, and encoded-stream handler. The audit found all 165 open RealDeuce issues covered and all 164 open PR heads on stable.
+
 **2026-11-26 05:07:50 UTC.** [PR #331](https://github.com/bbs-land/remote-imaging-protocol/pull/331) covers #329. Its actual head `a3515050735eef10fca4f8ecb3e660d1996b8033` is on fork stable through `529e9d5129f4c7017884ba7cafc4bb4f74f717d6`. The [derivation](issue-329-authoring-guide-port-and-names.md) records the two command descriptors and command-specific FILE_QUERY name preparation. The audit found 164 of 165 open RealDeuce issues covered and all 163 open PR heads on stable. Continue with #330.
 
 **2026-11-26 04:57:40 UTC.** [PR #328](https://github.com/bbs-land/remote-imaging-protocol/pull/328) covers #327. Its actual head `e0149d81a5043832a829ad4ecb04e6f42597dacd` is on fork stable through `8e4cc03c66934e48eb964fab9f98db81dff05514`. The [derivation](issue-327-command-index-erase-reset-cursor.md) records the palette index 0 erase, SOFT selection and protection rules, and eight pointer styles. The audit found all 163 open RealDeuce issues covered and all 162 open PR heads on stable.
