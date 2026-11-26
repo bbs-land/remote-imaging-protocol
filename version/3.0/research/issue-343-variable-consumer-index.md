@@ -1,0 +1,9 @@
+# Issue #343 — User-variable and playback index
+
+[Issue #343](https://github.com/bbs-land/remote-imaging-protocol/issues/343) · [Variable index](../ripscrip/9.1-text-variable-reference.md) · [Research backlog](issue-backlog.md)
+
+RealDeuce filed #343 on 2026-11-26 at 05:30:51 UTC. The 05:36 UTC check found it with no comments. Branch `issue-343-variable-consumer-index` starts at fork stable `bc50d16a6f7ba3ce1a6faa317f7133e6ed0b8553`.
+
+- The original HLP and parser recognize exactly `*`, `+`, `=`, `#`, `-` and `&` in the user-variable prefix. The index's percent spelling was a stale transcription. The prefix `-=` and trailing `=value` in `$-=NAME=value$` select a silent write of the supplied value to session memory. [Directive trace](issue-87-user-variable-directives.md#read-only-parser-and-destination-evidence) · [Directive table](../ripscrip/5.1-text-variables.md#directive-characters-in-3x).
+- The adopted `&` prompt table uses an existing value or a supplied default without opening an editor. With neither value nor default, an eligible host lookup prompts. The index now links the retrieval row to that matrix. [Prompt matrix](../ripscrip/5.1-text-variables.md#prompt-and-effect-matrix).
+- The graphical traces use ordinary masks `0x83` for text, label and filename and `0x81` for text metrics. The adopted eligibility table reserves all four playback prefixes in these consumers and preserves their source tokens as literal data. In an eligible host response, the same syntax requests scene, bitmap, JPEG or audio playback. [Graphical derivation](issue-124-graphical-expansion.md#primary-evidence-and-exact-findings) · [PR #126](https://github.com/bbs-land/remote-imaging-protocol/pull/126) · [Consumer table](../ripscrip/5.2-templates-and-conditionals.md#eligible-providers-and-rejected-codes).
