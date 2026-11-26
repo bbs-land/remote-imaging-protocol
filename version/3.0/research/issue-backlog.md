@@ -4,6 +4,8 @@
 
 ## Resume here
 
+**2026-11-26 04:57:40 UTC.** [PR #328](https://github.com/bbs-land/remote-imaging-protocol/pull/328) covers #327. Its actual head `e0149d81a5043832a829ad4ecb04e6f42597dacd` is on fork stable through `8e4cc03c66934e48eb964fab9f98db81dff05514`. The [derivation](issue-327-command-index-erase-reset-cursor.md) records the palette index 0 erase, SOFT selection and protection rules, and eight pointer styles. The audit found all 163 open RealDeuce issues covered and all 162 open PR heads on stable.
+
 **2026-11-26 04:42:53 UTC.** [PR #326](https://github.com/bbs-land/remote-imaging-protocol/pull/326) covers #324. Its actual head `c6093f8852830c9cfad50e5628faf2688c17d794` is on fork stable through `2bfd6e79935eea159258fbd8dc569884f1aaef5d`. The [derivation](issue-324-palette-reset-selection.md) records the distinct palette reset and selection paths and the exact slot 5 reply. The audit found all 162 open RealDeuce issues covered and all 161 open PR heads on stable.
 
 **2026-11-26 04:40:57 UTC.** [PR #325](https://github.com/bbs-land/remote-imaging-protocol/pull/325) covers #323. Its actual head `da96fcf75d058a13443f83cc153081fddeb73331` is on fork stable through `1af0b25f136aaf26aa30e064d08842bc405aec80`. The [derivation](issue-323-classic-button-stroke-metrics.md) records the original CHR metrics, WORLD projection, and Triplex baseline and underline examples. The audit found 161 of 162 open RealDeuce issues covered and all 160 open PR heads on stable. Continue with #324.
